@@ -43,7 +43,6 @@ const MainClient = () => {
   };
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const [slidesRes, newsRes, kpopRes] = await Promise.all([
@@ -71,8 +70,6 @@ const MainClient = () => {
         setIsLoading(false);
       }
     };
-
-    initializeMockServiceWorker().then(fetchData);
   }, []);
 
   if (isLoading) {
