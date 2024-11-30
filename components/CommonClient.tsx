@@ -5,10 +5,7 @@ import { useEffect } from "react";
 const CommonClient = () => {
   useEffect(() => {
     const initializeMockServiceWorker = async () => {
-      if (
-        process.env.NODE_ENV === "development" ||
-        process.env.NODE_ENV === "production"
-      ) {
+    
         const enableMocking = async () => {
           const { worker } = await import("@/mocks/browser");
           console.log("worker", worker);
@@ -21,7 +18,7 @@ const CommonClient = () => {
         };
 
         await enableMocking().catch((error) => console.log(error));
-      }
+      
     };
 
     initializeMockServiceWorker();
