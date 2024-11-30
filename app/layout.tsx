@@ -2,22 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Header from "@/components/layout/Header";
-
-// MSW 초기화 (개발 환경에서만)
-if (process.env.NODE_ENV === "development") {
-  const enableMocking = async () => {
-    const { worker } = await import("@/mocks/browser");
-    await worker.start({
-      onUnhandledRequest: "bypass",
-      serviceWorker: {
-        url: "/mockServiceWorker.js",
-      },
-    });
-  };
-
-  enableMocking()
-  .catch(error => console.log(error));
-}
+import CommonClient from "@/components/CommonClient";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <CommonClient />
         <Header />
         <main className="pt-14">{children}</main>
       </body>
