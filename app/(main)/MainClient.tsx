@@ -43,22 +43,6 @@ const MainClient = () => {
   };
 
   useEffect(() => {
-    const initializeMockServiceWorker = async () => {
-      if (process.env.NODE_ENV === "development") {
-        const enableMocking = async () => {
-          const { worker } = await import("@/mocks/browser");
-          console.log("worker", worker);
-          await worker.start({
-            onUnhandledRequest: "bypass",
-            serviceWorker: {
-              url: "/mockServiceWorker.js",
-            },
-          });
-        };
-
-        await enableMocking().catch((error) => console.log(error));
-      }
-    };
 
     const fetchData = async () => {
       try {
