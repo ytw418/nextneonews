@@ -43,6 +43,7 @@ const MainClient = () => {
   };
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
         const [slidesRes, newsRes, kpopRes] = await Promise.all([
@@ -70,6 +71,8 @@ const MainClient = () => {
         setIsLoading(false);
       }
     };
+
+    fetchData()
   }, []);
 
   if (isLoading) {
