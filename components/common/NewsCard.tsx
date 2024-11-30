@@ -12,7 +12,7 @@ export interface NewsCardProps {
   imageUrl: string;
   category: string;
   tags: string[];
-  description?: string;
+  content?: string;
 }
 
 export const NewsCard = ({
@@ -23,7 +23,6 @@ export const NewsCard = ({
   imageUrl,
   category,
   tags,
-  description,
 }: NewsCardProps) => {
   return (
     <Link href={`/post/${id}`} className="block group">
@@ -36,7 +35,7 @@ export const NewsCard = ({
           />
         </div>
         <div className="flex-1 flex flex-col">
-          <span className="text-primary text-xs mb-2">{category}</span>
+          {/* <span className="text-primary text-xs mb-2">{category}</span> */}
           <h3 className="font-bold text-base sm:text-lg mb-1 sm:mb-2 line-clamp-2 flex-grow">
             {title}
           </h3>
