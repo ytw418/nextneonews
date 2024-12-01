@@ -16,10 +16,14 @@ export async function generateStaticParams() {
   const [mainNews, kpopNews] = await Promise.all([
     getMainNews(),
     getKpopNews(),
-  ]);
+  ]).catch((error) => {
+    console.error("Error generating static params:", error);
+    return [];
+  });
 
   // 모든 뉴스의 ID와 제목으로 slug 생성
   const allNews = [...mainNews, ...kpopNews];
+
   return allNews.map((news) => ({
     id: createSlugUrl(news.id, news.title),
   }));
@@ -30,6 +34,7 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const id = params.id.split("-")[0];
+  console.log("generateMetadata params :>> ", params);
 
   try {
     const post = await getPostDetail(id);

@@ -55,10 +55,15 @@ async function fetchApi<T>(
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
+    const errorData = await response.json().catch(() => {
+      return { error: "Failed to fetch data jsonjsonjson" };
+    });
     throw new Error(`fetchApi 함수에서 실행 
       endpoint: ${endpoint}
-      API error: ${errorData}`);
+      API error: ${errorData}
+      response.status: ${response.status}
+      response.statusText: ${response.statusText}
+      response: ${JSON.stringify(response)}`);
   }
 
   const data = await response.json();
