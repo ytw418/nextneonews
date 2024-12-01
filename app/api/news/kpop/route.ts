@@ -32,7 +32,10 @@ export async function GET() {
       ],
     });
 
-    // Date 객체를 ISO 문자열로 변환
+    if (!kpopNews) {
+      return NextResponse.json({ error: "News not found" }, { status: 404 });
+    }
+
     const formattedNews = kpopNews.map((news) => ({
       ...news,
       createdAt: news.createdAt.toISOString(),
@@ -43,7 +46,7 @@ export async function GET() {
   } catch (error) {
     console.error("K-pop news fetch error:", error);
     return NextResponse.json(
-      { error: "뉴스를 불러오는데 실패했습니다." },
+      { error: "Failed to fetch news" },
       { status: 500 }
     );
   }

@@ -49,7 +49,7 @@ async function fetchApi<T>(
 
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     headers: defaultHeaders,
-    cache: revalidate ? "force-cache" : cache,
+    cache: cache,
     next: revalidate ? { revalidate, ...next } : next,
     ...config,
   });
@@ -101,27 +101,25 @@ async function mutateApi<T>(
 // GET 요청들
 export async function getPostDetail(id: string): Promise<PostDetail> {
   return fetchApi<PostDetail>(`/api/posts/${id}`, {
-    revalidate: 30,
+    // revalidate: 30,
   });
 }
 
 export async function getMainNews(): Promise<NewsCardProps[]> {
   return fetchApi<NewsCardProps[]>("/api/news/main", {
-    revalidate: 60,
+    // revalidate: 60,
   });
 }
 
 export async function getKpopNews(): Promise<NewsCardProps[]> {
   return fetchApi<NewsCardProps[]>("/api/news/kpop", {
-    revalidate: 60,
-    cache: "force-cache",
+    // revalidate: 60,
   });
 }
 
 export async function getSlides(): Promise<SlideItem[]> {
   return fetchApi<SlideItem[]>("/api/slides", {
-    revalidate: 300,
-    cache: "force-cache",
+    // revalidate: 300,
   });
 }
 

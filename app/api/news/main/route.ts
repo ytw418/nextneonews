@@ -42,7 +42,7 @@ export async function GET() {
   } catch (error) {
     console.error("Main news fetch error:", error);
     return NextResponse.json(
-      { error: "뉴��를 불러오는데 실패���습니다." },
+      { error: "뉴스를 불러오는데 실패하였습니다." },
       { status: 500 }
     );
   }
