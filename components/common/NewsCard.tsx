@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { NewsImage } from "@/components/atoms/NewsImage";
+import { createSlugUrl } from "@/lib/utils";
 
 export interface NewsCardProps {
   id: number;
@@ -25,7 +26,7 @@ export const NewsCard = ({
   tags,
 }: NewsCardProps) => {
   return (
-    <Link href={`/post/${id}`} className="block group">
+    <Link href={`/post/${createSlugUrl(id, title)}`} className="block group">
       <div className="news-card h-full flex flex-col">
         <div className="mb-2 sm:mb-4">
           <NewsImage

@@ -8,6 +8,7 @@ import { PostDetail } from "@/app/api/posts/[id]/route";
 import { toast } from "sonner";
 import { Share2, Heart } from "lucide-react";
 import LoadingSpinner from "./loading";
+import { extractIdFromSlug } from "@/lib/utils";
 
 interface PostClientProps {
   post?: PostDetail;
@@ -23,7 +24,8 @@ const PostClient = ({ post: initialPost }: PostClientProps) => {
     const fetchPost = async () => {
       try {
         setIsLoading(true);
-        const id = window.location.pathname.split("/").pop();
+        const fullSlug = window.location.pathname.split("/").pop() || "";
+        const id = extractIdFromSlug(fullSlug);
 
         const response = await fetch(`/api/posts/${id}`);
         if (!response.ok) {
@@ -95,12 +97,12 @@ const PostClient = ({ post: initialPost }: PostClientProps) => {
       <div className="container-custom">
         <div className="space-y-6">
           {/* 제목 */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
             {post.title}
           </h1>
 
           {/* 날짜 */}
-          <time className="block text-sm text-white/70">
+          <time className="block text-sm">
             {new Date(post.date).toLocaleDateString("ko-KR", {
               year: "numeric",
               month: "long",

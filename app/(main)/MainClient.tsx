@@ -9,6 +9,7 @@ import { NewsSection } from "@/components/common/NewsSection";
 import type { NewsCardProps } from "@/components/common/NewsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { createSlugUrl } from "@/lib/utils";
 
 interface SlideItem {
   id: number;
@@ -39,7 +40,7 @@ const MainClient = () => {
 
   // 데이터 유효성 검증
   const slides = Array.isArray(slidesData) ? slidesData : [];
-  
+
   // 로딩 상태 체크
   const isLoading = !slidesData || !news || !kpopNews;
   const hasError = slidesError || newsError || kpopError;
@@ -83,7 +84,7 @@ const MainClient = () => {
           <Slider {...sliderSettings}>
             {slides.map((slide) => (
               <Link
-                href={`/post/${slide.id}`}
+                href={`/post/${createSlugUrl(slide.id, slide.title)}`}
                 key={slide.id}
                 onClick={handleSlideClick}
                 className="cursor-pointer"
@@ -101,7 +102,9 @@ const MainClient = () => {
                       <h2 className="text-white text-2xl font-bold mb-2">
                         {slide.title}
                       </h2>
-                      <p className="text-white/90 text-sm">{slide.description}</p>
+                      <p className="text-white/90 text-sm">
+                        {slide.description}
+                      </p>
                     </div>
                   </div>
                 </div>
