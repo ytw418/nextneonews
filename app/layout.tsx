@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code", // Google Search Console 코드
+    google: "YV_Riopc7DmVS7LUL6geEhhs2DmQghxBUUBoeuTWhR0", // Google Search Console 코드
   },
 };
 
