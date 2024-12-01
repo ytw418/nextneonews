@@ -1,9 +1,19 @@
-import { mainSlides } from "@/mocks/data/news";
+import { prisma } from "@/libs/prisma";
 import { NextResponse } from "next/server";
+
+export type SlideResponse = {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  category: string;
+  tags: string[];
+}[];
 
 export async function GET() {
   try {
-    return NextResponse.json(mainSlides);
+    const slides = await prisma.slide.findMany();
+    return NextResponse.json(slides);
   } catch (error) {
     console.error("Slides fetch error:", error);
     return NextResponse.json(
