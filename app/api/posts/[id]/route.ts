@@ -76,7 +76,7 @@ export async function GET(
   } catch (error) {
     console.error("Post detail fetch error:", error);
     return NextResponse.json(
-      { error: "포스트를 불러오는데 실패했습니다." },
+      { error: error, message: "포스트를 불러오는데 실패했습니다." },
       { status: 500 }
     );
   }

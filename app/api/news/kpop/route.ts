@@ -46,7 +46,7 @@ export async function GET() {
   } catch (error) {
     console.error("K-pop news fetch error:", error);
     return NextResponse.json(
-      { error: "Failed to fetch news" },
+      { error: error, message: "뉴스를 불러오는데 실패하였습니다." },
       { status: 500 }
     );
   }

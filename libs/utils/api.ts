@@ -55,7 +55,10 @@ async function fetchApi<T>(
   });
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.statusText}`);
+    const errorData = await response.json();
+    throw new Error(`fetchApi 함수에서 실행 
+      endpoint: ${endpoint}
+      API error: ${errorData}`);
   }
 
   const data = await response.json();
@@ -100,6 +103,7 @@ async function mutateApi<T>(
 
 // GET 요청들
 export async function getPostDetail(id: string): Promise<PostDetail> {
+  console.log("id :>> ", id);
   return fetchApi<PostDetail>(`/api/posts/${id}`, {
     // revalidate: 30,
   });
