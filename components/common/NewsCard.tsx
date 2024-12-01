@@ -3,13 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { NewsImage } from "@/components/atoms/NewsImage";
-import { createSlugUrl } from "@/lib/utils";
+import { createSlugUrl } from "@/libs/utils/utils";
 
 export interface NewsCardProps {
   id: number;
   title: string;
   summary: string;
-  date: string;
+  createdAt: string;
   imageUrl: string;
   category: string;
   tags: string[];
@@ -20,7 +20,7 @@ export const NewsCard = ({
   id,
   title,
   summary,
-  date,
+  createdAt,
   imageUrl,
   category,
   tags,
@@ -59,7 +59,7 @@ export const NewsCard = ({
             )}
           </div>
           <time className="text-[10px] sm:text-xs text-gray-400">
-            {new Date(date).toLocaleDateString("ko-KR", {
+            {new Date(createdAt).toLocaleDateString("ko-KR", {
               year: "numeric",
               month: "long",
               day: "numeric",

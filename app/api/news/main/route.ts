@@ -1,8 +1,21 @@
-import { mainNews } from "@/mocks/data/news";
+import { prisma } from "@/libs/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
+    const mainNews = await prisma.news.findMany({
+      where: {
+        category: {
+          notIn: ["K-POP"],
+        },
+      },
+      orderBy: [
+        {
+          createdAt: "desc",
+        },
+      ],
+    });
+
     return NextResponse.json(mainNews);
   } catch (error) {
     console.error("Main news fetch error:", error);

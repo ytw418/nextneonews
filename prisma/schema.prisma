@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+  relationMode = "prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+  relationMode = "prisma"
+}
+
+model News {
+  id          Int       @id @default(autoincrement())
+  title       String    // 뉴스 제목
+  summary     String    // 뉴스 요약
+  content     String?   // 뉴스 본문 (선택적)
+  imageUrl    String    // 뉴스 이미지 URL
+  category    String    // 뉴스 카테고리 (K-POP, 테크, 자동차 등)
+  tags        String[]  // 뉴스 태그 배열
+  views       Int       @default(0) // 조회수
+  author      String?   // 작성자 (선택적)
+  source      String?   // 뉴스 출처 (선택적)
+  createdAt   DateTime  @default(now())  // 생성 시 자동으로 현재 시간 저장
+  updatedAt   DateTime  @updatedAt // 수정일
+
+  // 관련 뉴스를 위한 self-relation
+  relatedTo    News[]   @relation("RelatedNews")
+  relatedFrom  News[]   @relation("RelatedNews")
+}
+
+model Slide {
+  id          Int      @id @default(autoincrement())
+  title       String   // 슬라이드 제목
+  description String   // 슬라이드 설명
+  imageUrl    String   // 슬라이드 이미지 URL
+  category    String   // 슬라이드 카테고리
+  tags        String[] // 슬라이드 태그 배열
+} 

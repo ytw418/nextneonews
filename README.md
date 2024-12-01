@@ -5,6 +5,16 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+# 개발 환경
+npx prisma migrate dev --name add_new_feature
+
+# 프로덕션 환경
+npx prisma migrate deploy
+
+
+
+
+
 npm run dev
 # or
 yarn dev

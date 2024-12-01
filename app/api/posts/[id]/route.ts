@@ -1,16 +1,28 @@
-import { mainNews, kpopNews } from "@/mocks/data/news";
+import { prisma } from "@/libs/prisma";
 import { NextResponse } from "next/server";
 
-import { NewsCardProps } from "@/components/common/NewsCard";
-
-export interface PostDetail extends NewsCardProps {
-  content?: string;
+export interface PostDetail {
+  id: number;
+  title: string;
+  summary: string;
+  content: string | null;
+  imageUrl: string;
+  category: string;
+  tags: string[];
   views: number;
-  author: string;
-  relatedNews: NewsCardProps[];
-  source: string;
-  publishedAt: string;
-  updatedAt?: string;
+  author: string | null;
+  source: string | null;
+  createdAt: string;
+  updatedAt: string;
+  relatedNews: {
+    id: number;
+    title: string;
+    summary: string;
+    imageUrl: string;
+    category: string;
+    tags: string[];
+    createdAt: string;
+  }[];
 }
 
 export async function GET(
@@ -18,8 +30,24 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const allNews = [...mainNews, ...kpopNews];
-    const newsItem = allNews.find((news) => news.id.toString() === params.id);
+    const newsItem = await prisma.news.findUnique({
+      where: {
+        id: parseInt(params.id),
+      },
+      include: {
+        relatedTo: {
+          select: {
+            id: true,
+            title: true,
+            summary: true,
+            imageUrl: true,
+            category: true,
+            tags: true,
+            createdAt: true,
+          },
+        },
+      },
+    });
 
     if (!newsItem) {
       return NextResponse.json(
@@ -28,20 +56,43 @@ export async function GET(
       );
     }
 
+    // 같은 카테고리의 관련 뉴스 3개 가져오기
+    const relatedNews = await prisma.news.findMany({
+      where: {
+        AND: [{ category: newsItem.category }, { id: { not: newsItem.id } }],
+      },
+      select: {
+        id: true,
+        title: true,
+        summary: true,
+        imageUrl: true,
+        category: true,
+        tags: true,
+        createdAt: true,
+      },
+      take: 3,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
     const postDetail: PostDetail = {
-      ...newsItem,
-      content: newsItem.content,
-      views: Math.floor(Math.random() * 1000) + 100,
-      author: "NeoNews 기자",
-      relatedNews: allNews
-        .filter(
-          (news) =>
-            news.id !== newsItem.id && news.category === newsItem.category
-        )
-        .slice(0, 3),
-      source: "NeoNews",
-      publishedAt: newsItem.date,
-      updatedAt: new Date().toISOString(),
+      id: newsItem.id,
+      title: newsItem.title,
+      summary: newsItem.summary,
+      content: newsItem.content || null,
+      imageUrl: newsItem.imageUrl,
+      category: newsItem.category,
+      tags: newsItem.tags,
+      views: newsItem.views,
+      author: newsItem.author || null,
+      source: newsItem.source || null,
+      createdAt: newsItem.createdAt.toISOString(),
+      updatedAt: newsItem.updatedAt.toISOString(),
+      relatedNews: relatedNews.map((news) => ({
+        ...news,
+        createdAt: news.createdAt.toISOString(),
+      })),
     };
 
     return NextResponse.json(postDetail);

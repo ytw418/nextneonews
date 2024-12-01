@@ -2,7 +2,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils/utils";
 
 // buttonVariants는 버튼의 모든 스타일 변형을 정의합니다.
 // cva를 사용하여 조건부 클래스 적용을 관리합니다.

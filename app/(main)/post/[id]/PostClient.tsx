@@ -8,7 +8,7 @@ import { PostDetail } from "@/app/api/posts/[id]/route";
 import { toast } from "sonner";
 import { Share2, Heart } from "lucide-react";
 import LoadingSpinner from "./loading";
-import { extractIdFromSlug } from "@/lib/utils";
+import { extractIdFromSlug } from "@/libs/utils/utils";
 
 interface PostClientProps {
   post?: PostDetail;
@@ -103,7 +103,7 @@ const PostClient = ({ post: initialPost }: PostClientProps) => {
 
           {/* 날짜 */}
           <time className="block text-sm">
-            {new Date(post.date).toLocaleDateString("ko-KR", {
+            {new Date(post.createdAt).toLocaleDateString("ko-KR", {
               year: "numeric",
               month: "long",
               day: "numeric",
@@ -133,13 +133,15 @@ const PostClient = ({ post: initialPost }: PostClientProps) => {
               <Share2 className="w-4 h-4 mr-2" />
               공유하기
             </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={handleLike}
               className={isLiked ? "text-red-500" : ""}
             >
-              <Heart className={`w-4 h-4 mr-2 ${isLiked ? "fill-current" : ""}`} />
+              <Heart
+                className={`w-4 h-4 mr-2 ${isLiked ? "fill-current" : ""}`}
+              />
               {isLiked ? "좋아요 취소" : "좋아요"}
             </Button>
           </div>

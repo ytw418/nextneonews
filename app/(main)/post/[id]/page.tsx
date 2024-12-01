@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PostClient from "./PostClient";
-import { extractIdFromSlug } from "@/lib/utils";
+import { extractIdFromSlug } from "@/libs/utils/utils";
 
 export async function generateMetadata({
   params,

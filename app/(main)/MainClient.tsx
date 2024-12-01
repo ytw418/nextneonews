@@ -9,7 +9,7 @@ import { NewsSection } from "@/components/common/NewsSection";
 import type { NewsCardProps } from "@/components/common/NewsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { createSlugUrl } from "@/lib/utils";
+import { createSlugUrl } from "@/libs/utils/utils";
 
 interface SlideItem {
   id: number;
