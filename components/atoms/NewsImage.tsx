@@ -13,7 +13,7 @@ export const NewsImage = ({ src, alt, className = "" }: NewsImageProps) => {
   const [imageSrc, setImageSrc] = useState(src);
 
   const handleError = () => {
-    setImageSrc("/images/haci.png"); // 대체 이미지 경로 설정
+    setImageSrc("/images/haci.png");
   };
 
   return (
@@ -22,9 +22,15 @@ export const NewsImage = ({ src, alt, className = "" }: NewsImageProps) => {
         src={imageSrc}
         alt={alt}
         fill
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes="(max-width: 640px) 100vw, 
+               (max-width: 1080px) 50vw, 
+               33vw"
+        quality={75}
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRg..."
         className={`object-cover rounded-lg ${className}`}
-        onError={handleError} // 이미지 로드 실패 시 호출
+        onError={handleError}
       />
     </div>
   );
