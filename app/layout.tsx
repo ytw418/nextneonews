@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import Header from "@/components/layout/Header";
-import CommonClient from "@/components/CommonClient";
+import Providers from "@/components/providers/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,17 +45,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+// 서버 컴포넌트에서 초기 데이터를 가져오는 함수
+async function getInitialData() {
+  // 전역적으로 필요한 초기 데이터를 가져옵니다
+  // 예: 사용자 정보, 공통 설정 등
+  return {};
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const initialData = await getInitialData();
+
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
-        <CommonClient />
-        <Header />
-        <main className="pt-14">{children}</main>
+        <Providers initialData={initialData}>
+          <Header />
+          <main className="pt-14">{children}</main>
+        </Providers>
       </body>
     </html>
   );

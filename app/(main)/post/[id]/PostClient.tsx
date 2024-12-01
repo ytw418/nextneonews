@@ -1,49 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { NewsSection } from "@/components/common/NewsSection";
 import { PostDetail } from "@/app/api/posts/[id]/route";
+import { NewsSection } from "@/components/common/NewsSection";
+import { Button } from "@/components/ui/button";
+import { Heart, Share2 } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 import { toast } from "sonner";
-import { Share2, Heart } from "lucide-react";
-import LoadingSpinner from "./loading";
-import { extractIdFromSlug } from "@/libs/utils/utils";
 
 interface PostClientProps {
-  post?: PostDetail;
+  post: PostDetail;
 }
 
-const PostClient = ({ post: initialPost }: PostClientProps) => {
-  const [post, setPost] = useState<PostDetail | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const PostClient = ({ post }: PostClientProps) => {
   const [isLiked, setIsLiked] = useState(false);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        setIsLoading(true);
-        const fullSlug = window.location.pathname.split("/").pop() || "";
-        const id = extractIdFromSlug(fullSlug);
-
-        const response = await fetch(`/api/posts/${id}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch post");
-        }
-
-        const data = await response.json();
-        setPost(data);
-      } catch (err) {
-        console.error("Fetching post failed:", err);
-        setError(err instanceof Error ? err.message : "Failed to load post");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPost();
-  }, []);
 
   const handleShare = async () => {
     const currentUrl = window.location.href;
@@ -51,8 +21,8 @@ const PostClient = ({ post: initialPost }: PostClientProps) => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: post?.title,
-          text: post?.summary,
+          title: post.title,
+          text: post.summary,
           url: currentUrl,
         });
       } catch (error) {
@@ -72,13 +42,16 @@ const PostClient = ({ post: initialPost }: PostClientProps) => {
   const handleLike = () => {
     setIsLiked(!isLiked);
     toast.success(
-      isLiked ? "좋아요가 취소되었습니다." : "좋아요를 눌렀습니다."
+      isLiked ? "좋아요가 취소되었습니다." : "좋아요를 눌렀습니다.",
+      {
+        duration: 1000,
+        style: {
+          background: isLiked ? "#f3f4f6" : "#0064ff",
+          color: isLiked ? "#374151" : "#ffffff",
+        },
+      }
     );
   };
-
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <div>Error loading post</div>;
-  if (!post) return <div>Post not found</div>;
 
   return (
     <div className="min-h-screen pb-20">

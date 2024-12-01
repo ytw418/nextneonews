@@ -34,19 +34,6 @@ export async function GET(
       where: {
         id: parseInt(params.id),
       },
-      include: {
-        relatedTo: {
-          select: {
-            id: true,
-            title: true,
-            summary: true,
-            imageUrl: true,
-            category: true,
-            tags: true,
-            createdAt: true,
-          },
-        },
-      },
     });
 
     if (!newsItem) {
@@ -56,19 +43,9 @@ export async function GET(
       );
     }
 
-    // 같은 카테고리의 관련 뉴스 3개 가져오기
     const relatedNews = await prisma.news.findMany({
       where: {
         AND: [{ category: newsItem.category }, { id: { not: newsItem.id } }],
-      },
-      select: {
-        id: true,
-        title: true,
-        summary: true,
-        imageUrl: true,
-        category: true,
-        tags: true,
-        createdAt: true,
       },
       take: 3,
       orderBy: {

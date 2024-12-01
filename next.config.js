@@ -2,9 +2,9 @@
 const nextConfig = {
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.resolve.alias['msw/browser'] = false;
+      config.resolve.alias["msw/browser"] = false;
     } else {
-      config.resolve.alias['msw/node'] = false;
+      config.resolve.alias["msw/node"] = false;
     }
     config.module.rules.push({
       test: /\.svg$/,
@@ -27,6 +27,7 @@ const nextConfig = {
       },
     ],
   },
+  transpilePackages: ["slick-carousel"],
 };
 
 module.exports = nextConfig;

@@ -1,54 +1,64 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import PostClient from "./PostClient";
-import { extractIdFromSlug } from "@/libs/utils/utils";
+import { getPostDetail, getMainNews, getKpopNews } from "@/libs/utils/api";
+import { notFound } from "next/navigation";
+import { createSlugUrl } from "@/libs/utils/utils";
 
+interface PostPageProps {
+  params: {
+    id: string;
+  };
+}
+
+// 빌드 시 생성할 페이지의 params 생성
+export async function generateStaticParams() {
+  // 모든 뉴스 데이터 가져오기
+  const [mainNews, kpopNews] = await Promise.all([
+    getMainNews(),
+    getKpopNews(),
+  ]);
+
+  // 모든 뉴스의 ID와 제목으로 slug 생성
+  const allNews = [...mainNews, ...kpopNews];
+  return allNews.map((news) => ({
+    id: createSlugUrl(news.id, news.title),
+  }));
+}
+
+// 동적 메타데이터 생성
 export async function generateMetadata({
   params,
-}: {
-  params: { id: string };
-}): Promise<Metadata> {
+}: PostPageProps): Promise<Metadata> {
+  const id = params.id.split("-")[0];
+
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-    // utils의 extractIdFromSlug 함수 사용
-    const realId = extractIdFromSlug(params.id);
-    const post = await fetch(`${baseUrl}/api/posts/${realId}`).then((res) => {
-      if (!res.ok) throw new Error("Failed to fetch post");
-      return res.json();
-    });
+    const post = await getPostDetail(id);
 
     return {
       title: post.title,
-      description: post.description,
+      description: post.summary,
+      keywords: post.tags,
       openGraph: {
         title: post.title,
-        description: post.description,
-        images: post.imageUrl
-          ? [
-              {
-                url: post.imageUrl,
-                width: 1200,
-                height: 630,
-                alt: post.title,
-              },
-            ]
-          : [],
+        description: post.summary,
+        images: [post.imageUrl],
       },
     };
   } catch (error) {
-    console.error("Error generating metadata:", error);
     return {
-      title: "Article Not Found",
-      description: "The requested article could not be found.",
+      title: "Not Found",
+      description: "페이지를 찾을 수 없습니다.",
     };
   }
 }
 
-const Page = () => {
-  return (
-    <div>
-      <PostClient />
-    </div>
-  );
-};
+export default async function PostPage({ params }: PostPageProps) {
+  const id = params.id.split("-")[0];
 
-export default Page;
+  try {
+    const postDetail = await getPostDetail(id);
+    return <PostClient post={postDetail} />;
+  } catch (error) {
+    notFound();
+  }
+}
