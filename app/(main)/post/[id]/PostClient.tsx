@@ -14,6 +14,9 @@ interface PostClientProps {
 
 const PostClient = ({ post }: PostClientProps) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [todayCount, setTodayCount] = useState(0);
+  const MAX_DAILY_GENERATIONS = 10;
 
   const handleShare = async () => {
     const currentUrl = window.location.href;
@@ -51,6 +54,52 @@ const PostClient = ({ post }: PostClientProps) => {
         },
       }
     );
+  };
+
+  const handleGenerateNews = async () => {
+    if (todayCount >= MAX_DAILY_GENERATIONS) {
+      toast.error(`일일 생성 한도(${MAX_DAILY_GENERATIONS}회)를 초과했습니다.`);
+      return;
+    }
+
+    if (isGenerating) {
+      toast.error("이미 뉴스를 생성하고 있습니다.");
+      return;
+    }
+
+    setIsGenerating(true);
+    const toastId = toast.loading("AI가 새로운 뉴스를 생성하고 있습니다...");
+
+    try {
+      const response = await fetch("/api/news/aiNews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "뉴스 생성에 실패했습니다.");
+      }
+
+      toast.success(`${data.count}개의 다국어 뉴스가 생성되었습니다!`, {
+        id: toastId,
+      });
+      setTodayCount((prev) => prev + 1);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "뉴스 생성 중 오류가 발생했습니다.",
+        { id: toastId }
+      );
+      console.error("뉴스 생성 오류:", error);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -125,6 +174,18 @@ const PostClient = ({ post }: PostClientProps) => {
               <NewsSection title="관련 뉴스" items={post.relatedNews} />
             </div>
           )}
+
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={handleGenerateNews}
+              disabled={isGenerating}
+              className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors ${
+                isGenerating ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              {isGenerating ? "생성 중..." : "AI 뉴스 생성하기"}
+            </button>
+          </div>
         </div>
       </div>
     </div>

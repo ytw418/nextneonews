@@ -12,13 +12,19 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.0.5",
+    "@huggingface/inference": "^2.8.1",
+    "@langchain/openai": "^0.3.14",
     "@prisma/client": "^6.0.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@shadcn/ui": "^0.0.4",
     "@types/react-slick": "^0.23.13",
     "@vercel/analytics": "^1.4.1",
+    "ai": "^4.0.9",
+    "cheerio": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "langchain": "^0.3.6",
     "lucide-react": "^0.462.0",
     "next": "14.2.18",
     "prisma": "^6.0.0",
@@ -29,7 +35,8 @@
     "sonner": "^1.7.0",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

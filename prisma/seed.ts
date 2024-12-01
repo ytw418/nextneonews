@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { mainNews, kpopNews, mainSlides } from "../mocks/data/news";
+import { Category } from "@/types/news";
 
 const prisma = new PrismaClient();
 
@@ -18,11 +19,12 @@ async function main() {
           summary: news.summary,
           content: news.content || `${news.title}에 대한 상세 내용입니다.`,
           imageUrl: news.imageUrl,
-          category: news.category,
+          category: news.category as Category,
           tags: news.tags,
           views: 0,
           author: "NeoNews 기자",
           source: "NeoNews",
+          language: "ko",
         },
       });
     }
@@ -35,11 +37,12 @@ async function main() {
           summary: news.summary,
           content: news.content || `${news.title}에 대한 상세 내용입니다.`,
           imageUrl: news.imageUrl,
-          category: news.category,
+          category: news.category as Category,
           tags: news.tags,
           views: 0,
           author: "NeoNews K-POP 기자",
           source: "NeoNews",
+          language: "ko",
         },
       });
     }
@@ -51,7 +54,7 @@ async function main() {
           title: slide.title,
           description: slide.description,
           imageUrl: slide.imageUrl,
-          category: slide.category,
+          category: slide.category as Category,
           tags: slide.tags,
         },
       });
