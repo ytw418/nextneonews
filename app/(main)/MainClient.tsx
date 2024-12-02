@@ -68,7 +68,7 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
             {/* 인기 뉴스 섹션 */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">인기 뉴스</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {pageData.popularNews.map((news) => (
                   <NewsCard
                     key={`popular-${news.id}-${pageIndex}`}
@@ -83,7 +83,7 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
             {/* K-pop 뉴스 섹션 */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">K-POP 뉴스</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {pageData.kpopNews.map((news) => (
                   <NewsCard
                     key={`kpop-${news.id}-${pageIndex}`}
@@ -98,7 +98,7 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
             {/* 주요 뉴스 섹션 */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">주요 뉴스</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {pageData.mainNews.map((news) => (
                   <NewsCard
                     key={`main-${news.id}-${pageIndex}`}
@@ -113,7 +113,7 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
             {/* AI 뉴스 섹션 */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">AI 뉴스</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {pageData.aiNews.map((news) => (
                   <NewsCard
                     key={`ai-${news.id}-${pageIndex}`}
