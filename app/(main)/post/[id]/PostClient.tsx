@@ -134,7 +134,16 @@ const PostClient = ({ post }: PostClientProps) => {
 
           {/* 컨텐츠 */}
           <div className="prose dark:prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: post.content! }} />
+            {post.content ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: post.content,
+                }}
+                suppressHydrationWarning
+              />
+            ) : (
+              <p>{post.summary}</p>
+            )}
           </div>
 
           {/* 태그 */}
