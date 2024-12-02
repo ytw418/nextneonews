@@ -1,4 +1,5 @@
 import { PostDetail } from "@/app/api/posts/[id]/route";
+import { MainListResponse } from "@/app/api/news/mainList/route";
 import { NewsCardProps } from "@/components/common/NewsCard";
 import { SlideItem } from "@/mocks/data/news";
 
@@ -152,5 +153,12 @@ export async function updatePost(
 export async function deletePost(postId: number): Promise<void> {
   return mutateApi(`/api/posts/${postId}`, {
     method: "DELETE",
+  });
+}
+
+// 페이지네이션 API 함수 추가
+export async function getMainList(page: number = 1): Promise<MainListResponse> {
+  return fetchApi<MainListResponse>(`/api/news/mainList?page=${page}`, {
+    // revalidate: 60,
   });
 }

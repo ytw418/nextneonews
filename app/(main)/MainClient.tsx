@@ -1,90 +1,134 @@
 "use client";
 
-import type { NewsCardProps } from "@/components/common/NewsCard";
-import { NewsSection } from "@/components/common/NewsSection";
-import type { SlideItem } from "@/mocks/data/news";
-import Image from "next/image";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import useSWR from "swr";
+import useSWRInfinite from "swr/infinite";
+import { MainListResponse } from "@/app/api/news/mainList/route";
+import { getMainList } from "@/libs/utils/api";
 
-// 슬라이더 설정
-const sliderSettings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 5000,
-  arrows: false,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        dots: true,
-      },
-    },
-  ],
-};
+import { NewsCard } from "@/components/common/NewsCard";
+import { SlideItem } from "@/mocks/data/news";
+import InfiniteScroll from "react-infinite-scroll-component";
+import SliderSection from "@/components/common/SliderSection";
 
 interface MainClientProps {
-  initialData: {
-    [key: string]: any;
-  };
+  initialData: MainListResponse;
+  slides: SlideItem[];
 }
 
-const MainClient = ({ initialData }: MainClientProps) => {
-  // SWR 훅은 전달받은 initialData를 사용
-  const { data: mainNews } = useSWR<NewsCardProps[]>("/api/news/main", {
-    fallbackData: initialData["/api/news/main"],
-  });
-  const { data: kpopNews } = useSWR<NewsCardProps[]>("/api/news/kpop", {
-    fallbackData: initialData["/api/news/kpop"],
-  });
-  const { data: slides } = useSWR<SlideItem[]>("/api/slides", {
-    fallbackData: initialData["/api/slides"],
-  });
+const MainClient = ({ initialData, slides }: MainClientProps) => {
+  const getKey = (
+    pageIndex: number,
+    previousPageData: MainListResponse | null
+  ) => {
+    if (previousPageData && pageIndex + 1 > previousPageData.totalPages)
+      return null;
+    return `/api/news/mainList?page=${pageIndex + 1}`;
+  };
+
+  const { data, setSize, size } = useSWRInfinite<MainListResponse>(
+    getKey,
+    (url) => getMainList(Number(url.split("=")[1])),
+    {
+      fallbackData: [initialData],
+      revalidateFirstPage: false,
+    }
+  );
+
+  if (!data) return <div>로딩 중...</div>;
+
+  const hasMore =
+    data[data.length - 1]?.currentPage < data[data.length - 1]?.totalPages;
 
   return (
-    <div className="space-y-8">
-      {/* 메인 슬라이더 */}
-      {slides && slides.length > 0 && (
-        <div className="relative">
-          <Slider {...sliderSettings}>
-            {slides.map((slide) => (
-              <div key={slide.id} className="relative h-[300px] sm:h-[400px]">
-                <Image
-                  src={slide.imageUrl}
-                  alt={slide.title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
-                  <h2 className="text-xl sm:text-2xl font-bold mb-2">
-                    {slide.title}
-                  </h2>
-                  <p className="text-sm sm:text-base">{slide.description}</p>
-                </div>
+    <div className="p-4">
+      {/* 슬라이더 섹션 */}
+      <section className="mb-8">
+        <SliderSection slides={slides} />
+      </section>
+
+      {/* 무한 스크롤 컨테이너 */}
+      <InfiniteScroll
+        dataLength={data.length * 4} // 각 페이지당 4개의 카테고리
+        next={() => setSize((prev) => prev + 1)}
+        // next={() => console.log("next")}
+        hasMore={hasMore}
+        loader={
+          <div className="flex justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          </div>
+        }
+        endMessage={
+          <p className="text-center text-gray-500 py-8">
+            모든 뉴스를 불러왔습니다.
+          </p>
+        }
+      >
+        {/* 각 페이지의 뉴스 데이터 렌더링 */}
+        {data.map((pageData, pageIndex) => (
+          <div key={pageIndex}>
+            {/* 인기 뉴스 섹션 */}
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">인기 뉴스</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {pageData.popularNews.map((news) => (
+                  <NewsCard
+                    key={`popular-${news.id}-${pageIndex}`}
+                    {...news}
+                    createdAt={news.createdAt.toString()}
+                    tags={[]}
+                  />
+                ))}
               </div>
-            ))}
-          </Slider>
-        </div>
-      )}
+            </section>
 
-      {/* 메인 뉴스 섹션 */}
-      {mainNews && mainNews.length > 0 && (
-        <NewsSection title="주요 뉴스" items={mainNews} />
-      )}
+            {/* K-pop 뉴스 섹션 */}
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">K-POP 뉴스</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {pageData.kpopNews.map((news) => (
+                  <NewsCard
+                    key={`kpop-${news.id}-${pageIndex}`}
+                    {...news}
+                    createdAt={news.createdAt.toString()}
+                    tags={[]}
+                  />
+                ))}
+              </div>
+            </section>
 
-      {/* K-POP 뉴스 섹션 */}
-      {kpopNews && kpopNews.length > 0 && (
-        <NewsSection title="K-POP 뉴스" items={kpopNews} />
-      )}
+            {/* 주요 뉴스 섹션 */}
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">주요 뉴스</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {pageData.mainNews.map((news) => (
+                  <NewsCard
+                    key={`main-${news.id}-${pageIndex}`}
+                    {...news}
+                    createdAt={news.createdAt.toString()}
+                    tags={[]}
+                  />
+                ))}
+              </div>
+            </section>
+
+            {/* AI 뉴스 섹션 */}
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold mb-4">AI 뉴스</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {pageData.aiNews.map((news) => (
+                  <NewsCard
+                    key={`ai-${news.id}-${pageIndex}`}
+                    {...news}
+                    createdAt={news.createdAt.toString()}
+                    tags={[]}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+        ))}
+      </InfiniteScroll>
     </div>
   );
 };
+
 export default MainClient;
