@@ -7,6 +7,7 @@ import { Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
+import { ContentRenderer } from "@/components/common/ContentRenderer";
 
 interface PostClientProps {
   post: PostDetail;
@@ -133,16 +134,11 @@ const PostClient = ({ post }: PostClientProps) => {
           </time>
 
           {/* 컨텐츠 */}
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="mt-6">
             {post.content ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: post.content,
-                }}
-                suppressHydrationWarning
-              />
+              <ContentRenderer content={post.content} />
             ) : (
-              <p>{post.summary}</p>
+              <p className="text-gray-600 dark:text-gray-400">{post.summary}</p>
             )}
           </div>
 

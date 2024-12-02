@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
-import Header from "@/components/layout/Header";
+import { Header } from "@/components/layout/Header";
+import { CategoryMenu } from "@/components/layout/CategoryMenu";
 import Providers from "@/components/providers/Providers";
 import { Analytics } from "@vercel/analytics/react";
-import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,6 +70,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Providers initialData={initialData}>
           <Header />
+          <CategoryMenu />
           <main className="pt-14">{children}</main>
         </Providers>
         <Analytics />

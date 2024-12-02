@@ -13,7 +13,7 @@ export const NewsImage = ({ src, alt, className = "" }: NewsImageProps) => {
   const [imageSrc, setImageSrc] = useState(src);
 
   const handleError = () => {
-    setImageSrc("/images/haci.png");
+    setImageSrc("/images/haci.webp");
   };
 
   return (

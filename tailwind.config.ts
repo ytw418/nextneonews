@@ -10,11 +10,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#0064FF", // Toss Blue
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        primary: "var(--primary)",
+        gray: {
+          100: "var(--gray-100)",
+          200: "var(--gray-200)",
+          400: "var(--gray-400)",
+          600: "var(--gray-600)",
+        },
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            img: {
+              margin: "2rem auto",
+            },
+            p: {
+              marginTop: "1.5rem",
+              marginBottom: "1.5rem",
+            },
+          },
+        },
       },
     },
   },
   plugins: [typography],
+  darkMode: "media",
 };
 
 export default config;

@@ -10,12 +10,19 @@
   --gray-200: #e5e7eb;
   --gray-400: #9ca3af;
   --gray-600: #4b5563;
+  --overlay: rgba(0, 0, 0, 0.4);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #0064ff;
+    --gray-100: #1f1f1f;
+    --gray-200: #2d2d2d;
+    --gray-400: #737373;
+    --gray-600: #a3a3a3;
+    --overlay: rgba(0, 0, 0, 0.7);
   }
 }
 
@@ -55,4 +62,64 @@
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
+}
+
+/* MDEditor 커스텀 스타일 */
+.markdown-editor {
+  @apply w-full;
+}
+
+.markdown-editor .w-md-editor-preview {
+  @apply p-4;
+}
+
+.markdown-editor img {
+  @apply max-h-[400px] object-contain mx-auto rounded-lg;
+}
+
+/* 다크모드 지원 */
+[data-color-mode="dark"] .w-md-editor,
+[data-color-mode="dark"] .w-md-editor-preview {
+  @apply bg-gray-800 text-gray-100;
+}
+
+[data-color-mode="dark"] .w-md-editor-text {
+  @apply bg-gray-900;
+}
+
+[data-color-mode="dark"] .w-md-editor-toolbar {
+  @apply bg-gray-800 border-gray-700;
+}
+
+[data-color-mode="dark"] .w-md-editor-toolbar li button {
+  @apply text-gray-300;
+}
+
+[data-color-mode="dark"] .w-md-editor-toolbar li.active button {
+  @apply text-white bg-gray-700;
+}
+
+/* 에디터와 미리보기 구분선 */
+.w-md-editor-show-live {
+  @apply border-l border-gray-200 dark:border-gray-700;
+}
+
+/* MDEditor 추가 스타일 */
+.markdown-editor .w-md-editor-toolbar {
+  @apply p-2 border-b dark:border-gray-700;
+}
+
+/* 툴바 버튼 스타일링 */
+.markdown-editor .w-md-editor-toolbar button {
+  @apply p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors;
+}
+
+/* 스크롤바 숨기기 */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

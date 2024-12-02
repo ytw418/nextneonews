@@ -45,7 +45,7 @@ export const mainNews: EnhancedNewsCardProps[] = [
       향후 5년간 100억 달러 규모의 투자를 통해 AI 연구개발을 강화할 예정입니다.
       특히 실리콘밸리 내 새로운 AI 연구센터 설립을 중심으로 투자가 이뤄집니다.
       
-      애플은 프라이버시를 중시하는 AI 기술 개발에 주력할 것이라고 밝혔습니다.
+      애플��� 프라이버시를 중시하는 AI 기술 개발에 주력할 것이라고 밝혔습니다.
       온디바이스 AI 처리 기술과 개인정보 보호 강화가 핵심 목표입니다.
       
       iOS와 macOS에 새로운 AI 기능이 대거 탑재될 예정이며,
@@ -69,7 +69,7 @@ export const mainNews: EnhancedNewsCardProps[] = [
       삼성전자가 차세대 폴더블 스마트폰의 출시 계획을 발표했습니다.
       
       새로운 폴더블폰은 기존 모델 대비 20% 더 얇아진 두께와 개선된 화면 주름을 자랑합니다.
-      특히 새로운 힌지 구조를 적용해 내구성을 대폭 강화했습니다.
+      ��히 새로운 힌지 구조를 적용해 내구성을 대폭 강화했습니다.
       
       디스플레이 기술의 혁신으로 더욱 선명한 화질과 높은 휘도를 제공하며,
       배터리 효율성도 크게 개선되었습니다.
@@ -387,7 +387,7 @@ export const kpopNews: EnhancedNewsCardProps[] = [
   {
     id: 10,
     title: "있지, 새 콘셉트 티저 공개",
-    summary: "새로운 변신을 예고했습니다.",
+    summary: "새로운 변��을 예고했습니다.",
     content: `
       있지가 컴백을 앞두고 파격적인 콘셉트 변화를 예고했습니다.
       록 장르에 도전하는 새로운 음악 스타일로 팬들의 기대를 모으고 있습니다.
@@ -450,3 +450,62 @@ export const categories = [
   "게임",
   "라이프스타일",
 ] as const;
+
+export const slides: SlideItem[] = [
+  {
+    id: 1,
+    title: "에스파, AI 아바타와 함께하는 신곡 공개",
+    description: "메타버스 세계관 확장한 'Drama' 발매",
+    imageUrl: "https://cdn.kagit.kr/news/slides/aespa_drama.webp",
+    category: "K-POP",
+    tags: ["에스파", "Drama", "메타버스", "AI", "컴백"],
+  },
+  {
+    id: 2,
+    title: "삼성전자, 차세대 AI 반도체 발표",
+    description: "모바일 AI 시대 선도할 새로운 프로세서 공개",
+    imageUrl: "https://cdn.kagit.kr/news/slides/samsung_ai.webp",
+    category: "테크",
+    tags: ["삼성전자", "AI", "반도체", "기술혁신"],
+  },
+  {
+    id: 3,
+    title: "뉴진스, 글로벌 차트 석권",
+    description: "신곡 'Super Shy' 빌보드 핫100 진입",
+    imageUrl: "https://cdn.kagit.kr/news/slides/newjeans.webp",
+    category: "K-POP",
+    tags: ["뉴진스", "글로벌", "빌보드", "K-POP"],
+  },
+  {
+    id: 4,
+    title: "에스파 카리나, AI 브랜드 앰버서더 발탁",
+    description: "글로벌 AI 기업과 독점 계약 체결",
+    imageUrl: "https://cdn.kagit.kr/news/slides/karina_ai.webp",
+    category: "K-POP",
+    tags: ["에스파", "카리나", "AI", "브랜드"],
+  },
+  {
+    id: 5,
+    title: "네이버, 초거대 AI 모델 공개",
+    description: "K-POP 콘텐츠 생성 특화 AI 기술 선보여",
+    imageUrl: "https://cdn.kagit.kr/news/slides/naver_ai.webp",
+    category: "테크",
+    tags: ["네이버", "AI", "K-POP", "기술"],
+  },
+  {
+    id: 6,
+    title: "에스파 윈터, AI 아트 전시회 개최",
+    description: "AI가 그린 초상화로 새로운 예술 시도",
+    imageUrl: "https://cdn.kagit.kr/news/slides/winter_ai.webp",
+    category: "K-POP",
+    tags: ["에스파", "윈터", "AI", "아트", "전시회"],
+  },
+  {
+    id: 7,
+    title: "카카오브레인, K-POP AI 작곡가 개발",
+    description: "AI가 만든 첫 K-POP 곡 화제",
+    imageUrl: "https://cdn.kagit.kr/news/slides/kakao_ai.webp",
+    category: "테크",
+    tags: ["카카오", "AI", "K-POP", "작곡", "기술"],
+  },
+];
