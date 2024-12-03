@@ -24,7 +24,7 @@ export const NewsImage = ({ src, alt, className = "" }: NewsImageProps) => {
 
   return (
     // 16:9 비율을 유지하는 컨테이너
-    <div className="relative aspect-[16/9]">
+    <div className="relative aspect-[16/9] bg-gray-200 dark:bg-gray-800 rounded-lg">
       <Image
         src={error ? fallbackImage : src} // 에러 상태에 따라 이미지 소스 전환
         alt={alt} // 접근성을 위한 대체 텍스트
@@ -34,7 +34,7 @@ export const NewsImage = ({ src, alt, className = "" }: NewsImageProps) => {
                33vw" // - 태블릿: 절반 너비
         // - 데스크톱: 1/3 너비
         quality={75} // 이미지 품질 설정 (최적화)
-        loading="lazy" // 지연 로딩 (성능 최적화)
+        // loading="lazy" // 지연 로딩 (성능 최적화)
         className={`object-cover rounded-lg ${className}`} // 추가 클래스 적용
         onError={handleImageError} // 이미지 로드 실패시 처리
       />
