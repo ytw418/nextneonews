@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/libs/utils/utils";
 
 const categories = [
-  { name: "인기순위", href: "/trending" },
-  { name: "주요뉴스", href: "/featured" },
-  { name: "K-POP", href: "/k-pop" },
+  { name: "인기순위", href: "/popular" },
+  { name: "주요뉴스", href: "/main-news" },
+  { name: "K-POP", href: "/kpop" },
 ];
 
 export const CategoryMenu = () => {
