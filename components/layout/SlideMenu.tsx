@@ -57,6 +57,15 @@ export const SlideMenu = ({ isOpen, onClose }: SlideMenuProps) => {
               <p>뉴스 직접 쓰기</p>
             </Link>
             <Link
+              href="/crawler-test"
+              className="flex w-full items-center justify-start gap-x-3 px-5 py-3 hover:bg-gray-100 transition-colors"
+              onClick={onClose}
+            >
+              <Bot className="w-5 h-5" />
+              <p>crawler-test</p>
+            </Link>
+
+            <Link
               href="/generate"
               className="flex w-full items-center justify-start gap-x-3 px-5 py-3 hover:bg-gray-100 transition-colors"
               onClick={onClose}
