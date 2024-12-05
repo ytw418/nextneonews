@@ -1,5 +1,6 @@
 import { prisma } from "@/libs/prisma";
 import { NextResponse } from "next/server";
+import { NewsCardProps } from "@/types/news";
 
 export interface PostDetail {
   id: number;
@@ -14,15 +15,7 @@ export interface PostDetail {
   source: string | null;
   createdAt: string;
   updatedAt: string;
-  relatedNews: {
-    id: number;
-    title: string;
-    summary: string;
-    imageUrl: string;
-    category: string;
-    tags: string[];
-    createdAt: string;
-  }[];
+  relatedNews: NewsCardProps[];
 }
 
 export async function GET(
@@ -69,6 +62,7 @@ export async function GET(
       relatedNews: relatedNews.map((news) => ({
         ...news,
         createdAt: news.createdAt.toISOString(),
+        updatedAt: news.updatedAt.toISOString(),
       })),
     };
 

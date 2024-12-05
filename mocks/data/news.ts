@@ -5,6 +5,8 @@ export interface EnhancedNewsCardProps extends NewsCardProps {
   category: string;
   tags: string[];
   description?: string;
+  views: number;
+  updatedAt: string;
 }
 
 // 메인 뉴스 목업 데이터 (20개)
@@ -25,7 +27,7 @@ export const mainNews: EnhancedNewsCardProps[] = [
       일론 머스크 CEO는 "2024년 말까지 완전 자율주행 기술을 상용화할 것"이라고 발표했습니다.
       테슬라는 배터리 기술 혁신을 통해 주행거리도 대폭 개선할 예정입니다.
       
-      업계 전문가들은 테슬라의 이러한 성장세가 당분간 계속될 것으로 전망하고 있습니다.
+      업계 전문가들은 테슬라의 이러한 성장세가 당분간 계속될 것으로 전망하고 ��습니다.
       전기차 시장의 성장과 함께 테슬라의 지속적인 혁신이 기대됩니다.
       
       한편, 테슬라는 신규 시장 진출도 적극 검토 중인 것으로 알려졌습니다.
@@ -34,6 +36,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1617788138017-80ad40651399",
     category: "자동차",
     tags: ["테슬라", "전기차", "모델Y", "EV", "친환경자동차", "머스크"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 2,
@@ -45,7 +49,7 @@ export const mainNews: EnhancedNewsCardProps[] = [
       향후 5년간 100억 달러 규모의 투자를 통해 AI 연구개발을 강화할 예정입니다.
       특히 실리콘밸리 내 새로운 AI 연구센터 설립을 중심으로 투자가 이뤄집니다.
       
-      애플��� 프라이버시를 중시하는 AI 기술 개발에 주력할 것이라고 밝혔습니다.
+      애플  프라이버시를 중시하는 AI 기술 개발에 주력할 것이라고 밝혔습니다.
       온디바이스 AI 처리 기술과 개인정보 보호 강화가 핵심 목표입니다.
       
       iOS와 macOS에 새로운 AI 기능이 대거 탑재될 예정이며,
@@ -60,6 +64,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9",
     category: "테크",
     tags: ["애플", "AI", "인공지능", "실리콘밸리", "빅테크", "투자"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 3,
@@ -69,7 +75,7 @@ export const mainNews: EnhancedNewsCardProps[] = [
       삼성전자가 차세대 폴더블 스마트폰의 출시 계획을 발표했습니다.
       
       새로운 폴더블폰은 기존 모델 대비 20% 더 얇아진 두께와 개선된 화면 주름을 자랑합니다.
-      ��히 새로운 힌지 구조를 적용해 내구성을 대폭 강화했습니다.
+      히 새로운 힌지 구조를 적용해 내구성을 대폭 강화했습니다.
       
       디스플레이 기술의 혁신으로 더욱 선명한 화질과 높은 휘도를 제공하며,
       배터리 효율성도 크게 개선되었습니다.
@@ -86,6 +92,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c",
     category: "모바일",
     tags: ["삼성전자", "폴더블폰", "갤럭시Z", "스마트폰", "안드로이드"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 4,
@@ -95,6 +103,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd",
     category: "테크",
     tags: ["구글", "차세대", "검색", "엔진", "AI", "알고리즘"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 5,
@@ -104,6 +114,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7",
     category: "게임",
     tags: ["마이크로소프트", "게임", "산업", "투자", "클라우드", "게이밍"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 6,
@@ -113,6 +125,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
     category: "테크",
     tags: ["네이버", "글로벌", "AI", "기업", "협력", "강화"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 7,
@@ -122,6 +136,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1580273916550-e323be2ae537",
     category: "모바일",
     tags: ["카카오", "모빌리티", "사업", "확장", "자율주행", "택시"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 8,
@@ -131,6 +147,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827",
     category: "라이프스타일",
     tags: ["LG전자", "스마트홈", "시장", "공략", "IoT", "제품군"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 9,
@@ -140,6 +158,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475",
     category: "테크",
     tags: ["SK하이닉스", "차세대", "메모리", "개발", "반도체", "제조"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 10,
@@ -149,6 +169,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7",
     category: "자동차",
     tags: ["현대차", "전기차", "라인업", "확대", "계획", "2025년"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 11,
@@ -158,6 +180,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1540544660406-6a69dacb2804",
     category: "금융",
     tags: ["아마존", "신규", "물류센터", "설립", "아시아", "물류"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 12,
@@ -167,6 +191,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac",
     category: "엔터테인먼트",
     tags: ["메타", "VR", "기기", "신제품", "출시", "메타버스"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 13,
@@ -176,6 +202,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85",
     category: "게임",
     tags: ["넷플릭스", "오리지널", "콘텐츠", "투자", "한국", "콘텐츠"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 14,
@@ -185,6 +213,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea",
     category: "테크",
     tags: ["인텔", "신규", "CPU", "아키텍처", "공개", "프로세서"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 15,
@@ -194,6 +224,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1587202372616-b43abea06c2f",
     category: "테크",
     tags: ["AMD", "그래픽카드", "신제품", "출시", "게이밍", "GPU"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 16,
@@ -210,6 +242,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1593784991095-a205069470b6",
     category: "테크",
     tags: ["삼성전자", "TV", "기술", "디스플레이", "CES"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 17,
@@ -226,6 +260,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1580508174046-170816f65662",
     category: "금융",
     tags: ["카카오페이", "금융", "서비스", "확대", "핀테크"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 18,
@@ -242,6 +278,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
     category: "테크",
     tags: ["네이버클라우드", "AI", "서비스", "기업용", "클라우드"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 19,
@@ -258,6 +296,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
     category: "자동차",
     tags: ["현대모비스", "자율주행", "기술", "혁신", "모빌리티"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 20,
@@ -274,6 +314,8 @@ export const mainNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
     category: "K-POP",
     tags: ["프로미스나인", "새", "앨범", "콘셉트", "공개", "K-POP"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
 ];
 
@@ -287,6 +329,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1598387993441-a364f854c3e1",
     category: "K-POP",
     tags: ["르세라핌", "EASY", "걸그룹", "하이브", "컴백", "글로벌"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 2,
@@ -296,6 +340,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f",
     category: "K-POP",
     tags: ["방탄소년단", "정국", "솔로", "스포티파이", "BTS", "빌보드"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 3,
@@ -305,6 +351,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7",
     category: "K-POP",
     tags: ["블랙핑크", "월드투어", "성공적", "마무리", "K-POP", "대규모"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 4,
@@ -314,6 +362,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
     category: "K-POP",
     tags: ["뉴진스", "신곡", "티저", "공개", "컴백", "K-POP"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 5,
@@ -323,6 +373,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
     category: "K-POP",
     tags: ["아이브", "일본", "데뷔", "성공", "오리콘", "차트"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 6,
@@ -338,6 +390,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4",
     category: "K-POP",
     tags: ["엔하이픈", "미국", "투어", "시작", "북미", "첫"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 7,
@@ -353,6 +407,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
     category: "K-POP",
     tags: ["에스파", "새", "앨범", "발매", "예고", "K-POP"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 8,
@@ -368,6 +424,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4",
     category: "K-POP",
     tags: ["스트레이", "키즈", "유럽", "투어", "성황", "K-POP"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 9,
@@ -383,6 +441,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819",
     category: "K-POP",
     tags: ["투모로우바이투게더", "신기록", "달성", "앨범", "판매량", "K-POP"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
   {
     id: 10,
@@ -398,6 +458,8 @@ export const kpopNews: EnhancedNewsCardProps[] = [
     imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7",
     category: "K-POP",
     tags: ["있지", "새", "콘셉트", "티저", "공개", "K-POP"],
+    views: 0,
+    updatedAt: "2024-03-21T00:00:00Z",
   },
 ];
 

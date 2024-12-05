@@ -34,3 +34,18 @@ export interface NewsDB extends NewsBase {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface NewsCardProps {
+  id: number;
+  title: string;
+  summary: string;
+  content: string | null;
+  imageUrl: string;
+  category: string;
+  tags: string[];
+  views: number;
+  author: string | null;
+  source: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

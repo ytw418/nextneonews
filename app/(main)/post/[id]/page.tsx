@@ -102,8 +102,18 @@ export default async function PostPage({ params }: PostPageProps) {
       createdAt: newsItem.createdAt.toISOString(),
       updatedAt: newsItem.updatedAt.toISOString(),
       relatedNews: relatedNews.map((news) => ({
-        ...news,
+        id: news.id,
+        title: news.title,
+        summary: news.summary,
+        content: news.content,
+        imageUrl: news.imageUrl,
+        category: news.category,
+        tags: news.tags,
+        views: news.views,
+        author: news.author,
+        source: news.source,
         createdAt: news.createdAt.toISOString(),
+        updatedAt: news.updatedAt.toISOString(),
       })),
     };
 

@@ -7,10 +7,10 @@ import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface KpopClientProps {
-  initialData: NewsListResponse;
+  initialData?: NewsListResponse;
 }
 
-const KpopClient = ({ initialData }: KpopClientProps) => {
+const KpopClient = ({ initialData }: KpopClientProps = {}) => {
   const getKey = (pageIndex: number) => {
     return {
       page: pageIndex + 1,
@@ -18,16 +18,36 @@ const KpopClient = ({ initialData }: KpopClientProps) => {
     };
   };
 
-  const { data, setSize } = useSWRInfinite<NewsListResponse>(
+  const { data, setSize, isLoading } = useSWRInfinite<NewsListResponse>(
     getKey,
     (key) => getNewsList(key),
     {
-      fallbackData: [initialData],
+      // SSR로 받은 initialData가 있을 경우에만 fallbackData 설정
+      ...(initialData && { fallbackData: [initialData] }),
+      // SSR로 받은 첫 페이지 데이터를 재검증하지 않음
       revalidateFirstPage: false,
+      // 브라우저 탭이 포커스될 때 데이터 재검증
+      revalidateOnFocus: true,
+      // 네트워크 재연결시 데이터 재검증
+      revalidateOnReconnect: true,
+      // 자동 갱신 간격 (ms), 0은 비활성화
+      refreshInterval: 0,
+      // 중복 요청 방지를 위한 시간 간격 (ms)
+      dedupingInterval: 2000,
+      // 에러 발생시 자동 재시도 여부
+      shouldRetryOnError: true,
+      // 최대 재시도 횟수
+      errorRetryCount: 3,
+      // 재시도 간격 (ms)
+      errorRetryInterval: 5000,
+      // React Suspense 모드 사용 여부
+      suspense: false,
+      // 새로운 데이터를 로딩하는 동안 이전 데이터 유지 여부
+      keepPreviousData: false,
     }
   );
 
-  if (!data) return <div>로딩 중...</div>;
+  if (isLoading || !data) return <div>로딩 중...</div>;
 
   const hasMore =
     data[data.length - 1]?.page < data[data.length - 1]?.totalPages;
@@ -55,12 +75,7 @@ const KpopClient = ({ initialData }: KpopClientProps) => {
             pageData.items.map((news) => (
               <NewsCard
                 key={`kpop-${news.id}`}
-                {...{
-                  ...news,
-                  content: news.content || undefined,
-                  author: news.author || undefined,
-                  source: news.source || undefined,
-                }}
+                {...news}
                 createdAt={news.createdAt}
                 tags={news.tags}
               />
