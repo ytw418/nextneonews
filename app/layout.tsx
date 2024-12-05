@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { CategoryMenu } from "@/components/layout/CategoryMenu";
 import Providers from "@/components/providers/Providers";
 import { Analytics } from "@vercel/analytics/react";
+import { Footer } from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -152,6 +153,7 @@ export default async function RootLayout({
           <Header />
           <CategoryMenu />
           <main className="pt-14">{children}</main>
+          <Footer />
         </Providers>
         <Analytics />
       </body>
