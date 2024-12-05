@@ -9,11 +9,15 @@ export interface NewsCardProps {
   id: number;
   title: string;
   summary: string;
-  createdAt: string;
+  content?: string | null;
   imageUrl: string;
   category: string;
   tags: string[];
-  content?: string;
+  views: number;
+  author?: string | null;
+  source?: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export const NewsCard = ({

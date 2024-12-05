@@ -1,5 +1,5 @@
 import KpopClient from "./KpopClient";
-import { getMainList } from "@/libs/utils/api";
+import { getNewsList } from "@/libs/utils/api";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function KpopPage() {
-  const initialData = await getMainList(1);
-
+  const initialData = await getNewsList({ category: "K-POP" });
   return <KpopClient initialData={initialData} />;
 }

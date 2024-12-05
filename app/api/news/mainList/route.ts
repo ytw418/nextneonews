@@ -11,110 +11,77 @@ export interface MainListResponseItem {
   id: number;
   title: string;
   summary: string;
+  content: string | null;
   imageUrl: string;
   category: string;
+  tags: string[];
+  views: number;
+  author: string | null;
+  source: string | null;
   createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface MainListResponse {
+  currentPage: number;
+  totalPages: number;
   popularNews: MainListResponseItem[];
   kpopNews: MainListResponseItem[];
   mainNews: MainListResponseItem[];
   aiNews: MainListResponseItem[];
-  totalPages: number;
-  currentPage: number;
 }
-
-const ITEMS_PER_PAGE = 4; // 각 카테고리당 아이템 수
 
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const page = parseInt(searchParams.get("page") || "1");
-    const skip = (page - 1) * ITEMS_PER_PAGE;
+    const size = 4; // 각 섹션당 4개의 뉴스
 
-    // 인기 뉴스 (조회수 기준)
-    const popularNews = await prisma.news.findMany({
-      orderBy: {
-        views: "desc",
-      },
-      take: ITEMS_PER_PAGE,
-      skip: skip,
-    });
-
-    // K-pop 뉴스
-    const kpopNews = await prisma.news.findMany({
-      where: {
-        category: "K-POP",
-      },
-      take: ITEMS_PER_PAGE,
-      skip: skip,
-    });
-
-    // 주요 뉴스 (최신순)
-    const mainNews = await prisma.news.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-      take: ITEMS_PER_PAGE,
-      skip: skip,
-    });
-
-    // AI 뉴스
-    const aiNews = await prisma.news.findMany({
-      where: {
-        category: "AI",
-      },
-      take: ITEMS_PER_PAGE,
-      skip: skip,
-    });
+    // 각 카테고리별 뉴스 조회
+    const [popularNews, kpopNews, mainNews, aiNews] = await Promise.all([
+      prisma.news.findMany({
+        orderBy: { views: "desc" },
+        take: size,
+        skip: (page - 1) * size,
+      }),
+      prisma.news.findMany({
+        where: { category: "K-POP" },
+        orderBy: { createdAt: "desc" },
+        take: size,
+        skip: (page - 1) * size,
+      }),
+      prisma.news.findMany({
+        where: { category: "MAIN" },
+        orderBy: { createdAt: "desc" },
+        take: size,
+        skip: (page - 1) * size,
+      }),
+      prisma.news.findMany({
+        where: { category: "AI" },
+        orderBy: { createdAt: "desc" },
+        take: size,
+        skip: (page - 1) * size,
+      }),
+    ]);
 
     // 전체 페이지 수 계산을 위한 총 뉴스 수 조회
-    const totalNewsCount = await prisma.news.count();
-    const totalPages = Math.ceil(totalNewsCount / (ITEMS_PER_PAGE * 4)); // 4는 카테고리 수
+    const totalNews = await prisma.news.count();
+    const totalPages = Math.ceil(totalNews / (size * 4)); // 4개 섹션
 
     const response: MainListResponse = {
-      popularNews: popularNews.map((news) => ({
-        id: news.id,
-        title: news.title,
-        summary: news.summary,
-        imageUrl: news.imageUrl,
-        category: news.category,
-        createdAt: news.createdAt,
-      })),
-      kpopNews: kpopNews.map((news) => ({
-        id: news.id,
-        title: news.title,
-        summary: news.summary,
-        imageUrl: news.imageUrl,
-        category: news.category,
-        createdAt: news.createdAt,
-      })),
-      mainNews: mainNews.map((news) => ({
-        id: news.id,
-        title: news.title,
-        summary: news.summary,
-        imageUrl: news.imageUrl,
-        category: news.category,
-        createdAt: news.createdAt,
-      })),
-      aiNews: aiNews.map((news) => ({
-        id: news.id,
-        title: news.title,
-        summary: news.summary,
-        imageUrl: news.imageUrl,
-        category: news.category,
-        createdAt: news.createdAt,
-      })),
-      totalPages,
       currentPage: page,
+      totalPages,
+      popularNews,
+      kpopNews,
+      mainNews,
+      aiNews,
     };
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error("페이지네이션 API 에러:", error);
+    console.error("Error fetching main list:", error);
     return NextResponse.json(
-      { error: "뉴스를 불러오는 중 오류가 발생했습니다." },
+      { error: "Failed to fetch main list" },
       { status: 500 }
     );
   }

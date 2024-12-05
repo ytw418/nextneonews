@@ -1,28 +1,27 @@
 "use client";
 
 import useSWRInfinite from "swr/infinite";
-import { MainListResponse } from "@/app/api/news/mainList/route";
-import { getMainList } from "@/libs/utils/api";
+import { NewsListResponse } from "@/app/api/news/list/route";
+import { getNewsList } from "@/libs/utils/api";
 import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface PopularClientProps {
-  initialData: MainListResponse;
+  initialData: NewsListResponse;
 }
 
 const PopularClient = ({ initialData }: PopularClientProps) => {
-  const getKey = (
-    pageIndex: number,
-    previousPageData: MainListResponse | null
-  ) => {
-    if (previousPageData && pageIndex + 1 > previousPageData.totalPages)
-      return null;
-    return `/api/news/mainList?page=${pageIndex + 1}`;
+  const getKey = (pageIndex: number) => {
+    return {
+      page: pageIndex + 1,
+      sortBy: "views" as const,
+      order: "desc" as const,
+    };
   };
 
-  const { data, setSize } = useSWRInfinite<MainListResponse>(
+  const { data, setSize } = useSWRInfinite<NewsListResponse>(
     getKey,
-    (url) => getMainList(Number(url.split("=")[1])),
+    (key) => getNewsList(key),
     {
       fallbackData: [initialData],
       revalidateFirstPage: false,
@@ -32,13 +31,13 @@ const PopularClient = ({ initialData }: PopularClientProps) => {
   if (!data) return <div>로딩 중...</div>;
 
   const hasMore =
-    data[data.length - 1]?.currentPage < data[data.length - 1]?.totalPages;
+    data[data.length - 1]?.page < data[data.length - 1]?.totalPages;
 
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold mb-8">인기 뉴스</h1>
       <InfiniteScroll
-        dataLength={data.length}
+        dataLength={data.reduce((acc, page) => acc + page.items.length, 0)}
         next={() => setSize((prev) => prev + 1)}
         hasMore={hasMore}
         loader={
@@ -53,13 +52,13 @@ const PopularClient = ({ initialData }: PopularClientProps) => {
         }
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {data.map((pageData, pageIndex) =>
-            pageData.popularNews.map((news) => (
+          {data.map((pageData) =>
+            pageData.items.map((news) => (
               <NewsCard
-                key={`popular-${news.id}-${pageIndex}`}
+                key={`popular-${news.id}`}
                 {...news}
-                createdAt={news.createdAt.toString()}
-                tags={[]}
+                createdAt={news.createdAt}
+                tags={news.tags}
               />
             ))
           )}

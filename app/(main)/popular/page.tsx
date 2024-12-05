@@ -1,5 +1,5 @@
 import PopularClient from "./PopularClient";
-import { getMainList } from "@/libs/utils/api";
+import { getNewsList } from "@/libs/utils/api";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function PopularPage() {
-  const initialData = await getMainList(1);
-
+  const initialData = await getNewsList({ sortBy: "views", order: "desc" });
   return <PopularClient initialData={initialData} />;
 }

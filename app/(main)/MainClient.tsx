@@ -74,7 +74,9 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
                     key={`popular-${news.id}-${pageIndex}`}
                     {...news}
                     createdAt={news.createdAt.toString()}
-                    tags={[]}
+                    updatedAt={news.updatedAt.toString()}
+                    tags={news.tags}
+                    views={news.views}
                   />
                 ))}
               </div>
@@ -89,7 +91,9 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
                     key={`kpop-${news.id}-${pageIndex}`}
                     {...news}
                     createdAt={news.createdAt.toString()}
-                    tags={[]}
+                    updatedAt={news.updatedAt.toString()}
+                    tags={news.tags}
+                    views={news.views}
                   />
                 ))}
               </div>
@@ -104,7 +108,9 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
                     key={`main-${news.id}-${pageIndex}`}
                     {...news}
                     createdAt={news.createdAt.toString()}
-                    tags={[]}
+                    updatedAt={news.updatedAt.toString()}
+                    tags={news.tags}
+                    views={news.views}
                   />
                 ))}
               </div>
@@ -119,7 +125,9 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
                     key={`ai-${news.id}-${pageIndex}`}
                     {...news}
                     createdAt={news.createdAt.toString()}
-                    tags={[]}
+                    updatedAt={news.updatedAt.toString()}
+                    tags={news.tags}
+                    views={news.views}
                   />
                 ))}
               </div>

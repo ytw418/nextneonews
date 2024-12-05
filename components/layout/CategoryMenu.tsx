@@ -6,7 +6,7 @@ import { cn } from "@/libs/utils/utils";
 
 const categories = [
   { name: "인기순위", href: "/popular" },
-  { name: "주요뉴스", href: "/main-news" },
+  { name: "최신뉴스", href: "/latest-news" },
   { name: "K-POP", href: "/kpop" },
 ];
 

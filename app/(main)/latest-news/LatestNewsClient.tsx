@@ -6,15 +6,16 @@ import { getNewsList } from "@/libs/utils/api";
 import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface KpopClientProps {
+interface LatestNewsClientProps {
   initialData: NewsListResponse;
 }
 
-const KpopClient = ({ initialData }: KpopClientProps) => {
+const LatestNewsClient = ({ initialData }: LatestNewsClientProps) => {
   const getKey = (pageIndex: number) => {
     return {
       page: pageIndex + 1,
-      category: "K-POP",
+      sortBy: "createdAt" as const,
+      order: "desc" as const,
     };
   };
 
@@ -34,7 +35,7 @@ const KpopClient = ({ initialData }: KpopClientProps) => {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-8">K-POP 뉴스</h1>
+      <h1 className="text-3xl font-bold mb-8">최신 뉴스</h1>
       <InfiniteScroll
         dataLength={data.reduce((acc, page) => acc + page.items.length, 0)}
         next={() => setSize((prev) => prev + 1)}
@@ -54,7 +55,7 @@ const KpopClient = ({ initialData }: KpopClientProps) => {
           {data.map((pageData) =>
             pageData.items.map((news) => (
               <NewsCard
-                key={`kpop-${news.id}`}
+                key={`latest-${news.id}`}
                 {...{
                   ...news,
                   content: news.content || undefined,
@@ -72,4 +73,4 @@ const KpopClient = ({ initialData }: KpopClientProps) => {
   );
 };
 
-export default KpopClient;
+export default LatestNewsClient;

@@ -2,6 +2,7 @@ import { PostDetail } from "@/app/api/posts/[id]/route";
 import { MainListResponse } from "@/app/api/news/mainList/route";
 import { NewsCardProps } from "@/components/common/NewsCard";
 import { SlideItem } from "@/mocks/data/news";
+import { NewsListResponse } from "@/app/api/news/list/route";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
@@ -115,18 +116,6 @@ export async function getPostDetail(id: string): Promise<PostDetail> {
   });
 }
 
-export async function getMainNews(): Promise<NewsCardProps[]> {
-  return fetchApi<NewsCardProps[]>("/api/news/main", {
-    // revalidate: 60,
-  });
-}
-
-export async function getKpopNews(): Promise<NewsCardProps[]> {
-  return fetchApi<NewsCardProps[]>("/api/news/kpop", {
-    // revalidate: 60,
-  });
-}
-
 export async function getSlides(): Promise<SlideItem[]> {
   return fetchApi<SlideItem[]>("/api/slides", {
     // revalidate: 300,
@@ -162,3 +151,51 @@ export async function getMainList(page: number = 1): Promise<MainListResponse> {
     // revalidate: 60,
   });
 }
+
+// 새로운 통합 뉴스 리스트 조회 함수
+export async function getNewsList({
+  category,
+  page = 1,
+  size = 12,
+  sortBy = "createdAt",
+  order = "desc",
+}: {
+  category?: string;
+  page?: number;
+  size?: number;
+  sortBy?: "createdAt" | "views";
+  order?: "asc" | "desc";
+} = {}): Promise<NewsListResponse> {
+  const params = new URLSearchParams({
+    ...(category && { category }),
+    page: page.toString(),
+    size: size.toString(),
+    sortBy,
+    order,
+  });
+
+  return fetchApi<NewsListResponse>(`/api/news/list?${params.toString()}`, {
+    // revalidate: 60,
+  });
+}
+
+// // 기본 사용 (최신순 전체 뉴스)
+// const news = await getNewsList();
+
+// // K-POP 카테고리 뉴스 조회
+// const kpopNews = await getNewsList({ category: "K-POP" });
+
+// // 조회수 순으로 정렬
+// const popularNews = await getNewsList({ sortBy: "views" });
+
+// // 페이지네이션 적용
+// const secondPage = await getNewsList({ page: 2, size: 20 });
+
+// // 여러 옵션 조합
+// const customNews = await getNewsList({
+//   category: "MAIN",
+//   sortBy: "views",
+//   order: "desc",
+//   page: 1,
+//   size: 8,
+// });
