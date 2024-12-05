@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "최신 K-POP 뉴스를 확인하세요",
 };
 
+export const revalidate = 60;
+
 export default async function KpopPage() {
   const initialData = await getNewsList({ category: "K-POP" });
   return <KpopClient initialData={initialData} />;

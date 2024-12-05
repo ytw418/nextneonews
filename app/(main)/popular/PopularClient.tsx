@@ -6,11 +6,7 @@ import { getNewsList } from "@/libs/utils/api";
 import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-interface PopularClientProps {
-  initialData: NewsListResponse;
-}
-
-const PopularClient = ({ initialData }: PopularClientProps) => {
+const PopularClient = () => {
   const getKey = (pageIndex: number) => {
     return {
       page: pageIndex + 1,
@@ -19,16 +15,12 @@ const PopularClient = ({ initialData }: PopularClientProps) => {
     };
   };
 
-  const { data, setSize } = useSWRInfinite<NewsListResponse>(
+  const { data, setSize, isLoading } = useSWRInfinite<NewsListResponse>(
     getKey,
-    (key) => getNewsList(key),
-    {
-      fallbackData: [initialData],
-      revalidateFirstPage: false,
-    }
+    (key) => getNewsList(key)
   );
 
-  if (!data) return <div>로딩 중...</div>;
+  if (isLoading || !data) return <div>로딩 중...</div>;
 
   const hasMore =
     data[data.length - 1]?.page < data[data.length - 1]?.totalPages;
