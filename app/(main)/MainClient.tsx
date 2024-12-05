@@ -8,6 +8,8 @@ import { NewsCard } from "@/components/common/NewsCard";
 import { SlideItem } from "@/mocks/data/news";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SliderSection from "@/components/common/SliderSection";
+import CoupangAd1 from "@/components/CoupangAds/CoupangAd1";
+import CoupangAd2 from "@/components/CoupangAds/CoupangAd2";
 
 interface MainClientProps {
   initialData: MainListResponse;
@@ -43,6 +45,7 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
       {/* 슬라이더 섹션 */}
       <section className="mb-8">
         <SliderSection slides={slides} />
+        <CoupangAd1 />
       </section>
 
       {/* 무한 스크롤 컨테이너 */}
@@ -82,6 +85,10 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
               </div>
             </section>
 
+            <a href="https://link.coupang.com/a/b3wHjd">
+              이벤트/프로모션 로켓패션, 겨울 인기 패션 (~12/8)
+            </a>
+
             {/* K-pop 뉴스 섹션 */}
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">K-POP 뉴스</h2>
@@ -98,6 +105,8 @@ const MainClient = ({ initialData, slides }: MainClientProps) => {
                 ))}
               </div>
             </section>
+
+            <CoupangAd2 />
 
             {/* 주요 뉴스 섹션 */}
             <section className="mb-8">
