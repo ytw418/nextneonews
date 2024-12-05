@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/neonewsicon.png",
+        url: "/images/aespa.png",
         width: 1200,
         height: 630,
         alt: "NeoNews - K-POP 뉴스",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NeoNews - 실시간 K-POP 뉴스 플랫폼",
     description: "실시간으로 업데이트되는 K-POP 뉴스, 아이돌 소식, 한류 콘텐츠",
-    images: ["/images/neonewsicon.png"],
+    images: ["/images/aespa.png"],
     creator: "@neonews",
     site: "@neonews",
   },
@@ -147,7 +147,7 @@ export default async function RootLayout({
   const initialData = await getInitialData();
 
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="ko" suppressHydrationWarning={true}>
       <body className={inter.className}>
         <Providers initialData={initialData}>
           <Header />
