@@ -35,6 +35,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   transpilePackages: ["slick-carousel"],
+  compress: true, // 응답 압축 활성화
 };
 
 module.exports = nextConfig;

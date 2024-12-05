@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import MainClient from "./MainClient";
 import { getMainList, getSlides } from "@/libs/utils/api";
 
-export const metadata: Metadata = {
-  title: "홈",
-  description: "NeoNews의 최신 뉴스와 K-POP 소식을 확인하세요",
-};
+// export const metadata: Metadata = {
+//   title: "홈",
+//   description: "NeoNews의 최신 뉴스와 K-POP 소식을 확인하세요",
+// };
 
 export const revalidate = 60;
 
