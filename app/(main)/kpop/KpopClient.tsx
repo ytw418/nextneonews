@@ -5,6 +5,7 @@ import { NewsListResponse } from "@/app/api/news/list/route";
 import { getNewsList } from "@/libs/utils/api";
 import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface KpopClientProps {
   initialData?: NewsListResponse;
@@ -26,28 +27,14 @@ const KpopClient = ({ initialData }: KpopClientProps = {}) => {
       ...(initialData && { fallbackData: [initialData] }),
       // SSR로 받은 첫 페이지 데이터를 재검증하지 않음
       revalidateFirstPage: false,
-      // 브라우저 탭이 포커스될 때 데이터 재검증
-      revalidateOnFocus: true,
-      // 네트워크 재연결시 데이터 재검증
-      revalidateOnReconnect: true,
-      // 자동 갱신 간격 (ms), 0은 비활성화
-      refreshInterval: 0,
       // 중복 요청 방지를 위한 시간 간격 (ms)
       dedupingInterval: 2000,
-      // 에러 발생시 자동 재시도 여부
-      shouldRetryOnError: true,
-      // 최대 재시도 횟수
-      errorRetryCount: 3,
-      // 재시도 간격 (ms)
-      errorRetryInterval: 5000,
-      // React Suspense 모드 사용 여부
-      suspense: false,
       // 새로운 데이터를 로딩하는 동안 이전 데이터 유지 여부
-      keepPreviousData: false,
+      keepPreviousData: true,
     }
   );
 
-  if (isLoading || !data) return <div>로딩 중...</div>;
+  if (!data) return <LoadingSpinner />;
 
   const hasMore =
     data[data.length - 1]?.page < data[data.length - 1]?.totalPages;

@@ -5,6 +5,7 @@ import { NewsListResponse } from "@/app/api/news/list/route";
 import { getNewsList } from "@/libs/utils/api";
 import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const PopularClient = () => {
   const getKey = (pageIndex: number) => {
@@ -20,7 +21,7 @@ const PopularClient = () => {
     (key) => getNewsList(key)
   );
 
-  if (isLoading || !data) return <div>로딩 중...</div>;
+  if (!data) return <LoadingSpinner />;
 
   const hasMore =
     data[data.length - 1]?.page < data[data.length - 1]?.totalPages;

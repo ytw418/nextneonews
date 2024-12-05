@@ -5,9 +5,10 @@ import { NewsListResponse } from "@/app/api/news/list/route";
 import { getNewsList } from "@/libs/utils/api";
 import { NewsCard } from "@/components/common/NewsCard";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface LatestNewsClientProps {
-  initialData: NewsListResponse;
+  initialData?: NewsListResponse;
 }
 
 const LatestNewsClient = ({ initialData }: LatestNewsClientProps) => {
@@ -23,12 +24,18 @@ const LatestNewsClient = ({ initialData }: LatestNewsClientProps) => {
     getKey,
     (key) => getNewsList(key),
     {
-      fallbackData: [initialData],
+      // SSR로 받은 initialData가 있을 경우에만 fallbackData 설정
+      ...(initialData && { fallbackData: [initialData] }),
+      // SSR로 받은 첫 페이지 데이터를 재검증하지 않음
       revalidateFirstPage: false,
+      // 중복 요청 방지를 위한 시간 간격 (ms)
+      dedupingInterval: 2000,
+      // 새로운 데이터를 로딩하는 동안 이전 데이터 유지 여부
+      keepPreviousData: true,
     }
   );
 
-  if (!data) return <div>로딩 중...</div>;
+  if (!data) return <LoadingSpinner />;
 
   const hasMore =
     data[data.length - 1]?.page < data[data.length - 1]?.totalPages;
