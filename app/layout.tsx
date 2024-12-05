@@ -112,6 +112,23 @@ export const metadata: Metadata = {
   },
   category: "news",
   classification: "entertainment",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  manifest: "/site.webmanifest",
+  appleWebApp: {
+    title: "NeoNews",
+    statusBarStyle: "default",
+    capable: true,
+  },
 };
 
 // 서버 컴포넌트에서 초기 데이터를 가져오는 함수
