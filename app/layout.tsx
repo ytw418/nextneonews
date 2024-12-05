@@ -49,6 +49,9 @@ export const metadata: Metadata = {
       "naver-site-verification": "7264ef2ef4d80fdcce4984c88b028090ec7720a4",
     },
   },
+  other: {
+    "google-adsense-account": "ca-pub-8957945516038764", //구글 에드센스
+  },
 };
 
 // 서버 컴포넌트에서 초기 데이터를 가져오는 함수
