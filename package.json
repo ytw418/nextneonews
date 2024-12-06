@@ -4,17 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsc --noEmit && npx prisma generate && next build",
+    "build": "tsc --noEmit && npx prisma generate && npx playwright install chromium && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npx msw init public/ --save",
-    "db:seed": "npx prisma db seed",
-    "type-check": "tsc --noEmit"
+    "seed": "npx prisma db seed",
+    "type-check": "tsc --noEmit",
+    "play": "npx playwright install chromium"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.5",
     "@huggingface/inference": "^2.8.1",
     "@langchain/openai": "^0.3.14",
+    "@playwright/test": "^1.49.0",
     "@prisma/client": "^6.0.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@shadcn/ui": "^0.0.4",
@@ -28,6 +29,7 @@
     "langchain": "^0.3.6",
     "lucide-react": "^0.462.0",
     "next": "14.2.18",
+    "playwright-core": "^1.49.0",
     "prisma": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
