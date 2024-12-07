@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { chromium } from "@playwright/test";
 
-export const maxDuration = 300; // 5분 타임아웃 설정 (Vercel Hobby 계정 제한)
+// Hobby 플랜의 제한에 맞춰 60초로 설정
+export const maxDuration = 60;
 
 /**
  * NeoNews 웹사이트의 뉴스 데이터를 크롤링하는 API 라우트
@@ -18,28 +19,26 @@ export async function GET() {
     console.log("🌐 브라우저 실행 중...");
     browser = await chromium.launch({
       headless: true,
-      chromiumSandbox: false, // Vercel 환경에서 필요
+      chromiumSandbox: false,
     });
 
-    // 2. 새 페이지 생성
+    // 2. 새 페이지 생성 (타임아웃 설정 추가)
     const context = await browser.newContext({
       viewport: { width: 1280, height: 720 },
       ignoreHTTPSErrors: true,
     });
     const page = await context.newPage();
 
-    // 3. 페이지 로드 및 대기
+    // 3. 페이지 로드 (타임아웃 감소)
     console.log("🌐 NeoNews 사이트에 접속 시도...");
     await page.goto("https://nextneonews.vercel.app/post/183", {
       waitUntil: "networkidle",
-      timeout: 30000, // 30초 타임아웃
+      timeout: 15000, // 15초로 감소
     });
 
-    // 4. 데이터 추출
+    // 4. 데이터 추출 (타임아웃 감소)
     console.log("🔍 뉴스 아이템 추출 중...");
-
-    // h1 태그가 로드될 때까지 대기
-    await page.waitForSelector("h1", { timeout: 5000 });
+    await page.waitForSelector("h1", { timeout: 3000 }); // 3초로 감소
 
     const title = await page.$eval("h1", (el) => el.textContent?.trim() || "");
     const publishedDate = await page.$eval(
