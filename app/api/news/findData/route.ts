@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { chromium } from "@playwright/test";
 
+export const maxDuration = 300; // 5분 타임아웃 설정 (Vercel Hobby 계정 제한)
+
 /**
  * NeoNews 웹사이트의 뉴스 데이터를 크롤링하는 API 라우트
  * GET /api/news/findData
@@ -15,11 +17,15 @@ export async function GET() {
     // 1. 브라우저 시작
     console.log("🌐 브라우저 실행 중...");
     browser = await chromium.launch({
-      headless: true, // 헤드리스 모드로 실행
+      headless: true,
+      chromiumSandbox: false, // Vercel 환경에서 필요
     });
 
     // 2. 새 페이지 생성
-    const context = await browser.newContext();
+    const context = await browser.newContext({
+      viewport: { width: 1280, height: 720 },
+      ignoreHTTPSErrors: true,
+    });
     const page = await context.newPage();
 
     // 3. 페이지 로드 및 대기
@@ -93,6 +99,10 @@ export async function GET() {
       error: errorMessage,
       timestamp: new Date().toISOString(),
       stack: error instanceof Error ? error.stack : undefined,
+      env: {
+        PLAYWRIGHT_BROWSERS_PATH: process.env.PLAYWRIGHT_BROWSERS_PATH,
+        NODE_ENV: process.env.NODE_ENV,
+      },
     });
 
     return NextResponse.json(
@@ -104,7 +114,6 @@ export async function GET() {
       { status: 500 }
     );
   } finally {
-    // 브라우저 종료
     if (browser) {
       await browser.close();
     }
