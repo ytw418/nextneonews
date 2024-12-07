@@ -11,12 +11,13 @@
     "type-check": "tsc --noEmit",
     "play": "npx playwright install chromium",
     "postinstall": "npx playwright install chromium",
-    "vercel-build": "npx playwright install chromium && next build"
+    "vercel-build": "npx prisma generate && npx playwright install chromium && next build"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.5",
     "@huggingface/inference": "^2.8.1",
     "@langchain/openai": "^0.3.14",
+    "@playwright/browser-chromium": "^1.49.0",
     "@playwright/test": "^1.42.1",
     "@prisma/client": "^6.0.0",
     "@radix-ui/react-slot": "^1.1.0",
