@@ -37,9 +37,6 @@ const config: Config = {
   },
   plugins: [typography],
   darkMode: "media",
-  animation: {
-    "spin-fast": "spin 0.8s linear infinite",
-  },
 };
 
 export default config;
