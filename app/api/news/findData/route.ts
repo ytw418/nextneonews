@@ -37,8 +37,15 @@ const retry = async <T>(fn: () => Promise<T>, attempts = 3): Promise<T> => {
 
 // 환경 설정 검증
 const validateEnvironment = () => {
-  if (!process.env.PLAYWRIGHT_BROWSERS_PATH) {
-    console.warn("⚠️ PLAYWRIGHT_BROWSERS_PATH가 설정되지 않았습니다.");
+  const requiredEnvVars = [
+    "PLAYWRIGHT_BROWSERS_PATH",
+    "PLAYWRIGHT_SKIP_BROWSER_GC",
+  ];
+
+  for (const envVar of requiredEnvVars) {
+    if (!process.env[envVar]) {
+      console.warn(`⚠️ ${envVar}가 설정되지 않았습니다.`);
+    }
   }
 };
 
@@ -64,6 +71,9 @@ export async function GET(): Promise<NextResponse<CrawlResponse>> {
       browser = await chromium.launch({
         headless: true,
         chromiumSandbox: false,
+        executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH
+          ? `${process.env.PLAYWRIGHT_BROWSERS_PATH}/chromium/chrome`
+          : undefined,
       });
 
       // 2. 브라우저 컨텍스트 및 페이지 생성
