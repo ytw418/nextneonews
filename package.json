@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsc --noEmit && npx prisma generate && npx playwright install chromium && next build",
+    "build": "tsc --noEmit && npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "seed": "npx prisma db seed",
     "type-check": "tsc --noEmit",
     "play": "npx playwright install chromium",
-    "postinstall": "npx playwright install chromium",
-    "vercel-build": "npx playwright install chromium --with-deps && next build"
+    "vercel-build": "npx prisma generates && next build"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.5",
