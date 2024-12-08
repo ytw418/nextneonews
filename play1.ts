@@ -75,7 +75,7 @@ async function getKagitArticleDetail(url: string): Promise<NewsData[]> {
         .map((btn) => btn.textContent?.trim())
         .filter((tag): tag is string => !!tag); // type guard를 사용하여 string[] 타입 보장
 
-      return extractedTags.length > 0 ? extractedTags : ["K-POP", "연���"]; // 기본 태그 배열 반환
+      return extractedTags.length > 0 ? extractedTags : ["K-POP", "연"]; // 기본 태그 배열 반환
     });
 
     // NewsData 형식으로 변환
@@ -139,7 +139,7 @@ async function crawlKagitList(): Promise<NewsData[]> {
     await page.waitForLoadState("load", { timeout: 30000 });
     await page.waitForTimeout(2000); // 2초 추가 대기
 
-    // 게시글 링크 수집 - ��음 10개만
+    // 게시글 링크 수집 - 처음 10개만
     const links = await page.evaluate(() => {
       const articleLinks = Array.from(
         document.querySelectorAll(
@@ -156,7 +156,7 @@ async function crawlKagitList(): Promise<NewsData[]> {
           return href;
         })
         .filter((href): href is string => !!href && href.startsWith("/posts/"))
-        .slice(0, 10); // 처음 10개만 선택
+        .slice(0, 1000); // 처음 10개만 선택
     });
 
     console.log(
@@ -175,7 +175,7 @@ async function crawlKagitList(): Promise<NewsData[]> {
         const newsItems = await getKagitArticleDetail(fullUrl);
         allNewsData.push(...newsItems);
 
-        // 과도한 요청 방지��� 위한 딜레이
+        // 과도한 요청 방지를 위한 딜레이
         await new Promise((resolve) => setTimeout(resolve, 1000));
       } catch (error) {
         console.error(`❌ 게시글 크롤링 실패: ${link}`, error);
@@ -199,22 +199,29 @@ async function crawlKagitList(): Promise<NewsData[]> {
 // 메인 함수 수정
 async function main() {
   try {
+    // 뉴스 데이터 수집
     const allNews = await crawlKagitList();
     console.log("크롤링 결과:", allNews);
 
-    // API로 데이터 전송 (필요한 경우)
-    for (const newsItem of allNews) {
-      const response = await fetch("https://nextneonews.vercel.app/api/news", {
+    // makeList API로 뉴스 일괄 생성
+    const response = await fetch(
+      "https://nextneonews.vercel.app/api/news/makeList",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newsItem),
-      });
-      const result = await response.json();
-      console.log("API 응답:", result);
-      await new Promise((resolve) => setTimeout(resolve, 500)); // API 요청 간 딜레이
+        body: JSON.stringify(allNews),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`API 요청 실패: ${response}`);
     }
+
+    const result = await response.json();
+    console.log("뉴스 생성 결과:", result);
+    console.log(`총 ${result.count}개의 뉴스가 생성되었습니다.`);
   } catch (error) {
     console.error("메인 프로세스 오류:", error);
   }

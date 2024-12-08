@@ -147,7 +147,7 @@ const PostClient = ({ post }: PostClientProps) => {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs sm:text-sm px-2 py-1 bg-primary/90 text-white rounded-full hover:bg-primary transition-colors"
+                className="text-xs sm:text-sm px-2 py-1 bg-primary text-white rounded-full hover:bg-primary/80 transition-colors"
               >
                 #{tag}
               </span>
