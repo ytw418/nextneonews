@@ -25,6 +25,8 @@ export function validateNewsData(newsData: any) {
     "엔터테인먼트",
     "게임",
     "라이프스타일",
+    "MAIN",
+    "AI",
   ];
   if (!validCategories.includes(newsData.category)) {
     throw new Error(`Invalid category: ${newsData.category}`);

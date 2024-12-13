@@ -13,24 +13,29 @@ export async function POST(req: Request) {
       );
     }
 
-    // 기존 뉴스의 source 목록 가져오기
-    const existingSources = await prisma.news.findMany({
-      select: { source: true },
-      where: { source: { not: null } },
-    });
-    const existingSourceSet = new Set(
-      existingSources.map(({ source }) => source)
-    );
+    // 모든 source 값을 배열로 추출
+    const sources = newsItems.map((news) => news.source).filter(Boolean);
 
-    // 중복되지 않은 유효한 뉴스만 필터링
-    const validNewsItems = newsItems.filter((news) => {
-      // source가 없거나 이미 존재하는 경우 제외
-      if (!news.source || existingSourceSet.has(news.source)) {
-        return false;
-      }
-      // 뉴스 데이터 유효성 검사
-      return validateNewsData(news);
+    // source 값들로 한 번에 검색
+    const existingNews = await prisma.news.findMany({
+      where: {
+        source: {
+          in: sources,
+        },
+      },
+      select: { source: true },
     });
+
+    // 이미 존재하는 source 집합 생성
+    const existingSources = new Set(existingNews.map((news) => news.source));
+
+    // 중복되지 않고 유효한 뉴스만 필터링
+    const validNewsItems = newsItems.filter(
+      (news) =>
+        news.source &&
+        !existingSources.has(news.source) &&
+        validateNewsData(news)
+    );
 
     if (validNewsItems.length === 0) {
       return NextResponse.json(

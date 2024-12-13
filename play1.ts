@@ -85,8 +85,8 @@ async function getKagitArticleDetail(url: string): Promise<NewsData[]> {
         summary: content.substring(0, 200) + "...",
         content,
         imageUrl: imageUrl || "",
-        category: "K-POP",
-        tags: tags, // 이제 항상 string[] 타입
+        category: "MAIN",
+        tags: tags,
         views: 0,
         author: "KAGIT",
         source: url,
@@ -110,7 +110,7 @@ async function getKagitArticleDetail(url: string): Promise<NewsData[]> {
   }
 }
 
-async function crawlKagitList(): Promise<NewsData[]> {
+async function crawlKagitList(url: string): Promise<NewsData[]> {
   let browser: Browser | undefined;
   let context: BrowserContext | undefined;
 
@@ -121,7 +121,7 @@ async function crawlKagitList(): Promise<NewsData[]> {
     });
 
     context = await browser.newContext({
-      viewport: { width: 700, height: 2000 },
+      viewport: { width: 700, height: 3000 },
       userAgent:
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     });
@@ -130,7 +130,7 @@ async function crawlKagitList(): Promise<NewsData[]> {
     console.log("📄 메인 페이지 로드 시작...");
 
     // 메인 페이지 접속
-    await page.goto("https://www.kagit.kr/?categoryId=1", {
+    await page.goto(url, {
       waitUntil: "domcontentloaded",
       timeout: 60000,
     });
@@ -156,7 +156,7 @@ async function crawlKagitList(): Promise<NewsData[]> {
           return href;
         })
         .filter((href): href is string => !!href && href.startsWith("/posts/"))
-        .slice(0, 1000); // 처음 10개만 선택
+        .slice(0, 100); // 처음 10개만 선택
     });
 
     console.log(
@@ -200,20 +200,17 @@ async function crawlKagitList(): Promise<NewsData[]> {
 async function main() {
   try {
     // 뉴스 데이터 수집
-    const allNews = await crawlKagitList();
+    const allNews = await crawlKagitList("https://www.kagit.kr/?categoryId=7");
     console.log("크롤링 결과:", allNews);
 
     // makeList API로 뉴스 일괄 생성
-    const response = await fetch(
-      "https://nextneonews.vercel.app/api/news/makeList",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(allNews),
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/news/makeList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(allNews),
+    });
 
     if (!response.ok) {
       throw new Error(`API 요청 실패: ${response}`);
@@ -223,7 +220,7 @@ async function main() {
     console.log("뉴스 생성 결과:", result);
     console.log(`총 ${result.count}개의 뉴스가 생성되었습니다.`);
   } catch (error) {
-    console.error("메인 프로세스 오류:", error);
+    console.error("메인 프로세스 오류:", JSON.stringify(error));
   }
 }
 

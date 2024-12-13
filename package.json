@@ -10,6 +10,7 @@
     "seed": "npx prisma db seed",
     "type-check": "tsc --noEmit",
     "play": "npx playwright install chromium",
+    "makeNewsList": "npx tsx play1.ts",
     "vercel-build": "npx prisma generates && next build"
   },
   "dependencies": {

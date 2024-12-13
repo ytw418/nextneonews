@@ -15,16 +15,16 @@ export async function generateStaticParams() {
   try {
     // 빌드 시에는 직접 DB 조회
     const allNews = await prisma.news.findMany({
-      where: {
-        OR: [
-          { category: { not: "K-POP" } }, // 메인 뉴스
-          { category: "K-POP" }, // K-POP 뉴스
-        ],
-      },
-      select: {
-        id: true,
-        title: true,
-      },
+      // where: {
+      //   OR: [
+      //     { category: { not: "K-POP" } }, // 메인 뉴스
+      //     { category: "K-POP" }, // K-POP 뉴스
+      //   ],
+      // },
+      // select: {
+      //   id: true,
+      //   title: true,
+      // },
     });
 
     return allNews.map((news) => ({
