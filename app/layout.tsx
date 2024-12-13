@@ -6,6 +6,7 @@ import { CategoryMenu } from "@/components/layout/CategoryMenu";
 import Providers from "@/components/providers/Providers";
 import { Analytics } from "@vercel/analytics/react";
 import { Footer } from "@/components/layout/Footer";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -148,6 +149,11 @@ export default async function RootLayout({
 
   return (
     <html lang="ko" suppressHydrationWarning={true}>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8957945516038764"
+        crossOrigin="anonymous"
+      ></Script>
       <body className={inter.className}>
         <Providers initialData={initialData}>
           <Header />
