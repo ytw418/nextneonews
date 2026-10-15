@@ -42,6 +42,8 @@ npm run dev           # http://localhost:3000/en
 | `npm run db:stop` | 로컬 Postgres 끄기 |
 | `npm run typecheck` / `npm run lint` / `npm test` | 검사 |
 | `npm run build` | 프로덕션 빌드 (DB가 켜져 있어야 한다) |
+| `sh scripts/smoke.sh [URL]` | 배포 뒤 주요 주소 확인 (기본: 운영) |
+| `node scripts/screens.mjs [URL] [폴더]` | 아이폰 크기로 주요 화면 캡처 |
 
 ## 콘텐츠 파이프라인
 
