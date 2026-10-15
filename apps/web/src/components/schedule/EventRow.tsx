@@ -6,6 +6,8 @@ import { ListRow } from "@/components/ui/ListRow";
 import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
 
 // 일정 목록 한 줄: 왼쪽 날짜 칸(이벤트 틴트) · 이름과 '종류 · 도시' · D-day 배지와 꺾쇠. 줄 전체가 상세로 가는 링크
+// 날짜 칸은 '20–21' 같은 기간도 들어가는 폭으로 모두 같게 (칸 폭이 달라 줄마다 제목 시작 x 가 어긋났다).
+// rem 이라 글자를 키우면 숫자와 함께 넓어진다
 export async function EventRow({ e, locale }: { e: EventWithView; locale: Locale }) {
   const t = await getTranslations("Schedule");
   const start = kst(e.start);
@@ -29,7 +31,7 @@ export async function EventRow({ e, locale }: { e: EventWithView; locale: Locale
       left={
         <span
           aria-hidden
-          className={`flex min-h-13 min-w-13 flex-col items-center justify-center rounded-btn px-1 text-on-tint ${
+          className={`flex min-h-13 min-w-[3.5rem] flex-col items-center justify-center rounded-btn px-1 text-on-tint ${
             e.view.state === "ended" ? "opacity-60" : ""
           }`}
           style={{ backgroundColor: KIND_TINT[e.kind] }}

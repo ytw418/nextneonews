@@ -40,16 +40,18 @@ export function ListRow({
   ariaLabel,
   lang,
 }: Props) {
-  const inner = "flex min-h-14 items-center gap-4 py-3 px-[var(--row-inset)]";
+  // 글자를 아주 키우면(AX2 이상) 제목 칸이 4rem 보다 좁아져 단어가 오른쪽 배지 위로 넘쳤다.
+  // 그때는 줄을 바꿔 [왼쪽 제목] / [오른쪽] 으로 쌓는다. 기본 크기·AX1·사파리 aA 135% 에서는 한 줄 그대로다
+  const inner = "flex min-h-14 flex-wrap items-center gap-x-4 gap-y-2 py-3 px-[var(--row-inset)]";
   const content = (
     <>
       {left && <span className="shrink-0">{left}</span>}
-      <span className="min-w-0 flex-1">
+      <span className="min-w-[min(4rem,100%)] flex-1">
         <span className={`block text-t5 leading-row text-ink-900 ${WEIGHT[titleWeight]}`}>{title}</span>
         {sub && <span className="mt-0.5 block text-t6 text-ink-600">{sub}</span>}
       </span>
       {(right || arrow || external) && (
-        <span className="flex shrink-0 items-center gap-1">
+        <span className="ml-auto flex shrink-0 items-center gap-1">
           {right}
           {external ? (
             <ExternalIcon className="size-4 text-ink-400" />

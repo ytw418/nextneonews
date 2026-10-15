@@ -14,12 +14,13 @@ function hostname(url: string): string {
   }
 }
 
-// 이름표·값 한 줄. 너비를 rem 으로 둬서 글자를 키우면 이름표가 값 위로 올라간다
+// 이름표·값 한 줄. 너비를 rem 으로 둬서 글자를 키우면 이름표가 값 위로 올라간다.
+// 값의 최소 폭은 줄 폭을 넘지 않게 (AX2·AX3 에서 12rem 이 화면보다 넓어 가로로 넘쳤다)
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-1 px-gutter py-3">
       <dt className="w-[5.5rem] shrink-0 text-t6 text-ink-600">{label}</dt>
-      <dd className="min-w-[12rem] flex-1 text-t6 font-medium text-ink-900">{children}</dd>
+      <dd className="min-w-[min(12rem,100%)] flex-1 text-t6 font-medium text-ink-900">{children}</dd>
     </div>
   );
 }

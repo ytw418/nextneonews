@@ -245,7 +245,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
               {faq.map((item, i) => (
                 <details key={item.q} className="faq group" open={i === 0}>
                   <summary className="flex min-h-14 cursor-pointer items-start gap-2 py-4 text-t5 font-semibold text-ink-900">
-                    <span aria-hidden className="w-6 shrink-0 font-bold text-ink-400">
+                    <span aria-hidden className="w-6 shrink-0 font-bold text-ink-600">
                       Q
                     </span>
                     <span className="flex-1">{item.q}</span>

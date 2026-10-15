@@ -39,6 +39,7 @@
 
   /* 카테고리 틴트 (메모 커버): 같은 OKLCH 밝기, 노랑만 따로 */
   --tint-kpop: oklch(0.93 0.045 355);
+  --tint-kent: oklch(0.93 0.045 192); /* 연예(셀럽)는 생활과 같은 색을 쓰고 있었다. 비어 있던 청록 자리 */
   --tint-kdrama: oklch(0.93 0.045 295);
   --tint-kfood: oklch(0.95 0.085 95);
   --tint-travel: oklch(0.93 0.045 165);
@@ -110,6 +111,7 @@
 
     /* 다크 틴트는 채도를 올려 진흙색이 아니라 색으로 읽히게 */
     --tint-kpop: oklch(0.34 0.07 355);
+    --tint-kent: oklch(0.34 0.07 192);
     --tint-kdrama: oklch(0.34 0.07 295);
     --tint-kfood: oklch(0.37 0.06 95);
     --tint-travel: oklch(0.34 0.07 165);
@@ -122,7 +124,7 @@
     --tint-love: oklch(0.34 0.07 10);
 
     --tint-event-comeback: oklch(0.38 0.08 0);
-    --tint-event-awards: oklch(0.42 0.08 85);
+    --tint-event-awards: oklch(0.43 0.088 72); /* 85°는 올리브(진흙)로 보였다. 호박색 쪽으로, sRGB 안 최대 채도 */
     --tint-event-concert: oklch(0.38 0.08 300);
     --tint-event-festival: oklch(0.38 0.08 150);
     --tint-event-fanmeeting: oklch(0.38 0.08 30);
@@ -225,6 +227,7 @@
   --color-on-tint-sub: var(--on-tint-sub);
   --color-surface-note: var(--surface-note);
   --color-tint-kpop: var(--tint-kpop);
+  --color-tint-kent: var(--tint-kent);
   --color-tint-kdrama: var(--tint-kdrama);
   --color-tint-kfood: var(--tint-kfood);
   --color-tint-travel: var(--tint-travel);
