@@ -1,9 +1,9 @@
 import { daysUntil, isLocale, UPCOMING } from "@kmedia/core";
 import { getTranslations } from "next-intl/server";
 
-const STUB = ["var(--tint-kpop)", "var(--tint-wh)", "var(--tint-kfood)", "var(--tint-travel)", "var(--tint-kdrama)"];
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
-// 콘서트 티켓 모양의 D-day 레일
+// 콘서트 티켓 모양의 D-day 레일. 스텁 색은 일정 종류(이벤트 틴트)를 뜻한다
 export async function UpcomingRail({ locale }: { locale: string }) {
   const t = await getTranslations("Home");
   const events = UPCOMING.filter((e) => daysUntil(e.end ?? e.start) >= 0).slice(0, 8);
@@ -11,33 +11,50 @@ export async function UpcomingRail({ locale }: { locale: string }) {
   const dateFormat = new Intl.DateTimeFormat(locale, { month: "numeric", day: "numeric", timeZone: "UTC" });
 
   return (
-    <section id="upcoming" className="scroll-mt-16 pt-1">
-      <h2 className="px-4 font-display text-[20px] italic">{t("upcoming")}</h2>
-      <div className="rail gap-2 px-4 pb-1 pt-2">
-        {events.map((e, i) => {
+    // 하단 탭의 '/#upcoming' 이 여기로 온다
+    <section id="upcoming" aria-labelledby="home-schedule">
+      <SectionHeader id="home-schedule" title={t("upcoming")} />
+      <ul className="rail rail-snap items-stretch gap-2 px-gutter pb-1">
+        {events.map((e) => {
           const days = Math.max(0, daysUntil(e.start));
+          const urgent = days >= 1 && days <= 7;
           const place = isLocale(locale) ? e.place[locale] : e.place.en;
           return (
-            <div
+            <li
               key={e.id}
-              className="ticket rise flex w-[112px] flex-col rounded-[12px] px-2.5 pb-2.5 pt-2 text-ink"
-              style={{ backgroundColor: STUB[i % STUB.length], ["--i" as string]: i }}
+              className="flex w-[min(max(9rem,calc((min(100vw,640px)-36px)/2.25)),calc(100vw-56px))] flex-col overflow-hidden rounded-card bg-card shadow-card"
             >
-              <span className="font-label text-[21px] font-extrabold leading-none tracking-[-0.03em]">
-                {days === 0 ? t("today") : `D-${days}`}
-              </span>
-              <span className="mt-0.5 font-label text-[10.5px] font-semibold text-ink/60">
-                {dateFormat.format(new Date(`${e.start}T00:00:00Z`))}
-                {e.end ? `–${dateFormat.format(new Date(`${e.end}T00:00:00Z`))}` : ""}
-              </span>
-              <span className="mt-2.5 line-clamp-2 border-t border-dashed border-ink/25 pt-1.5 text-[11.5px] font-bold leading-tight">
-                {e.name}
-              </span>
-              <span className="text-[10.5px] text-ink/60">{place}</span>
-            </div>
+              <div
+                className="ticket-stub flex flex-col px-4 pt-4 pb-3"
+                style={{ backgroundColor: `var(--tint-event-${e.kind})` }}
+              >
+                {days === 0 ? (
+                  <p className="text-t3 font-bold text-on-tint">
+                    <span className="text-t5">
+                      <span className="mr-1.5 inline-block size-2 rounded-full bg-cherry align-middle" />
+                      {t("today")}
+                    </span>
+                  </p>
+                ) : (
+                  <p
+                    className={`whitespace-nowrap text-t3 font-bold tabular-nums ${urgent ? "text-brand-ink" : "text-on-tint"}`}
+                  >
+                    {t("dday", { days })}
+                  </p>
+                )}
+                <p className="text-t6 font-semibold tabular-nums text-on-tint-sub">
+                  {dateFormat.format(new Date(`${e.start}T00:00:00Z`))}
+                  {e.end ? `–${dateFormat.format(new Date(`${e.end}T00:00:00Z`))}` : ""}
+                </p>
+              </div>
+              <div className="flex flex-1 flex-col px-4 pt-3 pb-4">
+                <p className="text-t5 leading-row font-bold text-ink-900">{e.name}</p>
+                <p className="mt-1 text-t6 text-ink-600">{place}</p>
+              </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </section>
   );
 }

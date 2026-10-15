@@ -6,6 +6,7 @@ import { SITE_NAME } from "@kmedia/core";
 import { AppHeader } from "@/components/AppHeader";
 import { CategoryRail } from "@/components/CategoryRail";
 import { Feed } from "@/components/Feed";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { UpcomingRail } from "@/components/UpcomingRail";
 import { listLatest } from "@/lib/articles";
 import { toFeedItems } from "@/lib/feed";
@@ -42,7 +43,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       </h1>
       <CategoryRail />
       <UpcomingRail locale={locale} />
-      <h2 className="px-4 pb-2.5 pt-6 font-display text-[22px] italic">{t("latest")}</h2>
+      <SectionHeader title={t("latest")} />
       <Feed items={items} emptyLabel={t("empty")} />
     </>
   );

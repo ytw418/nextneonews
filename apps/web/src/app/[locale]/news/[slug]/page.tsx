@@ -7,12 +7,15 @@ import ReactMarkdown from "react-markdown";
 import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
 import { Comments } from "@/components/Comments";
-import { FeedCard } from "@/components/FeedCard";
+import { ChevronDownIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
 import { ShareButton } from "@/components/ShareButton";
+import { Badge } from "@/components/ui/Badge";
+import { ListRow } from "@/components/ui/ListRow";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
 import { findTranslatedLocale, getArticle, listRelated } from "@/lib/articles";
 import { coverStyle } from "@/lib/cover";
@@ -35,6 +38,14 @@ interface Faq {
 
 function asArray<T>(value: unknown): T[] {
   return Array.isArray(value) ? (value as T[]) : [];
+}
+
+function hostname(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/news/[slug]">): Promise<Metadata> {
@@ -126,15 +137,20 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         />
 
         {hero ? (
-          // 공식 이미지가 있으면 화면을 꽉 채우는 매거진 커버
-          <figure className="relative aspect-[4/5] max-h-[78svh] w-full overflow-hidden">
-            <Image src={hero.url} alt={translation.title} fill unoptimized priority sizes="100vw" className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 px-5 pb-6 text-white">
-              <span className="rounded-full bg-cherry px-2.5 py-1 font-label text-[11px] font-bold uppercase tracking-wide">
-                {categoryLabel}
-              </span>
-              <h1 className="title mt-3 text-[28px] font-extrabold leading-[1.22]">
+          // 공식 이미지가 있으면 화면을 꽉 채우는 매거진 커버. 제목 블록이 흐름 안에 있어 긴 제목이면 커버가 늘어난다
+          <figure className="relative flex min-h-[min(125vw,800px,78svh)] w-full flex-col justify-end overflow-hidden">
+            <Image
+              src={hero.url}
+              alt=""
+              fill
+              unoptimized
+              priority
+              sizes="(max-width: 640px) 100vw, 640px"
+              className="object-cover"
+            />
+            <div className="relative bg-[linear-gradient(to_top,rgb(0_0_0/.72)_0%,rgb(0_0_0/.56)_calc(100%-96px),transparent_100%)] px-read pt-24 pb-6 text-white">
+              <Badge tone="scrim">{categoryLabel}</Badge>
+              <h1 className="title mt-2 text-st2 font-bold text-white">
                 <Phrase text={translation.title} locale={locale} />
               </h1>
               <PhotoCredit media={hero} />
@@ -142,8 +158,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           </figure>
         ) : (
           // 사진이 없으면 파스텔 메모 커버가 곧 제목
-          <div className="px-3 pt-4">
-            <div className="overflow-visible rounded-[28px] shadow-[0_10px_30px_-18px_rgba(27,21,32,0.35)] [&>div]:rounded-[28px]">
+          <div className="px-gutter pt-4">
+            <div className="overflow-hidden rounded-card shadow-card">
               <MemoCover
                 title={translation.title}
                 sticker={categoryLabel}
@@ -152,111 +168,132 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                 style={coverStyle(slug, article.category)}
                 size="hero"
                 as="h1"
-                watermark={categoryLabel}
               />
             </div>
           </div>
         )}
 
-        <div className="px-5">
-          <p className="mt-5 flex flex-wrap gap-x-2 font-label text-[12px] text-muted">
-            {article.publishedAt && (
-              <time dateTime={article.publishedAt.toISOString()}>
-                {t("published")} {dateFormat.format(article.publishedAt)}
-              </time>
-            )}
-            <span aria-hidden>·</span>
-            <time dateTime={article.updatedAt.toISOString()}>
-              {t("updated")} {dateFormat.format(article.updatedAt)}
+        <p className="mt-5 flex flex-wrap gap-x-2 px-read text-t7 tabular-nums text-ink-600">
+          {article.publishedAt && (
+            <time dateTime={article.publishedAt.toISOString()}>
+              {t("published")} {dateFormat.format(article.publishedAt)}
             </time>
-          </p>
-
-          <p className="mt-3 text-[17px] font-medium leading-[1.75]">{translation.summary}</p>
-
-          {keyPoints.length > 0 && (
-            <section
-              className="tape relative mt-7 rotate-[-0.6deg] rounded-[6px] px-5 pb-5 pt-6 text-ink shadow-[0_8px_20px_-14px_rgba(27,21,32,0.4)]"
-              style={{ backgroundColor: "var(--tint-kfood)" }}
-            >
-              <h2 className="font-display text-[22px] italic leading-none">{t("keyPoints")}</h2>
-              <ol className="mt-3 space-y-2.5">
-                {keyPoints.map((point, i) => (
-                  <li key={point} className="flex gap-3 text-[15.5px] leading-[1.6]">
-                    <span className="font-label text-[15px] font-extrabold text-[#d61b50]">{i + 1}</span>
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ol>
-            </section>
           )}
+          <span aria-hidden>·</span>
+          <time dateTime={article.updatedAt.toISOString()}>
+            {t("updated")} {dateFormat.format(article.updatedAt)}
+          </time>
+        </p>
 
-          <div className="article-body prose prose-neutral mt-8 max-w-none text-[17px] leading-[1.85] text-fg dark:prose-invert prose-headings:text-fg prose-h2:mt-10 prose-h2:text-[21px] prose-h2:font-extrabold prose-p:text-fg prose-a:text-cherry-deep prose-strong:text-fg prose-li:text-fg prose-table:text-[14px]">
-            <ReactMarkdown>{translation.body}</ReactMarkdown>
-          </div>
+        <p className="mt-3 px-read text-t5 font-medium text-ink-900">{translation.summary}</p>
+
+        {keyPoints.length > 0 && (
+          <section
+            aria-labelledby="kp"
+            className="mx-read mt-6 rounded-card p-5 text-on-tint"
+            style={{ backgroundColor: "var(--surface-note)" }}
+          >
+            <h2 id="kp" className="text-t4 font-bold">
+              {t("keyPoints")}
+            </h2>
+            <ol className="mt-3 space-y-2">
+              {keyPoints.map((point, i) => (
+                <li key={point} className="grid grid-cols-[20px_1fr] gap-2 text-t6">
+                  <span className="font-bold tabular-nums text-on-tint-sub">{i + 1}</span>
+                  {point}
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        <div className="article-body prose mt-8 max-w-none px-read dark:prose-invert">
+          <ReactMarkdown>{translation.body}</ReactMarkdown>
         </div>
 
-        <AdSlot />
-
-        <div className="px-5">
-          {faq.length > 0 && (
-            <section className="mt-4">
-              <h2 className="font-display text-[24px] italic">{t("faq")}</h2>
-              <div className="mt-3 divide-y divide-line overflow-hidden rounded-[18px] bg-card shadow-[inset_0_0_0_1px_var(--line)]">
-                {faq.map((item) => (
-                  <details key={item.q} className="faq group px-4">
-                    <summary className="flex min-h-14 items-center gap-3 py-3 text-[15.5px] font-bold leading-snug">
-                      <span className="grid size-6 shrink-0 place-items-center rounded-full bg-cherry font-label text-[12px] text-white">
-                        Q
-                      </span>
-                      <span className="flex-1">{item.q}</span>
-                      <span className="faq-plus font-label text-[20px] text-muted transition-transform">+</span>
-                    </summary>
-                    <p className="pb-4 pl-9 text-[15px] leading-[1.75] text-fg/85">{item.a}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {article.sources.length > 0 && (
-            <section className="mt-8">
-              <h2 className="font-label text-[12px] font-bold uppercase tracking-[0.16em] text-muted">{t("sources")}</h2>
-              <ul className="mt-2 space-y-1.5 text-[14px]">
-                {article.sources.map((source) => (
-                  <li key={source.id}>
-                    <a
-                      href={source.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline decoration-line underline-offset-4"
-                    >
-                      {source.publisher}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          <p className="mt-6 rounded-[12px] bg-card px-3.5 py-3 text-[12.5px] leading-relaxed text-muted shadow-[inset_0_0_0_1px_var(--line)]">
-            {t("aiNotice")}
-          </p>
-
-          <Comments articleId={article.id} />
-          <ViewPing articleId={article.id} />
-        </div>
-
-        {related.length > 0 && (
+        {faq.length > 0 && (
           <section className="mt-10">
-            <h2 className="px-5 font-display text-[22px] italic">{t("related")}</h2>
-            <div className="rail gap-3 px-4 pt-3">
-              {related.map((item, i) => (
-                <div key={item.slug} className="w-[158px]">
-                  <FeedCard item={item} index={i} />
-                </div>
+            <SectionHeader inset="read" title={t("faq")} />
+            <div className="mx-read divide-y divide-line border-y border-line">
+              {faq.map((item, i) => (
+                <details key={item.q} className="faq group" open={i === 0}>
+                  <summary className="flex min-h-14 cursor-pointer items-start gap-2 py-4 text-t5 font-semibold text-ink-900">
+                    <span aria-hidden className="w-6 shrink-0 font-bold text-ink-400">
+                      Q
+                    </span>
+                    <span className="flex-1">{item.q}</span>
+                    <ChevronDownIcon className="mt-0.5 size-5 shrink-0 text-ink-400 transition-transform duration-200 ease-expo group-open:rotate-180" />
+                  </summary>
+                  <p className="pb-4 pl-8 text-t6 text-ink-700">{item.a}</p>
+                </details>
               ))}
             </div>
           </section>
+        )}
+
+        {article.sources.length > 0 && (
+          <section className="mt-10">
+            <SectionHeader inset="read" title={t("sources")} />
+            <ul>
+              {article.sources.map((source) => (
+                <ListRow
+                  key={source.id}
+                  external
+                  href={source.url}
+                  inset="read"
+                  titleWeight="medium"
+                  title={source.publisher}
+                  sub={hostname(source.url)}
+                />
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <p className="mt-4 px-read text-t7 text-ink-600">{t("aiNotice")}</p>
+
+        <AdSlot />
+
+        <div aria-hidden className="mt-10 h-4 bg-band" />
+        <Comments articleId={article.id} />
+        <ViewPing articleId={article.id} />
+
+        {related.length > 0 && (
+          <>
+            <div aria-hidden className="mt-10 h-4 bg-band" />
+            <section>
+              <SectionHeader inset="read" title={t("related")} />
+              <ul>
+                {related.slice(0, 4).map((item) => (
+                  <ListRow
+                    key={item.slug}
+                    href={`/news/${item.slug}`}
+                    inset="read"
+                    titleWeight="semibold"
+                    left={
+                      item.imageUrl ? (
+                        <Image
+                          src={item.imageUrl}
+                          alt=""
+                          width={64}
+                          height={64}
+                          unoptimized
+                          className="size-16 rounded-btn object-cover"
+                        />
+                      ) : (
+                        <span
+                          className="block size-16 rounded-btn"
+                          style={{ backgroundColor: coverStyle(item.slug, item.category).tint }}
+                        />
+                      )
+                    }
+                    title={<Phrase text={item.title} locale={locale} />}
+                    sub={`${item.categoryLabel} · ${item.timeAgo}`}
+                  />
+                ))}
+              </ul>
+            </section>
+          </>
         )}
       </article>
     </>
