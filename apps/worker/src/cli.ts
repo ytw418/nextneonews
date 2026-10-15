@@ -4,11 +4,13 @@ import { prisma } from "@kmedia/db";
 
 import { budgetUsd, spentUsd } from "./ai/budget";
 import { collectors } from "./collectors";
+import { collectNaverRanking } from "./collectors/naverEntertain";
 import { buildEntities } from "./entities/build";
 import { backfillImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
 import { log } from "./log";
 import { listReview, publish } from "./pipeline/publish";
+import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
 import { writeArticles } from "./pipeline/write";
 import { upsertSignals } from "./store";
@@ -49,7 +51,9 @@ const USAGE = `usage: cli.ts <command>
   cost                     AI 누적 비용 / 상한
   geo-check [limit]        목표 질문을 AI 웹 검색에 던져 인용 출처 기록 (GEO 측정)
   entities                 위키데이터에서 인물·그룹·드라마 사전 갱신 (무료, 주 1회)
-  images                   대표 사진 없는 글에 위키미디어 공용 사진 붙이기 (무료)`;
+  images                   대표 사진 없는 글에 위키미디어 공용 사진 붙이기 (무료)
+  zh-cn                    간체 번역 없는 글에 번체→간체 변환으로 채우기 (무료)
+  history [days]           네이버 엔터 랭킹 지난 N일치 수집 (초기 글 채우기용, 기본 7)`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -74,6 +78,17 @@ try {
       break;
     case "publish":
       await publish(args);
+      break;
+    case "history": {
+      const days = numberArg(args, 7);
+      for (let d = 1; d <= days; d += 1) {
+        const saved = await upsertSignals(await collectNaverRanking(d));
+        log.info(`history: ${d}일 전`, { saved });
+      }
+      break;
+    }
+    case "zh-cn":
+      await backfillSimplified();
       break;
     case "images":
       await backfillImages();

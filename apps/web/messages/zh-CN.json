@@ -1,0 +1,47 @@
+{
+  "Site": {
+    "tagline": "外国人想知道的韩国，每天更新",
+    "categoryDescription": "为海外粉丝提供的{category}新闻、行程与攻略，每天更新。"
+  },
+  "Nav": {
+    "home": "首页",
+    "language": "语言",
+    "upcoming": "行程",
+    "all": "全部",
+    "back": "返回"
+  },
+  "Home": {
+    "latest": "最新",
+    "empty": "目前还没有文章。",
+    "upcoming": "即将登场",
+    "dday": "倒计时 {days} 天",
+    "today": "今天"
+  },
+  "Article": {
+    "sources": "来源",
+    "aiNotice": "本文由 AI 协助撰写与翻译，并经编辑确认。",
+    "correction": "反馈错误",
+    "keyPoints": "重点整理",
+    "faq": "常见问题",
+    "published": "发布",
+    "updated": "更新",
+    "share": "分享",
+    "copied": "已复制链接",
+    "related": "延伸阅读",
+    "readMore": "阅读"
+  },
+  "NotFound": {
+    "title": "找不到页面",
+    "back": "回到首页"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KDRAMA": "韩剧",
+    "KFOOD": "韩国美食",
+    "TRAVEL": "旅游",
+    "WORKING_HOLIDAY": "打工度假",
+    "JOBS": "兼职",
+    "HOUSING": "租房",
+    "LIFE": "生活"
+  }
+}

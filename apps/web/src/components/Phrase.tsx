@@ -1,4 +1,8 @@
-import { loadDefaultJapaneseParser, loadDefaultTraditionalChineseParser } from "budoux";
+import {
+  loadDefaultJapaneseParser,
+  loadDefaultSimplifiedChineseParser,
+  loadDefaultTraditionalChineseParser,
+} from "budoux";
 import { Fragment } from "react";
 
 // 일본어·중국어 제목이 "主/演"처럼 단어 중간에서 끊기지 않게, 의미 단위(구)마다만 줄바꿈을 허용한다.
@@ -6,6 +10,7 @@ import { Fragment } from "react";
 const parsers = {
   ja: loadDefaultJapaneseParser(),
   "zh-TW": loadDefaultTraditionalChineseParser(),
+  "zh-CN": loadDefaultSimplifiedChineseParser(),
 } as const;
 
 export function Phrase({ text, locale }: { text: string; locale: string }) {

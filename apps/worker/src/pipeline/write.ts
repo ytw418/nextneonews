@@ -13,11 +13,13 @@ import { findEntities } from "../entities/match";
 import { log } from "../log";
 import { stripHangulParens, unsupportedNumbers } from "./checks";
 import { pickSentences } from "./extract";
+import { toSimplified } from "./simplified";
 import { fetchSourceMaterial, type SourceMaterial, SourceUnavailableError } from "./sources";
 
 const Faq = z.object({ q: z.string(), a: z.string() });
 const Localized = z.object({
   title: z.string(),
+  seoTitle: z.string(),
   summary: z.string(),
   keyPoints: z.array(z.string()),
   body: z.string(),
@@ -57,6 +59,7 @@ function slugify(raw: string): string {
 function clean(t: Localized): Localized {
   return {
     title: stripHangulParens(t.title),
+    seoTitle: stripHangulParens(t.seoTitle),
     summary: stripHangulParens(t.summary),
     keyPoints: t.keyPoints.map(stripHangulParens),
     body: stripHangulParens(t.body),
@@ -120,10 +123,12 @@ async function writeTopic(topic: Topic): Promise<string> {
   );
 
   const slug = slugify(draft.slug);
+  const zhTW = clean(draft.zhTW);
   const locales: [string, Localized][] = [
     ["en", en],
     ["ja", clean(draft.ja)],
-    ["zh-TW", clean(draft.zhTW)],
+    ["zh-TW", zhTW],
+    ["zh-CN", toSimplified(zhTW)], // 간체는 AI 대신 OpenCC 변환 (0원)
     ["ko", draft.ko],
   ];
   const article = await prisma.article.create({
@@ -142,6 +147,7 @@ async function writeTopic(topic: Topic): Promise<string> {
           locale,
           slug,
           title: t.title,
+          seoTitle: t.seoTitle,
           summary: t.summary,
           keyPoints: t.keyPoints,
           body: t.body,
@@ -157,6 +163,8 @@ async function writeTopic(topic: Topic): Promise<string> {
   return article.id;
 }
 
+const CONCURRENCY = 4;
+
 export async function writeArticles(limit = 3): Promise<{ written: string[]; skipped: number }> {
   const topics = await prisma.topic.findMany({
     where: { status: "QUEUED", riskTier: { not: "RED" } },
@@ -166,7 +174,14 @@ export async function writeArticles(limit = 3): Promise<{ written: string[]; ski
 
   const written: string[] = [];
   let skipped = 0;
-  for (const topic of topics) {
+  // 4편씩 동시에 쓴다 (100편 기준 약 33분 → 8분)
+  const queue = [...topics];
+  const worker = async () => {
+    for (let topic = queue.shift(); topic; topic = queue.shift()) {
+      await writeOne(topic);
+    }
+  };
+  const writeOne = async (topic: Topic) => {
     await prisma.topic.update({ where: { id: topic.id }, data: { status: "WRITING" } });
     try {
       const articleId = await writeTopic(topic);
@@ -184,6 +199,8 @@ export async function writeArticles(limit = 3): Promise<{ written: string[]; ski
       await prisma.topic.update({ where: { id: topic.id }, data: { status: permanent ? "SKIPPED" : "QUEUED" } });
       log.error("write: failed", { topic: topic.keyword, error: String(error), permanent });
     }
-  }
+  };
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, topics.length) }, worker));
+  log.info("write: done", { written: written.length, skipped });
   return { written, skipped };
 }

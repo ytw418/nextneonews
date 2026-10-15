@@ -1,6 +1,7 @@
 {
   "Site": {
-    "tagline": "What foreigners want to know about Korea, every day"
+    "tagline": "What foreigners want to know about Korea, every day",
+    "categoryDescription": "{category} news, schedules and guides for international fans, updated daily."
   },
   "Nav": {
     "home": "Home",

@@ -6,6 +6,7 @@ const ANON_NAME: Record<Locale, string> = {
   ko: "ㅇㅇ",
   ja: "名無しさん",
   "zh-TW": "匿名",
+  "zh-CN": "匿名",
   en: "Anon",
 };
 

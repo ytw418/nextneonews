@@ -1,6 +1,7 @@
 {
   "Site": {
-    "tagline": "外國人想知道的韓國，每天更新"
+    "tagline": "外國人想知道的韓國，每天更新",
+    "categoryDescription": "給海外粉絲的{category}新聞、行程與攻略，每天更新。"
   },
   "Nav": {
     "home": "首頁",

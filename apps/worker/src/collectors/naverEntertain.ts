@@ -12,14 +12,14 @@ interface RankingArticle {
   url: string;
 }
 
-function kstDate(): string {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date()).replaceAll("-", "");
+function kstDate(daysAgo = 0): string {
+  const date = new Date(Date.now() - daysAgo * 86_400_000);
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(date).replaceAll("-", "");
 }
 
-export const naverEntertainCollector: Collector = {
-  name: "naver-entertain",
-  async collect() {
-    const res = await fetch(`${API}?date=${kstDate()}&pageSize=30`, {
+// 특정 날짜(daysAgo 일 전) 랭킹. 지난 날짜도 같은 API 로 받을 수 있다
+export async function collectNaverRanking(daysAgo = 0): Promise<CollectedSignal[]> {
+    const res = await fetch(`${API}?date=${kstDate(daysAgo)}&pageSize=30`, {
       headers: { referer: "https://m.entertain.naver.com/ranking" },
       signal: AbortSignal.timeout(15_000),
     });
@@ -43,5 +43,9 @@ export const naverEntertainCollector: Collector = {
         metrics: { rank: a.rank, views: a.count },
       }),
     );
-  },
+}
+
+export const naverEntertainCollector: Collector = {
+  name: "naver-entertain",
+  collect: () => collectNaverRanking(0),
 };

@@ -67,6 +67,11 @@ export const getArticle = cache(async (locale: string, slug: string) => {
 export async function listSitemapEntries() {
   return prisma.translation.findMany({
     where: { indexable: true, article: { status: "PUBLISHED" } },
-    select: { locale: true, slug: true, article: { select: { updatedAt: true } } },
+    select: {
+      locale: true,
+      slug: true,
+      articleId: true,
+      article: { select: { updatedAt: true, media: { select: { url: true }, take: 1 } } },
+    },
   });
 }

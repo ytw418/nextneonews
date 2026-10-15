@@ -1,0 +1,45 @@
+# 콘텐츠 파이프라인 자동 실행: 수집 → 품질 체크(알고리즘) → 기사 작성 → 사진 → 간체
+# 필요한 저장소 Secrets: DATABASE_URL, ANTHROPIC_API_KEY, SITE_URL, INDEXNOW_KEY
+name: pipeline
+
+on:
+  schedule:
+    - cron: "17 * * * *" # 매시 17분 (UTC). 비공개 레포로 바꾸면 "17 */2 * * *" 로 줄인다
+    - cron: "40 18 * * 0" # 매주 월요일 03:40 KST: 인물 사전 갱신
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "이번에 쓸 기사 수"
+        default: "5"
+
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      LLM_BUDGET_KRW: "100000"
+      AUTO_PUBLISH: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run db:generate
+      - run: npm run db:migrate
+      - name: 인물 사전 갱신 (주 1회)
+        if: github.event.schedule == '40 18 * * 0'
+        run: npm run worker -- entities
+      - name: 수집 → 체크 → 작성
+        run: npm run worker -- pipeline ${{ github.event.inputs.limit || '5' }}
+      - run: npm run worker -- zh-cn
+      - run: npm run worker -- cost

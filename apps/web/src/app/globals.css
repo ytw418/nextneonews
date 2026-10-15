@@ -89,6 +89,20 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
 }
 
+/* 언어별 시스템 서체: 같은 한자라도 일본·대만·본토 글자 모양이 다르다 */
+:lang(ja) {
+  font-family: -apple-system, "SF Pro Text", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+}
+:lang(zh-TW) {
+  font-family: -apple-system, "SF Pro Text", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+:lang(zh-CN) {
+  font-family: -apple-system, "SF Pro Text", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+:lang(ko) {
+  font-family: -apple-system, "SF Pro Text", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
 /* 한중일 줄바꿈: 단어 중간에서 끊기지 않게, 제목은 줄 길이를 고르게 */
 h1,
 h2,

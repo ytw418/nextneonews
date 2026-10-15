@@ -16,7 +16,7 @@ export const UPCOMING: UpcomingEvent[] = [
     id: "comeback-1026",
     name: "IVE · ILLIT · RIIZE",
     start: "2026-10-26",
-    place: { en: "Comeback day", ja: "同日カムバ", "zh-TW": "同日回歸", ko: "동시 컴백" },
+    place: { en: "Comeback day", ja: "同日カムバ", "zh-TW": "同日回歸", "zh-CN": "同日回归", ko: "동시 컴백" },
     source: "https://www.koreatimes.co.kr/entertainment/k-pop/20261006/ive-illit-riize-collide-as-october-k-pop-comeback-race-heats-up",
   },
   {
@@ -24,7 +24,7 @@ export const UPCOMING: UpcomingEvent[] = [
     name: "MMA 2026",
     start: "2026-11-14",
     end: "2026-11-15",
-    place: { en: "Seoul", ja: "ソウル", "zh-TW": "首爾", ko: "서울" },
+    place: { en: "Seoul", ja: "ソウル", "zh-TW": "首爾", "zh-CN": "首尔", ko: "서울" },
     source: "https://www.soompi.com/article/1846316wpp/melon-music-awards-2026-announces-dates-and-details",
   },
   {
@@ -32,14 +32,14 @@ export const UPCOMING: UpcomingEvent[] = [
     name: "MAMA AWARDS",
     start: "2026-11-20",
     end: "2026-11-21",
-    place: { en: "Osaka", ja: "大阪", "zh-TW": "大阪", ko: "오사카" },
+    place: { en: "Osaka", ja: "大阪", "zh-TW": "大阪", "zh-CN": "大阪", ko: "오사카" },
     source: "https://newsroom.cj.net/2026-mama-awards-to-take-place-in-japan-from-november-20-21/",
   },
   {
     id: "blue-dragon-2026",
     name: "Blue Dragon Film Awards",
     start: "2026-11-25",
-    place: { en: "Seoul", ja: "ソウル", "zh-TW": "首爾", ko: "서울" },
+    place: { en: "Seoul", ja: "ソウル", "zh-TW": "首爾", "zh-CN": "首尔", ko: "서울" },
     source: "https://www.soompi.com/article/1877253wpp/blue-dragon-film-awards-announces-date-for-2026-ceremony",
   },
   {
@@ -47,7 +47,7 @@ export const UPCOMING: UpcomingEvent[] = [
     name: "AAA 2026",
     start: "2026-12-05",
     end: "2026-12-06",
-    place: { en: "Kaohsiung", ja: "高雄", "zh-TW": "高雄", ko: "가오슝" },
+    place: { en: "Kaohsiung", ja: "高雄", "zh-TW": "高雄", "zh-CN": "高雄", ko: "가오슝" },
     source: "https://sports.khan.co.kr/en/article/202609160040007",
   },
   {
@@ -55,7 +55,7 @@ export const UPCOMING: UpcomingEvent[] = [
     name: "Golden Disc Awards",
     start: "2027-01-09",
     end: "2027-01-10",
-    place: { en: "Hanoi", ja: "ハノイ", "zh-TW": "河內", ko: "하노이" },
+    place: { en: "Hanoi", ja: "ハノイ", "zh-TW": "河內", "zh-CN": "河内", ko: "하노이" },
     source: "https://www.koreajoongangdaily.com/entertainment/41st-golden-disc-awards-to-take-place-in-hanoi-in-january/12774573",
   },
 ];

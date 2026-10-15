@@ -11,6 +11,7 @@ const LABEL: Record<(typeof LOCALES)[number], string> = {
   en: "English",
   ja: "日本語",
   "zh-TW": "繁體中文",
+  "zh-CN": "简体中文",
   ko: "한국어",
 };
 

@@ -1,6 +1,7 @@
 {
   "Site": {
-    "tagline": "外国人が知りたい韓国を、毎日"
+    "tagline": "外国人が知りたい韓国を、毎日",
+    "categoryDescription": "海外ファンのための{category}ニュース・日程・ガイドを毎日更新。"
   },
   "Nav": {
     "home": "ホーム",

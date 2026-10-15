@@ -1,6 +1,7 @@
 {
   "Site": {
-    "tagline": "외국인이 궁금한 한국, 매일"
+    "tagline": "외국인이 궁금한 한국, 매일",
+    "categoryDescription": "해외 팬을 위한 {category} 소식·일정·가이드, 매일 업데이트."
   },
   "Nav": {
     "home": "홈",

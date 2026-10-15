@@ -1,4 +1,4 @@
-export const LOCALES = ["en", "ja", "zh-TW", "ko"] as const;
+export const LOCALES = ["en", "ja", "zh-TW", "zh-CN", "ko"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "en";
@@ -8,6 +8,7 @@ export const LOCALE_PATH_PREFIX: Record<Locale, string> = {
   en: "/en",
   ja: "/ja",
   "zh-TW": "/zh-tw",
+  "zh-CN": "/zh-cn",
   ko: "/ko",
 };
 

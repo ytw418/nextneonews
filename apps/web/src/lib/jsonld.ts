@@ -26,6 +26,7 @@ export interface ArticleLd {
   entities: Entity[];
   sourceUrls: string[];
   homeUrl: string;
+  image?: string;
 }
 
 const organization = {
@@ -33,6 +34,7 @@ const organization = {
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
   url: SITE_URL,
+  logo: { "@type": "ImageObject", url: `${SITE_URL}/apple-icon` },
 };
 
 // 사이트 전체에 한 번: 검색엔진·AI 가 브랜드(조직)와 사이트를 같은 실체로 묶게 한다
@@ -67,6 +69,7 @@ export function articleJsonLd(a: ArticleLd) {
       datePublished: a.publishedAt?.toISOString(),
       dateModified: a.updatedAt.toISOString(),
       articleSection: a.category,
+      ...(a.image ? { image: [a.image] } : {}),
       author: { "@id": organization["@id"] },
       publisher: { "@id": organization["@id"] },
       about: a.entities.map((e) => ({
@@ -94,5 +97,6 @@ export function articleJsonLd(a: ArticleLd) {
       })),
     });
   }
-  return { "@context": "https://schema.org", "@graph": [organization, ...graph] };
+  // 조직(Organization)은 레이아웃의 siteJsonLd 에 이미 있어 @id 로만 참조한다
+  return { "@context": "https://schema.org", "@graph": graph };
 }

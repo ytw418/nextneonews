@@ -16,7 +16,7 @@ import { coverStyle } from "@/lib/cover";
 import { toFeedItems } from "@/lib/feed";
 import { articleJsonLd } from "@/lib/jsonld";
 import { dateStamp } from "@/lib/time";
-import { articlePath, localeHomePath, SITE_URL } from "@/lib/url";
+import { articlePath, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 300;
 
@@ -50,19 +50,25 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/news/[sl
 
   const description = translation.seoDesc ?? translation.summary;
   const image = translation.article.media[0]?.url;
+  const title = translation.seoTitle ?? translation.title;
+  const canonical = articlePath(locale, slug);
   return {
-    title: translation.seoTitle ?? translation.title,
+    // 긴 제목은 사이트명을 붙이지 않는다 (검색 결과에서 잘리지 않게)
+    title: title.length > 45 ? { absolute: title } : title,
     description,
-    alternates: { canonical: articlePath(locale, slug), languages },
+    alternates: { canonical, languages },
     robots: translation.indexable ? undefined : { index: false },
     openGraph: {
+      ...ogBase(locale),
       type: "article",
+      url: canonical,
       title: translation.title,
       description,
       publishedTime: translation.article.publishedAt?.toISOString(),
       modifiedTime: translation.article.updatedAt.toISOString(),
-      images: image ? [image] : undefined,
+      images: [image ?? `${localeHomePath(locale)}/opengraph-image`],
     },
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -108,6 +114,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
             faq,
             entities: asArray(article.entities),
             sourceUrls: article.sources.map((s) => s.url),
+            image: hero?.url,
             homeUrl: `${SITE_URL}${localeHomePath(locale)}`,
           })}
         />
@@ -115,7 +122,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         {hero ? (
           // 공식 이미지가 있으면 화면을 꽉 채우는 매거진 커버
           <figure className="relative aspect-[4/5] max-h-[78svh] w-full overflow-hidden">
-            <Image src={hero.url} alt="" fill unoptimized priority sizes="100vw" className="object-cover" />
+            <Image src={hero.url} alt={translation.title} fill unoptimized priority sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 px-5 pb-6 text-white">
               <span className="rounded-full bg-cherry px-2.5 py-1 font-label text-[11px] font-bold uppercase tracking-wide">

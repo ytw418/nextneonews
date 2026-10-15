@@ -9,6 +9,7 @@ const LOCALE_NAME: Record<(typeof LOCALES)[number], string> = {
   en: "English",
   ja: "日本語",
   "zh-TW": "繁體中文",
+  "zh-CN": "简体中文",
   ko: "한국어",
 };
 
@@ -18,7 +19,7 @@ export async function GET() {
   const lines = [
     `# ${SITE_NAME}`,
     "",
-    "> Multilingual news and guides about Korean entertainment (K-pop, K-drama), food, travel, working holidays and life in Korea, written for international readers in English, Japanese, Traditional Chinese and Korean. Facts come from official announcements and Korean media, and every article lists its sources.",
+    "> Multilingual news and guides about Korean entertainment (K-pop, K-drama), food, travel, working holidays and life in Korea, written for international readers in English, Japanese, Traditional and Simplified Chinese, and Korean. Facts come from official announcements and Korean media, and every article lists its sources.",
     "",
     "## Languages",
     ...LOCALES.map((l) => `- [${LOCALE_NAME[l]}](${SITE_URL}${LOCALE_PATH_PREFIX[l]})`),

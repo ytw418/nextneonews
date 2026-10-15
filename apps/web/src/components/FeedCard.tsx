@@ -30,7 +30,7 @@ export function FeedCard({ item, index, featured }: { item: FeedItem; index: num
       >
         {item.imageUrl ? (
           <div className={`relative ${style.ratio}`}>
-            <Image src={item.imageUrl} alt="" fill unoptimized sizes="50vw" className="object-cover" />
+            <Image src={item.imageUrl} alt={item.title} fill unoptimized sizes="50vw" className="object-cover" />
           </div>
         ) : (
           <MemoCover

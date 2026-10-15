@@ -8,6 +8,7 @@ import { CategoryRail } from "@/components/CategoryRail";
 import { Feed } from "@/components/Feed";
 import { listByCategory } from "@/lib/articles";
 import { toFeedItems } from "@/lib/feed";
+import { localeAlternates, localeHomePath, ogBase } from "@/lib/url";
 
 export const revalidate = 300;
 
@@ -19,8 +20,26 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/c/[categ
   const { locale, category } = await params;
   const key = categoryFromSlug(category);
   if (!key) return {};
-  const t = await getTranslations({ locale, namespace: "Category" });
-  return { title: t(key) };
+  const [t, tSite] = await Promise.all([
+    getTranslations({ locale, namespace: "Category" }),
+    getTranslations({ locale, namespace: "Site" }),
+  ]);
+  const description = tSite("categoryDescription", { category: t(key) });
+  const alternates = localeAlternates(locale, `/c/${category}`);
+  return {
+    title: t(key),
+    description,
+    alternates,
+    openGraph: {
+      ...ogBase(locale),
+      type: "website",
+      url: alternates.canonical,
+      title: t(key),
+      description,
+      images: [`${localeHomePath(locale)}/opengraph-image`],
+    },
+    twitter: { card: "summary_large_image" },
+  };
 }
 
 export default async function CategoryPage({ params }: PageProps<"/[locale]/c/[category]">) {
