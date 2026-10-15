@@ -18,9 +18,71 @@
   "Home": {
     "latest": "新着",
     "empty": "まだ記事がありません。",
-    "upcoming": "これからの予定",
-    "dday": "あと{days}日",
-    "today": "今日"
+    "seeAll": "すべて見る"
+  },
+  "Schedule": {
+    "metaTitle": "K-POPのカムバック・授賞式・コンサート日程",
+    "metaDescription": "海外ファン向けに、日程・会場・見る方法をまとめています。",
+    "kstNote": "日時は韓国時間（KST）です。",
+    "dday": "D-{days}",
+    "today": "今日",
+    "ongoing": "開催中",
+    "ended": "終了",
+    "getTickets": "チケットを見る",
+    "addToCalendar": "カレンダーに追加",
+    "kind": {
+      "comeback": "カムバック",
+      "awards": "授賞式",
+      "concert": "コンサート",
+      "festival": "フェス",
+      "fanmeeting": "ファンミーティング",
+      "drama": "ドラマ初回"
+    },
+    "releaseCount": "{count}作品",
+    "releaseKind": {
+      "single": "シングル",
+      "ep": "ミニアルバム",
+      "album": "アルバム"
+    },
+    "row": {
+      "date": "日程",
+      "time": "時間",
+      "venue": "会場",
+      "official": "公式サイト"
+    },
+    "tba": "未発表",
+    "yourTime": "あなたの時間：{time}",
+    "venueTime": "{city}：{time}",
+    "watchTickets": "視聴・チケット",
+    "mode": {
+      "live": "ライブ配信",
+      "vod": "見逃し配信",
+      "liveAndVod": "ライブ＋見逃し"
+    },
+    "status": {
+      "presale": "先行受付",
+      "onSale": "発売中",
+      "soldOut": "完売",
+      "notYet": "発売前",
+      "closed": "先行受付終了"
+    },
+    "until": "{date}まで",
+    "lineup": "出演者",
+    "releases": "リリース",
+    "dayN": "{n}日目・{date}",
+    "hosts": "MC：{names}",
+    "lineupTba": "出演日は未発表です",
+    "lineupPartial": "出演者は追加されることがあります。",
+    "related": "関連ニュース",
+    "sources": "出典",
+    "checked": "{date}確認",
+    "share": "この予定をシェア",
+    "empty": "新しい予定は発表されしだい追加します。",
+    "past": "終わった予定（{count}）",
+    "todayLine": {
+      "comeback": "今日はカムバック日です！",
+      "default": "いよいよ今日です！"
+    }
   },
   "Article": {
     "sources": "出典",

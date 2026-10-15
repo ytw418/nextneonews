@@ -1,4 +1,4 @@
-import { SITE_NAME } from "@kmedia/core";
+import { type Locale, SITE_NAME, type UpcomingEvent } from "@kmedia/core";
 
 import { SITE_URL } from "./url";
 
@@ -99,4 +99,54 @@ export function articleJsonLd(a: ArticleLd) {
   }
   // 조직(Organization)은 레이아웃의 siteJsonLd 에 이미 있어 @id 로만 참조한다
   return { "@context": "https://schema.org", "@graph": graph };
+}
+
+const AVAILABILITY = { onSale: "InStock", soldOut: "SoldOut", presale: "PreOrder", notYet: "PreOrder" } as const;
+
+// 일정 상세: schema.org Event. 컴백·드라마 첫 방송은 장소가 있는 행사가 아니라서 내지 않는다
+export function eventJsonLd(e: UpcomingEvent, locale: Locale, url: string) {
+  if (e.kind === "comeback" || e.kind === "drama") return null;
+  const ticket = e.tickets?.find((t) => t.url);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: e.name,
+    url,
+    inLanguage: locale,
+    ...(e.about?.[locale] ? { description: e.about[locale] } : {}),
+    startDate: e.startTimeKst ? `${e.start}T${e.startTimeKst}:00+09:00` : e.start,
+    // 끝나는 시각은 모르니 날짜만
+    endDate: e.end ?? e.start,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: e.watch?.length
+      ? "https://schema.org/MixedEventAttendanceMode"
+      : "https://schema.org/OfflineEventAttendanceMode",
+    ...(e.venue
+      ? {
+          location: {
+            "@type": "Place",
+            name: e.venue,
+            ...(e.city ? { address: { "@type": "PostalAddress", addressLocality: e.city.en } } : {}),
+          },
+        }
+      : {}),
+    ...(ticket
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: ticket.url,
+            availability: `https://schema.org/${AVAILABILITY[ticket.status]}`,
+          },
+        }
+      : {}),
+  };
+}
+
+// 일정 목록: 상세 페이지 주소를 순서대로
+export function scheduleJsonLd(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: items.map((item, i) => ({ "@type": "ListItem", position: i + 1, name: item.name, url: item.url })),
+  };
 }

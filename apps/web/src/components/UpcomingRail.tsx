@@ -1,55 +1,85 @@
-import { daysUntil, isLocale, UPCOMING } from "@kmedia/core";
+import { formatRange, isLocale, listUpcoming } from "@kmedia/core";
 import { getTranslations } from "next-intl/server";
 
+import { ChevronRightIcon } from "@/components/icons";
+import { CelebrateOnce } from "@/components/schedule/CelebrateOnce";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Link } from "@/i18n/navigation";
+import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
 
-// 콘서트 티켓 모양의 D-day 레일. 스텁 색은 일정 종류(이벤트 틴트)를 뜻한다
+// 콘서트 티켓 모양의 일정 레일 (다가오는 5개). 스텁 색은 일정 종류(이벤트 틴트), 티켓을 누르면 일정 상세로
 export async function UpcomingRail({ locale }: { locale: string }) {
-  const t = await getTranslations("Home");
-  const events = UPCOMING.filter((e) => daysUntil(e.end ?? e.start) >= 0).slice(0, 8);
+  if (!isLocale(locale)) return null;
+  const events = listUpcoming().slice(0, 5);
   if (events.length === 0) return null;
-  const dateFormat = new Intl.DateTimeFormat(locale, { month: "numeric", day: "numeric", timeZone: "UTC" });
+  const [t, tNav, tHome] = await Promise.all([
+    getTranslations("Schedule"),
+    getTranslations("Nav"),
+    getTranslations("Home"),
+  ]);
 
   return (
-    <section id="upcoming" aria-labelledby="home-schedule">
-      <SectionHeader id="home-schedule" title={t("upcoming")} />
+    <section aria-labelledby="home-schedule">
+      <SectionHeader id="home-schedule" title={tNav("schedule")} href="/schedule" linkLabel={tHome("seeAll")} />
       <ul className="rail rail-snap items-stretch gap-2 px-gutter pb-1">
         {events.map((e) => {
-          const days = Math.max(0, daysUntil(e.start));
-          const urgent = days >= 1 && days <= 7;
-          const place = isLocale(locale) ? e.place[locale] : e.place.en;
+          const { state, days } = e.view;
+          const urgent = state === "upcoming" && days <= 7;
+          const city = e.city?.[locale];
+          const meta = [
+            t(`kind.${e.kind}`),
+            city,
+            e.releases?.length ? t("releaseCount", { count: e.releases.length }) : undefined,
+          ]
+            .filter(Boolean)
+            .join(" · ");
+          const word = (
+            <>
+              <span className="mr-1.5 inline-block size-2 rounded-full bg-cherry align-middle" />
+              {ddayLabel(e.view, t)}
+            </>
+          );
           return (
             <li
               key={e.id}
-              className="flex w-[min(max(9rem,calc((min(100vw,640px)-36px)/2.25)),calc(100vw-56px))] flex-col overflow-hidden rounded-card bg-card shadow-card"
+              className="w-[min(max(9rem,calc((min(100vw,640px)-36px)/2.25)),calc(100vw-56px))]"
             >
-              <div
-                className="ticket-stub flex flex-col px-4 pt-4 pb-3"
-                style={{ backgroundColor: `var(--tint-event-${e.kind})` }}
+              <Link
+                href={`/schedule/${e.id}`}
+                aria-label={eventAriaLabel({ e, view: e.view, locale, t })}
+                className="press flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card"
               >
-                {days === 0 ? (
-                  <p className="text-t3 font-bold text-on-tint">
-                    <span className="text-t5">
-                      <span className="mr-1.5 inline-block size-2 rounded-full bg-cherry align-middle" />
-                      {t("today")}
-                    </span>
+                <div
+                  aria-hidden
+                  className="ticket-stub flex flex-col px-4 pt-4 pb-3"
+                  style={{ backgroundColor: KIND_TINT[e.kind] }}
+                >
+                  {state === "upcoming" ? (
+                    <p
+                      className={`whitespace-nowrap text-t3 font-bold tabular-nums ${urgent ? "text-brand-ink" : "text-on-tint"}`}
+                    >
+                      {ddayLabel(e.view, t)}
+                    </p>
+                  ) : (
+                    // '오늘'·'진행 중'은 t5 로 (줄이 바뀌어도 잘리지 않게). 바깥 p 가 t3 줄 높이를 지켜 스텁 높이가 맞는다
+                    <p className="text-t3 font-bold text-on-tint">
+                      <span className="text-t5">
+                        {state === "today" ? <CelebrateOnce id={e.id}>{word}</CelebrateOnce> : word}
+                      </span>
+                    </p>
+                  )}
+                  <p className="text-t6 font-semibold tabular-nums text-on-tint-sub">
+                    {formatRange(locale, e.start, e.end, "short")}
                   </p>
-                ) : (
-                  <p
-                    className={`whitespace-nowrap text-t3 font-bold tabular-nums ${urgent ? "text-brand-ink" : "text-on-tint"}`}
-                  >
-                    {t("dday", { days })}
+                </div>
+                <div aria-hidden className="flex flex-1 flex-col px-4 pt-3 pb-4">
+                  <p className="text-t5 leading-row font-bold text-ink-900">{e.name}</p>
+                  <p className="mt-1 flex items-start gap-1 text-t6 text-ink-600">
+                    <span className="min-w-0">{meta}</span>
+                    <ChevronRightIcon className="mt-0.5 ml-auto size-4 shrink-0 text-ink-400" />
                   </p>
-                )}
-                <p className="text-t6 font-semibold tabular-nums text-on-tint-sub">
-                  {dateFormat.format(new Date(`${e.start}T00:00:00Z`))}
-                  {e.end ? `–${dateFormat.format(new Date(`${e.end}T00:00:00Z`))}` : ""}
-                </p>
-              </div>
-              <div className="flex flex-1 flex-col px-4 pt-3 pb-4">
-                <p className="text-t5 leading-row font-bold text-ink-900">{e.name}</p>
-                <p className="mt-1 text-t6 text-ink-600">{place}</p>
-              </div>
+                </div>
+              </Link>
             </li>
           );
         })}

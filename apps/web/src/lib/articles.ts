@@ -1,5 +1,6 @@
 import { cache } from "react";
 
+import { eventMatches, kst, type UpcomingEvent } from "@kmedia/core";
 import { type Category, type MediaKind, type Prisma, prisma } from "@kmedia/db";
 
 // 화면에 대표 이미지로 쓸 수 있는 종류 (CARD·AI 는 커버를 따로 그린다)
@@ -91,6 +92,23 @@ export async function listPopular(locale: string, take = 8, days = 7) {
     take,
     select: feedSelect,
   });
+}
+
+// 일정 상세의 관련 뉴스: 시작 120일 전부터 나온 글 중 제목·인물 이름에 일정 키워드가 있는 것.
+// 'MMA' 같은 짧은 키워드는 단어로만 맞춰야 해서(Emma 제외) DB 가 아니라 JS 로 거른다. 작년 같은 시상식 글은 날짜에서 빠진다
+export async function listForEvent(locale: string, e: Pick<UpcomingEvent, "start" | "keywords">, take = 3) {
+  const rows = await prisma.translation.findMany({
+    where: {
+      locale,
+      article: { status: "PUBLISHED", publishedAt: { gte: new Date(kst(e.start).getTime() - 120 * DAY_MS) } },
+    },
+    orderBy: { article: { publishedAt: "desc" } },
+    take: 60,
+    select: { ...feedSelect, article: { select: { ...feedSelect.article.select, entities: true } } },
+  });
+  return rows
+    .filter((row) => eventMatches(e, `${row.title} ${entityNames(row.article.entities).join(" ")}`))
+    .slice(0, take);
 }
 
 // 번역이 아직 없는 언어 주소로 들어오면 있는 언어로 보낸다 (영어 우선)

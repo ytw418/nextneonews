@@ -18,9 +18,71 @@
   "Home": {
     "latest": "Mới nhất",
     "empty": "Chưa có bài viết nào.",
-    "upcoming": "Sắp tới",
+    "seeAll": "Xem tất cả"
+  },
+  "Schedule": {
+    "metaTitle": "Lịch comeback, lễ trao giải và concert K-pop",
+    "metaDescription": "Ngày, địa điểm và cách xem, dành cho fan quốc tế.",
+    "kstNote": "Ngày giờ theo giờ Hàn Quốc (KST).",
     "dday": "D-{days}",
-    "today": "HÔM NAY"
+    "today": "Hôm nay",
+    "ongoing": "Đang diễn ra",
+    "ended": "Đã kết thúc",
+    "getTickets": "Mua vé",
+    "addToCalendar": "Thêm vào lịch",
+    "kind": {
+      "comeback": "Comeback",
+      "awards": "Lễ trao giải",
+      "concert": "Concert",
+      "festival": "Lễ hội âm nhạc",
+      "fanmeeting": "Fan meeting",
+      "drama": "Phim mới lên sóng"
+    },
+    "releaseCount": "{count} sản phẩm",
+    "releaseKind": {
+      "single": "Đĩa đơn",
+      "ep": "EP",
+      "album": "Album"
+    },
+    "row": {
+      "date": "Ngày",
+      "time": "Giờ",
+      "venue": "Địa điểm",
+      "official": "Trang chính thức"
+    },
+    "tba": "Chưa công bố",
+    "yourTime": "Giờ của bạn: {time}",
+    "venueTime": "{city}: {time}",
+    "watchTickets": "Xem & vé",
+    "mode": {
+      "live": "Trực tiếp",
+      "vod": "Xem lại",
+      "liveAndVod": "Trực tiếp + xem lại"
+    },
+    "status": {
+      "presale": "Mở bán sớm",
+      "onSale": "Đang bán",
+      "soldOut": "Hết vé",
+      "notYet": "Chưa mở bán",
+      "closed": "Hết mở bán sớm"
+    },
+    "until": "đến {date}",
+    "lineup": "Đội hình",
+    "releases": "Phát hành",
+    "dayN": "Ngày {n} · {date}",
+    "hosts": "MC: {names}",
+    "lineupTba": "Chưa công bố ngày diễn của từng nghệ sĩ",
+    "lineupPartial": "Có thể sẽ có thêm nghệ sĩ.",
+    "related": "Tin liên quan",
+    "sources": "Nguồn",
+    "checked": "Đã kiểm tra {date}",
+    "share": "Chia sẻ lịch này",
+    "empty": "Lịch mới sẽ xuất hiện ở đây ngay khi được công bố.",
+    "past": "Lịch đã qua ({count})",
+    "todayLine": {
+      "comeback": "Hôm nay comeback rồi!",
+      "default": "Chính là hôm nay!"
+    }
   },
   "Article": {
     "sources": "Nguồn",

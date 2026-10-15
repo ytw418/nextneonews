@@ -18,9 +18,71 @@
   "Home": {
     "latest": "Terbaru",
     "empty": "Belum ada artikel.",
-    "upcoming": "Segera hadir",
+    "seeAll": "Lihat semua"
+  },
+  "Schedule": {
+    "metaTitle": "Jadwal comeback, penghargaan, dan konser K-pop",
+    "metaDescription": "Tanggal, lokasi, dan cara nonton untuk fans internasional.",
+    "kstNote": "Tanggal mengikuti waktu Korea (KST).",
     "dday": "D-{days}",
-    "today": "HARI INI"
+    "today": "Hari ini",
+    "ongoing": "Berlangsung",
+    "ended": "Selesai",
+    "getTickets": "Beli tiket",
+    "addToCalendar": "Simpan ke kalender",
+    "kind": {
+      "comeback": "Comeback",
+      "awards": "Penghargaan",
+      "concert": "Konser",
+      "festival": "Festival",
+      "fanmeeting": "Fan meeting",
+      "drama": "Tayang perdana drama"
+    },
+    "releaseCount": "{count} rilisan",
+    "releaseKind": {
+      "single": "Singel",
+      "ep": "EP",
+      "album": "Album"
+    },
+    "row": {
+      "date": "Tanggal",
+      "time": "Waktu",
+      "venue": "Lokasi",
+      "official": "Situs resmi"
+    },
+    "tba": "Belum diumumkan",
+    "yourTime": "Waktumu: {time}",
+    "venueTime": "{city}: {time}",
+    "watchTickets": "Nonton & tiket",
+    "mode": {
+      "live": "Live",
+      "vod": "Tayangan ulang",
+      "liveAndVod": "Live + tayangan ulang"
+    },
+    "status": {
+      "presale": "Presale",
+      "onSale": "Dijual",
+      "soldOut": "Habis",
+      "notYet": "Belum dijual",
+      "closed": "Presale selesai"
+    },
+    "until": "sampai {date}",
+    "lineup": "Lineup",
+    "releases": "Rilisan",
+    "dayN": "Hari ke-{n} · {date}",
+    "hosts": "Host: {names}",
+    "lineupTba": "Hari tampil tiap artis belum diumumkan",
+    "lineupPartial": "Artis lain mungkin ditambahkan.",
+    "related": "Berita terkait",
+    "sources": "Sumber",
+    "checked": "Dicek {date}",
+    "share": "Bagikan jadwal ini",
+    "empty": "Jadwal baru muncul di sini begitu diumumkan.",
+    "past": "Jadwal lalu ({count})",
+    "todayLine": {
+      "comeback": "Hari ini comeback!",
+      "default": "Hari ini!"
+    }
   },
   "Article": {
     "sources": "Sumber",

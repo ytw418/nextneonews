@@ -18,9 +18,71 @@
   "Home": {
     "latest": "最新",
     "empty": "目前還沒有文章。",
-    "upcoming": "即將登場",
-    "dday": "倒數 {days} 天",
-    "today": "今天"
+    "seeAll": "查看全部"
+  },
+  "Schedule": {
+    "metaTitle": "K-POP 回歸、頒獎典禮、演唱會行程",
+    "metaDescription": "為海外粉絲整理日期、地點和收看方式。",
+    "kstNote": "日期以韓國時間（KST）為準。",
+    "dday": "D-{days}",
+    "today": "今天",
+    "ongoing": "進行中",
+    "ended": "已結束",
+    "getTickets": "前往購票",
+    "addToCalendar": "加入行事曆",
+    "kind": {
+      "comeback": "回歸",
+      "awards": "頒獎典禮",
+      "concert": "演唱會",
+      "festival": "音樂節",
+      "fanmeeting": "粉絲見面會",
+      "drama": "新劇首播"
+    },
+    "releaseCount": "{count} 張作品",
+    "releaseKind": {
+      "single": "單曲",
+      "ep": "迷你專輯",
+      "album": "正規專輯"
+    },
+    "row": {
+      "date": "日期",
+      "time": "時間",
+      "venue": "地點",
+      "official": "官方網站"
+    },
+    "tba": "尚未公布",
+    "yourTime": "你的時間：{time}",
+    "venueTime": "{city}：{time}",
+    "watchTickets": "收看與購票",
+    "mode": {
+      "live": "直播",
+      "vod": "重播",
+      "liveAndVod": "直播＋重播"
+    },
+    "status": {
+      "presale": "預購",
+      "onSale": "販售中",
+      "soldOut": "已售完",
+      "notYet": "尚未開賣",
+      "closed": "預購已結束"
+    },
+    "until": "至 {date}",
+    "lineup": "演出陣容",
+    "releases": "發行",
+    "dayN": "第{n}天・{date}",
+    "hosts": "主持人：{names}",
+    "lineupTba": "各組演出日期尚未公布",
+    "lineupPartial": "演出陣容可能還會增加。",
+    "related": "相關新聞",
+    "sources": "資料來源",
+    "checked": "{date} 確認",
+    "share": "分享這個行程",
+    "empty": "新行程一公布就會更新在這裡。",
+    "past": "已結束的行程（{count}）",
+    "todayLine": {
+      "comeback": "今天回歸！",
+      "default": "就是今天！"
+    }
   },
   "Article": {
     "sources": "資料來源",

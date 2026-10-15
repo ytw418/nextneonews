@@ -18,9 +18,71 @@
   "Home": {
     "latest": "À la une",
     "empty": "Aucun article pour l’instant.",
-    "upcoming": "Bientôt",
+    "seeAll": "Tout voir"
+  },
+  "Schedule": {
+    "metaTitle": "Comebacks, cérémonies et concerts K-pop",
+    "metaDescription": "Dates, lieux et où regarder, pour les fans du monde entier.",
+    "kstNote": "Les dates sont à l’heure coréenne (KST).",
     "dday": "J-{days}",
-    "today": "AUJOURD’HUI"
+    "today": "Aujourd’hui",
+    "ongoing": "En cours",
+    "ended": "Terminé",
+    "getTickets": "Réserver",
+    "addToCalendar": "Ajouter à l’agenda",
+    "kind": {
+      "comeback": "Comeback",
+      "awards": "Cérémonie",
+      "concert": "Concert",
+      "festival": "Festival",
+      "fanmeeting": "Fan meeting",
+      "drama": "Première de drama"
+    },
+    "releaseCount": "{count, plural, one {# sortie} other {# sorties}}",
+    "releaseKind": {
+      "single": "Single",
+      "ep": "EP",
+      "album": "Album"
+    },
+    "row": {
+      "date": "Date",
+      "time": "Heure",
+      "venue": "Lieu",
+      "official": "Site officiel"
+    },
+    "tba": "Pas encore annoncé",
+    "yourTime": "Ton heure : {time}",
+    "venueTime": "{city} : {time}",
+    "watchTickets": "Regarder & billets",
+    "mode": {
+      "live": "En direct",
+      "vod": "Replay",
+      "liveAndVod": "Direct + replay"
+    },
+    "status": {
+      "presale": "Prévente",
+      "onSale": "En vente",
+      "soldOut": "Complet",
+      "notYet": "Pas encore en vente",
+      "closed": "Prévente terminée"
+    },
+    "until": "jusqu’au {date}",
+    "lineup": "Programmation",
+    "releases": "Sorties",
+    "dayN": "Jour {n} · {date}",
+    "hosts": "Animation : {names}",
+    "lineupTba": "Jours de passage pas encore annoncés",
+    "lineupPartial": "D’autres artistes peuvent s’ajouter.",
+    "related": "Actus liées",
+    "sources": "Sources",
+    "checked": "Vérifié le {date}",
+    "share": "Partager cet événement",
+    "empty": "Les nouvelles dates s’affichent ici dès leur annonce.",
+    "past": "Dates passées ({count})",
+    "todayLine": {
+      "comeback": "C’est le jour du comeback !",
+      "default": "C’est aujourd’hui !"
+    }
   },
   "Article": {
     "sources": "Sources",
