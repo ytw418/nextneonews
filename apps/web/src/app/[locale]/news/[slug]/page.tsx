@@ -10,6 +10,7 @@ import { Comments } from "@/components/Comments";
 import { FeedCard } from "@/components/FeedCard";
 import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
+import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
 import { ShareButton } from "@/components/ShareButton";
 import { ViewPing } from "@/components/ViewPing";
@@ -136,7 +137,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
               <h1 className="title mt-3 text-[28px] font-extrabold leading-[1.22]">
                 <Phrase text={translation.title} locale={locale} />
               </h1>
-              {hero.credit && <figcaption className="mt-2 text-[11px] text-white/70">{hero.credit}</figcaption>}
+              <PhotoCredit media={hero} />
             </div>
           </figure>
         ) : (

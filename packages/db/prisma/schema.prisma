@@ -191,7 +191,12 @@ model Media {
   article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
   url       String
   kind      MediaKind
-  credit    String?
+  credit    String? // 한 줄 표기 (예전 방식)
+  // CC 라이선스 표시 조건: 저작자·라이선스 이름과 링크·원본 링크·수정 여부
+  author      String?
+  licenseName String?
+  licenseUrl  String?
+  sourceUrl   String? // 위키미디어 공용 파일 페이지
 }
 
 model Comment {

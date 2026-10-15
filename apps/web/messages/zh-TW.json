@@ -20,7 +20,7 @@
   },
   "Article": {
     "sources": "資料來源",
-    "aiNotice": "本文由 AI 協助撰寫與翻譯，並經編輯確認。",
+    "aiNotice": "本文根據官方公告與韓國媒體報導，由AI協助撰寫與翻譯。如有錯誤，歡迎告訴我們。",
     "correction": "回報錯誤",
     "keyPoints": "重點整理",
     "faq": "常見問題",
