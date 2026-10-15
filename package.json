@@ -1,0 +1,32 @@
+{
+  "name": "kmedia",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "npm run dev -w @kmedia/web",
+    "build": "npm run db:generate && npm run build -w @kmedia/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "db:start": "sh scripts/db-local.sh start",
+    "db:stop": "sh scripts/db-local.sh stop",
+    "db:generate": "npm run generate -w @kmedia/db",
+    "db:migrate": "npm run migrate -w @kmedia/db",
+    "db:migrate:new": "npm run migrate:new -w @kmedia/db --",
+    "db:seed": "npm run seed -w @kmedia/db",
+    "db:studio": "npm run studio -w @kmedia/db",
+    "collect": "npm run collect -w @kmedia/worker --"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.4"
+  }
+}

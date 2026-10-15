@@ -1,0 +1,11 @@
+{
+  "Site": { "tagline": "What foreigners want to know about Korea, every day" },
+  "Nav": { "home": "Home", "language": "Language" },
+  "Home": { "latest": "Latest", "empty": "No articles yet." },
+  "Article": {
+    "sources": "Sources",
+    "aiNotice": "Written and translated with AI assistance and reviewed by an editor.",
+    "correction": "Request a correction"
+  },
+  "NotFound": { "title": "Page not found", "back": "Back to home" }
+}

@@ -1,0 +1,236 @@
+// 데이터 모델은 docs/PRD.md 7장을 따른다.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RiskTier {
+  GREEN // 자동 발행
+  YELLOW // 사람 승인
+  RED // 쓰지 않음
+}
+
+enum Category {
+  KPOP
+  KDRAMA
+  KFOOD
+  TRAVEL
+  WORKING_HOLIDAY
+  JOBS
+  HOUSING
+  LIFE
+}
+
+enum ArticleFormat {
+  ISSUE
+  REACTION
+  QNA
+  GUIDE
+  LIST
+}
+
+enum TopicStatus {
+  NEW
+  QUEUED
+  WRITING
+  DONE
+  SKIPPED
+}
+
+enum ArticleStatus {
+  DRAFT
+  REVIEW
+  APPROVED
+  PUBLISHED
+  REJECTED
+}
+
+enum SourceKind {
+  OFFICIAL
+  NEWS
+  COMMUNITY
+}
+
+enum MediaKind {
+  EMBED
+  AGENCY
+  PRESS
+  CARD
+  AI
+  STOCK
+  OWN
+}
+
+enum CommentStatus {
+  VISIBLE
+  PENDING
+  HIDDEN
+}
+
+enum SocialMode {
+  API
+  PACK
+}
+
+enum PostStatus {
+  QUEUED
+  POSTED
+  FAILED
+}
+
+enum CostKind {
+  LLM
+  IMAGE
+  TTS
+  API
+}
+
+// 수집 원장: 제목·링크·숫자만 저장한다. 같은 글은 (source, externalId)로 갱신한다.
+model Signal {
+  id          String   @id @default(cuid())
+  source      String // "pann", "naver-entertain" ...
+  externalId  String // 소스 안에서의 글 번호 등
+  title       String
+  url         String
+  lang        String   @default("ko")
+  metrics     Json // { views, comments, likes, rank }
+  // 질문·이슈 품질 체크 결과 (규칙 필터 + LLM 채점). null 이면 아직 안 봄
+  qualityScore Float?
+  qualityNote  String?
+  checkedAt    DateTime?
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+  topicId     String?
+  topic       Topic?   @relation(fields: [topicId], references: [id])
+
+  @@unique([source, externalId])
+  @@index([lastSeenAt])
+}
+
+model Topic {
+  id        String      @id @default(cuid())
+  keyword   String
+  score     Float       @default(0)
+  riskTier  RiskTier    @default(YELLOW)
+  status    TopicStatus @default(NEW)
+  createdAt DateTime    @default(now())
+  signals   Signal[]
+  articles  Article[]
+}
+
+model Article {
+  id           String        @id @default(cuid())
+  topicId      String?
+  topic        Topic?        @relation(fields: [topicId], references: [id])
+  category     Category
+  format       ArticleFormat
+  riskTier     RiskTier
+  status       ArticleStatus @default(DRAFT)
+  facts        Json? // 출처에서 뽑은 사실 목록 (숫자는 여기 값만 쓴다)
+  publishedAt  DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  translations Translation[]
+  sources      SourceRef[]
+  media        Media[]
+  comments     Comment[]
+  videos       Video[]
+  socialPosts  SocialPost[]
+
+  @@index([status, publishedAt])
+}
+
+model Translation {
+  id        String  @id @default(cuid())
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  locale    String // "en" | "ja" | "zh-TW" | "ko"
+  slug      String
+  title     String
+  summary   String
+  body      String // markdown
+  faq       Json? // [{ q, a }]
+  seoTitle  String?
+  seoDesc   String?
+  indexable Boolean @default(true) // 품질 낮은 번역은 noindex
+
+  @@unique([articleId, locale])
+  @@unique([locale, slug])
+}
+
+model SourceRef {
+  id        String     @id @default(cuid())
+  articleId String
+  article   Article    @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  url       String
+  publisher String
+  kind      SourceKind
+}
+
+model Media {
+  id        String    @id @default(cuid())
+  articleId String
+  article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  url       String
+  kind      MediaKind
+  credit    String?
+}
+
+model Comment {
+  id           String        @id @default(cuid())
+  articleId    String
+  article      Article       @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  locale       String
+  nickname     String // 표시용 "ㅇㅇ(7f3a)"
+  idHash       String // HMAC(IP, 비밀키 + 글 ID) 앞 4자리
+  passwordHash String // argon2id
+  body         String
+  status       CommentStatus @default(VISIBLE)
+  reportCount  Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([articleId, createdAt])
+}
+
+model Video {
+  id        String   @id @default(cuid())
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  locale    String
+  format    String
+  script    String
+  ttsUrl    String?
+  videoUrl  String?
+  status    String   @default("DRAFT")
+  createdAt DateTime @default(now())
+}
+
+model SocialPost {
+  id          String     @id @default(cuid())
+  articleId   String?
+  article     Article?   @relation(fields: [articleId], references: [id], onDelete: SetNull)
+  videoId     String?
+  platform    String // "youtube" | "instagram" | "threads" | "x" | "tiktok" | "xiaohongshu" ...
+  locale      String
+  mode        SocialMode
+  status      PostStatus @default(QUEUED)
+  externalId  String?
+  error       String?
+  metrics     Json?
+  scheduledAt DateTime?
+  postedAt    DateTime?
+}
+
+model CostLog {
+  id        String   @id @default(cuid())
+  kind      CostKind
+  amountUsd Decimal  @db.Decimal(10, 4)
+  ref       String?
+  createdAt DateTime @default(now())
+}
