@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "À la une",
-    "empty": "Aucun article pour l’instant.",
+    "trending": "Tendances",
+    "empty": "Pas encore d’article ici.",
+    "emptyCta": "Voir toutes les actus",
     "seeAll": "Tout voir"
   },
   "Schedule": {

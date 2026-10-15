@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "최신",
-    "empty": "아직 글이 없습니다.",
+    "trending": "지금 인기 글",
+    "empty": "아직 글이 없어요.",
+    "emptyCta": "전체 소식 보기",
     "seeAll": "전체 보기"
   },
   "Schedule": {

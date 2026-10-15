@@ -11,11 +11,11 @@ import {
   UPCOMING,
 } from "@kmedia/core";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AppHeader } from "@/components/AppHeader";
+import { ArticleThumb } from "@/components/ArticleThumb";
 import type { FeedItem } from "@/components/FeedCard";
 import { ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
@@ -31,7 +31,6 @@ import { Button } from "@/components/ui/Button";
 import { ListRow } from "@/components/ui/ListRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { listForEvent } from "@/lib/articles";
-import { coverStyle } from "@/lib/cover";
 import { toFeedItems } from "@/lib/feed";
 import { eventJsonLd } from "@/lib/jsonld";
 import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
@@ -91,23 +90,7 @@ function RelatedNews({ items, locale, title }: { items: FeedItem[]; locale: Loca
             key={item.slug}
             href={`/news/${item.slug}`}
             titleWeight="semibold"
-            left={
-              item.imageUrl ? (
-                <Image
-                  src={item.imageUrl}
-                  alt=""
-                  width={56}
-                  height={56}
-                  unoptimized
-                  className="size-14 rounded-btn object-cover"
-                />
-              ) : (
-                <span
-                  className="block size-14 rounded-btn"
-                  style={{ backgroundColor: coverStyle(item.slug, item.category).tint }}
-                />
-              )
-            }
+            left={<ArticleThumb item={item} size={56} />}
             title={<Phrase text={item.title} locale={locale} />}
             sub={<span className="text-t7">{`${item.categoryLabel} · ${item.timeAgo}`}</span>}
           />

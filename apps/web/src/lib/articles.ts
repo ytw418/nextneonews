@@ -84,10 +84,14 @@ export async function listRelated(
     .map(({ row }) => row);
 }
 
-// 인기 글: 최근 N일 안에 나온 글 중 많이 본 순 (조회 수가 같으면 최신순)
+// 인기 글: 최근 N일 안에 나온 글 중 많이 본 순 (조회 수가 같으면 최신순).
+// 한 번도 안 본 글은 넣지 않는다 — 조회가 없으면 그냥 최신 글 목록이 되어 '인기'가 거짓말이 된다
 export async function listPopular(locale: string, take = 8, days = 7) {
   return prisma.translation.findMany({
-    where: { locale, article: { status: "PUBLISHED", publishedAt: { gte: new Date(Date.now() - days * DAY_MS) } } },
+    where: {
+      locale,
+      article: { status: "PUBLISHED", views: { gt: 0 }, publishedAt: { gte: new Date(Date.now() - days * DAY_MS) } },
+    },
     orderBy: [{ article: { views: "desc" } }, { article: { publishedAt: "desc" } }],
     take,
     select: feedSelect,

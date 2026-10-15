@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "Mới nhất",
-    "empty": "Chưa có bài viết nào.",
+    "trending": "Đang thịnh hành",
+    "empty": "Chưa có bài viết nào ở đây.",
+    "emptyCta": "Xem tất cả tin tức",
     "seeAll": "Xem tất cả"
   },
   "Schedule": {

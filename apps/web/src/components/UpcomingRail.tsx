@@ -7,7 +7,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Link } from "@/i18n/navigation";
 import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
 
-// 콘서트 티켓 모양의 일정 레일 (다가오는 5개). 스텁 색은 일정 종류(이벤트 틴트), 티켓을 누르면 일정 상세로
+// 콘서트 티켓 모양의 일정 레일 (다가오는 5개). 스텁 색은 일정 종류(이벤트 틴트), 티켓을 누르면 일정 상세로.
+// 가로 스크롤 상자는 세로도 잘라서, 카드 그림자가 잘리지 않게 아래 여백을 12px 둔다
 export async function UpcomingRail({ locale }: { locale: string }) {
   if (!isLocale(locale)) return null;
   const events = listUpcoming().slice(0, 5);
@@ -21,7 +22,7 @@ export async function UpcomingRail({ locale }: { locale: string }) {
   return (
     <section aria-labelledby="home-schedule">
       <SectionHeader id="home-schedule" title={tNav("schedule")} href="/schedule" linkLabel={tHome("seeAll")} />
-      <ul className="rail rail-snap items-stretch gap-2 px-gutter pb-1">
+      <ul className="rail rail-snap items-stretch gap-2 px-gutter pb-3">
         {events.map((e) => {
           const { state, days } = e.view;
           const urgent = state === "upcoming" && days <= 7;

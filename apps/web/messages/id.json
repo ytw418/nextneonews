@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "Terbaru",
-    "empty": "Belum ada artikel.",
+    "trending": "Sedang tren",
+    "empty": "Belum ada artikel di sini.",
+    "emptyCta": "Lihat semua berita",
     "seeAll": "Lihat semua"
   },
   "Schedule": {

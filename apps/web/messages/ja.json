@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "新着",
+    "trending": "いま話題",
     "empty": "まだ記事がありません。",
+    "emptyCta": "すべてのニュースを見る",
     "seeAll": "すべて見る"
   },
   "Schedule": {

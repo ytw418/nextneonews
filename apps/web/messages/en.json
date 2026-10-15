@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "Latest",
-    "empty": "No articles yet.",
+    "trending": "Trending now",
+    "empty": "No stories here yet.",
+    "emptyCta": "See all news",
     "seeAll": "See all"
   },
   "Schedule": {

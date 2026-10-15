@@ -17,7 +17,9 @@
   },
   "Home": {
     "latest": "最新",
-    "empty": "目前還沒有文章。",
+    "trending": "現正熱門",
+    "empty": "這裡還沒有文章。",
+    "emptyCta": "看全部新聞",
     "seeAll": "查看全部"
   },
   "Schedule": {
