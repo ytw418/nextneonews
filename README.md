@@ -1,7 +1,7 @@
 # Hallyu Brief (가칭)
 
 다국어 K-컬처 이슈 미디어.
-- 기획: [`docs/PRD.md`](docs/PRD.md)
+- 기획: [`docs/PRD.md`](docs/PRD.md) (v0.3) · 조사: [`docs/research/`](docs/research)
 - 매출 예상: [`docs/revenue.md`](docs/revenue.md)
 - 키워드: [`docs/keywords.md`](docs/keywords.md)
 - 이전 NeoNews 코드는 [`legacy/neonews`](legacy/neonews)에 참고용으로만 남겨 두었다.
