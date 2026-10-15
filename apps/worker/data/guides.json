@@ -9,7 +9,8 @@
       "https://www.price.go.kr/tprice/portal/main/main.do",
       "https://www.kca.go.kr/home/main.do",
       "https://segye.com/newsView/20260814517571"
-    ]
+    ],
+    "imageQuery": "Korean wedding hall"
   },
   {
     "keyword": "K-ETA·전자입국신고서 2026 총정리: 일본·대만·미국 면제는 12월 31일까지, 가짜 대행 사이트 피하는 법",
@@ -22,7 +23,8 @@
       "https://www.e-arrivalcard.go.kr/portal/main/index.do",
       "https://overseas.mofa.go.kr/jp-ja/index.do",
       "https://overseas.mofa.go.kr/us-en/brd/m_4500/view.do?seq=761106"
-    ]
+    ],
+    "imageQuery": "Incheon International Airport terminal"
   },
   {
     "keyword": "2026 한국 여행 결제 총정리: 와우패스·신용카드·애플페이·현금, 원화는 얼마나 필요할까",
@@ -33,7 +35,8 @@
     "factUrls": [
       "https://english.visitkorea.or.kr/svc/main/index.do",
       "https://www.wowpass.io"
-    ]
+    ],
+    "imageQuery": "Myeongdong shopping street"
   },
   {
     "keyword": "한국 데이트 비용은 누가 낼까: 데이트통장, 반반, 세대별 논쟁",
@@ -44,7 +47,8 @@
     "factUrls": [
       "https://www.heraldk.com/article/2026051313324061850",
       "https://www.wikitree.co.kr/articles/1146400"
-    ]
+    ],
+    "imageQuery": "Han River Park Seoul"
   },
   {
     "keyword": "계약 전에 보증금 지키기: 등기부등본, 전입신고, 확정일자, HUG 보증보험 — '전입신고 불가' 매물이 위험한 이유",
@@ -58,7 +62,8 @@
       "https://www.khug.or.kr",
       "https://global.seoul.go.kr",
       "https://korea.stripes.com/travel/seoul-expands-real-estate-support-for-foreign-residents-to-prevent-rental-scams.html"
-    ]
+    ],
+    "imageQuery": "Seoul apartments"
   },
   {
     "keyword": "한일 커플의 현실: 장거리 비용, 커플 앱·위치 공유, 언어의 벽, 사소한 문화 차이",
@@ -69,7 +74,8 @@
     "factUrls": [
       "https://www.liveinkorea.kr",
       "https://www.hikorea.go.kr"
-    ]
+    ],
+    "imageQuery": "Incheon International Airport"
   },
   {
     "keyword": "2026 F-6 결혼이민 비자: 소득 요건, 세대 구성 함정, 한국어 요건, 워홀에서 전환하기",
@@ -82,7 +88,8 @@
       "https://www.visa.go.kr",
       "https://www.immigration.go.kr/immigration/index.do",
       "https://www.koreajoongangdaily.com/korea/foreign-spouses-will-have-to-pass-language-exam/10739354"
-    ]
+    ],
+    "imageQuery": "Incheon International Airport"
   },
   {
     "keyword": "한국인과 결혼하는 절차: 한국·본국 혼인신고 순서, 필요 서류, 번역·아포스티유",
@@ -95,7 +102,8 @@
       "https://www.moj.go.jp",
       "https://www.easylaw.go.kr",
       "https://www.hikorea.go.kr"
-    ]
+    ],
+    "imageQuery": "Korean wedding"
   },
   {
     "keyword": "기후동행카드·티머니·와우패스 중 뭘 살까: 2026 서울 교통카드, 해외 카드로 바로 탈 수 있나",
@@ -107,7 +115,8 @@
       "https://english.seoul.go.kr",
       "https://www.t-money.co.kr",
       "https://view.asiae.co.kr/en/article/2026031609113223115"
-    ]
+    ],
+    "imageQuery": "Seoul Metro train"
   },
   {
     "keyword": "2026 가을 한국: 한국인이 저장해 둔 숨은 단풍 명소, 서울 가을 산책길, 10~11월 제주가 좋은 이유",
@@ -120,7 +129,8 @@
       "https://www.knps.or.kr",
       "https://english.visitkorea.or.kr/svc/main/index.do",
       "https://www.visitjeju.net/kr"
-    ]
+    ],
+    "imageQuery": "Seoraksan autumn"
   },
   {
     "keyword": "전세·월세·반전세·연세: 외국인을 위한 한국 임대 방식 총정리",
@@ -132,7 +142,8 @@
       "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=629&ccfNo=1&cciNo=1&cnpClsNo=1",
       "https://www.law.go.kr/법령/주택임대차보호법",
       "https://www.khug.or.kr"
-    ]
+    ],
+    "imageQuery": "Seoul apartments"
   },
   {
     "keyword": "한국에서 이사 나갈 때: 통보 시기, 보증금을 안 돌려줄 때 대처법, 놓치기 쉬운 장기수선충당금 환급",
@@ -145,7 +156,8 @@
       "https://www.law.go.kr/법령/주택임대차보호법",
       "https://www.klac.or.kr",
       "https://english.gg.go.kr/?p=2282"
-    ]
+    ],
+    "imageQuery": "Seoul apartments"
   },
   {
     "keyword": "한국에서 바가지를 당했다면: 자주 생기는 곳, 영수증 확인법, 신고하는 곳",
@@ -157,7 +169,8 @@
       "https://english.visitkorea.or.kr/svc/main/index.do",
       "https://www.kca.go.kr/home/main.do",
       "https://english.seoul.go.kr"
-    ]
+    ],
+    "imageQuery": "Gwangjang Market"
   },
   {
     "keyword": "카카오T·K.Ride·우버: 외국인 관광객이 택시 잡는 법, 적정 요금, 바가지 대처법",
@@ -168,7 +181,8 @@
     "factUrls": [
       "https://www.kakaomobility.com",
       "https://english.visitkorea.or.kr/svc/main/index.do"
-    ]
+    ],
+    "imageQuery": "Gwangjang Market"
   },
   {
     "keyword": "2026년 한국에서 구글맵 될까? 현지인이 쓰는 앱 조합과 입국 후 첫 24시간",
@@ -180,7 +194,8 @@
       "https://english.visitkorea.or.kr/svc/main/index.do",
       "https://www.koreatimes.co.kr/southkorea/20260227/govt-likely-to-approve-googles-request-for-s-korean-map-data-sources",
       "https://asianews.network/google-builds-south-korea-team-for-full-functioning-maps-service/"
-    ]
+    ],
+    "imageQuery": "Myeongdong street"
   },
   {
     "keyword": "처음 받는 한국 택스리펀: 대상 금액, 매장 즉시 환급, 피부과·성형 환급은 어떻게 바뀌었나",
@@ -192,7 +207,8 @@
       "https://www.customs.go.kr/english/main.do",
       "https://www.nts.go.kr",
       "https://english.visitkorea.or.kr/svc/main/index.do"
-    ]
+    ],
+    "imageQuery": "Myeongdong shopping street"
   },
   {
     "keyword": "2026 외국인등록증: 발급까지 걸리는 기간, 받기 전에 할 수 있는 일, 모바일 등록증, 신분증 휴대 의무",
@@ -205,7 +221,8 @@
       "https://www.immigration.go.kr/immigration/index.do",
       "https://elaw.klri.re.kr/eng_service/lawViewTitle.do?hseq=33079",
       "https://www.koreaherald.com/article/3228989"
-    ]
+    ],
+    "imageQuery": "Seoul street"
   },
   {
     "keyword": "휴대폰 개통 먼저? 은행 먼저? 외국인을 막는 본인인증, 배달앱 주문, 일본·대만 돈을 한국으로 옮기기",
@@ -218,7 +235,8 @@
       "https://www.bok.or.kr",
       "https://www.customs.go.kr/english/main.do",
       "https://www.koreaherald.com/article/3228989"
-    ]
+    ],
+    "imageQuery": "Seoul street"
   },
   {
     "keyword": "2026 한국 워킹홀리데이 비자(일본·대만): 나이 제한, 잔고 증명, 보험, 실제 비용",
@@ -231,7 +249,8 @@
       "https://whic.mofa.go.kr",
       "https://www.visa.go.kr",
       "https://www.hikorea.go.kr"
-    ]
+    ],
+    "imageQuery": "Seoul street"
   },
   {
     "keyword": "한국에 사는 일본인 아내: 한국어 압박, F-6로 일하기, 지방 생활, 도움받을 곳",
@@ -243,7 +262,8 @@
       "https://www.liveinkorea.kr",
       "https://www.hikorea.go.kr",
       "https://www.socinet.go.kr"
-    ]
+    ],
+    "imageQuery": "Incheon International Airport"
   },
   {
     "keyword": "2026 한국 결혼식 비용, 누가 내나, 결혼식을 생략하는 커플이 느는 이유",
@@ -256,7 +276,8 @@
       "https://www.kca.go.kr/home/main.do",
       "https://www.koreatimes.co.kr/amp/economy/20260218/2026-wedding-costs-forecast-to-surge-2000-over-food-driven-catering-hikes",
       "https://view.asiae.co.kr/en/article/2026012910220445889"
-    ]
+    ],
+    "imageQuery": "Korean wedding hall"
   },
   {
     "keyword": "한국에서 첫 방 계약하기: '500/60' 읽는 법, 계약금·잔금, 관리비",
@@ -268,7 +289,8 @@
       "https://www.easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=629&ccfNo=1&cciNo=1&cnpClsNo=1",
       "https://www.iros.go.kr",
       "https://www.law.go.kr/법령/주택임대차보호법"
-    ]
+    ],
+    "imageQuery": "Seoul apartments"
   },
   {
     "keyword": "고시원 생활 가이드: 장단점, 공용 샤워실, 한 달 살기, 입실 전 체크리스트",
@@ -280,7 +302,8 @@
       "https://www.easylaw.go.kr",
       "https://www.law.go.kr",
       "https://www.hikorea.go.kr"
-    ]
+    ],
+    "imageQuery": "Seoul apartments"
   },
   {
     "keyword": "차 없이 서울+부산: KTX vs 비행기, 기차·버스 당일치기, 한국인이 추천하는 뚜벅이 여행지",
@@ -292,7 +315,8 @@
       "https://www.letskorail.com",
       "https://english.visitkorea.or.kr/svc/main/index.do",
       "https://www.visitbusan.net"
-    ]
+    ],
+    "imageQuery": "KTX train"
   },
   {
     "keyword": "2026 부산불꽃축제(11월 7일): 무료 명당, 유료석·요트 예매, 귀가 방법",
@@ -304,7 +328,8 @@
       "https://www.mcst.go.kr/site/s_culture/festival/festivalView.jsp?pSeq=11935",
       "https://www.busanfireworks.com",
       "https://www.visitbusan.net"
-    ]
+    ],
+    "imageQuery": "Busan Fireworks Festival"
   },
   {
     "keyword": "한국에서 혼밥하기: 2인분 이상만 되는 식당과 혼자 가기 좋은 곳",
@@ -315,7 +340,8 @@
     "factUrls": [
       "https://english.visitkorea.or.kr/svc/main/index.do",
       "https://japanese.visitkorea.or.kr"
-    ]
+    ],
+    "imageQuery": "Korean food table"
   },
   {
     "keyword": "입대를 앞둔 한국 남자친구: 군 복무 중 연락(휴대폰·더캠프 편지)과 휴가",
@@ -326,6 +352,7 @@
     "factUrls": [
       "https://www.mma.go.kr",
       "https://www.thecamp.or.kr"
-    ]
+    ],
+    "imageQuery": "Han River Park Seoul"
   }
 ]

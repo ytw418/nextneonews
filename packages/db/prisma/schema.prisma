@@ -117,22 +117,23 @@ model Signal {
 }
 
 model Topic {
-  id        String         @id @default(cuid())
-  keyword   String
-  score     Float          @default(0)
-  riskTier  RiskTier       @default(YELLOW)
-  status    TopicStatus    @default(NEW)
+  id         String         @id @default(cuid())
+  keyword    String
+  score      Float          @default(0)
+  riskTier   RiskTier       @default(YELLOW)
+  status     TopicStatus    @default(NEW)
   // 품질 체크(AI 채점)가 정한 값. 글 작성 단계가 그대로 쓴다
-  category  Category?
-  format    ArticleFormat?
-  locales   String[] // 특히 먹힐 언어권
-  brief     String? // 채점 이유 한 줄
+  category   Category?
+  format     ArticleFormat?
+  locales    String[] // 특히 먹힐 언어권
+  brief      String? // 채점 이유 한 줄
   // 가이드 주제 (docs/research/topics-2026-10.md): 영어 제목 방향과 사실을 가져올 공식 페이지
-  angle     String?
-  factUrls  String[]       @default([])
-  createdAt DateTime       @default(now())
-  signals   Signal[]
-  articles  Article[]
+  angle      String?
+  factUrls   String[]       @default([])
+  imageQuery String? // 대표 사진 검색어 (위키미디어 공용, 사람이 정한 것만)
+  createdAt  DateTime       @default(now())
+  signals    Signal[]
+  articles   Article[]
 }
 
 model Article {

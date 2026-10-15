@@ -11,6 +11,7 @@ interface GuideSeed {
   category: Category;
   format: ArticleFormat;
   factUrls: string[];
+  imageQuery?: string;
 }
 
 // 뉴스 주제(16~22점)보다 먼저 쓰이게 점수를 높게 둔다
@@ -21,12 +22,17 @@ export async function seedGuides(file = new URL("../../data/guides.json", import
   let created = 0;
   for (const seed of seeds) {
     const exists = await prisma.topic.findFirst({ where: { keyword: seed.keyword }, select: { id: true } });
-    if (exists) continue;
+    if (exists) {
+      // 이미 있는 주제는 사진 검색어만 맞춘다
+      await prisma.topic.update({ where: { id: exists.id }, data: { imageQuery: seed.imageQuery ?? null } });
+      continue;
+    }
     await prisma.topic.create({
       data: {
         keyword: seed.keyword,
         angle: seed.angle,
         factUrls: seed.factUrls,
+        imageQuery: seed.imageQuery ?? null,
         category: seed.category,
         format: seed.format,
         score: GUIDE_SCORE,

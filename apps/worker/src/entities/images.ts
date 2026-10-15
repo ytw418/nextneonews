@@ -289,23 +289,14 @@ export async function searchCommons(query: string): Promise<CommonsImage | null>
   return null;
 }
 
-// 가이드 제목 "Busan Fireworks Festival 2026 (Nov 7): ..." → "Busan Fireworks Festival"
-function queryFromAngle(angle: string): string {
-  return angle
-    .split(/[:?]/)[0]!
-    .replace(/\(.*?\)/g, "")
-    .replace(/\b(20\d\d|How to|What|Why|Your|in 2026|Guide)\b/gi, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 async function attachTopicImage(article: {
   id: string;
   category: string;
-  topic: { angle: string | null } | null;
+  topic: { imageQuery: string | null } | null;
 }): Promise<boolean> {
   if (PEOPLE_CATEGORIES.has(article.category)) return false;
-  const queries = [article.topic?.angle ? queryFromAngle(article.topic.angle) : "", CATEGORY_QUERY[article.category] ?? ""];
+  // 자유 문장 검색은 엉뚱한 사진(새·추모비)이 걸려서, 사람이 정한 검색어만 쓴다
+  const queries = [article.topic?.imageQuery ?? "", CATEGORY_QUERY[article.category] ?? ""];
   for (const query of queries.filter((q) => q.length > 2)) {
     const image = await searchCommons(query);
     if (!image) continue;
