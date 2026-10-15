@@ -12,6 +12,7 @@ import { listReview, publish } from "./pipeline/publish";
 import { listHiddenComments, restoreComments } from "./pipeline/comments";
 import { seedGuides } from "./pipeline/guides";
 import { recategorize } from "./pipeline/recategorize";
+import { recheckSources } from "./pipeline/recheck";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
 import { collectTranslations, submitTranslations } from "./pipeline/translate";
@@ -59,7 +60,8 @@ const USAGE = `usage: cli.ts <command>
   translate [limit]        끝난 번역 배치 거두기 + vi·id·fr·ru 가 빠진 글을 배치로 보내기 (50% 할인, 0 이면 거두기만)
   recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기
   comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기
-  seed-guides              가이드 주제(apps/worker/data/guides.json)를 대기열에 넣기 (이미 있으면 건너뜀)`;
+  seed-guides              가이드 주제(apps/worker/data/guides.json)를 대기열에 넣기 (이미 있으면 건너뜀)
+  recheck                  최근 30일 글의 원문이 삭제됐으면(404·410) 글을 내려 확인 대기로 (하루 1번)`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -84,6 +86,9 @@ try {
       break;
     case "publish":
       await publish(args);
+      break;
+    case "recheck":
+      await recheckSources();
       break;
     case "seed-guides":
       await seedGuides();

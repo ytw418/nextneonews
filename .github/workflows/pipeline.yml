@@ -6,6 +6,7 @@ on:
   schedule:
     - cron: "17 * * * *" # 매시 17분 (UTC). 비공개 레포로 바꾸면 "17 */2 * * *" 로 줄인다
     - cron: "40 18 * * 0" # 매주 월요일 03:40 KST: 인물 사전 갱신
+    - cron: "23 20 * * *" # 매일 05:23 KST: 원문 삭제 확인
   workflow_dispatch:
     inputs:
       limit:
@@ -36,6 +37,9 @@ jobs:
       - run: npm ci
       - run: npm run db:generate
       - run: npm run db:migrate
+      - name: 원문 삭제 확인 (하루 1번)
+        if: github.event.schedule == '23 20 * * *'
+        run: npm run worker -- recheck
       - name: 인물 사전 갱신 (주 1회)
         if: github.event.schedule == '40 18 * * 0'
         run: npm run worker -- entities
