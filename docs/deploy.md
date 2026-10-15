@@ -15,7 +15,7 @@
 
 - **Vercel 프로젝트**
   - Root Directory: `apps/web`, Node 24.x
-  - Build Command: `cd ../.. && npm run db:generate && npm run build -w @kmedia/web`
+  - Build Command: `cd ../.. && touch .env && npm run db:generate && npm run build -w @kmedia/web` (웹 스크립트가 루트 `.env` 를 읽으므로 빈 파일을 만든다. 값은 Vercel 환경변수에서 온다)
   - Install Command: `cd ../.. && npm ci`
   - 환경변수: `DATABASE_URL`(Neon 풀러, 자동), `SITE_URL`, `INDEXNOW_KEY`, `COMMENT_HASH_SECRET`
   - 배포 보호(Vercel 로그인)는 Preview 에만 건다. Production 은 공개.

@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "dotenv -e ../../.env -- next dev",
-    "build": "dotenv -e ../../.env -- next build",
-    "start": "dotenv -e ../../.env -- next start",
+    "dev": "dotenv run -q -f ../../.env -- next dev",
+    "build": "dotenv run -q -f ../../.env -- next build",
+    "start": "dotenv run -q -f ../../.env -- next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit"
   },
@@ -24,7 +24,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.2.3",
-    "dotenv-cli": "^11.0.0",
+    "dotenv": "^18.0.8",
     "eslint": "^10.12.0",
     "eslint-config-next": "16.4.1",
     "tailwindcss": "^4.3.3"
