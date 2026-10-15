@@ -47,7 +47,8 @@ export default async function SchedulePage({ params }: PageProps<"/[locale]/sche
 
   return (
     <>
-      <AppHeader showLogo={false} title={tNav("schedule")} />
+      {/* 큰 제목이 보이는 동안은 홈처럼 로고, 바 밑으로 올라가면 가운데 제목 */}
+      <AppHeader title={tNav("schedule")} />
       <JsonLd
         data={scheduleJsonLd(
           upcoming.map((e) => ({ name: e.name, url: `${SITE_URL}${LOCALE_PATH_PREFIX[locale]}/schedule/${e.id}` })),
@@ -65,7 +66,7 @@ export default async function SchedulePage({ params }: PageProps<"/[locale]/sche
             <h2 id={`m-${g.key}`} className={`px-gutter pb-2 text-t6 font-semibold text-ink-600 ${i > 0 ? "pt-6" : ""}`}>
               {g.label}
             </h2>
-            <ul>
+            <ul className="@container">
               {g.events.map((e) => (
                 <EventRow key={e.id} e={e} locale={locale} />
               ))}
@@ -85,7 +86,7 @@ export default async function SchedulePage({ params }: PageProps<"/[locale]/sche
               {t("past", { count: past.length })}
               <ChevronDownIcon className="size-5 shrink-0 text-ink-400 transition-transform duration-200 ease-expo group-open:rotate-180" />
             </summary>
-            <ul>
+            <ul className="@container">
               {past.map((e) => (
                 <EventRow key={e.id} e={e} locale={locale} />
               ))}

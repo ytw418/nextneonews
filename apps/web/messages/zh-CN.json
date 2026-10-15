@@ -13,13 +13,16 @@
     "main": "主菜单",
     "all": "全部",
     "back": "返回",
-    "close": "关闭"
+    "close": "关闭",
+    "cancel": "取消"
   },
   "Home": {
     "latest": "最新",
     "trending": "当下热门",
     "empty": "这里还没有文章。",
     "emptyCta": "看全部新闻",
+    "comingSoon": "简体中文文章即将上线。",
+    "readInEnglish": "用英文阅读",
     "seeAll": "查看全部"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "粉丝见面会",
       "drama": "新剧首播"
     },
-    "releaseCount": "{count} 张作品",
+    "releaseCount": "{count}\u00a0张作品",
     "releaseKind": {
       "single": "单曲",
       "ep": "迷你专辑",
@@ -92,15 +95,15 @@
     "correction": "反馈错误",
     "keyPoints": "重点整理",
     "faq": "常见问题",
-    "published": "发布",
-    "updated": "更新",
+    "readTime": "约\u00a0{minutes}\u00a0分钟读完",
     "share": "分享这篇文章",
     "copied": "已复制链接",
     "related": "延伸阅读",
-    "readMore": "阅读"
+    "popular": "本周热门",
+    "ad": "广告"
   },
   "NotFound": {
-    "title": "找不到页面",
+    "title": "找不到这个页面",
     "back": "回到首页"
   },
   "Category": {
@@ -113,35 +116,42 @@
     "STUDY": "韩国留学",
     "LOVE": "恋爱・婚姻",
     "WORKING_HOLIDAY": "打工度假",
-    "JOBS": "兼职",
+    "JOBS": "工作",
     "HOUSING": "租房",
     "LIFE": "生活"
   },
   "Comments": {
     "title": "评论",
-    "empty": "还没有评论，来抢沙发吧！",
-    "placeholder": "无需登录即可评论",
-    "nickname": "昵称",
-    "password": "密码",
-    "submit": "发表",
+    "placeholder": "说说你的想法",
+    "policy": "我们会删除辱骂和个人信息。",
+    "changeName": "换个名字",
+    "submit": "发布评论",
+    "menu": "{name} 的评论菜单",
+    "options": "评论菜单",
     "edit": "编辑",
     "delete": "删除",
+    "deleteTitle": "要删除这条评论吗？",
     "save": "保存",
-    "cancel": "取消",
     "report": "举报",
-    "reported": "已举报",
+    "reportedToast": "已举报，谢谢你告诉我们",
+    "postedToast": "评论已发布",
+    "showMore": "显示更多",
+    "showMoreComments": "看更多评论",
     "edited": "已编辑",
-    "rules": "之后可以用密码编辑或删除。攻击他人或泄露个人信息的评论会被删除。",
-    "wrongPassword": "密码错误。",
-    "tooFast": "评论太频繁了，请过几分钟再试。",
-    "noLinks": "评论中不能包含链接。",
-    "error": "出错了，请再试一次。",
-    "locked": "密码错误次数太多，请15分钟后再试。"
+    "empty": "写下第一条评论吧。",
+    "retry": "再试一次",
+    "error": "评论没有发出去，请检查网络后再试一次。",
+    "failed": "没有成功，请检查网络后再试一次。",
+    "tooFast": "几分钟后就能再评论。",
+    "noLinks": "删掉链接就能发布。",
+    "locked": "15 分钟后可以再试一次。",
+    "wrongPassword": "只能修改在这台设备上发的评论。"
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "娱乐",
     "LIFESTYLE": "美食・美妆・旅游",
-    "LIVING": "在韩国生活"
+    "LIVING": "在韩国生活",
+    "OTHER": "其他主题"
   },
   "Install": {
     "title": "把 {name} 添加到主屏幕",

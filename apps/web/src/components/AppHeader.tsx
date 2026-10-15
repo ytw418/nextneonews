@@ -12,7 +12,7 @@ import { listActiveCategories } from "@/lib/articles";
 interface Props {
   // root: 홈·카테고리·일정 목록 (뒤로 없음) / pushed: 글·일정 상세 (뒤로 있음)
   variant?: "root" | "pushed";
-  showLogo?: boolean; // root 에서만. 일정 목록처럼 로고 대신 제목을 띄울 때 false
+  showLogo?: boolean; // root 에서만. 제목(title)과 함께 주면 큰 제목이 바 밑으로 올라갈 때 로고가 비킨다
   title?: string; // 페이지의 h1 이 바 밑으로 올라가면 가운데에 나타난다
   parentHref?: string; // 뒤에 우리 기록이 없을 때 '뒤로'가 갈 곳
   action?: ReactNode; // 언어 버튼 왼쪽 (공유 등)
@@ -32,7 +32,7 @@ export async function AppHeader({ variant = "root", showLogo = true, title, pare
       <div className="relative mx-auto flex min-h-12 max-w-[640px] items-center px-2.5">
         {variant === "pushed" && <BackButton parentHref={parentHref} />}
         {variant === "root" && showLogo && (
-          <Link href="/" aria-label={SITE_NAME} className="ml-2.5 flex items-baseline">
+          <Link href="/" aria-label={SITE_NAME} className="header-logo ml-2.5 flex items-baseline">
             <span aria-hidden className="wordmark">
               {word}
               <span className="wordmark-dot">.</span>

@@ -1,3 +1,5 @@
+import { HEADLINE_MAX } from "../pipeline/checks";
+
 // 단계별 고정 지침. 요청마다 똑같아야 캐시가 된다 — 날짜·ID 같은 바뀌는 값은 넣지 않는다.
 // 기준 문서: docs/PRD.md 4장, docs/production.md
 
@@ -32,10 +34,11 @@ export const WRITE_SYSTEM = `너는 "Hallyu Brief"의 기자다. 한국 연예·
 - 여행자 대상 글은 일본·대만·영어권 독자가 실제로 겪을 상황(공항, 결제, 교통)을 예로 든다.
 
 [구성 — 검색(SEO)·답변 박스(AEO)·AI 답변 인용(GEO)을 함께 노린다]
-- title: 검색하는 외국인이 클릭할 제목. 과장·낚시 금지. 핵심 인물과 사건을 담는다.
+- title: 사실을 먼저 쓴다 (누가 + 무엇을). 핵심 인물과 사건을 담는다. 과장·낚시 금지: 놀람·충격으로 궁금하게 만드는 제목("Reveals Surprise…", "Looks Years Younger…")과 질문형 제목은 쓰지 않는다.
+  길이는 공백 포함 글자 수로 en ${HEADLINE_MAX.en}자, ja ${HEADLINE_MAX.ja}자, zhTW ${HEADLINE_MAX["zh-TW"]}자, ko ${HEADLINE_MAX.ko}자 이내 (피드 카드에서 4줄을 넘지 않는 길이). 넘으면 다른 언어를 직역하지 말고 사실 위주로 짧게 다시 쓴다.
 - seoTitle: 검색 결과용 짧은 제목. 영어·한국어는 60자, 일본어·중국어는 32자 이내. 핵심 인물 이름을 앞에 둔다.
-- summary: 핵심을 담은 2~3문장.
-- keyPoints: 핵심 사실 3개. 각각 한 문장(25단어 이내), 그 문장만 떼어 읽어도 뜻이 통해야 한다 (대명사 대신 이름, 날짜는 월·일까지). AI 답변이 그대로 인용할 수 있게 쓴다.
+- summary: 한 문장. "In this article"·"이 글에서는" 같은 도입 없이 핵심 사실로 바로 시작한다. keyPoints 에 날짜·시간이 있으면 summary 에는 넣지 않는다.
+- keyPoints: 핵심 사실 최대 3개. 각각 한 문장, 60자 이내이고 summary 에 이미 나온 사실은 넣지 않는다. 그 문장만 떼어 읽어도 뜻이 통해야 한다 (대명사 대신 이름, 날짜는 월·일까지). AI 답변이 그대로 인용할 수 있게 쓴다.
 - body: 마크다운. 영어 기준 250~450단어 (다른 언어도 같은 분량).
   - 첫 문단은 "누가·무엇을·언제"를 40~60단어로 바로 답한다. 배경 설명으로 시작하지 않는다.
   - 소제목(##)은 독자가 실제로 검색할 질문 형태로 쓴다 (예: "## When does Episode 2 air?", "## Who is Solbi?"). 각 섹션은 앞 섹션을 몰라도 이해되게 쓴다.
@@ -47,7 +50,8 @@ export const WRITE_SYSTEM = `너는 "Hallyu Brief"의 기자다. 한국 연예·
     - QNA: 답부터 (날짜·장소·방법) → 단계별 설명 → 자주 막히는 점
     - GUIDE / LIST: 체크리스트 또는 순위 → 항목별 설명
 - "## For international fans" 섹션에는 외국인에게 도움이 되는 맥락을 쓴다 (예: 이 인물이 출연한 작품, 해외에서 볼 수 있는 방법을 일반적으로 안내). 원문에 없는 구체적 날짜·가격·링크는 지어내지 않는다.
-- faq: 독자가 검색창에 칠 법한 질문 3개와 답. 질문은 완전한 문장, 답은 첫 문장에서 바로 답하고 2~3문장 이내. 답은 facts로 답할 수 있는 것만.
+- faq: 독자가 검색창에 칠 법한 질문 3개까지와 답. 본문 소제목(##)과 같은 질문은 되풀이하지 않는다. 본문이 답하지 않는, 해외 독자가 궁금해할 질문(어디서 볼 수 있는지, 자막이 있는지, 내 나라 시간으로 몇 시인지)을 고른다.
+  질문은 완전한 문장, 답은 첫 문장에서 바로 답하고 2~3문장 이내. 답은 facts로 답할 수 있는 것만 쓰고, facts 에 없는 플랫폼·날짜·가격은 지어내지 않는다. 답할 수 없는 질문은 넣지 않는다.
 - slug: 영어 소문자 단어 3~8개를 하이픈으로 연결 (예: "ive-october-comeback-looks-can-kill")
 - seoDescription: 150자 안팎의 영어 설명.
 
@@ -77,7 +81,11 @@ Rules
 - Keep the markdown structure of body (## headings, lists, tables). Turn headings into questions readers in that language would search for.
 - Keep group, brand and broadcaster names in Latin letters (BTS, IVE, tvN, Netflix).
 - Keep amounts in Korean won; do not invent exchange rates.
-- seoTitle: at most 60 characters, lead with the key person's name. keyPoints: same count as the English version, each one understandable on its own.
+- title: state the fact first (who + what). No surprise or shock teasers ("Reveals Surprise…", "Looks Years Younger…") and no question headlines. Stay within the title limit given in the first line of the user message. When a faithful translation would run over it, write a shorter fact-first title instead of a literal translation (French and Russian run 20 to 30% longer than English).
+- seoTitle: at most 60 characters, lead with the key person's name.
+- summary: no lead-in such as "In this article". Keep it as short as the English version (one sentence).
+- keyPoints: same count as the English version (at most 3), each within 60 characters and understandable on its own.
+- faq: never word a question the same way as a body heading.
 
 Per language
 - vi: Văn phong báo giải trí Việt Nam (trung tính, không giật tít). Tên người Hàn giữ dạng Latin mà fan Việt dùng (ví dụ: Lee Min Ho, IU).

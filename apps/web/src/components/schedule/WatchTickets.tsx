@@ -44,6 +44,7 @@ export async function WatchTickets({ e, locale }: { e: EventWithView; locale: Lo
             href={w.url}
             external={Boolean(w.url)}
             titleWeight="semibold"
+            alignTop
             left={icon(<PlayIcon className="size-5" />)}
             title={w.name}
             sub={
@@ -67,6 +68,7 @@ export async function WatchTickets({ e, locale }: { e: EventWithView; locale: Lo
               href={ticket.url}
               external={Boolean(ticket.url)}
               titleWeight="semibold"
+              alignTop
               left={icon(<TicketIcon className="size-5" />)}
               title={ticket.name}
               sub={

@@ -1,7 +1,7 @@
 {
   "Site": {
     "tagline": "외국인이 궁금한 한국, 매일",
-    "categoryDescription": "해외 팬을 위한 {category} 소식·일정·가이드, 매일 업데이트."
+    "categoryDescription": "해외 팬을 위한 {category} 소식·일정·가이드를 매일 올려요."
   },
   "Nav": {
     "home": "홈",
@@ -13,13 +13,16 @@
     "main": "주요 메뉴",
     "all": "전체",
     "back": "뒤로",
-    "close": "닫기"
+    "close": "닫기",
+    "cancel": "취소"
   },
   "Home": {
     "latest": "최신",
     "trending": "지금 인기 글",
     "empty": "아직 글이 없어요.",
     "emptyCta": "전체 소식 보기",
+    "comingSoon": "한국어 글이 곧 올라와요.",
+    "readInEnglish": "영어로 읽기",
     "seeAll": "전체 보기"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "팬미팅",
       "drama": "드라마 첫 방송"
     },
-    "releaseCount": "{count}개 발매",
+    "releaseCount": "{count}개\u00a0발매",
     "releaseKind": {
       "single": "싱글",
       "ep": "미니앨범",
@@ -88,20 +91,20 @@
   },
   "Article": {
     "sources": "출처",
-    "aiNotice": "공식 발표와 한국 언론 보도를 바탕으로 AI를 이용해 작성·번역했습니다. 틀린 내용이 있으면 알려 주세요.",
-    "correction": "정정 요청",
+    "aiNotice": "공식 발표와 한국 언론 보도를 바탕으로 AI로 쓰고 번역했어요. 틀린 내용이 있으면 알려 주세요.",
+    "correction": "정정 요청하기",
     "keyPoints": "핵심 요약",
     "faq": "자주 묻는 질문",
-    "published": "게시",
-    "updated": "수정",
+    "readTime": "{minutes}분이면\u00a0읽어요",
     "share": "이 글 공유하기",
     "copied": "링크를 복사했어요",
     "related": "함께 읽기",
-    "readMore": "읽기"
+    "popular": "이번 주 인기 글",
+    "ad": "광고"
   },
   "NotFound": {
-    "title": "페이지를 찾을 수 없습니다",
-    "back": "홈으로"
+    "title": "페이지를 찾을 수 없어요",
+    "back": "홈으로 가기"
   },
   "Category": {
     "KPOP": "K-POP",
@@ -112,36 +115,43 @@
     "TRAVEL": "여행",
     "STUDY": "유학",
     "LOVE": "연애·결혼",
-    "WORKING_HOLIDAY": "워홀",
-    "JOBS": "알바",
+    "WORKING_HOLIDAY": "워킹홀리데이",
+    "JOBS": "일자리",
     "HOUSING": "집",
     "LIFE": "생활"
   },
   "Comments": {
     "title": "댓글",
-    "empty": "아직 댓글이 없어요. 첫 댓글을 남겨 보세요!",
-    "placeholder": "로그인 없이 댓글을 남길 수 있어요",
-    "nickname": "닉네임",
-    "password": "비밀번호",
-    "submit": "등록",
+    "placeholder": "감상을 남겨 주세요",
+    "policy": "욕설과 개인정보는 지워요.",
+    "changeName": "이름 바꾸기",
+    "submit": "댓글 남기기",
+    "menu": "{name} 님 댓글 메뉴",
+    "options": "댓글 메뉴",
     "edit": "수정",
     "delete": "삭제",
+    "deleteTitle": "이 댓글을 삭제할까요?",
     "save": "저장",
-    "cancel": "취소",
-    "report": "신고",
-    "reported": "신고했어요",
+    "report": "신고하기",
+    "reportedToast": "신고했어요. 알려 줘서 고마워요",
+    "postedToast": "댓글을 남겼어요",
+    "showMore": "더 보기",
+    "showMoreComments": "댓글 더 보기",
     "edited": "수정됨",
-    "rules": "비밀번호로 나중에 수정·삭제할 수 있어요. 남을 공격하거나 개인정보가 담긴 댓글은 삭제합니다.",
-    "wrongPassword": "비밀번호가 맞지 않아요.",
-    "tooFast": "댓글을 너무 빨리 쓰고 있어요. 몇 분 뒤에 다시 해 주세요.",
-    "noLinks": "댓글에는 링크를 넣을 수 없어요.",
-    "error": "문제가 생겼어요. 다시 시도해 주세요.",
-    "locked": "비밀번호를 여러 번 틀렸어요. 15분 뒤에 다시 해 주세요."
+    "empty": "첫 댓글을 남겨 보세요.",
+    "retry": "다시 보내기",
+    "error": "댓글을 올리지 못했어요. 연결을 확인하고 다시 시도해 주세요.",
+    "failed": "처리하지 못했어요. 연결을 확인하고 다시 시도해 주세요.",
+    "tooFast": "몇 분 뒤에 다시 댓글을 쓸 수 있어요.",
+    "noLinks": "링크를 빼면 올릴 수 있어요.",
+    "locked": "15분 뒤에 다시 할 수 있어요.",
+    "wrongPassword": "이 기기에서 쓴 댓글만 바꿀 수 있어요."
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "엔터",
     "LIFESTYLE": "푸드·뷰티·여행",
-    "LIVING": "한국 생활"
+    "LIVING": "한국 생활",
+    "OTHER": "그 밖의 주제"
   },
   "Install": {
     "title": "홈 화면에 {name} 추가하기",

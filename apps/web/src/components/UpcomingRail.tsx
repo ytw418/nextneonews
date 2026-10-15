@@ -3,12 +3,14 @@ import { getTranslations } from "next-intl/server";
 
 import { ChevronRightIcon } from "@/components/icons";
 import { CelebrateOnce } from "@/components/schedule/CelebrateOnce";
+import { keepDots, Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Link } from "@/i18n/navigation";
 import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
 
 // 콘서트 티켓 모양의 일정 레일 (다가오는 5개). 스텁 색은 일정 종류(이벤트 틴트), 티켓을 누르면 일정 상세로.
-// 가로 스크롤 상자는 세로도 잘라서, 카드 그림자가 잘리지 않게 아래 여백을 12px 둔다
+// 가로 스크롤 상자는 세로도 잘라서, 카드 그림자가 잘리지 않게 아래 여백을 12px 둔다.
+// 꺾쇠는 모든 카드에서 같은 자리(오른쪽 아래 구석)에: 메타 줄 끝에 붙이면 카드마다 높이가 달랐다
 export async function UpcomingRail({ locale }: { locale: string }) {
   if (!isLocale(locale)) return null;
   const events = listUpcoming().slice(0, 5);
@@ -31,9 +33,7 @@ export async function UpcomingRail({ locale }: { locale: string }) {
             t(`kind.${e.kind}`),
             city,
             e.releases?.length ? t("releaseCount", { count: e.releases.length }) : undefined,
-          ]
-            .filter(Boolean)
-            .join(" · ");
+          ];
           const word = (
             <>
               <span className="mr-1.5 inline-block size-2 rounded-full bg-cherry align-middle" />
@@ -48,7 +48,7 @@ export async function UpcomingRail({ locale }: { locale: string }) {
               <Link
                 href={`/schedule/${e.id}`}
                 aria-label={eventAriaLabel({ e, view: e.view, locale, t })}
-                className="press flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card"
+                className="press relative flex h-full flex-col overflow-hidden rounded-card bg-card shadow-card"
               >
                 <div
                   aria-hidden
@@ -74,12 +74,12 @@ export async function UpcomingRail({ locale }: { locale: string }) {
                   </p>
                 </div>
                 <div aria-hidden className="flex flex-1 flex-col px-4 pt-3 pb-4">
-                  <p className="text-t5 leading-row font-bold text-ink-900">{e.name}</p>
-                  <p className="mt-1 flex items-start gap-1 text-t6 text-ink-600">
-                    <span className="min-w-0">{meta}</span>
-                    <ChevronRightIcon className="mt-0.5 ml-auto size-4 shrink-0 text-ink-400" />
+                  <p className="text-t5 leading-row font-bold text-ink-900">{keepDots(e.name)}</p>
+                  <p className="mt-1 pr-4 text-t6 text-ink-600">
+                    <Meta parts={meta} />
                   </p>
                 </div>
+                <ChevronRightIcon className="absolute right-3 bottom-4.5 size-4 text-ink-400" />
               </Link>
             </li>
           );

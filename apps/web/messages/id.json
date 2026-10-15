@@ -13,13 +13,16 @@
     "main": "Menu utama",
     "all": "Semua",
     "back": "Kembali",
-    "close": "Tutup"
+    "close": "Tutup",
+    "cancel": "Batal"
   },
   "Home": {
     "latest": "Terbaru",
     "trending": "Sedang tren",
     "empty": "Belum ada artikel di sini.",
     "emptyCta": "Lihat semua berita",
+    "comingSoon": "Artikel berbahasa Indonesia segera hadir.",
+    "readInEnglish": "Baca dalam bahasa Inggris",
     "seeAll": "Lihat semua"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Tayang perdana drama"
     },
-    "releaseCount": "{count} rilisan",
+    "releaseCount": "{count}\u00a0rilisan",
     "releaseKind": {
       "single": "Singel",
       "ep": "EP",
@@ -92,16 +95,16 @@
     "correction": "Laporkan kesalahan",
     "keyPoints": "Poin penting",
     "faq": "Tanya jawab",
-    "published": "Terbit",
-    "updated": "Diperbarui",
+    "readTime": "Baca {minutes}\u00a0menit",
     "share": "Bagikan artikel ini",
     "copied": "Tautan disalin",
     "related": "Baca juga",
-    "readMore": "Baca"
+    "popular": "Populer minggu ini",
+    "ad": "Iklan"
   },
   "NotFound": {
-    "title": "Halaman tidak ditemukan",
-    "back": "Kembali ke beranda"
+    "title": "Halaman ini tidak ditemukan",
+    "back": "Ke Beranda"
   },
   "Category": {
     "KPOP": "K-POP",
@@ -119,29 +122,36 @@
   },
   "Comments": {
     "title": "Komentar",
-    "empty": "Belum ada komentar. Jadilah yang pertama!",
-    "placeholder": "Tulis komentar tanpa perlu login",
-    "nickname": "Nama panggilan",
-    "password": "Kata sandi",
+    "placeholder": "Bagikan pendapatmu",
+    "policy": "Kami menghapus hinaan dan data pribadi.",
+    "changeName": "Ganti nama",
     "submit": "Kirim",
+    "menu": "Opsi untuk komentar {name}",
+    "options": "Opsi komentar",
     "edit": "Ubah",
     "delete": "Hapus",
+    "deleteTitle": "Hapus komentar ini?",
     "save": "Simpan",
-    "cancel": "Batal",
     "report": "Laporkan",
-    "reported": "Sudah dilaporkan",
+    "reportedToast": "Sudah dilaporkan. Terima kasih sudah memberi tahu kami",
+    "postedToast": "Komentarmu sudah tayang",
+    "showMore": "Lihat selengkapnya",
+    "showMoreComments": "Lihat komentar lainnya",
     "edited": "diubah",
-    "rules": "Kata sandi dipakai untuk mengubah atau menghapus nanti. Komentar yang menyerang orang lain atau membagikan data pribadi akan dihapus.",
-    "wrongPassword": "Kata sandi salah.",
-    "tooFast": "Kamu berkomentar terlalu cepat. Coba lagi beberapa menit lagi.",
-    "noLinks": "Komentar tidak boleh berisi tautan.",
-    "error": "Terjadi kesalahan. Silakan coba lagi.",
-    "locked": "Terlalu banyak kata sandi salah. Coba lagi 15 menit lagi."
+    "empty": "Jadilah yang pertama berbagi pendapat.",
+    "retry": "Coba lagi",
+    "error": "Komentarmu belum terkirim. Cek koneksimu, lalu coba lagi.",
+    "failed": "Belum berhasil. Cek koneksimu, lalu coba lagi.",
+    "tooFast": "Kamu bisa berkomentar lagi dalam beberapa menit.",
+    "noLinks": "Hapus tautannya, lalu kamu bisa mengirim.",
+    "locked": "Kamu bisa mencoba lagi dalam 15 menit.",
+    "wrongPassword": "Kamu hanya bisa mengubah komentar yang dikirim dari perangkat ini."
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "Hiburan",
     "LIFESTYLE": "Kuliner, kecantikan & wisata",
-    "LIVING": "Tinggal di Korea"
+    "LIVING": "Tinggal di Korea",
+    "OTHER": "Topik lainnya"
   },
   "Install": {
     "title": "Tambahkan {name} ke layar utama",

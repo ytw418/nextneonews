@@ -1,36 +1,24 @@
 import type { ReactNode } from "react";
 
 import { FeedCard, type FeedItem } from "@/components/FeedCard";
-import { Button } from "@/components/ui/Button";
 import { coverStyle } from "@/lib/cover";
 
 interface Props {
   items: FeedItem[];
   showCategory?: boolean;
-  empty: { label: string; ctaLabel?: string; ctaHref?: string };
+  empty: ReactNode; // 글이 없을 때 (EmptyMemo)
 }
 
-// 카드 높이 어림 (열 폭 = 1). 사진 카드는 그림 + 제목·메타, 메모 카드는 그림 + 메타
+// 카드 높이 어림 (열 폭 = 1). 사진 카드는 그림 + 제목·메타, 메모 카드는 메모 한 장
 function estimate(item: FeedItem): number {
-  return coverStyle(item.slug, item.category).aspect + (item.imageUrl ? 0.55 : 0.2);
+  return coverStyle(item.slug, item.category).aspect + (item.imageUrl ? 0.55 : 0);
 }
 
 // 맨 위 한 장(lead)은 가로 꽉 차게, 나머지는 두 열.
 // CSS columns 는 2번째 글을 화면 아래로 밀어 내서, 카드를 하나씩 더 짧은 열에 넣는다 (최신 글이 왼쪽 위부터 읽힌다).
 // 글자가 커져(약 120%·xxLarge·사파리 aA 135%) 열이 17.5rem 보다 좁아지면 한 열로, order 로 최신순을 지킨다
 export function Feed({ items, showCategory = true, empty }: Props) {
-  if (items.length === 0) {
-    return (
-      <div className="px-gutter py-16 text-center">
-        <p className="text-t6 text-ink-700">{empty.label}</p>
-        {empty.ctaLabel && empty.ctaHref && (
-          <Button size="m" variant="neutral" href={empty.ctaHref} className="mt-4">
-            {empty.ctaLabel}
-          </Button>
-        )}
-      </div>
-    );
-  }
+  if (items.length === 0) return empty;
 
   const [lead, ...rest] = items;
   const left: ReactNode[] = [];

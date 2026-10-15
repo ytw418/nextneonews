@@ -137,3 +137,70 @@ export const PlusSquareIcon = ({ className }: IconProps) => (
     <path d="M12 8.5v7M8.5 12h7" />
   </svg>
 );
+
+// ── 카테고리 글리프: 사진 없는 작은 썸네일 가운데 (ArticleThumb). 빈 네모가 사진이 안 뜬 것처럼 보였다 ──
+export const MicIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <rect x="9" y="3" width="6" height="11" rx="3" />
+    <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6" />
+  </svg>
+);
+
+export const ClapperIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="M4 10h16v8.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5z" />
+    <path d="m4 10-.5-2.2a1.5 1.5 0 0 1 1.1-1.8l12.4-3a1.5 1.5 0 0 1 1.8 1.1l.5 2z" />
+    <path d="m8.6 5 2.2 3.8M13.6 3.8l2.2 3.8" />
+  </svg>
+);
+
+export const StarIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" />
+  </svg>
+);
+
+export const PlaneIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="M12 3c.8 0 1.3.8 1.3 1.8V10l7.2 4.2V16l-7.2-2.2v4.4l2.2 1.6V21L12 20.2 8.5 21v-1.2l2.2-1.6v-4.4L3.5 16v-1.8l7.2-4.2V4.8C10.7 3.8 11.2 3 12 3z" />
+  </svg>
+);
+
+export const HeartIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="M12 20.5 4.6 13.1a4.6 4.6 0 0 1 6.5-6.5l.9.9.9-.9a4.6 4.6 0 0 1 6.5 6.5z" />
+  </svg>
+);
+
+export const BowlIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="M3.5 11h17a8.5 8.5 0 0 1-17 0zM8 20.5h8" />
+    <path d="M9.5 7.5c0-1 1-1.5 1-2.5M13.5 7.5c0-1 1-1.5 1-2.5" />
+  </svg>
+);
+
+export const SparkleIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="m12 3.5 1.8 6.7 6.7 1.8-6.7 1.8-1.8 6.7-1.8-6.7L3.5 12l6.7-1.8z" />
+  </svg>
+);
+
+export const BookIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d="M12 6.5C10.5 5 8 4.5 4 4.5v14c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-14c-4 0-6.5.5-8 2zM12 6.5v14" />
+  </svg>
+);
+
+export const BriefcaseIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <rect x="3.5" y="7.5" width="17" height="12" rx="2" />
+    <path d="M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M3.5 12.5h17" />
+  </svg>
+);
+
+export const SunIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4" />
+  </svg>
+);

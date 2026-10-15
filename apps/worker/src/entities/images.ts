@@ -2,6 +2,7 @@ import { type Entity, prisma } from "@kmedia/db";
 
 import { log } from "../log";
 import { findEntities } from "./match";
+import { englishSubject, subjectIndex } from "./names";
 
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
 // 위키미디어 API 규칙: 연락 가능한 사이트 주소를 넣고, 요청 사이를 띄우고, 429 면 기다렸다 다시 한다
@@ -149,28 +150,23 @@ export async function backfillCredits(): Promise<void> {
 }
 
 // 기사 주인공(한국어 원문 제목 맨 앞에 나오는 인물·그룹)의 사진만 대표 이미지로 붙인다.
-// "남창희♥아내 임신…아이유 축하" 처럼 뒤에 나온 유명인 사진이 붙으면 엉뚱한 사람 얼굴이 스캔들 제목과 묶인다
+// "남창희♥아내 임신…아이유 축하" 처럼 뒤에 나온 유명인 사진이 붙으면 엉뚱한 사람 얼굴이 스캔들 제목과 묶인다.
+// 영어 번역 제목이 있으면 거기서도 주인공인지 한 번 더 본다 (곁가지 인물 규칙은 names.ts)
 const SUBJECT_WITHIN = 12;
 
-// 이름 바로 뒤에 오면 그 사람이 아니라 주변 사람 이야기다 ("정경호父", "보아 닮은꼴", "아이유 절친")
-const RELATION = /^\s?(父|母|부친|모친|아버지|어머니|아들|딸|아내|남편|동생|언니|오빠|누나|형|조카|절친|친구|닮은꼴|매니저|측|소속사|팬)/;
-
-export async function subjectEntity(title: string): Promise<Entity | null> {
+export async function subjectEntity(title: string, enTitle?: string): Promise<Entity | null> {
   // 앞머리의 [단독]·[MD이슈] 와 '한강 아이유' 같은 따옴표 수식어는 주인공이 아니다
   const head = title.replace(/^\s*((\[[^\]]*\]|['‘"“][^'’"”]*['’"”])\s*)+/, "").trim();
   const found = (await findEntities(head)).filter((e) => e.image && e.type !== "series");
   let best: { entity: Entity; at: number } | null = null;
   for (const entity of found) {
-    const at = Math.min(
-      ...[entity.ko, entity.en, ...entity.aliases]
-        .filter((n): n is string => Boolean(n))
-        .map((n) => ({ n, i: head.indexOf(n) }))
-        .filter(({ n, i }) => i >= 0 && !RELATION.test(head.slice(i + n.length)))
-        .map(({ i }) => i),
-    );
-    if (Number.isFinite(at) && at <= SUBJECT_WITHIN && (!best || at < best.at)) best = { entity, at };
+    const at = subjectIndex(head, [entity.ko, entity.en, ...entity.aliases].filter((n): n is string => Boolean(n)));
+    if (at !== -1 && at <= SUBJECT_WITHIN && (!best || at < best.at)) best = { entity, at };
   }
-  return best?.entity ?? null;
+  if (!best) return null;
+  // 한국어 제목만으로 고른 사람이 영어 제목에서 from·and 뒤에 있으면 사진을 붙이지 않는다 (다음 후보로 넘어가지 않는다)
+  if (enTitle && !englishSubject(enTitle, [best.entity.en, ...best.entity.aliases])) return null;
+  return best.entity;
 }
 
 // 기사에 나온 인물·그룹 중 주인공의 사진을 대표 이미지로 붙인다
@@ -184,7 +180,7 @@ export async function attachImage(articleId: string): Promise<boolean> {
   const signal = article.topicId
     ? await prisma.signal.findFirst({ where: { topicId: article.topicId }, select: { title: true } })
     : null;
-  const subject = signal ? await subjectEntity(signal.title) : null;
+  const subject = signal ? await subjectEntity(signal.title, article.translations[0]?.title) : null;
   if (!subject) return attachTopicImage(article);
 
   for (const entity of [subject]) {
@@ -204,7 +200,14 @@ export async function attachImage(articleId: string): Promise<boolean> {
 export async function recheckImages(): Promise<void> {
   const media = await prisma.media.findMany({
     where: { kind: "STOCK" },
-    select: { id: true, url: true, articleId: true, article: { select: { topicId: true, category: true } } },
+    select: {
+      id: true,
+      url: true,
+      articleId: true,
+      article: {
+        select: { topicId: true, category: true, translations: { where: { locale: "en" }, select: { title: true } } },
+      },
+    },
   });
   let removed = 0;
   let replaced = 0;
@@ -214,7 +217,7 @@ export async function recheckImages(): Promise<void> {
     const signal = m.article.topicId
       ? await prisma.signal.findFirst({ where: { topicId: m.article.topicId }, select: { title: true } })
       : null;
-    const subject = signal ? await subjectEntity(signal.title) : null;
+    const subject = signal ? await subjectEntity(signal.title, m.article.translations[0]?.title) : null;
     const current = fileFromUrl(m.url);
     if (subject?.image && current && subject.image.replaceAll(" ", "_") === current.replaceAll(" ", "_")) continue;
     await prisma.media.delete({ where: { id: m.id } });

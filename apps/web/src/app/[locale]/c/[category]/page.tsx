@@ -5,8 +5,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AppHeader } from "@/components/AppHeader";
 import { CategoryRail } from "@/components/CategoryRail";
+import { EmptyMemo } from "@/components/EmptyMemo";
 import { Feed } from "@/components/Feed";
+import { Button } from "@/components/ui/Button";
 import { listByCategory } from "@/lib/articles";
+import { categoryTint } from "@/lib/cover";
 import { toFeedItems } from "@/lib/feed";
 import { localeAlternates, localeHomePath, ogBase } from "@/lib/url";
 
@@ -68,7 +71,13 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/c/[c
         <Feed
           items={items}
           showCategory={false}
-          empty={{ label: tHome("empty"), ctaLabel: tHome("emptyCta"), ctaHref: "/" }}
+          empty={
+            <EmptyMemo text={tHome("empty")} tint={categoryTint(key)}>
+              <Button size="m" variant="weak" href="/" className="bg-white/70! dark:bg-black/25!">
+                {tHome("emptyCta")}
+              </Button>
+            </EmptyMemo>
+          }
         />
       </div>
     </>

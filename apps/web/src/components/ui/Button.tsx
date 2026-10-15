@@ -44,6 +44,7 @@ type AsLink = Common & {
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   lang?: string;
   download?: boolean | string;
+  locale?: string; // 다른 언어 화면으로 ('영어로 읽기')
 };
 
 export type ButtonProps = AsButton | AsLink;
@@ -58,11 +59,11 @@ function isAppPath(href: string) {
 
 export function Button(props: ButtonProps) {
   if (props.href !== undefined) {
-    const { href, external, onClick, lang, download, children } = props;
+    const { href, external, onClick, lang, download, locale, children } = props;
     const className = classes(props);
     if (isAppPath(href) && !external && download === undefined) {
       return (
-        <Link href={href} onClick={onClick} lang={lang} className={className}>
+        <Link href={href} locale={locale} onClick={onClick} lang={lang} className={className}>
           {children}
         </Link>
       );

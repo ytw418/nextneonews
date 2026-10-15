@@ -14,19 +14,34 @@ function hostname(url: string): string {
   }
 }
 
-// 이름표·값 한 줄. 너비를 rem 으로 둬서 글자를 키우면 이름표가 값 위로 올라간다
+// 이름표·값 한 줄. 너비를 rem 으로 둬서 글자를 키우면 이름표가 값 위로 올라간다.
+// 값의 최소 폭은 줄 폭을 넘지 않게 (AX2·AX3 에서 12rem 이 화면보다 넓어 가로로 넘쳤다)
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-1 px-gutter py-3">
       <dt className="w-[5.5rem] shrink-0 text-t6 text-ink-600">{label}</dt>
-      <dd className="min-w-[12rem] flex-1 text-t6 font-medium text-ink-900">{children}</dd>
+      <dd className="min-w-[min(12rem,100%)] flex-1 text-t6 font-medium text-ink-900">{children}</dd>
     </div>
   );
 }
 
-// 글줄 안의 링크라 줄 높이는 그대로 두고, 세로 여백으로 누를 자리(44px 가까이)만 넓힌다. 긴 공연장 이름은 줄이 바뀌고 아이콘이 끝 글자 옆에 붙는다
+// 글줄 안의 링크라 줄 높이는 그대로 두고, 세로 여백으로 누를 자리(44px 가까이)만 넓힌다. 긴 공연장 이름은 줄이 바뀌고 아이콘은 끝 단어 옆에 붙어 다닌다
 const LINK = "py-2.5 underline-offset-4 active:underline";
 const LINK_ICON = "ml-1 inline-block size-4 align-[-2px] text-ink-400";
+
+// 바깥 링크 아이콘이 혼자 다음 줄로 떨어지지 않게 마지막 단어와 묶는다
+function WithIcon({ text }: { text: string }) {
+  const cut = text.lastIndexOf(" ") + 1;
+  return (
+    <>
+      {text.slice(0, cut)}
+      <span className="whitespace-nowrap">
+        {text.slice(cut)}
+        <ExternalIcon className={LINK_ICON} />
+      </span>
+    </>
+  );
+}
 
 // 일정 핵심 정보: 날짜·시간·장소·공식 사이트. 모르는 값은 그 줄을 빼거나 '아직 발표 전'이라고 쓴다
 export async function InfoRows({ e, locale }: { e: EventWithView; locale: Locale }) {
@@ -66,8 +81,7 @@ export async function InfoRows({ e, locale }: { e: EventWithView; locale: Locale
             rel="noopener noreferrer"
             className={LINK}
           >
-            {e.venue}
-            <ExternalIcon className={LINK_ICON} />
+            <WithIcon text={e.venue} />
           </a>
           {city && <span className="block font-normal text-ink-600">{city}</span>}
         </Row>
@@ -75,8 +89,7 @@ export async function InfoRows({ e, locale }: { e: EventWithView; locale: Locale
       {e.officialUrl && (
         <Row label={t("row.official")}>
           <a href={e.officialUrl} target="_blank" rel="noopener noreferrer" className={LINK}>
-            {hostname(e.officialUrl)}
-            <ExternalIcon className={LINK_ICON} />
+            <WithIcon text={hostname(e.officialUrl)} />
           </a>
         </Row>
       )}

@@ -29,6 +29,7 @@ import { WatchTickets } from "@/components/schedule/WatchTickets";
 import { ShareButton } from "@/components/ShareButton";
 import { Button } from "@/components/ui/Button";
 import { ListRow } from "@/components/ui/ListRow";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { listForEvent } from "@/lib/articles";
 import { toFeedItems } from "@/lib/feed";
@@ -92,7 +93,11 @@ function RelatedNews({ items, locale, title }: { items: FeedItem[]; locale: Loca
             titleWeight="semibold"
             left={<ArticleThumb item={item} size={56} />}
             title={<Phrase text={item.title} locale={locale} />}
-            sub={<span className="text-t7">{`${item.categoryLabel} · ${item.timeAgo}`}</span>}
+            sub={
+              <span className="text-t7">
+                <Meta parts={[item.categoryLabel, item.timeAgo]} />
+              </span>
+            }
           />
         ))}
       </ul>
@@ -164,13 +169,13 @@ export default async function EventPage({ params }: PageProps<"/[locale]/schedul
       {!ended && (
         <FixedBottomCTA>
           {openTicket?.url ? (
-            // 둘이 한 줄에 안 들어가면 주 버튼(캘린더)이 엄지 가까운 아랫줄로 내려간다
-            <div className="flex flex-wrap gap-2">
-              <Button size="xl" variant="weak" href={openTicket.url} external className="flex-auto">
+            // 둘은 늘 나란히: 글자를 키우면 버튼 안에서 줄을 바꾼다 (쌓이면 화면 1/4 을 먹었다)
+            <div className="flex gap-2">
+              <Button size="xl" variant="weak" href={openTicket.url} external className="min-w-0 flex-auto py-2">
                 {t("getTickets")}
                 <ExternalIcon className="size-4 shrink-0" />
               </Button>
-              {addToCalendar("flex-auto")}
+              {addToCalendar("min-w-0 flex-auto py-2")}
             </div>
           ) : (
             addToCalendar()

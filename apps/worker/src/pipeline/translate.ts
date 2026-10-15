@@ -9,7 +9,7 @@ import { getClient, thinkingFor } from "../ai/client";
 import { BATCH_DISCOUNT, costUsd, isKnownModel, MODELS, worstCaseUsd } from "../ai/models";
 import { TRANSLATE_SYSTEM } from "../ai/prompts";
 import { log } from "../log";
-import { looksLikeLocale } from "./checks";
+import { HEADLINE_MAX, headlineTooLong, looksLikeLocale } from "./checks";
 import { clean, Localized } from "./localized";
 
 // 영어판을 vi·id·fr·ru 로 옮긴다. 급하지 않으니 배치 API(50% 할인)로 보내고 다음 실행 때 결과를 거둔다.
@@ -19,12 +19,13 @@ const KIND = "translate";
 const MAX_TOKENS = 8000;
 const FORMAT = zodOutputFormat(Localized);
 
-// 대상 언어를 이름까지 적어 둔다. "target: ru" 만 주면 한국어로 답한 적이 있다
+// 대상 언어를 이름까지 적어 둔다. "target: ru" 만 주면 한국어로 답한 적이 있다.
+// 제목 상한(HEADLINE_MAX)도 언어마다 달라 여기서 준다 (시스템 프롬프트는 캐시되게 고정)
 const TARGET: Record<BatchLocale, string> = {
-  vi: "Target language: Vietnamese (vi, tiếng Việt). Write every field in Vietnamese.",
-  id: "Target language: Indonesian (id, Bahasa Indonesia). Write every field in Indonesian.",
-  fr: "Target language: French (fr, français). Write every field in French.",
-  ru: "Target language: Russian (ru, русский язык). Write every field in Russian, in Cyrillic script.",
+  vi: `Target language: Vietnamese (vi, tiếng Việt). Write every field in Vietnamese. Title: at most ${HEADLINE_MAX.vi} characters.`,
+  id: `Target language: Indonesian (id, Bahasa Indonesia). Write every field in Indonesian. Title: at most ${HEADLINE_MAX.id} characters.`,
+  fr: `Target language: French (fr, français). Write every field in French. Title: at most ${HEADLINE_MAX.fr} characters.`,
+  ru: `Target language: Russian (ru, русский язык). Write every field in Russian, in Cyrillic script. Title: at most ${HEADLINE_MAX.ru} characters.`,
 };
 
 // custom_id 는 영문·숫자·_- 만 된다: "<articleId>_<locale>" (cuid 에는 _ 가 없다)
@@ -141,6 +142,10 @@ async function saveTranslation(articleId: string, locale: BatchLocale, message: 
   if (!looksLikeLocale(locale, `${translated.title}\n${translated.summary}\n${translated.body}`)) {
     log.warn("translate: wrong language", { articleId, locale, title: translated.title });
     return false;
+  }
+  // 긴 제목은 버리지 않고 기록만 한다 (다시 번역하면 돈이 든다)
+  if (headlineTooLong(locale, translated.title)) {
+    log.warn("translate: headline too long", { articleId, locale, title: translated.title });
   }
   // 슬러그는 영어판 것을 그대로 쓴다 (언어별로 유일하면 된다)
   const en = await prisma.translation.findUnique({

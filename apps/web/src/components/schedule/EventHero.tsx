@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { CelebrateOnce } from "@/components/schedule/CelebrateOnce";
 import { Badge } from "@/components/ui/Badge";
 import { DdayBadge } from "@/components/ui/DdayBadge";
+import { keepDots } from "@/components/ui/Meta";
 import { ddayLabel, KIND_TINT } from "@/lib/schedule";
 
 // 일정 상세 맨 위 큰 티켓 (이 페이지의 그림 하나). 스텁 = 이벤트 틴트 + D-day, 몸통 = 이름과 한 줄 소개
@@ -54,7 +55,7 @@ export async function EventHero({ e, locale }: { e: EventWithView; locale: Local
           </p>
         </div>
         <div className="px-5 pt-4 pb-5">
-          <h1 className="text-st2 font-bold text-ink-900">{e.name}</h1>
+          <h1 className="text-st2 font-bold text-ink-900">{keepDots(e.name)}</h1>
           {about && <p className="mt-1 text-t6 text-ink-700">{about}</p>}
           {state === "today" && (
             <p className="mt-2 text-t5 font-semibold text-brand-ink">

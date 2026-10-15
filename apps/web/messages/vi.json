@@ -13,13 +13,16 @@
     "main": "Menu chính",
     "all": "Tất cả",
     "back": "Quay lại",
-    "close": "Đóng"
+    "close": "Đóng",
+    "cancel": "Hủy"
   },
   "Home": {
     "latest": "Mới nhất",
     "trending": "Đang thịnh hành",
     "empty": "Chưa có bài viết nào ở đây.",
     "emptyCta": "Xem tất cả tin tức",
+    "comingSoon": "Bài viết tiếng Việt sắp ra mắt.",
+    "readInEnglish": "Đọc bằng tiếng Anh",
     "seeAll": "Xem tất cả"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Phim mới lên sóng"
     },
-    "releaseCount": "{count} sản phẩm",
+    "releaseCount": "{count}\u00a0sản\u00a0phẩm",
     "releaseKind": {
       "single": "Đĩa đơn",
       "ep": "EP",
@@ -92,16 +95,16 @@
     "correction": "Báo lỗi nội dung",
     "keyPoints": "Ý chính",
     "faq": "Câu hỏi thường gặp",
-    "published": "Đăng lúc",
-    "updated": "Cập nhật",
+    "readTime": "Đọc trong {minutes}\u00a0phút",
     "share": "Chia sẻ bài viết này",
     "copied": "Đã sao chép liên kết",
     "related": "Đọc thêm",
-    "readMore": "Đọc"
+    "popular": "Đọc nhiều tuần này",
+    "ad": "Quảng cáo"
   },
   "NotFound": {
-    "title": "Không tìm thấy trang",
-    "back": "Về trang chủ"
+    "title": "Không tìm thấy trang này",
+    "back": "Về Trang chủ"
   },
   "Category": {
     "KPOP": "K-POP",
@@ -119,29 +122,36 @@
   },
   "Comments": {
     "title": "Bình luận",
-    "empty": "Chưa có bình luận nào. Hãy là người đầu tiên!",
-    "placeholder": "Bình luận không cần đăng nhập",
-    "nickname": "Biệt danh",
-    "password": "Mật khẩu",
-    "submit": "Gửi",
+    "placeholder": "Chia sẻ cảm nghĩ của bạn",
+    "policy": "Chúng tôi xóa lời xúc phạm và thông tin cá nhân.",
+    "changeName": "Đổi tên",
+    "submit": "Đăng",
+    "menu": "Tùy chọn bình luận của {name}",
+    "options": "Tùy chọn bình luận",
     "edit": "Sửa",
     "delete": "Xóa",
+    "deleteTitle": "Xóa bình luận này?",
     "save": "Lưu",
-    "cancel": "Hủy",
     "report": "Báo cáo",
-    "reported": "Đã báo cáo",
+    "reportedToast": "Đã báo cáo. Cảm ơn bạn đã cho chúng tôi biết",
+    "postedToast": "Bình luận của bạn đã được đăng",
+    "showMore": "Xem thêm",
+    "showMoreComments": "Xem thêm bình luận",
     "edited": "đã sửa",
-    "rules": "Dùng mật khẩu để sửa hoặc xóa sau này. Bình luận công kích người khác hoặc chứa thông tin cá nhân sẽ bị xóa.",
-    "wrongPassword": "Sai mật khẩu.",
-    "tooFast": "Bạn bình luận quá nhanh. Hãy thử lại sau vài phút.",
-    "noLinks": "Không được chèn liên kết vào bình luận.",
-    "error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
-    "locked": "Bạn nhập sai mật khẩu quá nhiều lần. Hãy thử lại sau 15 phút."
+    "empty": "Hãy là người đầu tiên chia sẻ cảm nghĩ.",
+    "retry": "Thử lại",
+    "error": "Chưa đăng được bình luận. Bạn kiểm tra kết nối rồi thử lại nhé.",
+    "failed": "Chưa thực hiện được. Bạn kiểm tra kết nối rồi thử lại nhé.",
+    "tooFast": "Vài phút nữa bạn có thể bình luận tiếp.",
+    "noLinks": "Bỏ liên kết đi là bạn đăng được.",
+    "locked": "Bạn có thể thử lại sau 15 phút.",
+    "wrongPassword": "Bạn chỉ sửa được bình luận đã đăng từ thiết bị này."
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "Giải trí",
     "LIFESTYLE": "Ẩm thực, làm đẹp & du lịch",
-    "LIVING": "Sống ở Hàn Quốc"
+    "LIVING": "Sống ở Hàn Quốc",
+    "OTHER": "Chủ đề khác"
   },
   "Install": {
     "title": "Thêm {name} vào màn hình chính",

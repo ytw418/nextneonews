@@ -1,40 +1,309 @@
 "use client";
 
+import { LINK, type Locale, randomFriendlyName } from "@kmedia/core";
 import { useLocale, useTranslations } from "next-intl";
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, type RefObject, useEffect, useRef, useState } from "react";
 
+import { MoreIcon, ShuffleIcon } from "@/components/icons";
+import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
+import { Dialog } from "@/components/ui/Dialog";
+import { IconButton } from "@/components/ui/IconButton";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { toast } from "@/components/ui/Toast";
 import type { PublicComment } from "@/lib/comments";
 import { storageGet, storageSet } from "@/lib/storage";
 import { timeAgo } from "@/lib/time";
 
-type Mode = { id: string; kind: "edit" | "delete"; body: string; password: string } | null;
+const BODY_MAX = 1000; // lib/comments.ts 와 같게 (서버 모듈이라 값은 불러오지 않는다)
+const PAGE = 20;
+const KEY_STORE = "hb:comment-key";
+const MINE_STORE = "hb:my-comments";
+const MINE_MAX = 200;
+const NAME_STORE = "hb:comment-name";
+const OLD_NAME_STORE = "hb:comment-nickname";
 
-const BODY_MAX = 1000;
-const NICKNAME_KEY = "hb:comment-nickname";
+// 17px(t5) 이상이라 아이폰이 입력칸에 초점이 갈 때 화면을 확대하지 않는다. 수정 칸도 같은 모양
+const COMPOSER_FIELD =
+  "block w-full min-h-12 max-h-[7.5em] resize-none field-sizing-content rounded-btn bg-card px-4 py-3 text-t5 text-ink-900 ring-1 ring-line-strong placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-brand";
+const SHEET_ROW = "press-row flex min-h-14 w-full items-center px-6 text-t5 font-medium";
 
-// 같은 글 안의 같은 사람은 같은 색 점 (IP 해시에서 아바타 틴트 6개 중 하나를 고른다)
-function avatarTint(idHash: string): string {
-  return `var(--avatar-${(parseInt(idHash.slice(0, 8), 16) % 6) + 1})`;
+type Message = { text: string; retryable: boolean } | null;
+
+// ── 기기 정체성: 비밀번호·닉네임 칸 대신 기기마다 만든 키와 귀여운 이름 ──
+// 저장소를 못 쓰는 브라우저(사생활 보호 모드 등)는 이 탭에서만 기억한다
+let memoryKey: string | null = null;
+let memoryMine: string[] = [];
+
+// 수정·삭제용 키. 서버는 이것을 비밀번호로 받는다 (4~64자)
+function deviceKey(): string {
+  const saved = storageGet(KEY_STORE) ?? memoryKey;
+  if (saved) return saved;
+  // randomUUID 는 https 에서만 있어 휴대폰으로 http 개발 서버를 열면 없다
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  memoryKey = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  storageSet(KEY_STORE, memoryKey);
+  return memoryKey;
 }
 
-const fieldClass =
-  "rounded-btn bg-bg text-ink-900 outline-none ring-1 ring-line-strong placeholder:text-ink-600 focus:ring-2 focus:ring-brand";
-const inputClass = `min-h-11 min-w-0 px-3 text-t6 ${fieldClass}`;
+function readMine(): string[] {
+  const raw = storageGet(MINE_STORE);
+  if (!raw) return memoryMine;
+  try {
+    const list: unknown = JSON.parse(raw);
+    return Array.isArray(list) ? list.filter((id): id is string => typeof id === "string") : [];
+  } catch {
+    return [];
+  }
+}
 
+function writeMine(list: string[]) {
+  memoryMine = list.slice(-MINE_MAX);
+  storageSet(MINE_STORE, JSON.stringify(memoryMine));
+}
+
+// 처음 정한 이름은 바로 저장해서 다른 글에서도 같은 이름으로 보인다
+function loadName(locale: Locale): string {
+  const saved = storageGet(NAME_STORE) ?? storageGet(OLD_NAME_STORE);
+  if (saved) return saved;
+  const name = randomFriendlyName(locale);
+  storageSet(NAME_STORE, name);
+  return name;
+}
+
+// field-sizing 을 모르는 브라우저는 글 높이에 맞춰 직접 늘린다 (최대 높이는 클래스가 막는다)
+function grow(field: HTMLTextAreaElement | null) {
+  if (!field || CSS.supports("field-sizing", "content")) return;
+  field.style.height = "auto";
+  field.style.height = `${field.scrollHeight}px`;
+}
+
+function firstGrapheme(text: string): string {
+  const trimmed = text.trim();
+  if (typeof Intl.Segmenter === "function") {
+    for (const { segment } of new Intl.Segmenter().segment(trimmed)) return segment;
+  }
+  return Array.from(trimmed)[0] ?? "";
+}
+
+// 같은 글 안의 같은 사람은 같은 색 (IP 해시로 아바타 틴트 6개 중 하나). 카테고리 색과 섞지 않는다
+function avatarTint(idHash: string): number {
+  return (parseInt(idHash.slice(0, 8), 16) % 6) + 1 || 1;
+}
+
+// 입력창 옆 내 아바타: 아직 IP 해시가 없어 이름으로 색을 고른다 (목록처럼 틴트, 회색이 아니게)
+function nameTint(name: string): number {
+  let h = 0;
+  for (const ch of name) h = (h * 31 + (ch.codePointAt(0) ?? 0)) >>> 0;
+  return (h % 6) + 1;
+}
+
+function Avatar({ name, tint, className }: { name: string; tint?: number; className: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`grid place-items-center overflow-hidden rounded-full text-t7 leading-none font-bold ${
+        tint ? "text-on-tint" : "bg-fill-weak text-ink-700"
+      } ${className}`}
+      style={tint ? { backgroundColor: `var(--avatar-${tint})` } : undefined}
+    >
+      {firstGrapheme(name)}
+    </span>
+  );
+}
+
+// 8줄이 넘는 댓글은 접어 두고 '더 보기'로 그 자리에서 편다
+function CommentBody({ text, lang, moreLabel }: { text: string; lang: string; moreLabel: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [open, setOpen] = useState(false);
+  const [clamped, setClamped] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || open) return;
+    const observer = new ResizeObserver(() => setClamped(el.scrollHeight > el.clientHeight + 1));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [open, text]);
+
+  return (
+    <>
+      <p
+        ref={ref}
+        lang={lang}
+        className={`mt-1 whitespace-pre-wrap break-words text-t6 text-ink-900 ${open ? "" : "line-clamp-8"}`}
+      >
+        {text}
+      </p>
+      {clamped && !open && (
+        <button type="button" onClick={() => setOpen(true)} className="min-h-11 text-t6 font-semibold text-ink-600">
+          {moreLabel}
+        </button>
+      )}
+    </>
+  );
+}
+
+function SkeletonRow() {
+  return (
+    <li aria-hidden className="grid grid-cols-[32px_1fr_44px] gap-x-3 border-t border-line py-4">
+      <span className="size-8 animate-pulse rounded-full bg-fill-weak" />
+      <div className="space-y-2 pt-1">
+        <div className="h-3.5 w-24 animate-pulse rounded-full bg-fill-weak" />
+        <div className="h-3.5 w-11/12 animate-pulse rounded-full bg-fill-weak" />
+        <div className="h-3.5 w-2/3 animate-pulse rounded-full bg-fill-weak" />
+      </div>
+    </li>
+  );
+}
+
+interface EditState {
+  id: string;
+  body: string;
+}
+
+interface RowProps {
+  comment: PublicComment;
+  locale: string;
+  highlight: boolean;
+  editing: EditState | null;
+  editRef: RefObject<HTMLTextAreaElement | null>;
+  editBusy: boolean;
+  editError: string | null;
+  onEditChange: (body: string) => void;
+  onEditClose: () => void;
+  onEditSave: () => void;
+  onMenu: (comment: PublicComment) => void;
+}
+
+function CommentRow({
+  comment: c,
+  locale,
+  highlight,
+  editing,
+  editRef,
+  editBusy,
+  editError,
+  onEditChange,
+  onEditClose,
+  onEditSave,
+  onMenu,
+}: RowProps) {
+  const t = useTranslations("Comments");
+  const tNav = useTranslations("Nav");
+  const editHasLink = editing ? LINK.test(editing.body) : false;
+
+  return (
+    <li
+      id={`comment-${c.id}`}
+      className={`grid grid-cols-[32px_1fr_44px] gap-x-3 border-t border-line py-4 ${
+        highlight ? "animate-[highlight_1200ms_var(--ease-standard)]" : ""
+      }`}
+    >
+      <Avatar name={c.nickname} tint={avatarTint(c.idHash)} className="size-8" />
+      <div className={`min-w-0 ${editing ? "col-span-2" : ""}`}>
+        {/* 이름·본문은 쓴 사람의 언어로 (한중일 글자 모양이 맞게) */}
+        <p lang={c.locale} className="break-words text-t6 font-semibold text-ink-900">
+          {c.nickname}
+        </p>
+        <p className="text-t7 text-ink-600">
+          <Meta
+            parts={[
+              <time key="time" dateTime={c.createdAt}>
+                {timeAgo(new Date(c.createdAt), locale)}
+              </time>,
+              c.edited && t("edited"),
+              c.locale !== locale && c.locale.toUpperCase(),
+            ]}
+          />
+        </p>
+        {editing ? (
+          <form
+            className="mt-2"
+            onSubmit={(event) => {
+              event.preventDefault();
+              onEditSave();
+            }}
+          >
+            <textarea
+              ref={editRef}
+              value={editing.body}
+              onChange={(event) => onEditChange(event.target.value)}
+              onInput={(event) => grow(event.currentTarget)}
+              maxLength={BODY_MAX}
+              rows={1}
+              aria-label={t("edit")}
+              aria-invalid={editHasLink || Boolean(editError) || undefined}
+              className={COMPOSER_FIELD}
+            />
+            {editHasLink && <p className="mt-2 text-t6 font-medium text-danger">{t("noLinks")}</p>}
+            {editError && (
+              <p role="alert" className="mt-2 text-t6 font-medium text-danger">
+                {editError}
+              </p>
+            )}
+            <div className="mt-2 flex justify-end gap-2">
+              <Button size="l" variant="neutral" onClick={onEditClose}>
+                {tNav("close")}
+              </Button>
+              <Button type="submit" size="l" variant="primary" loading={editBusy} disabled={!editing.body.trim() || editHasLink}>
+                {t("save")}
+              </Button>
+            </div>
+          </form>
+        ) : (
+          <CommentBody text={c.body} lang={c.locale} moreLabel={t("showMore")} />
+        )}
+      </div>
+      {!editing && (
+        <IconButton
+          label={t("menu", { name: c.nickname })}
+          aria-haspopup="dialog"
+          className="-mr-2.5"
+          onClick={() => onMenu(c)}
+        >
+          <MoreIcon className="text-ink-400" />
+        </IconButton>
+      )}
+    </li>
+  );
+}
+
+// 로그인 없는 댓글. 입력창이 위, 최신 댓글부터. 오류는 토스트가 아니라 그 자리에 보여 준다
 export function Comments({ articleId }: { articleId: string }) {
   const t = useTranslations("Comments");
-  const locale = useLocale();
+  const tNav = useTranslations("Nav");
+  const locale = useLocale() as Locale;
+
   const [comments, setComments] = useState<PublicComment[] | null>(null);
-  const [body, setBody] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [mode, setMode] = useState<Mode>(null);
-  const [reported, setReported] = useState<string | null>(null);
   const [total, setTotal] = useState(0);
+  const [shown, setShown] = useState(PAGE);
+  const [highlight, setHighlight] = useState<string | null>(null);
+
+  // 입력창
+  const formRef = useRef<HTMLFormElement>(null);
+  const fieldRef = useRef<HTMLTextAreaElement>(null);
+  const [body, setBody] = useState("");
+  const [name, setName] = useState("");
+  const [focused, setFocused] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<Message>(null);
+
+  // ··· 시트 (닫히는 동안에도 내용이 바뀌지 않게 대상과 열림을 따로 둔다)
+  const [menuFor, setMenuFor] = useState<{ comment: PublicComment; mine: boolean } | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [reportBusy, setReportBusy] = useState(false);
+  const [reportError, setReportError] = useState<string | null>(null);
+
+  // 수정·삭제
+  const editRef = useRef<HTMLTextAreaElement>(null);
+  const [editing, setEditing] = useState<EditState | null>(null);
+  const [editBusy, setEditBusy] = useState(false);
+  const [editError, setEditError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<PublicComment | null>(null);
+  const [deleteBusy, setDeleteBusy] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -46,15 +315,28 @@ export function Comments({ articleId }: { articleId: string }) {
         setTotal(data.total);
       })
       .catch(() => alive && setComments([]));
-    const saved = storageGet(NICKNAME_KEY);
-    if (saved) queueMicrotask(() => alive && setNickname(saved));
     return () => {
       alive = false;
     };
   }, [articleId]);
 
-  // 서버 오류 코드 → 사용자 문구
-  const errorText = (code: string | undefined) => {
+  // 방금 쓴 댓글이 화면 밖이면 보이는 데까지만 움직인다
+  useEffect(() => {
+    if (highlight) document.getElementById(`comment-${highlight}`)?.scrollIntoView({ block: "nearest" });
+  }, [highlight]);
+
+  // 수정 칸이 열리면 글 끝에 커서를 둔다 (시트가 닫히며 돌려준 초점보다 나중에 실행된다)
+  const editingId = editing?.id;
+  useEffect(() => {
+    const field = editRef.current;
+    if (!editingId || !field) return;
+    grow(field);
+    field.focus();
+    field.setSelectionRange(field.value.length, field.value.length);
+  }, [editingId]);
+
+  // 서버 오류 코드 → 무슨 일인지와 할 수 있는 일
+  const errorText = (code: unknown, fallback: string) => {
     switch (code) {
       case "links":
         return t("noLinks");
@@ -65,217 +347,340 @@ export function Comments({ articleId }: { articleId: string }) {
       case "locked":
         return t("locked");
       default:
-        return t("error");
+        return fallback;
     }
   };
 
-  const submit = async (event: FormEvent) => {
-    event.preventDefault();
-    const website = (new FormData(event.currentTarget as HTMLFormElement).get("website") as string) || undefined;
+  const hasLink = LINK.test(body);
+  const expanded = focused || body !== "";
+  const messageId = `comment-message-${articleId}`;
+
+  const submit = async () => {
+    if (busy || !body.trim() || hasLink) return;
+    const nickname = name || loadName(locale);
+    const website = (formRef.current?.elements.namedItem("website") as HTMLInputElement | null)?.value || undefined;
     setBusy(true);
     setError(null);
     try {
       const res = await fetch("/api/comments", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ articleId, locale, nickname: nickname || undefined, password, body, website }),
+        body: JSON.stringify({ articleId, locale, nickname, password: deviceKey(), body, website }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(errorText(data.error));
+        setError({ text: errorText(data.error, t("error")), retryable: res.status >= 500 });
         return;
       }
-      setComments((list) => [...(list ?? []), data.comment]);
-      setBody("");
-      setPassword("");
+      const comment = data.comment as PublicComment;
+      setComments((list) => [comment, ...(list ?? [])]);
       setTotal((n) => n + 1);
-      if (nickname) storageSet(NICKNAME_KEY, nickname);
+      // 맨 위에 하나 붙어도 지금 보이던 마지막 댓글은 그대로 보이게
+      setShown((n) => n + 1);
+      setBody("");
+      if (fieldRef.current) fieldRef.current.style.height = "";
+      writeMine([...readMine(), comment.id]);
+      setHighlight(comment.id);
+      toast(t("postedToast"));
+    } catch {
+      // 연결이 끊긴 경우: 다시 보내기로 바로 고칠 수 있다
+      setError({ text: t("error"), retryable: true });
     } finally {
       setBusy(false);
     }
   };
 
-  const confirmAction = async () => {
-    if (!mode) return;
-    setBusy(true);
-    setError(null);
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    void submit();
+  };
+
+  // 섞기: 지금과 다른 이름이 나올 때까지 (조합 144개)
+  const shuffle = () => {
+    let next = randomFriendlyName(locale);
+    for (let i = 0; i < 5 && next === name; i++) next = randomFriendlyName(locale);
+    setName(next);
+    storageSet(NAME_STORE, next);
+  };
+
+  const openMenu = (comment: PublicComment) => {
+    setMenuFor({ comment, mine: readMine().includes(comment.id) });
+    setReportError(null);
+    setMenuOpen(true);
+  };
+
+  const startEdit = () => {
+    if (!menuFor) return;
+    setMenuOpen(false);
+    setEditError(null);
+    setEditing({ id: menuFor.comment.id, body: menuFor.comment.body });
+  };
+
+  const askDelete = () => {
+    if (!menuFor) return;
+    setMenuOpen(false);
+    setDeleteError(null);
+    setDeleting(menuFor.comment);
+  };
+
+  const report = async () => {
+    if (!menuFor || reportBusy) return;
+    setReportBusy(true);
+    setReportError(null);
     try {
-      const res = await fetch(`/api/comments/${mode.id}`, {
-        method: mode.kind === "edit" ? "PATCH" : "DELETE",
+      const res = await fetch(`/api/comments/${menuFor.comment.id}/report`, { method: "POST" });
+      if (res.status >= 500) throw new Error(String(res.status));
+      setMenuOpen(false);
+      toast(t("reportedToast"));
+    } catch {
+      setReportError(t("failed"));
+    } finally {
+      setReportBusy(false);
+    }
+  };
+
+  const save = async () => {
+    if (!editing || editBusy || !editing.body.trim() || LINK.test(editing.body)) return;
+    const { id } = editing;
+    setEditBusy(true);
+    setEditError(null);
+    try {
+      const res = await fetch(`/api/comments/${id}`, {
+        method: "PATCH",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(mode.kind === "edit" ? { password: mode.password, body: mode.body } : { password: mode.password }),
+        body: JSON.stringify({ password: deviceKey(), body: editing.body }),
       });
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        setError(errorText(data.error));
+        setEditError(errorText(data.error, t("failed")));
         return;
       }
-      if (mode.kind === "edit") {
-        const data = (await res.json()) as { comment: PublicComment };
-        setComments((list) => (list ?? []).map((c) => (c.id === mode.id ? data.comment : c)));
-      } else {
-        setComments((list) => (list ?? []).filter((c) => c.id !== mode.id));
-        setTotal((n) => Math.max(0, n - 1));
-      }
-      setMode(null);
+      const updated = data.comment as PublicComment;
+      setComments((list) => list?.map((c) => (c.id === id ? updated : c)) ?? list);
+      setEditing(null);
+    } catch {
+      setEditError(t("failed"));
     } finally {
-      setBusy(false);
+      setEditBusy(false);
     }
   };
 
-  const report = async (id: string) => {
-    await fetch(`/api/comments/${id}/report`, { method: "POST" }).catch(() => undefined);
-    setReported(id);
+  const remove = async () => {
+    if (!deleting || deleteBusy) return;
+    const { id } = deleting;
+    setDeleteBusy(true);
+    setDeleteError(null);
+    try {
+      const res = await fetch(`/api/comments/${id}`, {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ password: deviceKey() }),
+      });
+      // 404 는 이미 지워졌거나 숨겨진 것이라 목록에서도 뺀다
+      if (!res.ok && res.status !== 404) {
+        const data = await res.json().catch(() => ({}));
+        setDeleteError(errorText(data.error, t("failed")));
+        return;
+      }
+      setComments((list) => list?.filter((c) => c.id !== id) ?? list);
+      setTotal((n) => Math.max(0, n - 1));
+      writeMine(readMine().filter((mine) => mine !== id));
+      setDeleting(null);
+    } catch {
+      setDeleteError(t("failed"));
+    } finally {
+      setDeleteBusy(false);
+    }
   };
 
   const count = Math.max(total, comments?.length ?? 0);
+  const message = hasLink ? null : error;
 
   return (
     <section id="comments" aria-labelledby="comments-title" className="scroll-mt-20">
       <SectionHeader id="comments-title" inset="read" title={t("title")} count={count} />
 
-      <form onSubmit={submit} className="mx-read rounded-card bg-card p-3 ring-1 ring-line ring-inset">
-        <textarea
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          maxLength={BODY_MAX}
-          required
-          rows={3}
-          placeholder={t("placeholder")}
-          aria-label={t("placeholder")}
-          className={`w-full resize-none px-3 py-2.5 text-t5 ${fieldClass}`}
-        />
-        {/* 봇만 채우는 칸 */}
-        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
-        <div className="mt-2 grid grid-cols-2 gap-2">
-          <input
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            maxLength={12}
-            placeholder={t("nickname")}
-            aria-label={t("nickname")}
-            className={inputClass}
+      <div className="px-read">
+        <form
+          ref={formRef}
+          onSubmit={onSubmit}
+          onFocus={() => {
+            setFocused(true);
+            if (!name) setName(loadName(locale));
+          }}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+          }}
+        >
+          <textarea
+            ref={fieldRef}
+            value={body}
+            onChange={(event) => {
+              setBody(event.target.value);
+              if (error) setError(null);
+            }}
+            onInput={(event) => grow(event.currentTarget)}
+            maxLength={BODY_MAX}
+            rows={1}
+            placeholder={t("placeholder")}
+            aria-label={t("placeholder")}
+            aria-invalid={hasLink || Boolean(error) || undefined}
+            aria-describedby={hasLink || message ? messageId : undefined}
+            className={COMPOSER_FIELD}
           />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            minLength={4}
-            required
-            autoComplete="new-password"
-            placeholder={t("password")}
-            aria-label={t("password")}
-            className={inputClass}
-          />
-        </div>
-        <div className="mt-2 flex flex-wrap items-start justify-end gap-3">
-          <p className="min-w-[12rem] flex-1 px-1 text-t7 text-ink-600">{t("rules")}</p>
-          <Button type="submit" size="m" loading={busy} disabled={!busy && body.trim().length === 0}>
-            {t("submit")}
-          </Button>
-        </div>
-        {error && !mode && (
-          <p role="alert" className="mt-1 px-1 text-t6 font-semibold text-danger">
-            {error}
-          </p>
-        )}
-      </form>
+          {/* 봇만 채우는 칸 */}
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
 
-      {comments !== null && count === 0 && <p className="mt-4 px-read text-t6 text-ink-600">{t("empty")}</p>}
+          {hasLink && (
+            <p id={messageId} className="mt-2 text-t6 font-medium text-danger">
+              {t("noLinks")}
+            </p>
+          )}
+          {message && (
+            <p id={messageId} role="alert" className="mt-2 flex flex-wrap items-center gap-x-3 text-t6 font-medium text-danger">
+              {message.text}
+              {message.retryable && (
+                <button
+                  type="button"
+                  onClick={() => void submit()}
+                  className="min-h-11 font-semibold underline underline-offset-4"
+                >
+                  {t("retry")}
+                </button>
+              )}
+            </p>
+          )}
 
-      <ul className="mt-4 space-y-3 px-read">
-        {(comments ?? []).map((c) => {
-          const active = mode?.id === c.id ? mode : null;
-          return (
-            <li key={c.id} className="rounded-card rounded-bl-md bg-card px-4 py-3 shadow-card">
-              <div className="flex flex-wrap items-center gap-1.5 text-t7 text-ink-600">
-                <span className="size-2 rounded-full" style={{ backgroundColor: avatarTint(c.idHash) }} />
-                <span className="font-semibold text-ink-900">{c.nickname}</span>
-                {c.locale !== locale && (
-                  <span className="rounded-badge bg-fill-weak px-1.5 text-st12 uppercase text-ink-700">{c.locale}</span>
-                )}
-                <span aria-hidden>·</span>
-                <time dateTime={c.createdAt}>{timeAgo(new Date(c.createdAt), locale)}</time>
-                {c.edited && <span>· {t("edited")}</span>}
+          {expanded && (
+            <>
+              {/* 이름은 자르지 않는다: 한 줄에 안 들어가면(360px·큰 글씨) 버튼이 다음 줄 오른쪽으로 내려간다.
+                  아바타는 em 이라 글자를 키워도 첫 글자가 잘리지 않는다 */}
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className="flex min-h-11 min-w-fit flex-1 items-center gap-2 text-t7 font-semibold text-ink-700">
+                  <Avatar name={name} tint={name ? nameTint(name) : undefined} className="size-[1.85em] shrink-0" />
+                  <span>{name}</span>
+                </span>
+                <IconButton
+                  label={t("changeName")}
+                  // 누르는 동안 입력창 초점을 뺏지 않는다 (아이폰에서 줄이 접히며 버튼이 사라지지 않게)
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={shuffle}
+                >
+                  <ShuffleIcon className="text-ink-600" />
+                </IconButton>
+                <Button
+                  type="submit"
+                  size="l"
+                  variant="primary"
+                  className="ml-auto"
+                  disabled={!body.trim() || hasLink}
+                  loading={busy}
+                >
+                  {t("submit")}
+                </Button>
               </div>
+              <p className="mt-2 text-t7 text-ink-600">{t("policy")}</p>
+            </>
+          )}
+        </form>
 
-              {active?.kind === "edit" ? (
-                <textarea
-                  value={active.body}
-                  onChange={(e) => setMode({ ...active, body: e.target.value })}
-                  maxLength={BODY_MAX}
-                  rows={3}
-                  aria-label={t("edit")}
-                  className={`mt-2 w-full resize-none px-3 py-2 text-t5 ${fieldClass}`}
+        {comments?.length !== 0 && (
+          <ul className="mt-4" aria-busy={comments === null || undefined}>
+            {comments === null ? (
+              <>
+                <SkeletonRow />
+                <SkeletonRow />
+              </>
+            ) : (
+              comments.slice(0, shown).map((c) => (
+                <CommentRow
+                  key={c.id}
+                  comment={c}
+                  locale={locale}
+                  highlight={c.id === highlight}
+                  editing={editing?.id === c.id ? editing : null}
+                  editRef={editRef}
+                  editBusy={editBusy}
+                  editError={editError}
+                  onEditChange={(next) => setEditing((current) => (current ? { ...current, body: next } : current))}
+                  onEditClose={() => setEditing(null)}
+                  onEditSave={() => void save()}
+                  onMenu={openMenu}
                 />
-              ) : (
-                <p className="mt-1.5 whitespace-pre-wrap break-words text-t6 text-ink-900">{c.body}</p>
-              )}
+              ))
+            )}
+          </ul>
+        )}
 
-              {active ? (
-                <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <input
-                    type="password"
-                    value={active.password}
-                    onChange={(e) => setMode({ ...active, password: e.target.value })}
-                    placeholder={t("password")}
-                    aria-label={t("password")}
-                    autoFocus
-                    className={`${inputClass} w-[7.5rem]`}
-                  />
-                  <Button
-                    size="m"
-                    variant={active.kind === "edit" ? "primary" : "danger"}
-                    onClick={confirmAction}
-                    loading={busy}
-                    disabled={!busy && !active.password}
-                  >
-                    {active.kind === "edit" ? t("save") : t("delete")}
-                  </Button>
-                  <Button size="m" variant="neutral" onClick={() => setMode(null)}>
-                    {t("cancel")}
-                  </Button>
-                  {error && (
-                    <p role="alert" className="w-full text-t6 font-semibold text-danger">
-                      {error}
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <div className="mt-1.5 flex justify-end gap-3 text-t7 text-ink-600">
-                  <button
-                    type="button"
-                    className="hit"
-                    onClick={() => {
-                      setError(null);
-                      setMode({ id: c.id, kind: "edit", body: c.body, password: "" });
-                    }}
-                  >
-                    {t("edit")}
-                  </button>
-                  <button
-                    type="button"
-                    className="hit"
-                    onClick={() => {
-                      setError(null);
-                      setMode({ id: c.id, kind: "delete", body: c.body, password: "" });
-                    }}
-                  >
-                    {t("delete")}
-                  </button>
-                  {reported === c.id ? (
-                    <span>{t("reported")}</span>
-                  ) : (
-                    <button type="button" className="hit" onClick={() => report(c.id)}>
-                      {t("report")}
-                    </button>
-                  )}
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+        {comments?.length === 0 && (
+          <button
+            type="button"
+            onClick={() => fieldRef.current?.focus()}
+            className="block w-full py-8 text-center text-t6 text-ink-600"
+          >
+            {t("empty")}
+          </button>
+        )}
+
+        {comments && comments.length > shown && (
+          <Button size="l" variant="neutral" block className="mt-2" onClick={() => setShown((n) => n + PAGE)}>
+            {t("showMoreComments")}
+          </Button>
+        )}
+      </div>
+
+      <BottomSheet open={menuOpen} onClose={() => setMenuOpen(false)} title={t("options")}>
+        {menuFor?.mine ? (
+          <>
+            <button type="button" onClick={startEdit} className={`${SHEET_ROW} text-ink-900`}>
+              {t("edit")}
+            </button>
+            <button type="button" onClick={askDelete} className={`${SHEET_ROW} text-danger`}>
+              {t("delete")}
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              onClick={() => void report()}
+              aria-busy={reportBusy || undefined}
+              className={`${SHEET_ROW} text-ink-900`}
+            >
+              {t("report")}
+            </button>
+            {reportError && (
+              <p role="alert" className="px-6 pb-3 text-t6 font-medium text-danger">
+                {reportError}
+              </p>
+            )}
+          </>
+        )}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(false)}
+          className={`${SHEET_ROW} border-t border-line text-ink-600`}
+        >
+          {tNav("cancel")}
+        </button>
+      </BottomSheet>
+
+      <Dialog
+        open={deleting !== null}
+        onClose={() => setDeleting(null)}
+        title={t("deleteTitle")}
+        body={
+          deleteError ? (
+            <p role="alert" className="font-medium text-danger">
+              {deleteError}
+            </p>
+          ) : undefined
+        }
+        confirmLabel={t("delete")}
+        tone="danger"
+        loading={deleteBusy}
+        onConfirm={() => void remove()}
+      />
     </section>
   );
 }

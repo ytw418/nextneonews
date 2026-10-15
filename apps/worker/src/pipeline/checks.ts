@@ -1,3 +1,5 @@
+import type { Locale } from "@kmedia/core";
+
 interface CheckableDraft {
   facts: { statement: string }[];
   summary: string;
@@ -13,6 +15,27 @@ export function unsupportedNumbers(draft: CheckableDraft, allowed: string[] = []
   const written = normalize([draft.summary, draft.body, ...draft.faq.flatMap((f) => [f.q, f.a])].join(" "));
   const numbers = new Set(written.match(/\d+(?:\.\d+)?/g) ?? []);
   return [...numbers].filter((n) => n.length > 1 && !factText.includes(n) && !allowed.includes(n));
+}
+
+// 제목 최대 길이 (글자 수, 이모지·성조 결합 글자는 한 글자). 두 열 피드 카드에서 4줄 안에 들어가는 길이다.
+// 언어마다 글자 폭이 달라 따로 잡는다: fr·ru 는 영어보다 20~30% 길고, 한중일은 한 글자가 넓다
+export const HEADLINE_MAX: Record<Locale, number> = {
+  en: 70,
+  id: 70,
+  fr: 64,
+  vi: 60,
+  ru: 56,
+  ko: 34,
+  ja: 32,
+  "zh-TW": 32,
+  "zh-CN": 32,
+};
+
+const graphemes = new Intl.Segmenter("und", { granularity: "grapheme" });
+
+// 제목이 그 언어 상한을 넘는지. 넘어도 발행은 막지 않고 경고로 남긴다
+export function headlineTooLong(locale: Locale, title: string): boolean {
+  return [...graphemes.segment(title.trim())].length > HEADLINE_MAX[locale];
 }
 
 // ko 가 아닌 번역문에 남은 "(성심당)" 같은 한글 괄호 병기를 지운다. AI 를 다시 부르지 않는 무료 후처리

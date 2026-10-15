@@ -119,7 +119,7 @@ export const UPCOMING: UpcomingEvent[] = [
       "PLAVE", "RIIZE", "NCT WISH", "ALPHA DRIVE ONE", "LNGSHOT", "YENA", "ILLIT", "RESCENE",
       "Hearts2Hearts", "NCT 127", "NCT DREAM", "ATEEZ", "TWS", "AND2BLE", "82MAJOR",
     ],
-    watch: [{ name: "Wavve", mode: "liveAndVod", note: "Live from the red carpet · VOD after" }],
+    watch: [{ name: "Wavve", mode: "liveAndVod", note: "From the red carpet" }],
     keywords: ["MMA", "Melon Music Awards", "멜론뮤직어워드"],
     sources: [
       "https://www.soompi.com/article/1846316wpp/melon-music-awards-2026-announces-dates-and-details",
@@ -146,14 +146,14 @@ export const UPCOMING: UpcomingEvent[] = [
       { date: "2026-11-20", acts: ["ALPHA DRIVE ONE", "BABYMONSTER", "ENHYPEN", "ILLIT", "INI", "NCT WISH", "RESCENE"] },
       { date: "2026-11-21", acts: ["CORTIS", "KiiiKiii", "LE SSERAFIM", "NAYEON", "ZEROBASEONE"] },
     ],
-    watch: [{ name: "Mnet Plus", mode: "live", note: "Live worldwide" }],
+    watch: [{ name: "Mnet Plus", mode: "live", note: "Worldwide" }],
     tickets: [
       {
         name: "Qoo10",
         url: "https://www.qoo10.jp/gmkt.inc/Special/Special.aspx?sid=367181",
         status: "presale",
         window: { from: "2026-10-13", to: "2026-10-18" },
-        note: "Visa presale · registration Oct 13–18",
+        note: "Visa cardholders",
       },
     ],
     keywords: ["MAMA", "마마 어워즈", "MAMA AWARDS"],

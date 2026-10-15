@@ -1,7 +1,7 @@
 // 사진 없는 기사의 메모 커버를 글마다 일정하게(같은 글은 항상 같은 모양) 만든다
 const TINT: Record<string, string> = {
   KPOP: "var(--tint-kpop)",
-  KENT: "var(--tint-life)",
+  KENT: "var(--tint-kent)",
   KDRAMA: "var(--tint-kdrama)",
   KFOOD: "var(--tint-kfood)",
   KBEAUTY: "var(--tint-kbeauty)",

@@ -15,8 +15,8 @@
   --card: #ffffff;
   --floating: #ffffff; /* 시트·다이얼로그·탭바 캡슐 */
   --band: #f2ece5; /* 큰 모듈 사이 16px 크림 띠 */
-  --bar: rgba(251, 247, 242, 0.94); /* 상단바 (.82 는 글자가 비쳐 보였다) */
-  --dim: rgba(0, 0, 0, 0.2);
+  --bar: rgba(251, 247, 242, 0.985); /* 상단바. .94 도 굵은 큰 제목은 블러를 뚫고 비쳐 보였다 */
+  --dim: rgba(20, 14, 24, 0.45); /* 시트 뒤. 옅은 회색은 크림 바탕을 탁하게 하고 시트 가장자리가 묻혔다 */
   --line: #ece4da;
   --line-strong: #ddd3c8; /* 시트 손잡이, 입력칸 테두리 */
 
@@ -39,6 +39,7 @@
 
   /* 카테고리 틴트 (메모 커버): 같은 OKLCH 밝기, 노랑만 따로 */
   --tint-kpop: oklch(0.93 0.045 355);
+  --tint-kent: oklch(0.93 0.045 192); /* 연예(셀럽)는 생활과 같은 색을 쓰고 있었다. 비어 있던 청록 자리 */
   --tint-kdrama: oklch(0.93 0.045 295);
   --tint-kfood: oklch(0.95 0.085 95);
   --tint-travel: oklch(0.93 0.045 165);
@@ -73,6 +74,7 @@
   --on-tint: #1b1520;
   --on-tint-sub: rgba(27, 21, 32, 0.72);
   --tape: rgba(255, 255, 255, 0.55);
+  --rule: rgba(27, 21, 32, 0.08); /* 메모 제목 밑줄 (노트 줄) */
 
   /* 그림자 (다크 모드는 머리카락 선으로 바꾼다) */
   --elev-card: 0 1px 0 var(--line), 0 6px 18px -12px rgba(27, 21, 32, 0.25);
@@ -90,7 +92,7 @@
     --card: #1e1922;
     --floating: #28222d;
     --band: #0d0a0f;
-    --bar: rgba(20, 16, 22, 0.94);
+    --bar: rgba(20, 16, 22, 0.985);
     --dim: rgba(0, 0, 0, 0.56);
     --line: #2b2430;
     --line-strong: #3c3442;
@@ -110,9 +112,10 @@
 
     /* 다크 틴트는 채도를 올려 진흙색이 아니라 색으로 읽히게 */
     --tint-kpop: oklch(0.34 0.07 355);
+    --tint-kent: oklch(0.34 0.05 192); /* 초록·청록은 같은 채도에서 더 무거워 보여 낮춘다 */
     --tint-kdrama: oklch(0.34 0.07 295);
     --tint-kfood: oklch(0.37 0.06 95);
-    --tint-travel: oklch(0.34 0.07 165);
+    --tint-travel: oklch(0.34 0.05 165);
     --tint-wh: oklch(0.34 0.07 245);
     --tint-jobs: oklch(0.34 0.07 65);
     --tint-housing: oklch(0.34 0.07 120);
@@ -122,9 +125,9 @@
     --tint-love: oklch(0.34 0.07 10);
 
     --tint-event-comeback: oklch(0.38 0.08 0);
-    --tint-event-awards: oklch(0.42 0.08 85);
+    --tint-event-awards: oklch(0.38 0.07 75); /* 다른 이벤트 틴트와 같은 밝기. 더 밝고 진하면 진흙 갈색으로 보였다 */
     --tint-event-concert: oklch(0.38 0.08 300);
-    --tint-event-festival: oklch(0.38 0.08 150);
+    --tint-event-festival: oklch(0.38 0.06 150);
     --tint-event-fanmeeting: oklch(0.38 0.08 30);
     --tint-event-drama: oklch(0.38 0.08 255);
 
@@ -140,6 +143,7 @@
     --on-tint: #f6eff3;
     --on-tint-sub: rgba(246, 239, 243, 0.76);
     --tape: rgba(255, 255, 255, 0.12);
+    --rule: rgba(255, 255, 255, 0.08);
 
     --elev-card: 0 0 0 1px var(--line);
     --elev-float: 0 0 0 1px var(--line);
@@ -180,6 +184,16 @@
   --text-chrome-title--line-height: 1.3;
   --text-chrome-tab: clamp(12px, 0.7059rem, 14px);
   --text-chrome-tab--line-height: 1.5;
+  /* 하단 고정 버튼 글자: 글자를 키워도 두 버튼이 나란히 남게 24px 에서 멈춘다 */
+  --text-chrome-cta: clamp(17px, 1rem, 24px);
+  --text-chrome-cta--line-height: 1.3;
+  /* 일정 목록 날짜 칸 (t4·t6·st13 의 상한을 낮춘 것). 큰 글자에서 칸이 140px 까지 커져 제목 자리를 먹었다 */
+  --text-date-day: clamp(20px, 1.1765rem, 28px);
+  --text-date-day--line-height: 1.3;
+  --text-date-range: clamp(15px, 0.8824rem, 20px);
+  --text-date-range--line-height: 1.3;
+  --text-date-month: clamp(11px, 0.6471rem, 15px);
+  --text-date-month--line-height: 1.4;
   /* 여러 줄 목록·카드 제목 */
   --leading-row: 1.35;
 
@@ -225,6 +239,7 @@
   --color-on-tint-sub: var(--on-tint-sub);
   --color-surface-note: var(--surface-note);
   --color-tint-kpop: var(--tint-kpop);
+  --color-tint-kent: var(--tint-kent);
   --color-tint-kdrama: var(--tint-kdrama);
   --color-tint-kfood: var(--tint-kfood);
   --color-tint-travel: var(--tint-travel);
@@ -314,6 +329,10 @@ h3,
   text-wrap: balance;
   line-break: strict;
 }
+/* 일본어 제목: 줄 첫머리 「 의 반각 앞 여백 때문에 왼쪽 끝이 들쭉날쭉해 보였다. 본문에는 걸지 않는다 */
+html:lang(ja) :is(h1, h2, h3, .title) {
+  font-feature-settings: "palt";
+}
 
 :focus-visible {
   outline: 2px solid var(--brand);
@@ -323,6 +342,14 @@ h3,
 /* 스크롤하면 상단바 아래에 머리카락 선 (ChromeEffects 가 data-scrolled 를 단다) */
 html[data-scrolled] .app-header {
   box-shadow: inset 0 -1px 0 var(--line);
+}
+/* 큰 제목이 바 밑으로 올라가 가운데 제목이 뜨면 로고는 비킨다 (HeaderTitle 이 data-title-shown 을 단다) */
+.header-logo {
+  transition: opacity 150ms var(--ease-standard);
+}
+.app-header[data-title-shown] .header-logo {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* ───────── 로고 (유일하게 고정 px·기울임 글자) ───────── */
@@ -383,9 +410,10 @@ html[data-scrolled] .app-header {
   border-right: 2px dotted rgba(0, 0, 0, 0.06);
 }
 
-/* 메모 커버 줄무늬 */
-.pattern-lines {
-  background-image: repeating-linear-gradient(to bottom, transparent 0 23px, rgba(0, 0, 0, 0.06) 23px 24px);
+/* 메모 제목 노트 줄: 제목 요소에만, 줄 높이(1lh)마다 한 줄씩. 고정 24px 간격은 제목 줄 높이와 어긋나 글자 한가운데를 그었다.
+   lh 라 글자 크기가 바뀌어도 줄마다 밑에 선이 온다 */
+.memo-rules {
+  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(1lh - 1px), var(--rule) calc(1lh - 1px) 1lh);
 }
 
 /* 티켓 절취선: 스텁 아래 점선 위에 양쪽 홈. 글자가 커져도 홈이 선 위에 그대로 있다 */

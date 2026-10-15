@@ -1,3 +1,4 @@
+import { faqNotInBody, findEventForArticle, isLocale, readMinutes } from "@kmedia/core";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
@@ -6,20 +7,25 @@ import ReactMarkdown from "react-markdown";
 
 import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
+import { ArticleThumb } from "@/components/ArticleThumb";
+import { RelatedEventCard } from "@/components/article/RelatedEventCard";
 import { Comments } from "@/components/Comments";
 import { ChevronDownIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
+import { RANKED_MIN, RankedArticles, THUMB_LARGE_TEXT } from "@/components/RankedArticles";
 import { ShareButton } from "@/components/ShareButton";
 import { Badge } from "@/components/ui/Badge";
 import { ListRow } from "@/components/ui/ListRow";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
-import { findTranslatedLocale, getArticle, listRelated } from "@/lib/articles";
+import { entityNames, findTranslatedLocale, getArticle, listPopular, listRelated } from "@/lib/articles";
 import { coverStyle } from "@/lib/cover";
 import { toFeedItems } from "@/lib/feed";
+import { publisherName } from "@/lib/publishers";
 import { articleJsonLd } from "@/lib/jsonld";
 import { dateStamp } from "@/lib/time";
 import { articlePath, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
@@ -97,26 +103,46 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
     if (other && other !== locale) redirect(articlePath(other, slug));
     notFound();
   }
-  const [t, tCat, relatedRows] = await Promise.all([
+  const { article } = translation;
+  const [t, tCat, relatedRows, popularRows] = await Promise.all([
     getTranslations("Article"),
     getTranslations("Category"),
-    listRelated(locale, translation.article),
+    listRelated(locale, article, 4),
+    listPopular(locale, 12),
   ]);
-  const related = await toFeedItems(relatedRows, locale);
-  const { article } = translation;
+  // 이번 주 인기 글에서는 이 글과 '함께 읽기'에 이미 나온 글을 뺀다
+  const shown = new Set([slug, ...relatedRows.map((r) => r.slug)]);
+  const [related, popularItems] = await Promise.all([
+    toFeedItems(relatedRows, locale),
+    toFeedItems(popularRows.filter((r) => !shown.has(r.slug)).slice(0, 5), locale),
+  ]);
+  const popular = popularItems.length >= RANKED_MIN ? popularItems : [];
 
   const keyPoints = asArray<string>(translation.keyPoints);
-  const faq = asArray<Faq>(translation.faq);
+  // 본문 소제목을 되풀이하는 질문은 화면과 JSON-LD 둘 다에서 뺀다
+  const faq = faqNotInBody(asArray<Faq>(translation.faq), translation.body);
   const hero = article.media[0];
+  // 긴 제목(러시아어·프랑스어·베트남어에 흔하다)은 한 단계 작게: st2 로 7줄이 되어 사진 속 얼굴을 덮었다
+  const longTitle = translation.title.length > 70;
   const categoryLabel = tCat(article.category);
-  const dateFormat = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "Asia/Seoul" });
   const url = `${SITE_URL}${articlePath(locale, slug)}`;
+  // 글에 나오는 다가오는 일정 (컴백·시상식 등). 있으면 요약 밑에 카드 한 줄
+  const event = findEventForArticle({
+    title: translation.title,
+    entityNames: entityNames(article.entities),
+    publishedAt: article.publishedAt,
+  });
+
+  const published = article.publishedAt;
+  // 정정 요청 메일 주소는 설정했을 때만 (주소를 코드에 박지 않는다)
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 
   return (
     <>
       <AppHeader
         variant="pushed"
         parentHref="/"
+        title={translation.title}
         action={<ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />}
       />
 
@@ -148,11 +174,12 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
               unoptimized
               priority
               sizes="(max-width: 640px) 100vw, 640px"
-              className="object-cover"
+              // 인물 사진은 얼굴이 위쪽에 있다. 제목 블록 위로 얼굴이 남게 위쪽을 기준으로 자른다
+              className="object-cover object-[50%_20%]"
             />
             <div className="relative bg-[linear-gradient(to_top,rgb(0_0_0/.72)_0%,rgb(0_0_0/.56)_calc(100%-96px),transparent_100%)] px-read pt-24 pb-6 text-white">
               <Badge tone="scrim">{categoryLabel}</Badge>
-              <h1 className="title mt-2 text-st2 font-bold text-white">
+              <h1 className={`title mt-2 font-bold text-white ${longTitle ? "text-t3" : "text-st2"}`}>
                 <Phrase text={translation.title} locale={locale} />
               </h1>
               <PhotoCredit media={hero} />
@@ -175,19 +202,23 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           </div>
         )}
 
-        <p className="mt-5 flex flex-wrap gap-x-2 px-read text-t7 tabular-nums text-ink-600">
-          {article.publishedAt && (
-            <time dateTime={article.publishedAt.toISOString()}>
-              {t("published")} {dateFormat.format(article.publishedAt)}
-            </time>
-          )}
-          <span aria-hidden>·</span>
-          <time dateTime={article.updatedAt.toISOString()}>
-            {t("updated")} {dateFormat.format(article.updatedAt)}
-          </time>
+        {/* 날짜 · 읽는 시간. '업데이트'는 띄우지 않는다 (article.updatedAt 은 본문을 고친 시각이 아니다) */}
+        <p className="mt-5 px-read text-t7 tabular-nums text-ink-600">
+          <Meta
+            parts={[
+              published && (
+                <time dateTime={published.toISOString()}>
+                  {new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "Asia/Seoul" }).format(published)}
+                </time>
+              ),
+              t("readTime", { minutes: readMinutes(translation.body) }),
+            ]}
+          />
         </p>
 
         <p className="mt-3 px-read text-t5 font-medium text-ink-900">{translation.summary}</p>
+
+        {event && isLocale(locale) && <RelatedEventCard e={event} locale={locale} />}
 
         {keyPoints.length > 0 && (
           <section
@@ -220,7 +251,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
               {faq.map((item, i) => (
                 <details key={item.q} className="faq group" open={i === 0}>
                   <summary className="flex min-h-14 cursor-pointer items-start gap-2 py-4 text-t5 font-semibold text-ink-900">
-                    <span aria-hidden className="w-6 shrink-0 font-bold text-ink-400">
+                    <span aria-hidden className="w-6 shrink-0 font-bold text-ink-600">
                       Q
                     </span>
                     <span className="flex-1">{item.q}</span>
@@ -244,7 +275,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                   href={source.url}
                   inset="read"
                   titleWeight="medium"
-                  title={source.publisher}
+                  title={publisherName(source.publisher, locale)}
                   sub={hostname(source.url)}
                 />
               ))}
@@ -252,49 +283,59 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           </section>
         )}
 
+        {/* AI 고지는 사실대로: 공식 발표·한국 언론을 바탕으로 AI 로 쓰고 번역했다 (편집자 검토 문구는 넣지 않는다) */}
         <p className="mt-4 px-read text-t7 text-ink-600">{t("aiNotice")}</p>
+        {contactEmail && (
+          <a
+            href={`mailto:${contactEmail}?subject=${encodeURIComponent(translation.title)}&body=${encodeURIComponent(url)}`}
+            className="mx-read inline-flex min-h-11 items-center text-t7 font-semibold text-ink-700 underline underline-offset-4"
+          >
+            {t("correction")}
+          </a>
+        )}
 
-        <AdSlot />
+        <AdSlot label={t("ad")} />
 
         <div aria-hidden className="mt-10 h-4 bg-band" />
         <Comments articleId={article.id} />
         <ViewPing articleId={article.id} />
 
-        {related.length > 0 && (
+        {/* 글 끝: 함께 읽기(같은 인물·카테고리) → 이번 주 인기 글. 섹션 제목은 같은 모양 하나 */}
+        {(related.length > 0 || popular.length > 0) && (
           <>
             <div aria-hidden className="mt-10 h-4 bg-band" />
-            <section>
-              <SectionHeader inset="read" title={t("related")} />
-              <ul>
-                {related.slice(0, 4).map((item) => (
-                  <ListRow
-                    key={item.slug}
-                    href={`/news/${item.slug}`}
-                    inset="read"
-                    titleWeight="semibold"
-                    left={
-                      item.imageUrl ? (
-                        <Image
-                          src={item.imageUrl}
-                          alt=""
-                          width={64}
-                          height={64}
-                          unoptimized
-                          className="size-16 rounded-btn object-cover"
-                        />
-                      ) : (
-                        <span
-                          className="block size-16 rounded-btn"
-                          style={{ backgroundColor: coverStyle(item.slug, item.category).tint }}
-                        />
-                      )
-                    }
-                    title={<Phrase text={item.title} locale={locale} />}
-                    sub={`${item.categoryLabel} · ${item.timeAgo}`}
-                  />
-                ))}
-              </ul>
-            </section>
+            {related.length > 0 && (
+              // 썸네일 크기·큰 글자 규칙은 아래 '이번 주 인기 글'과 같게
+              <section aria-labelledby="related" className="@container">
+                <SectionHeader id="related" inset="read" title={t("related")} />
+                <ul>
+                  {related.map((item) => (
+                    <ListRow
+                      key={item.slug}
+                      href={`/news/${item.slug}`}
+                      inset="read"
+                      titleWeight="semibold"
+                      left={
+                        <span className={`block ${THUMB_LARGE_TEXT}`}>
+                          <ArticleThumb item={item} size={48} />
+                        </span>
+                      }
+                      title={
+                        <span className="line-clamp-3">
+                          <Phrase text={item.title} locale={locale} />
+                        </span>
+                      }
+                      sub={
+                        <span className="text-t7">
+                          <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                        </span>
+                      }
+                    />
+                  ))}
+                </ul>
+              </section>
+            )}
+            <RankedArticles id="popular" title={t("popular")} items={popular} locale={locale} inset="read" />
           </>
         )}
       </article>

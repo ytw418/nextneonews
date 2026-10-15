@@ -2,16 +2,20 @@ import { type EventWithView, formatKstTime, kst, type Locale } from "@kmedia/cor
 import { getTranslations } from "next-intl/server";
 
 import { ListRow } from "@/components/ui/ListRow";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { KIND_TINT } from "@/lib/schedule";
 
-// 출연 팀 칩. 누르는 것이 아니라서 버튼 모양을 쓰지 않는다
-function Acts({ acts }: { acts: string[] }) {
+// 출연 팀 칩. 누르는 것이 아니라서 버튼 모양을 쓰지 않는다.
+// 회색 대신 일정 종류 틴트 (티켓 스텁과 같은 색) — 팬 화면답게
+function Acts({ acts, tint }: { acts: string[]; tint: string }) {
   return (
     <ul className="flex flex-wrap gap-1.5 px-gutter">
       {acts.map((act) => (
         <li
           key={act}
-          className="inline-flex min-h-7 items-center rounded-badge bg-fill-weak px-2.5 text-t7 font-medium text-ink-900"
+          className="inline-flex min-h-7 items-center rounded-badge px-2.5 text-t7 font-semibold text-on-tint"
+          style={{ backgroundColor: tint }}
         >
           {act}
         </li>
@@ -45,14 +49,14 @@ export async function Lineup({ e, locale }: { e: EventWithView; locale: Locale }
                 title={r.act}
                 sub={
                   <>
-                    {[
-                      r.title,
-                      r.kind && t(`releaseKind.${r.kind}`),
-                      r.date && shortDate.format(kst(r.date)),
-                      r.date && r.timeKst && formatKstTime(locale, r.date, r.timeKst),
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
+                    <Meta
+                      parts={[
+                        r.title,
+                        r.kind && t(`releaseKind.${r.kind}`),
+                        r.date && shortDate.format(kst(r.date)),
+                        r.date && r.timeKst && formatKstTime(locale, r.date, r.timeKst),
+                      ]}
+                    />
                     {r.note && locale === "en" && (
                       <span lang="en" className="block">
                         {r.note}
@@ -77,13 +81,13 @@ export async function Lineup({ e, locale }: { e: EventWithView; locale: Locale }
               {day.hosts && day.hosts.length > 0 && (
                 <p className="px-gutter pb-2 text-t6 text-ink-700">{t("hosts", { names: day.hosts.join(", ") })}</p>
               )}
-              <Acts acts={day.acts} />
+              <Acts acts={day.acts} tint={KIND_TINT[e.kind]} />
             </div>
           ))}
           {e.lineup && e.lineup.length > 0 && (
             <div className={e.days?.length ? "mt-3" : ""}>
               <p className="px-gutter pt-3 pb-2 text-t7 text-ink-600">{t("lineupTba")}</p>
-              <Acts acts={e.lineup} />
+              <Acts acts={e.lineup} tint={KIND_TINT[e.kind]} />
             </div>
           )}
           {(e.lineupPartial ?? true) && <p className="px-gutter pt-2 text-t7 text-ink-600">{t("lineupPartial")}</p>}

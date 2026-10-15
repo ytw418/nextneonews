@@ -13,13 +13,16 @@
     "main": "主選單",
     "all": "全部",
     "back": "返回",
-    "close": "關閉"
+    "close": "關閉",
+    "cancel": "取消"
   },
   "Home": {
     "latest": "最新",
     "trending": "現正熱門",
     "empty": "這裡還沒有文章。",
     "emptyCta": "看全部新聞",
+    "comingSoon": "繁體中文文章即將上線。",
+    "readInEnglish": "用英文閱讀",
     "seeAll": "查看全部"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "粉絲見面會",
       "drama": "新劇首播"
     },
-    "releaseCount": "{count} 張作品",
+    "releaseCount": "{count}\u00a0張作品",
     "releaseKind": {
       "single": "單曲",
       "ep": "迷你專輯",
@@ -92,15 +95,15 @@
     "correction": "回報錯誤",
     "keyPoints": "重點整理",
     "faq": "常見問題",
-    "published": "發布",
-    "updated": "更新",
+    "readTime": "約\u00a0{minutes}\u00a0分鐘讀完",
     "share": "分享這篇文章",
     "copied": "已複製連結",
     "related": "延伸閱讀",
-    "readMore": "閱讀"
+    "popular": "本週熱門",
+    "ad": "廣告"
   },
   "NotFound": {
-    "title": "找不到頁面",
+    "title": "找不到這個頁面",
     "back": "回到首頁"
   },
   "Category": {
@@ -113,35 +116,42 @@
     "STUDY": "韓國留學",
     "LOVE": "戀愛・婚姻",
     "WORKING_HOLIDAY": "打工度假",
-    "JOBS": "打工",
+    "JOBS": "工作",
     "HOUSING": "租屋",
     "LIFE": "生活"
   },
   "Comments": {
     "title": "留言",
-    "empty": "還沒有留言，來搶頭香吧！",
-    "placeholder": "不用登入就能留言",
-    "nickname": "暱稱",
-    "password": "密碼",
-    "submit": "送出",
+    "placeholder": "說說你的想法",
+    "policy": "我們會刪除謾罵和個人資料。",
+    "changeName": "換個名字",
+    "submit": "送出留言",
+    "menu": "{name} 的留言選單",
+    "options": "留言選單",
     "edit": "編輯",
     "delete": "刪除",
+    "deleteTitle": "要刪除這則留言嗎？",
     "save": "儲存",
-    "cancel": "取消",
     "report": "檢舉",
-    "reported": "已檢舉",
+    "reportedToast": "已檢舉，謝謝你告訴我們",
+    "postedToast": "留言已送出",
+    "showMore": "顯示更多",
+    "showMoreComments": "看更多留言",
     "edited": "已編輯",
-    "rules": "之後可以用密碼編輯或刪除。攻擊他人或公開個資的留言會被刪除。",
-    "wrongPassword": "密碼錯誤。",
-    "tooFast": "留言太頻繁了，請過幾分鐘再試。",
-    "noLinks": "留言不能貼連結。",
-    "error": "發生錯誤，請再試一次。",
-    "locked": "密碼錯誤次數太多，請15分鐘後再試。"
+    "empty": "寫下第一則留言吧。",
+    "retry": "再試一次",
+    "error": "留言沒有送出，請確認網路後再試一次。",
+    "failed": "沒有成功，請確認網路後再試一次。",
+    "tooFast": "幾分鐘後就能再留言。",
+    "noLinks": "刪掉連結就能留言。",
+    "locked": "15 分鐘後可以再試一次。",
+    "wrongPassword": "只能修改在這台裝置上發的留言。"
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "娛樂",
     "LIFESTYLE": "美食・美妝・旅遊",
-    "LIVING": "在韓國生活"
+    "LIVING": "在韓國生活",
+    "OTHER": "其他主題"
   },
   "Install": {
     "title": "把 {name} 加到主畫面",

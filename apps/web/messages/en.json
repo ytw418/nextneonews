@@ -1,7 +1,7 @@
 {
   "Site": {
     "tagline": "What foreigners want to know about Korea, every day",
-    "categoryDescription": "{category} news, schedules and guides for international fans, updated daily."
+    "categoryDescription": "{category} news, schedules and guides for international fans, updated every day."
   },
   "Nav": {
     "home": "Home",
@@ -13,13 +13,16 @@
     "main": "Main menu",
     "all": "All",
     "back": "Back",
-    "close": "Close"
+    "close": "Close",
+    "cancel": "Cancel"
   },
   "Home": {
     "latest": "Latest",
     "trending": "Trending now",
     "empty": "No stories here yet.",
     "emptyCta": "See all news",
+    "comingSoon": "New stories in English are on the way.",
+    "readInEnglish": "Read in English",
     "seeAll": "See all"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Drama premiere"
     },
-    "releaseCount": "{count, plural, one {# release} other {# releases}}",
+    "releaseCount": "{count, plural, one {#\u00a0release} other {#\u00a0releases}}",
     "releaseKind": {
       "single": "Single",
       "ep": "EP",
@@ -92,16 +95,16 @@
     "correction": "Request a correction",
     "keyPoints": "Key points",
     "faq": "FAQ",
-    "published": "Published",
-    "updated": "Updated",
+    "readTime": "{minutes}\u00a0min read",
     "share": "Share this article",
     "copied": "Link copied",
     "related": "More to read",
-    "readMore": "Read"
+    "popular": "Popular this week",
+    "ad": "Ad"
   },
   "NotFound": {
-    "title": "Page not found",
-    "back": "Back to home"
+    "title": "We couldn't find this page",
+    "back": "Go to Home"
   },
   "Category": {
     "KPOP": "K-POP",
@@ -119,29 +122,36 @@
   },
   "Comments": {
     "title": "Comments",
-    "empty": "No comments yet. Say hi first!",
-    "placeholder": "Leave a comment — no login needed",
-    "nickname": "Nickname",
-    "password": "Password",
-    "submit": "Post",
+    "placeholder": "Share your thoughts",
+    "policy": "We remove insults and personal info.",
+    "changeName": "Change name",
+    "submit": "Post comment",
+    "menu": "Options for {name}'s comment",
+    "options": "Comment options",
     "edit": "Edit",
     "delete": "Delete",
+    "deleteTitle": "Delete this comment?",
     "save": "Save",
-    "cancel": "Cancel",
     "report": "Report",
-    "reported": "Reported",
+    "reportedToast": "Reported. Thanks for letting us know",
+    "postedToast": "Your comment is up",
+    "showMore": "Show more",
+    "showMoreComments": "Show more comments",
     "edited": "edited",
-    "rules": "Your password lets you edit or delete later. Comments that attack someone or share personal info are removed.",
-    "wrongPassword": "Wrong password.",
-    "tooFast": "You're posting too fast. Try again in a few minutes.",
-    "noLinks": "Links aren't allowed in comments.",
-    "error": "Something went wrong. Please try again.",
-    "locked": "Too many wrong passwords. Try again in 15 minutes."
+    "empty": "Be the first to share your thoughts.",
+    "retry": "Try again",
+    "error": "Your comment didn't post. Check your connection and try again.",
+    "failed": "That didn't go through. Check your connection and try again.",
+    "tooFast": "You can comment again in a few minutes.",
+    "noLinks": "Remove the link and you can post.",
+    "locked": "You can try again in 15 minutes.",
+    "wrongPassword": "You can change only comments posted from this device."
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "Entertainment",
     "LIFESTYLE": "Food, beauty & travel",
-    "LIVING": "Living in Korea"
+    "LIVING": "Living in Korea",
+    "OTHER": "More topics"
   },
   "Install": {
     "title": "Add {name} to your Home Screen",
