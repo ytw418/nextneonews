@@ -1,92 +1,46 @@
-import { z } from "zod";
+import { prisma, type Signal } from "@kmedia/db";
 
-import { ArticleFormat, Category, prisma, type Signal } from "@kmedia/db";
-
-import { callStructured } from "../ai/client";
-import { MODELS } from "../ai/models";
-import { SCORE_SYSTEM } from "../ai/prompts";
 import type { SignalMetrics } from "../collectors/types";
+import { findEntities } from "../entities/match";
 import { log } from "../log";
+import { evaluate, type HeuristicResult, totalScore } from "./heuristics";
 import { ruleFilter } from "./ruleFilter";
 
-const BATCH_SIZE = 25;
 const LOOKBACK_HOURS = 48;
-// 이 점수 이상이고 answerable 2 이상, RED 아님, 중복 아님 → Topic 큐에 올린다 (최대 27점).
-// 케이아지트 수준으로 너그럽게: 연예 가십·반응형도 통과시킨다
-const TOPIC_THRESHOLD = 14;
+// 이 점수 이상이고 answerable 2 이상이면 Topic 큐에 올린다 (최대 27점). 케이아지트 수준으로 너그럽게
+const TOPIC_THRESHOLD = 16;
 const MIN_ANSWERABLE = 2;
 
-const ScoreItem = z.object({
-  id: z.string(),
-  keyword: z.string(),
-  foreignInterest: z.number().int().describe("1-5"),
-  answerable: z.number().int().describe("1-5"),
-  timeliness: z.number().int().describe("1-5"),
-  evergreen: z.number().int().describe("1-5"),
-  risk: z.enum(["GREEN", "YELLOW", "RED"]),
-  category: z.enum(Category),
-  format: z.enum(ArticleFormat),
-  locales: z.array(z.enum(["en", "ja", "zh-TW"])),
-  duplicateOf: z.string().nullable(),
-  reason: z.string(),
-});
-const ScoreResult = z.object({ items: z.array(ScoreItem) });
-type ScoreItem = z.infer<typeof ScoreItem>;
-
-const clamp = (n: number) => Math.min(5, Math.max(1, Math.round(n)));
-
-function engagementBonus(metrics: SignalMetrics): number {
-  const rank = metrics.rank ?? Infinity;
-  if (rank <= 5) return 2;
-  if (rank <= 15) return 1;
-  return 0;
-}
-
-// docs/production.md ①: 해외관심×2 + 답변가능×2 + max(시의성, 에버그린) + 반응 보정
-export function totalScore(item: ScoreItem, metrics: SignalMetrics): number {
-  return (
-    clamp(item.foreignInterest) * 2 +
-    clamp(item.answerable) * 2 +
-    Math.max(clamp(item.timeliness), clamp(item.evergreen)) +
-    engagementBonus(metrics)
-  );
-}
+const OPEN_STATUSES = ["NEW", "QUEUED"] as const;
 
 function metricsOf(signal: Signal): SignalMetrics {
   return (signal.metrics ?? {}) as SignalMetrics;
 }
 
-const OPEN_STATUSES = ["NEW", "QUEUED"] as const;
-
-async function openTopics() {
-  return prisma.topic.findMany({
-    where: { status: { in: [...OPEN_STATUSES] } },
-    select: { id: true, keyword: true },
-  });
-}
-
-async function queueTopic(signal: { id: string }, item: ScoreItem, score: number) {
-  // 같은 키워드의 진행 중 주제가 있으면 거기에 붙인다
+async function queueTopic(signalId: string, r: HeuristicResult, score: number): Promise<boolean> {
+  // 같은 인물(키워드)의 진행 중 주제가 있으면 거기에 붙인다
   const existing = await prisma.topic.findFirst({
-    where: { keyword: item.keyword, status: { in: [...OPEN_STATUSES] } },
+    where: { keyword: r.keyword, status: { in: [...OPEN_STATUSES] } },
   });
   const topic =
     existing ??
     (await prisma.topic.create({
       data: {
-        keyword: item.keyword,
+        keyword: r.keyword,
         score,
-        riskTier: item.risk,
+        riskTier: r.risk,
         status: "QUEUED",
-        category: item.category,
-        format: item.format,
-        locales: item.locales,
-        brief: item.reason,
+        category: r.category,
+        format: r.format,
+        locales: ["en", "ja", "zh-TW"],
+        brief: r.reason,
       },
     }));
-  await prisma.signal.update({ where: { id: signal.id }, data: { topicId: topic.id } });
+  await prisma.signal.update({ where: { id: signalId }, data: { topicId: topic.id } });
+  return Boolean(existing);
 }
 
+// 품질 체크: 1단계 규칙 필터 + 2단계 알고리즘 채점. AI 호출 없음 (docs/production.md ①)
 export async function scoreSignals(limit = 200): Promise<{ checked: number; queued: number }> {
   const since = new Date(Date.now() - LOOKBACK_HOURS * 3600_000);
   const signals = await prisma.signal.findMany({
@@ -100,71 +54,36 @@ export async function scoreSignals(limit = 200): Promise<{ checked: number; queu
   }
 
   const now = new Date();
-  const { passed, rejected } = ruleFilter(
-    signals.map((s) => ({ ...s, metrics: metricsOf(s) })),
-  );
+  const { passed, rejected } = ruleFilter(signals.map((s) => ({ ...s, metrics: metricsOf(s) })));
   for (const { item, reason } of rejected) {
     await prisma.signal.update({
       where: { id: item.id },
       data: { qualityScore: 0, qualityNote: `rule:${reason}`, checkedAt: now },
     });
   }
-  log.info("score: rule filter", { passed: passed.length, rejected: rejected.length });
+
+  // 점수 높은 것부터 넣어야 같은 인물 주제의 대표 점수가 높은 글로 잡힌다
+  const evaluated = await Promise.all(
+    passed.map(async (signal) => {
+      const result = evaluate(signal, await findEntities(signal.title));
+      return { signal, result, score: totalScore(result, signal.metrics) };
+    }),
+  );
+  evaluated.sort((a, b) => b.score - a.score);
 
   let queued = 0;
-  for (let i = 0; i < passed.length; i += BATCH_SIZE) {
-    const batch = passed.slice(i, i + BATCH_SIZE);
-    // 앞 묶음에서 만든 주제까지 넘겨야 묶음을 넘나드는 중복을 잡는다
-    const existingTopics = await openTopics();
-    const topicIds = new Set(existingTopics.map((t) => t.id));
-    const items = batch.map((s) => ({ id: s.id, source: s.source, title: s.title, metrics: s.metrics }));
-    const result = await callStructured({
-      task: "score",
-      model: MODELS.score,
-      system: SCORE_SYSTEM,
-      user: JSON.stringify({ existingTopics, items }),
-      schema: ScoreResult,
-      effort: "low",
+  let merged = 0;
+  for (const { signal, result, score } of evaluated) {
+    await prisma.signal.update({
+      where: { id: signal.id },
+      data: { qualityScore: score, qualityNote: `${result.risk} ${result.reason}`, checkedAt: now },
     });
-
-    const byId = new Map(result.items.map((item) => [item.id, item]));
-    for (const signal of batch) {
-      const item = byId.get(signal.id);
-      if (!item) {
-        log.warn("score: item missing from response", { id: signal.id });
-        continue;
-      }
-      const score = totalScore(item, signal.metrics);
-      // 이미 있는 주제와 같은 사건이면 새 주제를 만들지 않고 신호만 그 주제에 붙인다
-      if (item.duplicateOf && topicIds.has(item.duplicateOf)) {
-        await prisma.signal.update({
-          where: { id: signal.id },
-          data: {
-            qualityScore: score,
-            qualityNote: `dup ${item.reason}`,
-            checkedAt: now,
-            topicId: item.duplicateOf,
-          },
-        });
-        continue;
-      }
-      const eligible =
-        score >= TOPIC_THRESHOLD &&
-        clamp(item.answerable) >= MIN_ANSWERABLE &&
-        item.risk !== "RED" &&
-        item.duplicateOf === null;
-
-      await prisma.signal.update({
-        where: { id: signal.id },
-        data: { qualityScore: score, qualityNote: `${item.risk} ${item.reason}`, checkedAt: now },
-      });
-      if (eligible) {
-        await queueTopic(signal, item, score);
-        queued += 1;
-      }
+    if (score >= TOPIC_THRESHOLD && result.answerable >= MIN_ANSWERABLE) {
+      if (await queueTopic(signal.id, result, score)) merged += 1;
+      else queued += 1;
     }
   }
 
-  log.info("score: done", { checked: signals.length, queued });
+  log.info("score: done", { checked: signals.length, rejected: rejected.length, queued, merged });
   return { checked: signals.length, queued };
 }

@@ -261,7 +261,7 @@ model GeoCheck {
 // 위키데이터에서 받은 인물·그룹·드라마 사전 (무료). 품질 체크(해외 인지도), 이름 표기, 대표 사진에 쓴다
 model Entity {
   id        String   @id // 위키데이터 Q-id
-  type      String // "group" | "person" | "series"
+  type      String // "group" | "singer" | "actor" | "series"
   ko        String?
   en        String?
   ja        String?

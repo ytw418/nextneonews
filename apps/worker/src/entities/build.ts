@@ -21,7 +21,7 @@ const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = 
   {
     // K-pop 장르로 분류된 그룹·솔로 가수
     name: "kpop",
-    type: (row) => (row.human ? "person" : "group"),
+    type: (row) => (row.human ? "singer" : "group"),
     sparql: `${SELECT}
       ?item wdt:P136 wd:Q213665 ; wikibase:sitelinks ?sl . FILTER(?sl >= 5)
       OPTIONAL { ?item wdt:P31 wd:Q5 . BIND(true AS ?human) }
@@ -30,7 +30,7 @@ const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = 
   {
     // 한국 국적 배우
     name: "actors",
-    type: () => "person",
+    type: () => "actor",
     sparql: `${SELECT}
       ?item wdt:P27 wd:Q884 ; wdt:P106 ?occ ; wikibase:sitelinks ?sl .
       VALUES ?occ { wd:Q33999 wd:Q10800557 wd:Q10798782 } FILTER(?sl >= 6)

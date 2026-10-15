@@ -27,3 +27,6 @@ packages/db/src/generated/
 *.pem
 npm-debug.log*
 .vercel
+
+# Claude Code 개인 설정
+.claude/settings.local.json

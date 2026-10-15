@@ -34,6 +34,12 @@ export interface StructuredCall<S extends z.ZodType> {
   maxTokens?: number;
 }
 
+// Haiku 5.5 는 effort high 이하에서 thinking 을 끌 수 있다 → 출력(사고) 토큰을 아낀다.
+// Sonnet 5.5·Opus 5.5 는 disabled 가 400 이라 보내지 않는다.
+function thinkingFor(model: string) {
+  return model.startsWith("claude-haiku") ? { thinking: { type: "disabled" as const } } : {};
+}
+
 // 구조화 출력(JSON 스키마)으로 한 번 호출하고, 사용량을 CostLog 에 남긴다.
 export async function callStructured<S extends z.ZodType>(call: StructuredCall<S>): Promise<z.infer<S>> {
   const maxTokens = call.maxTokens ?? 16000;
@@ -45,6 +51,7 @@ export async function callStructured<S extends z.ZodType>(call: StructuredCall<S
     system: [{ type: "text", text: call.system, cache_control: { type: "ephemeral" } }],
     messages: [{ role: "user", content: call.user }],
     output_config: { effort: call.effort, format: betaZodOutputFormat(call.schema) },
+    ...thinkingFor(call.model),
     // 정책 거절 시 서버가 정한 대체 모델로 다시 시도한다. 대체가 없는 모델(Haiku)은 그대로 거절된다.
     betas: ["server-side-fallback-2026-07-01"],
     fallbacks: "default",

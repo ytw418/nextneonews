@@ -49,11 +49,14 @@ npm run dev           # http://localhost:3000/en
 
 ```bash
 npm run worker -- collect        # 네이버 엔터 랭킹·네이트판 수집 → Signal
-npm run worker -- check          # 품질 체크: 규칙 필터 + Haiku 채점 → 통과한 것만 Topic 큐
-npm run worker -- write 3        # 큐 상위 3개 주제: 원문 사실 추출 → Sonnet 영어 기사 → Haiku로 ja·zh-TW·ko 현지화 (상태 REVIEW)
+npm run worker -- entities       # 위키데이터 인물·그룹·드라마 사전 갱신 (무료, 주 1회)
+npm run worker -- check          # 품질 체크: 규칙 필터 + 알고리즘 채점 (AI 없음) → Topic 큐
+npm run worker -- write 3        # 큐 상위 3개: Haiku 1회 호출로 en·ja·zh-TW·ko 기사 + 위키미디어 사진 (1편 약 4원)
+npm run worker -- images         # 사진 없는 글에 위키미디어 공용 CC 사진 붙이기 (무료)
 npm run worker -- pipeline 3     # 위 세 단계 한 번에
-npm run worker -- review         # 승인 대기 글과 검사 경고(출처에 없는 숫자 등)
-npm run worker -- publish [id…]  # 승인 → 사이트에 노출 (id 없으면 대기 글 전부)
+npm run worker -- review         # (AUTO_PUBLISH=false 일 때) 승인 대기 글과 검사 경고
+npm run worker -- publish [id…]  # (AUTO_PUBLISH=false 일 때) 승인
+npm run worker -- cost           # AI 누적 비용 / 상한 (10만 원)
 ```
 
 - 모델은 `apps/worker/src/ai/models.ts`에서 정한다.
