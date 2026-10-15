@@ -89,17 +89,18 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
 }
 
-/* 언어별 시스템 서체: 같은 한자라도 일본·대만·본토 글자 모양이 다르다 */
-:lang(ja) {
+/* 언어별 시스템 서체: 같은 한자라도 일본·대만·본토 글자 모양이 다르다.
+   body 에만 걸어야 로고·라벨의 웹폰트 유틸리티(font-display 등)를 덮어쓰지 않는다 */
+html:lang(ja) body {
   font-family: -apple-system, "SF Pro Text", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
 }
-:lang(zh-TW) {
+html:lang(zh-TW) body {
   font-family: -apple-system, "SF Pro Text", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
 }
-:lang(zh-CN) {
+html:lang(zh-CN) body {
   font-family: -apple-system, "SF Pro Text", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
 }
-:lang(ko) {
+html:lang(ko) body {
   font-family: -apple-system, "SF Pro Text", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 

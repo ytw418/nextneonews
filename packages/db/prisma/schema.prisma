@@ -17,6 +17,7 @@ enum RiskTier {
 
 enum Category {
   KPOP
+  KENT // 연예인 근황·열애·결혼 등 (작품과 무관한 셀럽 소식)
   KDRAMA
   KFOOD
   TRAVEL

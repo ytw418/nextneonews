@@ -1,6 +1,7 @@
 // DB 의 Category enum 과 같은 값. 화면 이름은 apps/web/messages 의 Category 에 있다
 export const CATEGORIES = [
   "KPOP",
+  "KENT",
   "KDRAMA",
   "KFOOD",
   "TRAVEL",

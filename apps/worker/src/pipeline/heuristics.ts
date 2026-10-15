@@ -16,7 +16,7 @@ export interface HeuristicResult {
   timeliness: number;
   evergreen: number;
   risk: "GREEN" | "YELLOW";
-  category: "KPOP" | "KDRAMA" | "KFOOD" | "TRAVEL" | "WORKING_HOLIDAY" | "JOBS" | "HOUSING" | "LIFE";
+  category: "KPOP" | "KENT" | "KDRAMA" | "KFOOD" | "TRAVEL" | "WORKING_HOLIDAY" | "JOBS" | "HOUSING" | "LIFE";
   format: "ISSUE" | "REACTION" | "QNA" | "GUIDE" | "LIST";
   keyword: string;
   reason: string;
@@ -39,6 +39,9 @@ const CATEGORY_WORDS: [HeuristicResult["category"], string[]][] = [
   ["KFOOD", ["편의점", "맛집", "라면", "빵", "디저트", "레시피", "먹방"]],
   ["TRAVEL", ["여행", "축제", "단풍", "관광", "호텔"]],
 ];
+
+// 배우 기사 중 작품 이야기일 때만 KDRAMA, 아니면(결혼·근황·논란) KENT
+const DRAMA_WORDS = ["드라마", "넷플릭스", "디즈니", "티빙", "웨이브", "시청률", "주연", "출연", "방송", "OST", "첫방", "종영", "작품", "캐스팅", "영화", "개봉", "예능"];
 
 const has = (text: string, words: string[]) => words.some((w) => text.includes(w));
 const clamp = (n: number) => Math.min(5, Math.max(1, n));
@@ -77,7 +80,13 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
   const matchedCategory = CATEGORY_WORDS.find(([, words]) => has(title, words))?.[0];
   const category: HeuristicResult["category"] =
     matchedCategory ??
-    (top?.type === "group" || top?.type === "singer" ? "KPOP" : top ? "KDRAMA" : "LIFE");
+    (top?.type === "group" || top?.type === "singer"
+      ? "KPOP"
+      : top?.type === "series" || (top && has(title, DRAMA_WORDS))
+        ? "KDRAMA"
+        : top
+          ? "KENT"
+          : "LIFE");
 
   const format: HeuristicResult["format"] = community
     ? "REACTION"

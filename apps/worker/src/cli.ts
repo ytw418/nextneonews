@@ -10,6 +10,7 @@ import { backfillImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
 import { log } from "./log";
 import { listReview, publish } from "./pipeline/publish";
+import { recategorize } from "./pipeline/recategorize";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
 import { writeArticles } from "./pipeline/write";
@@ -53,7 +54,8 @@ const USAGE = `usage: cli.ts <command>
   entities                 위키데이터에서 인물·그룹·드라마 사전 갱신 (무료, 주 1회)
   images                   대표 사진 없는 글에 위키미디어 공용 사진 붙이기 (무료)
   zh-cn                    간체 번역 없는 글에 번체→간체 변환으로 채우기 (무료)
-  history [days]           네이버 엔터 랭킹 지난 N일치 수집 (초기 글 채우기용, 기본 7)`;
+  history [days]           네이버 엔터 랭킹 지난 N일치 수집 (초기 글 채우기용, 기본 7)
+  recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -87,6 +89,9 @@ try {
       }
       break;
     }
+    case "recategorize":
+      await recategorize();
+      break;
     case "zh-cn":
       await backfillSimplified();
       break;
