@@ -8,8 +8,9 @@ import { BudgetExceededError } from "../ai/budget";
 import { callStructured, RefusalError } from "../ai/client";
 import { MODELS } from "../ai/models";
 import { LOCALIZE_SYSTEM, WRITE_SYSTEM } from "../ai/prompts";
+import { attachImage } from "../entities/images";
 import { log } from "../log";
-import { unsupportedNumbers } from "./checks";
+import { stripHangulParens, unsupportedNumbers } from "./checks";
 import { fetchSourceMaterial, type SourceMaterial, SourceUnavailableError } from "./sources";
 
 const Faq = z.object({ q: z.string(), a: z.string() });
@@ -77,7 +78,7 @@ function writeRequest(topic: Topic, headline: string, source: SourceMaterial): s
 }
 
 async function localize(draft: Draft, locale: (typeof TARGET_LOCALES)[number]) {
-  return callStructured({
+  const result = await callStructured({
     task: `localize-${locale}`,
     model: locale === "ja" ? MODELS.localizeJa : MODELS.localize,
     system: LOCALIZE_SYSTEM,
@@ -95,6 +96,14 @@ async function localize(draft: Draft, locale: (typeof TARGET_LOCALES)[number]) {
     schema: Localized,
     effort: "low",
   });
+  if (locale === "ko") return result;
+  return {
+    title: stripHangulParens(result.title),
+    summary: stripHangulParens(result.summary),
+    keyPoints: result.keyPoints.map(stripHangulParens),
+    body: stripHangulParens(result.body),
+    faq: result.faq.map((f) => ({ q: stripHangulParens(f.q), a: stripHangulParens(f.a) })),
+  };
 }
 
 async function writeTopic(topic: Topic): Promise<string> {
@@ -139,11 +148,11 @@ async function writeTopic(topic: Topic): Promise<string> {
           {
             locale: "en",
             slug,
-            title: draft.title,
-            summary: draft.summary,
-            keyPoints: draft.keyPoints,
-            body: draft.body,
-            faq: draft.faq,
+            title: stripHangulParens(draft.title),
+            summary: stripHangulParens(draft.summary),
+            keyPoints: draft.keyPoints.map(stripHangulParens),
+            body: stripHangulParens(draft.body),
+            faq: draft.faq.map((f) => ({ q: stripHangulParens(f.q), a: stripHangulParens(f.a) })),
             seoDesc: draft.seoDescription,
           },
           ...TARGET_LOCALES.map((locale, i) => {
@@ -166,6 +175,7 @@ async function writeTopic(topic: Topic): Promise<string> {
   if (warnings.length > 0) {
     log.warn("write: check warnings", { articleId: article.id, warnings });
   }
+  await attachImage(article.id);
   return article.id;
 }
 

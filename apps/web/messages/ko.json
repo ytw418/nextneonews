@@ -4,11 +4,17 @@
   },
   "Nav": {
     "home": "홈",
-    "language": "언어"
+    "language": "언어",
+    "upcoming": "일정",
+    "all": "전체",
+    "back": "뒤로"
   },
   "Home": {
-    "latest": "최신 글",
-    "empty": "아직 글이 없습니다."
+    "latest": "최신",
+    "empty": "아직 글이 없습니다.",
+    "upcoming": "다가오는 일정",
+    "dday": "D-{days}",
+    "today": "오늘"
   },
   "Article": {
     "sources": "출처",
@@ -17,10 +23,24 @@
     "keyPoints": "핵심 요약",
     "faq": "자주 묻는 질문",
     "published": "게시",
-    "updated": "수정"
+    "updated": "수정",
+    "share": "공유",
+    "copied": "링크를 복사했어요",
+    "related": "함께 읽기",
+    "readMore": "읽기"
   },
   "NotFound": {
     "title": "페이지를 찾을 수 없습니다",
     "back": "홈으로"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KDRAMA": "드라마",
+    "KFOOD": "푸드",
+    "TRAVEL": "여행",
+    "WORKING_HOLIDAY": "워홀",
+    "JOBS": "알바",
+    "HOUSING": "집",
+    "LIFE": "생활"
   }
 }

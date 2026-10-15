@@ -4,11 +4,17 @@
   },
   "Nav": {
     "home": "ホーム",
-    "language": "言語"
+    "language": "言語",
+    "upcoming": "予定",
+    "all": "すべて",
+    "back": "戻る"
   },
   "Home": {
-    "latest": "最新記事",
-    "empty": "まだ記事がありません。"
+    "latest": "新着",
+    "empty": "まだ記事がありません。",
+    "upcoming": "これからの予定",
+    "dday": "あと{days}日",
+    "today": "今日"
   },
   "Article": {
     "sources": "出典",
@@ -17,10 +23,24 @@
     "keyPoints": "ポイント",
     "faq": "よくある質問",
     "published": "公開",
-    "updated": "更新"
+    "updated": "更新",
+    "share": "シェア",
+    "copied": "リンクをコピーしました",
+    "related": "こちらもおすすめ",
+    "readMore": "読む"
   },
   "NotFound": {
     "title": "ページが見つかりません",
     "back": "ホームへ戻る"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KDRAMA": "韓ドラ",
+    "KFOOD": "韓国グルメ",
+    "TRAVEL": "旅行",
+    "WORKING_HOLIDAY": "ワーホリ",
+    "JOBS": "バイト",
+    "HOUSING": "住まい",
+    "LIFE": "暮らし"
   }
 }

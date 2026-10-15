@@ -1,6 +1,248 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/*
+  디자인 방향 (docs/design/refs-v2): 홈은 소셜 피드, 기사는 팬덤 매거진, 사진 없는 카드는 파스텔 메모.
+  모티프는 K-pop 포토카드 — 둥근 모서리, 마스킹테이프, 스티커.
+  포인트 색은 체리 하나만 쓴다.
+*/
+
 :root {
-  color-scheme: light dark;
+  --bg: #fbf7f2;
+  --fg: #1b1520;
+  --muted: #7d7382;
+  --line: #ece4da;
+  --card: #ffffff;
+  --cherry: #ff3d6e;
+  --cherry-deep: #d61b50;
+
+  /* 카테고리 파스텔 (메모 커버) */
+  --tint-kpop: #ffd9e5;
+  --tint-kdrama: #e5e0ff;
+  --tint-kfood: #fff0b3;
+  --tint-travel: #cdf1e1;
+  --tint-wh: #d6eaff;
+  --tint-jobs: #ffe6c7;
+  --tint-housing: #e9f0c8;
+  --tint-life: #ffdfd2;
+
+  --tape: rgba(255, 255, 255, 0.55);
+  --ink: #1b1520; /* 파스텔 면 위 글자는 모드와 상관없이 진한 색 */
+  --bar: rgba(251, 247, 242, 0.82);
+  --tabbar-h: 58px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141016;
+    --fg: #f6eff3;
+    --muted: #a99fae;
+    --line: #2b2430;
+    --card: #1e1922;
+    --cherry: #ff5a85;
+    --cherry-deep: #ff7d9f;
+
+    /* 파스텔은 다크 모드에서도 그대로 (어두운 바탕 위 스티커처럼 보이게), 살짝만 낮춘다 */
+    --tint-kpop: #f7c9d8;
+    --tint-kdrama: #d6cffa;
+    --tint-kfood: #f5e39c;
+    --tint-travel: #bfe8d5;
+    --tint-wh: #c5ddf7;
+    --tint-jobs: #f5d6af;
+    --tint-housing: #dbe5b4;
+    --tint-life: #f5cfbf;
+
+    --tape: rgba(255, 255, 255, 0.5);
+    --bar: rgba(20, 16, 22, 0.8);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-cherry: var(--cherry);
+  --color-cherry-deep: var(--cherry-deep);
+  --color-ink: var(--ink);
+
+  /* 한중일 글자는 아이폰 시스템 서체(Hiragino·PingFang·Apple SD Gothic)로, 라틴 포인트만 웹폰트 */
+  --font-sans:
+    -apple-system, "SF Pro Text", "Hiragino Sans", "PingFang TC", "Apple SD Gothic Neo", "Noto Sans JP",
+    "Noto Sans TC", "Noto Sans KR", sans-serif;
+  --font-display: var(--font-instrument), "Hiragino Mincho ProN", "Songti TC", serif;
+  --font-label: var(--font-bricolage), -apple-system, "Hiragino Sans", "PingFang TC", sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  /* 아주 옅은 종이 질감 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+}
+
+/* 한중일 줄바꿈: 단어 중간에서 끊기지 않게, 제목은 줄 길이를 고르게 */
+h1,
+h2,
+h3,
+.title {
+  text-wrap: balance;
+  line-break: strict;
+}
+
+/* 가로 레일: 스크롤바 숨기고 스냅 */
+.rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail > * {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+}
+
+/* 마스킹테이프 */
+.tape::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 64px;
+  height: 20px;
+  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
+  background: var(--tape);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  border-left: 2px dotted rgba(0, 0, 0, 0.06);
+  border-right: 2px dotted rgba(0, 0, 0, 0.06);
+}
+
+/* 메모 커버 무늬 */
+.pattern-grid {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.pattern-dots {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
+}
+.pattern-lines {
+  background-image: repeating-linear-gradient(to bottom, transparent 0 23px, rgba(0, 0, 0, 0.06) 23px 24px);
+}
+
+/* 포토카드 홀로그램 테두리 (대표 카드에만) */
+.holo {
+  position: relative;
+  isolation: isolate;
+}
+.holo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(115deg, #ffd1e1, #fff4b8, #c9f3e3, #cfe3ff, #ffd1e1);
+  background-size: 300% 300%;
+  animation: holo 6s linear infinite;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@keyframes holo {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+/* 첫 화면 카드가 순서대로 떠오른다 */
+.rise {
+  animation: rise 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* 티켓 절취선 */
+.ticket {
+  --notch: 7px;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 62%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 62%, transparent 98%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle var(--notch) at 0 62%, transparent 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% 62%, transparent 98%, #000) right / 51% 100% no-repeat;
+}
+
+/* 네티즌 반응 인용은 말풍선으로 */
+.article-body blockquote {
+  position: relative;
+  margin: 1.1em 0;
+  padding: 0.75em 1em;
+  border: 0;
+  border-radius: 18px 18px 18px 6px;
+  background: var(--card);
+  box-shadow: 0 1px 0 var(--line);
+  font-style: normal;
+  quotes: none;
+}
+.article-body blockquote p::before,
+.article-body blockquote p::after {
+  content: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .holo::after {
+    animation: none;
+  }
+}
+
+/* 기사 본문 소제목: 체리색 작은 태그 */
+.article-body h2 {
+  position: relative;
+  padding-top: 0.9em;
+}
+.article-body h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--cherry);
+}
+
+/* FAQ 펼치기 */
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq[open] .faq-plus {
+  transform: rotate(45deg);
 }

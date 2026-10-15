@@ -14,3 +14,8 @@ export function unsupportedNumbers(draft: CheckableDraft, allowed: string[] = []
   const numbers = new Set(written.match(/\d+(?:\.\d+)?/g) ?? []);
   return [...numbers].filter((n) => n.length > 1 && !factText.includes(n) && !allowed.includes(n));
 }
+
+// ko 가 아닌 번역문에 남은 "(성심당)" 같은 한글 괄호 병기를 지운다. AI 를 다시 부르지 않는 무료 후처리
+export function stripHangulParens(text: string): string {
+  return text.replace(/\s?[（(][^()（）]*[가-힣][^()（）]*[)）]/g, "");
+}

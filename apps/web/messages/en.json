@@ -4,11 +4,17 @@
   },
   "Nav": {
     "home": "Home",
-    "language": "Language"
+    "language": "Language",
+    "upcoming": "Upcoming",
+    "all": "For you",
+    "back": "Back"
   },
   "Home": {
     "latest": "Latest",
-    "empty": "No articles yet."
+    "empty": "No articles yet.",
+    "upcoming": "Coming up",
+    "dday": "D-{days}",
+    "today": "TODAY"
   },
   "Article": {
     "sources": "Sources",
@@ -17,10 +23,24 @@
     "keyPoints": "Key points",
     "faq": "FAQ",
     "published": "Published",
-    "updated": "Updated"
+    "updated": "Updated",
+    "share": "Share",
+    "copied": "Link copied",
+    "related": "More to read",
+    "readMore": "Read"
   },
   "NotFound": {
     "title": "Page not found",
     "back": "Back to home"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KDRAMA": "K-DRAMA",
+    "KFOOD": "K-FOOD",
+    "TRAVEL": "Travel",
+    "WORKING_HOLIDAY": "Working Holiday",
+    "JOBS": "Jobs",
+    "HOUSING": "Housing",
+    "LIFE": "Life"
   }
 }

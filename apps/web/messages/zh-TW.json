@@ -4,11 +4,17 @@
   },
   "Nav": {
     "home": "首頁",
-    "language": "語言"
+    "language": "語言",
+    "upcoming": "行程",
+    "all": "全部",
+    "back": "返回"
   },
   "Home": {
-    "latest": "最新文章",
-    "empty": "目前還沒有文章。"
+    "latest": "最新",
+    "empty": "目前還沒有文章。",
+    "upcoming": "即將登場",
+    "dday": "倒數 {days} 天",
+    "today": "今天"
   },
   "Article": {
     "sources": "資料來源",
@@ -17,10 +23,24 @@
     "keyPoints": "重點整理",
     "faq": "常見問題",
     "published": "發布",
-    "updated": "更新"
+    "updated": "更新",
+    "share": "分享",
+    "copied": "已複製連結",
+    "related": "延伸閱讀",
+    "readMore": "閱讀"
   },
   "NotFound": {
     "title": "找不到頁面",
     "back": "回到首頁"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KDRAMA": "韓劇",
+    "KFOOD": "韓國美食",
+    "TRAVEL": "旅遊",
+    "WORKING_HOLIDAY": "打工度假",
+    "JOBS": "打工",
+    "HOUSING": "租屋",
+    "LIFE": "生活"
   }
 }

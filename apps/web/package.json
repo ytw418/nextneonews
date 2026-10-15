@@ -12,6 +12,7 @@
   "dependencies": {
     "@kmedia/core": "*",
     "@kmedia/db": "*",
+    "budoux": "^0.9.3",
     "next": "16.4.1",
     "next-intl": "^4.14.9",
     "react": "19.3.1",

@@ -4,6 +4,8 @@ import { prisma } from "@kmedia/db";
 
 import { budgetUsd, spentUsd } from "./ai/budget";
 import { collectors } from "./collectors";
+import { buildEntities } from "./entities/build";
+import { backfillImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
 import { log } from "./log";
 import { listReview, publish } from "./pipeline/publish";
@@ -45,7 +47,9 @@ const USAGE = `usage: cli.ts <command>
   review                   승인 대기 글 목록
   publish [articleId...]   승인 (id 없으면 REVIEW 전부)
   cost                     AI 누적 비용 / 상한
-  geo-check [limit]        목표 질문을 AI 웹 검색에 던져 인용 출처 기록 (GEO 측정)`;
+  geo-check [limit]        목표 질문을 AI 웹 검색에 던져 인용 출처 기록 (GEO 측정)
+  entities                 위키데이터에서 인물·그룹·드라마 사전 갱신 (무료, 주 1회)
+  images                   대표 사진 없는 글에 위키미디어 공용 사진 붙이기 (무료)`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -70,6 +74,12 @@ try {
       break;
     case "publish":
       await publish(args);
+      break;
+    case "images":
+      await backfillImages();
+      break;
+    case "entities":
+      await buildEntities();
       break;
     case "geo-check":
       await geoCheck(numberArg(args, 8));

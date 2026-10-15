@@ -257,3 +257,19 @@ model GeoCheck {
 
   @@index([question, createdAt])
 }
+
+// 위키데이터에서 받은 인물·그룹·드라마 사전 (무료). 품질 체크(해외 인지도), 이름 표기, 대표 사진에 쓴다
+model Entity {
+  id        String   @id // 위키데이터 Q-id
+  type      String // "group" | "person" | "series"
+  ko        String?
+  en        String?
+  ja        String?
+  zhHant    String?
+  sitelinks Int // 이 항목이 있는 위키백과 언어 수 = 해외 인지도 지표
+  image     String? // 위키미디어 공용 파일 이름 (P18)
+  updatedAt DateTime @updatedAt
+
+  @@index([ko])
+  @@index([en])
+}

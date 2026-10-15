@@ -8,6 +8,7 @@ const repoRoot = path.resolve(process.cwd(), "../..");
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@kmedia/core", "@kmedia/db"],
+  devIndicators: false,
   turbopack: { root: repoRoot },
   outputFileTracingRoot: repoRoot,
 };

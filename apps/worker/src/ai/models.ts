@@ -3,7 +3,8 @@ import type Anthropic from "@anthropic-ai/sdk";
 // 단계별 모델 (docs/PRD.md 8.2: 채점·번역은 Haiku, 작성은 Sonnet). 품질이 부족하면 여기만 바꾼다.
 export const MODELS = {
   score: "claude-haiku-5-5",
-  write: "claude-sonnet-5-5",
+  // 비용 우선: 작성도 Haiku (1편 약 3원). 품질을 올리려면 "claude-sonnet-5-5" (1편 약 48원)
+  write: "claude-haiku-5-5",
   localize: "claude-haiku-5-5",
   // 일본어 품질을 더 올리려면 "claude-sonnet-5-5" (현지화 1건 약 30원 ↔ Haiku 약 4원)
   localizeJa: "claude-haiku-5-5",
