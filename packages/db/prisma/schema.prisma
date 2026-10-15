@@ -317,3 +317,20 @@ model AiBatch {
 
   @@index([kind, status])
 }
+
+// K-쇼핑 주간 랭킹용 상품 (편의점 신상·올리브영 등). 이름은 매장에서 찾을 수 있게 원문 그대로 두고 번역은 따로 둔다
+model Product {
+  id          String   @id // "<source>:<상품 번호>"
+  source      String // "cu" | "gs25" | "oliveyoung"
+  name        String
+  names       Json? // { en, ja, "zh-TW", ... } 배치 번역
+  price       Int?
+  imageUrl    String?
+  url         String? // 공식 상품 페이지
+  category    String? // 매장 분류 (간편식사·과자·음료 등)
+  tags        String[] @default([]) // new · best · 1+1 · 2+1
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+
+  @@index([source, firstSeenAt])
+}

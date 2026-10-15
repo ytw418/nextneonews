@@ -13,6 +13,7 @@ import { listHiddenComments, restoreComments } from "./pipeline/comments";
 import { seedGuides } from "./pipeline/guides";
 import { recategorize } from "./pipeline/recategorize";
 import { recheckSources } from "./pipeline/recheck";
+import { collectProducts } from "./products";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
 import { collectTranslations, submitTranslations } from "./pipeline/translate";
@@ -61,7 +62,8 @@ const USAGE = `usage: cli.ts <command>
   recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기
   comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기
   seed-guides              가이드 주제(apps/worker/data/guides.json)를 대기열에 넣기 (이미 있으면 건너뜀)
-  recheck                  최근 30일 글의 원문이 삭제됐으면(404·410) 글을 내려 확인 대기로 (하루 1번)`;
+  recheck                  최근 30일 글의 원문이 삭제됐으면(404·410) 글을 내려 확인 대기로 (하루 1번)
+  products                 편의점 상품 수집 (K-쇼핑 주간 랭킹, 하루 1번)`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -86,6 +88,9 @@ try {
       break;
     case "publish":
       await publish(args);
+      break;
+    case "products":
+      await collectProducts();
       break;
     case "recheck":
       await recheckSources();

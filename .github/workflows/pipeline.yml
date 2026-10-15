@@ -40,6 +40,9 @@ jobs:
       - name: 원문 삭제 확인 (하루 1번)
         if: github.event.schedule == '23 20 * * *'
         run: npm run worker -- recheck
+      - name: 편의점 상품 수집 (하루 1번, K-쇼핑 주간 랭킹)
+        if: github.event.schedule == '23 20 * * *'
+        run: npm run worker -- products
       - name: 인물 사전 갱신 (주 1회)
         if: github.event.schedule == '40 18 * * 0'
         run: npm run worker -- entities
