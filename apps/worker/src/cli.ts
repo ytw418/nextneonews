@@ -4,6 +4,7 @@ import { prisma } from "@kmedia/db";
 
 import { budgetUsd, spentUsd } from "./ai/budget";
 import { collectors } from "./collectors";
+import { geoCheck } from "./geo/check";
 import { log } from "./log";
 import { listReview, publish } from "./pipeline/publish";
 import { scoreSignals } from "./pipeline/score";
@@ -43,7 +44,8 @@ const USAGE = `usage: cli.ts <command>
   pipeline [limit]         collect → check → write
   review                   승인 대기 글 목록
   publish [articleId...]   승인 (id 없으면 REVIEW 전부)
-  cost                     AI 누적 비용 / 상한`;
+  cost                     AI 누적 비용 / 상한
+  geo-check [limit]        목표 질문을 AI 웹 검색에 던져 인용 출처 기록 (GEO 측정)`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -68,6 +70,9 @@ try {
       break;
     case "publish":
       await publish(args);
+      break;
+    case "geo-check":
+      await geoCheck(numberArg(args, 8));
       break;
     case "cost": {
       const spent = await spentUsd();

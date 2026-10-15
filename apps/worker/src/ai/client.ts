@@ -9,13 +9,20 @@ import { assertBudget } from "./budget";
 import { costUsd, isKnownModel, worstCaseUsd } from "./models";
 
 let client: Anthropic | undefined;
-function getClient(): Anthropic {
+export function getClient(): Anthropic {
   // ANTHROPIC_API_KEY 는 레포 루트 .env 에서 읽는다 (src/env.ts)
   client ??= new Anthropic();
   return client;
 }
 
 export class RefusalError extends Error {}
+
+export async function logCost(task: string, model: string, usage: Anthropic.Beta.BetaUsage): Promise<void> {
+  if (!isKnownModel(model)) {
+    log.warn("cost: unknown model price, using fallback price", { model });
+  }
+  await prisma.costLog.create({ data: { kind: "LLM", amountUsd: costUsd(model, usage), ref: `${task}:${model}` } });
+}
 
 export interface StructuredCall<S extends z.ZodType> {
   task: string; // 비용 기록·로그용 이름 (예: "score", "write")
@@ -43,12 +50,7 @@ export async function callStructured<S extends z.ZodType>(call: StructuredCall<S
     fallbacks: "default",
   });
 
-  if (!isKnownModel(response.model)) {
-    log.warn("cost: unknown model price, using fallback price", { model: response.model });
-  }
-  await prisma.costLog.create({
-    data: { kind: "LLM", amountUsd: costUsd(response.model, response.usage), ref: `${call.task}:${response.model}` },
-  });
+  await logCost(call.task, response.model, response.usage);
 
   if (response.stop_reason === "refusal") {
     throw new RefusalError(`${call.task}: refused (${response.stop_details?.category ?? "unknown"})`);

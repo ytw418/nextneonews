@@ -5,9 +5,14 @@ export const MODELS = {
   score: "claude-haiku-5-5",
   write: "claude-sonnet-5-5",
   localize: "claude-haiku-5-5",
-  // 일본이 핵심 시장이라 일본어만 Sonnet (Haiku 는 제목에서 "ジCHANGウク" 같은 표기 오류가 났다)
-  localizeJa: "claude-sonnet-5-5",
+  // 일본어 품질을 더 올리려면 "claude-sonnet-5-5" (현지화 1건 약 30원 ↔ Haiku 약 4원)
+  localizeJa: "claude-haiku-5-5",
+  // GEO 측정용 웹 검색 답변 (web_search_20260209 는 Sonnet 4.6 이상 필요)
+  geo: "claude-sonnet-5-5",
 } as const;
+
+// 웹 검색 1회 $0.01 ($10 / 1,000건)
+const WEB_SEARCH_USD = 0.01;
 
 // $ / 1M tokens (2026-10 공식 가격). 캐시 쓰기는 입력가의 1.25배, 읽기는 0.1배.
 const PRICES: Record<string, { input: number; output: number }> = {
@@ -27,7 +32,8 @@ export function costUsd(model: string, usage: Anthropic.Beta.BetaUsage): number 
     cacheWrite * price.input * 1.25 +
     cacheRead * price.input * 0.1 +
     usage.output_tokens * price.output;
-  return dollars / 1_000_000;
+  const searches = usage.server_tool_use?.web_search_requests ?? 0;
+  return dollars / 1_000_000 + searches * WEB_SEARCH_USD;
 }
 
 // 호출 전 예산 확인용: 입력 토큰 추정치와 max_tokens 를 모두 쓴다고 가정한 최악의 비용

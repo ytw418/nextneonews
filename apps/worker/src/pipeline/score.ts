@@ -11,9 +11,10 @@ import { ruleFilter } from "./ruleFilter";
 
 const BATCH_SIZE = 25;
 const LOOKBACK_HOURS = 48;
-// 이 점수 이상이고 answerable 3 이상, RED 아님, 중복 아님 → Topic 큐에 올린다 (최대 27점)
-const TOPIC_THRESHOLD = 17;
-const MIN_ANSWERABLE = 3;
+// 이 점수 이상이고 answerable 2 이상, RED 아님, 중복 아님 → Topic 큐에 올린다 (최대 27점).
+// 케이아지트 수준으로 너그럽게: 연예 가십·반응형도 통과시킨다
+const TOPIC_THRESHOLD = 14;
+const MIN_ANSWERABLE = 2;
 
 const ScoreItem = z.object({
   id: z.string(),

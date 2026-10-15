@@ -6,7 +6,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SITE_NAME } from "@kmedia/core";
 
 import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
 import { routing } from "@/i18n/routing";
+import { siteJsonLd } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/url";
 
 import "../globals.css";
@@ -36,6 +38,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   return (
     <html lang={locale}>
       <body className="bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
+        <JsonLd data={siteJsonLd(locale)} />
         <NextIntlClientProvider>
           <Header />
           <main className="mx-auto max-w-3xl px-4 py-8">{children}</main>

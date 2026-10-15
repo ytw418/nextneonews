@@ -14,10 +14,19 @@ import { fetchSourceMaterial, type SourceMaterial, SourceUnavailableError } from
 
 const Faq = z.object({ q: z.string(), a: z.string() });
 
+const Entity = z.object({
+  name: z.string(),
+  type: z.enum(["Person", "MusicGroup", "TVSeries", "Movie", "Event", "Organization"]),
+  koreanName: z.string(),
+  alternateNames: z.array(z.string()),
+});
+
 const Draft = z.object({
   facts: z.array(z.object({ id: z.string(), statement: z.string() })),
   title: z.string(),
   summary: z.string(),
+  keyPoints: z.array(z.string()),
+  entities: z.array(Entity),
   body: z.string(),
   faq: z.array(Faq),
   slug: z.string(),
@@ -28,11 +37,14 @@ type Draft = z.infer<typeof Draft>;
 const Localized = z.object({
   title: z.string(),
   summary: z.string(),
+  keyPoints: z.array(z.string()),
   body: z.string(),
   faq: z.array(Faq),
 });
 
 const TARGET_LOCALES = ["ja", "zh-TW", "ko"] as const;
+
+const autoPublish = process.env.AUTO_PUBLISH !== "false";
 
 function slugify(raw: string): string {
   const base = raw
@@ -72,7 +84,13 @@ async function localize(draft: Draft, locale: (typeof TARGET_LOCALES)[number]) {
     user: JSON.stringify({
       targetLocale: locale,
       facts: draft.facts,
-      draft: { title: draft.title, summary: draft.summary, body: draft.body, faq: draft.faq },
+      draft: {
+        title: draft.title,
+        summary: draft.summary,
+        keyPoints: draft.keyPoints,
+        body: draft.body,
+        faq: draft.faq,
+      },
     }),
     schema: Localized,
     effort: "low",
@@ -95,7 +113,8 @@ async function writeTopic(topic: Topic): Promise<string> {
     system: WRITE_SYSTEM,
     user: writeRequest(topic, signal.title, source),
     schema: Draft,
-    effort: "medium",
+    // 비용 절감: 사고(thinking) 토큰을 줄인다. 품질이 떨어지면 "medium"
+    effort: "low",
   });
 
   const [year, month, day] = kstToday().split("-").map((part) => String(Number(part)));
@@ -109,9 +128,12 @@ async function writeTopic(topic: Topic): Promise<string> {
       category: topic.category,
       format: topic.format,
       riskTier: topic.riskTier,
-      // 처음 2주는 전량 사람 승인 (docs/PRD.md 5.3). 승인은 `worker publish`
-      status: "REVIEW",
+      // 케이아지트처럼 바로 발행한다. 🔴 주제는 채점 단계에서 이미 빠진다.
+      // 사람 승인을 다시 켜려면 AUTO_PUBLISH=false → `worker publish` 로 승인
+      status: autoPublish ? "PUBLISHED" : "REVIEW",
+      publishedAt: autoPublish ? new Date() : null,
       facts: { facts: draft.facts, warnings },
+      entities: draft.entities,
       translations: {
         create: [
           {
@@ -119,13 +141,22 @@ async function writeTopic(topic: Topic): Promise<string> {
             slug,
             title: draft.title,
             summary: draft.summary,
+            keyPoints: draft.keyPoints,
             body: draft.body,
             faq: draft.faq,
             seoDesc: draft.seoDescription,
           },
           ...TARGET_LOCALES.map((locale, i) => {
             const t = localized[i]!;
-            return { locale, slug, title: t.title, summary: t.summary, body: t.body, faq: t.faq };
+            return {
+              locale,
+              slug,
+              title: t.title,
+              summary: t.summary,
+              keyPoints: t.keyPoints,
+              body: t.body,
+              faq: t.faq,
+            };
           }),
         ],
       },

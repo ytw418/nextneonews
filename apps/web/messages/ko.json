@@ -1,11 +1,26 @@
 {
-  "Site": { "tagline": "외국인이 궁금한 한국, 매일" },
-  "Nav": { "home": "홈", "language": "언어" },
-  "Home": { "latest": "최신 글", "empty": "아직 글이 없습니다." },
+  "Site": {
+    "tagline": "외국인이 궁금한 한국, 매일"
+  },
+  "Nav": {
+    "home": "홈",
+    "language": "언어"
+  },
+  "Home": {
+    "latest": "최신 글",
+    "empty": "아직 글이 없습니다."
+  },
   "Article": {
     "sources": "출처",
     "aiNotice": "AI의 도움으로 작성·번역했고 편집자가 검수했습니다.",
-    "correction": "정정 요청"
+    "correction": "정정 요청",
+    "keyPoints": "핵심 요약",
+    "faq": "자주 묻는 질문",
+    "published": "게시",
+    "updated": "수정"
   },
-  "NotFound": { "title": "페이지를 찾을 수 없습니다", "back": "홈으로" }
+  "NotFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "back": "홈으로"
+  }
 }

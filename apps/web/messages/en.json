@@ -1,11 +1,26 @@
 {
-  "Site": { "tagline": "What foreigners want to know about Korea, every day" },
-  "Nav": { "home": "Home", "language": "Language" },
-  "Home": { "latest": "Latest", "empty": "No articles yet." },
+  "Site": {
+    "tagline": "What foreigners want to know about Korea, every day"
+  },
+  "Nav": {
+    "home": "Home",
+    "language": "Language"
+  },
+  "Home": {
+    "latest": "Latest",
+    "empty": "No articles yet."
+  },
   "Article": {
     "sources": "Sources",
     "aiNotice": "Written and translated with AI assistance and reviewed by an editor.",
-    "correction": "Request a correction"
+    "correction": "Request a correction",
+    "keyPoints": "Key points",
+    "faq": "FAQ",
+    "published": "Published",
+    "updated": "Updated"
   },
-  "NotFound": { "title": "Page not found", "back": "Back to home" }
+  "NotFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  }
 }

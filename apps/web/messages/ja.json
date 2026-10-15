@@ -1,11 +1,26 @@
 {
-  "Site": { "tagline": "外国人が知りたい韓国を、毎日" },
-  "Nav": { "home": "ホーム", "language": "言語" },
-  "Home": { "latest": "最新記事", "empty": "まだ記事がありません。" },
+  "Site": {
+    "tagline": "外国人が知りたい韓国を、毎日"
+  },
+  "Nav": {
+    "home": "ホーム",
+    "language": "言語"
+  },
+  "Home": {
+    "latest": "最新記事",
+    "empty": "まだ記事がありません。"
+  },
   "Article": {
     "sources": "出典",
     "aiNotice": "この記事はAIの支援で作成・翻訳し、編集者が確認しています。",
-    "correction": "訂正を依頼する"
+    "correction": "訂正を依頼する",
+    "keyPoints": "ポイント",
+    "faq": "よくある質問",
+    "published": "公開",
+    "updated": "更新"
   },
-  "NotFound": { "title": "ページが見つかりません", "back": "ホームへ戻る" }
+  "NotFound": {
+    "title": "ページが見つかりません",
+    "back": "ホームへ戻る"
+  }
 }

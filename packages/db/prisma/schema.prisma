@@ -137,6 +137,7 @@ model Article {
   riskTier     RiskTier
   status       ArticleStatus @default(DRAFT)
   facts        Json? // 출처에서 뽑은 사실 목록 (숫자는 여기 값만 쓴다)
+  entities     Json? // 등장 인물·그룹·작품 [{ name, type, koreanName, alternateNames }] → JSON-LD about (GEO)
   publishedAt  DateTime?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
@@ -160,6 +161,7 @@ model Translation {
   summary   String
   body      String // markdown
   faq       Json? // [{ q, a }]
+  keyPoints Json? // 핵심 요약 3줄 (AI 답변·검색 스니펫이 인용하기 좋게)
   seoTitle  String?
   seoDesc   String?
   indexable Boolean @default(true) // 품질 낮은 번역은 noindex
@@ -238,4 +240,20 @@ model CostLog {
   amountUsd Decimal  @db.Decimal(10, 4)
   ref       String?
   createdAt DateTime @default(now())
+}
+
+// GEO 측정: 목표 질문을 AI 웹 검색 답변에 던졌을 때 어떤 출처가 인용되는지 (docs/geo.md)
+model GeoCheck {
+  id              String   @id @default(cuid())
+  question        String
+  locale          String
+  engine          String // "claude-web-search" 등
+  ourCited        Boolean // 우리 도메인이 답변 인용에 들어갔는지
+  citedUrls       String[]
+  citedDomains    String[]
+  searchedDomains String[] // 검색은 됐지만 인용되지 않은 것 포함
+  answerExcerpt   String?
+  createdAt       DateTime @default(now())
+
+  @@index([question, createdAt])
 }

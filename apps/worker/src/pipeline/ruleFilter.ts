@@ -19,7 +19,7 @@ const RED_KEYWORDS = [
 ];
 
 const MIN_TITLE_LENGTH = 6;
-const MIN_VIEWS = 3000;
+const MIN_VIEWS = 1000;
 
 function normalizeTitle(title: string): string {
   return title
