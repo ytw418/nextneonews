@@ -113,12 +113,17 @@ model Signal {
 }
 
 model Topic {
-  id        String      @id @default(cuid())
+  id        String         @id @default(cuid())
   keyword   String
-  score     Float       @default(0)
-  riskTier  RiskTier    @default(YELLOW)
-  status    TopicStatus @default(NEW)
-  createdAt DateTime    @default(now())
+  score     Float          @default(0)
+  riskTier  RiskTier       @default(YELLOW)
+  status    TopicStatus    @default(NEW)
+  // 품질 체크(AI 채점)가 정한 값. 글 작성 단계가 그대로 쓴다
+  category  Category?
+  format    ArticleFormat?
+  locales   String[] // 특히 먹힐 언어권
+  brief     String? // 채점 이유 한 줄
+  createdAt DateTime       @default(now())
   signals   Signal[]
   articles  Article[]
 }

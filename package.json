@@ -22,7 +22,8 @@
     "db:migrate:new": "npm run migrate:new -w @kmedia/db --",
     "db:seed": "npm run seed -w @kmedia/db",
     "db:studio": "npm run studio -w @kmedia/db",
-    "collect": "npm run collect -w @kmedia/worker --"
+    "collect": "npm run collect -w @kmedia/worker --",
+    "worker": "npm run cli -w @kmedia/worker --"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

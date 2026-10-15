@@ -1,0 +1,42 @@
+import type Anthropic from "@anthropic-ai/sdk";
+
+// 단계별 모델 (docs/PRD.md 8.2: 채점·번역은 Haiku, 작성은 Sonnet). 품질이 부족하면 여기만 바꾼다.
+export const MODELS = {
+  score: "claude-haiku-5-5",
+  write: "claude-sonnet-5-5",
+  localize: "claude-haiku-5-5",
+  // 일본이 핵심 시장이라 일본어만 Sonnet (Haiku 는 제목에서 "ジCHANGウク" 같은 표기 오류가 났다)
+  localizeJa: "claude-sonnet-5-5",
+} as const;
+
+// $ / 1M tokens (2026-10 공식 가격). 캐시 쓰기는 입력가의 1.25배, 읽기는 0.1배.
+const PRICES: Record<string, { input: number; output: number }> = {
+  "claude-haiku-5-5": { input: 0.1, output: 0.5 },
+  "claude-sonnet-5-5": { input: 2, output: 10 },
+  "claude-opus-5-5": { input: 4, output: 20 },
+};
+// 거절 시 다른 모델이 대신 답했는데 표에 없으면 가장 비싼 값으로 잡는다 (과소 집계 방지).
+const FALLBACK_PRICE = { input: 10, output: 50 };
+
+export function costUsd(model: string, usage: Anthropic.Beta.BetaUsage): number {
+  const price = PRICES[model] ?? FALLBACK_PRICE;
+  const cacheWrite = usage.cache_creation_input_tokens ?? 0;
+  const cacheRead = usage.cache_read_input_tokens ?? 0;
+  const dollars =
+    usage.input_tokens * price.input +
+    cacheWrite * price.input * 1.25 +
+    cacheRead * price.input * 0.1 +
+    usage.output_tokens * price.output;
+  return dollars / 1_000_000;
+}
+
+// 호출 전 예산 확인용: 입력 토큰 추정치와 max_tokens 를 모두 쓴다고 가정한 최악의 비용
+export function worstCaseUsd(model: string, inputChars: number, maxTokens: number): number {
+  const price = PRICES[model] ?? FALLBACK_PRICE;
+  const inputTokens = inputChars; // 한글은 대략 글자당 1토큰 이하라 글자 수를 그대로 상한으로 쓴다
+  return (inputTokens * price.input + maxTokens * price.output) / 1_000_000;
+}
+
+export function isKnownModel(model: string): boolean {
+  return model in PRICES;
+}

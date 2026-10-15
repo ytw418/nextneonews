@@ -3,14 +3,17 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "cli": "tsx src/cli.ts",
     "collect": "tsx src/cli.ts collect",
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
     "@kmedia/core": "*",
     "@kmedia/db": "*",
     "cheerio": "^1.2.0",
-    "dotenv": "^18.0.8"
+    "dotenv": "^18.0.8",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "tsx": "^4.23.15"
