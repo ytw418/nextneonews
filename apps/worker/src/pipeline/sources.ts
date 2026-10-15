@@ -42,11 +42,16 @@ const BODY_SELECTORS = [
   ".news_body",
   ".view_con",
   "article",
+  "main",
+  "#content",
+  "#contents",
+  ".content",
 ];
 
-async function newsArticle(url: string, fallbackPublisher: string): Promise<SourceMaterial> {
+// 페이지 본문과 발행처 이름. 뉴스·공식 페이지 모두 쓴다 (사실 목록 factpack.ts)
+export async function readPage(url: string, fallbackPublisher: string): Promise<{ publisher: string; text: string }> {
   const $ = cheerio.load(await fetchHtml(url));
-  $("script, style, figure, figcaption, .img_desc, .copyright, .reporter_area, iframe").remove();
+  $("script, style, nav, header, footer, figure, figcaption, .img_desc, .copyright, .reporter_area, iframe").remove();
   let text = "";
   for (const selector of BODY_SELECTORS) {
     const candidate = clean($(selector).first().text());
@@ -57,15 +62,20 @@ async function newsArticle(url: string, fallbackPublisher: string): Promise<Sour
   }
   if (!text) {
     text = clean(
-      $("p")
+      $("p, li, td")
         .map((_, el) => $(el).text())
         .get()
         .filter((line) => line.trim().length > 40)
         .join(" "),
     );
   }
-  if (!text) throw new SourceUnavailableError(`article body not found: ${url}`);
   const publisher = clean($('meta[property="og:site_name"]').attr("content") ?? "") || fallbackPublisher;
+  return { publisher, text };
+}
+
+async function newsArticle(url: string, fallbackPublisher: string): Promise<SourceMaterial> {
+  const { publisher, text } = await readPage(url, fallbackPublisher);
+  if (!text) throw new SourceUnavailableError(`article body not found: ${url}`);
   return { url, publisher, kind: "NEWS", text: capped(text, url), comments: [] };
 }
 

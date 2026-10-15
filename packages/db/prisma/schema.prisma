@@ -127,6 +127,9 @@ model Topic {
   format    ArticleFormat?
   locales   String[] // 특히 먹힐 언어권
   brief     String? // 채점 이유 한 줄
+  // 가이드 주제 (docs/research/topics-2026-10.md): 영어 제목 방향과 사실을 가져올 공식 페이지
+  angle     String?
+  factUrls  String[]       @default([])
   createdAt DateTime       @default(now())
   signals   Signal[]
   articles  Article[]
@@ -186,12 +189,12 @@ model SourceRef {
 }
 
 model Media {
-  id        String    @id @default(cuid())
-  articleId String
-  article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  url       String
-  kind      MediaKind
-  credit    String? // 한 줄 표기 (예전 방식)
+  id          String    @id @default(cuid())
+  articleId   String
+  article     Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  url         String
+  kind        MediaKind
+  credit      String? // 한 줄 표기 (예전 방식)
   // CC 라이선스 표시 조건: 저작자·라이선스 이름과 링크·원본 링크·수정 여부
   author      String?
   licenseName String?

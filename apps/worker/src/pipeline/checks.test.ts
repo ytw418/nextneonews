@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { looksLikeLocale, stripHangulParens, unsupportedNumbers } from "./checks";
+import { looksLikeLocale, overlapRatio, stripHangulParens, unsupportedNumbers } from "./checks";
 
 describe("unsupportedNumbers", () => {
   it("facts 에 없는 두 자리 이상 숫자만 잡고, 천 단위 콤마 차이는 무시한다", () => {
@@ -29,5 +29,13 @@ describe("looksLikeLocale", () => {
     expect(looksLikeLocale("fr", "Lee Young-ae attended the ceremony with her husband.")).toBe(false);
     expect(looksLikeLocale("fr", "L'actrice a assisté à la cérémonie avec son mari et les invités.")).toBe(true);
     expect(looksLikeLocale("id", "Aktris ini hadir bersama suaminya di upacara yang meriah.")).toBe(true);
+  });
+});
+
+describe("overlapRatio", () => {
+  it("원문 문장을 그대로 옮기면 높고, 새로 쓰면 낮다", () => {
+    const source = "배우 이영애가 15일 열린 제16회 뷰티풀 아티스트 어워즈 시상식에 남편과 함께 참석했다.";
+    expect(overlapRatio(source, source)).toBe(1);
+    expect(overlapRatio(source, "15일 시상식 현장에는 이영애 부부가 나란히 모습을 드러냈다.")).toBeLessThan(0.2);
   });
 });

@@ -11,8 +11,9 @@ import { WRITE_SYSTEM } from "../ai/prompts";
 import { attachImage } from "../entities/images";
 import { findEntities } from "../entities/match";
 import { log } from "../log";
-import { unsupportedNumbers } from "./checks";
+import { overlapRatio, unsupportedNumbers } from "./checks";
 import { pickSentences } from "./extract";
+import { buildFactPack, MIN_FACT_CHARS } from "./factpack";
 import { clean, Localized } from "./localized";
 import { toSimplified } from "./simplified";
 import { fetchSourceMaterial, type SourceMaterial, SourceUnavailableError } from "./sources";
@@ -79,30 +80,41 @@ function writeRequest(topic: Topic, headline: string, source: SourceMaterial, en
   });
 }
 
-async function writeTopic(topic: Topic): Promise<string> {
-  // 같은 주제에 신호가 여럿이면 사실을 확인할 수 있는 뉴스를 먼저 쓴다 (커뮤니티 글은 화제 신호일 뿐이다)
-  const signals = await prisma.signal.findMany({ where: { topicId: topic.id }, orderBy: { lastSeenAt: "desc" } });
-  const signal = signals.find((s) => NEWS_SOURCES.has(s.source)) ?? signals[0];
-  if (!signal) throw new Error(`topic ${topic.id} has no signal`);
-  if (!topic.category || !topic.format) throw new Error(`topic ${topic.id} missing category/format`);
+// 한국어판이 원문을 이만큼 넘게 그대로 쓰면 사람이 확인할 때까지 발행하지 않는다
+const MAX_OVERLAP = 0.25;
 
-  const source = await fetchSourceMaterial(signal);
-  const entities = await findEntities(`${signal.title} ${source.text.slice(0, 600)}`);
-  const draft = await callStructured({
+type Draft = z.infer<typeof Draft>;
+
+function generate(user: string): Promise<Draft> {
+  return callStructured({
     task: "write",
     model: MODELS.write,
     system: WRITE_SYSTEM,
-    user: writeRequest(topic, signal.title, source, entities),
+    user,
     schema: Draft,
     effort: "low",
     maxTokens: 12000,
   });
+}
 
+interface SaveInput {
+  topic: Topic & { category: NonNullable<Topic["category"]>; format: NonNullable<Topic["format"]> };
+  draft: Draft;
+  sources: { url: string; publisher: string; kind: "OFFICIAL" | "NEWS" | "COMMUNITY" }[];
+  sourceText: string; // 겹침 검사용 (저장하지 않는다)
+  entities: Entity[];
+}
+
+// 검사(숫자·원문 겹침) 뒤 기사와 5개 언어판을 저장한다. 경고가 있으면 사람 확인(REVIEW)으로 둔다
+async function saveArticle({ topic, draft, sources, sourceText, entities }: SaveInput): Promise<string> {
   const en = clean(draft.en);
   const [year, month, day] = kstToday().split("-").map((part) => String(Number(part)));
   const warnings = unsupportedNumbers({ facts: draft.facts, ...en }, [year!, month!, day!]).map(
     (n) => `number-not-in-facts:${n}`,
   );
+  const overlap = overlapRatio(sourceText, draft.ko.body);
+  if (overlap > MAX_OVERLAP) warnings.push(`source-overlap:${overlap.toFixed(2)}`);
+  const publish = autoPublish && !warnings.some((w) => w.startsWith("source-overlap"));
 
   const slug = slugify(draft.slug);
   const zhTW = clean(draft.zhTW);
@@ -120,8 +132,8 @@ async function writeTopic(topic: Topic): Promise<string> {
       format: topic.format,
       riskTier: topic.riskTier,
       // 케이아지트처럼 바로 발행한다. 사람 승인을 다시 켜려면 AUTO_PUBLISH=false → `worker publish`
-      status: autoPublish ? "PUBLISHED" : "REVIEW",
-      publishedAt: autoPublish ? new Date() : null,
+      status: publish ? "PUBLISHED" : "REVIEW",
+      publishedAt: publish ? new Date() : null,
       facts: { facts: draft.facts, warnings },
       entities: entityJson(entities),
       translations: {
@@ -137,12 +149,64 @@ async function writeTopic(topic: Topic): Promise<string> {
           ...(locale === "en" ? { seoDesc: draft.seoDescription } : {}),
         })),
       },
-      sources: { create: [{ url: source.url, publisher: source.publisher, kind: source.kind }] },
+      sources: { create: sources },
     },
   });
-  if (warnings.length > 0) log.warn("write: check warnings", { articleId: article.id, warnings });
+  if (warnings.length > 0) log.warn("write: check warnings", { articleId: article.id, warnings, published: publish });
   await attachImage(article.id);
   return article.id;
+}
+
+// 뉴스·화제 주제: 원문 한 편에서 사실을 뽑아 쓴다
+async function writeNews(topic: SaveInput["topic"]): Promise<string> {
+  // 같은 주제에 신호가 여럿이면 사실을 확인할 수 있는 뉴스를 먼저 쓴다 (커뮤니티 글은 화제 신호일 뿐이다)
+  const signals = await prisma.signal.findMany({ where: { topicId: topic.id }, orderBy: { lastSeenAt: "desc" } });
+  const signal = signals.find((s) => NEWS_SOURCES.has(s.source)) ?? signals[0];
+  if (!signal) throw new Error(`topic ${topic.id} has no signal`);
+
+  const source = await fetchSourceMaterial(signal);
+  const entities = await findEntities(`${signal.title} ${source.text.slice(0, 600)}`);
+  const draft = await generate(writeRequest(topic, signal.title, source, entities));
+  return saveArticle({
+    topic,
+    draft,
+    sources: [{ url: source.url, publisher: source.publisher, kind: source.kind }],
+    sourceText: source.text,
+    entities,
+  });
+}
+
+// 가이드 주제: 공식 페이지 사실 목록으로만 쓴다 (숫자·요금·날짜는 목록에 있는 것만)
+async function writeGuide(topic: SaveInput["topic"]): Promise<string> {
+  const keywords = `${topic.keyword} ${topic.angle ?? ""}`.split(/[\s:·,()'"?]+/).filter((w) => w.length > 1);
+  const pack = await buildFactPack(topic.factUrls, keywords);
+  const factChars = pack.reduce((n, p) => n + p.text.length, 0);
+  if (factChars < MIN_FACT_CHARS) {
+    throw new SourceUnavailableError(`fact pack too thin (${factChars} chars): ${topic.keyword}`);
+  }
+  const entities = await findEntities(topic.keyword);
+  const user = JSON.stringify({
+    today: kstToday(),
+    mode: "guide",
+    topic: { angle: topic.angle, angleKo: topic.keyword, category: topic.category, format: topic.format },
+    glossary: glossary(entities),
+    officialFacts: pack,
+  });
+  const draft = await generate(user);
+  return saveArticle({
+    topic,
+    draft,
+    sources: pack.map((p) => ({ url: p.url, publisher: p.publisher, kind: "OFFICIAL" as const })),
+    sourceText: pack.map((p) => p.text).join(" "),
+    entities,
+  });
+}
+
+async function writeTopic(topic: Topic): Promise<string> {
+  const { category, format } = topic;
+  if (!category || !format) throw new Error(`topic ${topic.id} missing category/format`);
+  const ready = { ...topic, category, format };
+  return topic.factUrls.length > 0 ? writeGuide(ready) : writeNews(ready);
 }
 
 const CONCURRENCY = 4;

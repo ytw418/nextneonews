@@ -48,3 +48,20 @@ export function looksLikeLocale(locale: string, text: string): boolean {
       return true;
   }
 }
+
+// 한국어판이 원문 문장을 얼마나 그대로 가져왔는지 (AI 없이). 공백·문장부호를 빼고 8글자 조각으로 비교한다.
+// 원문 표현을 옮기면 출처를 적어도 저작권 침해가 될 수 있다 (docs/PRD.md 10장)
+export function overlapRatio(source: string, written: string, size = 8): number {
+  const normalize = (s: string) => s.replace(/[^\p{L}\p{N}]/gu, "");
+  const grams = (s: string) => {
+    const out = new Set<string>();
+    for (let i = 0; i + size <= s.length; i += 1) out.add(s.slice(i, i + size));
+    return out;
+  };
+  const mine = grams(normalize(written));
+  if (mine.size === 0) return 0;
+  const theirs = grams(normalize(source));
+  let shared = 0;
+  for (const g of mine) if (theirs.has(g)) shared += 1;
+  return shared / mine.size;
+}
