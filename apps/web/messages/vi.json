@@ -8,7 +8,8 @@
     "language": "Ngôn ngữ",
     "upcoming": "Sắp diễn ra",
     "all": "Dành cho bạn",
-    "back": "Quay lại"
+    "back": "Quay lại",
+    "close": "Đóng"
   },
   "Home": {
     "latest": "Mới nhất",
@@ -39,7 +40,10 @@
     "KENT": "Sao Hàn",
     "KDRAMA": "Phim Hàn",
     "KFOOD": "Ẩm thực Hàn",
+    "KBEAUTY": "Mỹ phẩm Hàn",
     "TRAVEL": "Du lịch",
+    "STUDY": "Du học Hàn",
+    "LOVE": "Tình yêu & Hôn nhân",
     "WORKING_HOLIDAY": "Working Holiday",
     "JOBS": "Việc làm",
     "HOUSING": "Nhà ở",
@@ -63,6 +67,12 @@
     "wrongPassword": "Sai mật khẩu.",
     "tooFast": "Bạn bình luận quá nhanh. Hãy thử lại sau vài phút.",
     "noLinks": "Không được chèn liên kết vào bình luận.",
-    "error": "Đã có lỗi xảy ra. Vui lòng thử lại."
+    "error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
+    "locked": "Bạn nhập sai mật khẩu quá nhiều lần. Hãy thử lại sau 15 phút."
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "Giải trí",
+    "LIFESTYLE": "Ẩm thực, làm đẹp & du lịch",
+    "LIVING": "Sống ở Hàn Quốc"
   }
 }

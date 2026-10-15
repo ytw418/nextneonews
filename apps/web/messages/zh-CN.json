@@ -8,7 +8,8 @@
     "language": "语言",
     "upcoming": "行程",
     "all": "全部",
-    "back": "返回"
+    "back": "返回",
+    "close": "关闭"
   },
   "Home": {
     "latest": "最新",
@@ -39,7 +40,10 @@
     "KENT": "艺人",
     "KDRAMA": "韩剧",
     "KFOOD": "韩国美食",
+    "KBEAUTY": "韩系美妆",
     "TRAVEL": "旅游",
+    "STUDY": "韩国留学",
+    "LOVE": "恋爱・婚姻",
     "WORKING_HOLIDAY": "打工度假",
     "JOBS": "兼职",
     "HOUSING": "租房",
@@ -63,6 +67,12 @@
     "wrongPassword": "密码错误。",
     "tooFast": "评论太频繁了，请过几分钟再试。",
     "noLinks": "评论中不能包含链接。",
-    "error": "出错了，请再试一次。"
+    "error": "出错了，请再试一次。",
+    "locked": "密码错误次数太多，请15分钟后再试。"
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "娱乐",
+    "LIFESTYLE": "美食・美妆・旅游",
+    "LIVING": "在韩国生活"
   }
 }

@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { type FormEvent, useEffect, useState } from "react";
 
 import type { PublicComment } from "@/lib/comments";
+import { storageGet, storageSet } from "@/lib/storage";
 import { timeAgo } from "@/lib/time";
 
 type Mode = { id: string; kind: "edit" | "delete"; body: string; password: string } | null;
@@ -30,16 +31,19 @@ export function Comments({ articleId }: { articleId: string }) {
   const [error, setError] = useState<string | null>(null);
   const [mode, setMode] = useState<Mode>(null);
   const [reported, setReported] = useState<string | null>(null);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     let alive = true;
     fetch(`/api/comments?articleId=${encodeURIComponent(articleId)}`)
-      .then((res) => (res.ok ? res.json() : { comments: [] }))
-      .then((data: { comments: PublicComment[] }) => {
-        if (alive) setComments(data.comments);
+      .then((res) => (res.ok ? res.json() : { comments: [], total: 0 }))
+      .then((data: { comments: PublicComment[]; total: number }) => {
+        if (!alive) return;
+        setComments(data.comments);
+        setTotal(data.total);
       })
       .catch(() => alive && setComments([]));
-    const saved = localStorage.getItem(NICKNAME_KEY);
+    const saved = storageGet(NICKNAME_KEY);
     if (saved) queueMicrotask(() => alive && setNickname(saved));
     return () => {
       alive = false;
@@ -55,6 +59,8 @@ export function Comments({ articleId }: { articleId: string }) {
         return t("tooFast");
       case "wrongPassword":
         return t("wrongPassword");
+      case "locked":
+        return t("locked");
       default:
         return t("error");
     }
@@ -79,7 +85,8 @@ export function Comments({ articleId }: { articleId: string }) {
       setComments((list) => [...(list ?? []), data.comment]);
       setBody("");
       setPassword("");
-      if (nickname) localStorage.setItem(NICKNAME_KEY, nickname);
+      setTotal((n) => n + 1);
+      if (nickname) storageSet(NICKNAME_KEY, nickname);
     } finally {
       setBusy(false);
     }
@@ -105,6 +112,7 @@ export function Comments({ articleId }: { articleId: string }) {
         setComments((list) => (list ?? []).map((c) => (c.id === mode.id ? data.comment : c)));
       } else {
         setComments((list) => (list ?? []).filter((c) => c.id !== mode.id));
+        setTotal((n) => Math.max(0, n - 1));
       }
       setMode(null);
     } finally {
@@ -117,7 +125,7 @@ export function Comments({ articleId }: { articleId: string }) {
     setReported(id);
   };
 
-  const count = comments?.length ?? 0;
+  const count = Math.max(total, comments?.length ?? 0);
 
   return (
     <section id="comments" className="mt-10 scroll-mt-20">

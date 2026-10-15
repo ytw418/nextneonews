@@ -17,18 +17,11 @@ export function getClient(): Anthropic {
 
 export class RefusalError extends Error {}
 
-export async function logCost(
-  task: string,
-  model: string,
-  usage: Anthropic.Usage | Anthropic.Beta.BetaUsage,
-  multiplier = 1, // 배치 결과는 BATCH_DISCOUNT
-): Promise<void> {
+export async function logCost(task: string, model: string, usage: Anthropic.Beta.BetaUsage): Promise<void> {
   if (!isKnownModel(model)) {
     log.warn("cost: unknown model price, using fallback price", { model });
   }
-  await prisma.costLog.create({
-    data: { kind: "LLM", amountUsd: costUsd(model, usage) * multiplier, ref: `${task}:${model}` },
-  });
+  await prisma.costLog.create({ data: { kind: "LLM", amountUsd: costUsd(model, usage), ref: `${task}:${model}` } });
 }
 
 export interface StructuredCall<S extends z.ZodType> {

@@ -4,13 +4,23 @@ export const CATEGORIES = [
   "KENT",
   "KDRAMA",
   "KFOOD",
+  "KBEAUTY",
   "TRAVEL",
+  "STUDY",
+  "LOVE",
   "WORKING_HOLIDAY",
   "JOBS",
   "HOUSING",
   "LIFE",
 ] as const;
 export type CategoryKey = (typeof CATEGORIES)[number];
+
+// 메뉴에서 묶어 보여 주는 단위. 이름은 messages 의 CategoryGroup
+export const CATEGORY_GROUPS = {
+  ENTERTAINMENT: ["KPOP", "KENT", "KDRAMA"],
+  LIFESTYLE: ["KFOOD", "KBEAUTY", "TRAVEL"],
+  LIVING: ["STUDY", "LOVE", "WORKING_HOLIDAY", "JOBS", "HOUSING", "LIFE"],
+} as const satisfies Record<string, readonly CategoryKey[]>;
 
 export function isCategory(value: string): value is CategoryKey {
   return (CATEGORIES as readonly string[]).includes(value);

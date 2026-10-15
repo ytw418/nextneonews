@@ -25,6 +25,9 @@
   --tint-jobs: #ffe6c7;
   --tint-housing: #e9f0c8;
   --tint-life: #ffdfd2;
+  --tint-kbeauty: #ffe0f0;
+  --tint-study: #dff3ff;
+  --tint-love: #ffd6dc;
 
   --tape: rgba(255, 255, 255, 0.55);
   --ink: #1b1520; /* 파스텔 면 위 글자는 모드와 상관없이 진한 색 */
@@ -51,6 +54,9 @@
     --tint-jobs: #f5d6af;
     --tint-housing: #dbe5b4;
     --tint-life: #f5cfbf;
+    --tint-kbeauty: #f5cde2;
+    --tint-study: #cbe6f5;
+    --tint-love: #f5c4cc;
 
     --tape: rgba(255, 255, 255, 0.5);
     --bar: rgba(20, 16, 22, 0.8);

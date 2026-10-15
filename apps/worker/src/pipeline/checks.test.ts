@@ -24,6 +24,7 @@ describe("looksLikeLocale", () => {
   it("요청한 언어가 아닌 번역(예: 러시아어 자리에 한국어)을 걸러낸다", () => {
     expect(looksLikeLocale("ru", "배우 이영애가 남편과 함께 참석했다.")).toBe(false);
     expect(looksLikeLocale("ru", "Актриса Ли Ён Э посетила церемонию вместе с мужем.")).toBe(true);
+    expect(looksLikeLocale("ru", `${"Актриса Ли Ён Э посетила церемонию вместе с мужем. ".repeat(5)}(이영애)`)).toBe(true);
     expect(looksLikeLocale("vi", "Nữ diễn viên Lee Young-ae đã tham dự lễ trao giải.")).toBe(true);
     expect(looksLikeLocale("fr", "Lee Young-ae attended the ceremony with her husband.")).toBe(false);
     expect(looksLikeLocale("fr", "L'actrice a assisté à la cérémonie avec son mari et les invités.")).toBe(true);

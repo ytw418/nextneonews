@@ -8,7 +8,8 @@
     "language": "Langue",
     "upcoming": "À venir",
     "all": "Pour toi",
-    "back": "Retour"
+    "back": "Retour",
+    "close": "Fermer"
   },
   "Home": {
     "latest": "À la une",
@@ -39,7 +40,10 @@
     "KENT": "Célébrités",
     "KDRAMA": "K-DRAMA",
     "KFOOD": "Cuisine coréenne",
+    "KBEAUTY": "K-Beauty",
     "TRAVEL": "Voyage",
+    "STUDY": "Études en Corée",
+    "LOVE": "Amour & mariage",
     "WORKING_HOLIDAY": "PVT",
     "JOBS": "Emploi",
     "HOUSING": "Logement",
@@ -63,6 +67,12 @@
     "wrongPassword": "Mot de passe incorrect.",
     "tooFast": "Tu publies trop vite. Réessaie dans quelques minutes.",
     "noLinks": "Les liens ne sont pas autorisés dans les commentaires.",
-    "error": "Une erreur est survenue. Réessaie."
+    "error": "Une erreur est survenue. Réessaie.",
+    "locked": "Trop de mots de passe erronés. Réessaie dans 15 minutes."
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "Divertissement",
+    "LIFESTYLE": "Cuisine, beauté & voyage",
+    "LIVING": "Vivre en Corée"
   }
 }

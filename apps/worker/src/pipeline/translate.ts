@@ -5,8 +5,8 @@ import { BATCH_LOCALES, type BatchLocale } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 
 import { assertBudget } from "../ai/budget";
-import { getClient, logCost, thinkingFor } from "../ai/client";
-import { BATCH_DISCOUNT, MODELS, worstCaseUsd } from "../ai/models";
+import { getClient, thinkingFor } from "../ai/client";
+import { BATCH_DISCOUNT, costUsd, isKnownModel, MODELS, worstCaseUsd } from "../ai/models";
 import { TRANSLATE_SYSTEM } from "../ai/prompts";
 import { log } from "../log";
 import { looksLikeLocale } from "./checks";
@@ -39,9 +39,9 @@ function parseCustomId(id: string): { articleId: string; locale: BatchLocale } |
   return { articleId: id.slice(0, cut), locale: locale as BatchLocale };
 }
 
-const MAX_ATTEMPTS = 2;
+const MAX_ATTEMPTS = 3;
 
-// 최근 일주일 동안 각 요청을 몇 번 보냈는지. 진행 중인 것은 기다리고, 두 번 실패한 것은 더 보내지 않는다
+// 최근 일주일 동안 각 요청을 몇 번 보냈는지. 진행 중인 것은 기다리고, 세 번 실패한 것은 더 보내지 않는다
 async function recentAttempts(): Promise<{ pending: Set<string>; tries: Map<string, number> }> {
   const since = new Date(Date.now() - 7 * 24 * 3600_000);
   const batches = await prisma.aiBatch.findMany({
@@ -115,7 +115,10 @@ export async function submitTranslations(limit = 200): Promise<number> {
   }
   await assertBudget(worstCase);
   const batch = await getClient().messages.batches.create({ requests });
-  await prisma.aiBatch.create({ data: { id: batch.id, kind: KIND, items: requests.map((r) => r.custom_id) } });
+  // 최악의 비용을 잡아 둔다. 거두기 전까지 예산 계산에 들어간다 (budget.ts)
+  await prisma.aiBatch.create({
+    data: { id: batch.id, kind: KIND, items: requests.map((r) => r.custom_id), reservedUsd: worstCase },
+  });
   log.info("translate: batch submitted", { batchId: batch.id, requests: requests.length });
   return requests.length;
 }
@@ -155,6 +158,8 @@ async function saveTranslation(articleId: string, locale: BatchLocale, message: 
 }
 
 // 끝난 배치의 결과를 저장한다. 실패한 항목은 번역이 없는 채로 남으니 다음 submit 때 다시 보내진다.
+// 번역 저장은 upsert 라 중간에 멈췄다 다시 돌려도 같다. 비용은 배치가 끝날 때 한 줄로 남기고 같은 트랜잭션에서
+// "collected" 로 바꾼다 (다시 돌려도 비용이 두 번 쌓이지 않는다)
 export async function collectTranslations(): Promise<number> {
   const batches = await prisma.aiBatch.findMany({ where: { kind: KIND, status: "in_progress" } });
   let saved = 0;
@@ -162,6 +167,8 @@ export async function collectTranslations(): Promise<number> {
     const batch = await getClient().messages.batches.retrieve(id);
     if (batch.processing_status !== "ended") continue;
 
+    let usd = 0;
+    let model: string = MODELS.translate;
     for await (const entry of await getClient().messages.batches.results(id)) {
       const target = parseCustomId(entry.custom_id);
       if (!target) continue;
@@ -170,11 +177,16 @@ export async function collectTranslations(): Promise<number> {
         continue;
       }
       const message = entry.result.message;
-      await logCost(`${KIND}-batch`, message.model, message.usage, BATCH_DISCOUNT);
+      model = message.model;
+      usd += costUsd(message.model, message.usage) * BATCH_DISCOUNT;
       if (await saveTranslation(target.articleId, target.locale, message)) saved += 1;
     }
-    await prisma.aiBatch.update({ where: { id }, data: { status: "collected", collectedAt: new Date() } });
-    log.info("translate: batch collected", { batchId: id, ...batch.request_counts });
+    if (!isKnownModel(model)) log.warn("cost: unknown model price, using fallback price", { model });
+    await prisma.$transaction([
+      prisma.costLog.create({ data: { kind: "LLM", amountUsd: usd, ref: `${KIND}-batch:${model}:${id}` } }),
+      prisma.aiBatch.update({ where: { id }, data: { status: "collected", collectedAt: new Date() } }),
+    ]);
+    log.info("translate: batch collected", { batchId: id, usd: Number(usd.toFixed(4)), ...batch.request_counts });
   }
   return saved;
 }

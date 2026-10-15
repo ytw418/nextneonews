@@ -1,7 +1,7 @@
 "use client";
 
 import { LOCALE_NAME, LOCALES } from "@kmedia/core";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { GlobeIcon } from "@/components/icons";
@@ -12,6 +12,7 @@ export function LanguageSheet({ label }: { label: string }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const current = useLocale();
+  const t = useTranslations("Nav");
 
   return (
     <>
@@ -23,18 +24,19 @@ export function LanguageSheet({ label }: { label: string }) {
         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={label}>
           <button
             type="button"
-            aria-label="close"
+            aria-label={t("close")}
             className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute inset-x-2 bottom-[calc(env(safe-area-inset-bottom)+8px)] overflow-hidden rounded-[22px] bg-card shadow-2xl">
+          <div className="absolute inset-x-2 bottom-[calc(env(safe-area-inset-bottom)+8px)] max-h-[calc(100dvh-env(safe-area-inset-top)-env(safe-area-inset-bottom)-16px)] overflow-y-auto overscroll-contain rounded-[22px] bg-card shadow-2xl">
             {LOCALES.map((l) => (
               <Link
                 key={l}
                 href={pathname}
                 locale={l}
+                lang={l}
                 onClick={() => setOpen(false)}
-                className="flex h-14 items-center justify-between border-b border-line px-5 text-[17px] last:border-0"
+                className="flex h-14 items-center justify-between border-b border-line px-5 font-sans text-[17px] last:border-0"
               >
                 {LOCALE_NAME[l]}
                 {l === current && <span className="size-2 rounded-full bg-cherry" />}

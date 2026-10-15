@@ -1,10 +1,11 @@
 "use client";
 
 import { type Locale, matchLocale } from "@kmedia/core";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { usePathname } from "@/i18n/navigation";
+import { storageGet, storageSet } from "@/lib/storage";
 
 // 그 언어 사용자에게 그 언어로 보여 준다 (지금 페이지 언어가 아니라)
 const READ_IN: Record<Locale, string> = {
@@ -25,7 +26,7 @@ const DISMISSED = "hb:locale-suggest-dismissed";
 // 강제로 넘기지 않는다: 검색 로봇과 일부러 그 언어를 고른 사람을 막지 않기 위해서다.
 // 대상 주소는 페이지에 이미 있는 hreflang 대체 링크에서 찾으므로, 번역이 있는 페이지에서만 뜬다.
 function findSuggestion(current: string): { locale: Locale; href: string } | null {
-  if (localStorage.getItem(DISMISSED)) return null;
+  if (storageGet(DISMISSED)) return null;
   const preferred = navigator.languages.map(matchLocale).find((l) => l !== null);
   if (!preferred || preferred === current) return null;
   const link = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${preferred}"]`);
@@ -34,6 +35,7 @@ function findSuggestion(current: string): { locale: Locale; href: string } | nul
 
 export function LocaleSuggest() {
   const current = useLocale();
+  const t = useTranslations("Nav");
   const pathname = usePathname();
   const [suggestion, setSuggestion] = useState<{ locale: Locale; href: string } | null>(null);
 
@@ -47,7 +49,7 @@ export function LocaleSuggest() {
   if (!suggestion) return null;
 
   const dismiss = () => {
-    localStorage.setItem(DISMISSED, "1");
+    storageSet(DISMISSED, "1");
     setSuggestion(null);
   };
 
@@ -57,8 +59,8 @@ export function LocaleSuggest() {
         <a
           href={suggestion.href}
           lang={suggestion.locale}
-          onClick={() => localStorage.setItem(DISMISSED, "1")}
-          className="flex h-9 items-center gap-2 rounded-full pl-3 pr-2 text-[14px] font-semibold"
+          onClick={() => storageSet(DISMISSED, "1")}
+          className="flex h-9 items-center gap-2 rounded-full pl-3 pr-2 font-sans text-[14px] font-semibold"
         >
           <span className="size-2 rounded-full bg-cherry" />
           {READ_IN[suggestion.locale]} →
@@ -66,7 +68,7 @@ export function LocaleSuggest() {
         <button
           type="button"
           onClick={dismiss}
-          aria-label="close"
+          aria-label={t("close")}
           className="grid size-8 place-items-center rounded-full text-[18px] leading-none opacity-60"
         >
           ×

@@ -1,3 +1,5 @@
+import type { CategoryKey } from "@kmedia/core";
+
 import type { SignalMetrics } from "../collectors/types";
 
 // 품질 체크 2단계를 AI 없이 한다 (비용 0원). 기준은 docs/production.md ①과 같다.
@@ -16,28 +18,32 @@ export interface HeuristicResult {
   timeliness: number;
   evergreen: number;
   risk: "GREEN" | "YELLOW";
-  category: "KPOP" | "KENT" | "KDRAMA" | "KFOOD" | "TRAVEL" | "WORKING_HOLIDAY" | "JOBS" | "HOUSING" | "LIFE";
+  category: CategoryKey;
   format: "ISSUE" | "REACTION" | "QNA" | "GUIDE" | "LIST";
   keyword: string;
   reason: string;
 }
 
 // 해외 팬·외국인이 관심 가질 단어
-const GLOBAL_WORDS = ["월드투어", "투어", "콘서트", "팬미팅", "컴백", "MAMA", "AAA", "MMA", "골든디스크", "빌보드", "넷플릭스", "디즈니", "해외", "일본", "대만", "도쿄", "오사카", "글로벌"];
+const GLOBAL_WORDS = ["월드투어", "투어", "콘서트", "팬미팅", "컴백", "MAMA", "AAA", "MMA", "골든디스크", "빌보드", "넷플릭스", "디즈니", "해외", "일본", "대만", "도쿄", "오사카", "글로벌", "한류"];
 // 외국인 생활 정보 (해외 인지도와 상관없이 높게)
-const FOREIGNER_WORDS = ["외국인", "비자", "워홀", "워킹홀리데이", "최저임금", "관광객", "K-ETA", "입국", "면세", "환급"];
+const FOREIGNER_WORDS = ["외국인", "비자", "워홀", "워킹홀리데이", "최저임금", "관광객", "K-ETA", "입국", "면세", "환급", "유학생", "어학당", "국제결혼", "다문화", "올리브영", "K뷰티"];
 const OFFICIAL_WORDS = ["[공식]", "공식입장", "공식 입장", "소속사", "발표", "확정"];
 const EVERGREEN_WORDS = ["방법", "하는 법", "정리", "총정리", "가이드", "꿀팁", "추천"];
 const LIST_WORDS = ["TOP", "순위", "랭킹"];
 const QUESTION_WORDS = ["?", "언제", "어떻게", "얼마", "어디서", "어디"];
 const YELLOW_WORDS = ["열애", "결별", "이혼", "파경", "논란", "폭로", "학폭", "음주", "고소", "소송", "갑질", "사과", "해명", "루머", "의혹", "불화", "탈퇴"];
 
+// 연예인이 없는 글의 생활 카테고리. 위에서부터 먼저 맞는 것 (구체적인 것을 앞에)
 const CATEGORY_WORDS: [HeuristicResult["category"], string[]][] = [
-  ["WORKING_HOLIDAY", ["워홀", "워킹홀리데이", "비자"]],
-  ["JOBS", ["알바", "최저임금", "주휴수당", "취업"]],
-  ["HOUSING", ["월세", "전세", "보증금", "고시원", "부동산"]],
-  ["KFOOD", ["편의점", "맛집", "라면", "빵", "디저트", "레시피", "먹방"]],
-  ["TRAVEL", ["여행", "축제", "단풍", "관광", "호텔"]],
+  ["LOVE", ["국제결혼", "국제 결혼", "국제커플", "국제 커플", "결혼이민", "F-6", "배우자 비자", "다문화 가정", "소개팅", "연애", "데이트", "결혼식", "결혼 준비"]],
+  ["STUDY", ["유학", "유학생", "어학당", "어학연수", "TOPIK", "토픽", "GKS", "정부초청", "장학금", "D-2", "D-4", "입학"]],
+  ["WORKING_HOLIDAY", ["워홀", "워킹홀리데이"]],
+  ["JOBS", ["알바", "최저임금", "주휴수당", "취업", "E-7", "외국인 근로자"]],
+  ["HOUSING", ["월세", "전세", "보증금", "고시원", "부동산", "원룸", "쉐어하우스", "셰어하우스"]],
+  ["KBEAUTY", ["올리브영", "화장품", "뷰티", "스킨케어", "선크림", "쿠션", "마스크팩", "K뷰티", "틴트", "세럼"]],
+  ["KFOOD", ["편의점", "맛집", "라면", "빵", "디저트", "레시피", "먹방", "떡볶이", "치킨", "간식"]],
+  ["TRAVEL", ["여행", "축제", "단풍", "관광", "호텔", "K-ETA", "입국", "면세"]],
 ];
 
 // 배우 기사 중 작품 이야기일 때만 KDRAMA, 아니면(결혼·근황·논란) KENT
@@ -77,16 +83,14 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
   const evergreen = has(title, EVERGREEN_WORDS) ? 4 : 1;
   const timeliness = 4; // 랭킹에 지금 올라온 글
 
-  const matchedCategory = CATEGORY_WORDS.find(([, words]) => has(title, words))?.[0];
-  const category: HeuristicResult["category"] =
-    matchedCategory ??
-    (top?.type === "group" || top?.type === "singer"
+  // 연예인·작품이 나오면 연예 카테고리 (스타의 결혼·화장품 모델 소식도 연예 뉴스다). 없으면 단어로 생활 카테고리
+  const category: HeuristicResult["category"] = top
+    ? top.type === "group" || top.type === "singer"
       ? "KPOP"
-      : top?.type === "series" || (top && has(title, DRAMA_WORDS))
+      : top.type === "series" || has(title, DRAMA_WORDS)
         ? "KDRAMA"
-        : top
-          ? "KENT"
-          : "LIFE");
+        : "KENT"
+    : (CATEGORY_WORDS.find(([, words]) => has(title, words))?.[0] ?? "LIFE");
 
   const format: HeuristicResult["format"] = community
     ? "REACTION"

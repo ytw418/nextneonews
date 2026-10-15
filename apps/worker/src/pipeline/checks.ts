@@ -30,9 +30,10 @@ const STOPWORDS: Record<string, string[]> = {
 // 번역문이 정말 그 언어로 쓰였는지 글자·흔한 단어로 확인한다 (AI 없이).
 // 예: 러시아어를 시켰는데 한국어로 돌아온 결과를 걸러 다시 보내게 한다
 export function looksLikeLocale(locale: string, text: string): boolean {
-  if (locale !== "ko" && HANGUL.test(text)) return false;
   const letters = text.match(/\p{L}/gu) ?? [];
   if (letters.length === 0) return false;
+  // 고유명사 한두 개(예: "Seoul (서울)")는 봐준다. 한글이 2%를 넘으면 한국어로 답한 것이다
+  if (locale !== "ko" && letters.filter((c) => HANGUL.test(c)).length / letters.length > 0.02) return false;
   switch (locale) {
     case "ru":
       return letters.filter((c) => /[Ѐ-ӿ]/.test(c)).length / letters.length > 0.5;

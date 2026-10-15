@@ -8,7 +8,8 @@
     "language": "言語",
     "upcoming": "予定",
     "all": "すべて",
-    "back": "戻る"
+    "back": "戻る",
+    "close": "閉じる"
   },
   "Home": {
     "latest": "新着",
@@ -39,7 +40,10 @@
     "KENT": "芸能",
     "KDRAMA": "韓ドラ",
     "KFOOD": "韓国グルメ",
+    "KBEAUTY": "韓国コスメ",
     "TRAVEL": "旅行",
+    "STUDY": "韓国留学",
+    "LOVE": "恋愛・結婚",
     "WORKING_HOLIDAY": "ワーホリ",
     "JOBS": "バイト",
     "HOUSING": "住まい",
@@ -63,6 +67,12 @@
     "wrongPassword": "パスワードが違います。",
     "tooFast": "投稿が早すぎます。数分後にもう一度お試しください。",
     "noLinks": "コメントにリンクは貼れません。",
-    "error": "エラーが発生しました。もう一度お試しください。"
+    "error": "エラーが発生しました。もう一度お試しください。",
+    "locked": "パスワードを何度も間違えました。15分後にもう一度お試しください。"
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "エンタメ",
+    "LIFESTYLE": "グルメ・コスメ・旅行",
+    "LIVING": "韓国で暮らす"
   }
 }

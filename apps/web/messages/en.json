@@ -8,7 +8,8 @@
     "language": "Language",
     "upcoming": "Upcoming",
     "all": "For you",
-    "back": "Back"
+    "back": "Back",
+    "close": "Close"
   },
   "Home": {
     "latest": "Latest",
@@ -39,7 +40,10 @@
     "KENT": "Celebs",
     "KDRAMA": "K-DRAMA",
     "KFOOD": "K-FOOD",
+    "KBEAUTY": "K-BEAUTY",
     "TRAVEL": "Travel",
+    "STUDY": "Study in Korea",
+    "LOVE": "Love & Marriage",
     "WORKING_HOLIDAY": "Working Holiday",
     "JOBS": "Jobs",
     "HOUSING": "Housing",
@@ -63,6 +67,12 @@
     "wrongPassword": "Wrong password.",
     "tooFast": "You're posting too fast. Try again in a few minutes.",
     "noLinks": "Links aren't allowed in comments.",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "locked": "Too many wrong passwords. Try again in 15 minutes."
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "Entertainment",
+    "LIFESTYLE": "Food, beauty & travel",
+    "LIVING": "Living in Korea"
   }
 }

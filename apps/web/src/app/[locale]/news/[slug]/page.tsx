@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import ReactMarkdown from "react-markdown";
 
 import { AdSlot } from "@/components/AdSlot";
-import { Comments } from "@/components/Comments";
 import { AppHeader } from "@/components/AppHeader";
+import { Comments } from "@/components/Comments";
 import { FeedCard } from "@/components/FeedCard";
 import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
 import { Phrase } from "@/components/Phrase";
 import { ShareButton } from "@/components/ShareButton";
-import { getArticle, listRelated } from "@/lib/articles";
+import { ViewPing } from "@/components/ViewPing";
+import { findTranslatedLocale, getArticle, listRelated } from "@/lib/articles";
 import { coverStyle } from "@/lib/cover";
 import { toFeedItems } from "@/lib/feed";
 import { articleJsonLd } from "@/lib/jsonld";
@@ -79,12 +80,15 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
 
   const translation = await getArticle(locale, slug);
   if (!translation) {
+    // 이 언어 번역이 아직 없으면(배치 번역 대기 등) 있는 언어로 잠시 보낸다
+    const other = await findTranslatedLocale(slug);
+    if (other && other !== locale) redirect(articlePath(other, slug));
     notFound();
   }
   const [t, tCat, relatedRows] = await Promise.all([
     getTranslations("Article"),
     getTranslations("Category"),
-    listRelated(locale, slug),
+    listRelated(locale, translation.article),
   ]);
   const related = await toFeedItems(relatedRows, locale);
   const { article } = translation;
@@ -238,6 +242,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           </p>
 
           <Comments articleId={article.id} />
+          <ViewPing articleId={article.id} />
         </div>
 
         {related.length > 0 && (

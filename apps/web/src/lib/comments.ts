@@ -16,8 +16,12 @@ const NICKNAME_MAX = 12;
 // 같은 사람(IP 해시)이 10분에 5개까지
 const RATE_WINDOW_MS = 10 * 60_000;
 const RATE_MAX = 5;
-// 신고가 이만큼 쌓이면 자동으로 숨긴다
+// 서로 다른 신고자가 이만큼이면 자동으로 숨긴다
 const HIDE_AFTER_REPORTS = 3;
+const REPORT_RATE_MAX = 10;
+// 비밀번호를 연속으로 이만큼 틀리면 LOCK_MS 동안 잠근다
+const MAX_PASSWORD_FAILURES = 5;
+const LOCK_MS = 15 * 60_000;
 // 광고 도배는 거의 다 링크라 링크가 든 댓글은 받지 않는다
 const LINK = /https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|io|kr|jp|cn|ru|xyz|top|link|shop)\b/i;
 
@@ -64,7 +68,7 @@ export const CreateInput = z.object({
 export const PasswordInput = z.object({ password: z.string().min(1).max(64) });
 export const EditInput = PasswordInput.extend({ body: z.string().trim().min(1).max(BODY_MAX) });
 
-export type CommentError = "invalid" | "links" | "tooFast" | "notFound" | "wrongPassword";
+export type CommentError = "invalid" | "links" | "tooFast" | "notFound" | "wrongPassword" | "locked";
 
 export const ERROR_STATUS: Record<CommentError, number> = {
   invalid: 400,
@@ -72,6 +76,7 @@ export const ERROR_STATUS: Record<CommentError, number> = {
   tooFast: 429,
   notFound: 404,
   wrongPassword: 403,
+  locked: 429,
 };
 
 export interface PublicComment {
@@ -96,13 +101,14 @@ function toPublic(c: Comment): PublicComment {
   };
 }
 
-export async function listComments(articleId: string): Promise<PublicComment[]> {
-  const rows = await prisma.comment.findMany({
-    where: { articleId, status: "VISIBLE" },
-    orderBy: { createdAt: "asc" },
-    take: 300,
-  });
-  return rows.map(toPublic);
+// 최신 300개를 오래된 순으로 보여 준다 (오래된 것만 남아 새 댓글이 안 보이는 일이 없게)
+export async function listComments(articleId: string): Promise<{ comments: PublicComment[]; total: number }> {
+  const where = { articleId, status: "VISIBLE" as const };
+  const [rows, total] = await Promise.all([
+    prisma.comment.findMany({ where, orderBy: { createdAt: "desc" }, take: 300 }),
+    prisma.comment.count({ where }),
+  ]);
+  return { comments: rows.reverse().map(toPublic), total };
 }
 
 export async function createComment(
@@ -118,32 +124,53 @@ export async function createComment(
   });
   if (!article) return { ok: false, error: "notFound" };
 
-  const hash = ipHash(ip);
-  const recent = await prisma.comment.count({
-    where: { ipHash: hash, createdAt: { gte: new Date(Date.now() - RATE_WINDOW_MS) } },
-  });
-  if (recent >= RATE_MAX) return { ok: false, error: "tooFast" };
-
+  // 무거운 해시는 잠금 밖에서 미리 계산한다
   const key = secret();
-  const comment = await prisma.comment.create({
-    data: {
-      articleId: article.id,
-      locale: input.locale,
-      // "名無しさん(7f3a)": 같은 글 안에서만 같은 사람끼리 구분된다
-      nickname: displayNickname({ nickname: input.nickname, ip, articleId: article.id, locale: input.locale as Locale }, key),
-      idHash: anonymousId(ip, article.id, key),
-      ipHash: hash,
-      passwordHash: await hashPassword(input.password),
-      body: input.body,
-    },
+  const hash = ipHash(ip);
+  const data = {
+    articleId: article.id,
+    locale: input.locale,
+    // "名無しさん(7f3a)": 같은 글 안에서만 같은 사람끼리 구분된다
+    nickname: displayNickname({ nickname: input.nickname, ip, articleId: article.id, locale: input.locale as Locale }, key),
+    idHash: anonymousId(ip, article.id, key),
+    ipHash: hash,
+    passwordHash: await hashPassword(input.password),
+    body: input.body,
+  };
+
+  // 같은 IP 의 글쓰기를 한 줄로 세운다. 동시에 여러 개를 보내도 "10분 5개" 를 넘지 못한다
+  const comment = await prisma.$transaction(async (tx) => {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${hash}))`;
+    const recent = await tx.comment.count({
+      where: { ipHash: hash, createdAt: { gte: new Date(Date.now() - RATE_WINDOW_MS) } },
+    });
+    if (recent >= RATE_MAX) return null;
+    return tx.comment.create({ data });
   });
-  return { ok: true, comment: toPublic(comment) };
+  return comment ? { ok: true, comment: toPublic(comment) } : { ok: false, error: "tooFast" };
 }
 
-async function authorize(id: string, password: string): Promise<Comment | CommentError> {
+// 비밀번호 확인. 연속 5번 틀리면 15분 잠근다 (4자리 숫자를 차례로 넣어 보는 공격 방지).
+// 신고로 숨겨진 댓글도 작성자는 지울 수 있다
+async function authorize(id: string, password: string, allowHidden = false): Promise<Comment | CommentError> {
   const comment = await prisma.comment.findUnique({ where: { id } });
-  if (!comment || comment.status !== "VISIBLE") return "notFound";
-  return (await verifyPassword(password, comment.passwordHash)) ? comment : "wrongPassword";
+  if (!comment || (comment.status !== "VISIBLE" && !allowHidden)) return "notFound";
+  if (comment.lockedUntil && comment.lockedUntil > new Date()) return "locked";
+  if (await verifyPassword(password, comment.passwordHash)) {
+    if (comment.failedAttempts > 0) {
+      await prisma.comment.update({ where: { id }, data: { failedAttempts: 0, lockedUntil: null } });
+    }
+    return comment;
+  }
+  const failed = comment.failedAttempts + 1;
+  await prisma.comment.update({
+    where: { id },
+    data:
+      failed >= MAX_PASSWORD_FAILURES
+        ? { failedAttempts: 0, lockedUntil: new Date(Date.now() + LOCK_MS) }
+        : { failedAttempts: { increment: 1 } },
+  });
+  return "wrongPassword";
 }
 
 export async function editComment(id: string, input: z.infer<typeof EditInput>) {
@@ -155,21 +182,30 @@ export async function editComment(id: string, input: z.infer<typeof EditInput>) 
 }
 
 export async function deleteComment(id: string, password: string) {
-  const found = await authorize(id, password);
+  const found = await authorize(id, password, true);
   if (typeof found === "string") return { ok: false as const, error: found };
   await prisma.comment.delete({ where: { id: found.id } });
   return { ok: true as const };
 }
 
-export async function reportComment(id: string): Promise<boolean> {
-  const { count } = await prisma.comment.updateMany({
-    where: { id, status: "VISIBLE" },
-    data: { reportCount: { increment: 1 } },
+// 서로 다른 사람(IP 해시) 3명이 신고하면 숨긴다. 자기 댓글 신고·같은 사람의 중복 신고는 세지 않고,
+// 한 사람은 10분에 10번까지만 신고할 수 있다. 숨긴 댓글은 `npm run worker -- comments` 로 보고 되살린다
+export async function reportComment(id: string, ip: string): Promise<boolean> {
+  const hash = ipHash(ip);
+  const comment = await prisma.comment.findUnique({ where: { id }, select: { status: true, ipHash: true } });
+  if (!comment || comment.status !== "VISIBLE") return false;
+  if (comment.ipHash === hash) return true;
+
+  const recent = await prisma.commentReport.count({
+    where: { ipHash: hash, createdAt: { gte: new Date(Date.now() - RATE_WINDOW_MS) } },
   });
-  if (count === 0) return false;
-  await prisma.comment.updateMany({
-    where: { id, reportCount: { gte: HIDE_AFTER_REPORTS } },
-    data: { status: "HIDDEN" },
+  if (recent >= REPORT_RATE_MAX) return true;
+
+  await prisma.commentReport.createMany({ data: [{ commentId: id, ipHash: hash }], skipDuplicates: true });
+  const reporters = await prisma.commentReport.count({ where: { commentId: id } });
+  await prisma.comment.update({
+    where: { id },
+    data: { reportCount: reporters, ...(reporters >= HIDE_AFTER_REPORTS ? { status: "HIDDEN" as const } : {}) },
   });
   return true;
 }

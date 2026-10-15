@@ -8,7 +8,8 @@
     "language": "언어",
     "upcoming": "일정",
     "all": "전체",
-    "back": "뒤로"
+    "back": "뒤로",
+    "close": "닫기"
   },
   "Home": {
     "latest": "최신",
@@ -39,7 +40,10 @@
     "KENT": "연예",
     "KDRAMA": "드라마",
     "KFOOD": "푸드",
+    "KBEAUTY": "뷰티",
     "TRAVEL": "여행",
+    "STUDY": "유학",
+    "LOVE": "연애·결혼",
     "WORKING_HOLIDAY": "워홀",
     "JOBS": "알바",
     "HOUSING": "집",
@@ -63,6 +67,12 @@
     "wrongPassword": "비밀번호가 맞지 않아요.",
     "tooFast": "댓글을 너무 빨리 쓰고 있어요. 몇 분 뒤에 다시 해 주세요.",
     "noLinks": "댓글에는 링크를 넣을 수 없어요.",
-    "error": "문제가 생겼어요. 다시 시도해 주세요."
+    "error": "문제가 생겼어요. 다시 시도해 주세요.",
+    "locked": "비밀번호를 여러 번 틀렸어요. 15분 뒤에 다시 해 주세요."
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "엔터",
+    "LIFESTYLE": "푸드·뷰티·여행",
+    "LIVING": "한국 생활"
   }
 }

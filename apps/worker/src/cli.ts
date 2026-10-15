@@ -10,6 +10,7 @@ import { backfillImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
 import { log } from "./log";
 import { listReview, publish } from "./pipeline/publish";
+import { listHiddenComments, restoreComments } from "./pipeline/comments";
 import { recategorize } from "./pipeline/recategorize";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
@@ -57,7 +58,8 @@ const USAGE = `usage: cli.ts <command>
   zh-cn                    간체 번역 없는 글에 번체→간체 변환으로 채우기 (무료)
   translate [limit]        끝난 번역 배치 거두기 + vi·id·fr·ru 가 빠진 글을 배치로 보내기 (50% 할인, 0 이면 거두기만)
   history [days]           네이버 엔터 랭킹 지난 N일치 수집 (초기 글 채우기용, 기본 7)
-  recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기`;
+  recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기
+  comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -91,6 +93,10 @@ try {
       }
       break;
     }
+    case "comments":
+      if (args[0] === "restore") await restoreComments(args.slice(1));
+      else await listHiddenComments();
+      break;
     case "recategorize":
       await recategorize();
       break;

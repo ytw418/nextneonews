@@ -20,7 +20,10 @@ enum Category {
   KENT // 연예인 근황·열애·결혼 등 (작품과 무관한 셀럽 소식)
   KDRAMA
   KFOOD
+  KBEAUTY // 한국 화장품·올리브영
   TRAVEL
+  STUDY // 한국 유학·어학당·장학금
+  LOVE // 한국인과 연애·국제결혼
   WORKING_HOLIDAY
   JOBS
   HOUSING
@@ -93,21 +96,21 @@ enum CostKind {
 
 // 수집 원장: 제목·링크·숫자만 저장한다. 같은 글은 (source, externalId)로 갱신한다.
 model Signal {
-  id          String   @id @default(cuid())
-  source      String // "pann", "naver-entertain" ...
-  externalId  String // 소스 안에서의 글 번호 등
-  title       String
-  url         String
-  lang        String   @default("ko")
-  metrics     Json // { views, comments, likes, rank }
+  id           String    @id @default(cuid())
+  source       String // "pann", "naver-entertain" ...
+  externalId   String // 소스 안에서의 글 번호 등
+  title        String
+  url          String
+  lang         String    @default("ko")
+  metrics      Json // { views, comments, likes, rank }
   // 질문·이슈 품질 체크 결과 (규칙 필터 + LLM 채점). null 이면 아직 안 봄
   qualityScore Float?
   qualityNote  String?
   checkedAt    DateTime?
-  firstSeenAt DateTime @default(now())
-  lastSeenAt  DateTime @default(now())
-  topicId     String?
-  topic       Topic?   @relation(fields: [topicId], references: [id])
+  firstSeenAt  DateTime  @default(now())
+  lastSeenAt   DateTime  @default(now())
+  topicId      String?
+  topic        Topic?    @relation(fields: [topicId], references: [id])
 
   @@unique([source, externalId])
   @@index([lastSeenAt])
@@ -140,6 +143,7 @@ model Article {
   facts        Json? // 출처에서 뽑은 사실 목록 (숫자는 여기 값만 쓴다)
   entities     Json? // 등장 인물·그룹·작품 [{ name, type, koreanName, alternateNames }] → JSON-LD about (GEO)
   publishedAt  DateTime?
+  views        Int           @default(0) // 기사 페이지 조회 수 (모든 언어 합). 인기·추천 글에 쓴다
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   translations Translation[]
@@ -150,6 +154,7 @@ model Article {
   socialPosts  SocialPost[]
 
   @@index([status, publishedAt])
+  @@index([status, views])
 }
 
 model Translation {
@@ -190,21 +195,35 @@ model Media {
 }
 
 model Comment {
-  id           String        @id @default(cuid())
-  articleId    String
-  article      Article       @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  locale       String
-  nickname     String // 표시용 "ㅇㅇ(7f3a)"
-  idHash       String // HMAC(IP, 비밀키 + 글 ID) 앞 4자리
-  ipHash       String? // HMAC(IP, 비밀키). 글과 상관없이 같은 사람의 도배를 막는 데만 쓴다
-  passwordHash String // argon2id
-  body         String
-  status       CommentStatus @default(VISIBLE)
-  reportCount  Int           @default(0)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  id             String          @id @default(cuid())
+  articleId      String
+  article        Article         @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  locale         String
+  nickname       String // 표시용 "ㅇㅇ(7f3a)"
+  idHash         String // HMAC(IP, 비밀키 + 글 ID) 앞 4자리
+  ipHash         String? // HMAC(IP, 비밀키). 글과 상관없이 같은 사람의 도배를 막는 데만 쓴다
+  passwordHash   String // argon2id
+  body           String
+  reports        CommentReport[]
+  status         CommentStatus   @default(VISIBLE)
+  reportCount    Int             @default(0) // 서로 다른 신고자 수 (CommentReport)
+  failedAttempts Int             @default(0) // 비밀번호 연속 실패. 5번이면 잠근다
+  lockedUntil    DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 
   @@index([articleId, createdAt])
+  @@index([ipHash, createdAt])
+}
+
+// 같은 사람이 같은 댓글을 여러 번 신고해도 한 번으로 센다
+model CommentReport {
+  commentId String
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  ipHash    String
+  createdAt DateTime @default(now())
+
+  @@id([commentId, ipHash])
   @@index([ipHash, createdAt])
 }
 
@@ -283,6 +302,7 @@ model AiBatch {
   kind        String // "translate"
   items       Json // 요청 custom_id 목록 ["<articleId>_<locale>", ...]
   status      String    @default("in_progress") // in_progress | collected
+  reservedUsd Float     @default(0) // 보낼 때 잡아 둔 최악의 비용. 거두기 전까지 예산에 넣는다
   createdAt   DateTime  @default(now())
   collectedAt DateTime?
 

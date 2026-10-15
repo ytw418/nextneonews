@@ -8,7 +8,7 @@ const NO_STORE = { "cache-control": "no-store" };
 export async function GET(request: Request) {
   const articleId = new URL(request.url).searchParams.get("articleId");
   if (!articleId) return NextResponse.json({ error: "invalid" }, { status: 400, headers: NO_STORE });
-  return NextResponse.json({ comments: await listComments(articleId) }, { headers: NO_STORE });
+  return NextResponse.json(await listComments(articleId), { headers: NO_STORE });
 }
 
 export async function POST(request: Request) {

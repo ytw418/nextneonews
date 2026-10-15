@@ -8,7 +8,8 @@
     "language": "Bahasa",
     "upcoming": "Mendatang",
     "all": "Untukmu",
-    "back": "Kembali"
+    "back": "Kembali",
+    "close": "Tutup"
   },
   "Home": {
     "latest": "Terbaru",
@@ -39,7 +40,10 @@
     "KENT": "Seleb",
     "KDRAMA": "Drakor",
     "KFOOD": "Kuliner Korea",
+    "KBEAUTY": "K-Beauty",
     "TRAVEL": "Wisata",
+    "STUDY": "Kuliah di Korea",
+    "LOVE": "Cinta & Pernikahan",
     "WORKING_HOLIDAY": "Working Holiday",
     "JOBS": "Kerja",
     "HOUSING": "Tempat tinggal",
@@ -63,6 +67,12 @@
     "wrongPassword": "Kata sandi salah.",
     "tooFast": "Kamu berkomentar terlalu cepat. Coba lagi beberapa menit lagi.",
     "noLinks": "Komentar tidak boleh berisi tautan.",
-    "error": "Terjadi kesalahan. Silakan coba lagi."
+    "error": "Terjadi kesalahan. Silakan coba lagi.",
+    "locked": "Terlalu banyak kata sandi salah. Coba lagi 15 menit lagi."
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "Hiburan",
+    "LIFESTYLE": "Kuliner, kecantikan & wisata",
+    "LIVING": "Tinggal di Korea"
   }
 }

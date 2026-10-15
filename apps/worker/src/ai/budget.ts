@@ -11,9 +11,13 @@ export function budgetUsd(): number {
   return (Number.isFinite(krw) && krw > 0 ? krw : 100_000) / KRW_PER_USD;
 }
 
+// 지금까지 쓴 돈 + 아직 결과를 거두지 않은 배치의 최악 비용 (배치 비용은 거둘 때 CostLog 에 들어간다)
 export async function spentUsd(): Promise<number> {
-  const { _sum } = await prisma.costLog.aggregate({ _sum: { amountUsd: true } });
-  return Number(_sum.amountUsd ?? 0);
+  const [logged, reserved] = await Promise.all([
+    prisma.costLog.aggregate({ _sum: { amountUsd: true } }),
+    prisma.aiBatch.aggregate({ _sum: { reservedUsd: true }, where: { status: "in_progress" } }),
+  ]);
+  return Number(logged._sum.amountUsd ?? 0) + Number(reserved._sum.reservedUsd ?? 0);
 }
 
 // 호출 전에 "지금까지 쓴 돈 + 이번 호출 최악의 비용"이 상한을 넘으면 막는다.

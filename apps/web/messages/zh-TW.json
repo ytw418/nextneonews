@@ -8,7 +8,8 @@
     "language": "語言",
     "upcoming": "行程",
     "all": "全部",
-    "back": "返回"
+    "back": "返回",
+    "close": "關閉"
   },
   "Home": {
     "latest": "最新",
@@ -39,7 +40,10 @@
     "KENT": "藝人",
     "KDRAMA": "韓劇",
     "KFOOD": "韓國美食",
+    "KBEAUTY": "韓系美妝",
     "TRAVEL": "旅遊",
+    "STUDY": "韓國留學",
+    "LOVE": "戀愛・婚姻",
     "WORKING_HOLIDAY": "打工度假",
     "JOBS": "打工",
     "HOUSING": "租屋",
@@ -63,6 +67,12 @@
     "wrongPassword": "密碼錯誤。",
     "tooFast": "留言太頻繁了，請過幾分鐘再試。",
     "noLinks": "留言不能貼連結。",
-    "error": "發生錯誤，請再試一次。"
+    "error": "發生錯誤，請再試一次。",
+    "locked": "密碼錯誤次數太多，請15分鐘後再試。"
+  },
+  "CategoryGroup": {
+    "ENTERTAINMENT": "娛樂",
+    "LIFESTYLE": "美食・美妝・旅遊",
+    "LIVING": "在韓國生活"
   }
 }
