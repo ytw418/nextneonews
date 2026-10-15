@@ -1,21 +1,30 @@
 # 콘텐츠 파이프라인 자동 실행: 수집 → 품질 체크(알고리즘) → 기사 작성 → 사진 → 간체 → 배치 번역
 # 필요한 저장소 Secrets: DATABASE_URL, ANTHROPIC_API_KEY, SITE_URL, INDEXNOW_KEY
+#
+# GitHub 의 schedule 은 보장되지 않는다 (2026-10-15 등록 뒤 4시간 넘게 한 번도 안 돌았다).
+# 그래서 chain=true 로 시작한 실행은 끝날 때 약 55분 뒤 다음 실행을 스스로 예약한다.
+# 처음 한 번만: gh workflow run pipeline -f chain=true
 name: pipeline
 
 on:
   schedule:
     - cron: "17 * * * *" # 매시 17분 (UTC). 비공개 레포로 바꾸면 "17 */2 * * *" 로 줄인다
-    - cron: "40 18 * * 0" # 매주 월요일 03:40 KST: 인물 사전 갱신
-    - cron: "23 20 * * *" # 매일 05:23 KST: 원문 삭제 확인
   workflow_dispatch:
     inputs:
       limit:
         description: "이번에 쓸 기사 수"
         default: "3"
+      chain:
+        description: "끝나면 다음 실행을 예약 (매시간 이어서 돈다)"
+        default: "false"
 
 concurrency:
   group: pipeline
   cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: write # 다음 실행 예약 (workflow_dispatch)
 
 jobs:
   run:
@@ -37,14 +46,20 @@ jobs:
       - run: npm ci
       - run: npm run db:generate
       - run: npm run db:migrate
+      # 하루·주 1번 작업은 schedule 대신 시각으로 정한다 (UTC 20시 = 05시 KST, 일요일 18시 = 월요일 03시 KST)
+      - name: 시각 확인
+        id: when
+        run: |
+          echo "daily=$([ "$(date -u +%H)" = 20 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "weekly=$([ "$(date -u +%u%H)" = 718 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
       - name: 원문 삭제 확인 (하루 1번)
-        if: github.event.schedule == '23 20 * * *'
+        if: steps.when.outputs.daily == 'true'
         run: npm run worker -- recheck
       - name: 편의점 상품 수집 (하루 1번, K-쇼핑 주간 랭킹)
-        if: github.event.schedule == '23 20 * * *'
+        if: steps.when.outputs.daily == 'true'
         run: npm run worker -- products
       - name: 인물 사전 갱신 (주 1회)
-        if: github.event.schedule == '40 18 * * 0'
+        if: steps.when.outputs.weekly == 'true'
         run: npm run worker -- entities
       - name: 수집 → 체크 → 작성
         run: npm run worker -- pipeline ${{ github.event.inputs.limit || '3' }}
@@ -52,3 +67,24 @@ jobs:
       - name: vi·id·fr·ru 배치 번역 (지난 배치 거두기 + 새로 보내기)
         run: npm run worker -- translate
       - run: npm run worker -- cost
+
+  # 약 55분 기다렸다가 다음 실행을 예약한다. 이미 기다리는 실행이 있으면 겹치지 않게 건너뛴다
+  next:
+    needs: run
+    if: always() && github.event_name == 'workflow_dispatch' && github.event.inputs.chain == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: 기다리기
+        run: sleep 3000
+      - name: 다음 실행 예약
+        run: |
+          waiting=$(gh run list -R "$GITHUB_REPOSITORY" --workflow pipeline --json status,databaseId \
+            -q "[.[] | select((.status == \"queued\" or .status == \"pending\" or .status == \"waiting\") and .databaseId != $GITHUB_RUN_ID)] | length")
+          if [ "$waiting" -gt 0 ]; then
+            echo "이미 기다리는 실행이 있어 건너뜀"
+          else
+            gh workflow run pipeline -R "$GITHUB_REPOSITORY" --ref main -f limit=3 -f chain=true
+          fi
