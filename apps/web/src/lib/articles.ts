@@ -103,6 +103,15 @@ export async function findTranslatedLocale(slug: string): Promise<string | null>
   return locales.includes("en") ? "en" : (locales[0] ?? null);
 }
 
+// 이 언어로 읽을 글이 있는 카테고리만 (빈 카테고리는 탭·메뉴에 띄우지 않는다)
+export const listActiveCategories = cache(async (locale: string): Promise<Category[]> => {
+  const rows = await prisma.article.groupBy({
+    by: ["category"],
+    where: { status: "PUBLISHED", translations: { some: { locale } } },
+  });
+  return rows.map((r) => r.category);
+});
+
 export type FeedRow = Awaited<ReturnType<typeof listLatest>>[number];
 
 // generateMetadata 와 페이지 본문이 같은 요청에서 한 번만 조회하도록 cache 로 감싼다.
