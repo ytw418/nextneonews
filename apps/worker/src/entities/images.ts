@@ -4,7 +4,28 @@ import { log } from "../log";
 import { findEntities } from "./match";
 
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
-const USER_AGENT = "kmedia-entity-builder/0.1 (personal project)";
+// 위키미디어 API 규칙: 연락 가능한 사이트 주소를 넣고, 요청 사이를 띄우고, 429 면 기다렸다 다시 한다
+// https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits
+const USER_AGENT = "HallyuBrief/0.1 (https://hallyu-brief.vercel.app; image credits bot)";
+const GAP_MS = 1000;
+let lastCall = 0;
+
+async function commonsFetch(params: URLSearchParams): Promise<Response | null> {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const wait = lastCall + GAP_MS - Date.now();
+    if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
+    lastCall = Date.now();
+    const res = await fetch(`${COMMONS_API}?${params}`, {
+      headers: { "user-agent": USER_AGENT },
+      signal: AbortSignal.timeout(15_000),
+    }).catch(() => null);
+    if (!res || res.status !== 429) return res;
+    const retryAfter = Number(res.headers.get("retry-after")) || 30;
+    log.warn("commons: rate limited, waiting", { seconds: retryAfter });
+    await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+  }
+  return null;
+}
 
 interface CommonsImage {
   url: string;
@@ -30,11 +51,8 @@ async function commonsImage(file: string): Promise<CommonsImage | null> {
     format: "json",
     origin: "*",
   });
-  const res = await fetch(`${COMMONS_API}?${params}`, {
-    headers: { "user-agent": USER_AGENT },
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!res.ok) return null;
+  const res = await commonsFetch(params);
+  if (!res?.ok) return null;
   const data = (await res.json()) as {
     query?: {
       pages?: Record<
@@ -93,9 +111,9 @@ export async function backfillCredits(): Promise<void> {
       format: "json",
       formatversion: "2",
     });
-    const res = await fetch(`${COMMONS_API}?${params}`, { headers: { "user-agent": USER_AGENT } });
-    if (!res.ok) {
-      log.warn("image: credits request failed", { status: res.status });
+    const res = await commonsFetch(params);
+    if (!res?.ok) {
+      log.warn("image: credits request failed", { status: res?.status });
       await sleep(5000);
       continue;
     }
@@ -162,14 +180,12 @@ export async function attachImage(articleId: string): Promise<boolean> {
     include: { media: true, translations: { where: { locale: "en" }, select: { title: true } }, topic: true },
   });
   if (!article || article.media.length > 0) return false;
-  // 논란·사건 기사에는 얼굴 사진을 붙이지 않는다 (스캔들 제목과 얼굴이 묶이는 명예훼손·초상권 위험)
-  if (article.riskTier !== "GREEN") return false;
 
   const signal = article.topicId
     ? await prisma.signal.findFirst({ where: { topicId: article.topicId }, select: { title: true } })
     : null;
   const subject = signal ? await subjectEntity(signal.title) : null;
-  if (!subject) return false;
+  if (!subject) return attachTopicImage(article);
 
   for (const entity of [subject]) {
     const image = await commonsImage(entity.image!);
@@ -188,15 +204,17 @@ export async function attachImage(articleId: string): Promise<boolean> {
 export async function recheckImages(): Promise<void> {
   const media = await prisma.media.findMany({
     where: { kind: "STOCK" },
-    select: { id: true, url: true, articleId: true, article: { select: { topicId: true, riskTier: true } } },
+    select: { id: true, url: true, articleId: true, article: { select: { topicId: true, category: true } } },
   });
   let removed = 0;
   let replaced = 0;
   for (const m of media) {
+    // 사람 사진만 다시 본다 (가이드·여행의 장소 사진은 주인공 규칙과 상관없다)
+    if (!PEOPLE_CATEGORIES.has(m.article.category)) continue;
     const signal = m.article.topicId
       ? await prisma.signal.findFirst({ where: { topicId: m.article.topicId }, select: { title: true } })
       : null;
-    const subject = signal && m.article.riskTier === "GREEN" ? await subjectEntity(signal.title) : null;
+    const subject = signal ? await subjectEntity(signal.title) : null;
     const current = fileFromUrl(m.url);
     if (subject?.image && current && subject.image.replaceAll(" ", "_") === current.replaceAll(" ", "_")) continue;
     await prisma.media.delete({ where: { id: m.id } });
@@ -204,6 +222,101 @@ export async function recheckImages(): Promise<void> {
     if (subject && (await attachImage(m.articleId))) replaced += 1;
   }
   log.info("images: recheck done", { checked: media.length, removed, replaced });
+}
+
+// 사람이 아닌 주제(가이드·여행·음식·생활)는 장소·음식 사진을 공용에서 찾는다.
+// 연예 카테고리는 다른 사람 얼굴이 걸릴 수 있어 찾지 않는다 (화면은 메모 커버를 쓴다)
+const PEOPLE_CATEGORIES = new Set(["KPOP", "KENT", "KDRAMA"]);
+const CATEGORY_QUERY: Record<string, string> = {
+  TRAVEL: "Seoul skyline night",
+  KFOOD: "Korean food table",
+  KBEAUTY: "Myeongdong cosmetics street",
+  STUDY: "Seoul university campus",
+  LOVE: "Korean wedding",
+  WORKING_HOLIDAY: "Seoul street",
+  JOBS: "Seoul convenience store",
+  HOUSING: "Seoul apartments",
+  LIFE: "Seoul street",
+};
+const FREE_LICENSE = /^(CC BY|CC-BY|CC0|Public domain|PD)/i;
+
+// 공용 검색 → 자유 라이선스·가로 1200px 이상인 첫 사진
+export async function searchCommons(query: string): Promise<CommonsImage | null> {
+  const params = new URLSearchParams({
+    action: "query",
+    generator: "search",
+    gsrsearch: `${query} filetype:bitmap`,
+    gsrnamespace: "6",
+    gsrlimit: "10",
+    prop: "imageinfo",
+    iiprop: "url|size|extmetadata",
+    iiurlwidth: "1080",
+    format: "json",
+    formatversion: "2",
+  });
+  const res = await commonsFetch(params);
+  if (!res?.ok) return null;
+  const data = (await res.json()) as {
+    query?: {
+      pages?: {
+        index: number;
+        imageinfo?: {
+          thumburl?: string;
+          descriptionurl?: string;
+          width?: number;
+          height?: number;
+          extmetadata?: Record<string, { value: string } | undefined>;
+        }[];
+      }[];
+    };
+  };
+  const pages = [...(data.query?.pages ?? [])].sort((a, b) => a.index - b.index);
+  for (const page of pages) {
+    const info = page.imageinfo?.[0];
+    const license = stripHtml(info?.extmetadata?.LicenseShortName?.value ?? "");
+    if (!info?.thumburl || !FREE_LICENSE.test(license)) continue;
+    if ((info.width ?? 0) < 1200 || (info.width ?? 0) < (info.height ?? 0)) continue; // 가로 사진만
+    const author = stripHtml(info.extmetadata?.Artist?.value ?? "Unknown");
+    return {
+      url: info.thumburl,
+      credit: `Photo: ${author} / ${license} via Wikimedia Commons`,
+      author,
+      licenseName: license,
+      licenseUrl: stripHtml(info.extmetadata?.LicenseUrl?.value ?? "") || null,
+      sourceUrl: info.descriptionurl ?? null,
+    };
+  }
+  return null;
+}
+
+// 가이드 제목 "Busan Fireworks Festival 2026 (Nov 7): ..." → "Busan Fireworks Festival"
+function queryFromAngle(angle: string): string {
+  return angle
+    .split(/[:?]/)[0]!
+    .replace(/\(.*?\)/g, "")
+    .replace(/\b(20\d\d|How to|What|Why|Your|in 2026|Guide)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function attachTopicImage(article: {
+  id: string;
+  category: string;
+  topic: { angle: string | null } | null;
+}): Promise<boolean> {
+  if (PEOPLE_CATEGORIES.has(article.category)) return false;
+  const queries = [article.topic?.angle ? queryFromAngle(article.topic.angle) : "", CATEGORY_QUERY[article.category] ?? ""];
+  for (const query of queries.filter((q) => q.length > 2)) {
+    const image = await searchCommons(query);
+    if (!image) continue;
+    const { url, credit, author, licenseName, licenseUrl, sourceUrl } = image;
+    await prisma.media.create({
+      data: { articleId: article.id, url, kind: "STOCK", credit, author, licenseName, licenseUrl, sourceUrl },
+    });
+    log.info("image: topic photo attached", { articleId: article.id, query });
+    return true;
+  }
+  return false;
 }
 
 export async function backfillImages(): Promise<void> {
