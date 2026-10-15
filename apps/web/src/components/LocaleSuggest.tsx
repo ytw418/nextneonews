@@ -24,6 +24,13 @@ const READ_IN: Record<Locale, string> = {
 const DISMISSED = "hb:locale-suggest-dismissed";
 const SEEN = "hb:locale-suggest-seen"; // sessionStorage
 
+// 설치 안내(InstallPrompt)와 겹치지 않게: 언어 제안이 먼저 뜨고, 내려가면 이 이벤트를 보낸다
+export const LOCALE_SUGGEST_DONE = "hb:locale-suggest-done";
+let suggesting = false;
+export function isLocaleSuggesting(): boolean {
+  return suggesting;
+}
+
 // 공유 링크로 다른 언어 페이지에 들어온 사람에게 브라우저 언어판을 권한다.
 // 강제로 넘기지 않는다: 검색 로봇과 일부러 그 언어를 고른 사람을 막지 않기 위해서다.
 // 대상 주소는 페이지에 이미 있는 hreflang 대체 링크에서 찾으므로, 번역이 있는 페이지에서만 뜬다.
@@ -48,11 +55,16 @@ export function LocaleSuggest() {
       const found = findSuggestion(current);
       if (!found) return;
       sessionSet(SEEN, "1");
+      suggesting = true;
       toast(`${READ_IN[found.locale]} →`, {
         href: found.href,
         lang: found.locale,
         duration: 5000,
         onClose: () => storageSet(DISMISSED, "1"),
+        onDone: () => {
+          suggesting = false;
+          window.dispatchEvent(new Event(LOCALE_SUGGEST_DONE));
+        },
       });
     });
     return () => cancelAnimationFrame(id);

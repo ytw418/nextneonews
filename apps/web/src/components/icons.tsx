@@ -129,3 +129,11 @@ export const PlayIcon = ({ className }: IconProps) => (
     <path d="M8 5.5v13l10.5-6.5z" />
   </svg>
 );
+
+// 아이폰 공유 시트의 '홈 화면에 추가' 모양 (설치 안내)
+export const PlusSquareIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <rect x="4" y="4" width="16" height="16" rx="4" />
+    <path d="M12 8.5v7M8.5 12h7" />
+  </svg>
+);

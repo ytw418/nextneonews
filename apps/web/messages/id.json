@@ -5,9 +5,13 @@
   },
   "Nav": {
     "home": "Beranda",
+    "schedule": "Jadwal",
     "language": "Bahasa",
-    "upcoming": "Mendatang",
-    "all": "Untukmu",
+    "changeLanguage": "Ganti bahasa (sekarang: {name})",
+    "menu": "Menu",
+    "categories": "Kategori",
+    "main": "Menu utama",
+    "all": "Semua",
     "back": "Kembali",
     "close": "Tutup"
   },
@@ -26,7 +30,7 @@
     "faq": "Tanya jawab",
     "published": "Terbit",
     "updated": "Diperbarui",
-    "share": "Bagikan",
+    "share": "Bagikan artikel ini",
     "copied": "Tautan disalin",
     "related": "Baca juga",
     "readMore": "Baca"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "Hiburan",
     "LIFESTYLE": "Kuliner, kecantikan & wisata",
     "LIVING": "Tinggal di Korea"
+  },
+  "Install": {
+    "title": "Tambahkan {name} ke layar utama",
+    "body": "Buka dengan sekali ketuk, seperti aplikasi.",
+    "install": "Pasang",
+    "iosSteps": "Di Safari, ketuk Bagikan, lalu pilih Tambah ke Layar Utama.",
+    "iosShare": "Bagikan",
+    "iosAdd": "Tambah ke Layar Utama"
   }
 }

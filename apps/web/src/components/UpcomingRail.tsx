@@ -11,7 +11,6 @@ export async function UpcomingRail({ locale }: { locale: string }) {
   const dateFormat = new Intl.DateTimeFormat(locale, { month: "numeric", day: "numeric", timeZone: "UTC" });
 
   return (
-    // 하단 탭의 '/#upcoming' 이 여기로 온다
     <section id="upcoming" aria-labelledby="home-schedule">
       <SectionHeader id="home-schedule" title={t("upcoming")} />
       <ul className="rail rail-snap items-stretch gap-2 px-gutter pb-1">

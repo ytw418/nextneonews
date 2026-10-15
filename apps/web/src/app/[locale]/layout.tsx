@@ -7,11 +7,13 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SITE_NAME } from "@kmedia/core";
 
 import { ChromeEffects } from "@/components/ChromeEffects";
+import { InstallPrompt } from "@/components/InstallPrompt";
 import { JsonLd } from "@/components/JsonLd";
 import { LocaleSuggest } from "@/components/LocaleSuggest";
 import { TabBar } from "@/components/TabBar";
 import { Toaster } from "@/components/ui/Toast";
 import { routing } from "@/i18n/routing";
+import { INSTALL_CAPTURE_SCRIPT } from "@/lib/install";
 import { siteJsonLd } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/url";
 
@@ -62,6 +64,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   return (
     <html lang={locale} className={instrument.variable}>
       <body className="min-h-svh antialiased">
+        <script dangerouslySetInnerHTML={{ __html: INSTALL_CAPTURE_SCRIPT }} />
         <JsonLd data={siteJsonLd(locale)} />
         <NextIntlClientProvider>
           {/* 하단 탭바·고정 CTA(--bottom-ui)에 마지막 줄이 가리지 않게 아래 여백을 둔다 */}
@@ -71,7 +74,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           <TabBar />
           <Toaster />
           <ChromeEffects />
+          {/* 언어 제안이 먼저, 그다음 설치 안내 (같은 자리라 함께 뜨지 않는다) */}
           <LocaleSuggest />
+          <InstallPrompt />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -5,8 +5,12 @@
   },
   "Nav": {
     "home": "首页",
+    "schedule": "行程",
     "language": "语言",
-    "upcoming": "行程",
+    "changeLanguage": "切换语言（当前：{name}）",
+    "menu": "菜单",
+    "categories": "分类",
+    "main": "主菜单",
     "all": "全部",
     "back": "返回",
     "close": "关闭"
@@ -26,7 +30,7 @@
     "faq": "常见问题",
     "published": "发布",
     "updated": "更新",
-    "share": "分享",
+    "share": "分享这篇文章",
     "copied": "已复制链接",
     "related": "延伸阅读",
     "readMore": "阅读"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "娱乐",
     "LIFESTYLE": "美食・美妆・旅游",
     "LIVING": "在韩国生活"
+  },
+  "Install": {
+    "title": "把 {name} 添加到主屏幕",
+    "body": "像 App 一样，一点就开。",
+    "install": "安装",
+    "iosSteps": "在 Safari 点“共享”，再选“添加到主屏幕”。",
+    "iosShare": "共享",
+    "iosAdd": "添加到主屏幕"
   }
 }

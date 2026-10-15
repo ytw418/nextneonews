@@ -5,9 +5,13 @@
   },
   "Nav": {
     "home": "Home",
+    "schedule": "Schedule",
     "language": "Language",
-    "upcoming": "Upcoming",
-    "all": "For you",
+    "changeLanguage": "Change language (now {name})",
+    "menu": "Menu",
+    "categories": "Categories",
+    "main": "Main menu",
+    "all": "All",
     "back": "Back",
     "close": "Close"
   },
@@ -26,7 +30,7 @@
     "faq": "FAQ",
     "published": "Published",
     "updated": "Updated",
-    "share": "Share",
+    "share": "Share this article",
     "copied": "Link copied",
     "related": "More to read",
     "readMore": "Read"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "Entertainment",
     "LIFESTYLE": "Food, beauty & travel",
     "LIVING": "Living in Korea"
+  },
+  "Install": {
+    "title": "Add {name} to your Home Screen",
+    "body": "Open it in one tap, just like an app.",
+    "install": "Install",
+    "iosSteps": "In Safari, tap Share, then Add to Home Screen.",
+    "iosShare": "Share",
+    "iosAdd": "Add to Home Screen"
   }
 }

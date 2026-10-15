@@ -14,6 +14,11 @@ const TINT: Record<string, string> = {
   LIFE: "var(--tint-life)",
 };
 
+// 카테고리 색 (메모 커버·메뉴 칩). 틴트는 카테고리만 뜻한다
+export function categoryTint(category: string): string {
+  return TINT[category] ?? TINT.LIFE!;
+}
+
 // Tailwind 가 클래스를 찾을 수 있게 문자열을 그대로 둔다
 const RATIOS = ["aspect-[4/5]", "aspect-square", "aspect-[4/5]", "aspect-[5/6]"] as const;
 
@@ -35,7 +40,7 @@ export interface CoverStyle {
 export function coverStyle(seed: string, category: string): CoverStyle {
   const h = hash(seed);
   return {
-    tint: TINT[category] ?? TINT.LIFE!,
+    tint: categoryTint(category),
     ratio: RATIOS[h % RATIOS.length]!,
     tapeTilt: ((h >> 10) % 7) - 3,
   };

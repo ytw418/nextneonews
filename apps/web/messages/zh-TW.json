@@ -5,8 +5,12 @@
   },
   "Nav": {
     "home": "首頁",
+    "schedule": "行程",
     "language": "語言",
-    "upcoming": "行程",
+    "changeLanguage": "切換語言（目前：{name}）",
+    "menu": "選單",
+    "categories": "分類",
+    "main": "主選單",
     "all": "全部",
     "back": "返回",
     "close": "關閉"
@@ -26,7 +30,7 @@
     "faq": "常見問題",
     "published": "發布",
     "updated": "更新",
-    "share": "分享",
+    "share": "分享這篇文章",
     "copied": "已複製連結",
     "related": "延伸閱讀",
     "readMore": "閱讀"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "娛樂",
     "LIFESTYLE": "美食・美妝・旅遊",
     "LIVING": "在韓國生活"
+  },
+  "Install": {
+    "title": "把 {name} 加到主畫面",
+    "body": "像 App 一樣，一點就開。",
+    "install": "安裝",
+    "iosSteps": "在 Safari 點「分享」，再選「加入主畫面」。",
+    "iosShare": "分享",
+    "iosAdd": "加入主畫面"
   }
 }

@@ -5,9 +5,13 @@
   },
   "Nav": {
     "home": "Accueil",
+    "schedule": "Agenda",
     "language": "Langue",
-    "upcoming": "À venir",
-    "all": "Pour toi",
+    "changeLanguage": "Changer de langue (actuellement : {name})",
+    "menu": "Menu",
+    "categories": "Catégories",
+    "main": "Menu principal",
+    "all": "Tout",
     "back": "Retour",
     "close": "Fermer"
   },
@@ -26,7 +30,7 @@
     "faq": "Questions fréquentes",
     "published": "Publié",
     "updated": "Mis à jour",
-    "share": "Partager",
+    "share": "Partager cet article",
     "copied": "Lien copié",
     "related": "À lire aussi",
     "readMore": "Lire"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "Divertissement",
     "LIFESTYLE": "Cuisine, beauté & voyage",
     "LIVING": "Vivre en Corée"
+  },
+  "Install": {
+    "title": "Ajoute {name} à ton écran d’accueil",
+    "body": "Ouvre-le en un geste, comme une appli.",
+    "install": "Installer",
+    "iosSteps": "Dans Safari, touche Partager, puis Sur l’écran d’accueil.",
+    "iosShare": "Partager",
+    "iosAdd": "Sur l’écran d’accueil"
   }
 }

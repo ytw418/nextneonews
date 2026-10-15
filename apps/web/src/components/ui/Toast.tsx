@@ -12,6 +12,7 @@ export interface ToastOptions {
   actionLabel?: string;
   onAction?: () => void;
   onClose?: () => void; // 사용자가 ×로 닫았을 때만 (시간이 지나 사라질 때는 부르지 않는다)
+  onDone?: () => void; // 어떤 이유로든 화면에서 내려갈 때 (시간·×·링크·다른 토스트로 바뀜)
   duration?: number;
 }
 
@@ -41,12 +42,22 @@ export function Toaster() {
   const [item, setItem] = useState<ToastItem | null>(null);
   const [paused, setPaused] = useState(false);
   const remaining = useRef(0);
+  const current = useRef<ToastItem | null>(null);
+
+  // 바꿔 끼우거나 내릴 때 앞 토스트에 끝났다고 알린다
+  const swap = (next: ToastItem | null) => {
+    const prev = current.current;
+    current.current = next;
+    setItem(next);
+    if (prev && prev !== next) prev.onDone?.();
+  };
 
   const show = useEffectEvent((next: ToastItem) => {
     remaining.current = next.duration ?? (next.href || next.onAction ? 5000 : 3000);
     setPaused(false);
-    setItem(next);
+    swap(next);
   });
+  const expire = useEffectEvent(() => swap(null));
 
   useEffect(() => {
     const onToast = (event: Event) => show((event as CustomEvent<ToastItem>).detail);
@@ -67,7 +78,7 @@ export function Toaster() {
   useEffect(() => {
     if (!item || paused) return;
     const started = Date.now();
-    const id = setTimeout(() => setItem(null), remaining.current);
+    const id = setTimeout(() => expire(), remaining.current);
     return () => {
       clearTimeout(id);
       remaining.current = Math.max(1000, remaining.current - (Date.now() - started));
@@ -76,7 +87,7 @@ export function Toaster() {
 
   const dismiss = () => {
     item?.onClose?.();
-    setItem(null);
+    swap(null);
   };
 
   return (
@@ -98,7 +109,7 @@ export function Toaster() {
             <a
               href={item.href}
               lang={item.lang}
-              onClick={() => setItem(null)}
+              onClick={() => swap(null)}
               className="flex min-h-11 flex-1 items-center py-2 font-semibold"
             >
               {item.message}
@@ -113,7 +124,7 @@ export function Toaster() {
               type="button"
               onClick={() => {
                 item.onAction?.();
-                setItem(null);
+                swap(null);
               }}
               className="press min-h-11 shrink-0 rounded-btn-m px-3 font-semibold text-bg active:bg-white/10"
             >

@@ -19,7 +19,7 @@ export async function CategoryRail({ active }: { active?: string }) {
     }`;
 
   return (
-    <nav className="rail gap-2 px-gutter py-2" aria-label="categories">
+    <nav className="rail gap-2 px-gutter py-2" aria-label={tNav("categories")}>
       <Link href="/" data-chip aria-current={!active ? "page" : undefined} className={chip(!active)}>
         {tNav("all")}
       </Link>

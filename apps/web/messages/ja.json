@@ -5,8 +5,12 @@
   },
   "Nav": {
     "home": "ホーム",
+    "schedule": "予定",
     "language": "言語",
-    "upcoming": "予定",
+    "changeLanguage": "言語を変更（いま：{name}）",
+    "menu": "メニュー",
+    "categories": "カテゴリー",
+    "main": "メインメニュー",
     "all": "すべて",
     "back": "戻る",
     "close": "閉じる"
@@ -26,7 +30,7 @@
     "faq": "よくある質問",
     "published": "公開",
     "updated": "更新",
-    "share": "シェア",
+    "share": "この記事をシェア",
     "copied": "リンクをコピーしました",
     "related": "こちらもおすすめ",
     "readMore": "読む"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "エンタメ",
     "LIFESTYLE": "グルメ・コスメ・旅行",
     "LIVING": "韓国で暮らす"
+  },
+  "Install": {
+    "title": "{name}をホーム画面に追加",
+    "body": "アプリのようにワンタップで開けます。",
+    "install": "インストール",
+    "iosSteps": "Safariで「共有」をタップして、「ホーム画面に追加」を選んでください。",
+    "iosShare": "共有",
+    "iosAdd": "ホーム画面に追加"
   }
 }

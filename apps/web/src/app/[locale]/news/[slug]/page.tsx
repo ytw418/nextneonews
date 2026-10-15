@@ -114,9 +114,11 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
 
   return (
     <>
-      <AppHeader>
-        <ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />
-      </AppHeader>
+      <AppHeader
+        variant="pushed"
+        parentHref="/"
+        action={<ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />}
+      />
 
       <article>
         <JsonLd

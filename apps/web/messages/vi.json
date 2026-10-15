@@ -5,9 +5,13 @@
   },
   "Nav": {
     "home": "Trang chủ",
+    "schedule": "Lịch trình",
     "language": "Ngôn ngữ",
-    "upcoming": "Sắp diễn ra",
-    "all": "Dành cho bạn",
+    "changeLanguage": "Đổi ngôn ngữ (hiện tại: {name})",
+    "menu": "Menu",
+    "categories": "Chuyên mục",
+    "main": "Menu chính",
+    "all": "Tất cả",
     "back": "Quay lại",
     "close": "Đóng"
   },
@@ -26,7 +30,7 @@
     "faq": "Câu hỏi thường gặp",
     "published": "Đăng lúc",
     "updated": "Cập nhật",
-    "share": "Chia sẻ",
+    "share": "Chia sẻ bài viết này",
     "copied": "Đã sao chép liên kết",
     "related": "Đọc thêm",
     "readMore": "Đọc"
@@ -74,5 +78,13 @@
     "ENTERTAINMENT": "Giải trí",
     "LIFESTYLE": "Ẩm thực, làm đẹp & du lịch",
     "LIVING": "Sống ở Hàn Quốc"
+  },
+  "Install": {
+    "title": "Thêm {name} vào màn hình chính",
+    "body": "Mở chỉ với một chạm, như một ứng dụng.",
+    "install": "Cài đặt",
+    "iosSteps": "Trong Safari, chạm Chia sẻ rồi chọn Thêm vào MH chính.",
+    "iosShare": "Chia sẻ",
+    "iosAdd": "Thêm vào MH chính"
   }
 }
