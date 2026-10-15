@@ -3,16 +3,18 @@ import { promisify } from "node:util";
 
 import { z } from "zod";
 
-import { isLocale, type Locale } from "@kmedia/core";
+import { isLocale, LINK, type Locale } from "@kmedia/core";
 import { anonymousId, displayNickname } from "@kmedia/core/nickname";
 import { type Comment, prisma } from "@kmedia/db";
 
-// 로그인 없는 익명 댓글 (docs/PRD.md): 비밀번호로 수정·삭제, 닉네임 옆에는 IP 대신 IP 해시 4자리.
+// 로그인 없는 익명 댓글 (docs/PRD.md): 비밀번호로 수정·삭제 (화면은 기기마다 만든 키를 비밀번호로 보낸다).
+// IP 는 저장하지 않고, 글마다 다른 IP 해시 4자리로 아바타 색을 고른다.
 
 const scryptAsync = promisify(scrypt) as (password: string, salt: Buffer, keylen: number) => Promise<Buffer>;
 
 export const BODY_MAX = 1000;
-const NICKNAME_MAX = 12;
+// fr·ru·vi 의 귀여운 이름("Hérisson tranquille")이 들어가는 길이
+const NICKNAME_MAX = 20;
 // 같은 사람(IP 해시)이 10분에 5개까지
 const RATE_WINDOW_MS = 10 * 60_000;
 const RATE_MAX = 5;
@@ -22,8 +24,6 @@ const REPORT_RATE_MAX = 10;
 // 비밀번호를 연속으로 이만큼 틀리면 LOCK_MS 동안 잠근다
 const MAX_PASSWORD_FAILURES = 5;
 const LOCK_MS = 15 * 60_000;
-// 광고 도배는 거의 다 링크라 링크가 든 댓글은 받지 않는다
-const LINK = /https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|io|kr|jp|cn|ru|xyz|top|link|shop)\b/i;
 
 function secret(): string {
   const value = process.env.COMMENT_HASH_SECRET;
@@ -101,14 +101,14 @@ function toPublic(c: Comment): PublicComment {
   };
 }
 
-// 최신 300개를 오래된 순으로 보여 준다 (오래된 것만 남아 새 댓글이 안 보이는 일이 없게)
+// 최신 300개를 최신 순으로 보여 준다 (입력창 바로 아래에 새 댓글이 붙는다)
 export async function listComments(articleId: string): Promise<{ comments: PublicComment[]; total: number }> {
   const where = { articleId, status: "VISIBLE" as const };
   const [rows, total] = await Promise.all([
     prisma.comment.findMany({ where, orderBy: { createdAt: "desc" }, take: 300 }),
     prisma.comment.count({ where }),
   ]);
-  return { comments: rows.reverse().map(toPublic), total };
+  return { comments: rows.map(toPublic), total };
 }
 
 export async function createComment(
@@ -130,7 +130,7 @@ export async function createComment(
   const data = {
     articleId: article.id,
     locale: input.locale,
-    // "名無しさん(7f3a)": 같은 글 안에서만 같은 사람끼리 구분된다
+    // 이름이 없으면 "다정한수달"처럼 IP 해시로 정한 이름. 같은 글 안에서만 같은 사람끼리 같다
     nickname: displayNickname({ nickname: input.nickname, ip, articleId: article.id, locale: input.locale as Locale }, key),
     idHash: anonymousId(ip, article.id, key),
     ipHash: hash,
