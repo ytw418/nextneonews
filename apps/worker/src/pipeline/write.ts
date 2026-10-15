@@ -2,6 +2,7 @@ import { randomBytes } from "node:crypto";
 
 import { z } from "zod";
 
+import type { Locale } from "@kmedia/core";
 import { type Entity, prisma, type Topic } from "@kmedia/db";
 
 import { BudgetExceededError } from "../ai/budget";
@@ -11,7 +12,7 @@ import { WRITE_SYSTEM } from "../ai/prompts";
 import { attachImage } from "../entities/images";
 import { findEntities } from "../entities/match";
 import { log } from "../log";
-import { overlapRatio, unsupportedNumbers } from "./checks";
+import { headlineTooLong, overlapRatio, unsupportedNumbers } from "./checks";
 import { pickSentences } from "./extract";
 import { buildFactPack, MIN_FACT_CHARS } from "./factpack";
 import { clean, Localized } from "./localized";
@@ -118,13 +119,15 @@ async function saveArticle({ topic, draft, sources, sourceText, entities }: Save
 
   const slug = slugify(draft.slug);
   const zhTW = clean(draft.zhTW);
-  const locales: [string, Localized][] = [
+  const locales: [Locale, Localized][] = [
     ["en", en],
     ["ja", clean(draft.ja)],
     ["zh-TW", zhTW],
     ["zh-CN", toSimplified(zhTW)], // 간체는 AI 대신 OpenCC 변환 (0원)
     ["ko", draft.ko],
   ];
+  // 카드에서 4줄을 넘길 만큼 긴 제목은 경고만 남긴다 (발행은 막지 않는다)
+  for (const [locale, t] of locales) if (headlineTooLong(locale, t.title)) warnings.push(`headline-too-long:${locale}`);
   const article = await prisma.article.create({
     data: {
       topicId: topic.id,

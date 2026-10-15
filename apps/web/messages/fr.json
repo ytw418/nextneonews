@@ -16,7 +16,7 @@
     "close": "Fermer"
   },
   "Home": {
-    "latest": "À la une",
+    "latest": "Dernières actus",
     "trending": "Tendances",
     "empty": "Pas encore d’article ici.",
     "emptyCta": "Voir toutes les actus",
@@ -88,7 +88,7 @@
   },
   "Article": {
     "sources": "Sources",
-    "aiNotice": "Rédigé et traduit avec l’IA à partir d’annonces officielles et de médias coréens. Une erreur ? Dites-le-nous.",
+    "aiNotice": "Rédigé et traduit avec l’IA à partir d’annonces officielles et de médias coréens. Une erreur ? Dis-le-nous.",
     "correction": "Signaler une erreur",
     "keyPoints": "L’essentiel",
     "faq": "Questions fréquentes",
@@ -100,8 +100,8 @@
     "ad": "Publicité"
   },
   "NotFound": {
-    "title": "Page introuvable",
-    "back": "Retour à l’accueil"
+    "title": "Impossible de trouver cette page",
+    "back": "Aller à l’accueil"
   },
   "Category": {
     "KPOP": "K-POP",

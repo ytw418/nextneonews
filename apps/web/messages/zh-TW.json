@@ -100,7 +100,7 @@
     "ad": "廣告"
   },
   "NotFound": {
-    "title": "找不到頁面",
+    "title": "找不到這個頁面",
     "back": "回到首頁"
   },
   "Category": {
@@ -113,7 +113,7 @@
     "STUDY": "韓國留學",
     "LOVE": "戀愛・婚姻",
     "WORKING_HOLIDAY": "打工度假",
-    "JOBS": "打工",
+    "JOBS": "工作",
     "HOUSING": "租屋",
     "LIFE": "生活"
   },

@@ -1,7 +1,7 @@
 {
   "Site": {
     "tagline": "What foreigners want to know about Korea, every day",
-    "categoryDescription": "{category} news, schedules and guides for international fans, updated daily."
+    "categoryDescription": "{category} news, schedules and guides for international fans, updated every day."
   },
   "Nav": {
     "home": "Home",
@@ -100,8 +100,8 @@
     "ad": "Ad"
   },
   "NotFound": {
-    "title": "Page not found",
-    "back": "Back to home"
+    "title": "We couldn't find this page",
+    "back": "Go to Home"
   },
   "Category": {
     "KPOP": "K-POP",

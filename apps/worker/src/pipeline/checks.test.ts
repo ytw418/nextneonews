@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { looksLikeLocale, overlapRatio, stripHangulParens, unsupportedNumbers } from "./checks";
+import { headlineTooLong, looksLikeLocale, overlapRatio, stripHangulParens, unsupportedNumbers } from "./checks";
 
 describe("unsupportedNumbers", () => {
   it("facts 에 없는 두 자리 이상 숫자만 잡고, 천 단위 콤마 차이는 무시한다", () => {
@@ -17,6 +17,19 @@ describe("unsupportedNumbers", () => {
 describe("stripHangulParens", () => {
   it("한글이 든 괄호만 지우고 나머지 괄호는 남긴다", () => {
     expect(stripHangulParens("大田の聖心堂(성심당)とMBC（문화방송）、Disney+（日本）")).toBe("大田の聖心堂とMBC、Disney+（日本）");
+  });
+});
+
+describe("headlineTooLong", () => {
+  it("언어별 상한을 글자(grapheme) 수로 센다: 같은 길이라도 한국어는 넘고 영어는 통과", () => {
+    const ko = "아이브, 10월 컴백 확정… 새 미니앨범 '러브 다이브 2'로 돌아온다고 소속사 발표"; // 47자
+    expect(headlineTooLong("ko", ko)).toBe(true);
+    expect(headlineTooLong("en", ko)).toBe(false);
+    expect(headlineTooLong("ko", "아이브, 10월 컴백 확정")).toBe(false);
+    // 베트남어 성조를 결합 문자로 쓴 글자(e + U+0302 + U+0301)도 한 글자로 센다: 60글자는 통과, 61글자는 넘는다
+    const e = "e\u0302\u0301";
+    expect(headlineTooLong("vi", e.repeat(60))).toBe(false);
+    expect(headlineTooLong("vi", e.repeat(61))).toBe(true);
   });
 });
 

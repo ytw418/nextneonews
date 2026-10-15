@@ -100,7 +100,7 @@
     "ad": "广告"
   },
   "NotFound": {
-    "title": "找不到页面",
+    "title": "找不到这个页面",
     "back": "回到首页"
   },
   "Category": {
@@ -113,7 +113,7 @@
     "STUDY": "韩国留学",
     "LOVE": "恋爱・婚姻",
     "WORKING_HOLIDAY": "打工度假",
-    "JOBS": "兼职",
+    "JOBS": "工作",
     "HOUSING": "租房",
     "LIFE": "生活"
   },

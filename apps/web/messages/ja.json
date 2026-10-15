@@ -1,7 +1,7 @@
 {
   "Site": {
     "tagline": "外国人が知りたい韓国を、毎日",
-    "categoryDescription": "海外ファンのための{category}ニュース・日程・ガイドを毎日更新。"
+    "categoryDescription": "海外ファン向けの{category}ニュース・予定・ガイドを毎日更新しています。"
   },
   "Nav": {
     "home": "ホーム",
@@ -100,8 +100,8 @@
     "ad": "広告"
   },
   "NotFound": {
-    "title": "ページが見つかりません",
-    "back": "ホームへ戻る"
+    "title": "ページが見つかりませんでした",
+    "back": "ホームへ"
   },
   "Category": {
     "KPOP": "K-POP",
@@ -112,8 +112,8 @@
     "TRAVEL": "旅行",
     "STUDY": "韓国留学",
     "LOVE": "恋愛・結婚",
-    "WORKING_HOLIDAY": "ワーホリ",
-    "JOBS": "バイト",
+    "WORKING_HOLIDAY": "ワーキングホリデー",
+    "JOBS": "仕事",
     "HOUSING": "住まい",
     "LIFE": "暮らし"
   },
