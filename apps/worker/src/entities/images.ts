@@ -1,4 +1,4 @@
-import { prisma } from "@kmedia/db";
+import { type Entity, prisma } from "@kmedia/db";
 
 import { log } from "../log";
 import { findEntities } from "./match";
@@ -130,21 +130,48 @@ export async function backfillCredits(): Promise<void> {
   log.info("image: credits backfilled", { updated, total: media.length });
 }
 
-// 기사에 나온 인물·그룹 중 사진이 있는 가장 유명한 항목의 사진을 대표 이미지로 붙인다
+// 기사 주인공(한국어 원문 제목 맨 앞에 나오는 인물·그룹)의 사진만 대표 이미지로 붙인다.
+// "남창희♥아내 임신…아이유 축하" 처럼 뒤에 나온 유명인 사진이 붙으면 엉뚱한 사람 얼굴이 스캔들 제목과 묶인다
+const SUBJECT_WITHIN = 12;
+
+// 이름 바로 뒤에 오면 그 사람이 아니라 주변 사람 이야기다 ("정경호父", "보아 닮은꼴", "아이유 절친")
+const RELATION = /^\s?(父|母|부친|모친|아버지|어머니|아들|딸|아내|남편|동생|언니|오빠|누나|형|조카|절친|친구|닮은꼴|매니저|측|소속사|팬)/;
+
+export async function subjectEntity(title: string): Promise<Entity | null> {
+  // 앞머리의 [단독]·[MD이슈] 와 '한강 아이유' 같은 따옴표 수식어는 주인공이 아니다
+  const head = title.replace(/^\s*((\[[^\]]*\]|['‘"“][^'’"”]*['’"”])\s*)+/, "").trim();
+  const found = (await findEntities(head)).filter((e) => e.image && e.type !== "series");
+  let best: { entity: Entity; at: number } | null = null;
+  for (const entity of found) {
+    const at = Math.min(
+      ...[entity.ko, entity.en, ...entity.aliases]
+        .filter((n): n is string => Boolean(n))
+        .map((n) => ({ n, i: head.indexOf(n) }))
+        .filter(({ n, i }) => i >= 0 && !RELATION.test(head.slice(i + n.length)))
+        .map(({ i }) => i),
+    );
+    if (Number.isFinite(at) && at <= SUBJECT_WITHIN && (!best || at < best.at)) best = { entity, at };
+  }
+  return best?.entity ?? null;
+}
+
+// 기사에 나온 인물·그룹 중 주인공의 사진을 대표 이미지로 붙인다
 export async function attachImage(articleId: string): Promise<boolean> {
   const article = await prisma.article.findUnique({
     where: { id: articleId },
     include: { media: true, translations: { where: { locale: "en" }, select: { title: true } }, topic: true },
   });
   if (!article || article.media.length > 0) return false;
+  // 논란·사건 기사에는 얼굴 사진을 붙이지 않는다 (스캔들 제목과 얼굴이 묶이는 명예훼손·초상권 위험)
+  if (article.riskTier !== "GREEN") return false;
 
   const signal = article.topicId
     ? await prisma.signal.findFirst({ where: { topicId: article.topicId }, select: { title: true } })
     : null;
-  const text = [signal?.title, article.topic?.keyword, article.translations[0]?.title].filter(Boolean).join(" ");
-  const candidates = (await findEntities(text)).filter((e) => e.image && e.type !== "series");
+  const subject = signal ? await subjectEntity(signal.title) : null;
+  if (!subject) return false;
 
-  for (const entity of candidates.slice(0, 3)) {
+  for (const entity of [subject]) {
     const image = await commonsImage(entity.image!);
     if (!image) continue;
     const { url, credit, author, licenseName, licenseUrl, sourceUrl } = image;
@@ -155,6 +182,28 @@ export async function attachImage(articleId: string): Promise<boolean> {
     return true;
   }
   return false;
+}
+
+// 이미 붙은 사진을 주인공 규칙으로 다시 본다. 주인공이 아니면 떼고, 주인공 사진이 있으면 바꿔 붙인다
+export async function recheckImages(): Promise<void> {
+  const media = await prisma.media.findMany({
+    where: { kind: "STOCK" },
+    select: { id: true, url: true, articleId: true, article: { select: { topicId: true, riskTier: true } } },
+  });
+  let removed = 0;
+  let replaced = 0;
+  for (const m of media) {
+    const signal = m.article.topicId
+      ? await prisma.signal.findFirst({ where: { topicId: m.article.topicId }, select: { title: true } })
+      : null;
+    const subject = signal && m.article.riskTier === "GREEN" ? await subjectEntity(signal.title) : null;
+    const current = fileFromUrl(m.url);
+    if (subject?.image && current && subject.image.replaceAll(" ", "_") === current.replaceAll(" ", "_")) continue;
+    await prisma.media.delete({ where: { id: m.id } });
+    removed += 1;
+    if (subject && (await attachImage(m.articleId))) replaced += 1;
+  }
+  log.info("images: recheck done", { checked: media.length, removed, replaced });
 }
 
 export async function backfillImages(): Promise<void> {

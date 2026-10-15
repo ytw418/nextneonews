@@ -17,6 +17,8 @@ const LABELS = `
 
 const SELECT = "SELECT ?item ?sl ?ko ?en ?ja ?zhtw ?zhhant ?zh ?img ?human WHERE {";
 
+// 앞 쿼리의 종류가 이긴다: 그룹 → K-pop 가수 → 배우 → 일반 가수 → 드라마
+// (가수 경력이 있는 배우가 "가수" 로 잡혀 K-POP 으로 분류되지 않게 배우를 일반 가수보다 앞에 둔다)
 const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = [
   {
     // 한국 출신 음악 그룹·걸그룹·보이그룹 (장르가 K-pop 으로 안 적힌 그룹도 잡는다. 예: IVE)
@@ -25,15 +27,6 @@ const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = 
     sparql: `${SELECT}
       VALUES ?cls { wd:Q215380 wd:Q641066 wd:Q216337 }
       ?item wdt:P31 ?cls ; wdt:P495 wd:Q884 ; wikibase:sitelinks ?sl . FILTER(?sl >= 5)
-      ${LABELS} }`,
-  },
-  {
-    // 한국 국적 가수
-    name: "singers",
-    type: () => "singer",
-    sparql: `${SELECT}
-      ?item wdt:P27 wd:Q884 ; wdt:P106 wd:Q177220 ; wikibase:sitelinks ?sl . FILTER(?sl >= 8)
-      BIND(true AS ?human)
       ${LABELS} }`,
   },
   {
@@ -52,6 +45,15 @@ const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = 
     sparql: `${SELECT}
       ?item wdt:P27 wd:Q884 ; wdt:P106 ?occ ; wikibase:sitelinks ?sl .
       VALUES ?occ { wd:Q33999 wd:Q10800557 wd:Q10798782 } FILTER(?sl >= 6)
+      BIND(true AS ?human)
+      ${LABELS} }`,
+  },
+  {
+    // 한국 국적 가수
+    name: "singers",
+    type: () => "singer",
+    sparql: `${SELECT}
+      ?item wdt:P27 wd:Q884 ; wdt:P106 wd:Q177220 ; wikibase:sitelinks ?sl . FILTER(?sl >= 8)
       BIND(true AS ?human)
       ${LABELS} }`,
   },

@@ -28,8 +28,11 @@ function boundaryOk(text: string, at: number, length: number): boolean {
 export function nameMatches(text: string, name: string | null, type: string): boolean {
   if (!name || name.length < 2) return false;
   if (LATIN.test(name)) {
+    // 두세 글자 영문 이름은 대문자일 때만 (IU·BoA 는 되고 "Min" 이 "Kim Min-jong" 에 걸리지 않게).
+    // 로마자 한국 이름은 하이픈으로 이어지므로 하이픈·아포스트로피 앞뒤는 경계로 보지 않는다
+    if (name.length <= 3 && name !== name.toUpperCase() && name !== "BoA") return false;
     const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return new RegExp(`(^|[^A-Za-z0-9])${escaped}([^A-Za-z0-9]|$)`).test(text);
+    return new RegExp(`(^|[^A-Za-z0-9'-])${escaped}([^A-Za-z0-9'-]|$)`).test(text);
   }
   if (COMMON_WORDS.has(name)) return false;
 

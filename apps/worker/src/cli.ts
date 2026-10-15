@@ -5,7 +5,7 @@ import { prisma } from "@kmedia/db";
 import { budgetUsd, spentUsd } from "./ai/budget";
 import { collectors } from "./collectors";
 import { buildEntities } from "./entities/build";
-import { backfillCredits, backfillImages } from "./entities/images";
+import { backfillCredits, backfillImages, recheckImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
 import { log } from "./log";
 import { listReview, publish } from "./pipeline/publish";
@@ -56,7 +56,7 @@ const USAGE = `usage: cli.ts <command>
   cost                     AI 누적 비용 / 상한
   geo-check [limit]        목표 질문을 AI 웹 검색에 던져 인용 출처 기록 (GEO 측정)
   entities                 위키데이터에서 인물·그룹·드라마 사전 갱신 (무료, 주 1회)
-  images [credits]         대표 사진 없는 글에 위키미디어 공용 사진 붙이기 / credits: 라이선스·원본 링크 채우기 (무료)
+  images [credits|recheck] 대표 사진 붙이기 / credits: 라이선스·원본 링크 채우기 / recheck: 주인공이 아닌 사진 떼기 (무료)
   zh-cn                    간체 번역 없는 글에 번체→간체 변환으로 채우기 (무료)
   translate [limit]        끝난 번역 배치 거두기 + vi·id·fr·ru 가 빠진 글을 배치로 보내기 (50% 할인, 0 이면 거두기만)
   recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기
@@ -117,6 +117,7 @@ try {
       break;
     case "images":
       if (args[0] === "credits") await backfillCredits();
+      else if (args[0] === "recheck") await recheckImages();
       else await backfillImages();
       break;
     case "entities":

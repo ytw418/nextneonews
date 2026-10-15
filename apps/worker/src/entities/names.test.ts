@@ -12,5 +12,6 @@ describe("nameMatches", () => {
     expect(nameMatches("드라마 ‘개과천선’ 출연", "개과천선", "series")).toBe(true);
     expect(nameMatches("IVE, Looks Can Kill 컴백", "IVE", "group")).toBe(true);
     expect(nameMatches("ACTIVE 활동", "IVE", "group")).toBe(false);
+    expect(nameMatches("Kim Min-jong wins defamation case", "Min", "singer")).toBe(false);
   });
 });
