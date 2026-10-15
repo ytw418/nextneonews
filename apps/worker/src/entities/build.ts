@@ -1,4 +1,4 @@
-import { prisma } from "@kmedia/db";
+import { Prisma, prisma } from "@kmedia/db";
 
 import { log } from "../log";
 
@@ -18,6 +18,24 @@ const LABELS = `
 const SELECT = "SELECT ?item ?sl ?ko ?en ?ja ?zhtw ?zhhant ?zh ?img ?human WHERE {";
 
 const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = [
+  {
+    // 한국 출신 음악 그룹·걸그룹·보이그룹 (장르가 K-pop 으로 안 적힌 그룹도 잡는다. 예: IVE)
+    name: "groups",
+    type: () => "group",
+    sparql: `${SELECT}
+      VALUES ?cls { wd:Q215380 wd:Q641066 wd:Q216337 }
+      ?item wdt:P31 ?cls ; wdt:P495 wd:Q884 ; wikibase:sitelinks ?sl . FILTER(?sl >= 5)
+      ${LABELS} }`,
+  },
+  {
+    // 한국 국적 가수
+    name: "singers",
+    type: () => "singer",
+    sparql: `${SELECT}
+      ?item wdt:P27 wd:Q884 ; wdt:P106 wd:Q177220 ; wikibase:sitelinks ?sl . FILTER(?sl >= 8)
+      BIND(true AS ?human)
+      ${LABELS} }`,
+  },
   {
     // K-pop 장르로 분류된 그룹·솔로 가수
     name: "kpop",
@@ -70,8 +88,10 @@ function fileName(url: string | undefined): string | null {
   return decodeURIComponent(url.split("/").pop() ?? "") || null;
 }
 
+// 위키데이터에서 전부 받아 메모리에서 합친 뒤 500개씩 묶어 저장한다.
+// 한 줄씩 upsert 하면 원격 DB(Actions 미국 ↔ Neon 싱가포르)에서 수십 분 걸린다
 export async function buildEntities(): Promise<void> {
-  let total = 0;
+  const all = new Map<string, EntityRow>();
   for (const q of QUERIES) {
     const rows = await runQuery(q.sparql);
     // OPTIONAL 라벨 때문에 한 항목이 여러 줄로 올 수 있다 → 항목별로 합친다
@@ -82,9 +102,11 @@ export async function buildEntities(): Promise<void> {
       const prev = merged.get(id) ?? {};
       merged.set(id, { ...row, ...Object.fromEntries(Object.entries(prev).filter(([, v]) => v)) });
     }
-
     for (const [id, row] of merged) {
-      const data = {
+      // 앞 쿼리(그룹·가수)에서 정한 종류를 뒤 쿼리가 덮지 않는다
+      if (all.has(id)) continue;
+      all.set(id, {
+        id,
         type: q.type(row),
         ko: row.ko?.value ?? null,
         en: row.en?.value ?? null,
@@ -92,11 +114,61 @@ export async function buildEntities(): Promise<void> {
         zhHant: row.zhtw?.value ?? row.zhhant?.value ?? row.zh?.value ?? null,
         sitelinks: Number(row.sl?.value ?? 0),
         image: fileName(row.img?.value),
-      };
-      await prisma.entity.upsert({ where: { id }, create: { id, ...data }, update: data });
+        aliases: [],
+      });
     }
-    total += merged.size;
     log.info(`entities: ${q.name}`, { count: merged.size });
   }
-  log.info("entities: done", { total });
+
+  const aliases = await fetchAliases([...all.keys()]);
+  for (const [id, list] of aliases) all.get(id)!.aliases = list;
+
+  // 500개씩 "있으면 고치고 없으면 넣기" 를 한 번에 보낸다. 위키데이터에서 빠진 항목만 지운다
+  const data = [...all.values()];
+  for (let i = 0; i < data.length; i += 500) {
+    const rows = data
+      .slice(i, i + 500)
+      .map(
+        (e) =>
+          Prisma.sql`(${e.id}, ${e.type}, ${e.ko}, ${e.en}, ${e.ja}, ${e.zhHant}, ${e.aliases}::text[], ${e.sitelinks}, ${e.image}, now())`,
+      );
+    await prisma.$executeRaw`
+      INSERT INTO "Entity" (id, type, ko, en, ja, "zhHant", aliases, sitelinks, image, "updatedAt")
+      VALUES ${Prisma.join(rows)}
+      ON CONFLICT (id) DO UPDATE SET type = EXCLUDED.type, ko = EXCLUDED.ko, en = EXCLUDED.en, ja = EXCLUDED.ja,
+        "zhHant" = EXCLUDED."zhHant", aliases = EXCLUDED.aliases, sitelinks = EXCLUDED.sitelinks,
+        image = EXCLUDED.image, "updatedAt" = now()`;
+  }
+  const { count: removed } = await prisma.entity.deleteMany({ where: { id: { notIn: data.map((e) => e.id) } } });
+  log.info("entities: done", { total: data.length, withAliases: aliases.size, removed });
+}
+
+interface EntityRow {
+  id: string;
+  type: string;
+  ko: string | null;
+  en: string | null;
+  ja: string | null;
+  zhHant: string | null;
+  sitelinks: number;
+  image: string | null;
+  aliases: string[];
+}
+
+// 한국어 별칭을 300개씩 묶어 받는다 (위키데이터 skos:altLabel). "제니 김" → ["제니", ...]
+async function fetchAliases(ids: string[]): Promise<Map<string, string[]>> {
+  const byId = new Map<string, string[]>();
+  for (let i = 0; i < ids.length; i += 300) {
+    const chunk = ids.slice(i, i + 300);
+    const rows = (await runQuery(
+      `SELECT ?item ?alias WHERE { VALUES ?item { ${chunk.map((id) => `wd:${id}`).join(" ")} }
+        ?item skos:altLabel ?alias FILTER(LANG(?alias) = "ko") }`,
+    )) as (Row & { alias?: Binding })[];
+    for (const row of rows) {
+      const id = row.item?.value.split("/").pop();
+      const alias = row.alias?.value.trim();
+      if (id && alias) byId.set(id, [...new Set([...(byId.get(id) ?? []), alias])].slice(0, 10));
+    }
+  }
+  return byId;
 }

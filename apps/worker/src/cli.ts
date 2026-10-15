@@ -4,7 +4,6 @@ import { prisma } from "@kmedia/db";
 
 import { budgetUsd, spentUsd } from "./ai/budget";
 import { collectors } from "./collectors";
-import { collectNaverRanking } from "./collectors/naverEntertain";
 import { buildEntities } from "./entities/build";
 import { backfillCredits, backfillImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
@@ -57,7 +56,6 @@ const USAGE = `usage: cli.ts <command>
   images [credits]         대표 사진 없는 글에 위키미디어 공용 사진 붙이기 / credits: 라이선스·원본 링크 채우기 (무료)
   zh-cn                    간체 번역 없는 글에 번체→간체 변환으로 채우기 (무료)
   translate [limit]        끝난 번역 배치 거두기 + vi·id·fr·ru 가 빠진 글을 배치로 보내기 (50% 할인, 0 이면 거두기만)
-  history [days]           네이버 엔터 랭킹 지난 N일치 수집 (초기 글 채우기용, 기본 7)
   recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기
   comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기`;
 
@@ -85,14 +83,6 @@ try {
     case "publish":
       await publish(args);
       break;
-    case "history": {
-      const days = numberArg(args, 7);
-      for (let d = 1; d <= days; d += 1) {
-        const saved = await upsertSignals(await collectNaverRanking(d));
-        log.info(`history: ${d}일 전`, { saved });
-      }
-      break;
-    }
     case "comments":
       if (args[0] === "restore") await restoreComments(args.slice(1));
       else await listHiddenComments();

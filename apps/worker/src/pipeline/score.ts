@@ -78,7 +78,7 @@ export async function scoreSignals(limit = 200): Promise<{ checked: number; queu
       where: { id: signal.id },
       data: { qualityScore: score, qualityNote: `${result.risk} ${result.reason}`, checkedAt: now },
     });
-    if (score >= TOPIC_THRESHOLD && result.answerable >= MIN_ANSWERABLE) {
+    if (result.relevant && score >= TOPIC_THRESHOLD && result.answerable >= MIN_ANSWERABLE) {
       if (await queueTopic(signal.id, result, score)) merged += 1;
       else queued += 1;
     }

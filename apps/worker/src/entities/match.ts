@@ -12,7 +12,10 @@ async function dictionary(): Promise<Entity[]> {
 
 export async function findEntities(text: string): Promise<Entity[]> {
   const found = (await dictionary()).filter(
-    (e) => nameMatches(text, e.ko, e.type) || nameMatches(text, e.en, e.type),
+    (e) =>
+      nameMatches(text, e.ko, e.type) ||
+      nameMatches(text, e.en, e.type) ||
+      e.aliases.some((alias) => nameMatches(text, alias, e.type)),
   );
   // 해외 인지도(위키 언어 수) 높은 순
   return found.sort((a, b) => b.sitelinks - a.sitelinks);

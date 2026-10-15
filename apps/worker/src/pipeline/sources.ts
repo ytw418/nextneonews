@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio";
 
 import { fetchHtml } from "../collectors/http";
+import { RobotsDisallowedError } from "../collectors/robots";
 import { log } from "../log";
 
 // 원문을 못 읽는 경우 (본문 구조 변경, 삭제된 글). 다시 시도해도 같으므로 주제를 건너뛴다.
@@ -27,43 +28,73 @@ function capped(text: string, url: string): string {
   return text.slice(0, MAX_TEXT);
 }
 
-async function naverArticle(url: string): Promise<SourceMaterial> {
+// 언론사 기사 본문. 사이트마다 구조가 달라 흔한 본문 자리를 차례로 찾고, 없으면 <p> 를 모은다
+const BODY_SELECTORS = [
+  ".story-news", // 연합뉴스
+  '[itemprop="articleBody"]',
+  "#articleBody",
+  "#article-view-content-div",
+  "#article_body",
+  ".article_body",
+  ".article-body",
+  "#newsct_article",
+  "#dic_area",
+  ".news_body",
+  ".view_con",
+  "article",
+];
+
+async function newsArticle(url: string, fallbackPublisher: string): Promise<SourceMaterial> {
   const $ = cheerio.load(await fetchHtml(url));
-  $("._article_content .img_desc, ._article_content script").remove();
-  const text = clean($("._article_content").first().text());
-  if (!text) {
-    throw new SourceUnavailableError(`naver article body not found: ${url}`);
+  $("script, style, figure, figcaption, .img_desc, .copyright, .reporter_area, iframe").remove();
+  let text = "";
+  for (const selector of BODY_SELECTORS) {
+    const candidate = clean($(selector).first().text());
+    if (candidate.length > 200) {
+      text = candidate;
+      break;
+    }
   }
-  const publisher = clean($('[class*="press_name"]').first().text()) || "Naver Entertainment";
+  if (!text) {
+    text = clean(
+      $("p")
+        .map((_, el) => $(el).text())
+        .get()
+        .filter((line) => line.trim().length > 40)
+        .join(" "),
+    );
+  }
+  if (!text) throw new SourceUnavailableError(`article body not found: ${url}`);
+  const publisher = clean($('meta[property="og:site_name"]').attr("content") ?? "") || fallbackPublisher;
   return { url, publisher, kind: "NEWS", text: capped(text, url), comments: [] };
 }
 
-async function pannPost(url: string): Promise<SourceMaterial> {
+// 더쿠 글: 대부분 이미지·트윗이라 글이 짧으면 사실 출처로 쓰지 않는다 (아래 MIN_TEXT 검사)
+async function theqooPost(url: string): Promise<SourceMaterial> {
   const $ = cheerio.load(await fetchHtml(url));
-  const body = clean($("#contentArea").first().text());
-  if (!body) {
-    throw new SourceUnavailableError(`pann post body not found: ${url}`);
-  }
-  // 베스트 댓글이 먼저 나온다
-  const comments = $(".usertxt")
-    .map((_, el) => clean($(el).text()))
-    .get()
-    .filter((c) => c.length > 0)
-    .slice(0, MAX_COMMENTS);
-  return { url, publisher: "Nate Pann", kind: "COMMUNITY", text: capped(body, url), comments };
+  const text = clean($(".rd_body .xe_content").first().text());
+  return { url, publisher: "theqoo", kind: "COMMUNITY", text: capped(text, url), comments: [] };
 }
 
 const MIN_TEXT = 80;
 const MIN_COMMENTS = 3;
 
 async function read(signal: { source: string; url: string }): Promise<SourceMaterial> {
-  switch (signal.source) {
-    case "naver-entertain":
-      return naverArticle(signal.url);
-    case "pann":
-      return pannPost(signal.url);
-    default:
-      throw new SourceUnavailableError(`no source reader for ${signal.source}`);
+  try {
+    switch (signal.source) {
+      case "yonhap":
+        return await newsArticle(signal.url, "Yonhap News");
+      case "google-trends":
+        return await newsArticle(signal.url, new URL(signal.url).hostname);
+      case "theqoo":
+        return await theqooPost(signal.url);
+      default:
+        throw new SourceUnavailableError(`no source reader for ${signal.source}`);
+    }
+  } catch (error) {
+    // robots.txt 금지·삭제된 글은 다시 시도해도 같다
+    if (error instanceof RobotsDisallowedError) throw new SourceUnavailableError(error.message);
+    throw error;
   }
 }
 

@@ -30,6 +30,8 @@ const Draft = z.object({
 
 const autoPublish = process.env.AUTO_PUBLISH !== "false";
 
+const NEWS_SOURCES = new Set(["yonhap", "google-trends"]);
+
 function kstToday(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date());
 }
@@ -78,7 +80,9 @@ function writeRequest(topic: Topic, headline: string, source: SourceMaterial, en
 }
 
 async function writeTopic(topic: Topic): Promise<string> {
-  const signal = await prisma.signal.findFirst({ where: { topicId: topic.id }, orderBy: { lastSeenAt: "desc" } });
+  // 같은 주제에 신호가 여럿이면 사실을 확인할 수 있는 뉴스를 먼저 쓴다 (커뮤니티 글은 화제 신호일 뿐이다)
+  const signals = await prisma.signal.findMany({ where: { topicId: topic.id }, orderBy: { lastSeenAt: "desc" } });
+  const signal = signals.find((s) => NEWS_SOURCES.has(s.source)) ?? signals[0];
   if (!signal) throw new Error(`topic ${topic.id} has no signal`);
   if (!topic.category || !topic.format) throw new Error(`topic ${topic.id} missing category/format`);
 

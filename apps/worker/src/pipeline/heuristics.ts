@@ -22,6 +22,7 @@ export interface HeuristicResult {
   format: "ISSUE" | "REACTION" | "QNA" | "GUIDE" | "LIST";
   keyword: string;
   reason: string;
+  relevant: boolean;
 }
 
 // 해외 팬·외국인이 관심 가질 단어
@@ -76,7 +77,7 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
     reasons.push("외국인 생활 정보");
   }
 
-  const community = source === "pann";
+  const community = source === "theqoo";
   let answerable = community ? 2 : 4;
   if (has(title, OFFICIAL_WORDS)) answerable = 5;
 
@@ -84,13 +85,16 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
   const timeliness = 4; // 랭킹에 지금 올라온 글
 
   // 연예인·작품이 나오면 연예 카테고리 (스타의 결혼·화장품 모델 소식도 연예 뉴스다). 없으면 단어로 생활 카테고리
+  const lifeCategory = CATEGORY_WORDS.find(([, words]) => has(title, words))?.[0];
   const category: HeuristicResult["category"] = top
     ? top.type === "group" || top.type === "singer"
       ? "KPOP"
       : top.type === "series" || has(title, DRAMA_WORDS)
         ? "KDRAMA"
         : "KENT"
-    : (CATEGORY_WORDS.find(([, words]) => has(title, words))?.[0] ?? "LIFE");
+    : (lifeCategory ?? "LIFE");
+  // 연예인도, 생활 카테고리 단어도, 외국인 생활 단어도 없으면 우리 독자와 상관없는 일반 뉴스다 (경제·정치·건강 등)
+  const relevant = Boolean(top) || Boolean(lifeCategory) || has(title, FOREIGNER_WORDS);
 
   const format: HeuristicResult["format"] = community
     ? "REACTION"
@@ -115,6 +119,7 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
     timeliness,
     evergreen,
     risk: has(title, YELLOW_WORDS) ? "YELLOW" : "GREEN",
+    relevant,
     category,
     format,
     keyword,
