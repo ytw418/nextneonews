@@ -11,21 +11,11 @@ import { WRITE_SYSTEM } from "../ai/prompts";
 import { attachImage } from "../entities/images";
 import { findEntities } from "../entities/match";
 import { log } from "../log";
-import { stripHangulParens, unsupportedNumbers } from "./checks";
+import { unsupportedNumbers } from "./checks";
 import { pickSentences } from "./extract";
+import { clean, Localized } from "./localized";
 import { toSimplified } from "./simplified";
 import { fetchSourceMaterial, type SourceMaterial, SourceUnavailableError } from "./sources";
-
-const Faq = z.object({ q: z.string(), a: z.string() });
-const Localized = z.object({
-  title: z.string(),
-  seoTitle: z.string(),
-  summary: z.string(),
-  keyPoints: z.array(z.string()),
-  body: z.string(),
-  faq: z.array(Faq),
-});
-type Localized = z.infer<typeof Localized>;
 
 // 한 번의 호출로 사실 목록 + 4개 언어 기사를 받는다 (예전: 작성 1회 + 번역 3회)
 const Draft = z.object({
@@ -53,18 +43,6 @@ function slugify(raw: string): string {
     .slice(0, 8)
     .join("-");
   return `${base || "article"}-${randomBytes(3).toString("hex")}`;
-}
-
-// 번역문에 남은 한글 괄호를 지운다 (ko 는 그대로)
-function clean(t: Localized): Localized {
-  return {
-    title: stripHangulParens(t.title),
-    seoTitle: stripHangulParens(t.seoTitle),
-    summary: stripHangulParens(t.summary),
-    keyPoints: t.keyPoints.map(stripHangulParens),
-    body: stripHangulParens(t.body),
-    faq: t.faq.map((f) => ({ q: stripHangulParens(f.q), a: stripHangulParens(f.a) })),
-  };
 }
 
 function glossary(entities: Entity[]) {

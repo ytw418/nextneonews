@@ -8,6 +8,10 @@ const ANON_NAME: Record<Locale, string> = {
   "zh-TW": "匿名",
   "zh-CN": "匿名",
   en: "Anon",
+  vi: "Ẩn danh",
+  id: "Anonim",
+  fr: "Anonyme",
+  ru: "Аноним",
 };
 
 // 디시처럼 "ㅇㅇ(7f3a)" 형태로 보이되, 괄호 안은 IP가 아니라 IP 해시다.

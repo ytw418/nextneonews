@@ -67,12 +67,16 @@
   --color-cherry-deep: var(--cherry-deep);
   --color-ink: var(--ink);
 
-  /* 한중일 글자는 아이폰 시스템 서체(Hiragino·PingFang·Apple SD Gothic)로, 라틴 포인트만 웹폰트 */
+  /* 한중일 글자는 아이폰 시스템 서체(Hiragino·PingFang·Apple SD Gothic)로, 라틴 포인트만 웹폰트.
+     크롬은 -apple-system 을 모른다. BlinkMacSystemFont·Segoe UI·Roboto 를 일본어 서체보다 앞에 두지 않으면
+     키릴·베트남어 글자를 Hiragino 로 그려 러시아어 자간이 벌어지고 베트남어 성조가 어긋난다 */
   --font-sans:
-    -apple-system, "SF Pro Text", "Hiragino Sans", "PingFang TC", "Apple SD Gothic Neo", "Noto Sans JP",
-    "Noto Sans TC", "Noto Sans KR", sans-serif;
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Hiragino Sans", "PingFang TC",
+    "Apple SD Gothic Neo", "Noto Sans JP", "Noto Sans TC", "Noto Sans KR", sans-serif;
   --font-display: var(--font-instrument), "Hiragino Mincho ProN", "Songti TC", serif;
-  --font-label: var(--font-bricolage), -apple-system, "Hiragino Sans", "PingFang TC", sans-serif;
+  --font-label:
+    var(--font-bricolage), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "PingFang TC",
+    sans-serif;
 }
 
 html {
@@ -102,6 +106,13 @@ html:lang(zh-CN) body {
 }
 html:lang(ko) body {
   font-family: -apple-system, "SF Pro Text", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+/* 베트남어 성조·러시아어 키릴 글자는 라틴 포인트 서체에 없어 한 단어 안에서 글꼴이 섞인다.
+   제목 서체는 Cormorant 로, 라벨 서체는 시스템 서체로 통째로 바꾼다 */
+html:lang(vi),
+html:lang(ru) {
+  --font-instrument: var(--font-cormorant);
+  --font-bricolage: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* 한중일 줄바꿈: 단어 중간에서 끊기지 않게, 제목은 줄 길이를 고르게 */

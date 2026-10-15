@@ -19,3 +19,31 @@ export function unsupportedNumbers(draft: CheckableDraft, allowed: string[] = []
 export function stripHangulParens(text: string): string {
   return text.replace(/\s?[（(][^()（）]*[가-힣][^()（）]*[)）]/g, "");
 }
+
+const HANGUL = /[가-힣]/;
+const VI_TONES = /[ăâđêôơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/i;
+const STOPWORDS: Record<string, string[]> = {
+  fr: ["le", "la", "les", "des", "est", "et", "une", "pour", "du", "dans"],
+  id: ["yang", "dan", "di", "dengan", "untuk", "ini", "dari", "pada"],
+};
+
+// 번역문이 정말 그 언어로 쓰였는지 글자·흔한 단어로 확인한다 (AI 없이).
+// 예: 러시아어를 시켰는데 한국어로 돌아온 결과를 걸러 다시 보내게 한다
+export function looksLikeLocale(locale: string, text: string): boolean {
+  if (locale !== "ko" && HANGUL.test(text)) return false;
+  const letters = text.match(/\p{L}/gu) ?? [];
+  if (letters.length === 0) return false;
+  switch (locale) {
+    case "ru":
+      return letters.filter((c) => /[Ѐ-ӿ]/.test(c)).length / letters.length > 0.5;
+    case "vi":
+      return VI_TONES.test(text);
+    case "fr":
+    case "id": {
+      const words = new Set(STOPWORDS[locale]);
+      return text.toLowerCase().split(/[^\p{L}]+/u).filter((w) => words.has(w)).length >= 3;
+    }
+    default:
+      return true;
+  }
+}

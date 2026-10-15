@@ -44,5 +44,25 @@
     "JOBS": "Jobs",
     "HOUSING": "Housing",
     "LIFE": "Life"
+  },
+  "Comments": {
+    "title": "Comments",
+    "empty": "No comments yet. Say hi first!",
+    "placeholder": "Leave a comment — no login needed",
+    "nickname": "Nickname",
+    "password": "Password",
+    "submit": "Post",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "report": "Report",
+    "reported": "Reported",
+    "edited": "edited",
+    "rules": "Your password lets you edit or delete later. Comments that attack someone or share personal info are removed.",
+    "wrongPassword": "Wrong password.",
+    "tooFast": "You're posting too fast. Try again in a few minutes.",
+    "noLinks": "Links aren't allowed in comments.",
+    "error": "Something went wrong. Please try again."
   }
 }

@@ -1,0 +1,68 @@
+{
+  "Site": {
+    "tagline": "Hal-hal tentang Korea yang ingin diketahui orang asing, setiap hari",
+    "categoryDescription": "Berita, jadwal, dan panduan {category} untuk fans internasional, diperbarui setiap hari."
+  },
+  "Nav": {
+    "home": "Beranda",
+    "language": "Bahasa",
+    "upcoming": "Mendatang",
+    "all": "Untukmu",
+    "back": "Kembali"
+  },
+  "Home": {
+    "latest": "Terbaru",
+    "empty": "Belum ada artikel.",
+    "upcoming": "Segera hadir",
+    "dday": "D-{days}",
+    "today": "HARI INI"
+  },
+  "Article": {
+    "sources": "Sumber",
+    "aiNotice": "Ditulis dan diterjemahkan dengan bantuan AI, lalu diperiksa oleh editor.",
+    "correction": "Laporkan kesalahan",
+    "keyPoints": "Poin penting",
+    "faq": "Tanya jawab",
+    "published": "Terbit",
+    "updated": "Diperbarui",
+    "share": "Bagikan",
+    "copied": "Tautan disalin",
+    "related": "Baca juga",
+    "readMore": "Baca"
+  },
+  "NotFound": {
+    "title": "Halaman tidak ditemukan",
+    "back": "Kembali ke beranda"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KENT": "Seleb",
+    "KDRAMA": "Drakor",
+    "KFOOD": "Kuliner Korea",
+    "TRAVEL": "Wisata",
+    "WORKING_HOLIDAY": "Working Holiday",
+    "JOBS": "Kerja",
+    "HOUSING": "Tempat tinggal",
+    "LIFE": "Kehidupan"
+  },
+  "Comments": {
+    "title": "Komentar",
+    "empty": "Belum ada komentar. Jadilah yang pertama!",
+    "placeholder": "Tulis komentar tanpa perlu login",
+    "nickname": "Nama panggilan",
+    "password": "Kata sandi",
+    "submit": "Kirim",
+    "edit": "Ubah",
+    "delete": "Hapus",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "report": "Laporkan",
+    "reported": "Sudah dilaporkan",
+    "edited": "diubah",
+    "rules": "Kata sandi dipakai untuk mengubah atau menghapus nanti. Komentar yang menyerang orang lain atau membagikan data pribadi akan dihapus.",
+    "wrongPassword": "Kata sandi salah.",
+    "tooFast": "Kamu berkomentar terlalu cepat. Coba lagi beberapa menit lagi.",
+    "noLinks": "Komentar tidak boleh berisi tautan.",
+    "error": "Terjadi kesalahan. Silakan coba lagi."
+  }
+}

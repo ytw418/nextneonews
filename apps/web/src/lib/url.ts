@@ -11,6 +11,10 @@ const OG_LOCALE: Record<(typeof LOCALES)[number], string> = {
   "zh-TW": "zh_TW",
   "zh-CN": "zh_CN",
   ko: "ko_KR",
+  vi: "vi_VN",
+  id: "id_ID",
+  fr: "fr_FR",
+  ru: "ru_RU",
 };
 
 // 언어 접두사를 뺀 경로(홈은 "")로 canonical + 언어별 대체 링크(hreflang) + x-default 를 만든다

@@ -44,5 +44,25 @@
     "JOBS": "打工",
     "HOUSING": "租屋",
     "LIFE": "生活"
+  },
+  "Comments": {
+    "title": "留言",
+    "empty": "還沒有留言，來搶頭香吧！",
+    "placeholder": "不用登入就能留言",
+    "nickname": "暱稱",
+    "password": "密碼",
+    "submit": "送出",
+    "edit": "編輯",
+    "delete": "刪除",
+    "save": "儲存",
+    "cancel": "取消",
+    "report": "檢舉",
+    "reported": "已檢舉",
+    "edited": "已編輯",
+    "rules": "之後可以用密碼編輯或刪除。攻擊他人或公開個資的留言會被刪除。",
+    "wrongPassword": "密碼錯誤。",
+    "tooFast": "留言太頻繁了，請過幾分鐘再試。",
+    "noLinks": "留言不能貼連結。",
+    "error": "發生錯誤，請再試一次。"
   }
 }

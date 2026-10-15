@@ -1,4 +1,4 @@
-# 콘텐츠 파이프라인 자동 실행: 수집 → 품질 체크(알고리즘) → 기사 작성 → 사진 → 간체
+# 콘텐츠 파이프라인 자동 실행: 수집 → 품질 체크(알고리즘) → 기사 작성 → 사진 → 간체 → 배치 번역
 # 필요한 저장소 Secrets: DATABASE_URL, ANTHROPIC_API_KEY, SITE_URL, INDEXNOW_KEY
 name: pipeline
 
@@ -42,4 +42,6 @@ jobs:
       - name: 수집 → 체크 → 작성
         run: npm run worker -- pipeline ${{ github.event.inputs.limit || '3' }}
       - run: npm run worker -- zh-cn
+      - name: vi·id·fr·ru 배치 번역 (지난 배치 거두기 + 새로 보내기)
+        run: npm run worker -- translate
       - run: npm run worker -- cost

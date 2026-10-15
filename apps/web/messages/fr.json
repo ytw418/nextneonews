@@ -1,0 +1,68 @@
+{
+  "Site": {
+    "tagline": "Ce que les étrangers veulent savoir sur la Corée, chaque jour",
+    "categoryDescription": "Actus, agenda et guides {category} pour les fans du monde entier, mis à jour chaque jour."
+  },
+  "Nav": {
+    "home": "Accueil",
+    "language": "Langue",
+    "upcoming": "À venir",
+    "all": "Pour toi",
+    "back": "Retour"
+  },
+  "Home": {
+    "latest": "À la une",
+    "empty": "Aucun article pour l’instant.",
+    "upcoming": "Bientôt",
+    "dday": "J-{days}",
+    "today": "AUJOURD’HUI"
+  },
+  "Article": {
+    "sources": "Sources",
+    "aiNotice": "Rédigé et traduit avec l’aide de l’IA, puis relu par un éditeur.",
+    "correction": "Signaler une erreur",
+    "keyPoints": "L’essentiel",
+    "faq": "Questions fréquentes",
+    "published": "Publié",
+    "updated": "Mis à jour",
+    "share": "Partager",
+    "copied": "Lien copié",
+    "related": "À lire aussi",
+    "readMore": "Lire"
+  },
+  "NotFound": {
+    "title": "Page introuvable",
+    "back": "Retour à l’accueil"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KENT": "Célébrités",
+    "KDRAMA": "K-DRAMA",
+    "KFOOD": "Cuisine coréenne",
+    "TRAVEL": "Voyage",
+    "WORKING_HOLIDAY": "PVT",
+    "JOBS": "Emploi",
+    "HOUSING": "Logement",
+    "LIFE": "Vie en Corée"
+  },
+  "Comments": {
+    "title": "Commentaires",
+    "empty": "Aucun commentaire pour l’instant. Lance la discussion !",
+    "placeholder": "Commente sans te connecter",
+    "nickname": "Pseudo",
+    "password": "Mot de passe",
+    "submit": "Publier",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "report": "Signaler",
+    "reported": "Signalé",
+    "edited": "modifié",
+    "rules": "Le mot de passe permet de modifier ou supprimer plus tard. Les commentaires injurieux ou contenant des infos personnelles sont supprimés.",
+    "wrongPassword": "Mot de passe incorrect.",
+    "tooFast": "Tu publies trop vite. Réessaie dans quelques minutes.",
+    "noLinks": "Les liens ne sont pas autorisés dans les commentaires.",
+    "error": "Une erreur est survenue. Réessaie."
+  }
+}

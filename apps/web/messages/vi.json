@@ -1,0 +1,68 @@
+{
+  "Site": {
+    "tagline": "Những điều người nước ngoài muốn biết về Hàn Quốc, mỗi ngày",
+    "categoryDescription": "Tin tức, lịch trình và hướng dẫn {category} dành cho fan quốc tế, cập nhật mỗi ngày."
+  },
+  "Nav": {
+    "home": "Trang chủ",
+    "language": "Ngôn ngữ",
+    "upcoming": "Sắp diễn ra",
+    "all": "Dành cho bạn",
+    "back": "Quay lại"
+  },
+  "Home": {
+    "latest": "Mới nhất",
+    "empty": "Chưa có bài viết nào.",
+    "upcoming": "Sắp tới",
+    "dday": "D-{days}",
+    "today": "HÔM NAY"
+  },
+  "Article": {
+    "sources": "Nguồn",
+    "aiNotice": "Bài viết được soạn và dịch với sự hỗ trợ của AI, có biên tập viên kiểm duyệt.",
+    "correction": "Báo lỗi nội dung",
+    "keyPoints": "Ý chính",
+    "faq": "Câu hỏi thường gặp",
+    "published": "Đăng lúc",
+    "updated": "Cập nhật",
+    "share": "Chia sẻ",
+    "copied": "Đã sao chép liên kết",
+    "related": "Đọc thêm",
+    "readMore": "Đọc"
+  },
+  "NotFound": {
+    "title": "Không tìm thấy trang",
+    "back": "Về trang chủ"
+  },
+  "Category": {
+    "KPOP": "K-POP",
+    "KENT": "Sao Hàn",
+    "KDRAMA": "Phim Hàn",
+    "KFOOD": "Ẩm thực Hàn",
+    "TRAVEL": "Du lịch",
+    "WORKING_HOLIDAY": "Working Holiday",
+    "JOBS": "Việc làm",
+    "HOUSING": "Nhà ở",
+    "LIFE": "Đời sống"
+  },
+  "Comments": {
+    "title": "Bình luận",
+    "empty": "Chưa có bình luận nào. Hãy là người đầu tiên!",
+    "placeholder": "Bình luận không cần đăng nhập",
+    "nickname": "Biệt danh",
+    "password": "Mật khẩu",
+    "submit": "Gửi",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "report": "Báo cáo",
+    "reported": "Đã báo cáo",
+    "edited": "đã sửa",
+    "rules": "Dùng mật khẩu để sửa hoặc xóa sau này. Bình luận công kích người khác hoặc chứa thông tin cá nhân sẽ bị xóa.",
+    "wrongPassword": "Sai mật khẩu.",
+    "tooFast": "Bạn bình luận quá nhanh. Hãy thử lại sau vài phút.",
+    "noLinks": "Không được chèn liên kết vào bình luận.",
+    "error": "Đã có lỗi xảy ra. Vui lòng thử lại."
+  }
+}

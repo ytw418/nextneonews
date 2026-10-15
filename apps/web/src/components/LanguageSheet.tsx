@@ -1,19 +1,11 @@
 "use client";
 
-import { LOCALES } from "@kmedia/core";
+import { LOCALE_NAME, LOCALES } from "@kmedia/core";
 import { useLocale } from "next-intl";
 import { useState } from "react";
 
 import { GlobeIcon } from "@/components/icons";
 import { Link, usePathname } from "@/i18n/navigation";
-
-const LABEL: Record<(typeof LOCALES)[number], string> = {
-  en: "English",
-  ja: "日本語",
-  "zh-TW": "繁體中文",
-  "zh-CN": "简体中文",
-  ko: "한국어",
-};
 
 // 하단 탭바의 언어 버튼 → iOS 액션 시트처럼 아래에서 올라온다. 지금 보는 페이지 그대로 언어만 바꾼다
 export function LanguageSheet({ label }: { label: string }) {
@@ -44,7 +36,7 @@ export function LanguageSheet({ label }: { label: string }) {
                 onClick={() => setOpen(false)}
                 className="flex h-14 items-center justify-between border-b border-line px-5 text-[17px] last:border-0"
               >
-                {LABEL[l]}
+                {LOCALE_NAME[l]}
                 {l === current && <span className="size-2 rounded-full bg-cherry" />}
               </Link>
             ))}

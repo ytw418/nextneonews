@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, Cormorant, Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -7,6 +7,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SITE_NAME } from "@kmedia/core";
 
 import { JsonLd } from "@/components/JsonLd";
+import { LocaleSuggest } from "@/components/LocaleSuggest";
 import { TabBar } from "@/components/TabBar";
 import { routing } from "@/i18n/routing";
 import { siteJsonLd } from "@/lib/jsonld";
@@ -23,6 +24,15 @@ const instrument = Instrument_Serif({
   display: "swap",
 });
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage", display: "swap" });
+// Instrument Serif 에 없는 베트남어 성조·키릴 문자용 제목 서체. vi·ru 페이지에서만 쓰므로 미리 받지 않는다
+const cormorant = Cormorant({
+  weight: "500",
+  style: ["normal", "italic"],
+  subsets: ["latin", "vietnamese", "cyrillic"],
+  variable: "--font-cormorant",
+  display: "swap",
+  preload: false,
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -58,7 +68,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${instrument.variable} ${bricolage.variable}`}>
+    <html lang={locale} className={`${instrument.variable} ${bricolage.variable} ${cormorant.variable}`}>
       <body className="min-h-svh antialiased">
         <JsonLd data={siteJsonLd(locale)} />
         <NextIntlClientProvider>
@@ -66,6 +76,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             {children}
           </div>
           <TabBar />
+          <LocaleSuggest />
         </NextIntlClientProvider>
       </body>
     </html>

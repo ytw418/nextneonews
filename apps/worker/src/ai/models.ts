@@ -4,6 +4,8 @@ import type Anthropic from "@anthropic-ai/sdk";
 export const MODELS = {
   // 1편을 4개 언어로 한 번에 쓴다. 비용 우선 Haiku (1편 약 3원). 품질을 올리려면 "claude-sonnet-5-5"
   write: "claude-haiku-5-5",
+  // 영어판을 vi·id·fr·ru 로 옮기는 배치 번역 (배치 50% 할인, 1편 4개 언어 약 4원)
+  translate: "claude-haiku-5-5",
   // GEO 측정용 웹 검색 답변 (web_search_20260209 는 Sonnet 4.6 이상 필요)
   geo: "claude-sonnet-5-5",
 } as const;
@@ -20,7 +22,10 @@ const PRICES: Record<string, { input: number; output: number }> = {
 // 거절 시 다른 모델이 대신 답했는데 표에 없으면 가장 비싼 값으로 잡는다 (과소 집계 방지).
 const FALLBACK_PRICE = { input: 10, output: 50 };
 
-export function costUsd(model: string, usage: Anthropic.Beta.BetaUsage): number {
+// 배치 API 는 모든 토큰이 반값이다
+export const BATCH_DISCOUNT = 0.5;
+
+export function costUsd(model: string, usage: Anthropic.Usage | Anthropic.Beta.BetaUsage): number {
   const price = PRICES[model] ?? FALLBACK_PRICE;
   const cacheWrite = usage.cache_creation_input_tokens ?? 0;
   const cacheRead = usage.cache_read_input_tokens ?? 0;

@@ -17,11 +17,18 @@ export function getClient(): Anthropic {
 
 export class RefusalError extends Error {}
 
-export async function logCost(task: string, model: string, usage: Anthropic.Beta.BetaUsage): Promise<void> {
+export async function logCost(
+  task: string,
+  model: string,
+  usage: Anthropic.Usage | Anthropic.Beta.BetaUsage,
+  multiplier = 1, // 배치 결과는 BATCH_DISCOUNT
+): Promise<void> {
   if (!isKnownModel(model)) {
     log.warn("cost: unknown model price, using fallback price", { model });
   }
-  await prisma.costLog.create({ data: { kind: "LLM", amountUsd: costUsd(model, usage), ref: `${task}:${model}` } });
+  await prisma.costLog.create({
+    data: { kind: "LLM", amountUsd: costUsd(model, usage) * multiplier, ref: `${task}:${model}` },
+  });
 }
 
 export interface StructuredCall<S extends z.ZodType> {
@@ -36,7 +43,7 @@ export interface StructuredCall<S extends z.ZodType> {
 
 // Haiku 5.5 는 effort high 이하에서 thinking 을 끌 수 있다 → 출력(사고) 토큰을 아낀다.
 // Sonnet 5.5·Opus 5.5 는 disabled 가 400 이라 보내지 않는다.
-function thinkingFor(model: string) {
+export function thinkingFor(model: string) {
   return model.startsWith("claude-haiku") ? { thinking: { type: "disabled" as const } } : {};
 }
 

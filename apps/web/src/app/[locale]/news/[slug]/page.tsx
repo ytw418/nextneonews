@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import ReactMarkdown from "react-markdown";
 
 import { AdSlot } from "@/components/AdSlot";
+import { Comments } from "@/components/Comments";
 import { AppHeader } from "@/components/AppHeader";
 import { FeedCard } from "@/components/FeedCard";
 import { JsonLd } from "@/components/JsonLd";
@@ -235,6 +236,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           <p className="mt-6 rounded-[12px] bg-card px-3.5 py-3 text-[12.5px] leading-relaxed text-muted shadow-[inset_0_0_0_1px_var(--line)]">
             {t("aiNotice")}
           </p>
+
+          <Comments articleId={article.id} />
         </div>
 
         {related.length > 0 && (

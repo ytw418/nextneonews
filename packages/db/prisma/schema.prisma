@@ -196,6 +196,7 @@ model Comment {
   locale       String
   nickname     String // 표시용 "ㅇㅇ(7f3a)"
   idHash       String // HMAC(IP, 비밀키 + 글 ID) 앞 4자리
+  ipHash       String? // HMAC(IP, 비밀키). 글과 상관없이 같은 사람의 도배를 막는 데만 쓴다
   passwordHash String // argon2id
   body         String
   status       CommentStatus @default(VISIBLE)
@@ -204,6 +205,7 @@ model Comment {
   updatedAt    DateTime      @updatedAt
 
   @@index([articleId, createdAt])
+  @@index([ipHash, createdAt])
 }
 
 model Video {
@@ -273,4 +275,16 @@ model Entity {
 
   @@index([ko])
   @@index([en])
+}
+
+// Anthropic 배치 API 작업 (50% 할인, 보통 1시간 안에 끝난다). 다음 실행 때 결과를 거둔다
+model AiBatch {
+  id          String    @id // Anthropic batch id (msgbatch_...)
+  kind        String // "translate"
+  items       Json // 요청 custom_id 목록 ["<articleId>_<locale>", ...]
+  status      String    @default("in_progress") // in_progress | collected
+  createdAt   DateTime  @default(now())
+  collectedAt DateTime?
+
+  @@index([kind, status])
 }
