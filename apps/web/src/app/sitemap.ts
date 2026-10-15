@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { CATEGORIES, categorySlug, LOCALE_PATH_PREFIX, LOCALES } from "@kmedia/core";
+import { CATEGORIES, categorySlug, LOCALE_PATH_PREFIX, LOCALES, UPCOMING } from "@kmedia/core";
 
 import { listSitemapEntries } from "@/lib/articles";
 import { articlePath, localeAlternates, SITE_URL } from "@/lib/url";
@@ -35,6 +35,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "daily" as const,
         priority: 0.6,
         alternates: { languages: languages(`/c/${categorySlug(c)}`) },
+      })),
+    ),
+    ...LOCALES.map((l) => ({
+      url: abs(`${LOCALE_PATH_PREFIX[l]}/schedule`),
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+      alternates: { languages: languages("/schedule") },
+    })),
+    ...LOCALES.flatMap((l) =>
+      UPCOMING.map((e) => ({
+        url: abs(`${LOCALE_PATH_PREFIX[l]}/schedule/${e.id}`),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+        alternates: { languages: languages(`/schedule/${e.id}`) },
       })),
     ),
     ...entries.map((e) => {

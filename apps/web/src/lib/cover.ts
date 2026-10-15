@@ -14,9 +14,21 @@ const TINT: Record<string, string> = {
   LIFE: "var(--tint-life)",
 };
 
+// 카테고리 색 (메모 커버·메뉴 칩). 틴트는 카테고리만 뜻한다
+export function categoryTint(category: string): string {
+  return TINT[category] ?? TINT.LIFE!;
+}
+
 // Tailwind 가 클래스를 찾을 수 있게 문자열을 그대로 둔다
 const RATIOS = ["aspect-[4/5]", "aspect-square", "aspect-[4/5]", "aspect-[5/6]"] as const;
-const PATTERNS = ["pattern-grid", "pattern-dots", "pattern-lines"] as const;
+type Ratio = (typeof RATIOS)[number];
+
+// 세로/가로 비율 (피드를 두 열로 나눌 때 카드 높이를 어림한다)
+const ASPECT: Record<Ratio, number> = {
+  "aspect-[4/5]": 1.25,
+  "aspect-square": 1,
+  "aspect-[5/6]": 1.2,
+};
 
 function hash(seed: string): number {
   let h = 2166136261;
@@ -29,19 +41,18 @@ function hash(seed: string): number {
 
 export interface CoverStyle {
   tint: string;
-  ratio: (typeof RATIOS)[number];
-  pattern: (typeof PATTERNS)[number];
-  tilt: number; // 스티커 기울기 (deg)
+  ratio: Ratio;
+  aspect: number; // 높이/폭
   tapeTilt: number;
 }
 
 export function coverStyle(seed: string, category: string): CoverStyle {
   const h = hash(seed);
+  const ratio = RATIOS[h % RATIOS.length]!;
   return {
-    tint: TINT[category] ?? TINT.LIFE!,
-    ratio: RATIOS[h % RATIOS.length]!,
-    pattern: PATTERNS[(h >> 3) % PATTERNS.length]!,
-    tilt: ((h >> 6) % 11) - 5,
+    tint: categoryTint(category),
+    ratio,
+    aspect: ASPECT[ratio],
     tapeTilt: ((h >> 10) % 7) - 3,
   };
 }

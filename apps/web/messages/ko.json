@@ -5,18 +5,86 @@
   },
   "Nav": {
     "home": "홈",
+    "schedule": "일정",
     "language": "언어",
-    "upcoming": "일정",
+    "changeLanguage": "언어 바꾸기 (지금: {name})",
+    "menu": "메뉴",
+    "categories": "카테고리",
+    "main": "주요 메뉴",
     "all": "전체",
     "back": "뒤로",
     "close": "닫기"
   },
   "Home": {
     "latest": "최신",
-    "empty": "아직 글이 없습니다.",
-    "upcoming": "다가오는 일정",
+    "trending": "지금 인기 글",
+    "empty": "아직 글이 없어요.",
+    "emptyCta": "전체 소식 보기",
+    "seeAll": "전체 보기"
+  },
+  "Schedule": {
+    "metaTitle": "K-팝 컴백·시상식·콘서트 일정",
+    "metaDescription": "해외 팬을 위해 날짜·장소·보는 방법을 모았어요.",
+    "kstNote": "날짜는 한국 시간(KST) 기준이에요.",
     "dday": "D-{days}",
-    "today": "오늘"
+    "today": "오늘",
+    "ongoing": "진행 중",
+    "ended": "종료",
+    "getTickets": "티켓 보러 가기",
+    "addToCalendar": "캘린더에 추가하기",
+    "kind": {
+      "comeback": "컴백",
+      "awards": "시상식",
+      "concert": "콘서트",
+      "festival": "페스티벌",
+      "fanmeeting": "팬미팅",
+      "drama": "드라마 첫 방송"
+    },
+    "releaseCount": "{count}개 발매",
+    "releaseKind": {
+      "single": "싱글",
+      "ep": "미니앨범",
+      "album": "정규 앨범"
+    },
+    "row": {
+      "date": "날짜",
+      "time": "시간",
+      "venue": "장소",
+      "official": "공식 사이트"
+    },
+    "tba": "아직 발표 전이에요",
+    "yourTime": "내 시간: {time}",
+    "venueTime": "{city}: {time}",
+    "watchTickets": "보는 곳·티켓",
+    "mode": {
+      "live": "생중계",
+      "vod": "다시 보기",
+      "liveAndVod": "생중계·다시 보기"
+    },
+    "status": {
+      "presale": "선예매",
+      "onSale": "판매 중",
+      "soldOut": "매진",
+      "notYet": "판매 전",
+      "closed": "선예매 끝"
+    },
+    "until": "{date}까지",
+    "lineup": "출연진",
+    "releases": "발매",
+    "dayN": "{n}일차 · {date}",
+    "hosts": "MC: {names}",
+    "lineupTba": "출연 날짜는 아직 발표 전이에요",
+    "lineupPartial": "출연진은 더 늘어날 수 있어요.",
+    "related": "관련 뉴스",
+    "sources": "출처",
+    "checked": "{date} 확인",
+    "share": "이 일정 공유하기",
+    "empty": "새 일정이 발표되면 바로 여기에 올라와요.",
+    "past": "지난 일정 ({count})",
+    "todayLine": {
+      "comeback": "오늘 컴백해요!",
+      "default": "드디어 오늘이에요!"
+    }
   },
   "Article": {
     "sources": "출처",
@@ -26,7 +94,7 @@
     "faq": "자주 묻는 질문",
     "published": "게시",
     "updated": "수정",
-    "share": "공유",
+    "share": "이 글 공유하기",
     "copied": "링크를 복사했어요",
     "related": "함께 읽기",
     "readMore": "읽기"
@@ -74,5 +142,13 @@
     "ENTERTAINMENT": "엔터",
     "LIFESTYLE": "푸드·뷰티·여행",
     "LIVING": "한국 생활"
+  },
+  "Install": {
+    "title": "홈 화면에 {name} 추가하기",
+    "body": "앱처럼 한 번에 열 수 있어요.",
+    "install": "설치하기",
+    "iosSteps": "Safari에서 '공유'를 누르고 '홈 화면에 추가'를 선택하세요.",
+    "iosShare": "공유",
+    "iosAdd": "홈 화면에 추가"
   }
 }

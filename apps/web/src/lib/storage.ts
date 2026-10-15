@@ -14,3 +14,20 @@ export function storageSet(key: string, value: string): void {
     // 저장 못 해도 기능은 그대로 쓴다
   }
 }
+
+// 탭을 닫으면 사라지는 값 (이번 방문에 한 번만 보여 줄 것들)
+export function sessionGet(key: string): string | null {
+  try {
+    return window.sessionStorage?.getItem(key) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export function sessionSet(key: string, value: string): void {
+  try {
+    window.sessionStorage?.setItem(key, value);
+  } catch {
+    // 저장 못 해도 기능은 그대로 쓴다
+  }
+}

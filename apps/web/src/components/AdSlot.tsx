@@ -2,8 +2,9 @@
 export function AdSlot({ label = "AD" }: { label?: string }) {
   if (process.env.NODE_ENV === "production") return null;
   return (
-    <div className="mx-4 my-6 flex h-[250px] items-center justify-center rounded-[14px] border border-dashed border-line font-label text-[12px] tracking-[0.2em] text-muted">
-      {label}
+    <div className="mx-read my-6">
+      <p className="mb-1 text-st12 text-ink-600">{label}</p>
+      <div className="flex min-h-[250px] items-center justify-center rounded-card border border-dashed border-line" />
     </div>
   );
 }

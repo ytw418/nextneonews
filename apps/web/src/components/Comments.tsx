@@ -3,6 +3,8 @@
 import { useLocale, useTranslations } from "next-intl";
 import { type FormEvent, useEffect, useState } from "react";
 
+import { Button } from "@/components/ui/Button";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { PublicComment } from "@/lib/comments";
 import { storageGet, storageSet } from "@/lib/storage";
 import { timeAgo } from "@/lib/time";
@@ -12,13 +14,14 @@ type Mode = { id: string; kind: "edit" | "delete"; body: string; password: strin
 const BODY_MAX = 1000;
 const NICKNAME_KEY = "hb:comment-nickname";
 
-// 같은 글 안의 같은 사람은 같은 색 점 (IP 해시 4자리에서 색을 뽑는다)
-function dotColor(idHash: string): string {
-  return `hsl(${parseInt(idHash, 16) % 360} 85% 68%)`;
+// 같은 글 안의 같은 사람은 같은 색 점 (IP 해시에서 아바타 틴트 6개 중 하나를 고른다)
+function avatarTint(idHash: string): string {
+  return `var(--avatar-${(parseInt(idHash.slice(0, 8), 16) % 6) + 1})`;
 }
 
-const inputClass =
-  "h-11 min-w-0 rounded-[12px] bg-bg px-3 text-[15px] outline-none ring-1 ring-line placeholder:text-muted focus:ring-2 focus:ring-cherry";
+const fieldClass =
+  "rounded-btn bg-bg text-ink-900 outline-none ring-1 ring-line-strong placeholder:text-ink-600 focus:ring-2 focus:ring-brand";
+const inputClass = `min-h-11 min-w-0 px-3 text-t6 ${fieldClass}`;
 
 export function Comments({ articleId }: { articleId: string }) {
   const t = useTranslations("Comments");
@@ -128,15 +131,10 @@ export function Comments({ articleId }: { articleId: string }) {
   const count = Math.max(total, comments?.length ?? 0);
 
   return (
-    <section id="comments" className="mt-10 scroll-mt-20">
-      <div className="flex items-baseline gap-2">
-        <h2 className="font-display text-[24px] italic">{t("title")}</h2>
-        {count > 0 && (
-          <span className="rounded-full bg-cherry px-2 py-0.5 font-label text-[12px] font-bold text-white">{count}</span>
-        )}
-      </div>
+    <section id="comments" aria-labelledby="comments-title" className="scroll-mt-20">
+      <SectionHeader id="comments-title" inset="read" title={t("title")} count={count} />
 
-      <form onSubmit={submit} className="mt-3 rounded-[18px] bg-card p-3 shadow-[inset_0_0_0_1px_var(--line)]">
+      <form onSubmit={submit} className="mx-read rounded-card bg-card p-3 ring-1 ring-line ring-inset">
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
@@ -145,7 +143,7 @@ export function Comments({ articleId }: { articleId: string }) {
           rows={3}
           placeholder={t("placeholder")}
           aria-label={t("placeholder")}
-          className="w-full resize-none rounded-[12px] bg-bg px-3 py-2.5 text-[15.5px] leading-relaxed outline-none ring-1 ring-line placeholder:text-muted focus:ring-2 focus:ring-cherry"
+          className={`w-full resize-none px-3 py-2.5 text-t5 ${fieldClass}`}
         />
         {/* 봇만 채우는 칸 */}
         <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
@@ -170,37 +168,31 @@ export function Comments({ articleId }: { articleId: string }) {
             className={inputClass}
           />
         </div>
-        <div className="mt-2 flex items-start gap-3">
-          <p className="flex-1 px-1 text-[12px] leading-relaxed text-muted">{t("rules")}</p>
-          <button
-            type="submit"
-            disabled={busy || body.trim().length === 0}
-            className="h-10 shrink-0 rounded-full bg-cherry px-5 font-label text-[14px] font-bold text-white disabled:opacity-40"
-          >
+        <div className="mt-2 flex flex-wrap items-start justify-end gap-3">
+          <p className="min-w-[12rem] flex-1 px-1 text-t7 text-ink-600">{t("rules")}</p>
+          <Button type="submit" size="m" loading={busy} disabled={!busy && body.trim().length === 0}>
             {t("submit")}
-          </button>
+          </Button>
         </div>
         {error && !mode && (
-          <p role="alert" className="mt-1 px-1 text-[13px] font-semibold text-cherry-deep">
+          <p role="alert" className="mt-1 px-1 text-t6 font-semibold text-danger">
             {error}
           </p>
         )}
       </form>
 
-      {comments !== null && count === 0 && <p className="mt-4 px-1 text-[14px] text-muted">{t("empty")}</p>}
+      {comments !== null && count === 0 && <p className="mt-4 px-read text-t6 text-ink-600">{t("empty")}</p>}
 
-      <ul className="mt-4 space-y-3">
+      <ul className="mt-4 space-y-3 px-read">
         {(comments ?? []).map((c) => {
           const active = mode?.id === c.id ? mode : null;
           return (
-            <li key={c.id} className="rounded-[18px_18px_18px_6px] bg-card px-4 py-3 shadow-[0_1px_0_var(--line)]">
-              <div className="flex items-center gap-1.5 text-[12.5px] text-muted">
-                <span className="size-2 rounded-full" style={{ backgroundColor: dotColor(c.idHash) }} />
-                <span className="font-label font-bold text-fg">{c.nickname}</span>
+            <li key={c.id} className="rounded-card rounded-bl-md bg-card px-4 py-3 shadow-card">
+              <div className="flex flex-wrap items-center gap-1.5 text-t7 text-ink-600">
+                <span className="size-2 rounded-full" style={{ backgroundColor: avatarTint(c.idHash) }} />
+                <span className="font-semibold text-ink-900">{c.nickname}</span>
                 {c.locale !== locale && (
-                  <span className="rounded-full bg-bg px-1.5 font-label text-[10.5px] uppercase ring-1 ring-line">
-                    {c.locale}
-                  </span>
+                  <span className="rounded-badge bg-fill-weak px-1.5 text-st12 uppercase text-ink-700">{c.locale}</span>
                 )}
                 <span aria-hidden>·</span>
                 <time dateTime={c.createdAt}>{timeAgo(new Date(c.createdAt), locale)}</time>
@@ -214,10 +206,10 @@ export function Comments({ articleId }: { articleId: string }) {
                   maxLength={BODY_MAX}
                   rows={3}
                   aria-label={t("edit")}
-                  className="mt-2 w-full resize-none rounded-[12px] bg-bg px-3 py-2 text-[15px] outline-none ring-1 ring-line focus:ring-2 focus:ring-cherry"
+                  className={`mt-2 w-full resize-none px-3 py-2 text-t5 ${fieldClass}`}
                 />
               ) : (
-                <p className="mt-1.5 whitespace-pre-wrap break-words text-[15.5px] leading-[1.65]">{c.body}</p>
+                <p className="mt-1.5 whitespace-pre-wrap break-words text-t6 text-ink-900">{c.body}</p>
               )}
 
               {active ? (
@@ -229,37 +221,52 @@ export function Comments({ articleId }: { articleId: string }) {
                     placeholder={t("password")}
                     aria-label={t("password")}
                     autoFocus
-                    className={`${inputClass} h-9 w-[7.5rem] text-[14px]`}
+                    className={`${inputClass} w-[7.5rem]`}
                   />
-                  <button
-                    type="button"
+                  <Button
+                    size="m"
+                    variant={active.kind === "edit" ? "primary" : "danger"}
                     onClick={confirmAction}
-                    disabled={busy || !active.password}
-                    className="h-9 rounded-full bg-fg px-3.5 text-[13px] font-bold text-bg disabled:opacity-40"
+                    loading={busy}
+                    disabled={!busy && !active.password}
                   >
                     {active.kind === "edit" ? t("save") : t("delete")}
-                  </button>
-                  <button type="button" onClick={() => setMode(null)} className="h-9 px-2 text-[13px] text-muted">
+                  </Button>
+                  <Button size="m" variant="neutral" onClick={() => setMode(null)}>
                     {t("cancel")}
-                  </button>
+                  </Button>
                   {error && (
-                    <p role="alert" className="w-full text-[13px] font-semibold text-cherry-deep">
+                    <p role="alert" className="w-full text-t6 font-semibold text-danger">
                       {error}
                     </p>
                   )}
                 </div>
               ) : (
-                <div className="mt-1.5 flex justify-end gap-3 text-[12px] text-muted">
-                  <button type="button" onClick={() => { setError(null); setMode({ id: c.id, kind: "edit", body: c.body, password: "" }); }}>
+                <div className="mt-1.5 flex justify-end gap-3 text-t7 text-ink-600">
+                  <button
+                    type="button"
+                    className="hit"
+                    onClick={() => {
+                      setError(null);
+                      setMode({ id: c.id, kind: "edit", body: c.body, password: "" });
+                    }}
+                  >
                     {t("edit")}
                   </button>
-                  <button type="button" onClick={() => { setError(null); setMode({ id: c.id, kind: "delete", body: c.body, password: "" }); }}>
+                  <button
+                    type="button"
+                    className="hit"
+                    onClick={() => {
+                      setError(null);
+                      setMode({ id: c.id, kind: "delete", body: c.body, password: "" });
+                    }}
+                  >
                     {t("delete")}
                   </button>
                   {reported === c.id ? (
                     <span>{t("reported")}</span>
                   ) : (
-                    <button type="button" onClick={() => report(c.id)}>
+                    <button type="button" className="hit" onClick={() => report(c.id)}>
                       {t("report")}
                     </button>
                   )}

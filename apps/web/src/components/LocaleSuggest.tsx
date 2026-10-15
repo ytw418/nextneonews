@@ -1,11 +1,12 @@
 "use client";
 
 import { type Locale, matchLocale } from "@kmedia/core";
-import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useLocale } from "next-intl";
+import { useEffect } from "react";
 
+import { toast } from "@/components/ui/Toast";
 import { usePathname } from "@/i18n/navigation";
-import { storageGet, storageSet } from "@/lib/storage";
+import { sessionGet, sessionSet, storageGet, storageSet } from "@/lib/storage";
 
 // 그 언어 사용자에게 그 언어로 보여 준다 (지금 페이지 언어가 아니라)
 const READ_IN: Record<Locale, string> = {
@@ -21,6 +22,14 @@ const READ_IN: Record<Locale, string> = {
 };
 
 const DISMISSED = "hb:locale-suggest-dismissed";
+const SEEN = "hb:locale-suggest-seen"; // sessionStorage
+
+// 설치 안내(InstallPrompt)와 겹치지 않게: 언어 제안이 먼저 뜨고, 내려가면 이 이벤트를 보낸다
+export const LOCALE_SUGGEST_DONE = "hb:locale-suggest-done";
+let suggesting = false;
+export function isLocaleSuggesting(): boolean {
+  return suggesting;
+}
 
 // 공유 링크로 다른 언어 페이지에 들어온 사람에게 브라우저 언어판을 권한다.
 // 강제로 넘기지 않는다: 검색 로봇과 일부러 그 언어를 고른 사람을 막지 않기 위해서다.
@@ -33,47 +42,33 @@ function findSuggestion(current: string): { locale: Locale; href: string } | nul
   return link ? { locale: preferred, href: link.href } : null;
 }
 
+// 화면에 직접 그리지 않고 토스트로 띄운다. 한 방문에 한 번만(자동으로 사라지면 이번 방문만),
+// ×로 닫으면 다시는 띄우지 않는다
 export function LocaleSuggest() {
   const current = useLocale();
-  const t = useTranslations("Nav");
   const pathname = usePathname();
-  const [suggestion, setSuggestion] = useState<{ locale: Locale; href: string } | null>(null);
 
   useEffect(() => {
-    // 페이지를 옮기면 대체 링크도 바뀌므로 경로마다 다시 찾는다
-    const found = findSuggestion(current);
-    const id = requestAnimationFrame(() => setSuggestion(found));
+    // 페이지를 옮기면 대체 링크도 바뀌므로 경로마다 다시 찾는다 (head 가 바뀐 뒤에 읽게 한 프레임 미룬다)
+    const id = requestAnimationFrame(() => {
+      if (sessionGet(SEEN)) return;
+      const found = findSuggestion(current);
+      if (!found) return;
+      sessionSet(SEEN, "1");
+      suggesting = true;
+      toast(`${READ_IN[found.locale]} →`, {
+        href: found.href,
+        lang: found.locale,
+        duration: 5000,
+        onClose: () => storageSet(DISMISSED, "1"),
+        onDone: () => {
+          suggesting = false;
+          window.dispatchEvent(new Event(LOCALE_SUGGEST_DONE));
+        },
+      });
+    });
     return () => cancelAnimationFrame(id);
   }, [current, pathname]);
 
-  if (!suggestion) return null;
-
-  const dismiss = () => {
-    storageSet(DISMISSED, "1");
-    setSuggestion(null);
-  };
-
-  return (
-    <div className="fixed inset-x-0 bottom-[calc(var(--tabbar-h)+env(safe-area-inset-bottom)+10px)] z-40 flex justify-center px-4">
-      <div className="rise flex items-center gap-1 rounded-full bg-fg py-1 pl-1 pr-1.5 text-bg shadow-xl">
-        <a
-          href={suggestion.href}
-          lang={suggestion.locale}
-          onClick={() => storageSet(DISMISSED, "1")}
-          className="flex h-9 items-center gap-2 rounded-full pl-3 pr-2 font-sans text-[14px] font-semibold"
-        >
-          <span className="size-2 rounded-full bg-cherry" />
-          {READ_IN[suggestion.locale]} →
-        </a>
-        <button
-          type="button"
-          onClick={dismiss}
-          aria-label={t("close")}
-          className="grid size-8 place-items-center rounded-full text-[18px] leading-none opacity-60"
-        >
-          ×
-        </button>
-      </div>
-    </div>
-  );
+  return null;
 }

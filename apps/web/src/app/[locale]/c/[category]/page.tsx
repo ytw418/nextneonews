@@ -60,9 +60,17 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/c/[c
   return (
     <>
       <AppHeader />
+      {/* 뒤로 버튼 없는 root 화면. 칩 레일이 나가는 길이고, 탭바는 홈이 선택된 채로 둔다 */}
       <CategoryRail active={key} />
-      <h1 className="px-4 pb-2.5 pt-3 font-display text-[28px] italic">{tCat(key)}</h1>
-      <Feed items={items} emptyLabel={tHome("empty")} />
+      {/* 보이는 제목은 선택된(채운) 칩이 대신한다 */}
+      <h1 className="sr-only">{tCat(key)}</h1>
+      <div className="pt-3">
+        <Feed
+          items={items}
+          showCategory={false}
+          empty={{ label: tHome("empty"), ctaLabel: tHome("emptyCta"), ctaHref: "/" }}
+        />
+      </div>
     </>
   );
 }

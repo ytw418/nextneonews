@@ -1,37 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Cormorant, Instrument_Serif } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { SITE_NAME } from "@kmedia/core";
 
+import { ChromeEffects } from "@/components/ChromeEffects";
+import { InstallPrompt } from "@/components/InstallPrompt";
 import { JsonLd } from "@/components/JsonLd";
 import { LocaleSuggest } from "@/components/LocaleSuggest";
 import { TabBar } from "@/components/TabBar";
+import { Toaster } from "@/components/ui/Toast";
 import { routing } from "@/i18n/routing";
+import { INSTALL_CAPTURE_SCRIPT } from "@/lib/install";
 import { siteJsonLd } from "@/lib/jsonld";
 import { SITE_URL } from "@/lib/url";
 
 import "../globals.css";
 
-// 라틴 포인트 서체만 웹폰트. next/font 가 빌드 때 받아 우리 도메인에서 제공한다 (중국에서도 막히지 않음)
+// 웹폰트는 로고(.wordmark) 하나뿐. next/font 가 빌드 때 받아 우리 도메인에서 제공한다 (중국에서도 막히지 않음)
 const instrument = Instrument_Serif({
   weight: "400",
-  style: ["normal", "italic"],
+  style: ["italic"],
   subsets: ["latin"],
   variable: "--font-instrument",
   display: "swap",
-});
-const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage", display: "swap" });
-// Instrument Serif 에 없는 베트남어 성조·키릴 문자용 제목 서체. vi·ru 페이지에서만 쓰므로 미리 받지 않는다
-const cormorant = Cormorant({
-  weight: "500",
-  style: ["normal", "italic"],
-  subsets: ["latin", "vietnamese", "cyrillic"],
-  variable: "--font-cormorant",
-  display: "swap",
-  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -68,15 +62,21 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className={`${instrument.variable} ${bricolage.variable} ${cormorant.variable}`}>
+    <html lang={locale} className={instrument.variable}>
       <body className="min-h-svh antialiased">
+        <script dangerouslySetInnerHTML={{ __html: INSTALL_CAPTURE_SCRIPT }} />
         <JsonLd data={siteJsonLd(locale)} />
         <NextIntlClientProvider>
-          <div className="mx-auto max-w-[640px] pb-[calc(var(--tabbar-h)+env(safe-area-inset-bottom)+12px)]">
+          {/* 하단 탭바·고정 CTA(--bottom-ui)에 마지막 줄이 가리지 않게 아래 여백을 둔다 */}
+          <main id="main" className="mx-auto max-w-[640px] pb-[calc(var(--bottom-ui)+24px)]">
             {children}
-          </div>
+          </main>
           <TabBar />
+          <Toaster />
+          <ChromeEffects />
+          {/* 언어 제안이 먼저, 그다음 설치 안내 (같은 자리라 함께 뜨지 않는다) */}
           <LocaleSuggest />
+          <InstallPrompt />
         </NextIntlClientProvider>
       </body>
     </html>

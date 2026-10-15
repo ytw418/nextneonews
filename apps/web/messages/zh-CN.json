@@ -5,18 +5,86 @@
   },
   "Nav": {
     "home": "首页",
+    "schedule": "行程",
     "language": "语言",
-    "upcoming": "行程",
+    "changeLanguage": "切换语言（当前：{name}）",
+    "menu": "菜单",
+    "categories": "分类",
+    "main": "主菜单",
     "all": "全部",
     "back": "返回",
     "close": "关闭"
   },
   "Home": {
     "latest": "最新",
-    "empty": "目前还没有文章。",
-    "upcoming": "即将登场",
-    "dday": "倒计时 {days} 天",
-    "today": "今天"
+    "trending": "当下热门",
+    "empty": "这里还没有文章。",
+    "emptyCta": "看全部新闻",
+    "seeAll": "查看全部"
+  },
+  "Schedule": {
+    "metaTitle": "K-POP 回归、颁奖典礼、演唱会行程",
+    "metaDescription": "为海外粉丝整理日期、地点和收看方式。",
+    "kstNote": "日期以韩国时间（KST）为准。",
+    "dday": "D-{days}",
+    "today": "今天",
+    "ongoing": "进行中",
+    "ended": "已结束",
+    "getTickets": "去购票",
+    "addToCalendar": "加入日历",
+    "kind": {
+      "comeback": "回归",
+      "awards": "颁奖典礼",
+      "concert": "演唱会",
+      "festival": "音乐节",
+      "fanmeeting": "粉丝见面会",
+      "drama": "新剧首播"
+    },
+    "releaseCount": "{count} 张作品",
+    "releaseKind": {
+      "single": "单曲",
+      "ep": "迷你专辑",
+      "album": "正规专辑"
+    },
+    "row": {
+      "date": "日期",
+      "time": "时间",
+      "venue": "地点",
+      "official": "官方网站"
+    },
+    "tba": "尚未公布",
+    "yourTime": "你的时间：{time}",
+    "venueTime": "{city}：{time}",
+    "watchTickets": "收看与购票",
+    "mode": {
+      "live": "直播",
+      "vod": "重播",
+      "liveAndVod": "直播＋重播"
+    },
+    "status": {
+      "presale": "预购",
+      "onSale": "销售中",
+      "soldOut": "已售罄",
+      "notYet": "尚未开售",
+      "closed": "预购已结束"
+    },
+    "until": "至 {date}",
+    "lineup": "演出阵容",
+    "releases": "发行",
+    "dayN": "第{n}天・{date}",
+    "hosts": "主持人：{names}",
+    "lineupTba": "各组演出日期尚未公布",
+    "lineupPartial": "演出阵容可能还会增加。",
+    "related": "相关新闻",
+    "sources": "资料来源",
+    "checked": "{date} 确认",
+    "share": "分享这个行程",
+    "empty": "新行程一公布就会更新在这里。",
+    "past": "已结束的行程（{count}）",
+    "todayLine": {
+      "comeback": "今天回归！",
+      "default": "就是今天！"
+    }
   },
   "Article": {
     "sources": "来源",
@@ -26,7 +94,7 @@
     "faq": "常见问题",
     "published": "发布",
     "updated": "更新",
-    "share": "分享",
+    "share": "分享这篇文章",
     "copied": "已复制链接",
     "related": "延伸阅读",
     "readMore": "阅读"
@@ -74,5 +142,13 @@
     "ENTERTAINMENT": "娱乐",
     "LIFESTYLE": "美食・美妆・旅游",
     "LIVING": "在韩国生活"
+  },
+  "Install": {
+    "title": "把 {name} 添加到主屏幕",
+    "body": "像 App 一样，一点就开。",
+    "install": "安装",
+    "iosSteps": "在 Safari 点“共享”，再选“添加到主屏幕”。",
+    "iosShare": "共享",
+    "iosAdd": "添加到主屏幕"
   }
 }

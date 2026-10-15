@@ -5,18 +5,86 @@
   },
   "Nav": {
     "home": "Home",
+    "schedule": "Schedule",
     "language": "Language",
-    "upcoming": "Upcoming",
-    "all": "For you",
+    "changeLanguage": "Change language (now {name})",
+    "menu": "Menu",
+    "categories": "Categories",
+    "main": "Main menu",
+    "all": "All",
     "back": "Back",
     "close": "Close"
   },
   "Home": {
     "latest": "Latest",
-    "empty": "No articles yet.",
-    "upcoming": "Coming up",
+    "trending": "Trending now",
+    "empty": "No stories here yet.",
+    "emptyCta": "See all news",
+    "seeAll": "See all"
+  },
+  "Schedule": {
+    "metaTitle": "K-pop comebacks, awards and concerts",
+    "metaDescription": "Dates, venues and how to watch, for international fans.",
+    "kstNote": "Dates are in Korea time (KST).",
     "dday": "D-{days}",
-    "today": "TODAY"
+    "today": "Today",
+    "ongoing": "On now",
+    "ended": "Ended",
+    "getTickets": "Get tickets",
+    "addToCalendar": "Add to calendar",
+    "kind": {
+      "comeback": "Comeback",
+      "awards": "Awards",
+      "concert": "Concert",
+      "festival": "Festival",
+      "fanmeeting": "Fan meeting",
+      "drama": "Drama premiere"
+    },
+    "releaseCount": "{count, plural, one {# release} other {# releases}}",
+    "releaseKind": {
+      "single": "Single",
+      "ep": "EP",
+      "album": "Album"
+    },
+    "row": {
+      "date": "Date",
+      "time": "Time",
+      "venue": "Venue",
+      "official": "Official site"
+    },
+    "tba": "Not announced yet",
+    "yourTime": "Your time: {time}",
+    "venueTime": "{city}: {time}",
+    "watchTickets": "Watch & tickets",
+    "mode": {
+      "live": "Live",
+      "vod": "Replay",
+      "liveAndVod": "Live + replay"
+    },
+    "status": {
+      "presale": "Presale",
+      "onSale": "On sale",
+      "soldOut": "Sold out",
+      "notYet": "Not on sale yet",
+      "closed": "Presale ended"
+    },
+    "until": "until {date}",
+    "lineup": "Lineup",
+    "releases": "Releases",
+    "dayN": "Day {n} · {date}",
+    "hosts": "Hosts: {names}",
+    "lineupTba": "Days per act not announced yet",
+    "lineupPartial": "More acts may be added.",
+    "related": "Related news",
+    "sources": "Sources",
+    "checked": "Checked {date}",
+    "share": "Share this event",
+    "empty": "New dates show up here as soon as they're announced.",
+    "past": "Past schedule ({count})",
+    "todayLine": {
+      "comeback": "It's comeback day!",
+      "default": "It's today!"
+    }
   },
   "Article": {
     "sources": "Sources",
@@ -26,7 +94,7 @@
     "faq": "FAQ",
     "published": "Published",
     "updated": "Updated",
-    "share": "Share",
+    "share": "Share this article",
     "copied": "Link copied",
     "related": "More to read",
     "readMore": "Read"
@@ -74,5 +142,13 @@
     "ENTERTAINMENT": "Entertainment",
     "LIFESTYLE": "Food, beauty & travel",
     "LIVING": "Living in Korea"
+  },
+  "Install": {
+    "title": "Add {name} to your Home Screen",
+    "body": "Open it in one tap, just like an app.",
+    "install": "Install",
+    "iosSteps": "In Safari, tap Share, then Add to Home Screen.",
+    "iosShare": "Share",
+    "iosAdd": "Add to Home Screen"
   }
 }
