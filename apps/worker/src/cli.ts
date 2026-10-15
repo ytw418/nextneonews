@@ -23,6 +23,8 @@ import { upsertSignals } from "./store";
 async function collect(names: string[]) {
   const targets = names.length > 0 ? names : Object.keys(collectors);
 
+  // 한 곳이 막혀도(예: 더쿠가 데이터센터 IP 를 403) 나머지로 계속한다. 전부 실패했을 때만 실패로 본다
+  let failed = 0;
   for (const name of targets) {
     const collector = collectors[name];
     if (!collector) {
@@ -35,10 +37,11 @@ async function collect(names: string[]) {
       const saved = await upsertSignals(signals);
       log.info(`collected ${name}`, { saved });
     } catch (error) {
-      log.error(`collector failed: ${name}`, { error: String(error) });
-      process.exitCode = 1;
+      failed += 1;
+      log.warn(`collector failed: ${name}`, { error: String(error) });
     }
   }
+  if (failed === targets.length) process.exitCode = 1;
 }
 
 function numberArg(args: string[], fallback: number): number {
