@@ -10,7 +10,7 @@ on:
     inputs:
       limit:
         description: "이번에 쓸 기사 수"
-        default: "5"
+        default: "3"
 
 concurrency:
   group: pipeline
@@ -40,6 +40,6 @@ jobs:
         if: github.event.schedule == '40 18 * * 0'
         run: npm run worker -- entities
       - name: 수집 → 체크 → 작성
-        run: npm run worker -- pipeline ${{ github.event.inputs.limit || '5' }}
+        run: npm run worker -- pipeline ${{ github.event.inputs.limit || '3' }}
       - run: npm run worker -- zh-cn
       - run: npm run worker -- cost
