@@ -92,12 +92,12 @@
     "correction": "Signaler une erreur",
     "keyPoints": "L’essentiel",
     "faq": "Questions fréquentes",
-    "published": "Publié",
-    "updated": "Mis à jour",
+    "readTime": "{minutes} min de lecture",
     "share": "Partager cet article",
     "copied": "Lien copié",
     "related": "À lire aussi",
-    "readMore": "Lire"
+    "popular": "Populaires cette semaine",
+    "ad": "Publicité"
   },
   "NotFound": {
     "title": "Page introuvable",

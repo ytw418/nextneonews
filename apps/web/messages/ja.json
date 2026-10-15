@@ -92,12 +92,12 @@
     "correction": "訂正を依頼する",
     "keyPoints": "ポイント",
     "faq": "よくある質問",
-    "published": "公開",
-    "updated": "更新",
+    "readTime": "{minutes}分で読めます",
     "share": "この記事をシェア",
     "copied": "リンクをコピーしました",
     "related": "こちらもおすすめ",
-    "readMore": "読む"
+    "popular": "今週の人気記事",
+    "ad": "広告"
   },
   "NotFound": {
     "title": "ページが見つかりません",

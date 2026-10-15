@@ -92,12 +92,12 @@
     "correction": "回報錯誤",
     "keyPoints": "重點整理",
     "faq": "常見問題",
-    "published": "發布",
-    "updated": "更新",
+    "readTime": "約 {minutes} 分鐘讀完",
     "share": "分享這篇文章",
     "copied": "已複製連結",
     "related": "延伸閱讀",
-    "readMore": "閱讀"
+    "popular": "本週熱門",
+    "ad": "廣告"
   },
   "NotFound": {
     "title": "找不到頁面",

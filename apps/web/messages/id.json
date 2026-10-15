@@ -92,12 +92,12 @@
     "correction": "Laporkan kesalahan",
     "keyPoints": "Poin penting",
     "faq": "Tanya jawab",
-    "published": "Terbit",
-    "updated": "Diperbarui",
+    "readTime": "Baca {minutes} menit",
     "share": "Bagikan artikel ini",
     "copied": "Tautan disalin",
     "related": "Baca juga",
-    "readMore": "Baca"
+    "popular": "Populer minggu ini",
+    "ad": "Iklan"
   },
   "NotFound": {
     "title": "Halaman tidak ditemukan",

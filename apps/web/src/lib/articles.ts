@@ -38,7 +38,8 @@ export async function listByCategory(locale: string, category: Category, take = 
   });
 }
 
-function entityNames(entities: unknown): string[] {
+// 등장 인물·그룹·작품 이름 (article.entities JSON 에서)
+export function entityNames(entities: unknown): string[] {
   if (!Array.isArray(entities)) return [];
   return entities
     .map((e) => (e && typeof e === "object" && "name" in e ? String((e as { name: unknown }).name) : ""))

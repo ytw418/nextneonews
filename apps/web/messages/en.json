@@ -92,12 +92,12 @@
     "correction": "Request a correction",
     "keyPoints": "Key points",
     "faq": "FAQ",
-    "published": "Published",
-    "updated": "Updated",
+    "readTime": "{minutes} min read",
     "share": "Share this article",
     "copied": "Link copied",
     "related": "More to read",
-    "readMore": "Read"
+    "popular": "Popular this week",
+    "ad": "Ad"
   },
   "NotFound": {
     "title": "Page not found",

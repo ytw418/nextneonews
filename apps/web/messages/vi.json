@@ -92,12 +92,12 @@
     "correction": "Báo lỗi nội dung",
     "keyPoints": "Ý chính",
     "faq": "Câu hỏi thường gặp",
-    "published": "Đăng lúc",
-    "updated": "Cập nhật",
+    "readTime": "Đọc trong {minutes} phút",
     "share": "Chia sẻ bài viết này",
     "copied": "Đã sao chép liên kết",
     "related": "Đọc thêm",
-    "readMore": "Đọc"
+    "popular": "Đọc nhiều tuần này",
+    "ad": "Quảng cáo"
   },
   "NotFound": {
     "title": "Không tìm thấy trang",

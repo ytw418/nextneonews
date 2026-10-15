@@ -92,12 +92,12 @@
     "correction": "反馈错误",
     "keyPoints": "重点整理",
     "faq": "常见问题",
-    "published": "发布",
-    "updated": "更新",
+    "readTime": "约 {minutes} 分钟读完",
     "share": "分享这篇文章",
     "copied": "已复制链接",
     "related": "延伸阅读",
-    "readMore": "阅读"
+    "popular": "本周热门",
+    "ad": "广告"
   },
   "NotFound": {
     "title": "找不到页面",
