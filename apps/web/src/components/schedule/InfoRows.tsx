@@ -25,9 +25,23 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-// 글줄 안의 링크라 줄 높이는 그대로 두고, 세로 여백으로 누를 자리(44px 가까이)만 넓힌다. 긴 공연장 이름은 줄이 바뀌고 아이콘이 끝 글자 옆에 붙는다
+// 글줄 안의 링크라 줄 높이는 그대로 두고, 세로 여백으로 누를 자리(44px 가까이)만 넓힌다. 긴 공연장 이름은 줄이 바뀌고 아이콘은 끝 단어 옆에 붙어 다닌다
 const LINK = "py-2.5 underline-offset-4 active:underline";
 const LINK_ICON = "ml-1 inline-block size-4 align-[-2px] text-ink-400";
+
+// 바깥 링크 아이콘이 혼자 다음 줄로 떨어지지 않게 마지막 단어와 묶는다
+function WithIcon({ text }: { text: string }) {
+  const cut = text.lastIndexOf(" ") + 1;
+  return (
+    <>
+      {text.slice(0, cut)}
+      <span className="whitespace-nowrap">
+        {text.slice(cut)}
+        <ExternalIcon className={LINK_ICON} />
+      </span>
+    </>
+  );
+}
 
 // 일정 핵심 정보: 날짜·시간·장소·공식 사이트. 모르는 값은 그 줄을 빼거나 '아직 발표 전'이라고 쓴다
 export async function InfoRows({ e, locale }: { e: EventWithView; locale: Locale }) {
@@ -67,8 +81,7 @@ export async function InfoRows({ e, locale }: { e: EventWithView; locale: Locale
             rel="noopener noreferrer"
             className={LINK}
           >
-            {e.venue}
-            <ExternalIcon className={LINK_ICON} />
+            <WithIcon text={e.venue} />
           </a>
           {city && <span className="block font-normal text-ink-600">{city}</span>}
         </Row>
@@ -76,8 +89,7 @@ export async function InfoRows({ e, locale }: { e: EventWithView; locale: Locale
       {e.officialUrl && (
         <Row label={t("row.official")}>
           <a href={e.officialUrl} target="_blank" rel="noopener noreferrer" className={LINK}>
-            {hostname(e.officialUrl)}
-            <ExternalIcon className={LINK_ICON} />
+            <WithIcon text={hostname(e.officialUrl)} />
           </a>
         </Row>
       )}
