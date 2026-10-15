@@ -14,7 +14,7 @@
 ## 설정값
 
 - **Vercel 프로젝트**
-  - Root Directory: `apps/web`, Node 24.x
+  - Root Directory: `apps/web`, Node 24.x, 함수 리전 `sin1` (Neon 과 같은 싱가포르. 일본·대만에도 가깝다)
   - Build Command: `cd ../.. && touch .env && npm run db:generate && npm run build -w @kmedia/web` (웹 스크립트가 루트 `.env` 를 읽으므로 빈 파일을 만든다. 값은 Vercel 환경변수에서 온다)
   - Install Command: `cd ../.. && npm ci`
   - 환경변수: `DATABASE_URL`(Neon 풀러, 자동), `SITE_URL`, `INDEXNOW_KEY`, `COMMENT_HASH_SECRET`
