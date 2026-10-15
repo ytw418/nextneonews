@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import type { FeedItem } from "@/components/FeedCard";
 
 import type { FeedRow } from "./articles";
-import { dateStamp, timeAgo } from "./time";
+import { timeAgo } from "./time";
 
 export async function toFeedItems(rows: FeedRow[], locale: string): Promise<FeedItem[]> {
   const t = await getTranslations("Category");
@@ -13,8 +13,8 @@ export async function toFeedItems(rows: FeedRow[], locale: string): Promise<Feed
     category: row.article.category,
     categoryLabel: t(row.article.category),
     timeAgo: timeAgo(row.article.publishedAt, locale),
-    stamp: dateStamp(row.article.publishedAt),
     locale,
     imageUrl: row.article.media[0]?.url,
+    credit: row.article.media[0],
   }));
 }

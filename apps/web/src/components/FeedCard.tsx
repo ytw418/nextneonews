@@ -2,7 +2,9 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 
 import { MemoCover } from "@/components/MemoCover";
+import { type CreditMedia, PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
+import { Meta } from "@/components/ui/Meta";
 import { Link } from "@/i18n/navigation";
 import { coverStyle } from "@/lib/cover";
 
@@ -12,9 +14,9 @@ export interface FeedItem {
   category: string;
   categoryLabel: string;
   timeAgo: string;
-  stamp: string;
   locale: string;
   imageUrl?: string;
+  credit?: CreditMedia; // 대표 사진 출처 (위키미디어면 저작자·라이선스·원본 링크)
 }
 
 interface Props {
@@ -30,56 +32,84 @@ interface Props {
 export function FeedCard({ item, variant = "column", showCategory = true, priority, style }: Props) {
   const lead = variant === "lead";
   const cover = coverStyle(item.slug, item.category);
-  const photo = Boolean(item.imageUrl);
-  return (
-    <Link href={`/news/${item.slug}`} className="press-soft block" style={style}>
-      {/* 메모 카드는 테이프가 카드 위로 삐져나오게 잘라 내지 않는다 (모서리는 메모가 직접 둥글린다) */}
-      <div className={`rounded-card bg-card shadow-card ${photo ? "overflow-hidden" : ""}`}>
-        {item.imageUrl ? (
-          <div className={`relative ${lead ? "aspect-[4/3]" : cover.ratio}`}>
-            <Image
-              src={item.imageUrl}
-              alt=""
-              fill
-              unoptimized
-              loading={priority ? "eager" : undefined}
-              fetchPriority={priority ? "high" : undefined}
-              sizes={lead ? "(max-width: 640px) 100vw, 640px" : "(max-width: 640px) 45vw, 300px"}
-              className="object-cover"
-            />
-          </div>
-        ) : (
-          <MemoCover
-            title={item.title}
-            sticker={item.categoryLabel}
-            stamp={item.stamp}
-            locale={item.locale}
-            style={cover}
-            size={lead ? "lead" : "card"}
-            className="rounded-t-card"
+  const href = `/news/${item.slug}`;
+
+  if (!item.imageUrl) {
+    // 메모 카드는 메모 한 장이 전부다: 도장 자리에 '3시간 전', 오른쪽 아래에 카테고리 배지.
+    // 테이프가 카드 위로 삐져나오게 잘라 내지 않는다 (모서리는 메모가 직접 둥글린다)
+    return (
+      <Link href={href} className="press-soft block" style={style}>
+        <MemoCover
+          title={item.title}
+          sticker={item.categoryLabel}
+          stamp={item.timeAgo}
+          locale={item.locale}
+          style={cover}
+          size={lead ? "lead" : "card"}
+          className="rounded-card shadow-card"
+        />
+      </Link>
+    );
+  }
+
+  const meta = (
+    <p className={`pt-1 text-t7 text-ink-600 ${lead ? "px-4 pb-4" : "px-3 pb-3"}`}>
+      <Meta
+        parts={[showCategory && <span className="font-medium text-ink-700">{item.categoryLabel}</span>, item.timeAgo]}
+      />
+    </p>
+  );
+
+  if (lead) {
+    // 맨 위 큰 사진에는 출처 표기(링크 둘)가 들어가서 카드 전체를 <a> 로 감쌀 수 없다.
+    // 제목 링크를 카드 전체로 늘리고(after:inset-0), 출처 링크만 그 위로 올린다
+    return (
+      <div className="press-soft relative overflow-hidden rounded-card bg-card shadow-card" style={style}>
+        <figure className="relative aspect-[4/3]">
+          <Image
+            src={item.imageUrl}
+            alt=""
+            fill
+            unoptimized
+            loading={priority ? "eager" : undefined}
+            fetchPriority={priority ? "high" : undefined}
+            sizes="(max-width: 640px) 100vw, 640px"
+            className="object-cover object-[50%_20%]"
           />
-        )}
-        {photo &&
-          (lead ? (
-            <p className="title px-4 pt-3 text-t4 font-bold text-ink-900">
-              <Phrase text={item.title} locale={item.locale} />
-            </p>
-          ) : (
-            // 4줄 자르기는 안전망. 파이프라인의 언어별 제목 길이 제한이 보통 4줄 안에 맞춘다
-            <p className="title line-clamp-4 px-3 pt-3 text-t6 leading-row font-bold text-ink-900">
-              <Phrase text={item.title} locale={item.locale} />
-            </p>
-          ))}
-        <p className={`text-t7 text-ink-600 ${lead ? "px-4 pb-4" : "px-3 pb-3"} ${photo ? "pt-1" : "pt-2"}`}>
-          {/* 메모 커버는 카테고리 배지를 이미 달고 있다 */}
-          {showCategory && photo && (
-            <>
-              <span className="font-medium text-ink-700">{item.categoryLabel}</span>
-              {" · "}
-            </>
+          {item.credit && (
+            <div className="absolute inset-x-0 bottom-0 z-10 bg-[linear-gradient(to_top,rgb(0_0_0/.6),transparent)] px-3 pt-6 pb-2">
+              <PhotoCredit media={item.credit} className="" />
+            </div>
           )}
-          {item.timeAgo}
+        </figure>
+        <p className="title px-4 pt-3 text-t4 font-bold text-ink-900">
+          <Link href={href} className="after:absolute after:inset-0">
+            <Phrase text={item.title} locale={item.locale} />
+          </Link>
         </p>
+        {meta}
+      </div>
+    );
+  }
+
+  return (
+    <Link href={href} className="press-soft block" style={style}>
+      <div className="overflow-hidden rounded-card bg-card shadow-card">
+        <div className={`relative ${cover.ratio}`}>
+          <Image
+            src={item.imageUrl}
+            alt=""
+            fill
+            unoptimized
+            sizes="(max-width: 640px) 45vw, 300px"
+            className="object-cover"
+          />
+        </div>
+        {/* 4줄 자르기는 안전망. 파이프라인의 언어별 제목 길이 제한이 보통 4줄 안에 맞춘다 */}
+        <p className="title line-clamp-4 px-3 pt-3 text-t6 leading-row font-bold text-ink-900">
+          <Phrase text={item.title} locale={item.locale} />
+        </p>
+        {meta}
       </div>
     </Link>
   );

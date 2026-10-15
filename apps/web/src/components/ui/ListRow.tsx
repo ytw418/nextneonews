@@ -16,6 +16,7 @@ interface Props {
   inset?: "gutter" | "read" | "card";
   ariaLabel?: string; // 링크 줄에서만
   lang?: string;
+  alignTop?: boolean; // 부제가 여러 줄인 줄: 왼쪽 아이콘을 제목 줄에 맞춘다 (가운데면 네 줄 덩어리 한가운데에 떴다)
 }
 
 const INSET = {
@@ -39,10 +40,11 @@ export function ListRow({
   inset = "gutter",
   ariaLabel,
   lang,
+  alignTop,
 }: Props) {
   // 글자를 아주 키우면(AX2 이상) 제목 칸이 4rem 보다 좁아져 단어가 오른쪽 배지 위로 넘쳤다.
   // 그때는 줄을 바꿔 [왼쪽 제목] / [오른쪽] 으로 쌓는다. 기본 크기·AX1·사파리 aA 135% 에서는 한 줄 그대로다
-  const inner = "flex min-h-14 flex-wrap items-center gap-x-4 gap-y-2 py-3 px-[var(--row-inset)]";
+  const inner = `flex min-h-14 flex-wrap ${alignTop ? "items-start" : "items-center"} gap-x-4 gap-y-2 py-3 px-[var(--row-inset)]`;
   const content = (
     <>
       {left && <span className="shrink-0">{left}</span>}

@@ -13,13 +13,16 @@
     "main": "主菜单",
     "all": "全部",
     "back": "返回",
-    "close": "关闭"
+    "close": "关闭",
+    "cancel": "取消"
   },
   "Home": {
     "latest": "最新",
     "trending": "当下热门",
     "empty": "这里还没有文章。",
     "emptyCta": "看全部新闻",
+    "comingSoon": "简体中文文章即将上线。",
+    "readInEnglish": "用英文阅读",
     "seeAll": "查看全部"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "粉丝见面会",
       "drama": "新剧首播"
     },
-    "releaseCount": "{count} 张作品",
+    "releaseCount": "{count}\u00a0张作品",
     "releaseKind": {
       "single": "单曲",
       "ep": "迷你专辑",
@@ -92,7 +95,7 @@
     "correction": "反馈错误",
     "keyPoints": "重点整理",
     "faq": "常见问题",
-    "readTime": "约 {minutes} 分钟读完",
+    "readTime": "约\u00a0{minutes}\u00a0分钟读完",
     "share": "分享这篇文章",
     "copied": "已复制链接",
     "related": "延伸阅读",
@@ -124,6 +127,7 @@
     "changeName": "换个名字",
     "submit": "发布评论",
     "menu": "{name} 的评论菜单",
+    "options": "评论菜单",
     "edit": "编辑",
     "delete": "删除",
     "deleteTitle": "要删除这条评论吗？",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "娱乐",
     "LIFESTYLE": "美食・美妆・旅游",
-    "LIVING": "在韩国生活"
+    "LIVING": "在韩国生活",
+    "OTHER": "其他主题"
   },
   "Install": {
     "title": "把 {name} 添加到主屏幕",

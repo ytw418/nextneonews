@@ -13,13 +13,16 @@
     "main": "Menu utama",
     "all": "Semua",
     "back": "Kembali",
-    "close": "Tutup"
+    "close": "Tutup",
+    "cancel": "Batal"
   },
   "Home": {
     "latest": "Terbaru",
     "trending": "Sedang tren",
     "empty": "Belum ada artikel di sini.",
     "emptyCta": "Lihat semua berita",
+    "comingSoon": "Artikel berbahasa Indonesia segera hadir.",
+    "readInEnglish": "Baca dalam bahasa Inggris",
     "seeAll": "Lihat semua"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Tayang perdana drama"
     },
-    "releaseCount": "{count} rilisan",
+    "releaseCount": "{count}\u00a0rilisan",
     "releaseKind": {
       "single": "Singel",
       "ep": "EP",
@@ -92,7 +95,7 @@
     "correction": "Laporkan kesalahan",
     "keyPoints": "Poin penting",
     "faq": "Tanya jawab",
-    "readTime": "Baca {minutes} menit",
+    "readTime": "Baca {minutes}\u00a0menit",
     "share": "Bagikan artikel ini",
     "copied": "Tautan disalin",
     "related": "Baca juga",
@@ -124,6 +127,7 @@
     "changeName": "Ganti nama",
     "submit": "Kirim",
     "menu": "Opsi untuk komentar {name}",
+    "options": "Opsi komentar",
     "edit": "Ubah",
     "delete": "Hapus",
     "deleteTitle": "Hapus komentar ini?",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "Hiburan",
     "LIFESTYLE": "Kuliner, kecantikan & wisata",
-    "LIVING": "Tinggal di Korea"
+    "LIVING": "Tinggal di Korea",
+    "OTHER": "Topik lainnya"
   },
   "Install": {
     "title": "Tambahkan {name} ke layar utama",

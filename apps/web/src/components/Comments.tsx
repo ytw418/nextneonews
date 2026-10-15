@@ -9,6 +9,7 @@ import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { IconButton } from "@/components/ui/IconButton";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { toast } from "@/components/ui/Toast";
 import type { PublicComment } from "@/lib/comments";
@@ -25,7 +26,7 @@ const OLD_NAME_STORE = "hb:comment-nickname";
 
 // 17px(t5) 이상이라 아이폰이 입력칸에 초점이 갈 때 화면을 확대하지 않는다. 수정 칸도 같은 모양
 const COMPOSER_FIELD =
-  "block w-full min-h-12 max-h-[7.5em] resize-none field-sizing-content rounded-btn bg-card px-4 py-3 text-t5 text-ink-900 ring-1 ring-line-strong placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-ink-900";
+  "block w-full min-h-12 max-h-[7.5em] resize-none field-sizing-content rounded-btn bg-card px-4 py-3 text-t5 text-ink-900 ring-1 ring-line-strong placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-brand";
 const SHEET_ROW = "press-row flex min-h-14 w-full items-center px-6 text-t5 font-medium";
 
 type Message = { text: string; retryable: boolean } | null;
@@ -89,6 +90,13 @@ function firstGrapheme(text: string): string {
 // 같은 글 안의 같은 사람은 같은 색 (IP 해시로 아바타 틴트 6개 중 하나). 카테고리 색과 섞지 않는다
 function avatarTint(idHash: string): number {
   return (parseInt(idHash.slice(0, 8), 16) % 6) + 1 || 1;
+}
+
+// 입력창 옆 내 아바타: 아직 IP 해시가 없어 이름으로 색을 고른다 (목록처럼 틴트, 회색이 아니게)
+function nameTint(name: string): number {
+  let h = 0;
+  for (const ch of name) h = (h * 31 + (ch.codePointAt(0) ?? 0)) >>> 0;
+  return (h % 6) + 1;
 }
 
 function Avatar({ name, tint, className }: { name: string; tint?: number; className: string }) {
@@ -200,9 +208,15 @@ function CommentRow({
           {c.nickname}
         </p>
         <p className="text-t7 text-ink-600">
-          <time dateTime={c.createdAt}>{timeAgo(new Date(c.createdAt), locale)}</time>
-          {c.edited && ` · ${t("edited")}`}
-          {c.locale !== locale && ` · ${c.locale.toUpperCase()}`}
+          <Meta
+            parts={[
+              <time key="time" dateTime={c.createdAt}>
+                {timeAgo(new Date(c.createdAt), locale)}
+              </time>,
+              c.edited && t("edited"),
+              c.locale !== locale && c.locale.toUpperCase(),
+            ]}
+          />
         </p>
         {editing ? (
           <form
@@ -259,6 +273,7 @@ function CommentRow({
 // 로그인 없는 댓글. 입력창이 위, 최신 댓글부터. 오류는 토스트가 아니라 그 자리에 보여 준다
 export function Comments({ articleId }: { articleId: string }) {
   const t = useTranslations("Comments");
+  const tNav = useTranslations("Nav");
   const locale = useLocale() as Locale;
 
   const [comments, setComments] = useState<PublicComment[] | null>(null);
@@ -538,11 +553,12 @@ export function Comments({ articleId }: { articleId: string }) {
 
           {expanded && (
             <>
-              {/* 이름이 길면 줄이고, 큰 글씨에서 한 줄에 안 들어가면 버튼이 다음 줄 오른쪽으로 내려간다 */}
+              {/* 이름은 자르지 않는다: 한 줄에 안 들어가면(360px·큰 글씨) 버튼이 다음 줄 오른쪽으로 내려간다.
+                  아바타는 em 이라 글자를 키워도 첫 글자가 잘리지 않는다 */}
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <span className="flex min-h-11 min-w-[6rem] flex-1 items-center gap-2 text-t7 font-semibold text-ink-700">
-                  <Avatar name={name} className="size-6 shrink-0" />
-                  <span className="min-w-0 truncate">{name}</span>
+                <span className="flex min-h-11 min-w-fit flex-1 items-center gap-2 text-t7 font-semibold text-ink-700">
+                  <Avatar name={name} tint={name ? nameTint(name) : undefined} className="size-[1.85em] shrink-0" />
+                  <span>{name}</span>
                 </span>
                 <IconButton
                   label={t("changeName")}
@@ -613,11 +629,7 @@ export function Comments({ articleId }: { articleId: string }) {
         )}
       </div>
 
-      <BottomSheet
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        ariaLabel={menuFor ? t("menu", { name: menuFor.comment.nickname }) : undefined}
-      >
+      <BottomSheet open={menuOpen} onClose={() => setMenuOpen(false)} title={t("options")}>
         {menuFor?.mine ? (
           <>
             <button type="button" onClick={startEdit} className={`${SHEET_ROW} text-ink-900`}>
@@ -644,6 +656,13 @@ export function Comments({ articleId }: { articleId: string }) {
             )}
           </>
         )}
+        <button
+          type="button"
+          onClick={() => setMenuOpen(false)}
+          className={`${SHEET_ROW} border-t border-line text-ink-600`}
+        >
+          {tNav("cancel")}
+        </button>
       </BottomSheet>
 
       <Dialog

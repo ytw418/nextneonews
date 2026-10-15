@@ -37,10 +37,19 @@ export function MenuButton({ categories }: { categories: readonly CategoryKey[] 
   const close = () => setOpen(false);
 
   const current = pathname.startsWith("/c/") ? categoryFromSlug(pathname.slice(3)) : undefined;
-  const groups = GROUPS.map(([group, keys]) => ({
-    group,
+  // 묶음 이름은 묶음의 카테고리가 다 있을 때만 단다 ('푸드·뷰티·여행' 아래 여행 하나뿐이면 이름이 거짓말이 된다).
+  // 덜 찬 묶음들의 칩은 '그 밖의 주제' 한 줄로 모아 맨 아래에
+  const available = GROUPS.map(([group, keys]) => ({
+    group: group as string,
+    label: tGroup(group),
     keys: keys.filter((c) => categories.includes(c)),
-  })).filter((g) => g.keys.length > 0);
+    complete: keys.every((c) => categories.includes(c)),
+  }));
+  const rest = available.filter((g) => !g.complete).flatMap((g) => g.keys);
+  const sections = [
+    ...available.filter((g) => g.complete),
+    ...(rest.length > 0 ? [{ group: "OTHER", label: tGroup("OTHER"), keys: rest }] : []),
+  ];
 
   return (
     <>
@@ -56,10 +65,10 @@ export function MenuButton({ categories }: { categories: readonly CategoryKey[] 
 
       <BottomSheet open={open} onClose={close} title={t("menu")} returnFocusRef={ref}>
         {/* 카테고리 칩은 메모 커버와 같은 카테고리 틴트. 지금 보는 카테고리만 브랜드로 채운다 */}
-        {groups.map(({ group, keys }) => (
+        {sections.map(({ group, label, keys }) => (
           <section key={group} aria-labelledby={`menu-${group}`} className="px-6 pb-4">
             <h3 id={`menu-${group}`} className="pb-2 text-t7 font-semibold text-ink-600">
-              {tGroup(group)}
+              {label}
             </h3>
             <ul className="flex flex-wrap gap-2">
               {keys.map((c) => {

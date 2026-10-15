@@ -4,7 +4,7 @@ import { SITE_NAME } from "@kmedia/core";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
-import { ChevronRightIcon, CloseIcon, MoreIcon, PlusSquareIcon, ShareIcon } from "@/components/icons";
+import { CloseIcon, MoreIcon, PlusSquareIcon, ShareIcon } from "@/components/icons";
 import { isLocaleSuggesting, LOCALE_SUGGEST_DONE } from "@/components/LocaleSuggest";
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
@@ -24,6 +24,7 @@ const DISMISSED_AT = "hb:install-dismissed-at"; // ×로 닫은 시각 (localSto
 const SEEN = "hb:install-seen"; // 한 방문에 한 번만 (sessionStorage)
 const SNOOZE_MS = 7 * 86_400_000;
 const FIRST_DELAY_MS = 2000; // 첫 화면을 먼저 보게 하고, 언어 제안이 뜰지 정해질 때까지 기다린다
+const SCROLL_PX = 120; // 첫 화면에서는 띄우지 않는다: 처음 그릴 때 '지금 인기' 제목과 1위를 가렸다
 const AFTER_SUGGEST_MS = 1000;
 
 function standalone(): boolean {
@@ -52,6 +53,7 @@ function iosSafari(): Mode | null {
 // - 안드로이드·크롬: beforeinstallprompt 를 붙잡아 두었다가 '설치' 버튼으로 띄운다
 // - 아이폰 사파리: 공유 → 홈 화면에 추가 순서를 아이콘으로 보여 준다
 // - 이미 앱으로 열었으면(standalone) 안 띄운다. ×로 닫으면 7일 동안 안 띄운다
+// - 첫 화면에서는 띄우지 않고, 조금 스크롤한 뒤에 (읽기 시작한 사람에게)
 // - 언어 제안 토스트와 같은 자리라 같이 뜨지 않는다: 언어 제안이 먼저, 내려가고 1초 뒤에
 // - 다른 페이지로 옮기면 내려간다 (이번 방문에는 다시 안 띄우고, 다음 방문에 다시)
 export function InstallPrompt() {
@@ -77,9 +79,10 @@ export function InstallPrompt() {
 
     let mode: Mode | null = iosSafari();
     let ready = false;
+    let scrolled = false;
     let retry = 0;
     const tryShow = () => {
-      if (!ready || !mode || isLocaleSuggesting() || snoozed() || sessionGet(SEEN)) return;
+      if (!ready || !scrolled || !mode || isLocaleSuggesting() || snoozed() || sessionGet(SEEN)) return;
       sessionSet(SEEN, "1");
       setShown(mode);
     };
@@ -101,6 +104,13 @@ export function InstallPrompt() {
     if (early) onBeforeInstall(early);
     window.addEventListener("appinstalled", onInstalled);
     window.addEventListener(LOCALE_SUGGEST_DONE, onSuggestDone);
+    const onScroll = () => {
+      if (window.scrollY < SCROLL_PX) return;
+      scrolled = true;
+      window.removeEventListener("scroll", onScroll);
+      tryShow();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     const first = window.setTimeout(() => {
       ready = true;
       tryShow();
@@ -111,6 +121,7 @@ export function InstallPrompt() {
       window.removeEventListener("beforeinstallprompt", onBeforeInstall);
       window.removeEventListener("appinstalled", onInstalled);
       window.removeEventListener(LOCALE_SUGGEST_DONE, onSuggestDone);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -131,9 +142,12 @@ export function InstallPrompt() {
     if (outcome === "dismissed") storageSet(DISMISSED_AT, String(Date.now()));
   };
 
-  const pill =
-    "inline-flex min-h-7 items-center gap-1 rounded-badge bg-fill-weak px-2 text-t7 font-semibold text-ink-700";
-  const arrow = <ChevronRightIcon className="size-4 shrink-0 text-ink-400" />;
+  // 아이폰 순서를 번호 붙은 세로 단계로. 가로로 늘어놓으면 줄이 바뀌어 꺾쇠가 빈 곳을 가리켰다
+  const steps = [
+    ...(mode.kind === "ios" && mode.more ? [{ icon: <MoreIcon className="size-4" />, label: null }] : []),
+    { icon: <ShareIcon className="size-4 text-brand-ink" />, label: t("iosShare") },
+    { icon: <PlusSquareIcon className="size-4 text-brand-ink" />, label: t("iosAdd") },
+  ];
 
   return (
     <div className="pointer-events-none fixed inset-x-gutter bottom-[calc(var(--bottom-ui)+12px)] z-40 mx-auto max-w-[400px]">
@@ -162,25 +176,19 @@ export function InstallPrompt() {
             <>
               <p className="mt-0.5 text-t7 text-ink-600">{t("iosSteps")}</p>
               {/* 같은 순서를 사파리 아이콘으로 (문장이 이미 읽히므로 화면 낭독기는 건너뛴다) */}
-              <div aria-hidden className="mt-2.5 flex flex-wrap items-center gap-x-1 gap-y-1.5">
-                {mode.more && (
-                  <>
-                    <span className={pill}>
-                      <MoreIcon className="size-4" />
+              <ol aria-hidden className="mt-2.5 space-y-1.5">
+                {steps.map((step, i) => (
+                  <li key={i} className="flex items-center gap-2 text-t7 font-semibold text-ink-700">
+                    <span className="grid min-h-5 min-w-5 shrink-0 place-items-center rounded-full bg-fill-weak text-st12 font-bold tabular-nums text-ink-600">
+                      {i + 1}
                     </span>
-                    {arrow}
-                  </>
-                )}
-                <span className={pill}>
-                  <ShareIcon className="size-4 text-brand-ink" />
-                  {t("iosShare")}
-                </span>
-                {arrow}
-                <span className={pill}>
-                  <PlusSquareIcon className="size-4 text-brand-ink" />
-                  {t("iosAdd")}
-                </span>
-              </div>
+                    <span className="inline-flex min-h-7 items-center gap-1 rounded-badge bg-fill-weak px-2">
+                      {step.icon}
+                      {step.label}
+                    </span>
+                  </li>
+                ))}
+              </ol>
             </>
           )}
         </div>

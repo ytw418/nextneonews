@@ -14,6 +14,8 @@ export async function CategoryRail({ active }: { active?: string }) {
   ]);
   // 글이 있는 카테고리만. 지금 보는 카테고리는 비어 있어도 둔다 (선택된 칩이 곧 페이지 제목)
   const shown = CATEGORIES.filter((c) => withArticles.includes(c) || c === active);
+  // '전체' 칩 하나뿐이면(아직 글이 없는 언어) 고를 것이 없어 레일을 띄우지 않는다
+  if (shown.length === 0) return null;
   // 칩은 38px, 누름 영역은 44px. 선택한 칩이 상단에서 유일한 채운(브랜드) 요소다
   const chip = (on: boolean) =>
     `press hit relative inline-flex min-h-[38px] min-w-16 items-center justify-center whitespace-nowrap rounded-full px-3.5 text-t6 ${

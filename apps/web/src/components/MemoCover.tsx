@@ -7,43 +7,40 @@ type Size = "card" | "lead" | "hero";
 interface Props {
   title: string;
   sticker: string;
-  stamp: string; // 날짜 도장 "10.15"
+  stamp: string; // 도장: 피드 카드는 '3시간 전', 글 히어로는 날짜 "10.15"
   locale: string;
   style: CoverStyle;
   size?: Size;
   as?: "p" | "h1";
-  className?: string; // 모서리 등 (테이프가 잘리지 않게 바깥 카드 대신 메모에 둥근 모서리를 줄 때)
+  className?: string; // 모서리·그림자 (테이프가 잘리지 않게 바깥 카드 대신 메모에 둥근 모서리를 줄 때)
 }
 
-// 크기별 메모지 모양 · 제목 자리 · 제목 글자. 바닥 여백은 도장·배지 자리
+// 크기별 메모지 모양 · 제목 자리 · 제목 글자 · 바닥 줄(도장·배지).
+// lead 는 비율 대신 최소 높이라 짧은 제목 밑에 빈 줄이 남지 않는다. hero 는 제목을 가운데에
 const BOX: Record<Size, string> = {
   card: "",
-  lead: "aspect-[4/3]",
-  hero: "min-h-[min(112vw,70svh)] w-full",
+  lead: "min-h-[11rem]",
+  hero: "min-h-[min(80vw,52svh)] w-full",
 };
 const PAD: Record<Size, string> = {
-  card: "p-3.5 pt-5 pb-12",
-  lead: "px-4 pt-7 pb-14",
-  hero: "justify-end px-6 pt-24 pb-20",
+  card: "px-3.5 pt-5 pb-3",
+  lead: "px-4 pt-7 pb-4",
+  hero: "justify-center px-6 pt-12 pb-8",
 };
 const TITLE: Record<Size, string> = {
   card: "line-clamp-6 text-t5 leading-row",
   lead: "text-t3",
   hero: "text-t1",
 };
-const CORNER: Record<Size, string> = {
-  card: "bottom-3 left-3 text-st12",
-  lead: "bottom-4 left-4 text-st12",
-  hero: "bottom-6 left-6 text-t7",
-};
-const BADGE: Record<Size, string> = {
-  card: "right-3 bottom-3",
-  lead: "right-4 bottom-4",
-  hero: "right-6 bottom-6",
+const FOOT: Record<Size, string> = {
+  card: "px-3 pb-3 text-st12",
+  lead: "px-4 pb-4 text-st12",
+  hero: "px-6 pb-6 text-t7",
 };
 
-// 사진 없는 기사의 커버: 카테고리 파스텔 메모지 + 마스킹테이프 + 날짜 도장 + 카테고리 배지.
-// 메모지가 곧 제목이다. 내용이 넘치면(큰 글자) 비율보다 길어진다 (overflow-visible)
+// 사진 없는 기사의 커버: 카테고리 파스텔 메모지 + 마스킹테이프 + 도장 + 카테고리 배지.
+// 메모지가 곧 제목이다. 노트 줄은 제목에만 긋고(memo-rules), 도장·배지 줄은 줄 없는 종이 위에 둔다.
+// 내용이 넘치면(큰 글자) 비율보다 길어진다 (overflow-visible)
 export function MemoCover({
   title,
   sticker,
@@ -56,18 +53,19 @@ export function MemoCover({
 }: Props) {
   return (
     <div
-      className={`tape pattern-lines relative flex flex-col overflow-visible text-on-tint ${BOX[size] || style.ratio} ${className}`}
+      className={`tape relative flex flex-col overflow-visible text-on-tint ${BOX[size] || style.ratio} ${className}`}
       style={{ backgroundColor: style.tint, ["--tape-tilt" as string]: `${style.tapeTilt}deg` }}
     >
-      <div className={`relative flex flex-1 flex-col ${PAD[size]}`}>
-        <Title className={`title font-bold ${TITLE[size]}`}>
+      <div className={`flex flex-1 flex-col ${PAD[size]}`}>
+        <Title className={`title memo-rules font-bold ${TITLE[size]}`}>
           <Phrase text={title} locale={locale} />
         </Title>
       </div>
-      <span className={`absolute font-semibold tabular-nums text-on-tint-sub ${CORNER[size]}`}>{stamp}</span>
-      <Badge tone="paper" className={`absolute ${BADGE[size]}`}>
-        {sticker}
-      </Badge>
+      {/* 도장이 길어도(큰 글자·긴 언어) 배지와 겹치지 않게 흐름 안에서 줄을 바꾼다 */}
+      <div className={`flex flex-wrap items-center justify-between gap-x-2 gap-y-1 ${FOOT[size]}`}>
+        <span className="font-semibold tabular-nums text-on-tint-sub">{stamp}</span>
+        <Badge tone="paper">{sticker}</Badge>
+      </div>
     </div>
   );
 }

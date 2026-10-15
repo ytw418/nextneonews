@@ -13,13 +13,16 @@
     "main": "주요 메뉴",
     "all": "전체",
     "back": "뒤로",
-    "close": "닫기"
+    "close": "닫기",
+    "cancel": "취소"
   },
   "Home": {
     "latest": "최신",
     "trending": "지금 인기 글",
     "empty": "아직 글이 없어요.",
     "emptyCta": "전체 소식 보기",
+    "comingSoon": "한국어 글이 곧 올라와요.",
+    "readInEnglish": "영어로 읽기",
     "seeAll": "전체 보기"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "팬미팅",
       "drama": "드라마 첫 방송"
     },
-    "releaseCount": "{count}개 발매",
+    "releaseCount": "{count}개\u00a0발매",
     "releaseKind": {
       "single": "싱글",
       "ep": "미니앨범",
@@ -92,7 +95,7 @@
     "correction": "정정 요청하기",
     "keyPoints": "핵심 요약",
     "faq": "자주 묻는 질문",
-    "readTime": "{minutes}분이면 읽어요",
+    "readTime": "{minutes}분이면\u00a0읽어요",
     "share": "이 글 공유하기",
     "copied": "링크를 복사했어요",
     "related": "함께 읽기",
@@ -124,6 +127,7 @@
     "changeName": "이름 바꾸기",
     "submit": "댓글 남기기",
     "menu": "{name} 님 댓글 메뉴",
+    "options": "댓글 메뉴",
     "edit": "수정",
     "delete": "삭제",
     "deleteTitle": "이 댓글을 삭제할까요?",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "엔터",
     "LIFESTYLE": "푸드·뷰티·여행",
-    "LIVING": "한국 생활"
+    "LIVING": "한국 생활",
+    "OTHER": "그 밖의 주제"
   },
   "Install": {
     "title": "홈 화면에 {name} 추가하기",

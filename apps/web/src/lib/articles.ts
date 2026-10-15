@@ -6,7 +6,7 @@ import { type Category, type MediaKind, type Prisma, prisma } from "@kmedia/db";
 // 화면에 대표 이미지로 쓸 수 있는 종류 (CARD·AI 는 커버를 따로 그린다)
 const IMAGE_KINDS: MediaKind[] = ["EMBED", "AGENCY", "PRESS", "OWN", "STOCK"];
 
-// 피드 카드에 필요한 것만: 제목·카테고리·발행일·대표 이미지(공식 이미지가 있을 때)
+// 피드 카드에 필요한 것만: 제목·카테고리·발행일·대표 이미지(공식 이미지가 있을 때)와 사진 출처 표기
 const feedSelect = {
   slug: true,
   title: true,
@@ -15,7 +15,11 @@ const feedSelect = {
     select: {
       category: true,
       publishedAt: true,
-      media: { where: { kind: { in: IMAGE_KINDS } }, select: { url: true }, take: 1 },
+      media: {
+        where: { kind: { in: IMAGE_KINDS } },
+        select: { url: true, credit: true, author: true, licenseName: true, licenseUrl: true, sourceUrl: true },
+        take: 1,
+      },
     },
   },
 } satisfies Prisma.TranslationSelect;

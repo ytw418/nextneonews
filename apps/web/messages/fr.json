@@ -13,13 +13,16 @@
     "main": "Menu principal",
     "all": "Tout",
     "back": "Retour",
-    "close": "Fermer"
+    "close": "Fermer",
+    "cancel": "Annuler"
   },
   "Home": {
     "latest": "Dernières actus",
     "trending": "Tendances",
     "empty": "Pas encore d’article ici.",
     "emptyCta": "Voir toutes les actus",
+    "comingSoon": "Les articles en français arrivent bientôt.",
+    "readInEnglish": "Lire en anglais",
     "seeAll": "Tout voir"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Première de drama"
     },
-    "releaseCount": "{count, plural, one {# sortie} other {# sorties}}",
+    "releaseCount": "{count, plural, one {#\u00a0sortie} other {#\u00a0sorties}}",
     "releaseKind": {
       "single": "Single",
       "ep": "EP",
@@ -92,7 +95,7 @@
     "correction": "Signaler une erreur",
     "keyPoints": "L’essentiel",
     "faq": "Questions fréquentes",
-    "readTime": "{minutes} min de lecture",
+    "readTime": "{minutes}\u00a0min de lecture",
     "share": "Partager cet article",
     "copied": "Lien copié",
     "related": "À lire aussi",
@@ -124,9 +127,10 @@
     "changeName": "Changer de nom",
     "submit": "Publier",
     "menu": "Options du commentaire de {name}",
+    "options": "Options du commentaire",
     "edit": "Modifier",
     "delete": "Supprimer",
-    "deleteTitle": "Supprimer ce commentaire ?",
+    "deleteTitle": "Supprimer ce commentaire\u00a0?",
     "save": "Enregistrer",
     "report": "Signaler",
     "reportedToast": "Signalé. Merci de nous avoir prévenus",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "Divertissement",
     "LIFESTYLE": "Cuisine, beauté & voyage",
-    "LIVING": "Vivre en Corée"
+    "LIVING": "Vivre en Corée",
+    "OTHER": "Autres sujets"
   },
   "Install": {
     "title": "Ajoute {name} à ton écran d’accueil",

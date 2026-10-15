@@ -13,13 +13,16 @@
     "main": "Главное меню",
     "all": "Все",
     "back": "Назад",
-    "close": "Закрыть"
+    "close": "Закрыть",
+    "cancel": "Отмена"
   },
   "Home": {
     "latest": "Свежее",
     "trending": "В тренде",
     "empty": "Здесь пока нет статей.",
     "emptyCta": "Смотреть все новости",
+    "comingSoon": "Статьи на русском скоро появятся.",
+    "readInEnglish": "Читать на английском",
     "seeAll": "Смотреть все"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Фанмитинг",
       "drama": "Премьера дорамы"
     },
-    "releaseCount": "{count, plural, one {# релиз} few {# релиза} many {# релизов} other {# релиза}}",
+    "releaseCount": "{count, plural, one {#\u00a0релиз} few {#\u00a0релиза} many {#\u00a0релизов} other {#\u00a0релиза}}",
     "releaseKind": {
       "single": "Сингл",
       "ep": "Мини-альбом",
@@ -92,7 +95,7 @@
     "correction": "Сообщить об ошибке",
     "keyPoints": "Главное",
     "faq": "Вопросы и ответы",
-    "readTime": "{minutes} мин чтения",
+    "readTime": "{minutes}\u00a0мин чтения",
     "share": "Поделиться статьёй",
     "copied": "Ссылка скопирована",
     "related": "Читайте также",
@@ -124,6 +127,7 @@
     "changeName": "Сменить имя",
     "submit": "Отправить",
     "menu": "Меню комментария: {name}",
+    "options": "Действия с комментарием",
     "edit": "Изменить",
     "delete": "Удалить",
     "deleteTitle": "Удалить этот комментарий?",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "Развлечения",
     "LIFESTYLE": "Еда, красота и путешествия",
-    "LIVING": "Жизнь в Корее"
+    "LIVING": "Жизнь в Корее",
+    "OTHER": "Другие темы"
   },
   "Install": {
     "title": "Добавьте {name} на экран «Домой»",

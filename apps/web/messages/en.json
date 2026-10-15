@@ -13,13 +13,16 @@
     "main": "Main menu",
     "all": "All",
     "back": "Back",
-    "close": "Close"
+    "close": "Close",
+    "cancel": "Cancel"
   },
   "Home": {
     "latest": "Latest",
     "trending": "Trending now",
     "empty": "No stories here yet.",
     "emptyCta": "See all news",
+    "comingSoon": "New stories in English are on the way.",
+    "readInEnglish": "Read in English",
     "seeAll": "See all"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Drama premiere"
     },
-    "releaseCount": "{count, plural, one {# release} other {# releases}}",
+    "releaseCount": "{count, plural, one {#\u00a0release} other {#\u00a0releases}}",
     "releaseKind": {
       "single": "Single",
       "ep": "EP",
@@ -92,7 +95,7 @@
     "correction": "Request a correction",
     "keyPoints": "Key points",
     "faq": "FAQ",
-    "readTime": "{minutes} min read",
+    "readTime": "{minutes}\u00a0min read",
     "share": "Share this article",
     "copied": "Link copied",
     "related": "More to read",
@@ -124,6 +127,7 @@
     "changeName": "Change name",
     "submit": "Post comment",
     "menu": "Options for {name}'s comment",
+    "options": "Comment options",
     "edit": "Edit",
     "delete": "Delete",
     "deleteTitle": "Delete this comment?",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "Entertainment",
     "LIFESTYLE": "Food, beauty & travel",
-    "LIVING": "Living in Korea"
+    "LIVING": "Living in Korea",
+    "OTHER": "More topics"
   },
   "Install": {
     "title": "Add {name} to your Home Screen",

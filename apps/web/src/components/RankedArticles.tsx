@@ -2,10 +2,15 @@ import { ArticleThumb } from "@/components/ArticleThumb";
 import type { FeedItem } from "@/components/FeedCard";
 import { Phrase } from "@/components/Phrase";
 import { ListRow } from "@/components/ui/ListRow";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 // 3개도 안 되면 순위표처럼 보이지 않아서 띄우지 않는다 (새 언어·조회가 아직 없을 때)
 export const RANKED_MIN = 3;
+
+// 글자를 키워(약 120% 이상·사파리 aA 135%·AX) 목록 폭이 20rem 보다 좁아지면 썸네일을 빼고 제목을 세 줄까지.
+// 순위 숫자 + 56px 썸네일이 남으면 제목이 세 단어쯤에서 잘렸다. 기본 크기에서는 360px 폭(21rem)도 그대로다
+export const THUMB_LARGE_TEXT = "@max-[20rem]:hidden";
 
 interface Props {
   id: string;
@@ -20,7 +25,7 @@ interface Props {
 export function RankedArticles({ id, title, items, locale, inset = "gutter" }: Props) {
   if (items.length < RANKED_MIN) return null;
   return (
-    <section aria-labelledby={id}>
+    <section aria-labelledby={id} className="@container">
       <SectionHeader id={id} title={title} inset={inset} />
       <ol>
         {items.map((item, i) => (
@@ -37,15 +42,21 @@ export function RankedArticles({ id, title, items, locale, inset = "gutter" }: P
                 >
                   {i + 1}
                 </span>
-                <ArticleThumb item={item} size={48} />
+                <span className={THUMB_LARGE_TEXT}>
+                  <ArticleThumb item={item} size={48} />
+                </span>
               </span>
             }
             title={
-              <span className="line-clamp-2">
+              <span className="line-clamp-2 @max-[20rem]:line-clamp-3">
                 <Phrase text={item.title} locale={locale} />
               </span>
             }
-            sub={<span className="text-t7">{`${item.categoryLabel} · ${item.timeAgo}`}</span>}
+            sub={
+              <span className="text-t7">
+                <Meta parts={[item.categoryLabel, item.timeAgo]} />
+              </span>
+            }
           />
         ))}
       </ol>

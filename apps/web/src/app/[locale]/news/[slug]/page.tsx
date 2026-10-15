@@ -15,15 +15,17 @@ import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
-import { RANKED_MIN, RankedArticles } from "@/components/RankedArticles";
+import { RANKED_MIN, RankedArticles, THUMB_LARGE_TEXT } from "@/components/RankedArticles";
 import { ShareButton } from "@/components/ShareButton";
 import { Badge } from "@/components/ui/Badge";
 import { ListRow } from "@/components/ui/ListRow";
+import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
 import { entityNames, findTranslatedLocale, getArticle, listPopular, listRelated } from "@/lib/articles";
 import { coverStyle } from "@/lib/cover";
 import { toFeedItems } from "@/lib/feed";
+import { publisherName } from "@/lib/publishers";
 import { articleJsonLd } from "@/lib/jsonld";
 import { dateStamp } from "@/lib/time";
 import { articlePath, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
@@ -120,6 +122,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
   // 본문 소제목을 되풀이하는 질문은 화면과 JSON-LD 둘 다에서 뺀다
   const faq = faqNotInBody(asArray<Faq>(translation.faq), translation.body);
   const hero = article.media[0];
+  // 긴 제목(러시아어·프랑스어·베트남어에 흔하다)은 한 단계 작게: st2 로 7줄이 되어 사진 속 얼굴을 덮었다
+  const longTitle = translation.title.length > 70;
   const categoryLabel = tCat(article.category);
   const url = `${SITE_URL}${articlePath(locale, slug)}`;
   // 글에 나오는 다가오는 일정 (컴백·시상식 등). 있으면 요약 밑에 카드 한 줄
@@ -170,11 +174,12 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
               unoptimized
               priority
               sizes="(max-width: 640px) 100vw, 640px"
-              className="object-cover"
+              // 인물 사진은 얼굴이 위쪽에 있다. 제목 블록 위로 얼굴이 남게 위쪽을 기준으로 자른다
+              className="object-cover object-[50%_20%]"
             />
             <div className="relative bg-[linear-gradient(to_top,rgb(0_0_0/.72)_0%,rgb(0_0_0/.56)_calc(100%-96px),transparent_100%)] px-read pt-24 pb-6 text-white">
               <Badge tone="scrim">{categoryLabel}</Badge>
-              <h1 className="title mt-2 text-st2 font-bold text-white">
+              <h1 className={`title mt-2 font-bold text-white ${longTitle ? "text-t3" : "text-st2"}`}>
                 <Phrase text={translation.title} locale={locale} />
               </h1>
               <PhotoCredit media={hero} />
@@ -199,15 +204,16 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
 
         {/* 날짜 · 읽는 시간. '업데이트'는 띄우지 않는다 (article.updatedAt 은 본문을 고친 시각이 아니다) */}
         <p className="mt-5 px-read text-t7 tabular-nums text-ink-600">
-          {published && (
-            <>
-              <time dateTime={published.toISOString()}>
-                {new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "Asia/Seoul" }).format(published)}
-              </time>
-              {" · "}
-            </>
-          )}
-          {t("readTime", { minutes: readMinutes(translation.body) })}
+          <Meta
+            parts={[
+              published && (
+                <time dateTime={published.toISOString()}>
+                  {new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "Asia/Seoul" }).format(published)}
+                </time>
+              ),
+              t("readTime", { minutes: readMinutes(translation.body) }),
+            ]}
+          />
         </p>
 
         <p className="mt-3 px-read text-t5 font-medium text-ink-900">{translation.summary}</p>
@@ -269,7 +275,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                   href={source.url}
                   inset="read"
                   titleWeight="medium"
-                  title={source.publisher}
+                  title={publisherName(source.publisher, locale)}
                   sub={hostname(source.url)}
                 />
               ))}
@@ -299,7 +305,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           <>
             <div aria-hidden className="mt-10 h-4 bg-band" />
             {related.length > 0 && (
-              <section aria-labelledby="related">
+              // 썸네일 크기·큰 글자 규칙은 아래 '이번 주 인기 글'과 같게
+              <section aria-labelledby="related" className="@container">
                 <SectionHeader id="related" inset="read" title={t("related")} />
                 <ul>
                   {related.map((item) => (
@@ -308,9 +315,21 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                       href={`/news/${item.slug}`}
                       inset="read"
                       titleWeight="semibold"
-                      left={<ArticleThumb item={item} size={64} />}
-                      title={<Phrase text={item.title} locale={locale} />}
-                      sub={<span className="text-t7">{`${item.categoryLabel} · ${item.timeAgo}`}</span>}
+                      left={
+                        <span className={`block ${THUMB_LARGE_TEXT}`}>
+                          <ArticleThumb item={item} size={48} />
+                        </span>
+                      }
+                      title={
+                        <span className="line-clamp-3">
+                          <Phrase text={item.title} locale={locale} />
+                        </span>
+                      }
+                      sub={
+                        <span className="text-t7">
+                          <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                        </span>
+                      }
                     />
                   ))}
                 </ul>

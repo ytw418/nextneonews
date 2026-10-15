@@ -12,7 +12,7 @@ const TABS = [
 ] as const;
 
 // 떠 있는 캡슐 탭바 (2개면 204px). 탭 이름은 14px 에서 멈춰 글자를 키워도 항목이 48px 그대로다.
-// 선택은 brand-weak — 아래 크롬에서 체리색이 사는 곳
+// 선택은 brand-weak — 아래 크롬에서 체리색이 사는 곳. 바탕은 거의 불투명(97%): 90% 는 뒤 굵은 제목이 비쳐 보였다
 export function TabBar() {
   const t = useTranslations("Nav");
   const pathname = usePathname();
@@ -24,7 +24,7 @@ export function TabBar() {
   return (
     <nav
       aria-label={t("main")}
-      className="fixed bottom-[var(--tabbar-bottom)] left-1/2 z-40 flex min-h-14 -translate-x-1/2 items-center gap-1 rounded-full bg-floating/90 p-1 shadow-float ring-1 ring-line backdrop-blur-xl"
+      className="fixed bottom-[var(--tabbar-bottom)] left-1/2 z-40 flex min-h-14 -translate-x-1/2 items-center gap-1 rounded-full bg-floating/97 p-1 shadow-float ring-1 ring-line backdrop-blur-xl backdrop-saturate-150"
     >
       {TABS.map(({ href, key, Icon, IconOn }) => {
         const on = href === selected;

@@ -13,13 +13,16 @@
     "main": "メインメニュー",
     "all": "すべて",
     "back": "戻る",
-    "close": "閉じる"
+    "close": "閉じる",
+    "cancel": "キャンセル"
   },
   "Home": {
     "latest": "新着",
     "trending": "いま話題",
     "empty": "まだ記事がありません。",
     "emptyCta": "すべてのニュースを見る",
+    "comingSoon": "日本語の記事はもうすぐ届きます。",
+    "readInEnglish": "英語で読む",
     "seeAll": "すべて見る"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "ファンミーティング",
       "drama": "ドラマ初回"
     },
-    "releaseCount": "{count}作品",
+    "releaseCount": "{count}\u2060作品",
     "releaseKind": {
       "single": "シングル",
       "ep": "ミニアルバム",
@@ -92,7 +95,7 @@
     "correction": "訂正を依頼する",
     "keyPoints": "ポイント",
     "faq": "よくある質問",
-    "readTime": "{minutes}分で読めます",
+    "readTime": "{minutes}\u2060分で読めます",
     "share": "この記事をシェア",
     "copied": "リンクをコピーしました",
     "related": "こちらもおすすめ",
@@ -124,6 +127,7 @@
     "changeName": "名前を変える",
     "submit": "コメントする",
     "menu": "{name}さんのコメントのメニュー",
+    "options": "コメントのメニュー",
     "edit": "編集",
     "delete": "削除",
     "deleteTitle": "このコメントを削除しますか？",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "エンタメ",
     "LIFESTYLE": "グルメ・コスメ・旅行",
-    "LIVING": "韓国で暮らす"
+    "LIVING": "韓国で暮らす",
+    "OTHER": "そのほかのテーマ"
   },
   "Install": {
     "title": "{name}をホーム画面に追加",

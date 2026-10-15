@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { DdayBadge } from "@/components/ui/DdayBadge";
 import { ListRow } from "@/components/ui/ListRow";
+import { keepDots, Meta } from "@/components/ui/Meta";
 import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
 
 // 글에 나오는 다가오는 일정 하나를 요약 밑에 카드 한 줄로 (누르면 일정 상세).
@@ -11,7 +12,7 @@ import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
 export async function RelatedEventCard({ e, locale }: { e: EventWithView; locale: Locale }) {
   const t = await getTranslations("Schedule");
   // 컴백·드라마처럼 도시가 없는 일정은 종류를 대신 보여 준다
-  const sub = [formatRange(locale, e.start, e.end, "short"), e.city?.[locale] ?? t(`kind.${e.kind}`)].join(" · ");
+  const sub = [formatRange(locale, e.start, e.end, "short"), e.city?.[locale] ?? t(`kind.${e.kind}`)];
 
   return (
     <div className="mx-read mt-6 overflow-hidden rounded-card bg-card shadow-card">
@@ -29,8 +30,8 @@ export async function RelatedEventCard({ e, locale }: { e: EventWithView; locale
               {Number(e.start.slice(8, 10))}
             </span>
           }
-          title={e.name}
-          sub={sub}
+          title={keepDots(e.name)}
+          sub={<Meta parts={sub} />}
           right={<DdayBadge view={e.view} label={ddayLabel(e.view, t)} />}
           arrow
         />

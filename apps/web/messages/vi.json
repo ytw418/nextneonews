@@ -13,13 +13,16 @@
     "main": "Menu chính",
     "all": "Tất cả",
     "back": "Quay lại",
-    "close": "Đóng"
+    "close": "Đóng",
+    "cancel": "Hủy"
   },
   "Home": {
     "latest": "Mới nhất",
     "trending": "Đang thịnh hành",
     "empty": "Chưa có bài viết nào ở đây.",
     "emptyCta": "Xem tất cả tin tức",
+    "comingSoon": "Bài viết tiếng Việt sắp ra mắt.",
+    "readInEnglish": "Đọc bằng tiếng Anh",
     "seeAll": "Xem tất cả"
   },
   "Schedule": {
@@ -40,7 +43,7 @@
       "fanmeeting": "Fan meeting",
       "drama": "Phim mới lên sóng"
     },
-    "releaseCount": "{count} sản phẩm",
+    "releaseCount": "{count}\u00a0sản\u00a0phẩm",
     "releaseKind": {
       "single": "Đĩa đơn",
       "ep": "EP",
@@ -92,7 +95,7 @@
     "correction": "Báo lỗi nội dung",
     "keyPoints": "Ý chính",
     "faq": "Câu hỏi thường gặp",
-    "readTime": "Đọc trong {minutes} phút",
+    "readTime": "Đọc trong {minutes}\u00a0phút",
     "share": "Chia sẻ bài viết này",
     "copied": "Đã sao chép liên kết",
     "related": "Đọc thêm",
@@ -124,6 +127,7 @@
     "changeName": "Đổi tên",
     "submit": "Đăng",
     "menu": "Tùy chọn bình luận của {name}",
+    "options": "Tùy chọn bình luận",
     "edit": "Sửa",
     "delete": "Xóa",
     "deleteTitle": "Xóa bình luận này?",
@@ -146,7 +150,8 @@
   "CategoryGroup": {
     "ENTERTAINMENT": "Giải trí",
     "LIFESTYLE": "Ẩm thực, làm đẹp & du lịch",
-    "LIVING": "Sống ở Hàn Quốc"
+    "LIVING": "Sống ở Hàn Quốc",
+    "OTHER": "Chủ đề khác"
   },
   "Install": {
     "title": "Thêm {name} vào màn hình chính",
