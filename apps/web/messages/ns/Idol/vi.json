@@ -1,1 +1,30 @@
-{}
+{
+  "share": "Chia sẻ trang này",
+  "metaTitle": "{name}: thứ hạng, tin tức và mức quan tâm toàn cầu",
+  "metaDescription": "{name} trên Hallyu Brief: thứ hạng trên bảng xếp hạng độ hot hôm nay, lượt xem Wikipedia ở 8 ngôn ngữ, phản ứng tại Hàn Quốc, lịch sắp tới và tin mới nhất.",
+  "type": {
+    "group": "Nhóm nhạc",
+    "singer": "Ca sĩ",
+    "actor": "Diễn viên",
+    "series": "Phim bộ"
+  },
+  "rankAnswer": "{name} đứng số {rank} trên {chart} ({date}).",
+  "topLanguage": "Trong 30 ngày qua, {name} được xem nhiều nhất trên Wikipedia {language}.",
+  "notRanked": "Không có trên bảng hôm nay",
+  "trend90": "Thứ hạng 90 ngày qua",
+  "best90": "Cao nhất: {rank}",
+  "interestTitle": "Mức quan tâm theo ngôn ngữ",
+  "interestLead": "Lượt xem Wikipedia trong 30 ngày qua, tổng cộng {count}.",
+  "interestNote": "Ngôn ngữ Wikipedia chỉ là chỉ số thay cho quốc gia: nhiều người đọc Wikipedia bằng ngôn ngữ không phải tiếng mẹ đẻ.",
+  "buzzTitle": "Phản ứng tại Hàn Quốc",
+  "buzzPosts": "Bài trên theqoo",
+  "buzzViews": "Lượt xem bài",
+  "buzzComments": "Bình luận",
+  "buzzTrends": "Google Trends Hàn Quốc",
+  "trendDays": "{count}/{days} ngày",
+  "buzzNote": "{days} ngày qua, từ bảng hot của theqoo và Google Trends Hàn Quốc. Chúng tôi chỉ đếm số liệu, không sao chép bài viết hay hình ảnh.",
+  "upcomingTitle": "Sắp diễn ra",
+  "newsTitle": "Tin về {name}",
+  "empty": "Chưa có tin nào về {name}.",
+  "emptyCta": "Xem bảng xếp hạng hôm nay"
+}

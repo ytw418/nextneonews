@@ -1,1 +1,30 @@
-{}
+{
+  "share": "Partager cette page",
+  "metaTitle": "{name} : classement, actus et intérêt dans le monde",
+  "metaDescription": "{name} sur Hallyu Brief : rang du jour dans le classement buzz, vues Wikipédia en 8 langues, réactions en Corée, agenda à venir et dernières actus.",
+  "type": {
+    "group": "Groupe",
+    "singer": "Artiste solo",
+    "actor": "Acteur·rice",
+    "series": "Série"
+  },
+  "rankAnswer": "{chart} : {name} est n° {rank} ({date}).",
+  "topLanguage": "Sur les 30 derniers jours, c’est sur Wikipédia en {language} que {name} a cumulé le plus de vues.",
+  "notRanked": "Absent du classement du jour",
+  "trend90": "Rang sur 90 jours",
+  "best90": "Meilleur : {rank}",
+  "interestTitle": "Intérêt par langue",
+  "interestLead": "Vues Wikipédia sur les 30 derniers jours, {count} au total.",
+  "interestNote": "La langue de Wikipédia n’est qu’un indicateur du pays : beaucoup de gens lisent Wikipédia dans une autre langue que la leur.",
+  "buzzTitle": "Réactions en Corée",
+  "buzzPosts": "Posts sur theqoo",
+  "buzzViews": "Vues des posts",
+  "buzzComments": "Commentaires",
+  "buzzTrends": "Google Trends Corée",
+  "trendDays": "{count, plural, one {# jour} other {# jours}} sur {days}",
+  "buzzNote": "{days} derniers jours, d’après le forum populaire de theqoo et Google Trends Corée. Nous ne comptons que des chiffres : aucun post ni image n’est copié.",
+  "upcomingTitle": "À venir",
+  "newsTitle": "Actus sur {name}",
+  "empty": "Pas encore d’actu sur {name}.",
+  "emptyCta": "Voir les classements du jour"
+}

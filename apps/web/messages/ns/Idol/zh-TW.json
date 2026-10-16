@@ -1,1 +1,30 @@
-{}
+{
+  "share": "分享此頁",
+  "metaTitle": "{name}排名、新聞與海外關注度",
+  "metaDescription": "{name}今日話題排行榜排名、8種語言維基百科關注度、韓國社群反應、近期行程與最新新聞，一頁看完。",
+  "type": {
+    "group": "團體",
+    "singer": "歌手",
+    "actor": "演員",
+    "series": "韓劇"
+  },
+  "rankAnswer": "{name}在{chart}排名第{rank}名（{date}）。",
+  "topLanguage": "過去30天，{name}的維基百科瀏覽量以{language}最多。",
+  "notRanked": "未進入今日排行榜",
+  "trend90": "過去90天排名",
+  "best90": "最佳 {rank}",
+  "interestTitle": "各語言關注度",
+  "interestLead": "過去30天維基百科瀏覽量，共{count}次。",
+  "interestNote": "維基百科的語言只能大致代表國家，很多人也會用母語以外的語言閱讀維基百科。",
+  "buzzTitle": "韓國反應",
+  "buzzPosts": "theqoo 貼文",
+  "buzzViews": "貼文瀏覽",
+  "buzzComments": "留言",
+  "buzzTrends": "Google 搜尋趨勢（韓國）",
+  "trendDays": "{days}天中有{count}天",
+  "buzzNote": "過去{days}天，來自 theqoo 熱門版與 Google 搜尋趨勢（韓國）。只計算數字，不轉載貼文與圖片。",
+  "upcomingTitle": "近期行程",
+  "newsTitle": "{name}相關新聞",
+  "empty": "目前還沒有{name}的新聞。",
+  "emptyCta": "看今日排行榜"
+}

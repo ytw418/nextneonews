@@ -1,1 +1,30 @@
-{}
+{
+  "share": "Share this page",
+  "metaTitle": "{name}: rank, news and global interest",
+  "metaDescription": "{name} on Hallyu Brief: today’s buzz chart rank, Wikipedia interest in 8 languages, buzz in Korea, upcoming schedule and the latest news.",
+  "type": {
+    "group": "Group",
+    "singer": "Singer",
+    "actor": "Actor",
+    "series": "Drama"
+  },
+  "rankAnswer": "{name} is No. {rank} on the {chart} ({date}).",
+  "topLanguage": "Over the last 30 days, {name} drew the most Wikipedia views in {language}.",
+  "notRanked": "Not on today’s chart",
+  "trend90": "Rank, last 90 days",
+  "best90": "Best: {rank}",
+  "interestTitle": "Interest by language",
+  "interestLead": "Wikipedia page views in the last 30 days, {count} in total.",
+  "interestNote": "A Wikipedia language is only a stand-in for a country: many people read Wikipedia in a language that isn’t their own.",
+  "buzzTitle": "Buzz in Korea",
+  "buzzPosts": "theqoo posts",
+  "buzzViews": "Post views",
+  "buzzComments": "Comments",
+  "buzzTrends": "Google Trends KR",
+  "trendDays": "{count} of {days} days",
+  "buzzNote": "Last {days} days, from theqoo’s hot board and Google Trends KR. We count numbers only; posts and images are never copied.",
+  "upcomingTitle": "Coming up",
+  "newsTitle": "News about {name}",
+  "empty": "No news about {name} yet.",
+  "emptyCta": "See today’s charts"
+}

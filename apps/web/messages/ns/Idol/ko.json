@@ -1,1 +1,30 @@
-{}
+{
+  "share": "이 페이지 공유",
+  "metaTitle": "{name} 순위·뉴스·해외 관심도",
+  "metaDescription": "{name}의 오늘 화제성 차트 순위, 8개 언어 위키백과 관심도, 국내 커뮤니티 반응, 다가오는 일정과 최신 뉴스를 한곳에서.",
+  "type": {
+    "group": "그룹",
+    "singer": "가수",
+    "actor": "배우",
+    "series": "드라마"
+  },
+  "rankAnswer": "{date} {chart} {rank}위는 {name}.",
+  "topLanguage": "최근 30일 {name}의 위키백과 조회는 {language}가 가장 많았어요.",
+  "notRanked": "오늘 차트에는 없어요",
+  "trend90": "최근 90일 순위",
+  "best90": "최고 {rank}",
+  "interestTitle": "언어별 관심도",
+  "interestLead": "최근 30일 위키백과 조회 수, 모두 {count}회예요.",
+  "interestNote": "위키백과 언어는 나라를 대신하는 지표일 뿐이에요. 모국어가 아닌 언어로 위키백과를 읽는 사람도 많아요.",
+  "buzzTitle": "한국 반응",
+  "buzzPosts": "더쿠 글",
+  "buzzViews": "글 조회",
+  "buzzComments": "댓글",
+  "buzzTrends": "구글 트렌드 KR",
+  "trendDays": "{days}일 중 {count}일",
+  "buzzNote": "최근 {days}일, 더쿠 핫게와 구글 트렌드 KR 기준이에요. 숫자만 세고 글과 사진은 옮기지 않아요.",
+  "upcomingTitle": "다가오는 일정",
+  "newsTitle": "{name} 관련 뉴스",
+  "empty": "아직 {name} 소식이 없어요.",
+  "emptyCta": "오늘의 차트 보기"
+}

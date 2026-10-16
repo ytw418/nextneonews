@@ -1,1 +1,30 @@
-{}
+{
+  "share": "分享此页",
+  "metaTitle": "{name}排名、新闻与海外关注度",
+  "metaDescription": "{name}今日话题排行榜排名、8种语言维基百科关注度、韩国社区反应、近期行程与最新新闻，一页看完。",
+  "type": {
+    "group": "团体",
+    "singer": "歌手",
+    "actor": "演员",
+    "series": "韩剧"
+  },
+  "rankAnswer": "{name}在{chart}排名第{rank}名（{date}）。",
+  "topLanguage": "过去30天，{name}的维基百科浏览量以{language}最多。",
+  "notRanked": "未进入今日排行榜",
+  "trend90": "过去90天排名",
+  "best90": "最佳 {rank}",
+  "interestTitle": "各语言关注度",
+  "interestLead": "过去30天维基百科浏览量，共{count}次。",
+  "interestNote": "维基百科的语言只能大致代表国家，很多人也会用母语以外的语言阅读维基百科。",
+  "buzzTitle": "韩国反应",
+  "buzzPosts": "theqoo 帖子",
+  "buzzViews": "帖子浏览",
+  "buzzComments": "评论",
+  "buzzTrends": "Google 趋势（韩国）",
+  "trendDays": "{days}天中有{count}天",
+  "buzzNote": "过去{days}天，来自 theqoo 热门版与 Google 趋势（韩国）。只统计数字，不转载帖子和图片。",
+  "upcomingTitle": "近期行程",
+  "newsTitle": "{name}相关新闻",
+  "empty": "目前还没有{name}的新闻。",
+  "emptyCta": "看今日排行榜"
+}

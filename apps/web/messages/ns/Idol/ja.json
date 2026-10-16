@@ -1,1 +1,30 @@
-{}
+{
+  "share": "このページをシェア",
+  "metaTitle": "{name}の順位・ニュース・海外での関心度",
+  "metaDescription": "{name}の今日の話題ランキング順位、8言語のウィキペディア閲覧数、韓国での反応、今後のスケジュールと最新ニュースをまとめてチェック。",
+  "type": {
+    "group": "グループ",
+    "singer": "歌手",
+    "actor": "俳優",
+    "series": "ドラマ"
+  },
+  "rankAnswer": "{chart}で{name}は{rank}位（{date}）。",
+  "topLanguage": "過去30日間、{name}のウィキペディア閲覧数が最も多かった言語は{language}です。",
+  "notRanked": "今日のランキング圏外",
+  "trend90": "過去90日間の順位",
+  "best90": "最高 {rank}",
+  "interestTitle": "言語別の関心度",
+  "interestLead": "過去30日間のウィキペディア閲覧数、合計{count}回。",
+  "interestNote": "ウィキペディアの言語は国の目安にすぎません。母語以外の言語でウィキペディアを読む人も多くいます。",
+  "buzzTitle": "韓国での反応",
+  "buzzPosts": "theqooの投稿",
+  "buzzViews": "投稿の閲覧数",
+  "buzzComments": "コメント",
+  "buzzTrends": "Googleトレンド韓国",
+  "trendDays": "{days}日中{count}日",
+  "buzzNote": "過去{days}日間、theqooのホット掲示板とGoogleトレンド韓国より。数字だけを集計し、投稿や画像は転載しません。",
+  "upcomingTitle": "今後のスケジュール",
+  "newsTitle": "{name}の関連ニュース",
+  "empty": "{name}のニュースはまだありません。",
+  "emptyCta": "今日のランキングを見る"
+}
