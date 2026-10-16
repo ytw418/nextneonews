@@ -221,15 +221,11 @@ async function saveArticle({ topic, draft, sources, sourceText, entities, reacti
 // 더쿠 신호가 있으면 댓글을 따로 받아 표본을 만든다 (반응 요약용). 못 받아도 글은 쓴다
 const MIN_REACTIONS = 10; // 이보다 적으면 '경향'이라 부를 수 없다
 
-// sources.ts 의 role 옵션 계약 (community-collectors). 함수 타입으로 받아 두면 옵션이 생기기 전에도 타입이 맞는다
-type ReactionFetch = (signal: Signal, options: { role: "reaction" }) => Promise<SourceMaterial>;
-const fetchReactions: ReactionFetch = fetchSourceMaterial;
-
 async function readReaction(signals: Signal[]): Promise<Reaction | null> {
   const signal = signals.find((s) => s.source === "theqoo");
   if (!signal) return null;
   try {
-    const material = await fetchReactions(signal, { role: "reaction" });
+    const material = await fetchSourceMaterial(signal, { role: "reaction" });
     const comments = sampleComments(material.comments);
     if (comments.length >= MIN_REACTIONS) return { signal, comments };
     log.info("write: too few reactions", { url: signal.url, comments: comments.length });
