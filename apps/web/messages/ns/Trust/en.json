@@ -1,1 +1,9 @@
-{}
+{
+  "nav": {
+    "about": "About us",
+    "editorial": "Editorial policy",
+    "contact": "Contact",
+    "privacy": "Privacy policy"
+  },
+  "more": "More about Hallyu Brief"
+}

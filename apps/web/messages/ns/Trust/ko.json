@@ -1,1 +1,9 @@
-{}
+{
+  "nav": {
+    "about": "소개",
+    "editorial": "편집 방침",
+    "contact": "문의",
+    "privacy": "개인정보처리방침"
+  },
+  "more": "Hallyu Brief 더 알아보기"
+}
