@@ -7,15 +7,26 @@ interface Rule {
   length: number;
 }
 
-const cache = new Map<string, Promise<Rule[]>>();
+// Content-Signal 줄 (예: "search=yes,ai-train=no,use=reference" → { search: "yes", "ai-train": "no", use: "reference" })
+export type ContentSignals = Record<string, string>;
+
+interface Robots {
+  rules: Rule[];
+  signals: ContentSignals;
+}
+
+const DENY_ALL: Robots = { rules: [{ allow: false, pattern: /^/, length: 0 }], signals: {} };
+const ALLOW_ALL: Robots = { rules: [], signals: {} };
+
+const cache = new Map<string, Promise<Robots>>();
 
 function toRegExp(path: string): RegExp {
   const escaped = path.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
   return new RegExp(`^${escaped.endsWith("\\$") ? `${escaped.slice(0, -2)}$` : escaped}`);
 }
 
-export function parseRobots(text: string): Rule[] {
-  const rules: Rule[] = [];
+// "User-agent: *" 묶음 안의 [키, 값] 줄
+function* starGroupLines(text: string): Generator<[string, string]> {
   let agents: string[] = [];
   let collecting = false;
   for (const raw of text.split(/\r?\n/)) {
@@ -31,7 +42,13 @@ export function parseRobots(text: string): Rule[] {
       continue;
     }
     collecting = true;
-    if (!agents.includes("*")) continue;
+    if (agents.includes("*")) yield [key, value];
+  }
+}
+
+export function parseRobots(text: string): Rule[] {
+  const rules: Rule[] = [];
+  for (const [key, value] of starGroupLines(text)) {
     if ((key === "allow" || key === "disallow") && value) {
       rules.push({ allow: key === "allow", pattern: toRegExp(value), length: value.length });
     }
@@ -48,28 +65,54 @@ export function isAllowed(rules: Rule[], pathWithQuery: string): boolean {
   return best?.allow ?? true;
 }
 
-async function rulesFor(origin: string, userAgent: string): Promise<Rule[]> {
-  const res = await fetch(`${origin}/robots.txt`, {
-    headers: { "user-agent": userAgent },
-    signal: AbortSignal.timeout(10_000),
-  }).catch(() => null);
-  // 없으면(404) 허용. 서버 오류·차단이면 조심해서 막는다
-  if (!res) return [{ allow: false, pattern: /^/, length: 0 }];
-  if (res.status >= 400 && res.status < 500) return [];
-  if (!res.ok) return [{ allow: false, pattern: /^/, length: 0 }];
-  return parseRobots(await res.text());
+// Content-Signal 줄. 여러 줄이면 합친다
+export function parseContentSignals(text: string): ContentSignals {
+  const signals: ContentSignals = {};
+  for (const [key, value] of starGroupLines(text)) {
+    if (key !== "content-signal") continue;
+    for (const pair of value.split(",")) {
+      const [name, setting] = pair.split("=").map((part) => part.trim().toLowerCase());
+      if (name && setting) signals[name] = setting;
+    }
+  }
+  return signals;
+}
+
+// 없으면(404·410) 전부 허용. 401·403·Cloudflare 확인 화면(cf-mitigated)·그 밖의 오류·접속 실패는 전부 금지로 본다
+// (인스티즈처럼 robots.txt 까지 확인 화면을 띄우는 곳이 허용으로 새지 않게)
+export async function robotsFromResponse(res: Response): Promise<Robots> {
+  if (res.headers.has("cf-mitigated")) return DENY_ALL;
+  if (res.status === 404 || res.status === 410) return ALLOW_ALL;
+  if (!res.ok) return DENY_ALL;
+  const text = await res.text();
+  return { rules: parseRobots(text), signals: parseContentSignals(text) };
+}
+
+function robotsFor(origin: string, userAgent: string): Promise<Robots> {
+  let robots = cache.get(origin);
+  if (!robots) {
+    robots = fetch(`${origin}/robots.txt`, {
+      headers: { "user-agent": userAgent },
+      signal: AbortSignal.timeout(10_000),
+    })
+      .then(robotsFromResponse)
+      .catch(() => DENY_ALL);
+    cache.set(origin, robots);
+  }
+  return robots;
 }
 
 export class RobotsDisallowedError extends Error {}
 
 export async function assertRobotsAllowed(url: string, userAgent: string): Promise<void> {
   const { origin, pathname, search } = new URL(url);
-  let rules = cache.get(origin);
-  if (!rules) {
-    rules = rulesFor(origin, userAgent);
-    cache.set(origin, rules);
-  }
-  if (!isAllowed(await rules, `${pathname}${search}`)) {
+  const { rules } = await robotsFor(origin, userAgent);
+  if (!isAllowed(rules, `${pathname}${search}`)) {
     throw new RobotsDisallowedError(`robots.txt disallows ${url}`);
   }
+}
+
+// 사이트가 robots.txt 에 밝힌 콘텐츠 사용 조건. ai-input=no 면 원문을 AI 에 넘기지 않는다 (pipeline/sources.ts)
+export async function contentSignals(origin: string, userAgent: string): Promise<ContentSignals> {
+  return (await robotsFor(origin, userAgent)).signals;
 }

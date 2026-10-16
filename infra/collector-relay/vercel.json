@@ -1,0 +1,6 @@
+{
+  "regions": ["icn1"],
+  "functions": {
+    "api/fetch.mjs": { "maxDuration": 15 }
+  }
+}
