@@ -1,8 +1,7 @@
-import { articlePath } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 
 import { log } from "../log";
-import { notifyIndexNow } from "./indexnow";
+import { announce } from "./announce";
 
 // 어드민 화면이 생기기 전까지 쓰는 CLI 승인 도구
 export async function listReview(): Promise<void> {
@@ -24,7 +23,7 @@ export async function listReview(): Promise<void> {
 export async function publish(ids: string[]): Promise<void> {
   const articles = await prisma.article.findMany({
     where: { status: "REVIEW", ...(ids.length > 0 ? { id: { in: ids } } : {}) },
-    select: { id: true, translations: { select: { locale: true, slug: true } } },
+    select: { id: true, category: true, translations: { select: { locale: true, slug: true, indexable: true } } },
   });
   if (articles.length === 0) {
     log.info("published 0 article(s)");
@@ -37,7 +36,5 @@ export async function publish(ids: string[]): Promise<void> {
   });
   log.info(`published ${articles.length} article(s)`);
 
-  const siteUrl = process.env.SITE_URL ?? "";
-  const urls = articles.flatMap((a) => a.translations.map((t) => `${siteUrl}${articlePath(t.locale, t.slug)}`));
-  await notifyIndexNow(urls);
+  await announce(articles.flatMap((a) => a.translations.map((t) => ({ ...t, category: a.category }))));
 }
