@@ -11,7 +11,7 @@ const USER_AGENT = "HallyuBrief/0.1 (https://hallyu-brief.vercel.app; image cred
 const GAP_MS = 1000;
 let lastCall = 0;
 
-async function commonsFetch(params: URLSearchParams): Promise<Response | null> {
+export async function commonsFetch(params: URLSearchParams): Promise<Response | null> {
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const wait = lastCall + GAP_MS - Date.now();
     if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
@@ -35,9 +35,15 @@ interface CommonsImage {
   licenseName: string | null;
   licenseUrl: string | null;
   sourceUrl: string | null;
+  width: number | null; // 원본 크기
+  height: number | null;
 }
 
-function stripHtml(html: string): string {
+// 썸네일 폭. 위키미디어가 미리 만들어 두는 표준 크기(…960·1280·1920)만 쓴다
+// https://www.mediawiki.org/wiki/Common_thumbnail_sizes
+const THUMB_WIDTH = "1280";
+
+export function stripHtml(html: string): string {
   return html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
@@ -47,8 +53,8 @@ async function commonsImage(file: string): Promise<CommonsImage | null> {
     action: "query",
     titles: `File:${file}`,
     prop: "imageinfo",
-    iiprop: "url|extmetadata",
-    iiurlwidth: "1080",
+    iiprop: "url|size|extmetadata",
+    iiurlwidth: THUMB_WIDTH,
     format: "json",
     origin: "*",
   });
@@ -62,6 +68,8 @@ async function commonsImage(file: string): Promise<CommonsImage | null> {
           imageinfo?: {
             thumburl?: string;
             descriptionurl?: string;
+            width?: number;
+            height?: number;
             extmetadata?: Record<string, { value: string } | undefined>;
           }[];
         }
@@ -79,12 +87,14 @@ async function commonsImage(file: string): Promise<CommonsImage | null> {
     licenseName: license || null,
     licenseUrl: stripHtml(info.extmetadata?.LicenseUrl?.value ?? "") || null,
     sourceUrl: info.descriptionurl ?? null,
+    width: info.width ?? null,
+    height: info.height ?? null,
   };
 }
 
 // 사진 URL 에서 파일 이름을 되찾는다
-// 썸네일: .../commons/thumb/a/ab/<파일>/1080px-<파일>, 원본: .../commons/a/ab/<파일>
-function fileFromUrl(url: string): string | null {
+// 썸네일: .../commons/thumb/a/ab/<파일>/1280px-<파일>, 원본: .../commons/a/ab/<파일>
+export function fileFromUrl(url: string): string | null {
   const match = url.match(/\/commons\/(?:thumb\/)?[0-9a-f]\/[0-9a-f]{2}\/([^/?]+)/);
   return match ? decodeURIComponent(match[1]!) : null;
 }
@@ -186,9 +196,9 @@ export async function attachImage(articleId: string): Promise<boolean> {
   for (const entity of [subject]) {
     const image = await commonsImage(entity.image!);
     if (!image) continue;
-    const { url, credit, author, licenseName, licenseUrl, sourceUrl } = image;
+    const { url, credit, author, licenseName, licenseUrl, sourceUrl, width, height } = image;
     await prisma.media.create({
-      data: { articleId, url, kind: "STOCK", credit, author, licenseName, licenseUrl, sourceUrl },
+      data: { articleId, url, kind: "STOCK", credit, author, licenseName, licenseUrl, sourceUrl, width, height },
     });
     log.info("image: attached", { articleId, entity: entity.en ?? entity.ko });
     return true;
@@ -253,7 +263,7 @@ export async function searchCommons(query: string): Promise<CommonsImage | null>
     gsrlimit: "10",
     prop: "imageinfo",
     iiprop: "url|size|extmetadata",
-    iiurlwidth: "1080",
+    iiurlwidth: THUMB_WIDTH,
     format: "json",
     formatversion: "2",
   });
@@ -287,6 +297,8 @@ export async function searchCommons(query: string): Promise<CommonsImage | null>
       licenseName: license,
       licenseUrl: stripHtml(info.extmetadata?.LicenseUrl?.value ?? "") || null,
       sourceUrl: info.descriptionurl ?? null,
+      width: info.width ?? null,
+      height: info.height ?? null,
     };
   }
   return null;
@@ -303,9 +315,20 @@ async function attachTopicImage(article: {
   for (const query of queries.filter((q) => q.length > 2)) {
     const image = await searchCommons(query);
     if (!image) continue;
-    const { url, credit, author, licenseName, licenseUrl, sourceUrl } = image;
+    const { url, credit, author, licenseName, licenseUrl, sourceUrl, width, height } = image;
     await prisma.media.create({
-      data: { articleId: article.id, url, kind: "STOCK", credit, author, licenseName, licenseUrl, sourceUrl },
+      data: {
+        articleId: article.id,
+        url,
+        kind: "STOCK",
+        credit,
+        author,
+        licenseName,
+        licenseUrl,
+        sourceUrl,
+        width,
+        height,
+      },
     });
     log.info("image: topic photo attached", { articleId: article.id, query });
     return true;
