@@ -2,7 +2,7 @@
 
 import { isLocale, LOCALE_NAME } from "@kmedia/core";
 import { useTranslations } from "next-intl";
-import { useOptimistic, useState, useSyncExternalStore, useTransition } from "react";
+import { type ReactNode, useOptimistic, useState, useSyncExternalStore, useTransition } from "react";
 
 import { ShareIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
@@ -81,11 +81,13 @@ interface Props {
   anchorId?: string; // 글 페이지는 'poll', 이어 붙인 글은 'poll-{id}'
   articleId?: string; // 하단 바 💖 가 이 투표로 내려오게 (주간 투표는 없음)
   shareUrl?: string; // 공유할 글 주소 (언어 접두사가 붙은 경로). 없으면 지금 주소
+  className?: string; // 바깥 여백. 글 안은 읽기 단 여백, 홈 피드 사이 자리는 피드가 여백을 준다
+  kicker?: ReactNode; // 질문 위 작은 한 줄 (홈 주간 투표: 팬 픽 차트로 가는 링크)
 }
 
 // 로그인 없는 독자 투표. 질문·보기·표 수·(10표 이상이면) 결과까지 서버 HTML 에 들어간다.
 // 투표하면 막대를 바로 채우고(useOptimistic) 언어별 1위와 전체 1위를 함께 보여 준다
-export function PollCard({ poll, locale, anchorId, articleId, shareUrl }: Props) {
+export function PollCard({ poll, locale, anchorId, articleId, shareUrl, className = "mx-read mt-8", kicker }: Props) {
   const t = useTranslations("Engage");
   const key = `hb:poll:${poll.id}`;
   const stored = useSyncExternalStore(noSubscribe, () => storageGet(key), () => null);
@@ -157,8 +159,9 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl }: Props)
       id={anchorId}
       data-engage-for={articleId}
       aria-labelledby={questionId}
-      className="mx-read mt-8 scroll-mt-20 rounded-card bg-card p-5 shadow-card"
+      className={`${className} scroll-mt-20 rounded-card bg-card p-5 shadow-card`}
     >
+      {kicker && <p className="mb-2 text-t7 font-semibold text-brand-ink">{kicker}</p>}
       <h2 id={questionId} className="title text-t4 font-bold text-ink-900">
         {poll.question}
       </h2>

@@ -26,5 +26,6 @@
   "upcomingTitle": "Sắp diễn ra",
   "newsTitle": "Tin về {name}",
   "empty": "Chưa có tin nào về {name}.",
-  "emptyCta": "Xem bảng xếp hạng hôm nay"
+  "emptyCta": "Xem bảng xếp hạng hôm nay",
+  "inThisStory": "Có trong bài viết"
 }

@@ -26,5 +26,6 @@
   "upcomingTitle": "今後のスケジュール",
   "newsTitle": "{name}の関連ニュース",
   "empty": "{name}のニュースはまだありません。",
-  "emptyCta": "今日のランキングを見る"
+  "emptyCta": "今日のランキングを見る",
+  "inThisStory": "この記事に登場"
 }

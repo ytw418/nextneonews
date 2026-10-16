@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { categoryTint } from "@/lib/cover";
 import type { AppendedArticleData } from "@/lib/engagement";
+import { imgSrc } from "@/lib/image";
 
 // 글 끝에 이어 붙인 다음 글 하나 (NextArticleLoader 가 /api/article 에서 받아 그린다).
 // 문서의 h1 은 원래 글 하나뿐이라 제목은 h2 지만 모양은 h1 과 같다. JSON-LD 는 넣지 않는다 (원래 글 주소에만 있다).
@@ -37,10 +38,9 @@ export function AppendedArticle({ data, locale }: { data: AppendedArticleData; l
       {hero ? (
         <figure className="relative flex min-h-[min(125vw,800px,78svh)] w-full flex-col justify-end overflow-hidden">
           <Image
-            src={hero.url}
+            src={imgSrc(hero.url, hero.width)}
             alt=""
             fill
-            unoptimized
             sizes="(max-width: 640px) 100vw, 640px"
             className="object-cover object-[50%_20%]"
           />

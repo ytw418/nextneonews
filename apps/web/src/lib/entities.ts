@@ -4,7 +4,7 @@ import { CHARTS, type ChartKey, kstDay, type RankingItem, WIKI_LANGS, type WikiL
 import { type Entity, type Prisma, prisma } from "@kmedia/db";
 
 import { feedSelect } from "./articles";
-import { articleMentions, type MentionTarget } from "./entity-mention";
+import { articleMentions, type MentionRow, mentionsEntity, type MentionTarget } from "./entity-mention";
 
 // 인물·작품 페이지(app/[locale]/idol/[slug]) 조회. 랭킹 재료(EntityMetric)와 발행한 순위(RankingSnapshot)를 읽기만 한다
 // (계산은 worker rankings). 서치콘솔 국가별 노출 같은 내부 숫자는 여기서 읽지 않는다
@@ -143,6 +143,38 @@ export async function listEntityArticles(locale: string, entity: MentionTarget, 
       return true;
     })
     .slice(0, take);
+}
+
+export interface ArticleEntity {
+  id: string;
+  slug: string | null;
+  names: RankingItem["names"];
+}
+
+const nonEmpty = (value: unknown) => (typeof value === "string" && value.trim() ? value.trim() : null);
+
+// 글 entities JSON 줄마다 인물 사전(Entity) 한 명 (못 찾으면 null, 순서는 글과 같다). 글 안 순위 칩·#이름 칩·JSON-LD sameAs 에 쓴다.
+// id 가 있는 줄은 id 로, 없는 옛 글은 영어·한국어 이름으로 찾되 동명이인(한쪽 이름만 같음)은 mentionsEntity 가 뺀다.
+// 후보가 둘 이상 남으면 누군지 모르므로 고르지 않는다
+export async function matchArticleEntities(entities: unknown): Promise<(ArticleEntity | null)[]> {
+  const rows: MentionRow[] = (Array.isArray(entities) ? entities : []).map((e) =>
+    e && typeof e === "object" ? (e as MentionRow) : {},
+  );
+  const ids = rows.flatMap((r) => nonEmpty(r.id) ?? []);
+  const names = rows.flatMap((r) => (nonEmpty(r.id) ? [] : (nonEmpty(r.name) ?? [])));
+  const koNames = rows.flatMap((r) => (nonEmpty(r.id) ? [] : (nonEmpty(r.koreanName) ?? [])));
+  if (ids.length + names.length + koNames.length === 0) return rows.map(() => null);
+
+  const found = await prisma.entity.findMany({
+    // 글의 name 은 영어 이름, 영어 이름이 없는 인물이면 한국어 이름이다
+    where: { OR: [{ id: { in: ids } }, { en: { in: names } }, { ko: { in: [...names, ...koNames] } }] },
+    select: { id: true, slug: true, en: true, ko: true, ja: true, zhHant: true },
+    take: 60,
+  });
+  return rows.map((row) => {
+    const hits = found.filter((e) => mentionsEntity(row, e));
+    return hits.length === 1 ? { id: hits[0].id, slug: hits[0].slug, names: namesOf(hits[0]) } : null;
+  });
 }
 
 // JSON-LD sameAs 에 넣는 위키백과 문서 (영어·일본어·한국어). Entity.wikiTitles 는 worker rankings/wiki.ts 가 채운다

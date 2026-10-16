@@ -26,5 +26,6 @@
   "upcomingTitle": "À venir",
   "newsTitle": "Actus sur {name}",
   "empty": "Pas encore d’actu sur {name}.",
-  "emptyCta": "Voir les classements du jour"
+  "emptyCta": "Voir les classements du jour",
+  "inThisStory": "Dans cet article"
 }

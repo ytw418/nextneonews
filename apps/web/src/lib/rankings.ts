@@ -293,14 +293,3 @@ export function eventsFor(names: Pick<Names, "en" | "ko">, now = new Date()): Ev
 export function nextEventFor(names: Names, now = new Date()): EventWithView | undefined {
   return eventsFor(names, now)[0];
 }
-
-// 글 안 칩(EntityRankStrip)용: 글 entities 의 이름으로 Entity.id 를 찾는다
-export async function findEntityIds(names: string[]): Promise<string[]> {
-  const unique = [...new Set(names.filter(Boolean))].slice(0, 12);
-  if (unique.length === 0) return [];
-  const rows = await prisma.entity.findMany({
-    where: { OR: [{ en: { in: unique } }, { ko: { in: unique } }] },
-    select: { id: true },
-  });
-  return rows.map((r) => r.id);
-}

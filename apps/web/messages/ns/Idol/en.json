@@ -26,5 +26,6 @@
   "upcomingTitle": "Coming up",
   "newsTitle": "News about {name}",
   "empty": "No news about {name} yet.",
-  "emptyCta": "See today’s charts"
+  "emptyCta": "See today’s charts",
+  "inThisStory": "In this story"
 }

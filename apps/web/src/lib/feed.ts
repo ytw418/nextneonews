@@ -4,6 +4,7 @@ import type { FeedItem } from "@/components/FeedCard";
 
 import type { FeedRow } from "./articles";
 import { coverStyle } from "./cover";
+import { imgSrc } from "./image";
 import { timeAgo } from "./time";
 
 // 이 파일은 FeedLoader(클라이언트)도 가져다 쓴다. next-intl/server 는 클라이언트에서 부르지만 않으면 괜찮다 (toFeedItems 는 서버에서만)
@@ -43,7 +44,8 @@ export async function toFeedItems(rows: FeedRow[], locale: string): Promise<Feed
     categoryLabel: t(row.article.category),
     timeAgo: timeAgo(row.article.publishedAt, locale),
     locale,
-    imageUrl: row.article.media[0]?.url,
+    // 원본 폭 힌트(#ow=)를 붙여 로더가 원본보다 큰 썸네일을 고르지 않게 한다
+    imageUrl: row.article.media[0] && imgSrc(row.article.media[0].url, row.article.media[0].width),
     credit: row.article.media[0],
     commentCount: row.article._count.comments,
     reactionTotal: reactionTotal(row.article.reactions),

@@ -1,4 +1,4 @@
-import { faqNotInBody, findEventForArticle, isLocale, readMinutes } from "@kmedia/core";
+import { categorySlug, faqNotInBody, findEventForArticle, isLocale, readMinutes } from "@kmedia/core";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
@@ -24,6 +24,7 @@ import { MemoCover } from "@/components/MemoCover";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
 import { RANKED_MIN, RankedArticles, THUMB_LARGE_TEXT } from "@/components/RankedArticles";
+import { EntityRankStrip } from "@/components/rankings/EntityRankStrip";
 import { ShareButton } from "@/components/ShareButton";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -31,14 +32,18 @@ import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
+import { Link } from "@/i18n/navigation";
 import { entityNames, findTranslatedLocale, getArticle, listLatest, listPopular, listRelated } from "@/lib/articles";
 import { coverStyle } from "@/lib/cover";
 import { commentCount, netizenView, nextCandidates, pollView, readReactions } from "@/lib/engagement";
+import { matchArticleEntities } from "@/lib/entities";
 import { toFeedItems } from "@/lib/feed";
+import { imgSrc } from "@/lib/image";
 import { publisherName } from "@/lib/publishers";
 import { articleJsonLd } from "@/lib/jsonld";
+import { displayName } from "@/lib/rankings";
 import { dateStamp } from "@/lib/time";
-import { articlePath, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
+import { articlePath, feedAlternate, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
 export const revalidate = 300;
 
@@ -82,12 +87,15 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/news/[sl
   const image = translation.article.media[0]?.url;
   const title = translation.seoTitle ?? translation.title;
   const canonical = articlePath(locale, slug);
+  // 고친 시각: 제목·본문을 바꾼 때 (updatedAt 은 조회 수가 오를 때마다 바뀐다)
+  const modified = translation.article.contentUpdatedAt ?? translation.article.publishedAt;
   return {
     // 긴 제목은 사이트명을 붙이지 않는다 (검색 결과에서 잘리지 않게)
     title: title.length > 45 ? { absolute: title } : title,
     description,
-    alternates: { canonical, languages },
-    robots: translation.indexable ? undefined : { index: false },
+    // 마크다운판(AI 에이전트용)과 이 언어 RSS 를 <link rel="alternate"> 로 알린다
+    alternates: { canonical, languages, types: { "text/markdown": `${canonical}/md`, ...feedAlternate(locale) } },
+    robots: pageRobots(translation.indexable),
     openGraph: {
       ...ogBase(locale),
       type: "article",
@@ -95,7 +103,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/news/[sl
       title: translation.title,
       description,
       publishedTime: translation.article.publishedAt?.toISOString(),
-      modifiedTime: translation.article.updatedAt.toISOString(),
+      modifiedTime: modified?.toISOString(),
       images: [image ?? `${localeHomePath(locale)}/opengraph-image`],
     },
     twitter: { card: "summary_large_image" },
@@ -114,14 +122,16 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
     notFound();
   }
   const { article } = translation;
-  const [t, tCat, tEngage, relatedRows, popularRows, latestRows, comments] = await Promise.all([
+  const [t, tCat, tEngage, tIdol, relatedRows, popularRows, latestRows, comments, entityMatches] = await Promise.all([
     getTranslations("Article"),
     getTranslations("Category"),
     getTranslations("Engage"),
+    getTranslations("Idol"),
     listRelated(locale, article, 7),
     listPopular(locale, 12),
     listLatest(locale, 24),
     commentCount(article.id),
+    matchArticleEntities(article.entities),
   ]);
   // 다음 글 후보 (같은 인물 → 가이드 → 같은 카테고리 → 이번 주 인기). 첫 번째가 'Up next' 카드, 나머지는 끝에 이어 붙인다
   const nextRows = await nextCandidates(locale, translation, popularRows);
@@ -156,6 +166,15 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
   // 공식·뉴스 출처와 커뮤니티(반응) 출처를 나눈다. 커뮤니티 링크는 nofollow
   const newsSources = article.sources.filter((s) => s.kind !== "COMMUNITY");
   const communitySources = article.sources.filter((s) => s.kind === "COMMUNITY");
+
+  // 글에 나온 인물 중 인물 사전에 있는 사람 (겹치지 않게). 순위 칩은 id, '#이름' 칩은 인물 페이지가 있는(slug) 사람만
+  const people = [...new Map(entityMatches.flatMap((e) => (e ? [[e.id, e] as const] : []))).values()];
+  const idolChips = people.filter((e) => e.slug);
+  // JSON-LD about: id 가 없는 옛 글도 사전에서 찾은 위키데이터 id 로 sameAs 를 잇는다
+  const ldEntities = asArray<{ id?: string; name: string; type: string }>(article.entities).map((e, i) => ({
+    ...e,
+    id: e.id ?? entityMatches[i]?.id,
+  }));
 
   const keyPoints = asArray<string>(translation.keyPoints);
   // 본문 소제목을 되풀이하는 질문은 화면과 JSON-LD 둘 다에서 뺀다
@@ -195,13 +214,18 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
             title: translation.title,
             description: translation.seoDesc ?? translation.summary,
             category: article.category,
+            categoryLabel,
+            categoryUrl: `${SITE_URL}${localeHomePath(locale)}/c/${categorySlug(article.category)}`,
             publishedAt: article.publishedAt,
-            updatedAt: article.updatedAt,
+            modifiedAt: article.contentUpdatedAt ?? article.publishedAt,
             faq,
-            entities: asArray(article.entities),
+            entities: ldEntities,
             sourceUrls: article.sources.map((s) => s.url),
+            sources: article.sources.map((s) => ({ url: s.url, publisher: publisherName(s.publisher, locale) })),
             image: hero?.url,
             homeUrl: `${SITE_URL}${localeHomePath(locale)}`,
+            aiNotice: t("aiNotice"),
+            speakable: keyPoints.length > 0 ? ["#kp", ".article-summary"] : [".article-summary"],
           })}
         />
 
@@ -209,10 +233,9 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           // 공식 이미지가 있으면 화면을 꽉 채우는 매거진 커버. 제목 블록이 흐름 안에 있어 긴 제목이면 커버가 늘어난다
           <figure className="relative flex min-h-[min(125vw,800px,78svh)] w-full flex-col justify-end overflow-hidden">
             <Image
-              src={hero.url}
+              src={imgSrc(hero.url, hero.width)}
               alt=""
               fill
-              unoptimized
               priority
               sizes="(max-width: 640px) 100vw, 640px"
               // 인물 사진은 얼굴이 위쪽에 있다. 제목 블록 위로 얼굴이 남게 위쪽을 기준으로 자른다
@@ -259,6 +282,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
 
         {/* article-summary 는 JSON-LD speakable 선택자 (#kp 와 함께) */}
         <p className="article-summary mt-3 px-read text-t5 font-medium text-ink-900">{translation.summary}</p>
+        {/* 글에 나온 인물이 오늘 차트에 있으면 순위 칩 (없으면 아무것도 그리지 않는다) */}
+        <EntityRankStrip entityIds={people.map((e) => e.id)} locale={locale} className="mt-4 px-read" />
 
         {event && isLocale(locale) && <RelatedEventCard e={event} locale={locale} />}
 
@@ -309,6 +334,22 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
               ))}
             </div>
           </section>
+        )}
+
+        {/* '#이름' 칩: 글에 나온 인물·작품의 인물 페이지로 (진짜 <a href> 라 크롤러도 인물 페이지를 찾는다) */}
+        {idolChips.length > 0 && (
+          <ul aria-label={tIdol("inThisStory")} className="mt-8 flex flex-wrap gap-2 px-read">
+            {idolChips.map((e) => (
+              <li key={e.id}>
+                <Link
+                  href={`/idol/${e.slug}`}
+                  className="press inline-flex min-h-9 items-center rounded-full bg-fill-weak px-3 text-t7 font-semibold text-ink-700"
+                >
+                  #{displayName(e.names, locale, e.id)}
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
 
         {newsSources.length > 0 && (

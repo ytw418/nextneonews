@@ -25,7 +25,6 @@ export function UpNextCard({ item, title }: { item: FeedItem; title: string }) {
                 src={item.imageUrl}
                 alt=""
                 fill
-                unoptimized
                 sizes="(max-width: 640px) 100vw, 592px"
                 className="object-cover object-[50%_20%]"
               />

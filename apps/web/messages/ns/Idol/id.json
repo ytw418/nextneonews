@@ -26,5 +26,6 @@
   "upcomingTitle": "Segera hadir",
   "newsTitle": "Berita tentang {name}",
   "empty": "Belum ada berita tentang {name}.",
-  "emptyCta": "Lihat tangga hari ini"
+  "emptyCta": "Lihat tangga hari ini",
+  "inThisStory": "Disebut dalam artikel"
 }

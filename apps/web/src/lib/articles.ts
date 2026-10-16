@@ -20,7 +20,7 @@ export const feedSelect = {
       _count: { select: { comments: { where: { status: "VISIBLE" } } } },
       media: {
         where: { kind: { in: IMAGE_KINDS } },
-        select: { url: true, credit: true, author: true, licenseName: true, licenseUrl: true, sourceUrl: true },
+        select: { url: true, credit: true, author: true, licenseName: true, licenseUrl: true, sourceUrl: true, width: true },
         take: 1,
       },
     },

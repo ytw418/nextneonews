@@ -26,5 +26,6 @@
   "upcomingTitle": "近期行程",
   "newsTitle": "{name}相關新聞",
   "empty": "目前還沒有{name}的新聞。",
-  "emptyCta": "看今日排行榜"
+  "emptyCta": "看今日排行榜",
+  "inThisStory": "本文提及"
 }

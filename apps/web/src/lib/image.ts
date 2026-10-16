@@ -11,12 +11,15 @@ const UNKNOWN_MAX = 960;
 const COMMONS = /^https:\/\/(?:upload|thumb)\.wikimedia\.org\/wikipedia\/commons\/(?:thumb\/)?([0-9a-f])\/([0-9a-f]{2})\/([^/?#]+)/;
 const HINT = /#ow=(\d+)$/;
 
-// 요청 폭 이상인 첫 표준 폭. 원본 폭(없으면 960)을 넘으면 그 안의 가장 큰 표준 폭. 원본이 120 보다 작으면 null (원본을 쓴다)
+// 요청 폭 이상인 첫 표준 폭. null 이면 원본을 쓴다.
+// 원본 폭을 알면 원본보다 작은 표준 폭만 고르고(같거나 큰 썸네일은 오류), 요청이 그보다 크면 원본을 쓴다
+// (326px 원본을 화면 폭 히어로에 250px 썸네일로 줄여 받지 않게). 모르면 960 안에서 고른다 (큰 원본을 통째로 받지 않게)
 export function thumbWidth(requested: number, originalWidth?: number): number | null {
-  const max = originalWidth && originalWidth > 0 ? originalWidth : UNKNOWN_MAX;
-  const fits = STANDARD_WIDTHS.filter((w) => w <= max);
-  if (fits.length === 0) return null;
-  return fits.find((w) => w >= requested) ?? fits[fits.length - 1];
+  const known = !!originalWidth && originalWidth > 0;
+  const fits = STANDARD_WIDTHS.filter((w) => (known ? w < originalWidth! : w <= UNKNOWN_MAX));
+  const hit = fits.find((w) => w >= requested);
+  if (hit) return hit;
+  return known || fits.length === 0 ? null : fits[fits.length - 1];
 }
 
 export default function imageLoader({ src, width }: { src: string; width: number; quality?: number }): string {

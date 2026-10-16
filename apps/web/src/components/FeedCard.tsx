@@ -144,7 +144,6 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
             src={item.imageUrl}
             alt=""
             fill
-            unoptimized
             loading={priority ? "eager" : undefined}
             fetchPriority={priority ? "high" : undefined}
             sizes="(max-width: 640px) 100vw, 640px"
@@ -176,7 +175,6 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
             src={item.imageUrl}
             alt=""
             fill
-            unoptimized
             sizes="(max-width: 640px) 45vw, 300px"
             className="object-cover"
           />

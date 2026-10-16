@@ -26,5 +26,6 @@
   "upcomingTitle": "Скоро",
   "newsTitle": "Новости: {name}",
   "empty": "Новостей пока нет.",
-  "emptyCta": "Смотреть рейтинги дня"
+  "emptyCta": "Смотреть рейтинги дня",
+  "inThisStory": "В этой статье"
 }

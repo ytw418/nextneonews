@@ -88,6 +88,13 @@ export function pollView(poll: Poll | null | undefined, text: unknown): PollView
   };
 }
 
+// 이번 주 팬 투표 (worker weekly-poll 이 월요일에 연다). 홈 피드 6번째 자리에 넣는다. 이 언어 문구가 없으면 null
+export async function weeklyPollView(locale: string): Promise<PollView | null> {
+  const poll = await prisma.poll.findFirst({ where: { kind: "weekly", status: "open" }, orderBy: { createdAt: "desc" } });
+  const labels = poll?.labels && typeof poll.labels === "object" ? (poll.labels as Record<string, unknown>) : null;
+  return pollView(poll, labels?.[locale]);
+}
+
 export async function pollResults(pollId: string): Promise<PollResults> {
   const [poll, groups] = await Promise.all([
     prisma.poll.findUnique({ where: { id: pollId }, select: { totals: true, total: true } }),
