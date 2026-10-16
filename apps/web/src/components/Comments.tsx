@@ -15,9 +15,11 @@ import { toast } from "@/components/ui/Toast";
 import type { PublicComment } from "@/lib/comments";
 import { storageGet, storageSet } from "@/lib/storage";
 import { timeAgo } from "@/lib/time";
+import { track } from "@/lib/track";
 
 const BODY_MAX = 1000; // lib/comments.ts 와 같게 (서버 모듈이라 값은 불러오지 않는다)
-const PAGE = 20;
+// 이보다 많으면 처음에는 3개만 보이고 '모두 보기'로 편다 (나머지도 DOM 에 두고 CSS 로만 숨긴다)
+const COLLAPSED = 3;
 const KEY_STORE = "hb:comment-key";
 const MINE_STORE = "hb:my-comments";
 const MINE_MAX = 200;
@@ -165,6 +167,7 @@ interface EditState {
 
 interface RowProps {
   comment: PublicComment;
+  hidden: boolean;
   locale: string;
   highlight: boolean;
   editing: EditState | null;
@@ -179,6 +182,7 @@ interface RowProps {
 
 function CommentRow({
   comment: c,
+  hidden,
   locale,
   highlight,
   editing,
@@ -197,6 +201,7 @@ function CommentRow({
   return (
     <li
       id={`comment-${c.id}`}
+      hidden={hidden}
       className={`grid grid-cols-[32px_1fr_44px] gap-x-3 border-t border-line py-4 ${
         highlight ? "animate-[highlight_1200ms_var(--ease-standard)]" : ""
       }`}
@@ -270,15 +275,19 @@ function CommentRow({
   );
 }
 
-// 로그인 없는 댓글. 입력창이 위, 최신 댓글부터. 오류는 토스트가 아니라 그 자리에 보여 준다
-export function Comments({ articleId }: { articleId: string }) {
+// 로그인 없는 댓글. 입력창이 위, 최신 댓글부터. 오류는 토스트가 아니라 그 자리에 보여 준다.
+// initialCount 는 글 페이지가 서버에서 센 수: 0 이면 큰 빈 상태 대신 '첫 댓글 남기기' 한 줄 버튼만 그린다 (불러온 뒤 자리가 바뀌지 않게)
+export function Comments({ articleId, initialCount }: { articleId: string; initialCount?: number }) {
   const t = useTranslations("Comments");
+  const tEngage = useTranslations("Engage");
   const tNav = useTranslations("Nav");
   const locale = useLocale() as Locale;
 
   const [comments, setComments] = useState<PublicComment[] | null>(null);
-  const [total, setTotal] = useState(0);
-  const [shown, setShown] = useState(PAGE);
+  const [total, setTotal] = useState(initialCount ?? 0);
+  const [showAll, setShowAll] = useState(false);
+  const [composerOpen, setComposerOpen] = useState(initialCount !== 0);
+  const [focusComposer, setFocusComposer] = useState(false);
   const [highlight, setHighlight] = useState<string | null>(null);
 
   // 입력창
@@ -319,6 +328,11 @@ export function Comments({ articleId }: { articleId: string }) {
       alive = false;
     };
   }, [articleId]);
+
+  // '첫 댓글 남기기'를 누르면 펼친 입력창에 바로 초점
+  useEffect(() => {
+    if (focusComposer) fieldRef.current?.focus();
+  }, [focusComposer]);
 
   // 방금 쓴 댓글이 화면 밖이면 보이는 데까지만 움직인다
   useEffect(() => {
@@ -375,13 +389,12 @@ export function Comments({ articleId }: { articleId: string }) {
       const comment = data.comment as PublicComment;
       setComments((list) => [comment, ...(list ?? [])]);
       setTotal((n) => n + 1);
-      // 맨 위에 하나 붙어도 지금 보이던 마지막 댓글은 그대로 보이게
-      setShown((n) => n + 1);
       setBody("");
       if (fieldRef.current) fieldRef.current.style.height = "";
       writeMine([...readMine(), comment.id]);
       setHighlight(comment.id);
       toast(t("postedToast"));
+      track("comment_submit");
     } catch {
       // 연결이 끊긴 경우: 다시 보내기로 바로 고칠 수 있다
       setError({ text: t("error"), retryable: true });
@@ -495,14 +508,31 @@ export function Comments({ articleId }: { articleId: string }) {
 
   const count = Math.max(total, comments?.length ?? 0);
   const message = hasLink ? null : error;
+  // 그사이 다른 사람이 댓글을 남겼으면(서버 수 0 → 불러온 목록 1개 이상) 입력창을 그대로 보인다
+  const showComposer = composerOpen || (comments?.length ?? 0) > 0;
+  const collapsed = !showAll && (comments?.length ?? 0) > COLLAPSED;
 
   return (
     <section id="comments" aria-labelledby="comments-title" className="scroll-mt-20">
       <SectionHeader id="comments-title" inset="read" title={t("title")} count={count} />
 
       <div className="px-read">
+        {!showComposer && (
+          <Button
+            size="l"
+            variant="weak"
+            block
+            onClick={() => {
+              setComposerOpen(true);
+              setFocusComposer(true);
+            }}
+          >
+            {tEngage("firstComment")}
+          </Button>
+        )}
         <form
           ref={formRef}
+          hidden={!showComposer}
           onSubmit={onSubmit}
           onFocus={() => {
             setFocused(true);
@@ -584,7 +614,8 @@ export function Comments({ articleId }: { articleId: string }) {
           )}
         </form>
 
-        {comments?.length !== 0 && (
+        {/* 서버 수가 0 이면 불러오는 동안에도 빈 줄(스켈레톤)을 그리지 않는다 */}
+        {comments?.length !== 0 && (comments !== null || initialCount !== 0) && (
           <ul className="mt-4" aria-busy={comments === null || undefined}>
             {comments === null ? (
               <>
@@ -592,9 +623,10 @@ export function Comments({ articleId }: { articleId: string }) {
                 <SkeletonRow />
               </>
             ) : (
-              comments.slice(0, shown).map((c) => (
+              comments.map((c, i) => (
                 <CommentRow
                   key={c.id}
+                  hidden={collapsed && i >= COLLAPSED}
                   comment={c}
                   locale={locale}
                   highlight={c.id === highlight}
@@ -612,19 +644,9 @@ export function Comments({ articleId }: { articleId: string }) {
           </ul>
         )}
 
-        {comments?.length === 0 && (
-          <button
-            type="button"
-            onClick={() => fieldRef.current?.focus()}
-            className="block w-full py-8 text-center text-t6 text-ink-600"
-          >
-            {t("empty")}
-          </button>
-        )}
-
-        {comments && comments.length > shown && (
-          <Button size="l" variant="neutral" block className="mt-2" onClick={() => setShown((n) => n + PAGE)}>
-            {t("showMoreComments")}
+        {collapsed && (
+          <Button size="l" variant="neutral" block className="mt-2" onClick={() => setShowAll(true)}>
+            {tEngage("allComments", { count })}
           </Button>
         )}
       </div>

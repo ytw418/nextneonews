@@ -8,9 +8,17 @@ import ReactMarkdown from "react-markdown";
 import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
 import { ArticleThumb } from "@/components/ArticleThumb";
+import { ArticleActionBar } from "@/components/article/ArticleActionBar";
+import { NetizenCard } from "@/components/article/NetizenCard";
+import { type CurrentArticle, NextArticleLoader } from "@/components/article/NextArticleLoader";
+import { PollCard } from "@/components/article/PollCard";
+import { ReactionBar } from "@/components/article/ReactionBar";
+import { ReadingProgress } from "@/components/article/ReadingProgress";
 import { RelatedEventCard } from "@/components/article/RelatedEventCard";
+import { UpNextCard } from "@/components/article/UpNextCard";
 import { Comments } from "@/components/Comments";
-import { ChevronDownIcon } from "@/components/icons";
+import { FeedCard } from "@/components/FeedCard";
+import { ChevronDownIcon, ChevronRightIcon, ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
 import { PhotoCredit } from "@/components/PhotoCredit";
@@ -18,12 +26,14 @@ import { Phrase } from "@/components/Phrase";
 import { RANKED_MIN, RankedArticles, THUMB_LARGE_TEXT } from "@/components/RankedArticles";
 import { ShareButton } from "@/components/ShareButton";
 import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
 import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
-import { entityNames, findTranslatedLocale, getArticle, listPopular, listRelated } from "@/lib/articles";
+import { entityNames, findTranslatedLocale, getArticle, listLatest, listPopular, listRelated } from "@/lib/articles";
 import { coverStyle } from "@/lib/cover";
+import { commentCount, netizenView, nextCandidates, pollView, readReactions } from "@/lib/engagement";
 import { toFeedItems } from "@/lib/feed";
 import { publisherName } from "@/lib/publishers";
 import { articleJsonLd } from "@/lib/jsonld";
@@ -104,19 +114,48 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
     notFound();
   }
   const { article } = translation;
-  const [t, tCat, relatedRows, popularRows] = await Promise.all([
+  const [t, tCat, tEngage, relatedRows, popularRows, latestRows, comments] = await Promise.all([
     getTranslations("Article"),
     getTranslations("Category"),
-    listRelated(locale, article, 4),
+    getTranslations("Engage"),
+    listRelated(locale, article, 7),
     listPopular(locale, 12),
+    listLatest(locale, 24),
+    commentCount(article.id),
   ]);
-  // 이번 주 인기 글에서는 이 글과 '함께 읽기'에 이미 나온 글을 뺀다
-  const shown = new Set([slug, ...relatedRows.map((r) => r.slug)]);
-  const [related, popularItems] = await Promise.all([
-    toFeedItems(relatedRows, locale),
-    toFeedItems(popularRows.filter((r) => !shown.has(r.slug)).slice(0, 5), locale),
+  // 다음 글 후보 (같은 인물 → 가이드 → 같은 카테고리 → 이번 주 인기). 첫 번째가 'Up next' 카드, 나머지는 끝에 이어 붙인다
+  const nextRows = await nextCandidates(locale, translation, popularRows);
+  const upNextRow = nextRows[0];
+  // 함께 읽기는 'Up next' 와 겹치지 않게, 이번 주 인기 글에서는 이 글과 '함께 읽기'에 이미 나온 글을 뺀다
+  const relatedPicked = relatedRows.filter((r) => r.slug !== upNextRow?.slug).slice(0, 6);
+  const shown = new Set([slug, ...relatedPicked.map((r) => r.slug)]);
+  const popularPicked = popularRows.filter((r) => !shown.has(r.slug)).slice(0, 5);
+  // 맨 끝 '더 많은 이야기': 위에 나온 글과 이어 붙일 후보를 뺀 최신 글 6개
+  const seen = new Set([...shown, ...popularPicked.map((r) => r.slug), ...nextRows.map((r) => r.slug)]);
+  const [related, popularItems, upNextItems, more] = await Promise.all([
+    toFeedItems(relatedPicked, locale),
+    toFeedItems(popularPicked, locale),
+    toFeedItems(upNextRow ? [upNextRow] : [], locale),
+    toFeedItems(latestRows.filter((r) => !seen.has(r.slug)).slice(0, 6), locale),
   ]);
   const popular = popularItems.length >= RANKED_MIN ? popularItems : [];
+  const upNext = upNextItems[0];
+
+  // 참여 모듈: 투표는 열려 있고 이 언어 문구가 있을 때만, 커뮤니티 반응은 숫자와 요약이 둘 다 있을 때만
+  const poll = pollView(article.poll, translation.poll);
+  const netizen = netizenView(article.netizen, translation.netizen);
+  const reactions = readReactions(article.reactions);
+  const current: CurrentArticle = {
+    id: article.id,
+    slug,
+    title: translation.title,
+    url: articlePath(locale, slug),
+    commentCount: comments,
+    reactions,
+  };
+  // 공식·뉴스 출처와 커뮤니티(반응) 출처를 나눈다. 커뮤니티 링크는 nofollow
+  const newsSources = article.sources.filter((s) => s.kind !== "COMMUNITY");
+  const communitySources = article.sources.filter((s) => s.kind === "COMMUNITY");
 
   const keyPoints = asArray<string>(translation.keyPoints);
   // 본문 소제목을 되풀이하는 질문은 화면과 JSON-LD 둘 다에서 뺀다
@@ -145,8 +184,10 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         title={translation.title}
         action={<ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />}
       />
+      <ReadingProgress />
 
-      <article>
+      {/* 읽기 단위(진행 막대·주소 바꾸기의 기준): 히어로부터 AI 고지까지. 'Up next'·댓글·함께 읽기는 글 밖에 둔다 */}
+      <article data-article-block={article.id} data-slug={slug} data-url={current.url} data-title={translation.title}>
         <JsonLd
           data={articleJsonLd({
             url,
@@ -216,7 +257,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           />
         </p>
 
-        <p className="mt-3 px-read text-t5 font-medium text-ink-900">{translation.summary}</p>
+        {/* article-summary 는 JSON-LD speakable 선택자 (#kp 와 함께) */}
+        <p className="article-summary mt-3 px-read text-t5 font-medium text-ink-900">{translation.summary}</p>
 
         {event && isLocale(locale) && <RelatedEventCard e={event} locale={locale} />}
 
@@ -244,6 +286,11 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           <ReactMarkdown>{translation.body}</ReactMarkdown>
         </div>
 
+        {/* 본문 바로 뒤 참여 모듈: 국내 반응 → 독자 투표 → 반응 버튼. 모두 서버 HTML 에 글자로 들어간다 */}
+        {netizen && <NetizenCard netizen={netizen} />}
+        {poll && <PollCard poll={poll} locale={locale} anchorId="poll" articleId={article.id} shareUrl={current.url} />}
+        <ReactionBar articleId={article.id} reactions={reactions} anchorId="reactions" commentHref="#comments" />
+
         {faq.length > 0 && (
           <section className="mt-10">
             <SectionHeader inset="read" title={t("faq")} />
@@ -264,11 +311,11 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           </section>
         )}
 
-        {article.sources.length > 0 && (
+        {newsSources.length > 0 && (
           <section className="mt-10">
             <SectionHeader inset="read" title={t("sources")} />
             <ul>
-              {article.sources.map((source) => (
+              {newsSources.map((source) => (
                 <ListRow
                   key={source.id}
                   external
@@ -278,6 +325,36 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                   title={publisherName(source.publisher, locale)}
                   sub={hostname(source.url)}
                 />
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* 커뮤니티 글은 반응을 요약한 출처라 따로 두고, 링크에 nofollow 를 단다 (ListRow 는 rel 을 고정해서 직접 그린다) */}
+        {communitySources.length > 0 && (
+          <section className="mt-6">
+            <SectionHeader inset="read" title={tEngage("reactionSources")} />
+            <ul>
+              {communitySources.map((source) => (
+                <li
+                  key={source.id}
+                  className="relative [--row-inset:var(--spacing-read)] after:absolute after:right-0 after:bottom-0 after:left-[var(--row-inset)] after:h-px after:bg-line last:after:hidden"
+                >
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="nofollow noopener"
+                    className="press-row flex min-h-14 items-center gap-x-4 px-[var(--row-inset)] py-3"
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-t5 leading-row font-medium text-ink-900">
+                        {publisherName(source.publisher, locale)}
+                      </span>
+                      <span className="mt-0.5 block text-t6 text-ink-600">{hostname(source.url)}</span>
+                    </span>
+                    <ExternalIcon className="size-4 shrink-0 text-ink-400" />
+                  </a>
+                </li>
               ))}
             </ul>
           </section>
@@ -295,50 +372,80 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         )}
 
         <AdSlot label={t("ad")} />
-
-        <div aria-hidden className="mt-10 h-4 bg-band" />
-        <Comments articleId={article.id} />
-        <ViewPing articleId={article.id} />
-
-        {/* 글 끝: 함께 읽기(같은 인물·카테고리) → 이번 주 인기 글. 섹션 제목은 같은 모양 하나 */}
-        {(related.length > 0 || popular.length > 0) && (
-          <>
-            <div aria-hidden className="mt-10 h-4 bg-band" />
-            {related.length > 0 && (
-              // 썸네일 크기·큰 글자 규칙은 아래 '이번 주 인기 글'과 같게
-              <section aria-labelledby="related" className="@container">
-                <SectionHeader id="related" inset="read" title={t("related")} />
-                <ul>
-                  {related.map((item) => (
-                    <ListRow
-                      key={item.slug}
-                      href={`/news/${item.slug}`}
-                      inset="read"
-                      titleWeight="semibold"
-                      left={
-                        <span className={`block ${THUMB_LARGE_TEXT}`}>
-                          <ArticleThumb item={item} size={48} />
-                        </span>
-                      }
-                      title={
-                        <span className="line-clamp-3">
-                          <Phrase text={item.title} locale={locale} />
-                        </span>
-                      }
-                      sub={
-                        <span className="text-t7">
-                          <Meta parts={[item.categoryLabel, item.timeAgo]} />
-                        </span>
-                      }
-                    />
-                  ))}
-                </ul>
-              </section>
-            )}
-            <RankedArticles id="popular" title={t("popular")} items={popular} locale={locale} inset="read" />
-          </>
-        )}
       </article>
+
+      {upNext && <UpNextCard item={upNext} title={tEngage("upNext")} />}
+
+      <div aria-hidden className="mt-10 h-4 bg-band" />
+      <Comments articleId={article.id} initialCount={comments} />
+      <ViewPing articleId={article.id} slug={slug} />
+
+      {/* 글 끝: 함께 읽기(같은 인물·카테고리) → 이번 주 인기 글. 섹션 제목은 같은 모양 하나 */}
+      {(related.length > 0 || popular.length > 0) && (
+        <>
+          <div aria-hidden className="mt-10 h-4 bg-band" />
+          {related.length > 0 && (
+            // 썸네일 크기·큰 글자 규칙은 아래 '이번 주 인기 글'과 같게
+            <section aria-labelledby="related" className="@container">
+              <SectionHeader id="related" inset="read" title={t("related")} />
+              <ul>
+                {related.map((item) => (
+                  <ListRow
+                    key={item.slug}
+                    href={`/news/${item.slug}`}
+                    inset="read"
+                    titleWeight="semibold"
+                    left={
+                      <span className={`block ${THUMB_LARGE_TEXT}`}>
+                        <ArticleThumb item={item} size={48} />
+                      </span>
+                    }
+                    title={
+                      <span className="line-clamp-3">
+                        <Phrase text={item.title} locale={locale} />
+                      </span>
+                    }
+                    sub={
+                      <span className="text-t7">
+                        <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                      </span>
+                    }
+                  />
+                ))}
+              </ul>
+            </section>
+          )}
+          <RankedArticles id="popular" title={t("popular")} items={popular} locale={locale} inset="read" />
+        </>
+      )}
+
+      {/* 끝에 가까워지면 다음 글을 3편까지 이어 붙인다 (본문은 HTML 에 넣지 않는다. 크롤러는 위 'Up next' 링크로 간다).
+          이어 붙이기가 끝난 자리(또는 꺼졌을 때)에 최신 글 6개 + 2쪽 링크. 서버 HTML 에는 늘 들어 있다 */}
+      <NextArticleLoader locale={locale} current={current} candidates={nextRows.map((r) => r.slug)}>
+        {more.length > 0 && (
+          <section id="more-stories" aria-labelledby="more-stories-title" className="scroll-mt-20">
+            <div aria-hidden className="mt-10 h-4 bg-band" />
+            <SectionHeader id="more-stories-title" title={tEngage("moreStories")} />
+            <div className="grid grid-cols-2 items-start gap-3 px-gutter">
+              {more.map((item) => (
+                <FeedCard key={item.slug} item={item} />
+              ))}
+            </div>
+            <div className="mt-6 px-gutter">
+              <Button href="/news/page/2" variant="neutral" size="l" block>
+                {tEngage("moreStoriesLink")}
+                <ChevronRightIcon className="size-4" />
+              </Button>
+            </div>
+          </section>
+        )}
+      </NextArticleLoader>
+
+      <ArticleActionBar
+        locale={locale}
+        article={current}
+        upNextHref={upNext ? articlePath(locale, upNext.slug) : undefined}
+      />
     </>
   );
 }
