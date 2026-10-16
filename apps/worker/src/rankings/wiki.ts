@@ -1,14 +1,14 @@
 import { CHARTS, type ChartKey, kstDay, WIKI_LANGS, type WikiLang } from "@kmedia/core";
 import { Prisma, prisma } from "@kmedia/db";
 
+import { USER_AGENT } from "../collectors/http";
 import { assertRobotsAllowed } from "../collectors/robots";
 import { log } from "../log";
 import { addDays, chartCandidates, chunk, dayDate, KR_SIGNAL_SOURCES, refreshKrMetrics } from "./metrics";
 
 // 세계 관심 재료: 위키백과 언어별 하루 조회 수 (Wikimedia Analytics API, CC0) → EntityMetric('wiki:{lang}')
-// 위키미디어는 연락 가능한 User-Agent 를 요구한다
+// 위키미디어는 연락 가능한 User-Agent 를 요구한다 — 수집기와 같은 봇 이름(collectors/http.ts)을 쓴다
 // https://doc.wikimedia.org/generated-data-platform/aqs/analytics-api/documentation/access-policy.html
-const userAgent = () => `HallyuBriefBot/1.0 (+${process.env.SITE_URL || "https://hallyu-brief.vercel.app"}/en/about#bot)`;
 
 const WIKIDATA_API = "https://www.wikidata.org/w/api.php";
 const PAGEVIEWS = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article";
@@ -42,7 +42,7 @@ async function wikiFetch(url: string): Promise<Response | null> {
   for (let attempt = 0; attempt < 3; attempt += 1) {
     await paced();
     const res = await fetch(url, {
-      headers: { "user-agent": userAgent(), accept: "application/json" },
+      headers: { "user-agent": USER_AGENT, accept: "application/json" },
       signal: AbortSignal.timeout(20_000),
     }).catch(() => null);
     if (!res || res.status !== 429) return res;
@@ -199,7 +199,7 @@ export async function syncWiki({ backfill }: { backfill: boolean }): Promise<voi
       const job = jobs[next++]!;
       const article = encodeURIComponent(job.title.replaceAll(" ", "_"));
       const url = `${PAGEVIEWS}/${job.lang}.wikipedia.org/all-access/user/${article}/daily/${ymd(job.start)}/${ymd(end)}`;
-      await assertRobotsAllowed(url, userAgent());
+      await assertRobotsAllowed(url, USER_AGENT);
       const res = await wikiFetch(url);
       done += 1;
       // 404 = 그 기간 조회 기록이 없다 (새 문서·조회 0). 건너뛴다
