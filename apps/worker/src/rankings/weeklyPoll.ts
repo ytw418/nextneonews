@@ -2,6 +2,7 @@ import * as OpenCC from "opencc-js";
 
 import {
   CHARTS,
+  NOT_ARTISTS,
   isoWeekKey,
   kstDay,
   type Locale,
@@ -86,7 +87,7 @@ async function comebackArtists(days: string[]): Promise<Entity[]> {
       orderBy: [{ sitelinks: "desc" }, { id: "asc" }],
     });
     const pick = exact ?? (await findEntities(act)).find((e) => KPOP_TYPES.includes(e.type));
-    if (pick && !found.some((f) => f.id === pick.id)) found.push(pick);
+    if (pick && !NOT_ARTISTS.includes(pick.id) && !found.some((f) => f.id === pick.id)) found.push(pick);
   }
   return found;
 }

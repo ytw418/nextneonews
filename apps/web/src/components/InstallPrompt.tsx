@@ -153,10 +153,10 @@ export function InstallPrompt() {
     <div className="pointer-events-none fixed inset-x-gutter bottom-[calc(var(--bottom-ui)+12px)] z-40 mx-auto max-w-[400px]">
       <aside
         aria-labelledby="install-title"
-        className="pointer-events-auto flex items-start gap-3 rounded-card bg-floating py-3 pr-1 pl-3 shadow-float ring-1 ring-line animate-toast-in"
+        className="pointer-events-auto flex items-center gap-3 rounded-card bg-floating py-2 pr-1 pl-3 shadow-float ring-1 ring-line animate-toast-in"
       >
         {/* 홈 화면에 생길 아이콘 그대로 (apple-icon 과 같은 모양) */}
-        <span aria-hidden className="mt-1 grid size-11 shrink-0 place-items-center rounded-btn bg-bg ring-1 ring-line">
+        <span aria-hidden className="grid size-9 shrink-0 place-items-center rounded-btn-m bg-bg ring-1 ring-line">
           <span className="wordmark">
             H<span className="wordmark-dot">.</span>
           </span>
@@ -173,23 +173,16 @@ export function InstallPrompt() {
               </Button>
             </>
           ) : (
-            <>
-              <p className="mt-0.5 text-t7 text-ink-600">{t("iosSteps")}</p>
-              {/* 같은 순서를 사파리 아이콘으로 (문장이 이미 읽히므로 화면 낭독기는 건너뛴다) */}
-              <ol aria-hidden className="mt-2.5 space-y-1.5">
-                {steps.map((step, i) => (
-                  <li key={i} className="flex items-center gap-2 text-t7 font-semibold text-ink-700">
-                    <span className="grid min-h-5 min-w-5 shrink-0 place-items-center rounded-full bg-fill-weak text-st12 font-bold tabular-nums text-ink-600">
-                      {i + 1}
-                    </span>
-                    <span className="inline-flex min-h-7 items-center gap-1 rounded-badge bg-fill-weak px-2">
-                      {step.icon}
-                      {step.label}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </>
+            // 한 줄로: 본문을 가리지 않게 (예전 세로 단계 카드는 화면의 1/3을 덮었다)
+            <p className="mt-0.5 flex flex-wrap items-center gap-1 text-t7 text-ink-600">
+              {steps.map((step, i) => (
+                <span key={i} className="inline-flex items-center gap-1">
+                  {i > 0 && <span aria-hidden>→</span>}
+                  {step.icon}
+                  {step.label && <span className="font-semibold text-ink-700">{step.label}</span>}
+                </span>
+              ))}
+            </p>
           )}
         </div>
         <IconButton label={tNav("close")} iconSize={5} onClick={dismiss}>

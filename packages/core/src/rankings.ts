@@ -9,6 +9,9 @@ export const CHARTS = {
   kdrama: { types: ["series"] },
 } as const satisfies Record<string, { types: readonly string[] }>;
 
+// 위키데이터 직업에 '가수'가 있어도 지금은 기획사 경영인이라 차트·투표에서 뺀다 (이수만·방시혁·양현석)
+export const NOT_ARTISTS: readonly string[] = ["Q484165", "Q16082706", "Q490938"];
+
 export type ChartKey = keyof typeof CHARTS;
 // fan-pick 은 주간 팬 투표 결과라 Entity.type 으로 거르지 않는다
 export type ChartId = ChartKey | "fan-pick";

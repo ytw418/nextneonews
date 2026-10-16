@@ -1,4 +1,4 @@
-import { CHARTS, type ChartKey } from "@kmedia/core";
+import { CHARTS, type ChartKey, NOT_ARTISTS } from "@kmedia/core";
 import { type Entity, Prisma, prisma } from "@kmedia/db";
 
 import { findEntities } from "../entities/match";
@@ -116,7 +116,7 @@ export function chunk<T>(items: T[], size: number): T[][] {
 export async function chartCandidates(chart: ChartKey, day: string): Promise<Entity[]> {
   const types = [...CHARTS[chart].types];
   const top = await prisma.entity.findMany({
-    where: { type: { in: types } },
+    where: { type: { in: types }, id: { notIn: [...NOT_ARTISTS] } },
     orderBy: [{ sitelinks: "desc" }, { id: "asc" }],
     take: SITELINK_CANDIDATES,
   });
@@ -125,7 +125,7 @@ export async function chartCandidates(chart: ChartKey, day: string): Promise<Ent
     distinct: ["entityId"],
     select: { entityId: true },
   });
-  const known = new Set(top.map((e) => e.id));
+  const known = new Set([...top.map((e) => e.id), ...NOT_ARTISTS]);
   const extra = await prisma.entity.findMany({
     where: { id: { in: recent.map((r) => r.entityId).filter((id) => !known.has(id)) }, type: { in: types } },
     orderBy: { id: "asc" },
