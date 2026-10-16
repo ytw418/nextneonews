@@ -51,7 +51,8 @@ export function NextArticleLoader({ locale, current, candidates, children }: Pro
     itemsRef.current = items;
   }, [items]);
 
-  // 끝에서 600px 전에 미리 받는다. 붙인 뒤에도 센티넬이 보이면(짧은 글) 관찰을 새로 걸어 바로 다음 글을 받는다
+  // 끝에서 600px 전에 미리 받는다. 붙인 뒤에도 센티넬이 보이면(짧은 글) 관찰을 새로 걸어 바로 다음 글을 받는다.
+  // 위쪽 여백도 크게 둔다: 맨 아래(푸터)까지 한 번에 가면(End 키·스크롤 막대) 센티넬이 화면을 거치지 않고 위로 지나가 아무것도 붙지 않았다
   useEffect(() => {
     if (!ENABLED || done || loading || items.length >= MAX_APPENDED) return;
     const el = sentinel.current;
@@ -87,7 +88,7 @@ export function NextArticleLoader({ locale, current, candidates, children }: Pro
         observer.disconnect();
         void loadNext();
       },
-      { rootMargin: "0px 0px 600px 0px" },
+      { rootMargin: "2000px 0px 600px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();

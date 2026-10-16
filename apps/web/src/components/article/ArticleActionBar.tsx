@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRightIcon, CommentIcon, LinkIcon } from "@/components/article/icons";
 import { CURRENT_EVENT, type CurrentArticle } from "@/components/article/NextArticleLoader";
 import { REACTION_EVENT } from "@/components/article/ReactionBar";
+import { COMMENT_COUNT_EVENT } from "@/components/Comments";
 import { HeartIcon, ShareIcon } from "@/components/icons";
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { toast } from "@/components/ui/Toast";
@@ -68,20 +69,35 @@ export function ArticleActionBar({ locale, article: initial, upNextHref }: Props
     };
   }, []);
 
-  // 지금 읽는 글이 바뀌면 대상을 바꾸고, 반응을 누르면 숫자를 따라 올린다
+  // 이 화면에서 바뀐 글별 숫자: 누른 반응 수(서버 수에 더한다)와 댓글 목록이 센 지금 댓글 수.
+  // 다음 글로 갔다가 돌아와도 서버 HTML 의 숫자로 되돌아가지 않게 글 id 로 들고 있는다
+  const reactionDelta = useRef(new Map<string, number>());
+  const liveComments = useRef(new Map<string, number>());
+
+  // 지금 읽는 글이 바뀌면 대상을 바꾸고, 반응을 누르거나 댓글 수가 바뀌면 숫자를 따라간다
   useEffect(() => {
     const onCurrent = (event: Event) => {
       const next = (event as CustomEvent<CurrentArticle>).detail;
-      setArticle(next);
-      setReactionCount(total(next.reactions));
+      setArticle({ ...next, commentCount: liveComments.current.get(next.id) ?? next.commentCount });
+      setReactionCount(total(next.reactions) + (reactionDelta.current.get(next.id) ?? 0));
+    };
+    const onComments = (event: Event) => {
+      const { articleId, count } = (event as CustomEvent<{ articleId: string; count: number }>).detail;
+      liveComments.current.set(articleId, count);
+      setArticle((a) => (a.id === articleId ? { ...a, commentCount: count } : a));
     };
     window.addEventListener(CURRENT_EVENT, onCurrent);
-    return () => window.removeEventListener(CURRENT_EVENT, onCurrent);
+    window.addEventListener(COMMENT_COUNT_EVENT, onComments);
+    return () => {
+      window.removeEventListener(CURRENT_EVENT, onCurrent);
+      window.removeEventListener(COMMENT_COUNT_EVENT, onComments);
+    };
   }, []);
 
   useEffect(() => {
     const onReaction = (event: Event) => {
       const { articleId, delta } = (event as CustomEvent<{ articleId: string; delta: number }>).detail;
+      reactionDelta.current.set(articleId, (reactionDelta.current.get(articleId) ?? 0) + delta);
       if (articleId === article.id) setReactionCount((n) => Math.max(0, n + delta));
     };
     window.addEventListener(REACTION_EVENT, onReaction);

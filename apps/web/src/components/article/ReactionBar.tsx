@@ -66,8 +66,12 @@ export function ReactionBar({ articleId, reactions, anchorId, commentHref }: Pro
         body: JSON.stringify({ type }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      const data = (await res.json()) as { reactions?: Reactions };
+      const data = (await res.json()) as { counted?: boolean; reactions?: Reactions };
       if (data.reactions) setCounts(data.reactions);
+      // 이 기기가 전에 누른 적이 있어 세지 않았으면(저장소를 지운 경우) 하단 바에 더한 1을 되돌린다
+      if (data.counted === false) {
+        window.dispatchEvent(new CustomEvent(REACTION_EVENT, { detail: { articleId, delta: -1 } }));
+      }
     } catch {
       // 못 보냈으면 누르기 전으로 되돌린다
       setMine((list) => list.filter((x) => x !== type));

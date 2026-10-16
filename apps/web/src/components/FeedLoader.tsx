@@ -78,8 +78,9 @@ export function FeedLoader({ left, right, end, slugs, showCategory, paging }: Pr
           // 실패하면 더 받지 않는다. 아래 쪽 링크로 넘어갈 수 있다
           .catch(() => setStatus("stopped"));
       },
-      // 화면 끝보다 한참 먼저 받아서, 보고 있는 동안 쪽 링크가 밀려 내려가지 않게
-      { rootMargin: "0px 0px 1200px 0px" },
+      // 화면 끝보다 한참 먼저 받아서, 보고 있는 동안 쪽 링크가 밀려 내려가지 않게.
+      // 위쪽도 넓게: 끝(End 키·스크롤 막대·맨 아래로 튕김)으로 한 번에 가면 센티넬이 화면을 거치지 않고 위로 지나가 다음 쪽이 안 붙었다
+      { rootMargin: "2000px 0px 1200px 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();

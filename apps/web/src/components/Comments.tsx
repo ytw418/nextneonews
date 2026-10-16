@@ -20,6 +20,8 @@ import { track } from "@/lib/track";
 const BODY_MAX = 1000; // lib/comments.ts 와 같게 (서버 모듈이라 값은 불러오지 않는다)
 // 이보다 많으면 처음에는 3개만 보이고 '모두 보기'로 편다 (나머지도 DOM 에 두고 CSS 로만 숨긴다)
 const COLLAPSED = 3;
+// 하단 바(ArticleActionBar)가 댓글 수를 지금 수로 맞추도록 알린다 (서버 HTML 의 수는 몇 분 묵었을 수 있다)
+export const COMMENT_COUNT_EVENT = "hb:comment-count";
 const KEY_STORE = "hb:comment-key";
 const MINE_STORE = "hb:my-comments";
 const MINE_MAX = 200;
@@ -507,6 +509,10 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
   };
 
   const count = Math.max(total, comments?.length ?? 0);
+  const loaded = comments !== null;
+  useEffect(() => {
+    if (loaded) window.dispatchEvent(new CustomEvent(COMMENT_COUNT_EVENT, { detail: { articleId, count } }));
+  }, [articleId, count, loaded]);
   const message = hasLink ? null : error;
   // 그사이 다른 사람이 댓글을 남겼으면(서버 수 0 → 불러온 목록 1개 이상) 입력창을 그대로 보인다
   const showComposer = composerOpen || (comments?.length ?? 0) > 0;
