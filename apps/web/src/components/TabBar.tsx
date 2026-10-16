@@ -22,7 +22,12 @@ export function TabBar() {
 
   // 일정 상세는 하단 고정 CTA 가, 글 화면은 글 액션 바(ArticleActionBar)가 이 자리를 쓴다
   if (/^\/schedule\/[^/]+/.test(pathname) || /^\/news\/[^/]+$/.test(pathname)) return null;
-  const selected = pathname.startsWith("/schedule") ? "/schedule" : pathname.startsWith("/rankings") ? "/rankings" : "/";
+  // 인물 페이지는 랭킹에서 들어가는 화면이라 랭킹 탭에 불을 켠다
+  const selected = pathname.startsWith("/schedule")
+    ? "/schedule"
+    : pathname.startsWith("/rankings") || pathname.startsWith("/idol/")
+      ? "/rankings"
+      : "/";
 
   return (
     <nav

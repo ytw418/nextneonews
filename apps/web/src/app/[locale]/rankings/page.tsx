@@ -13,7 +13,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Link } from "@/i18n/navigation";
 import { hubJsonLd } from "@/lib/jsonld-rankings";
 import { CHART_IDS, CHART_KEY, displayName, getEntities, getLatestSnapshot, periodLabel } from "@/lib/rankings";
-import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
+import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/rankings
     description: t("hub.metaDescription"),
     alternates,
     // 첫 차트가 나오기 전(빈 화면)에는 색인하지 않는다
-    robots: charts.length > 0 ? undefined : { index: false },
+    robots: pageRobots(charts.length > 0),
     openGraph: {
       ...ogBase(locale),
       type: "website",

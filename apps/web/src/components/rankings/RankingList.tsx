@@ -65,9 +65,10 @@ export async function RankingList({ chart, locale, items, entities, history, che
             const event = live ? nextEventFor(item.names) : undefined;
             const facts = [
               (posts || views) &&
-                t("theqoo", { posts: compact.format(posts ?? 0), views: compact.format(views ?? 0) }),
+                // 글·언급 수는 작은 정수라 숫자 그대로 넘겨 복수형('1 post')을 고른다
+                t("theqoo", { posts: Math.round(posts ?? 0), views: compact.format(views ?? 0) }),
               trends && t("trends", { value: compact.format(trends) }),
-              yonhap && t("yonhap", { count: compact.format(yonhap) }),
+              yonhap && t("yonhap", { count: Math.round(yonhap) }),
               wiki.length > 0 &&
                 `${t("wiki")}: ${wiki.map((w) => `${languages.of(w.lang) ?? w.lang} ${compact.format(w.views)}`).join(" · ")}`,
               votes && t("votes", { count: compact.format(votes) }),

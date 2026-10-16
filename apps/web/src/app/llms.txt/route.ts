@@ -17,12 +17,12 @@ import { articlePath, feedPath, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 
-// AI 가 읽는 안내라 영어로만 쓴다. 차트 화면 이름은 Rankings 문구와 같은 뜻으로
+// AI 가 읽는 안내라 영어로만 쓴다. 차트 이름은 화면(messages/ns/Rankings/en.json chart.*.title)과 글자까지 같게 (다른 이름이면 다른 차트로 읽힌다)
 const CHART_NAME: Record<string, string> = {
   kpop: "K-pop Buzz Chart",
-  actors: "Korean Actor Buzz Chart",
+  actors: "Korean Actors Buzz Chart",
   kdrama: "K-drama Buzz Chart",
-  "fan-pick": "Weekly Fan Pick",
+  "fan-pick": "Fan Pick of the Week",
 };
 const WEEK_PERIOD = /^[0-9]{4}-w[0-9]{2}$/;
 

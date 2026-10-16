@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { countByCategory, listByCategory } from "@/lib/articles";
 import { categoryTint } from "@/lib/cover";
 import { FIRST_PAGE_SIZE, pageCount, toFeedItems } from "@/lib/feed";
-import { articlePath, localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
+import { articlePath, localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
 export const revalidate = 300;
 
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/c/[categ
     description,
     alternates,
     // 글이 하나도 없는 카테고리는 빈 화면이라 색인하지 않는다 (링크는 따라간다)
-    robots: count === 0 ? { index: false, follow: true } : undefined,
+    robots: pageRobots(count > 0),
     openGraph: {
       ...ogBase(locale),
       type: "website",

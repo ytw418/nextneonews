@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
+import { PollCard } from "@/components/article/PollCard";
 import { AppHeader } from "@/components/AppHeader";
 import { EmptyMemo } from "@/components/EmptyMemo";
 import { ChevronRightIcon } from "@/components/icons";
@@ -15,6 +16,7 @@ import { RankingList } from "@/components/rankings/RankingList";
 import { RankingMiniCard } from "@/components/rankings/RankingMiniCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Link } from "@/i18n/navigation";
+import { weeklyPollView } from "@/lib/engagement";
 import type { EntityPhoto } from "@/lib/entity-image";
 import { chartJsonLd } from "@/lib/jsonld-rankings";
 import {
@@ -35,7 +37,7 @@ import {
   type Snapshot,
   todayCheers,
 } from "@/lib/rankings";
-import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
+import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
 // 'Rankings' 네임스페이스 번역 함수 (lib/schedule.ts 의 Translate 와 같은 모양)
 type T = (key: string, values?: Record<string, string | number>) => string;
@@ -71,7 +73,7 @@ export async function chartMetadata(locale: string, chart: ChartId, snapshot: Sn
     title,
     description,
     alternates,
-    robots: snapshot?.items.length ? undefined : { index: false },
+    robots: pageRobots(!!snapshot?.items.length),
     openGraph: {
       ...ogBase(locale),
       type: "website",
@@ -91,13 +93,18 @@ interface Props {
   archive?: boolean; // 주간 고정본 (/rankings/{chart}/{YYYY-Www})
 }
 
-// 차트 화면 (모바일 우선). 위에서부터: h1 → 기간 칩 → 출처 한 줄 → 답부터 쓰는 문장 → 1위 히어로 →
+// 차트 화면 (모바일 우선). 위에서부터: h1 → 기간 칩 → 출처 한 줄 → 답부터 쓰는 문장 → (팬 픽: 이번 주 투표) → 1위 히어로 →
 // 2~10위 펼치는 줄 → 11~30위 표 → '{언어}에서 뜨는' → 이번 주 팬 투표 → 주간 아카이브 → 사진 출처
 export async function ChartView({ locale, chart, snapshot, archive = false }: Props) {
   const t = await getTranslations("Rankings");
   const chartName = t(`chart.${CHART_KEY[chart]}.title`);
   const tint = CHART_TINT[chart];
   const header = <AppHeader variant="pushed" parentHref={archive ? chartPath(chart) : "/rankings"} title={chartName} />;
+  // 팬 픽 차트는 이번 주 열린 투표가 곧 다음 판이다: 결과(지난주) 위에, 결과가 아직 없으면 빈 메모 대신 투표를 둔다
+  const weeklyPoll = chart === "fan-pick" && !archive ? await weeklyPollView(locale) : null;
+  const pollCard = weeklyPoll && (
+    <PollCard poll={weeklyPoll} locale={locale} anchorId="weekly-poll" className="mx-gutter mt-6" />
+  );
 
   if (!snapshot || snapshot.items.length === 0) {
     return (
@@ -105,13 +112,16 @@ export async function ChartView({ locale, chart, snapshot, archive = false }: Pr
         {header}
         <div className="px-gutter pt-6">
           <h1 className="text-st2 font-bold text-ink-900">{chartName}</h1>
+          {pollCard && <p className="mt-3 text-t7 text-ink-600">{t("fanPickNote")}</p>}
         </div>
-        <EmptyMemo text={t("empty")} tint={tint}>
-          <Link href="/" className="press inline-flex min-h-11 items-center gap-0.5 text-t6 font-semibold text-on-tint">
-            {t("emptyCta")}
-            <ChevronRightIcon className="size-4 text-on-tint-sub" />
-          </Link>
-        </EmptyMemo>
+        {pollCard ?? (
+          <EmptyMemo text={t("empty")} tint={tint}>
+            <Link href="/" className="press inline-flex min-h-11 items-center gap-0.5 text-t6 font-semibold text-on-tint">
+              {t("emptyCta")}
+              <ChevronRightIcon className="size-4 text-on-tint-sub" />
+            </Link>
+          </EmptyMemo>
+        )}
       </>
     );
   }
@@ -211,6 +221,8 @@ export async function ChartView({ locale, chart, snapshot, archive = false }: Pr
           </p>
         )}
       </div>
+
+      {pollCard}
 
       <RankHero
         chart={chart}

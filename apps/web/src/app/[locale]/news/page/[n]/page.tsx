@@ -7,7 +7,7 @@ import { CategoryRail } from "@/components/CategoryRail";
 import { Feed } from "@/components/Feed";
 import { countLatest, listLatest } from "@/lib/articles";
 import { PAGE_SIZE, pageCount, pagePath, pageSkip, parsePage, toFeedItems } from "@/lib/feed";
-import { localeHomePath, ogBase } from "@/lib/url";
+import { localeHomePath, ogBase, pageRobots } from "@/lib/url";
 
 export const revalidate = 300;
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/news/pag
     title,
     description,
     alternates: { canonical },
-    robots: { index: true, follow: true },
+    robots: pageRobots(),
     openGraph: {
       ...ogBase(locale),
       type: "website",
