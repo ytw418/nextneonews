@@ -1,1 +1,9 @@
-{}
+{
+  "nav": {
+    "about": "Giới thiệu",
+    "editorial": "Chính sách biên tập",
+    "contact": "Liên hệ",
+    "privacy": "Chính sách quyền riêng tư"
+  },
+  "more": "Thêm về Hallyu Brief"
+}

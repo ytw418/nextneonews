@@ -1,1 +1,9 @@
-{}
+{
+  "nav": {
+    "about": "Tentang kami",
+    "editorial": "Kebijakan redaksi",
+    "contact": "Kontak",
+    "privacy": "Kebijakan privasi"
+  },
+  "more": "Selengkapnya tentang Hallyu Brief"
+}
