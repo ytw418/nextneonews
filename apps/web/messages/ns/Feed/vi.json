@@ -1,1 +1,41 @@
-{}
+{
+  "popular": "Đang được đọc nhiều",
+  "more": "Xem thêm",
+  "prev": "Trang trước",
+  "next": "Trang sau",
+  "pagination": "Phân trang",
+  "pageOf": "Trang {n}/{total}",
+  "latestPageTitle": "Tin mới nhất — trang {n}",
+  "latestPageDescription": "Tin Hàn Quốc mới nhất cho fan quốc tế, trang {n}: K-pop, phim Hàn, sao Hàn và đời sống ở Hàn Quốc.",
+  "categoryPageTitle": "{category} — trang {n}",
+  "comments": "{count} bình luận",
+  "reactions": "{count} lượt bày tỏ cảm xúc",
+  "title": {
+    "KPOP": "Tin K-pop hôm nay: Comeback, bảng xếp hạng và tin idol",
+    "KENT": "Tin sao Hàn: Diễn viên, idol và chuyện đang hot",
+    "KDRAMA": "Phim Hàn {year}: Phim mới, rating và dàn diễn viên",
+    "KFOOD": "Ẩm thực Hàn Quốc: Món nên thử và xu hướng mới",
+    "KBEAUTY": "Mỹ phẩm Hàn {year}: Xu hướng skincare và sản phẩm bán chạy",
+    "TRAVEL": "Du lịch Hàn Quốc {year}: Đi lại, K-ETA, hoàn thuế",
+    "STUDY": "Du học Hàn Quốc {year}: Visa, học bổng và đời sống sinh viên",
+    "LOVE": "Yêu và kết hôn ở Hàn Quốc: Văn hóa, visa và chuyện thật",
+    "WORKING_HOLIDAY": "Working Holiday Hàn Quốc {year}: Điều kiện visa H-1 và chuẩn bị",
+    "JOBS": "Việc làm ở Hàn Quốc cho người nước ngoài {year}: Visa và tuyển dụng",
+    "HOUSING": "Thuê nhà ở Hàn Quốc: Tiền thuê tháng, jeonse và tiền cọc",
+    "LIFE": "Sống ở Hàn Quốc {year}: Visa, ngân hàng và đời sống hằng ngày"
+  },
+  "intro": {
+    "KPOP": "Tin K-pop mới nhất bằng tiếng Việt, từ comeback, thành tích bảng xếp hạng đến concert và sự kiện fan. Chúng tôi chọn những chuyện đang hot ở Hàn và giải thích dễ hiểu cho fan quốc tế.",
+    "KENT": "Diễn viên, idol và người nổi tiếng Hàn đang làm gì, từ dự án mới, tin cưới đến những câu chuyện cả Hàn Quốc đang bàn tán. Mỗi bài đều có liên kết tới bài báo gốc tiếng Hàn.",
+    "KDRAMA": "Phim Hàn mới và sắp chiếu, rating, tin dàn diễn viên và nơi xem. Chúng tôi theo dõi phản ứng của khán giả Hàn và giải thích cho fan quốc tế.",
+    "KFOOD": "Món ăn Hàn, xu hướng ẩm thực và nơi thưởng thức, giới thiệu cho du khách và fan ở nước ngoài. Từ đồ ăn đường phố đến món ở cửa hàng tiện lợi đang hot tại Hàn.",
+    "KBEAUTY": "Xu hướng skincare, trang điểm Hàn Quốc, sản phẩm bán chạy và cách mua. Dành cho bạn đọc muốn biết người Hàn thực sự dùng gì.",
+    "TRAVEL": "Mẹo du lịch Hàn Quốc thực tế, từ thẻ giao thông, K-ETA đến hoàn thuế và lễ hội theo mùa. Quy định mới dành cho du khách cũng được cập nhật tại đây.",
+    "STUDY": "Du học Hàn Quốc từ visa D-2, D-4, học bổng đến đời sống sinh viên và khóa học tiếng Hàn. Tin tức và hướng dẫn cho du học sinh.",
+    "LOVE": "Văn hóa hẹn hò, hôn nhân quốc tế và các mối quan hệ ở Hàn Quốc, giải thích cho người nước ngoài. Từ visa kết hôn đến chuyện các cặp đôi Hàn đang bàn tán.",
+    "WORKING_HOLIDAY": "Visa working holiday (H-1) của Hàn Quốc hoạt động thế nào, ai được đăng ký và cần chuẩn bị gì khi đến nơi. Tin tức và mẹo thực tế cho người đi working holiday.",
+    "JOBS": "Visa lao động, tin tuyển dụng và văn hóa công sở cho người nước ngoài ở Hàn Quốc. Chúng tôi giải thích các quy định và xu hướng bạn cần biết nếu muốn làm việc tại Hàn.",
+    "HOUSING": "Cách thuê nhà ở Hàn Quốc, từ thuê theo tháng, jeonse đến tiền cọc và hợp đồng. Hướng dẫn và tin tức cho người nước ngoài đang tìm nhà ở Hàn.",
+    "LIFE": "Đời sống ở Hàn Quốc cho người nước ngoài, từ visa, ngân hàng đến điện thoại, y tế và quy định mới. Tin tức và hướng dẫn thực tế, dùng được ngay."
+  }
+}

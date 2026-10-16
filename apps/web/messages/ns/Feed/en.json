@@ -1,1 +1,41 @@
-{}
+{
+  "popular": "Most read now",
+  "more": "More stories",
+  "prev": "Previous",
+  "next": "Next",
+  "pagination": "Pages",
+  "pageOf": "Page {n} of {total}",
+  "latestPageTitle": "Latest news — page {n}",
+  "latestPageDescription": "The latest Korea news for international fans, page {n}: K-pop, K-dramas, celebrities and life in Korea.",
+  "categoryPageTitle": "{category} — page {n}",
+  "comments": "{count, plural, one {# comment} other {# comments}}",
+  "reactions": "{count, plural, one {# reaction} other {# reactions}}",
+  "title": {
+    "KPOP": "K-pop News Today: Comebacks, Charts and Idol Updates",
+    "KENT": "Korean Celebrity News: Actors, Idols and What’s Trending",
+    "KDRAMA": "K-drama News {year}: New Dramas, Ratings and Cast",
+    "KFOOD": "Korean Food Guide: What to Eat and Food Trends in Korea",
+    "KBEAUTY": "K-beauty Guide {year}: Skincare Trends and Best Sellers",
+    "TRAVEL": "Korea Travel Guide {year}: Transport, K-ETA, Tax Refund",
+    "STUDY": "Study in Korea {year}: Visas, Scholarships and Campus Life",
+    "LOVE": "Dating and Marriage in Korea: Culture, Visas and Real Stories",
+    "WORKING_HOLIDAY": "Korea Working Holiday Visa {year}: H-1 Rules and Tips",
+    "JOBS": "Jobs in Korea for Foreigners {year}: Visas and Hiring News",
+    "HOUSING": "Renting in Korea for Foreigners: Monthly Rent, Jeonse, Deposits",
+    "LIFE": "Living in Korea {year}: Visas, Banking and Daily Life"
+  },
+  "intro": {
+    "KPOP": "The latest K-pop news in English, from comebacks and chart records to concerts and fan events. We pick up what is trending in Korea and explain it for fans around the world.",
+    "KENT": "What Korean actors, idols and TV personalities are up to, from new projects and weddings to the stories all of Korea is talking about. Every story links to the original Korean reports.",
+    "KDRAMA": "New and upcoming Korean dramas, ratings, cast news and where to watch. We follow what Korean viewers are saying and explain it for international fans.",
+    "KFOOD": "Korean dishes, food trends and where to try them, explained for visitors and fans abroad. From street food to the convenience-store hits everyone in Korea is buying right now.",
+    "KBEAUTY": "Skincare and makeup trends from Korea, best-selling products and how to shop for them. Written for readers who want to know what Koreans actually use.",
+    "TRAVEL": "Practical tips for traveling in Korea, from transport cards and K-ETA to tax refunds and seasonal events. New rules for visitors are covered here too.",
+    "STUDY": "Studying in Korea, from D-2 and D-4 student visas and scholarships to campus life and language programs. News and guides for international students.",
+    "LOVE": "Dating culture, international marriage and relationships in Korea, explained for foreigners. From marriage visas to what Korean couples are talking about.",
+    "WORKING_HOLIDAY": "How Korea’s working holiday (H-1) visa works, who can apply and what to expect after you arrive. News and practical tips for working holiday makers.",
+    "JOBS": "Work visas, hiring news and workplace culture for foreigners in Korea. We explain the rules and trends that matter if you want to work here.",
+    "HOUSING": "How renting works in Korea, from monthly rent and jeonse to deposits and contracts. Guides and news for foreigners looking for a home in Korea.",
+    "LIFE": "Everyday life in Korea for foreigners, from visas and banking to phones, healthcare and new rules. Practical news and guides you can use right away."
+  }
+}
