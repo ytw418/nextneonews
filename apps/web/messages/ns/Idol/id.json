@@ -1,1 +1,30 @@
-{}
+{
+  "share": "Bagikan halaman ini",
+  "metaTitle": "{name}: peringkat, berita, dan minat global",
+  "metaDescription": "{name} di Hallyu Brief: peringkat tangga buzz hari ini, tayangan Wikipedia dalam 8 bahasa, reaksi di Korea, jadwal mendatang, dan berita terbaru.",
+  "type": {
+    "group": "Grup",
+    "singer": "Penyanyi",
+    "actor": "Aktor",
+    "series": "Drama"
+  },
+  "rankAnswer": "{name} ada di No. {rank} {chart} ({date}).",
+  "topLanguage": "Dalam 30 hari terakhir, tayangan Wikipedia {name} paling banyak dalam bahasa {language}.",
+  "notRanked": "Tidak ada di tangga hari ini",
+  "trend90": "Peringkat 90 hari terakhir",
+  "best90": "Tertinggi: {rank}",
+  "interestTitle": "Minat per bahasa",
+  "interestLead": "Tayangan Wikipedia 30 hari terakhir, total {count}.",
+  "interestNote": "Bahasa Wikipedia hanya perkiraan untuk negara: banyak orang membaca Wikipedia dalam bahasa selain bahasa ibunya.",
+  "buzzTitle": "Reaksi di Korea",
+  "buzzPosts": "Postingan theqoo",
+  "buzzViews": "Tayangan postingan",
+  "buzzComments": "Komentar",
+  "buzzTrends": "Google Trends Korea",
+  "trendDays": "{count} dari {days} hari",
+  "buzzNote": "{days} hari terakhir, dari papan hot theqoo dan Google Trends Korea. Kami hanya menghitung angka; postingan dan gambar tidak pernah disalin.",
+  "upcomingTitle": "Segera hadir",
+  "newsTitle": "Berita tentang {name}",
+  "empty": "Belum ada berita tentang {name}.",
+  "emptyCta": "Lihat tangga hari ini"
+}

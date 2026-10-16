@@ -27,6 +27,7 @@ export interface EntityPhoto {
   licenseName: string;
   licenseUrl: string | null;
   sourceUrl: string;
+  width: number | null; // 원본 폭. 화면 폭만큼 크게 보이는 곳(인물 페이지 히어로)이 원본보다 큰 썸네일을 고르지 않게 (lib/image.ts imgSrc)
 }
 
 export function commonsThumb(file: string, width = PHOTO_WIDTH, originalWidth?: number | null): string {
@@ -59,5 +60,6 @@ export function entityPhoto(entity: { image: string | null; imageMeta: unknown }
     licenseName: meta.licenseName,
     licenseUrl: meta.licenseUrl || null,
     sourceUrl: meta.sourceUrl || `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/ /g, "_"))}`,
+    width: typeof meta.width === "number" && meta.width > 0 ? meta.width : null,
   };
 }

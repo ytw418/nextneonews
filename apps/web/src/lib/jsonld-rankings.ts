@@ -98,6 +98,37 @@ export function chartJsonLd(input: ChartLdInput) {
   return { "@context": "https://schema.org", "@graph": [list, dataset, breadcrumbs(input.crumbs)] };
 }
 
+export interface IdolLdInput {
+  type: string; // Entity.type
+  name: string; // 화면 h1 (그 언어 이름)
+  alternateNames: (string | null)[]; // 한국어·영어·일본어·번체 이름
+  image: string | null;
+  pageUrl: string;
+  sameAs: string[]; // 위키데이터 + 위키백과 문서
+  crumbs: Crumb[]; // 홈 › 랭킹 › 차트 › 이름
+}
+
+// 인물·작품 페이지: MusicGroup | Person | TVSeries 하나 + BreadcrumbList.
+// 그룹 멤버(member)는 인물 사전에 멤버 관계가 생기면 넣는다 (지금은 데이터가 없어 넣지 않는다)
+export function idolJsonLd(input: IdolLdInput) {
+  const alternateName = [...new Set(input.alternateNames.filter((n): n is string => !!n && n !== input.name))];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": SCHEMA_TYPE[input.type] ?? "Thing",
+        "@id": `${input.pageUrl}#entity`,
+        name: input.name,
+        ...(alternateName.length > 0 ? { alternateName } : {}),
+        ...(input.image ? { image: input.image } : {}),
+        url: input.pageUrl,
+        sameAs: input.sameAs,
+      },
+      breadcrumbs(input.crumbs),
+    ],
+  };
+}
+
 // 랭킹 허브: 차트 목록을 담은 CollectionPage
 export function hubJsonLd(input: {
   locale: string;

@@ -275,18 +275,23 @@ export async function latestArticles(
   return found;
 }
 
-// 펼친 줄의 '다음 일정': 일정 파일(core UPCOMING)에서 이름으로 찾는다 (출연·발매 명단 → 일정 키워드)
-export function nextEventFor(names: Names, now = new Date()): EventWithView | undefined {
+// 이 인물이 나오는 다가오는 일정 (가까운 날부터). 일정 파일(core UPCOMING)에서 이름으로 찾는다 (출연·발매 명단 → 일정 키워드)
+export function eventsFor(names: Pick<Names, "en" | "ko">, now = new Date()): EventWithView[] {
   const list = [names.en, names.ko].filter((n): n is string => !!n);
-  if (list.length === 0) return undefined;
+  if (list.length === 0) return [];
   const same = (act: string) => list.some((n) => n.toLowerCase() === act.toLowerCase());
-  return listUpcoming(now).find(
+  return listUpcoming(now).filter(
     (e) =>
       e.releases?.some((r) => same(r.act)) ||
       e.days?.some((d) => d.acts.some(same)) ||
       e.lineup?.some(same) ||
       eventMatches(e, list.join(" ")),
   );
+}
+
+// 펼친 줄의 '다음 일정'
+export function nextEventFor(names: Names, now = new Date()): EventWithView | undefined {
+  return eventsFor(names, now)[0];
 }
 
 // 글 안 칩(EntityRankStrip)용: 글 entities 의 이름으로 Entity.id 를 찾는다
