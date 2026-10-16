@@ -1,1 +1,15 @@
-{}
+{
+  "footer": {
+    "nav": "Liên kết Hallyu Brief",
+    "topics": "Chủ đề",
+    "explore": "Khám phá",
+    "rankings": "Bảng xếp hạng",
+    "rss": "Nguồn cấp RSS",
+    "languages": "Ngôn ngữ",
+    "about": "Về chúng tôi",
+    "editorialPolicy": "Chính sách biên tập",
+    "contact": "Liên hệ",
+    "privacy": "Chính sách quyền riêng tư",
+    "aiNote": "Bài viết được soạn và dịch bằng AI dựa trên thông báo chính thức và báo chí Hàn Quốc."
+  }
+}

@@ -48,13 +48,14 @@ export function ArticleThumb({
   size?: keyof typeof SIZE;
 }) {
   if (item.imageUrl) {
+    // 크기가 고정이라 sizes 를 주지 않는다: srcset 이 1x·2x 만 생겨 48·56px 은 120px 썸네일 한 장을 받는다
+    // (sizes 를 주면 전체 폭 목록이 붙어 아이폰 3x 화면이 250px PNG(~100KB)를 고른다). 위키미디어 표준 폭은 lib/image.ts
     return (
       <Image
         src={item.imageUrl}
         alt=""
         width={size}
         height={size}
-        unoptimized
         className={`${SIZE[size]} rounded-btn object-cover object-[50%_20%]`}
       />
     );
