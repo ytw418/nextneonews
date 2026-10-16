@@ -6,15 +6,18 @@ import { type Category, type MediaKind, type Prisma, prisma } from "@kmedia/db";
 // 화면에 대표 이미지로 쓸 수 있는 종류 (CARD·AI 는 커버를 따로 그린다)
 const IMAGE_KINDS: MediaKind[] = ["EMBED", "AGENCY", "PRESS", "OWN", "STOCK"];
 
-// 피드 카드에 필요한 것만: 제목·카테고리·발행일·대표 이미지(공식 이미지가 있을 때)와 사진 출처 표기
-const feedSelect = {
+// 피드 카드에 필요한 것만: 제목·카테고리·발행일·대표 이미지(공식 이미지가 있을 때)와 사진 출처 표기, 반응·댓글 수
+export const feedSelect = {
   slug: true,
   title: true,
   summary: true,
   article: {
     select: {
+      id: true,
       category: true,
       publishedAt: true,
+      reactions: true,
+      _count: { select: { comments: { where: { status: "VISIBLE" } } } },
       media: {
         where: { kind: { in: IMAGE_KINDS } },
         select: { url: true, credit: true, author: true, licenseName: true, licenseUrl: true, sourceUrl: true },
@@ -24,22 +27,40 @@ const feedSelect = {
   },
 } satisfies Prisma.TranslationSelect;
 
-export async function listLatest(locale: string, take = 30) {
+// skip 은 '더 보기'·쪽 번호 주소(/news/page/2)에 쓴다. 한 번에 승인한 글은 발행 시각이 같아서
+// 글 id 로 순서를 한 번 더 정한다 (쪽이 바뀔 때 글이 겹치거나 빠지지 않게)
+const PAGED_ORDER = [
+  { article: { publishedAt: "desc" } },
+  { articleId: "desc" },
+] satisfies Prisma.TranslationOrderByWithRelationInput[];
+
+export async function listLatest(locale: string, take = 30, skip = 0) {
   return prisma.translation.findMany({
     where: { locale, article: { status: "PUBLISHED" } },
-    orderBy: { article: { publishedAt: "desc" } },
+    orderBy: PAGED_ORDER,
     take,
+    skip,
     select: feedSelect,
   });
 }
 
-export async function listByCategory(locale: string, category: Category, take = 30) {
+export async function listByCategory(locale: string, category: Category, take = 30, skip = 0) {
   return prisma.translation.findMany({
     where: { locale, article: { status: "PUBLISHED", category } },
-    orderBy: { article: { publishedAt: "desc" } },
+    orderBy: PAGED_ORDER,
     take,
+    skip,
     select: feedSelect,
   });
+}
+
+// 쪽 수 계산용 글 개수
+export async function countLatest(locale: string) {
+  return prisma.translation.count({ where: { locale, article: { status: "PUBLISHED" } } });
+}
+
+export async function countByCategory(locale: string, category: Category) {
+  return prisma.translation.count({ where: { locale, article: { status: "PUBLISHED", category } } });
 }
 
 // 등장 인물·그룹·작품 이름 (article.entities JSON 에서)
@@ -150,7 +171,8 @@ export const getArticle = cache(async (locale: string, slug: string) => {
         include: {
           sources: true,
           media: { orderBy: { id: "asc" } },
-          translations: { select: { locale: true, slug: true } },
+          translations: { select: { locale: true, slug: true, indexable: true } },
+          poll: true,
         },
       },
     },
@@ -164,7 +186,16 @@ export async function listSitemapEntries() {
       locale: true,
       slug: true,
       articleId: true,
-      article: { select: { updatedAt: true, media: { select: { url: true }, take: 1 } } },
+      article: {
+        select: {
+          updatedAt: true,
+          contentUpdatedAt: true,
+          publishedAt: true,
+          category: true,
+          format: true,
+          media: { select: { url: true }, take: 1 },
+        },
+      },
     },
   });
 }

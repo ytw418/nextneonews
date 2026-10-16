@@ -3,6 +3,7 @@ export * from "./categories";
 export * from "./comments";
 export * from "./locales";
 export * from "./paths";
+export * from "./rankings";
 export * from "./schedule";
 export * from "./site";
 export * from "./upcoming";

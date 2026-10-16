@@ -137,25 +137,32 @@ model Topic {
 }
 
 model Article {
-  id           String        @id @default(cuid())
-  topicId      String?
-  topic        Topic?        @relation(fields: [topicId], references: [id])
-  category     Category
-  format       ArticleFormat
-  riskTier     RiskTier
-  status       ArticleStatus @default(DRAFT)
-  facts        Json? // 출처에서 뽑은 사실 목록 (숫자는 여기 값만 쓴다)
-  entities     Json? // 등장 인물·그룹·작품 [{ name, type, koreanName, alternateNames }] → JSON-LD about (GEO)
-  publishedAt  DateTime?
-  views        Int           @default(0) // 기사 페이지 조회 수 (모든 언어 합). 인기·추천 글에 쓴다
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  translations Translation[]
-  sources      SourceRef[]
-  media        Media[]
-  comments     Comment[]
-  videos       Video[]
-  socialPosts  SocialPost[]
+  id               String         @id @default(cuid())
+  topicId          String?
+  topic            Topic?         @relation(fields: [topicId], references: [id])
+  category         Category
+  format           ArticleFormat
+  riskTier         RiskTier
+  status           ArticleStatus  @default(DRAFT)
+  facts            Json? // 출처에서 뽑은 사실 목록 (숫자는 여기 값만 쓴다)
+  entities         Json? // 등장 인물·그룹·작품 [{ name, type, koreanName, alternateNames }] → JSON-LD about (GEO)
+  publishedAt      DateTime?
+  views            Int            @default(0) // 기사 페이지 조회 수 (모든 언어 합). 인기·추천 글에 쓴다
+  reactions        Json           @default("{}") // 반응 버튼 수 { love, wow, more, sad } (ReactionVote 합)
+  // 커뮤니티 반응 요약용 숫자 { sourceUrl, commentCount, sampled, mix: { support, funny, critical, neutral }, at }. 원문 글·이미지는 저장하지 않는다
+  netizen          Json?
+  // 제목·본문이 바뀔 때만 갱신한다 (updatedAt 은 조회 수 때문에 계속 바뀐다). sitemap lastmod·dateModified 에 쓴다
+  contentUpdatedAt DateTime?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  translations     Translation[]
+  sources          SourceRef[]
+  media            Media[]
+  comments         Comment[]
+  videos           Video[]
+  socialPosts      SocialPost[]
+  poll             Poll?
+  reactionVotes    ReactionVote[]
 
   @@index([status, publishedAt])
   @@index([status, views])
@@ -175,6 +182,8 @@ model Translation {
   seoTitle  String?
   seoDesc   String?
   indexable Boolean @default(true) // 품질 낮은 번역은 noindex
+  poll      Json? // 이 언어의 투표 문구 { question, options: [string] }. 보기 순서는 Poll.optionIds 와 같다
+  netizen   Json? // 커뮤니티 반응 요약 { summary, quotes: [string] } (짧은 인용 2개까지)
 
   @@unique([articleId, locale])
   @@unique([locale, slug])
@@ -201,6 +210,8 @@ model Media {
   licenseName String?
   licenseUrl  String?
   sourceUrl   String? // 위키미디어 공용 파일 페이지
+  width       Int? // 원본 크기 (CLS 없이 자리를 잡고, 구조화 데이터 image 에 넣는다)
+  height      Int?
 }
 
 model Comment {
@@ -291,16 +302,20 @@ model GeoCheck {
 
 // 위키데이터에서 받은 인물·그룹·드라마 사전 (무료). 품질 체크(해외 인지도), 이름 표기, 대표 사진에 쓴다
 model Entity {
-  id        String   @id // 위키데이터 Q-id
-  type      String // "group" | "singer" | "actor" | "series"
-  ko        String?
-  en        String?
-  ja        String?
-  zhHant    String?
-  aliases   String[] @default([]) // 한국어 별칭 (예: "제니 김" 의 "제니"). 기사 속 이름 찾기에 쓴다
-  sitelinks Int // 이 항목이 있는 위키백과 언어 수 = 해외 인지도 지표
-  image     String? // 위키미디어 공용 파일 이름 (P18)
-  updatedAt DateTime @updatedAt
+  id         String   @id // 위키데이터 Q-id
+  type       String // "group" | "singer" | "actor" | "series"
+  ko         String?
+  en         String?
+  ja         String?
+  zhHant     String?
+  aliases    String[] @default([]) // 한국어 별칭 (예: "제니 김" 의 "제니"). 기사 속 이름 찾기에 쓴다
+  sitelinks  Int // 이 항목이 있는 위키백과 언어 수 = 해외 인지도 지표
+  image      String? // 위키미디어 공용 파일 이름 (P18)
+  slug       String?  @unique // 인물 페이지 주소 /idol/{slug} (영문 이름 kebab, 없으면 q{id})
+  // 대표 사진 CC 표기 { author, licenseName, licenseUrl, sourceUrl, width, height } (Commons API)
+  imageMeta  Json?
+  wikiTitles Json? // 언어별 위키백과 문서 제목 { ko, en, ja, zh, vi, id, fr, ru } → 조회수 수집
+  updatedAt  DateTime @updatedAt
 
   @@index([ko])
   @@index([en])
@@ -334,4 +349,95 @@ model Product {
   lastSeenAt  DateTime @default(now())
 
   @@index([source, firstSeenAt])
+}
+
+// 로그인 없는 투표. 글마다 하나(kind article) 또는 주간 팬 투표(kind weekly). 문구는 Translation.poll(글) 이나 labels(주간)에 있다
+model Poll {
+  id        String     @id @default(cuid())
+  kind      String // "article" | "weekly"
+  articleId String?    @unique
+  article   Article?   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  key       String?    @unique // 주간 투표 "weekly:2026-w42"
+  optionIds String[] // ["a", "b", "c"]. 언어마다 문구가 달라도 표는 이 id 로 모은다
+  entityIds String[]   @default([]) // 보기가 인물이면 Entity.id (주간 투표)
+  labels    Json? // 주간 전용 { [locale]: { question, options: [string] } }
+  totals    Json       @default("{}") // { [optionId]: 표 수 }
+  total     Int        @default(0)
+  status    String     @default("open") // "open" | "closed"
+  closesAt  DateTime?
+  createdAt DateTime   @default(now())
+  votes     PollVote[]
+}
+
+// 한 기기(voterHash) 한 표. IP 는 저장하지 않고 도배 제한용 해시만 둔다
+model PollVote {
+  pollId    String
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  option    String
+  voterHash String
+  ipHash    String
+  locale    String // 언어별 결과 비교용
+  country   String? // x-vercel-ip-country
+  createdAt DateTime @default(now())
+
+  @@id([pollId, voterHash])
+  @@index([pollId, locale, option])
+  @@index([ipHash, createdAt])
+}
+
+// 글 반응 버튼 (love·wow·more·sad). 한 기기가 종류마다 한 번
+model ReactionVote {
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  type      String // "love" | "wow" | "more" | "sad"
+  voterHash String
+  ipHash    String
+  createdAt DateTime @default(now())
+
+  @@id([articleId, voterHash, type])
+  @@index([ipHash, createdAt])
+}
+
+// 랭킹 응원: 한 기기가 인물마다 하루(KST) 한 번.
+// entityId 는 외래 키로 묶지 않는다 — 인물 사전 갱신(entities)이 빠진 항목을 지워도 응원 기록은 남긴다
+model CheerVote {
+  entityId  String // Entity.id (위키데이터 Q-id)
+  day       String // KST "YYYY-MM-DD"
+  voterHash String
+  ipHash    String
+  locale    String
+  country   String?
+  createdAt DateTime @default(now())
+
+  @@id([entityId, day, voterHash])
+  @@index([day, entityId])
+  @@index([ipHash, createdAt])
+}
+
+// 랭킹 재료: 인물별 하루 숫자. 같은 날 다시 계산하면 덮어쓴다 (entityId 는 CheerVote 와 같은 이유로 외래 키 없음)
+model EntityMetric {
+  entityId String
+  date     DateTime @db.Date // KST 날짜
+  source   String // "theqoo:posts" | "theqoo:views" | "theqoo:comments" | "trends" | "yonhap" | "wiki:ja" …
+  value    Float
+  extra    Json?
+
+  @@id([entityId, date, source])
+  @@index([source, date])
+}
+
+// 발행한 랭킹. 매일판(period "YYYY-MM-DD")과 주간 고정판("YYYY-Www")을 남긴다. 발행 뒤에는 items 를 고치지 않고 correction 만 쓴다
+model RankingSnapshot {
+  id          String   @id @default(cuid())
+  chart       String // "kpop" | "actors" | "kdrama" | "fan-pick"
+  scope       String // "all" | 위키 언어 "ko" | "en" | "ja" | "zh" | "vi" | "id" | "fr" | "ru"
+  period      String
+  items       Json // RankingItem[] (packages/core/src/rankings.ts)
+  sources     Json // [{ name, url, count? }] 출처 표기
+  method      String // 점수 계산 방식 버전 ("v1")
+  publishedAt DateTime @default(now())
+  correction  String? // 발행 뒤 정정 안내
+
+  @@unique([chart, scope, period])
+  @@index([chart, scope, publishedAt])
 }

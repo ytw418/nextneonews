@@ -25,7 +25,8 @@ const REPORT_RATE_MAX = 10;
 const MAX_PASSWORD_FAILURES = 5;
 const LOCK_MS = 15 * 60_000;
 
-function secret(): string {
+// 투표·반응·응원 해시(lib/voter.ts)도 같은 비밀키를 쓴다
+export function secret(): string {
   const value = process.env.COMMENT_HASH_SECRET;
   if (value) return value;
   if (process.env.NODE_ENV === "production") throw new Error("COMMENT_HASH_SECRET is not set");
@@ -38,7 +39,7 @@ export function clientIp(headers: Headers): string {
 }
 
 // 글과 상관없이 같은 사람인지(도배 제한용)만 알 수 있는 해시. IP 는 저장하지 않는다
-function ipHash(ip: string): string {
+export function ipHash(ip: string): string {
   return createHmac("sha256", secret()).update(`ip:${ip}`).digest("hex").slice(0, 16);
 }
 

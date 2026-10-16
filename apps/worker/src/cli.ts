@@ -4,16 +4,20 @@ import { prisma } from "@kmedia/db";
 
 import { budgetUsd, spentUsd } from "./ai/budget";
 import { collectors } from "./collectors";
+import { isSeedSource, SEED_SOURCES, seedTopic } from "./collectors/manualSeed";
 import { buildEntities } from "./entities/build";
 import { backfillCredits, backfillImages, recheckImages } from "./entities/images";
 import { geoCheck } from "./geo/check";
 import { log } from "./log";
+import { backfillPolls } from "./pipeline/backfillPolls";
+import { fixIndexable } from "./pipeline/indexable";
 import { listReview, publish } from "./pipeline/publish";
 import { listHiddenComments, restoreComments } from "./pipeline/comments";
 import { seedGuides } from "./pipeline/guides";
 import { recategorize } from "./pipeline/recategorize";
 import { recheckSources } from "./pipeline/recheck";
 import { collectProducts } from "./products";
+import { ensureWeeklyPoll, runRankings, syncEntityMeta, syncWiki } from "./rankings";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
 import { collectTranslations, submitTranslations } from "./pipeline/translate";
@@ -49,6 +53,23 @@ function numberArg(args: string[], fallback: number): number {
   return Number.isInteger(n) && n > 0 ? n : fallback;
 }
 
+// `--name 값` 꼴의 옵션 값
+function flagValue(args: string[], name: string): string | undefined {
+  const i = args.indexOf(name);
+  return i >= 0 ? args[i + 1] : undefined;
+}
+
+async function seedTopicCommand(args: string[]) {
+  const title = args[0]?.trim();
+  const source = flagValue(args, "--source");
+  if (!title || title.startsWith("--") || !source || !isSeedSource(source)) {
+    log.error(`usage: seed-topic "<제목>" --source ${SEED_SOURCES.join("|")} [--url <원문 주소>]`);
+    process.exitCode = 1;
+    return;
+  }
+  await seedTopic(title, { source, url: flagValue(args, "--url") });
+}
+
 const USAGE = `usage: cli.ts <command>
   collect [collector...]   수집 (${Object.keys(collectors).join(", ")})
   check [limit]            품질 체크: 규칙 필터 + AI 채점 → Topic 큐
@@ -66,7 +87,15 @@ const USAGE = `usage: cli.ts <command>
   comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기
   seed-guides              가이드 주제(apps/worker/data/guides.json)를 대기열에 넣기 (이미 있으면 건너뜀)
   recheck                  최근 30일 글의 원문이 삭제됐으면(404·410) 글을 내려 확인 대기로 (하루 1번)
-  products                 편의점 상품 수집 (K-쇼핑 주간 랭킹, 하루 1번)`;
+  products                 편의점 상품 수집 (K-쇼핑 주간 랭킹, 하루 1번)
+  rankings                 오늘(KST) 랭킹 스냅숏 만들기 (AI 없음, 하루 1번)
+  wiki-sync [--backfill]   위키백과 언어별 조회수 수집 (--backfill: 90일치)
+  entity-meta              인물 페이지 주소·대표 사진 CC 표기 채우기 (주 1회)
+  weekly-poll              이번 주 팬 투표 열기 + 지난주 결과 남기기 (월요일 00시 KST)
+  backfill-polls [n]       최근 글 중 투표가 없는 글에 투표 붙이기 (AI, 기본 150개)
+  fix-indexable            언어·분류별 색인 규칙을 기존 번역에 다시 적용
+  seed-topic "<제목>" --source ${SEED_SOURCES.join("|")} [--url <주소>]
+                           자동 수집하지 않는 커뮤니티 주제를 사람이 씨앗으로 넣기`;
 
 const [command, ...args] = process.argv.slice(2);
 
@@ -94,6 +123,27 @@ try {
       break;
     case "products":
       await collectProducts();
+      break;
+    case "rankings":
+      await runRankings();
+      break;
+    case "wiki-sync":
+      await syncWiki({ backfill: args.includes("--backfill") });
+      break;
+    case "entity-meta":
+      await syncEntityMeta();
+      break;
+    case "weekly-poll":
+      await ensureWeeklyPoll();
+      break;
+    case "backfill-polls":
+      await backfillPolls(numberArg(args, 150));
+      break;
+    case "fix-indexable":
+      await fixIndexable();
+      break;
+    case "seed-topic":
+      await seedTopicCommand(args);
       break;
     case "recheck":
       await recheckSources();

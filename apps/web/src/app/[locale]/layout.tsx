@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { SITE_NAME } from "@kmedia/core";
 
+import { Analytics } from "@/components/Analytics";
 import { ChromeEffects } from "@/components/ChromeEffects";
 import { InstallPrompt } from "@/components/InstallPrompt";
 import { JsonLd } from "@/components/JsonLd";
@@ -78,6 +79,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           <LocaleSuggest />
           <InstallPrompt />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );

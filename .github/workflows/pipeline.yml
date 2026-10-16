@@ -1,5 +1,6 @@
 # 콘텐츠 파이프라인 자동 실행: 수집 → 품질 체크(알고리즘) → 기사 작성 → 사진 → 간체 → 배치 번역
 # 필요한 저장소 Secrets: DATABASE_URL, ANTHROPIC_API_KEY, SITE_URL, INDEXNOW_KEY
+# 선택 Secrets (비어 있어도 돈다): REVALIDATE_SECRET(새 글 즉시 반영), COLLECTOR_RELAY_URL·COLLECTOR_TOKEN(서울 수집 릴레이)
 #
 # GitHub 의 schedule 은 보장되지 않는다 (2026-10-15 등록 뒤 4시간 넘게 한 번도 안 돌았다).
 # 그래서 chain=true 로 시작한 실행(과 3시간마다의 지킴이 실행)은 약 55분 뒤 다음 실행을 스스로 예약한다.
@@ -30,12 +31,15 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       SITE_URL: ${{ secrets.SITE_URL }}
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+      COLLECTOR_RELAY_URL: ${{ secrets.COLLECTOR_RELAY_URL }}
+      COLLECTOR_TOKEN: ${{ secrets.COLLECTOR_TOKEN }}
       LLM_BUDGET_KRW: "100000"
       AUTO_PUBLISH: "true"
     steps:
@@ -47,12 +51,14 @@ jobs:
       - run: npm ci
       - run: npm run db:generate
       - run: npm run db:migrate
-      # 하루·주 1번 작업은 schedule 대신 시각으로 정한다 (UTC 20시 = 05시 KST, 일요일 18시 = 월요일 03시 KST)
+      # 하루·주 1번 작업은 schedule 대신 시각으로 정한다
+      # (UTC 20시 = 05시 KST, 일요일 18시 = 월요일 03시 KST, 일요일 15시 = 월요일 00시 KST 주간 투표 교대)
       - name: 시각 확인
         id: when
         run: |
           echo "daily=$([ "$(date -u +%H)" = 20 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "weekly=$([ "$(date -u +%u%H)" = 718 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "weeklyPoll=$([ "$(date -u +%u%H)" = 715 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
       - name: 원문 삭제 확인 (하루 1번)
         if: steps.when.outputs.daily == 'true'
         run: npm run worker -- recheck
@@ -62,6 +68,23 @@ jobs:
       - name: 인물 사전 갱신 (주 1회)
         if: steps.when.outputs.weekly == 'true'
         run: npm run worker -- entities
+      # 랭킹 쪽 단계는 실패해도 글 작성은 계속한다
+      - name: 인물 페이지 정보 (주 1회)
+        if: steps.when.outputs.weekly == 'true'
+        continue-on-error: true
+        run: npm run worker -- entity-meta
+      - name: 위키백과 조회수 (하루 1번)
+        if: steps.when.outputs.daily == 'true'
+        continue-on-error: true
+        run: npm run worker -- wiki-sync
+      - name: 주간 팬 투표 교대 (월요일 00시 KST)
+        if: steps.when.outputs.weeklyPoll == 'true'
+        continue-on-error: true
+        run: npm run worker -- weekly-poll
+      - name: 랭킹 스냅숏 (하루 1번 + 월요일 00시 KST 주간 고정판)
+        if: steps.when.outputs.daily == 'true' || steps.when.outputs.weeklyPoll == 'true'
+        continue-on-error: true
+        run: npm run worker -- rankings
       - name: 수집 → 체크 → 작성
         run: npm run worker -- pipeline ${{ github.event.inputs.limit || '3' }}
       - run: npm run worker -- zh-cn
