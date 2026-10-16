@@ -1,1 +1,41 @@
-{}
+{
+  "popular": "Paling banyak dibaca",
+  "more": "Lihat lainnya",
+  "prev": "Sebelumnya",
+  "next": "Berikutnya",
+  "pagination": "Halaman",
+  "pageOf": "Halaman {n} dari {total}",
+  "latestPageTitle": "Berita terbaru — halaman {n}",
+  "latestPageDescription": "Berita Korea terbaru untuk fans internasional, halaman {n}: K-pop, drakor, seleb, dan kehidupan di Korea.",
+  "categoryPageTitle": "{category} — halaman {n}",
+  "comments": "{count} komentar",
+  "reactions": "{count} reaksi",
+  "title": {
+    "KPOP": "Berita K-pop Hari Ini: Comeback, Chart, dan Kabar Idol",
+    "KENT": "Berita Seleb Korea: Aktor, Idol, dan yang Lagi Ramai",
+    "KDRAMA": "Berita Drakor {year}: Drama Baru, Rating, dan Pemain",
+    "KFOOD": "Panduan Kuliner Korea: Makanan Wajib Coba dan Tren Terbaru",
+    "KBEAUTY": "K-Beauty {year}: Tren Skincare dan Produk Terlaris",
+    "TRAVEL": "Panduan Wisata Korea {year}: Transportasi, K-ETA, Tax Refund",
+    "STUDY": "Kuliah di Korea {year}: Visa, Beasiswa, dan Kehidupan Kampus",
+    "LOVE": "Pacaran dan Menikah di Korea: Budaya, Visa, dan Kisah Nyata",
+    "WORKING_HOLIDAY": "Working Holiday Korea {year}: Syarat Visa H-1 dan Persiapan",
+    "JOBS": "Kerja di Korea untuk Orang Asing {year}: Visa dan Lowongan",
+    "HOUSING": "Sewa Rumah di Korea: Sewa Bulanan, Jeonse, dan Deposit",
+    "LIFE": "Tinggal di Korea {year}: Visa, Bank, dan Kehidupan Sehari-hari"
+  },
+  "intro": {
+    "KPOP": "Berita K-pop terbaru dalam bahasa Indonesia, dari comeback dan rekor chart sampai konser dan acara fans. Kami memilih yang sedang ramai di Korea dan menjelaskannya untuk fans di seluruh dunia.",
+    "KENT": "Kabar aktor, idol, dan bintang TV Korea, dari proyek baru dan pernikahan sampai cerita yang sedang ramai dibahas di Korea. Setiap artikel menautkan berita asli dari media Korea.",
+    "KDRAMA": "Drakor baru dan yang akan tayang, rating, kabar pemain, dan tempat nonton. Kami mengikuti reaksi penonton Korea dan menjelaskannya untuk fans internasional.",
+    "KFOOD": "Makanan Korea, tren kuliner, dan tempat mencobanya, dijelaskan untuk wisatawan dan fans di luar negeri. Dari jajanan kaki lima sampai produk minimarket yang sedang hits di Korea.",
+    "KBEAUTY": "Tren skincare dan makeup dari Korea, produk terlaris, dan cara membelinya. Ditulis untuk pembaca yang ingin tahu apa yang benar-benar dipakai orang Korea.",
+    "TRAVEL": "Tips praktis wisata ke Korea, dari kartu transportasi dan K-ETA sampai tax refund dan acara musiman. Aturan baru untuk wisatawan juga kami kabarkan di sini.",
+    "STUDY": "Info kuliah di Korea, dari visa pelajar D-2 dan D-4, beasiswa, sampai kehidupan kampus dan kelas bahasa. Berita dan panduan untuk mahasiswa internasional.",
+    "LOVE": "Budaya pacaran, pernikahan internasional, dan hubungan di Korea, dijelaskan untuk orang asing. Dari visa pernikahan sampai topik yang sedang dibicarakan pasangan Korea.",
+    "WORKING_HOLIDAY": "Cara kerja visa working holiday (H-1) Korea, siapa yang bisa mendaftar, dan apa yang perlu disiapkan setelah tiba. Berita dan tips praktis untuk peserta working holiday.",
+    "JOBS": "Visa kerja, berita lowongan, dan budaya kerja untuk orang asing di Korea. Kami menjelaskan aturan dan tren yang perlu kamu tahu kalau ingin bekerja di Korea.",
+    "HOUSING": "Cara menyewa tempat tinggal di Korea, dari sewa bulanan dan jeonse sampai deposit dan kontrak. Panduan dan berita untuk orang asing yang mencari rumah di Korea.",
+    "LIFE": "Kehidupan sehari-hari orang asing di Korea, dari visa dan bank sampai ponsel, layanan kesehatan, dan aturan baru. Berita dan panduan praktis yang bisa langsung dipakai."
+  }
+}
