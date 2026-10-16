@@ -1,1 +1,15 @@
-{}
+{
+  "footer": {
+    "nav": "Tautan Hallyu Brief",
+    "topics": "Topik",
+    "explore": "Jelajahi",
+    "rankings": "Peringkat",
+    "rss": "Feed RSS",
+    "languages": "Bahasa",
+    "about": "Tentang kami",
+    "editorialPolicy": "Kebijakan redaksi",
+    "contact": "Kontak",
+    "privacy": "Kebijakan privasi",
+    "aiNote": "Ditulis dan diterjemahkan dengan AI berdasarkan pengumuman resmi dan pemberitaan media Korea."
+  }
+}

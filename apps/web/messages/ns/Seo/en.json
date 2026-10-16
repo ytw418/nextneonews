@@ -1,1 +1,15 @@
-{}
+{
+  "footer": {
+    "nav": "More from Hallyu Brief",
+    "topics": "Topics",
+    "explore": "Explore",
+    "rankings": "Rankings",
+    "rss": "RSS feed",
+    "languages": "Languages",
+    "about": "About us",
+    "editorialPolicy": "Editorial policy",
+    "contact": "Contact",
+    "privacy": "Privacy policy",
+    "aiNote": "Written and translated with AI from official announcements and Korean media reports."
+  }
+}

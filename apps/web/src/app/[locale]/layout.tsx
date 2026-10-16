@@ -11,12 +11,13 @@ import { ChromeEffects } from "@/components/ChromeEffects";
 import { InstallPrompt } from "@/components/InstallPrompt";
 import { JsonLd } from "@/components/JsonLd";
 import { LocaleSuggest } from "@/components/LocaleSuggest";
+import { SiteFooter } from "@/components/SiteFooter";
 import { TabBar } from "@/components/TabBar";
 import { Toaster } from "@/components/ui/Toast";
 import { routing } from "@/i18n/routing";
 import { INSTALL_CAPTURE_SCRIPT } from "@/lib/install";
 import { siteJsonLd } from "@/lib/jsonld";
-import { SITE_URL } from "@/lib/url";
+import { feedAlternate, GOOGLEBOT_PREVIEW, pageRobots, SITE_URL } from "@/lib/url";
 
 import "../globals.css";
 
@@ -52,6 +53,13 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
     description: t("tagline"),
     appleWebApp: { capable: true, title: SITE_NAME, statusBarStyle: "default" },
+    // 디스커버·검색에 큰 사진과 긴 스니펫 허용. noindex 로 바꾸는 페이지도 pageRobots(false) 로 이 값을 이어 간다
+    robots: pageRobots(),
+    // 안전망: 페이지가 robots 키를 내면(undefined 라도) 위 값이 통째로 사라진다. googlebot 메타는 따로 남겨
+    // 구글이 어느 페이지에서나 큰 사진 미리보기를 쓰게 한다 (색인 여부는 robots 메타가 정한다)
+    other: { googlebot: GOOGLEBOT_PREVIEW },
+    // alternates 를 내지 않는 페이지에도 이 언어 RSS 를 알린다
+    alternates: { types: feedAlternate(locale) },
   };
 }
 
@@ -71,6 +79,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           {/* 하단 탭바·고정 CTA(--bottom-ui)에 마지막 줄이 가리지 않게 아래 여백을 둔다 */}
           <main id="main" className="mx-auto max-w-[640px] pb-[calc(var(--bottom-ui)+24px)]">
             {children}
+            <SiteFooter locale={locale} />
           </main>
           <TabBar />
           <Toaster />

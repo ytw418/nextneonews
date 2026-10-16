@@ -1,1 +1,15 @@
-{}
+{
+  "footer": {
+    "nav": "Liens Hallyu Brief",
+    "topics": "Sujets",
+    "explore": "Explorer",
+    "rankings": "Classements",
+    "rss": "Flux RSS",
+    "languages": "Langues",
+    "about": "À propos",
+    "editorialPolicy": "Charte éditoriale",
+    "contact": "Contact",
+    "privacy": "Confidentialité",
+    "aiNote": "Rédigé et traduit avec l’IA à partir d’annonces officielles et de médias coréens."
+  }
+}

@@ -1,1 +1,15 @@
-{}
+{
+  "footer": {
+    "nav": "Hallyu Brief 網站連結",
+    "topics": "主題",
+    "explore": "探索",
+    "rankings": "排行榜",
+    "rss": "RSS 訂閱",
+    "languages": "語言",
+    "about": "關於我們",
+    "editorialPolicy": "編輯方針",
+    "contact": "聯絡我們",
+    "privacy": "隱私權政策",
+    "aiNote": "根據官方公告與韓國媒體報導，由AI協助撰寫與翻譯。"
+  }
+}
