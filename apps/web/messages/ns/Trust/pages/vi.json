@@ -97,7 +97,7 @@
   },
   "privacy": {
     "title": "Chính sách quyền riêng tư",
-    "description": "Hallyu Brief không có tài khoản. Những gì chúng tôi lưu cho bình luận, bình chọn và cổ vũ (mã băm, không bao giờ là địa chỉ IP), Google Analytics, dữ liệu lưu trên thiết bị của bạn và thời gian lưu.",
+    "description": "Hallyu Brief không có tài khoản. Những gì chúng tôi lưu cho bình luận, bình chọn và cổ vũ (mã băm, không bao giờ là địa chỉ IP), phân tích truy cập (Google Analytics và PostHog), dữ liệu lưu trên thiết bị của bạn và thời gian lưu.",
     "lead": "Hallyu Brief không có tài khoản và không cần đăng ký. Chúng tôi thu thập ít nhất có thể, và trang này liệt kê tất cả.",
     "noAccountTitle": "Không có tài khoản",
     "noAccount": "Bạn có thể đọc, bình luận, bình chọn và cổ vũ mà không cần đăng ký. Chúng tôi không bao giờ hỏi tên, email hay số điện thoại của bạn.",
@@ -107,8 +107,9 @@
       "Bình luận: nội dung, biệt danh hiển thị, mã băm của khóa chỉnh sửa lưu trên thiết bị của bạn (để chỉ bạn sửa hoặc xóa được) và các mã băm địa chỉ IP.",
       "Bình chọn, phản ứng và cổ vũ: lựa chọn của bạn, mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang, và với bình chọn và cổ vũ là quốc gia do nhà cung cấp hosting nhận diện (ví dụ “JP”) — không bao giờ là địa chỉ IP."
     ],
-    "analyticsTitle": "Google Analytics",
+    "analyticsTitle": "Phân tích truy cập",
     "analytics": "Chúng tôi dùng Google Analytics 4 để đếm lượt truy cập và biết bài nào được đọc. Ở Khu vực Kinh tế châu Âu (EEA), Anh và Thụy Sĩ, lưu trữ cho phân tích và quảng cáo mặc định bị tắt (Google Consent Mode v2), nên không có cookie phân tích nào được đặt trừ khi bạn đồng ý trong thông báo xin đồng ý của Google. Google Analytics 4 không ghi lại hay lưu địa chỉ IP.",
+    "posthog": "Chúng tôi cũng dùng PostHog (máy chủ ở Mỹ) để biết trang nào được xem và các nút như bình chọn, cổ vũ, chia sẻ được dùng ra sao. PostHog hoạt động không cần cookie và không lưu gì trên thiết bị của bạn. Để phân biệt các lượt truy cập, máy chủ PostHog biến địa chỉ IP và thông tin trình duyệt của bạn thành mã băm một chiều bằng một khóa đổi mỗi ngày, rồi bỏ địa chỉ IP mà không lưu lại.",
     "adsTitle": "Quảng cáo và banner tiếp thị liên kết",
     "ads": "Chúng tôi hiển thị quảng cáo qua Google AdSense. Các nhà cung cấp bên thứ ba, trong đó có Google, dùng cookie để hiển thị quảng cáo dựa trên những lần bạn từng truy cập trang này hoặc các trang web khác. Cookie quảng cáo cho phép Google và các đối tác hiển thị quảng cáo cho bạn dựa trên việc bạn truy cập trang này và/hoặc các trang khác trên Internet. Ở EEA, Anh và Thụy Sĩ, lưu trữ cho quảng cáo mặc định bị tắt và quảng cáo cá nhân hóa chỉ xuất hiện khi bạn đồng ý trong thông báo xin đồng ý của Google. Bạn có thể tắt quảng cáo cá nhân hóa trong <google>Cài đặt quảng cáo của Google</google>, hoặc từ chối cookie quảng cáo cá nhân hóa của các nhà cung cấp khác tại <aboutads>www.aboutads.info</aboutads>.",
     "affiliate": "Một số bài viết dành cho người đang sống ở Hàn Quốc có banner Coupang Partners. Banner chỉ hiện khi múi giờ trên thiết bị của bạn là giờ Hàn Quốc; việc kiểm tra này diễn ra ngay trong trình duyệt và không được gửi cho chúng tôi. Nếu bạn mua hàng trên Coupang sau khi bấm vào banner, chúng tôi nhận được hoa hồng và bạn không phải trả thêm gì. Coupang có thể đặt cookie riêng khi banner tải hoặc khi bạn bấm vào. Banner không ảnh hưởng đến nội dung chúng tôi viết.",
@@ -137,11 +138,12 @@
       "Bình luận: cho đến khi bạn xóa (bình luận bị xóa khỏi cơ sở dữ liệu), hoặc cho đến khi chúng tôi gỡ bình luận hay bài viết.",
       "Bản ghi bình chọn, phản ứng và cổ vũ: trong thời gian cuộc bình chọn, bài viết hoặc bảng xếp hạng đó còn trên trang.",
       "Google Analytics: dữ liệu sự kiện được giữ 2 tháng, mức ngắn nhất trong cài đặt của Google.",
+      "PostHog: dữ liệu sự kiện được giữ 1 năm.",
       "Email bạn gửi: chỉ trong thời gian cần để xử lý yêu cầu của bạn.",
       "Nhà cung cấp hosting giữ nhật ký kỹ thuật ngắn hạn, có thể chứa địa chỉ IP, vì lý do bảo mật."
     ],
     "servicesTitle": "Dịch vụ chúng tôi dùng",
-    "services": "Vercel (hosting), Neon (cơ sở dữ liệu) và Google (phân tích) xử lý dữ liệu thay chúng tôi. Google AdSense và Coupang Partners nói ở trên thu thập dữ liệu bằng cookie riêng theo chính sách quyền riêng tư của họ. Chúng tôi không tự bán dữ liệu hay trao dữ liệu cho nhà quảng cáo. Tuy vậy, theo luật của một số bang ở Mỹ, quảng cáo cá nhân hóa của Google có thể được xem là “chia sẻ”; bạn có thể tắt chúng trong Cài đặt quảng cáo của Google nói ở trên.",
+    "services": "Vercel (hosting), Neon (cơ sở dữ liệu), cùng Google và PostHog (phân tích) xử lý dữ liệu thay chúng tôi. Google AdSense và Coupang Partners nói ở trên thu thập dữ liệu bằng cookie riêng theo chính sách quyền riêng tư của họ. Chúng tôi không tự bán dữ liệu hay trao dữ liệu cho nhà quảng cáo. Tuy vậy, theo luật của một số bang ở Mỹ, quảng cáo cá nhân hóa của Google có thể được xem là “chia sẻ”; bạn có thể tắt chúng trong Cài đặt quảng cáo của Google nói ở trên.",
     "rightsTitle": "Bạn có thể làm gì",
     "rights": "Bạn có thể xóa bình luận của mình bất cứ lúc nào trên cùng thiết bị. Bạn có thể xóa mọi thứ chúng tôi lưu trong trình duyệt bằng cách xóa dữ liệu của trang này trong cài đặt trình duyệt. Với các yêu cầu khác, hãy <contact>liên hệ với chúng tôi</contact>."
   }

@@ -97,7 +97,7 @@
   },
   "privacy": {
     "title": "Kebijakan privasi",
-    "description": "Hallyu Brief tidak memakai akun. Apa yang kami simpan untuk komentar, polling, dan dukungan (berupa hash, bukan alamat IP), Google Analytics, data di perangkatmu, dan berapa lama disimpan.",
+    "description": "Hallyu Brief tidak memakai akun. Apa yang kami simpan untuk komentar, polling, dan dukungan (berupa hash, bukan alamat IP), analitik (Google Analytics dan PostHog), data di perangkatmu, dan berapa lama disimpan.",
     "lead": "Hallyu Brief tidak punya akun dan tidak perlu mendaftar. Kami mengumpulkan sesedikit mungkin, dan semuanya tercantum di halaman ini.",
     "noAccountTitle": "Tanpa akun",
     "noAccount": "Kamu bisa membaca, berkomentar, ikut polling, dan memberi dukungan tanpa mendaftar. Kami tidak pernah meminta nama, alamat email, atau nomor telepon.",
@@ -107,8 +107,9 @@
       "Komentar: isi komentar, nama yang ditampilkan, hash dari kunci edit yang tersimpan di perangkatmu (agar hanya kamu yang bisa mengubah atau menghapusnya), dan kode hash alamat IP.",
       "Polling, reaksi, dan dukungan: pilihanmu, kode hash alamat IP dan browser, bahasa halaman, dan untuk polling serta dukungan, negara yang dideteksi oleh penyedia hosting kami (misalnya “JP”) — tidak pernah alamat IP itu sendiri."
     ],
-    "analyticsTitle": "Google Analytics",
+    "analyticsTitle": "Analitik",
     "analytics": "Kami memakai Google Analytics 4 untuk menghitung kunjungan dan melihat artikel mana yang dibaca. Di Kawasan Ekonomi Eropa (EEA), Inggris, dan Swiss, penyimpanan untuk analitik dan iklan dimatikan secara bawaan (Google Consent Mode v2), sehingga tidak ada cookie analitik yang dipasang di sana kecuali kamu menyetujuinya di pesan persetujuan Google. Google Analytics 4 tidak mencatat atau menyimpan alamat IP.",
+    "posthog": "Kami juga memakai PostHog (server di AS) untuk melihat halaman mana yang dibuka dan bagaimana tombol seperti polling, dukungan, dan bagikan dipakai. PostHog berjalan tanpa cookie dan tidak menyimpan apa pun di perangkatmu. Untuk membedakan kunjungan, server PostHog mengubah alamat IP dan info browsermu menjadi hash satu arah dengan kunci yang berganti setiap hari, lalu membuang alamat IP itu tanpa menyimpannya.",
     "adsTitle": "Iklan dan banner afiliasi",
     "ads": "Kami menampilkan iklan melalui Google AdSense. Vendor pihak ketiga, termasuk Google, memakai cookie untuk menayangkan iklan berdasarkan kunjunganmu sebelumnya ke situs ini atau situs lain. Cookie iklan Google memungkinkan Google dan mitranya menayangkan iklan kepadamu berdasarkan kunjunganmu ke situs ini dan/atau situs lain di internet. Di EEA, Inggris, dan Swiss, penyimpanan untuk iklan dimatikan secara bawaan, dan iklan yang dipersonalisasi hanya muncul jika kamu setuju di pesan persetujuan Google. Kamu bisa mematikan iklan yang dipersonalisasi di <google>Setelan Iklan Google</google>, atau menolak cookie vendor lain untuk iklan yang dipersonalisasi di <aboutads>www.aboutads.info</aboutads>.",
     "affiliate": "Beberapa artikel untuk pembaca yang tinggal di Korea menampilkan banner Coupang Partners. Banner hanya muncul jika zona waktu perangkatmu diatur ke Korea; pengecekan ini dilakukan di browsermu dan tidak dikirim ke kami. Jika kamu berbelanja di Coupang setelah mengeklik banner, kami menerima komisi tanpa biaya tambahan untukmu. Coupang bisa memasang cookie sendiri saat banner dimuat atau diklik. Banner tidak memengaruhi apa yang kami tulis.",
@@ -137,11 +138,12 @@
       "Komentar: sampai kamu menghapusnya (komentar terhapus dari database kami), atau sampai kami menghapus komentar atau artikelnya.",
       "Catatan polling, reaksi, dan dukungan: selama polling, artikel, atau peringkat terkait masih ada di situs.",
       "Google Analytics: data peristiwa disimpan selama 2 bulan, pengaturan terpendek di Google.",
+      "PostHog: data peristiwa disimpan selama 1 tahun.",
       "Email yang kamu kirim: hanya selama diperlukan untuk menangani permintaanmu.",
       "Penyedia hosting kami menyimpan log teknis jangka pendek, yang bisa berisi alamat IP, untuk keamanan."
     ],
     "servicesTitle": "Layanan yang kami pakai",
-    "services": "Vercel (hosting), Neon (database), dan Google (analitik) memproses data untuk kami. Google AdSense dan Coupang Partners yang dijelaskan di atas mengumpulkan data lewat cookie mereka sendiri sesuai kebijakan privasi masing-masing. Kami sendiri tidak menjual data atau menyerahkannya kepada pengiklan. Namun, menurut hukum beberapa negara bagian AS, iklan Google yang dipersonalisasi bisa dianggap sebagai “berbagi”; kamu bisa mematikannya di Setelan Iklan Google yang disebut di atas.",
+    "services": "Vercel (hosting), Neon (database), serta Google dan PostHog (analitik) memproses data untuk kami. Google AdSense dan Coupang Partners yang dijelaskan di atas mengumpulkan data lewat cookie mereka sendiri sesuai kebijakan privasi masing-masing. Kami sendiri tidak menjual data atau menyerahkannya kepada pengiklan. Namun, menurut hukum beberapa negara bagian AS, iklan Google yang dipersonalisasi bisa dianggap sebagai “berbagi”; kamu bisa mematikannya di Setelan Iklan Google yang disebut di atas.",
     "rightsTitle": "Pilihanmu",
     "rights": "Kamu bisa menghapus komentarmu kapan saja dari perangkat yang sama. Kamu bisa menghapus semua yang kami simpan di browser dengan menghapus data situs ini di pengaturan browser. Untuk hal lain, <contact>hubungi kami</contact>."
   }

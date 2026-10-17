@@ -15,7 +15,7 @@ import {
 } from "@/components/info/InfoPage";
 
 // 문구를 바꾸면 이 날짜도 올린다
-const UPDATED = "2026-10-17";
+const UPDATED = "2026-10-18";
 
 export const revalidate = 3600;
 
@@ -59,7 +59,7 @@ function KeyList({ items }: { items: { key: string; text: string }[] }) {
   );
 }
 
-// 개인정보: 회원가입 없음, IP 는 HMAC 해시로만, GA4·EEA 동의 모드, 광고(애드센스)·제휴 배너(쿠팡), 기기 저장 키 목록, 보관 기간
+// 개인정보: 회원가입 없음, IP 는 HMAC 해시로만, GA4·EEA 동의 모드, PostHog(쿠키 없음), 광고(애드센스)·제휴 배너(쿠팡), 기기 저장 키 목록, 보관 기간
 export default async function PrivacyPage({ params }: PageProps<"/[locale]/privacy">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
@@ -90,6 +90,7 @@ export default async function PrivacyPage({ params }: PageProps<"/[locale]/priva
 
       <InfoSection id="analytics" title={t("analyticsTitle")}>
         <p>{t("analytics")}</p>
+        <p>{t("posthog")}</p>
       </InfoSection>
 
       {/* 애드센스 개인정보처리방침 필수 문구: 제3자 쿠키·구글 광고 쿠키·거부 방법(광고 설정·aboutads) */}

@@ -97,7 +97,7 @@
   },
   "privacy": {
     "title": "隐私政策",
-    "description": "Hallyu Brief 无需注册。说明评论、投票和应援会保存什么（哈希值，而不是 IP 地址）、Google Analytics、保存在你设备上的数据，以及保存多久。",
+    "description": "Hallyu Brief 无需注册。说明评论、投票和应援会保存什么（哈希值，而不是 IP 地址）、流量分析（Google Analytics 和 PostHog）、保存在你设备上的数据，以及保存多久。",
     "lead": "Hallyu Brief 没有账号，也无需注册。我们尽量少收集数据，而且全部列在这一页。",
     "noAccountTitle": "无需注册",
     "noAccount": "不用注册就能阅读、评论、投票和应援。我们从不询问你的姓名、邮箱或手机号码。",
@@ -107,8 +107,9 @@
       "评论：内容、显示的昵称、你设备上编辑密钥的哈希值（只有你能修改或删除），以及 IP 地址的哈希代码。",
       "投票、反应与应援：你的选择、IP 地址和浏览器的哈希代码、页面语言；投票和应援还会记录托管服务判断的国家（例如「JP」）。绝不保存 IP 地址本身。"
     ],
-    "analyticsTitle": "Google Analytics",
+    "analyticsTitle": "流量分析",
     "analytics": "我们使用 Google Analytics 4 统计访问量，了解哪些文章被阅读。在欧洲经济区（EEA）、英国和瑞士，分析和广告存储默认关闭（Google 同意模式 v2），因此除非你在 Google 的同意消息中同意，否则不会设置分析 Cookie。Google Analytics 4 不会记录或保存 IP 地址。",
+    "posthog": "我们也使用 PostHog（服务器位于美国），了解哪些页面被浏览，以及投票、应援、分享等按钮的使用情况。它不使用 Cookie，也不会在你的设备上存储任何数据。为了区分不同的访问，PostHog 的服务器会用每天更换的密钥，把你的 IP 地址和浏览器信息转成无法还原的哈希值，之后丢弃 IP 地址，不会保存。",
     "adsTitle": "广告与联盟横幅",
     "ads": "我们通过 Google AdSense 展示广告。包括 Google 在内的第三方供应商会使用 Cookie，根据你以前访问本网站或其他网站的记录投放广告。Google 使用广告 Cookie，使 Google 及其合作伙伴能够根据你访问本网站和/或互联网上其他网站的记录向你展示广告。在欧洲经济区（EEA）、英国和瑞士，广告存储默认关闭，只有你在 Google 的同意消息中同意后才会展示个性化广告。你可以在<google>Google 广告设置</google>中关闭个性化广告，也可以在 <aboutads>www.aboutads.info</aboutads> 拒绝其他供应商用于个性化广告的 Cookie。",
     "affiliate": "部分面向在韩国生活的读者的文章会显示 Coupang Partners 横幅。横幅只在你的设备时区为韩国时显示，这项判断只在你的浏览器中进行，不会发送给我们。你点击横幅后在 Coupang 购物，我们会获得佣金，你无需多付任何费用。Coupang 可能会在加载或点击横幅时设置自己的 Cookie。横幅不会影响我们写的内容。",
@@ -137,11 +138,12 @@
       "评论：直到你自己删除（删除后也会从数据库中消失），或直到我们删除该评论或文章。",
       "投票、反应与应援记录：在所属的投票、文章或排行榜仍在网站上的期间。",
       "Google Analytics：事件数据保存 2 个月，这是 Google 设置中最短的选项。",
+      "PostHog：事件数据保存 1 年。",
       "你发给我们的邮件：只保存到处理完你的请求为止。",
       "托管服务商会出于安全需要短期保存技术日志，其中可能包含 IP 地址。"
     ],
     "servicesTitle": "我们使用的服务",
-    "services": "Vercel（托管）、Neon（数据库）和 Google（分析）代我们处理数据。上面提到的 Google AdSense 和 Coupang Partners 会按照各自的隐私政策，通过自己的 Cookie 收集数据。我们不会自行出售数据，也不会直接交给广告主。不过，根据美国部分州的法律，Google 个性化广告可能被视为“共享”，你可以在上面提到的 Google 广告设置中关闭。",
+    "services": "Vercel（托管）、Neon（数据库），以及 Google 和 PostHog（分析）代我们处理数据。上面提到的 Google AdSense 和 Coupang Partners 会按照各自的隐私政策，通过自己的 Cookie 收集数据。我们不会自行出售数据，也不会直接交给广告主。不过，根据美国部分州的法律，Google 个性化广告可能被视为“共享”，你可以在上面提到的 Google 广告设置中关闭。",
     "rightsTitle": "你可以做的事",
     "rights": "你可以随时在同一台设备上删除自己的评论。在浏览器设置中清除本站数据，就能删除我们保存在你浏览器里的所有内容。其他需求请<contact>联系我们</contact>。"
   }

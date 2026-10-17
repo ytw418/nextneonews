@@ -97,7 +97,7 @@
   },
   "privacy": {
     "title": "Politique de confidentialité",
-    "description": "Hallyu Brief n’a pas de comptes. Ce que nous gardons pour les commentaires, votes et encouragements (des empreintes, jamais d’adresses IP), Google Analytics, ce qui est stocké sur ton appareil et pour combien de temps.",
+    "description": "Hallyu Brief n’a pas de comptes. Ce que nous gardons pour les commentaires, votes et encouragements (des empreintes, jamais d’adresses IP), la mesure d’audience (Google Analytics et PostHog), ce qui est stocké sur ton appareil et pour combien de temps.",
     "lead": "Hallyu Brief n’a ni comptes ni inscription. Nous collectons le moins possible, et cette page en dresse la liste complète.",
     "noAccountTitle": "Pas de compte",
     "noAccount": "Tu peux lire, commenter, voter et encourager sans t’inscrire. Nous ne demandons jamais ton nom, ton adresse e-mail ni ton numéro de téléphone.",
@@ -107,8 +107,9 @@
       "Commentaires : le texte, le pseudo affiché, une empreinte de la clé de modification enregistrée sur ton appareil (pour que toi seul puisses modifier ou supprimer le commentaire) et des empreintes de ton adresse IP.",
       "Votes, réactions et encouragements : ton choix, des empreintes de ton adresse IP et de ton navigateur, la langue de la page et, pour les sondages et encouragements, le pays détecté par notre hébergeur (par exemple « JP ») — jamais l’adresse IP elle-même."
     ],
-    "analyticsTitle": "Google Analytics",
+    "analyticsTitle": "Mesure d’audience",
     "analytics": "Nous utilisons Google Analytics 4 pour compter les visites et voir quels articles sont lus. Dans l’Espace économique européen, au Royaume-Uni et en Suisse, le stockage pour la mesure d’audience et la publicité est désactivé par défaut (Google Consent Mode v2) : aucun cookie de mesure n’y est déposé, sauf si tu l’acceptes dans le message de consentement de Google. Google Analytics 4 n’enregistre ni ne stocke les adresses IP.",
+    "posthog": "Nous utilisons aussi PostHog (serveurs aux États-Unis) pour savoir quelles pages sont consultées et comment sont utilisés les boutons comme les votes, les encouragements et le partage. PostHog fonctionne sans cookies et ne stocke rien sur ton appareil. Pour distinguer les visites, ses serveurs transforment ton adresse IP et les informations de ton navigateur en une empreinte irréversible, avec une clé qui change chaque jour, puis suppriment l’adresse IP sans la conserver.",
     "adsTitle": "Publicités et bannières affiliées",
     "ads": "Nous affichons des publicités via Google AdSense. Des fournisseurs tiers, dont Google, utilisent des cookies pour diffuser des annonces en fonction de tes visites précédentes sur ce site ou sur d’autres sites. Les cookies publicitaires de Google lui permettent, ainsi qu’à ses partenaires, de t’afficher des annonces en fonction de tes visites sur ce site et/ou sur d’autres sites Internet. Dans l’EEE, au Royaume-Uni et en Suisse, le stockage publicitaire est désactivé par défaut et les annonces personnalisées n’apparaissent que si tu les acceptes dans le message de consentement de Google. Tu peux désactiver les annonces personnalisées dans les <google>paramètres des annonces Google</google>, ou refuser les cookies d’autres fournisseurs pour la publicité personnalisée sur <aboutads>www.aboutads.info</aboutads>.",
     "affiliate": "Certains articles destinés aux lecteurs qui vivent en Corée affichent des bannières Coupang Partners. Elles n’apparaissent que si le fuseau horaire de ton appareil est celui de la Corée ; cette vérification se fait dans ton navigateur et ne nous est pas envoyée. Si tu achètes sur Coupang après avoir cliqué sur l’une d’elles, nous percevons une commission, sans surcoût pour toi. Coupang peut déposer ses propres cookies quand une bannière se charge ou quand tu cliques dessus. Les bannières ne changent rien à ce que nous écrivons.",
@@ -137,11 +138,12 @@
       "Commentaires : jusqu’à ce que tu les supprimes (ils sont effacés de notre base de données), ou jusqu’à ce que nous retirions le commentaire ou l’article.",
       "Votes, réactions et encouragements : tant que le sondage, l’article ou le classement concerné reste sur le site.",
       "Google Analytics : les données d’événements sont conservées 2 mois, le réglage le plus court proposé par Google.",
+      "PostHog : les données d’événements sont conservées 1 an.",
       "E-mails que tu nous envoies : seulement le temps nécessaire pour traiter ta demande.",
       "Notre hébergeur conserve brièvement des journaux techniques, qui peuvent contenir des adresses IP, pour la sécurité."
     ],
     "servicesTitle": "Services que nous utilisons",
-    "services": "Vercel (hébergement), Neon (base de données) et Google (mesure d’audience) traitent des données pour nous. Google AdSense et Coupang Partners, décrits plus haut, collectent des données avec leurs propres cookies, selon leur propre politique de confidentialité. Nous ne vendons pas de données et ne les transmettons pas nous-mêmes à des annonceurs. Selon les lois de certains États américains, les annonces personnalisées de Google peuvent toutefois être considérées comme un « partage » ; tu peux les désactiver dans les paramètres des annonces Google mentionnés plus haut.",
+    "services": "Vercel (hébergement), Neon (base de données), ainsi que Google et PostHog (mesure d’audience) traitent des données pour nous. Google AdSense et Coupang Partners, décrits plus haut, collectent des données avec leurs propres cookies, selon leur propre politique de confidentialité. Nous ne vendons pas de données et ne les transmettons pas nous-mêmes à des annonceurs. Selon les lois de certains États américains, les annonces personnalisées de Google peuvent toutefois être considérées comme un « partage » ; tu peux les désactiver dans les paramètres des annonces Google mentionnés plus haut.",
     "rightsTitle": "Tes choix",
     "rights": "Tu peux supprimer tes commentaires à tout moment depuis le même appareil. Tu peux effacer tout ce que nous avons enregistré dans ton navigateur en supprimant les données de ce site dans ses réglages. Pour toute autre demande, <contact>contacte-nous</contact>."
   }

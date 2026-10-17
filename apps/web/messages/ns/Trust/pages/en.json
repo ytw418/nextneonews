@@ -97,7 +97,7 @@
   },
   "privacy": {
     "title": "Privacy policy",
-    "description": "Hallyu Brief has no accounts. What we store for comments, votes and cheers (hashed, never IP addresses), Google Analytics, what we save on your device and for how long.",
+    "description": "Hallyu Brief has no accounts. What we store for comments, votes and cheers (hashed, never IP addresses), analytics (Google Analytics and PostHog), what we save on your device and for how long.",
     "lead": "Hallyu Brief has no accounts and no sign-up. We collect as little as we can, and this page lists all of it.",
     "noAccountTitle": "No accounts",
     "noAccount": "You can read, comment, vote and cheer without signing up. We never ask for your name, email address or phone number.",
@@ -107,8 +107,9 @@
       "Comments: the text, the nickname shown, a hash of the edit key saved on your device (so only you can edit or delete it) and hashed codes of your IP address.",
       "Votes, reactions and cheers: your choice, hashed codes of your IP address and browser, the page language and, for polls and cheers, the country our host detects (such as “JP”) — never the IP address itself."
     ],
-    "analyticsTitle": "Google Analytics",
+    "analyticsTitle": "Analytics",
     "analytics": "We use Google Analytics 4 to count visits and see which articles are read. In the European Economic Area, the UK and Switzerland, analytics and ad storage are off by default (Google Consent Mode v2), so no analytics cookies are set there unless you agree in Google's consent message. Google Analytics 4 doesn't log or store IP addresses.",
+    "posthog": "We also use PostHog (servers in the US) to see which pages are visited and how buttons such as votes, cheers and shares are used. It runs without cookies and stores nothing on your device. To tell visits apart, PostHog's servers turn your IP address and browser details into a one-way hash with a key that changes every day, then drop the IP address without storing it.",
     "adsTitle": "Ads and affiliate banners",
     "ads": "We show ads through Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this site or other websites. Google's advertising cookies let Google and its partners serve ads to you based on your visits to this site and/or other sites on the internet. In the EEA, the UK and Switzerland, ad storage is off by default and personalised ads appear only if you agree in Google's consent message. You can turn off personalised ads in <google>Google Ads Settings</google>, or opt out of other vendors' cookies for personalised ads at <aboutads>www.aboutads.info</aboutads>.",
     "affiliate": "Some articles for readers living in Korea show Coupang Partners banners. They appear only when your device's time zone is set to Korea; your browser checks this and doesn't send it to us. If you buy on Coupang after clicking one, we receive a commission, at no extra cost to you. Coupang may set its own cookies when a banner loads or when you click it. The banners don't change what we write.",
@@ -137,11 +138,12 @@
       "Comments: until you delete them (they're erased from our database), or until we remove them or the article.",
       "Vote, reaction and cheer records: for as long as the poll, article or ranking they belong to stays on the site.",
       "Google Analytics: event data is kept for 2 months, Google's shortest setting.",
+      "PostHog: event data is kept for 1 year.",
       "Emails you send us: only as long as we need to handle your request.",
       "Our hosting provider keeps short-lived technical logs, which can include IP addresses, for security."
     ],
     "servicesTitle": "Services we use",
-    "services": "Vercel (hosting), Neon (database) and Google (analytics) process data for us. Google AdSense and Coupang Partners, described above, collect data with their own cookies under their own privacy policies. We don't sell your data or hand it to advertisers ourselves. Under some US state laws, Google's personalised ads may count as “sharing”; you can turn them off in Google Ads Settings (see above).",
+    "services": "Vercel (hosting), Neon (database), and Google and PostHog (analytics) process data for us. Google AdSense and Coupang Partners, described above, collect data with their own cookies under their own privacy policies. We don't sell your data or hand it to advertisers ourselves. Under some US state laws, Google's personalised ads may count as “sharing”; you can turn them off in Google Ads Settings (see above).",
     "rightsTitle": "Your choices",
     "rights": "You can delete your own comments at any time from the same device. You can clear everything we saved in your browser by deleting this site's data in your browser settings. For anything else, <contact>contact us</contact>."
   }
