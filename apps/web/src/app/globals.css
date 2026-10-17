@@ -343,6 +343,10 @@ html:lang(ja) :is(h1, h2, h3, .title) {
 html[data-scrolled] .app-header {
   box-shadow: inset 0 -1px 0 var(--line);
 }
+/* 쿠팡 배너 칸은 등록 주소이고 기기 시간대가 한국일 때만 (HeadScripts 가 그리기 전에 data-coupang 을 단다) */
+html:not([data-coupang]) .coupang-slot {
+  display: none;
+}
 /* 큰 제목이 바 밑으로 올라가 가운데 제목이 뜨면 로고는 비킨다 (HeaderTitle 이 data-title-shown 을 단다) */
 .header-logo {
   transition: opacity 150ms var(--ease-standard);

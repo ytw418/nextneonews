@@ -49,6 +49,18 @@ export function inlineLink(href: string) {
   return InlineLink;
 }
 
+// 본문 안 바깥 사이트 링크 (구글 광고 설정 등). t.rich 의 태그 값으로 쓴다
+export function outboundLink(href: string) {
+  function OutboundLink(chunks: ReactNode) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={LINK}>
+        {chunks}
+      </a>
+    );
+  }
+  return OutboundLink;
+}
+
 export function EmailLink({ email }: { email: string }) {
   return (
     <a href={`mailto:${email}`} className={LINK}>

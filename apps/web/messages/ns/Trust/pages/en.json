@@ -72,7 +72,7 @@
     "rankingsTitle": "Rankings",
     "rankings": "Rankings are calculated by code from public data. They aren't picked by AI or by hand, and nobody can pay to change them. See <methodology>how rankings are calculated</methodology>.",
     "adsTitle": "Ads and affiliate links",
-    "ads": "Ads are always labelled. Some guides may include affiliate links that earn us a small commission. Neither changes what we write or how we rank."
+    "ads": "Ads are always labelled. Some articles show Coupang Partners banners, and we receive a commission when you buy through them. Neither changes what we write or how we rank."
   },
   "contact": {
     "title": "Contact",
@@ -108,7 +108,10 @@
       "Votes, reactions and cheers: your choice, hashed codes of your IP address and browser, the page language and, for polls and cheers, the country our host detects (such as “JP”) — never the IP address itself."
     ],
     "analyticsTitle": "Google Analytics",
-    "analytics": "We use Google Analytics 4 to count visits and see which articles are read. In the European Economic Area, the UK and Switzerland, analytics and ad storage are off by default (Google Consent Mode v2), so no analytics cookies are set there. Google Analytics 4 doesn't log or store IP addresses.",
+    "analytics": "We use Google Analytics 4 to count visits and see which articles are read. In the European Economic Area, the UK and Switzerland, analytics and ad storage are off by default (Google Consent Mode v2), so no analytics cookies are set there unless you agree in Google's consent message. Google Analytics 4 doesn't log or store IP addresses.",
+    "adsTitle": "Ads and affiliate banners",
+    "ads": "We show ads through Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this site or other websites. Google's advertising cookies let Google and its partners serve ads to you based on your visits to this site and/or other sites on the internet. In the EEA, the UK and Switzerland, ad storage is off by default and personalised ads appear only if you agree in Google's consent message. You can turn off personalised ads in <google>Google Ads Settings</google>, or opt out of other vendors' cookies for personalised ads at <aboutads>www.aboutads.info</aboutads>.",
+    "affiliate": "Some articles for readers living in Korea show Coupang Partners banners. They appear only when your device's time zone is set to Korea; your browser checks this and doesn't send it to us. If you buy on Coupang after clicking one, we receive a commission, at no extra cost to you. Coupang may set its own cookies when a banner loads or when you click it. The banners don't change what we write.",
     "storageTitle": "What we save on your device",
     "storage": "These are saved in your browser's storage (localStorage) and stay on your device:",
     "storageKeys": {
@@ -128,7 +131,7 @@
       "localeSeen": "The language suggestion was already shown.",
       "celebrate": "The D-day celebration was already played."
     },
-    "cookies": "Cookies: NEXT_LOCALE remembers your language until you close the browser. Outside the EEA, the UK and Switzerland, Google Analytics sets _ga and _ga_* cookies.",
+    "cookies": "Cookies: NEXT_LOCALE remembers your language until you close the browser. Outside the EEA, the UK and Switzerland, Google Analytics sets _ga and _ga_* cookies. Google AdSense and Coupang may also set their own advertising cookies (see “Ads and affiliate banners”).",
     "retentionTitle": "How long we keep data",
     "retention": [
       "Comments: until you delete them (they're erased from our database), or until we remove them or the article.",
@@ -138,7 +141,7 @@
       "Our hosting provider keeps short-lived technical logs, which can include IP addresses, for security."
     ],
     "servicesTitle": "Services we use",
-    "services": "Vercel (hosting), Neon (database) and Google (analytics) process data for us. We don't sell data or share it with advertisers. There are no ads on the site yet — if we add them, we'll update this page first.",
+    "services": "Vercel (hosting), Neon (database) and Google (analytics) process data for us. Google AdSense and Coupang Partners, described above, collect data with their own cookies under their own privacy policies. We don't sell your data or hand it to advertisers ourselves. Under some US state laws, Google's personalised ads may count as “sharing”; you can turn them off in Google Ads Settings (see above).",
     "rightsTitle": "Your choices",
     "rights": "You can delete your own comments at any time from the same device. You can clear everything we saved in your browser by deleting this site's data in your browser settings. For anything else, <contact>contact us</contact>."
   }

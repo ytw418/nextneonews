@@ -3,6 +3,7 @@ import { getLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { BackButton } from "@/components/BackButton";
+import { AdsenseScript } from "@/components/HeadScripts";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { LanguageButton } from "@/components/LanguageButton";
 import { MenuButton } from "@/components/MenuButton";
@@ -22,6 +23,7 @@ interface Props {
 // 줄 안쪽 여백 10px + 44px 버튼이라 뒤로 글리프와 메뉴 글리프가 화면 끝에서 정확히 20px(gutter)에 온다.
 // 오른쪽은 언제나 [action][언어][메뉴] — 지구본은 어느 페이지에서나 같은 자리에 있다.
 // 아래 선은 스크롤했을 때만 (globals.css html[data-scrolled] .app-header)
+// 콘텐츠 화면마다 하나씩 그려져서 애드센스 스크립트도 여기서 넣는다 (404 화면은 이 머리말을 그리지 않는다)
 export async function AppHeader({ variant = "root", showLogo = true, title, parentHref = "/", action }: Props) {
   const locale = await getLocale();
   const categories = await listActiveCategories(locale);
@@ -50,6 +52,7 @@ export async function AppHeader({ variant = "root", showLogo = true, title, pare
           <MenuButton categories={categories} />
         </div>
       </div>
+      <AdsenseScript />
     </header>
   );
 }

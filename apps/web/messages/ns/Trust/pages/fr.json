@@ -72,7 +72,7 @@
     "rankingsTitle": "Classements",
     "rankings": "Les classements sont calculés par du code à partir de données publiques. Ils ne sont choisis ni par l’IA ni à la main, et personne ne peut payer pour les modifier. Voir <methodology>comment les classements sont calculés</methodology>.",
     "adsTitle": "Publicités et liens affiliés",
-    "ads": "Les publicités sont toujours signalées. Certains guides peuvent contenir des liens affiliés qui nous rapportent une petite commission. Ni l’un ni l’autre ne change ce que nous écrivons ni nos classements."
+    "ads": "Les publicités sont toujours signalées. Certains articles affichent des bannières Coupang Partners, et nous percevons une commission quand tu achètes par leur intermédiaire. Ni l’un ni l’autre ne change ce que nous écrivons ni nos classements."
   },
   "contact": {
     "title": "Contact",
@@ -108,7 +108,10 @@
       "Votes, réactions et encouragements : ton choix, des empreintes de ton adresse IP et de ton navigateur, la langue de la page et, pour les sondages et encouragements, le pays détecté par notre hébergeur (par exemple « JP ») — jamais l’adresse IP elle-même."
     ],
     "analyticsTitle": "Google Analytics",
-    "analytics": "Nous utilisons Google Analytics 4 pour compter les visites et voir quels articles sont lus. Dans l’Espace économique européen, au Royaume-Uni et en Suisse, le stockage pour la mesure d’audience et la publicité est désactivé par défaut (Google Consent Mode v2) : aucun cookie de mesure n’y est déposé. Google Analytics 4 n’enregistre ni ne stocke les adresses IP.",
+    "analytics": "Nous utilisons Google Analytics 4 pour compter les visites et voir quels articles sont lus. Dans l’Espace économique européen, au Royaume-Uni et en Suisse, le stockage pour la mesure d’audience et la publicité est désactivé par défaut (Google Consent Mode v2) : aucun cookie de mesure n’y est déposé, sauf si tu l’acceptes dans le message de consentement de Google. Google Analytics 4 n’enregistre ni ne stocke les adresses IP.",
+    "adsTitle": "Publicités et bannières affiliées",
+    "ads": "Nous affichons des publicités via Google AdSense. Des fournisseurs tiers, dont Google, utilisent des cookies pour diffuser des annonces en fonction de tes visites précédentes sur ce site ou sur d’autres sites. Les cookies publicitaires de Google lui permettent, ainsi qu’à ses partenaires, de t’afficher des annonces en fonction de tes visites sur ce site et/ou sur d’autres sites Internet. Dans l’EEE, au Royaume-Uni et en Suisse, le stockage publicitaire est désactivé par défaut et les annonces personnalisées n’apparaissent que si tu les acceptes dans le message de consentement de Google. Tu peux désactiver les annonces personnalisées dans les <google>paramètres des annonces Google</google>, ou refuser les cookies d’autres fournisseurs pour la publicité personnalisée sur <aboutads>www.aboutads.info</aboutads>.",
+    "affiliate": "Certains articles destinés aux lecteurs qui vivent en Corée affichent des bannières Coupang Partners. Elles n’apparaissent que si le fuseau horaire de ton appareil est celui de la Corée ; cette vérification se fait dans ton navigateur et ne nous est pas envoyée. Si tu achètes sur Coupang après avoir cliqué sur l’une d’elles, nous percevons une commission, sans surcoût pour toi. Coupang peut déposer ses propres cookies quand une bannière se charge ou quand tu cliques dessus. Les bannières ne changent rien à ce que nous écrivons.",
     "storageTitle": "Ce que nous enregistrons sur ton appareil",
     "storage": "Ces éléments sont enregistrés dans le stockage de ton navigateur (localStorage) et restent sur ton appareil :",
     "storageKeys": {
@@ -128,7 +131,7 @@
       "localeSeen": "La suggestion de langue a déjà été affichée.",
       "celebrate": "L’animation du jour J a déjà été jouée."
     },
-    "cookies": "Cookies : NEXT_LOCALE retient ta langue jusqu’à la fermeture du navigateur. En dehors de l’EEE, du Royaume-Uni et de la Suisse, Google Analytics dépose les cookies _ga et _ga_*.",
+    "cookies": "Cookies : NEXT_LOCALE retient ta langue jusqu’à la fermeture du navigateur. En dehors de l’EEE, du Royaume-Uni et de la Suisse, Google Analytics dépose les cookies _ga et _ga_*. Google AdSense et Coupang peuvent aussi déposer leurs propres cookies publicitaires (voir « Publicités et bannières affiliées »).",
     "retentionTitle": "Combien de temps nous gardons les données",
     "retention": [
       "Commentaires : jusqu’à ce que tu les supprimes (ils sont effacés de notre base de données), ou jusqu’à ce que nous retirions le commentaire ou l’article.",
@@ -138,7 +141,7 @@
       "Notre hébergeur conserve brièvement des journaux techniques, qui peuvent contenir des adresses IP, pour la sécurité."
     ],
     "servicesTitle": "Services que nous utilisons",
-    "services": "Vercel (hébergement), Neon (base de données) et Google (mesure d’audience) traitent des données pour nous. Nous ne vendons pas de données et ne les partageons pas avec des annonceurs. Il n’y a pas encore de publicité sur le site — si nous en ajoutons, nous mettrons d’abord cette page à jour.",
+    "services": "Vercel (hébergement), Neon (base de données) et Google (mesure d’audience) traitent des données pour nous. Google AdSense et Coupang Partners, décrits plus haut, collectent des données avec leurs propres cookies, selon leur propre politique de confidentialité. Nous ne vendons pas de données et ne les transmettons pas nous-mêmes à des annonceurs. Selon les lois de certains États américains, les annonces personnalisées de Google peuvent toutefois être considérées comme un « partage » ; tu peux les désactiver dans les paramètres des annonces Google mentionnés plus haut.",
     "rightsTitle": "Tes choix",
     "rights": "Tu peux supprimer tes commentaires à tout moment depuis le même appareil. Tu peux effacer tout ce que nous avons enregistré dans ton navigateur en supprimant les données de ce site dans ses réglages. Pour toute autre demande, <contact>contacte-nous</contact>."
   }

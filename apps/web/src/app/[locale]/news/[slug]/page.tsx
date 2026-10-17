@@ -17,6 +17,7 @@ import { ReadingProgress } from "@/components/article/ReadingProgress";
 import { RelatedEventCard } from "@/components/article/RelatedEventCard";
 import { UpNextCard } from "@/components/article/UpNextCard";
 import { Comments } from "@/components/Comments";
+import { CoupangBanner } from "@/components/CoupangBanner";
 import { FeedCard } from "@/components/FeedCard";
 import { ChevronDownIcon, ChevronRightIcon, ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
@@ -34,6 +35,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
 import { Link } from "@/i18n/navigation";
 import { entityNames, findTranslatedLocale, getArticle, listLatest, listPopular, listRelated } from "@/lib/articles";
+import { coupangBannerFor } from "@/lib/ads";
 import { coverStyle } from "@/lib/cover";
 import { commentCount, netizenView, nextCandidates, pollView, readReactions } from "@/lib/engagement";
 import { matchArticleEntities } from "@/lib/entities";
@@ -194,6 +196,10 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
   const published = article.publishedAt;
   // 정정 요청 메일 주소는 설정했을 때만 (주소를 코드에 박지 않는다)
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  // 쿠팡 배너는 원래 글에 하나만 (이어 붙이는 다음 글에는 광고를 넣지 않는다). 한국어가 아닌 페이지는 한국어 대가성 문구도 함께
+  const coupang = coupangBannerFor({ locale, category: article.category, format: article.format });
+  const coupangKo =
+    coupang && locale !== "ko" ? (await getTranslations({ locale: "ko", namespace: "Article" }))("coupang") : undefined;
 
   return (
     <>
@@ -412,7 +418,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           </a>
         )}
 
-        <AdSlot label={t("ad")} />
+        <AdSlot label={t("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE} />
+        {coupang && <CoupangBanner id={coupang} label={t("ad")} disclosure={t("coupang")} disclosureKo={coupangKo} />}
       </article>
 
       {upNext && <UpNextCard item={upNext} title={tEngage("upNext")} />}

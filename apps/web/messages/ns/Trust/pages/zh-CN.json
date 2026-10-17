@@ -72,7 +72,7 @@
     "rankingsTitle": "排行榜",
     "rankings": "排行榜由程序根据公开数据计算，不由 AI 或人工挑选，也没有人能花钱改变名次。请看<methodology>排行榜计算方法</methodology>。",
     "adsTitle": "广告与联盟链接",
-    "ads": "广告一定会标注「广告」。部分指南可能含有联盟链接，我们可能因此获得少量佣金。两者都不会影响我们写什么或如何排名。"
+    "ads": "广告一定会标注「广告」。部分文章会显示 Coupang Partners 横幅，你通过横幅购物时我们会获得佣金。两者都不会影响我们写什么或如何排名。"
   },
   "contact": {
     "title": "联系我们",
@@ -108,7 +108,10 @@
       "投票、反应与应援：你的选择、IP 地址和浏览器的哈希代码、页面语言；投票和应援还会记录托管服务判断的国家（例如「JP」）。绝不保存 IP 地址本身。"
     ],
     "analyticsTitle": "Google Analytics",
-    "analytics": "我们使用 Google Analytics 4 统计访问量，了解哪些文章被阅读。在欧洲经济区（EEA）、英国和瑞士，分析和广告存储默认关闭（Google 同意模式 v2），因此不会设置分析 Cookie。Google Analytics 4 不会记录或保存 IP 地址。",
+    "analytics": "我们使用 Google Analytics 4 统计访问量，了解哪些文章被阅读。在欧洲经济区（EEA）、英国和瑞士，分析和广告存储默认关闭（Google 同意模式 v2），因此除非你在 Google 的同意消息中同意，否则不会设置分析 Cookie。Google Analytics 4 不会记录或保存 IP 地址。",
+    "adsTitle": "广告与联盟横幅",
+    "ads": "我们通过 Google AdSense 展示广告。包括 Google 在内的第三方供应商会使用 Cookie，根据你以前访问本网站或其他网站的记录投放广告。Google 使用广告 Cookie，使 Google 及其合作伙伴能够根据你访问本网站和/或互联网上其他网站的记录向你展示广告。在欧洲经济区（EEA）、英国和瑞士，广告存储默认关闭，只有你在 Google 的同意消息中同意后才会展示个性化广告。你可以在<google>Google 广告设置</google>中关闭个性化广告，也可以在 <aboutads>www.aboutads.info</aboutads> 拒绝其他供应商用于个性化广告的 Cookie。",
+    "affiliate": "部分面向在韩国生活的读者的文章会显示 Coupang Partners 横幅。横幅只在你的设备时区为韩国时显示，这项判断只在你的浏览器中进行，不会发送给我们。你点击横幅后在 Coupang 购物，我们会获得佣金，你无需多付任何费用。Coupang 可能会在加载或点击横幅时设置自己的 Cookie。横幅不会影响我们写的内容。",
     "storageTitle": "保存在你设备上的数据",
     "storage": "以下数据保存在浏览器的存储空间（localStorage）中，不会离开你的设备：",
     "storageKeys": {
@@ -128,7 +131,7 @@
       "localeSeen": "已经显示过语言建议。",
       "celebrate": "已经播放过 D-day 庆祝动画。"
     },
-    "cookies": "Cookie：NEXT_LOCALE 会记住你选择的语言，直到关闭浏览器。在欧洲经济区、英国和瑞士以外，Google Analytics 会设置 _ga 和 _ga_* Cookie。",
+    "cookies": "Cookie：NEXT_LOCALE 会记住你选择的语言，直到关闭浏览器。在欧洲经济区、英国和瑞士以外，Google Analytics 会设置 _ga 和 _ga_* Cookie。Google AdSense 和 Coupang 也可能设置自己的广告 Cookie（见「广告与联盟横幅」）。",
     "retentionTitle": "保存期限",
     "retention": [
       "评论：直到你自己删除（删除后也会从数据库中消失），或直到我们删除该评论或文章。",
@@ -138,7 +141,7 @@
       "托管服务商会出于安全需要短期保存技术日志，其中可能包含 IP 地址。"
     ],
     "servicesTitle": "我们使用的服务",
-    "services": "Vercel（托管）、Neon（数据库）和 Google（分析）代我们处理数据。我们不出售数据，也不与广告主共享。网站目前没有广告；如果以后加入广告，我们会先更新这一页。",
+    "services": "Vercel（托管）、Neon（数据库）和 Google（分析）代我们处理数据。上面提到的 Google AdSense 和 Coupang Partners 会按照各自的隐私政策，通过自己的 Cookie 收集数据。我们不会自行出售数据，也不会直接交给广告主。不过，根据美国部分州的法律，Google 个性化广告可能被视为“共享”，你可以在上面提到的 Google 广告设置中关闭。",
     "rightsTitle": "你可以做的事",
     "rights": "你可以随时在同一台设备上删除自己的评论。在浏览器设置中清除本站数据，就能删除我们保存在你浏览器里的所有内容。其他需求请<contact>联系我们</contact>。"
   }

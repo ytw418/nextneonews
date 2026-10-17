@@ -8,7 +8,7 @@ import { infoMetadata, InfoList, InfoPage, InfoSection, inlineLink, trustMessage
 import { Badge, type BadgeTone } from "@/components/ui/Badge";
 
 // 문구를 바꾸면 이 날짜도 올린다
-const UPDATED = "2026-10-16";
+const UPDATED = "2026-10-17";
 
 export const revalidate = 3600;
 

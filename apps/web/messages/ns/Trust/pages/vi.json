@@ -72,7 +72,7 @@
     "rankingsTitle": "Bảng xếp hạng",
     "rankings": "Bảng xếp hạng được code tính từ dữ liệu công khai. Không do AI hay con người chọn, và không ai có thể trả tiền để thay đổi thứ hạng. Xem <methodology>cách tính bảng xếp hạng</methodology>.",
     "adsTitle": "Quảng cáo và link tiếp thị liên kết",
-    "ads": "Quảng cáo luôn được ghi rõ. Một số bài hướng dẫn có thể chứa link tiếp thị liên kết giúp chúng tôi nhận một khoản hoa hồng nhỏ. Cả hai đều không ảnh hưởng đến nội dung chúng tôi viết hay cách xếp hạng."
+    "ads": "Quảng cáo luôn được ghi rõ. Một số bài viết có banner Coupang Partners, và chúng tôi nhận hoa hồng khi bạn mua hàng qua banner đó. Cả hai đều không ảnh hưởng đến nội dung chúng tôi viết hay cách xếp hạng."
   },
   "contact": {
     "title": "Liên hệ",
@@ -108,7 +108,10 @@
       "Bình chọn, phản ứng và cổ vũ: lựa chọn của bạn, mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang, và với bình chọn và cổ vũ là quốc gia do nhà cung cấp hosting nhận diện (ví dụ “JP”) — không bao giờ là địa chỉ IP."
     ],
     "analyticsTitle": "Google Analytics",
-    "analytics": "Chúng tôi dùng Google Analytics 4 để đếm lượt truy cập và biết bài nào được đọc. Ở Khu vực Kinh tế châu Âu (EEA), Anh và Thụy Sĩ, lưu trữ cho phân tích và quảng cáo mặc định bị tắt (Google Consent Mode v2), nên không có cookie phân tích nào được đặt. Google Analytics 4 không ghi lại hay lưu địa chỉ IP.",
+    "analytics": "Chúng tôi dùng Google Analytics 4 để đếm lượt truy cập và biết bài nào được đọc. Ở Khu vực Kinh tế châu Âu (EEA), Anh và Thụy Sĩ, lưu trữ cho phân tích và quảng cáo mặc định bị tắt (Google Consent Mode v2), nên không có cookie phân tích nào được đặt trừ khi bạn đồng ý trong thông báo xin đồng ý của Google. Google Analytics 4 không ghi lại hay lưu địa chỉ IP.",
+    "adsTitle": "Quảng cáo và banner tiếp thị liên kết",
+    "ads": "Chúng tôi hiển thị quảng cáo qua Google AdSense. Các nhà cung cấp bên thứ ba, trong đó có Google, dùng cookie để hiển thị quảng cáo dựa trên những lần bạn từng truy cập trang này hoặc các trang web khác. Cookie quảng cáo cho phép Google và các đối tác hiển thị quảng cáo cho bạn dựa trên việc bạn truy cập trang này và/hoặc các trang khác trên Internet. Ở EEA, Anh và Thụy Sĩ, lưu trữ cho quảng cáo mặc định bị tắt và quảng cáo cá nhân hóa chỉ xuất hiện khi bạn đồng ý trong thông báo xin đồng ý của Google. Bạn có thể tắt quảng cáo cá nhân hóa trong <google>Cài đặt quảng cáo của Google</google>, hoặc từ chối cookie quảng cáo cá nhân hóa của các nhà cung cấp khác tại <aboutads>www.aboutads.info</aboutads>.",
+    "affiliate": "Một số bài viết dành cho người đang sống ở Hàn Quốc có banner Coupang Partners. Banner chỉ hiện khi múi giờ trên thiết bị của bạn là giờ Hàn Quốc; việc kiểm tra này diễn ra ngay trong trình duyệt và không được gửi cho chúng tôi. Nếu bạn mua hàng trên Coupang sau khi bấm vào banner, chúng tôi nhận được hoa hồng và bạn không phải trả thêm gì. Coupang có thể đặt cookie riêng khi banner tải hoặc khi bạn bấm vào. Banner không ảnh hưởng đến nội dung chúng tôi viết.",
     "storageTitle": "Dữ liệu lưu trên thiết bị của bạn",
     "storage": "Các mục sau được lưu trong bộ nhớ trình duyệt (localStorage) và ở lại trên thiết bị của bạn:",
     "storageKeys": {
@@ -128,7 +131,7 @@
       "localeSeen": "Gợi ý ngôn ngữ đã được hiển thị.",
       "celebrate": "Hiệu ứng chúc mừng ngày D-day đã được phát."
     },
-    "cookies": "Cookie: NEXT_LOCALE ghi nhớ ngôn ngữ bạn chọn cho đến khi bạn đóng trình duyệt. Ngoài EEA, Anh và Thụy Sĩ, Google Analytics đặt các cookie _ga và _ga_*.",
+    "cookies": "Cookie: NEXT_LOCALE ghi nhớ ngôn ngữ bạn chọn cho đến khi bạn đóng trình duyệt. Ngoài EEA, Anh và Thụy Sĩ, Google Analytics đặt các cookie _ga và _ga_*. Google AdSense và Coupang cũng có thể đặt cookie quảng cáo riêng (xem “Quảng cáo và banner tiếp thị liên kết”).",
     "retentionTitle": "Chúng tôi giữ dữ liệu bao lâu",
     "retention": [
       "Bình luận: cho đến khi bạn xóa (bình luận bị xóa khỏi cơ sở dữ liệu), hoặc cho đến khi chúng tôi gỡ bình luận hay bài viết.",
@@ -138,7 +141,7 @@
       "Nhà cung cấp hosting giữ nhật ký kỹ thuật ngắn hạn, có thể chứa địa chỉ IP, vì lý do bảo mật."
     ],
     "servicesTitle": "Dịch vụ chúng tôi dùng",
-    "services": "Vercel (hosting), Neon (cơ sở dữ liệu) và Google (phân tích) xử lý dữ liệu thay chúng tôi. Chúng tôi không bán dữ liệu và không chia sẻ với nhà quảng cáo. Hiện trang chưa có quảng cáo — nếu sau này có, chúng tôi sẽ cập nhật trang này trước.",
+    "services": "Vercel (hosting), Neon (cơ sở dữ liệu) và Google (phân tích) xử lý dữ liệu thay chúng tôi. Google AdSense và Coupang Partners nói ở trên thu thập dữ liệu bằng cookie riêng theo chính sách quyền riêng tư của họ. Chúng tôi không tự bán dữ liệu hay trao dữ liệu cho nhà quảng cáo. Tuy vậy, theo luật của một số bang ở Mỹ, quảng cáo cá nhân hóa của Google có thể được xem là “chia sẻ”; bạn có thể tắt chúng trong Cài đặt quảng cáo của Google nói ở trên.",
     "rightsTitle": "Bạn có thể làm gì",
     "rights": "Bạn có thể xóa bình luận của mình bất cứ lúc nào trên cùng thiết bị. Bạn có thể xóa mọi thứ chúng tôi lưu trong trình duyệt bằng cách xóa dữ liệu của trang này trong cài đặt trình duyệt. Với các yêu cầu khác, hãy <contact>liên hệ với chúng tôi</contact>."
   }

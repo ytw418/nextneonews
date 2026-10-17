@@ -72,7 +72,7 @@
     "rankingsTitle": "排行榜",
     "rankings": "排行榜由程式根據公開資料計算，不是由 AI 或人工挑選，也沒有人能花錢改變名次。請看<methodology>排行榜計算方式</methodology>。",
     "adsTitle": "廣告與聯盟連結",
-    "ads": "廣告一定會標示「廣告」。部分指南可能含有聯盟連結，我們可能因此獲得少量佣金。兩者都不會影響我們寫什麼或怎麼排名。"
+    "ads": "廣告一定會標示「廣告」。部分文章會顯示 Coupang Partners 橫幅，你透過橫幅購物時我們會獲得佣金。兩者都不會影響我們寫什麼或怎麼排名。"
   },
   "contact": {
     "title": "聯絡我們",
@@ -108,7 +108,10 @@
       "投票、反應與應援：你的選擇、IP 位址與瀏覽器的雜湊代碼、頁面語言；投票與應援還會記錄主機服務判斷的國家（例如「JP」）。絕不保存 IP 位址本身。"
     ],
     "analyticsTitle": "Google Analytics",
-    "analytics": "我們使用 Google Analytics 4 計算瀏覽次數，了解哪些文章被閱讀。在歐洲經濟區（EEA）、英國和瑞士，分析與廣告儲存預設為關閉（Google 同意模式 v2），因此不會設定分析 Cookie。Google Analytics 4 不會記錄或保存 IP 位址。",
+    "analytics": "我們使用 Google Analytics 4 計算瀏覽次數，了解哪些文章被閱讀。在歐洲經濟區（EEA）、英國和瑞士，分析與廣告儲存預設為關閉（Google 同意模式 v2），因此除非你在 Google 的同意訊息中同意，否則不會設定分析 Cookie。Google Analytics 4 不會記錄或保存 IP 位址。",
+    "adsTitle": "廣告與聯盟橫幅",
+    "ads": "我們透過 Google AdSense 顯示廣告。包括 Google 在內的第三方供應商會使用 Cookie，根據你先前造訪本網站或其他網站的紀錄放送廣告。Google 使用廣告 Cookie，讓 Google 及其合作夥伴能根據你造訪本網站和／或網路上其他網站的紀錄向你顯示廣告。在歐洲經濟區（EEA）、英國和瑞士，廣告儲存預設為關閉，只有你在 Google 的同意訊息中同意後才會顯示個人化廣告。你可以在<google>Google 廣告設定</google>中關閉個人化廣告，也可以到 <aboutads>www.aboutads.info</aboutads> 拒絕其他供應商用於個人化廣告的 Cookie。",
+    "affiliate": "部分寫給住在韓國讀者的文章會顯示 Coupang Partners 橫幅。橫幅只在你的裝置時區設為韓國時顯示，這項判斷只在你的瀏覽器中進行，不會傳送給我們。你點擊橫幅後在 Coupang 購物，我們會獲得佣金，你不需要多付任何費用。Coupang 可能在載入或點擊橫幅時設定自己的 Cookie。橫幅不會影響我們寫的內容。",
     "storageTitle": "存在你裝置上的資料",
     "storage": "以下資料存在瀏覽器的儲存空間（localStorage），不會離開你的裝置：",
     "storageKeys": {
@@ -128,7 +131,7 @@
       "localeSeen": "已經顯示過語言建議。",
       "celebrate": "已經播放過 D-day 慶祝動畫。"
     },
-    "cookies": "Cookie：NEXT_LOCALE 會記住你選的語言，直到關閉瀏覽器。在歐洲經濟區、英國和瑞士以外，Google Analytics 會設定 _ga 和 _ga_* Cookie。",
+    "cookies": "Cookie：NEXT_LOCALE 會記住你選的語言，直到關閉瀏覽器。在歐洲經濟區、英國和瑞士以外，Google Analytics 會設定 _ga 和 _ga_* Cookie。Google AdSense 和 Coupang 也可能設定自己的廣告 Cookie（見「廣告與聯盟橫幅」）。",
     "retentionTitle": "保存期間",
     "retention": [
       "留言：直到你自己刪除（刪除後也會從資料庫消失），或直到我們移除該留言或文章。",
@@ -138,7 +141,7 @@
       "主機服務商會為了安全短期保存技術日誌，其中可能包含 IP 位址。"
     ],
     "servicesTitle": "我們使用的服務",
-    "services": "Vercel（主機）、Neon（資料庫）和 Google（分析）代我們處理資料。我們不販售資料，也不與廣告主分享。網站目前沒有廣告；如果之後加入廣告，我們會先更新這一頁。",
+    "services": "Vercel（主機）、Neon（資料庫）和 Google（分析）代我們處理資料。上面提到的 Google AdSense 和 Coupang Partners 會依各自的隱私權政策，透過自己的 Cookie 蒐集資料。我們不會自行販售資料，也不會直接交給廣告主。不過，依美國部分州的法律，Google 個人化廣告可能被視為「分享」，你可以在上面提到的 Google 廣告設定中關閉。",
     "rightsTitle": "你可以做的事",
     "rights": "你可以隨時在同一台裝置上刪除自己的留言。在瀏覽器設定中清除本站資料，就能刪除我們存在你瀏覽器裡的所有內容。其他需求請<contact>聯絡我們</contact>。"
   }

@@ -72,7 +72,7 @@
     "rankingsTitle": "Peringkat",
     "rankings": "Peringkat dihitung oleh kode dari data publik. Peringkat tidak dipilih oleh AI atau manusia, dan tidak ada yang bisa membayar untuk mengubahnya. Lihat <methodology>cara peringkat dihitung</methodology>.",
     "adsTitle": "Iklan dan tautan afiliasi",
-    "ads": "Iklan selalu diberi label. Beberapa panduan mungkin berisi tautan afiliasi yang memberi kami komisi kecil. Keduanya tidak mengubah apa yang kami tulis atau cara kami membuat peringkat."
+    "ads": "Iklan selalu diberi label. Beberapa artikel menampilkan banner Coupang Partners, dan kami menerima komisi jika kamu berbelanja lewat banner tersebut. Keduanya tidak mengubah apa yang kami tulis atau cara kami membuat peringkat."
   },
   "contact": {
     "title": "Kontak",
@@ -108,7 +108,10 @@
       "Polling, reaksi, dan dukungan: pilihanmu, kode hash alamat IP dan browser, bahasa halaman, dan untuk polling serta dukungan, negara yang dideteksi oleh penyedia hosting kami (misalnya “JP”) — tidak pernah alamat IP itu sendiri."
     ],
     "analyticsTitle": "Google Analytics",
-    "analytics": "Kami memakai Google Analytics 4 untuk menghitung kunjungan dan melihat artikel mana yang dibaca. Di Kawasan Ekonomi Eropa (EEA), Inggris, dan Swiss, penyimpanan untuk analitik dan iklan dimatikan secara bawaan (Google Consent Mode v2), sehingga tidak ada cookie analitik yang dipasang di sana. Google Analytics 4 tidak mencatat atau menyimpan alamat IP.",
+    "analytics": "Kami memakai Google Analytics 4 untuk menghitung kunjungan dan melihat artikel mana yang dibaca. Di Kawasan Ekonomi Eropa (EEA), Inggris, dan Swiss, penyimpanan untuk analitik dan iklan dimatikan secara bawaan (Google Consent Mode v2), sehingga tidak ada cookie analitik yang dipasang di sana kecuali kamu menyetujuinya di pesan persetujuan Google. Google Analytics 4 tidak mencatat atau menyimpan alamat IP.",
+    "adsTitle": "Iklan dan banner afiliasi",
+    "ads": "Kami menampilkan iklan melalui Google AdSense. Vendor pihak ketiga, termasuk Google, memakai cookie untuk menayangkan iklan berdasarkan kunjunganmu sebelumnya ke situs ini atau situs lain. Cookie iklan Google memungkinkan Google dan mitranya menayangkan iklan kepadamu berdasarkan kunjunganmu ke situs ini dan/atau situs lain di internet. Di EEA, Inggris, dan Swiss, penyimpanan untuk iklan dimatikan secara bawaan, dan iklan yang dipersonalisasi hanya muncul jika kamu setuju di pesan persetujuan Google. Kamu bisa mematikan iklan yang dipersonalisasi di <google>Setelan Iklan Google</google>, atau menolak cookie vendor lain untuk iklan yang dipersonalisasi di <aboutads>www.aboutads.info</aboutads>.",
+    "affiliate": "Beberapa artikel untuk pembaca yang tinggal di Korea menampilkan banner Coupang Partners. Banner hanya muncul jika zona waktu perangkatmu diatur ke Korea; pengecekan ini dilakukan di browsermu dan tidak dikirim ke kami. Jika kamu berbelanja di Coupang setelah mengeklik banner, kami menerima komisi tanpa biaya tambahan untukmu. Coupang bisa memasang cookie sendiri saat banner dimuat atau diklik. Banner tidak memengaruhi apa yang kami tulis.",
     "storageTitle": "Yang kami simpan di perangkatmu",
     "storage": "Data berikut disimpan di penyimpanan browser (localStorage) dan tetap berada di perangkatmu:",
     "storageKeys": {
@@ -128,7 +131,7 @@
       "localeSeen": "Saran bahasa sudah ditampilkan.",
       "celebrate": "Animasi perayaan D-day sudah diputar."
     },
-    "cookies": "Cookie: NEXT_LOCALE mengingat bahasa pilihanmu sampai browser ditutup. Di luar EEA, Inggris, dan Swiss, Google Analytics memasang cookie _ga dan _ga_*.",
+    "cookies": "Cookie: NEXT_LOCALE mengingat bahasa pilihanmu sampai browser ditutup. Di luar EEA, Inggris, dan Swiss, Google Analytics memasang cookie _ga dan _ga_*. Google AdSense dan Coupang juga bisa memasang cookie iklan sendiri (lihat “Iklan dan banner afiliasi”).",
     "retentionTitle": "Berapa lama data disimpan",
     "retention": [
       "Komentar: sampai kamu menghapusnya (komentar terhapus dari database kami), atau sampai kami menghapus komentar atau artikelnya.",
@@ -138,7 +141,7 @@
       "Penyedia hosting kami menyimpan log teknis jangka pendek, yang bisa berisi alamat IP, untuk keamanan."
     ],
     "servicesTitle": "Layanan yang kami pakai",
-    "services": "Vercel (hosting), Neon (database), dan Google (analitik) memproses data untuk kami. Kami tidak menjual data dan tidak membagikannya kepada pengiklan. Saat ini belum ada iklan di situs — jika nanti kami memasang iklan, halaman ini akan diperbarui lebih dulu.",
+    "services": "Vercel (hosting), Neon (database), dan Google (analitik) memproses data untuk kami. Google AdSense dan Coupang Partners yang dijelaskan di atas mengumpulkan data lewat cookie mereka sendiri sesuai kebijakan privasi masing-masing. Kami sendiri tidak menjual data atau menyerahkannya kepada pengiklan. Namun, menurut hukum beberapa negara bagian AS, iklan Google yang dipersonalisasi bisa dianggap sebagai “berbagi”; kamu bisa mematikannya di Setelan Iklan Google yang disebut di atas.",
     "rightsTitle": "Pilihanmu",
     "rights": "Kamu bisa menghapus komentarmu kapan saja dari perangkat yang sama. Kamu bisa menghapus semua yang kami simpan di browser dengan menghapus data situs ini di pengaturan browser. Untuk hal lain, <contact>hubungi kami</contact>."
   }
