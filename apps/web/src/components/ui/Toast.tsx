@@ -14,7 +14,15 @@ export interface ToastOptions {
   onClose?: () => void; // 사용자가 ×로 닫았을 때만 (시간이 지나 사라질 때는 부르지 않는다)
   onDone?: () => void; // 어떤 이유로든 화면에서 내려갈 때 (시간·×·링크·다른 토스트로 바뀜)
   duration?: number;
+  // top: 상단바 바로 아래. 하단에 구매·투표 버튼이 있는 화면에서 덮지 않게 (저장 토스트가 제품 구매 줄을 8초 덮었다)
+  position?: "top" | "bottom";
 }
+
+// 상단바(56px + 노치) 아래·떠 있는 탭바 위. globals.css 의 scroll-padding-top·--bottom-ui 와 같은 기준
+const PLACE = {
+  top: "top-[calc(56px+env(safe-area-inset-top)+8px)]",
+  bottom: "bottom-[calc(var(--bottom-ui)+12px)]",
+} as const;
 
 interface ToastItem extends ToastOptions {
   id: number;
@@ -94,7 +102,7 @@ export function Toaster() {
     <div
       role="status"
       aria-live="polite"
-      className="pointer-events-none fixed inset-x-gutter bottom-[calc(var(--bottom-ui)+12px)] z-50 mx-auto max-w-[400px]"
+      className={`pointer-events-none fixed inset-x-gutter ${PLACE[item?.position ?? "bottom"]} z-50 mx-auto max-w-[400px]`}
     >
       {item && (
         <div
