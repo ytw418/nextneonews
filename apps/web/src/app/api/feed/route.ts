@@ -1,8 +1,8 @@
 import { categoryFromSlug, isLocale } from "@kmedia/core";
 import { NextResponse } from "next/server";
 
-import { listByCategory, listLatest } from "@/lib/articles";
-import { PAGE_SIZE, pageSkip, parsePage, toFeedItems } from "@/lib/feed";
+import { listByCategory, listLatest, toFeedItems } from "@/lib/articles";
+import { PAGE_SIZE, pageSkip, parsePage } from "@/lib/feed";
 
 // 피드 다음 쪽 (FeedLoader 가 스크롤 끝에서 부른다). /news/page/n · /c/{cat}/page/n 과 같은 20개.
 // 화면처럼 5분 동안 CDN 에 둔다

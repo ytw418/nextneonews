@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import type { CSSProperties, ReactNode } from "react";
+import { type CSSProperties, Fragment, type ReactNode } from "react";
 
+import { TimeAgo } from "@/components/article/TimeAgo";
 import { HeartIcon } from "@/components/icons";
 import { MemoCover } from "@/components/MemoCover";
 import { type CreditMedia, PhotoCredit } from "@/components/PhotoCredit";
-import { Phrase } from "@/components/Phrase";
 import { Badge } from "@/components/ui/Badge";
 import { Meta } from "@/components/ui/Meta";
 import { Link } from "@/i18n/navigation";
@@ -14,10 +14,11 @@ import { coverStyle } from "@/lib/cover";
 export interface FeedItem {
   slug: string;
   title: string;
+  titleChunks?: string[]; // 일본어·중국어 제목을 서버가 BudouX 로 나눈 구 (lib/articles.ts toFeedItems)
   summary?: string; // 맨 위 카드는 두 줄, 일본어 두 열 카드는 한 줄
   category: string;
   categoryLabel: string;
-  timeAgo: string;
+  publishedAt: string | null; // ISO. '3시간 전'은 브라우저가 계산한다 (article/TimeAgo)
   locale: string;
   imageUrl?: string;
   credit?: CreditMedia; // 대표 사진 출처 (위키미디어면 저작자·라이선스·원본 링크)
@@ -32,6 +33,27 @@ export interface FeedCardProps {
   priority?: boolean; // 첫 화면에 보이는 맨 위 카드
   prefetch?: boolean; // 스크롤로 이어 붙인 카드는 미리 받지 않는다
   style?: CSSProperties;
+}
+
+// 카드 제목 줄바꿈: 일본어·중국어는 서버가 나눈 구마다만 줄을 바꾼다 (components/Phrase 와 같은 모양).
+// 카드는 무한 스크롤(클라이언트)에서도 그려져서 BudouX 사전을 여기서 불러오지 않는다
+export function ChunkedTitle({ text, chunks }: { text: string; chunks?: string[] }) {
+  if (!chunks) return <>{text}</>;
+  return (
+    <span className="[word-break:keep-all] [overflow-wrap:anywhere]">
+      {chunks.map((chunk, i) => (
+        <Fragment key={i}>
+          {i > 0 && <wbr />}
+          {chunk}
+        </Fragment>
+      ))}
+    </span>
+  );
+}
+
+// 메타 줄의 발행 시각 (발행 시각이 없는 글은 넣지 않는다)
+export function itemTime(item: Pick<FeedItem, "publishedAt" | "locale">): ReactNode {
+  return item.publishedAt && <TimeAgo iso={item.publishedAt} locale={item.locale} />;
 }
 
 // 말풍선 (icons.tsx 와 같은 1.8px 선)
@@ -105,15 +127,14 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
   const href = `/news/${item.slug}`;
 
   if (!item.imageUrl) {
-    // 메모 카드는 메모 한 장이 전부다: 도장 자리에 '3시간 전', 오른쪽 아래에 카테고리 배지.
+    // 메모 카드는 메모 한 장이 전부다: 도장 자리에 발행 시각('3시간 전'), 오른쪽 아래에 카테고리 배지.
     // 댓글·반응이 있으면 메모 밑에 한 줄. 테이프가 카드 위로 삐져나오게 잘라 내지 않는다 (모서리는 메모가 직접 둥글린다)
     return (
       <Link href={href} prefetch={prefetch} className="press-soft block" style={style}>
         <MemoCover
-          title={item.title}
+          title={<ChunkedTitle text={item.title} chunks={item.titleChunks} />}
           sticker={item.categoryLabel}
-          stamp={item.timeAgo}
-          locale={item.locale}
+          stamp={itemTime(item)}
           style={cover}
           size={lead ? "lead" : "card"}
           className="rounded-card shadow-card"
@@ -130,7 +151,7 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
   // 카테고리는 사진 위 칩이 말하므로 메타 줄은 '3시간 전 · 💬 2 · ♡ 5'
   const meta = (
     <p className={`pt-1 text-t7 text-ink-600 ${lead ? "px-4 pb-4" : "px-3 pb-3"}`}>
-      <Meta parts={[item.timeAgo, ...counts]} />
+      <Meta parts={[itemTime(item), ...counts]} />
     </p>
   );
 
@@ -158,7 +179,7 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
         </figure>
         <p className="title px-4 pt-3 text-t4 font-bold text-ink-900">
           <Link href={href} prefetch={prefetch} className="after:absolute after:inset-0">
-            <Phrase text={item.title} locale={item.locale} />
+            <ChunkedTitle text={item.title} chunks={item.titleChunks} />
           </Link>
         </p>
         {item.summary && <p className="line-clamp-2 px-4 pt-1 text-t6 text-ink-700">{item.summary}</p>}
@@ -182,7 +203,7 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
         </div>
         {/* 4줄 자르기는 안전망. 파이프라인의 언어별 제목 길이 제한이 보통 4줄 안에 맞춘다 */}
         <p className="title line-clamp-4 px-3 pt-3 text-t6 leading-row font-bold text-ink-900">
-          <Phrase text={item.title} locale={item.locale} />
+          <ChunkedTitle text={item.title} chunks={item.titleChunks} />
         </p>
         {/* 일본어 독자는 한 화면에 글이 많은 쪽을 좋아해서(PRD 9.2) 두 열 카드에도 요약 한 줄 */}
         {item.locale === "ja" && item.summary && (

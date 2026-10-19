@@ -20,7 +20,7 @@ import { RelatedEventCard } from "@/components/article/RelatedEventCard";
 import { UpNextCard } from "@/components/article/UpNextCard";
 import { Comments } from "@/components/Comments";
 import { CoupangBanner } from "@/components/CoupangBanner";
-import { FeedCard } from "@/components/FeedCard";
+import { FeedCard, itemTime } from "@/components/FeedCard";
 import { CrossRail } from "@/components/guide/CrossRail";
 import { ChevronDownIcon, ChevronRightIcon, ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
@@ -38,12 +38,19 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
 import { travelText } from "@/data/travel";
 import { Link } from "@/i18n/navigation";
-import { entityNames, findTranslatedLocale, getArticle, listLatest, listPopular, listRelated } from "@/lib/articles";
+import {
+  entityNames,
+  findTranslatedLocale,
+  getArticle,
+  listLatest,
+  listPopular,
+  listRelated,
+  toFeedItems,
+} from "@/lib/articles";
 import { articlePrepFor, coupangBannerFor } from "@/lib/ads";
 import { coverStyle } from "@/lib/cover";
 import { commentCount, netizenView, nextCandidates, pollView, readReactions } from "@/lib/engagement";
 import { matchArticleEntities } from "@/lib/entities";
-import { toFeedItems } from "@/lib/feed";
 import { imgSrc } from "@/lib/image";
 import { publisherName } from "@/lib/publishers";
 import { articleJsonLd } from "@/lib/jsonld";
@@ -274,10 +281,9 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           <div className="px-gutter pt-4">
             <div className="overflow-hidden rounded-card shadow-card">
               <MemoCover
-                title={translation.title}
+                title={<Phrase text={translation.title} locale={locale} />}
                 sticker={categoryLabel}
                 stamp={dateStamp(article.publishedAt)}
-                locale={locale}
                 style={coverStyle(slug, article.category)}
                 size="hero"
                 as="h1"
@@ -482,7 +488,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                     }
                     sub={
                       <span className="text-t7">
-                        <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                        <Meta parts={[item.categoryLabel, itemTime(item)]} />
                       </span>
                     }
                   />

@@ -19,9 +19,9 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { UpcomingRail } from "@/components/UpcomingRail";
 import { Link } from "@/i18n/navigation";
-import { countLatest, listLatest } from "@/lib/articles";
+import { countLatest, listLatest, toFeedItems } from "@/lib/articles";
 import { weeklyPollView } from "@/lib/engagement";
-import { FIRST_PAGE_SIZE, pageCount, toFeedItems } from "@/lib/feed";
+import { FIRST_PAGE_SIZE, pageCount } from "@/lib/feed";
 import { CHART_KEY, getEntities, getLatestSnapshot } from "@/lib/rankings";
 import { localeAlternates, ogBase } from "@/lib/url";
 

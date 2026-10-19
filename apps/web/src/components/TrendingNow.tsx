@@ -1,8 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 import { RankedArticles } from "@/components/RankedArticles";
-import { listPopular } from "@/lib/articles";
-import { toFeedItems } from "@/lib/feed";
+import { listPopular, toFeedItems } from "@/lib/articles";
 
 // 홈의 '지금 인기' 5위까지 (글 끝 '이번 주 인기 글'과 같은 순위표)
 export async function TrendingNow({ locale }: { locale: string }) {

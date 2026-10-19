@@ -5,8 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AppHeader } from "@/components/AppHeader";
 import { CategoryRail } from "@/components/CategoryRail";
 import { Feed } from "@/components/Feed";
-import { countLatest, listLatest } from "@/lib/articles";
-import { PAGE_SIZE, pageCount, pagePath, pageSkip, parsePage, toFeedItems } from "@/lib/feed";
+import { countLatest, listLatest, toFeedItems } from "@/lib/articles";
+import { PAGE_SIZE, pageCount, pagePath, pageSkip, parsePage } from "@/lib/feed";
 import { localeHomePath, ogBase, pageRobots } from "@/lib/url";
 
 export const revalidate = 300;

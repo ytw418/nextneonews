@@ -9,9 +9,9 @@ import { EmptyMemo } from "@/components/EmptyMemo";
 import { Feed } from "@/components/Feed";
 import { JsonLd } from "@/components/JsonLd";
 import { Button } from "@/components/ui/Button";
-import { countByCategory, listByCategory } from "@/lib/articles";
+import { countByCategory, listByCategory, toFeedItems } from "@/lib/articles";
 import { categoryTint } from "@/lib/cover";
-import { FIRST_PAGE_SIZE, pageCount, toFeedItems } from "@/lib/feed";
+import { FIRST_PAGE_SIZE, pageCount } from "@/lib/feed";
 import { articlePath, localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
 export const revalidate = 300;

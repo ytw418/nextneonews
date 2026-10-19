@@ -1,7 +1,17 @@
+import {
+  loadDefaultJapaneseParser,
+  loadDefaultSimplifiedChineseParser,
+  loadDefaultTraditionalChineseParser,
+} from "budoux";
+import { getTranslations } from "next-intl/server";
 import { cache } from "react";
 
 import { eventMatches, kst, type UpcomingEvent } from "@kmedia/core";
 import { type Category, type MediaKind, type Prisma, prisma } from "@kmedia/db";
+
+import type { FeedItem } from "@/components/FeedCard";
+
+import { imgSrc } from "./image";
 
 // 화면에 대표 이미지로 쓸 수 있는 종류 (CARD·AI 는 커버를 따로 그린다)
 const IMAGE_KINDS: MediaKind[] = ["EMBED", "AGENCY", "PRESS", "OWN", "STOCK"];
@@ -198,4 +208,43 @@ export async function listSitemapEntries() {
       },
     },
   });
+}
+
+// 피드 카드 제목을 일본어·중국어는 구(句) 단위 조각으로 나눠 보낸다 (components/Phrase 와 같은 BudouX).
+// 카드는 무한 스크롤(클라이언트)에서도 그려지므로 BudouX 사전(약 140KB)을 클라이언트 번들에 싣지 않으려고 서버에서 나눈다
+const PHRASE_PARSERS = {
+  ja: loadDefaultJapaneseParser(),
+  "zh-TW": loadDefaultTraditionalChineseParser(),
+  "zh-CN": loadDefaultSimplifiedChineseParser(),
+} as const;
+
+function titleChunks(title: string, locale: string): string[] | undefined {
+  return PHRASE_PARSERS[locale as keyof typeof PHRASE_PARSERS]?.parse(title);
+}
+
+// 반응 {love,wow,more,sad} 개수의 합
+function reactionTotal(reactions: unknown): number {
+  if (!reactions || typeof reactions !== "object") return 0;
+  return Object.values(reactions).reduce<number>((sum, n) => sum + (typeof n === "number" && n > 0 ? n : 0), 0);
+}
+
+// 피드 카드 한 장에 넣을 값. 발행 시각은 ISO 문자열로 넘기고 '3시간 전'은 브라우저가 계산한다
+// (서버 HTML 에 상대 시각을 넣으면 재생성할 때마다 내용이 바뀌어 ISR 쓰기가 과금된다)
+export async function toFeedItems(rows: FeedRow[], locale: string): Promise<FeedItem[]> {
+  const t = await getTranslations({ locale, namespace: "Category" });
+  return rows.map((row) => ({
+    slug: row.slug,
+    title: row.title,
+    titleChunks: titleChunks(row.title, locale),
+    summary: row.summary,
+    category: row.article.category,
+    categoryLabel: t(row.article.category),
+    publishedAt: row.article.publishedAt?.toISOString() ?? null,
+    locale,
+    // 원본 폭 힌트(#ow=)를 붙여 로더가 원본보다 큰 썸네일을 고르지 않게 한다
+    imageUrl: row.article.media[0] && imgSrc(row.article.media[0].url, row.article.media[0].width),
+    credit: row.article.media[0],
+    commentCount: row.article._count.comments,
+    reactionTotal: reactionTotal(row.article.reactions),
+  }));
 }

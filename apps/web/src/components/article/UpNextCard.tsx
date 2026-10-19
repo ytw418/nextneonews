@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import type { FeedItem } from "@/components/FeedCard";
+import { type FeedItem, itemTime } from "@/components/FeedCard";
 import { MemoCover } from "@/components/MemoCover";
 import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
@@ -46,10 +46,9 @@ export function UpNextCard({ item, title }: { item: FeedItem; title: string }) {
         ) : (
           <Link href={href} className="press-soft block">
             <MemoCover
-              title={item.title}
+              title={<Phrase text={item.title} locale={item.locale} />}
               sticker={item.categoryLabel}
-              stamp={item.timeAgo}
-              locale={item.locale}
+              stamp={itemTime(item)}
               style={coverStyle(item.slug, item.category)}
               size="lead"
               className="rounded-card shadow-card"

@@ -30,7 +30,7 @@ import {
   wikipediaUrls,
 } from "@/lib/entities";
 import { entityPhoto } from "@/lib/entity-image";
-import { toFeedItems } from "@/lib/feed";
+import { toFeedItems } from "@/lib/articles";
 import { idolJsonLd } from "@/lib/jsonld-rankings";
 import {
   CHART_KEY,

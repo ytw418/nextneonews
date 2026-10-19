@@ -16,7 +16,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AppHeader } from "@/components/AppHeader";
 import { ArticleThumb } from "@/components/ArticleThumb";
-import type { FeedItem } from "@/components/FeedCard";
+import { type FeedItem, itemTime } from "@/components/FeedCard";
 import { ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { Phrase } from "@/components/Phrase";
@@ -31,8 +31,7 @@ import { Button } from "@/components/ui/Button";
 import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { listForEvent } from "@/lib/articles";
-import { toFeedItems } from "@/lib/feed";
+import { listForEvent, toFeedItems } from "@/lib/articles";
 import { eventJsonLd } from "@/lib/jsonld";
 import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
@@ -95,7 +94,7 @@ function RelatedNews({ items, locale, title }: { items: FeedItem[]; locale: Loca
             title={<Phrase text={item.title} locale={locale} />}
             sub={
               <span className="text-t7">
-                <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                <Meta parts={[item.categoryLabel, itemTime(item)]} />
               </span>
             }
           />
