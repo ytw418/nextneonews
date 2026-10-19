@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { isKnownItem } from "@/data/catalog";
 import { emptyTotals, getItemTotals, isItemId, isVoteKind } from "@/lib/item-votes";
 
 const NO_STORE = { "cache-control": "no-store" };
@@ -11,6 +12,10 @@ export async function GET(_request: Request, { params }: RouteContext<"/api/item
   const { kind, itemId } = await params;
   if (!isVoteKind(kind) || !isItemId(itemId)) {
     return NextResponse.json({ error: "invalid" }, { status: 400, headers: NO_STORE });
+  }
+  // 모양은 맞아도 카탈로그에 없는 항목 (지운 제품·오타)
+  if (!isKnownItem(kind, itemId)) {
+    return NextResponse.json({ error: "notFound" }, { status: 404, headers: NO_STORE });
   }
   const totals = (await getItemTotals(kind, [itemId])).get(itemId) ?? emptyTotals(kind);
   return NextResponse.json(totals, { headers: SHARED_CACHE });

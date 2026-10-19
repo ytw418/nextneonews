@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import ReactMarkdown from "react-markdown";
 
 import { AdSlot } from "@/components/AdSlot";
+import { AffiliateBox } from "@/components/affiliate/AffiliateBox";
 import { AppHeader } from "@/components/AppHeader";
 import { ArticleThumb } from "@/components/ArticleThumb";
 import { ArticleActionBar } from "@/components/article/ArticleActionBar";
@@ -19,6 +20,7 @@ import { UpNextCard } from "@/components/article/UpNextCard";
 import { Comments } from "@/components/Comments";
 import { CoupangBanner } from "@/components/CoupangBanner";
 import { FeedCard } from "@/components/FeedCard";
+import { CrossRail } from "@/components/guide/CrossRail";
 import { ChevronDownIcon, ChevronRightIcon, ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { MemoCover } from "@/components/MemoCover";
@@ -26,6 +28,7 @@ import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
 import { RANKED_MIN, RankedArticles, THUMB_LARGE_TEXT } from "@/components/RankedArticles";
 import { EntityRankStrip } from "@/components/rankings/EntityRankStrip";
+import { SaveButton } from "@/components/SaveButton";
 import { ShareButton } from "@/components/ShareButton";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -33,9 +36,10 @@ import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
+import { travelText } from "@/data/travel";
 import { Link } from "@/i18n/navigation";
 import { entityNames, findTranslatedLocale, getArticle, listLatest, listPopular, listRelated } from "@/lib/articles";
-import { coupangBannerFor } from "@/lib/ads";
+import { articlePrepFor, coupangBannerFor } from "@/lib/ads";
 import { coverStyle } from "@/lib/cover";
 import { commentCount, netizenView, nextCandidates, pollView, readReactions } from "@/lib/engagement";
 import { matchArticleEntities } from "@/lib/entities";
@@ -114,6 +118,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/news/[sl
 
 export default async function ArticlePage({ params }: PageProps<"/[locale]/news/[slug]">) {
   const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
 
   const translation = await getArticle(locale, slug);
@@ -200,6 +205,9 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
   const coupang = coupangBannerFor({ locale, category: article.category, format: article.format });
   const coupangKo =
     coupang && locale !== "ko" ? (await getTranslations({ locale: "ko", namespace: "Article" }))("coupang") : undefined;
+  // 생활 글(여행·워홀·유학·집)은 글 끝에 여행 준비 제휴 상자 (eSIM·공항 이동·숙소). 이름은 여행 카탈로그 문구를 쓴다
+  const prepRows = articlePrepFor(article.category);
+  const prep = prepRows.length > 0 ? (await travelText(locale)).prep : null;
 
   return (
     <>
@@ -207,7 +215,13 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         variant="pushed"
         parentHref="/"
         title={translation.title}
-        action={<ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />}
+        action={
+          <>
+            {/* 저장 키는 글 slug (번역이 모두 같은 slug 를 쓴다 — 저장함이 (언어, slug) 로 제목을 찾는다) */}
+            <SaveButton kind="article" id={slug} title={translation.title} />
+            <ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />
+          </>
+        }
       />
       <ReadingProgress />
 
@@ -291,7 +305,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         {/* 글에 나온 인물이 오늘 차트에 있으면 순위 칩 (없으면 아무것도 그리지 않는다) */}
         <EntityRankStrip entityIds={people.map((e) => e.id)} locale={locale} className="mt-4 px-read" />
 
-        {event && isLocale(locale) && <RelatedEventCard e={event} locale={locale} />}
+        {event && <RelatedEventCard e={event} locale={locale} />}
 
         {keyPoints.length > 0 && (
           <section
@@ -417,6 +431,19 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
             {t("correction")}
           </a>
         )}
+
+        {/* 글 끝: 여행 준비(생활 글만) → 다른 섹션 가이드 → 광고. 광고와 제휴 상자 사이에 교차 레일이 들어가 바로 붙지 않는다 */}
+        <div aria-hidden className="mt-10 h-4 bg-band" />
+        {prep && (
+          <AffiliateBox
+            compact
+            title={prep.title}
+            locale={locale}
+            placement="article-travel"
+            items={prepRows.map(({ key, target }) => ({ target, label: prep.items[key].label, sub: prep.items[key].sub }))}
+          />
+        )}
+        <CrossRail from="article" locale={locale} />
 
         <AdSlot label={t("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE} />
         {coupang && <CoupangBanner id={coupang} label={t("ad")} disclosure={t("coupang")} disclosureKo={coupangKo} />}
