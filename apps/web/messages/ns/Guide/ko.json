@@ -8,30 +8,26 @@
     "beauty": {
       "title": "K-뷰티",
       "line": "분류별 대표 제품·피부 타입별 추천·어디서 사나",
-      "glyph": "뷰",
       "count": "제품 {count}개"
     },
     "travel": {
       "title": "한국 여행",
       "line": "동네·촬영지·여행 준비",
-      "glyph": "여",
       "count": "명소 {count}곳"
     },
     "clinic": {
       "title": "시술 가이드",
       "line": "회복 기간·부작용·물어볼 질문",
-      "glyph": "시",
       "count": "시술 {count}가지"
     },
     "drama": {
       "title": "드라마 가이드",
       "line": "뭘 볼까, 어디서 볼까",
-      "glyph": "드",
       "count": "드라마 {count}편"
     }
   },
   "railTitle": "한국 가이드",
-  "popular": "지금 인기",
+  "editorsPicks": "에디터 픽",
   "crossTitle": "이것도 둘러보세요",
   "newBadge": "NEW",
   "skinCta": {

@@ -10,6 +10,7 @@ import { coverGlyph } from "@/components/guide/glyph";
 import { GuideCard } from "@/components/guide/GuideCard";
 import { ItemRow } from "@/components/guide/ItemRow";
 import { sectionCount } from "@/components/guide/sectionCount";
+import { SectionTile } from "@/components/guide/SectionTile";
 import { TrackClicks } from "@/components/guide/TrackClicks";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
@@ -20,7 +21,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { featuredMix } from "@/data/catalog";
 import { KIND_SECTION, SECTION_PATH, SECTION_TINT, SECTIONS } from "@/data/sections";
 import type { CatalogSummary } from "@/data/types";
-import { Link } from "@/i18n/navigation";
 import { breadcrumbLd, collectionLd, graph } from "@/lib/jsonld-catalog";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
@@ -28,7 +28,7 @@ import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 // 카탈로그만 읽는 정적 페이지(DB 없음)라 다시 만들지 않는다. 바뀌면 배포가 새로 만든다
 export const revalidate = false;
 
-// '지금 인기' 줄 수와 테스트 뒤 '더 둘러보기' 레일 카드 수 (섹션을 번갈아 섞은 목록을 앞뒤로 나눠 쓴다)
+// '에디터 픽' 줄 수와 테스트 뒤 '더 둘러보기' 레일 카드 수 (섹션을 번갈아 섞은 목록을 앞뒤로 나눠 쓴다)
 const POPULAR = 6;
 const MORE = 4;
 
@@ -55,9 +55,10 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/guide">)
   };
 }
 
-// 가이드 탭 (DESIGN.md §5): 섹션 타일 2×2(뷰티가 첫째) → 지금 인기(섹션을 번갈아 6개, 줄마다 저장) → 피부 타입 테스트 →
-// 더 둘러보기 레일 → 광고 띠. 고를 것은 네 개뿐이다(결정 피로를 줄인다). 첫 화면에는 광고·테스트 없이 타일과 인기 첫 줄만,
-// 광고는 테스트 버튼과 붙지 않게 사이에 레일 하나를 둔다. 카탈로그가 비면 그 블록은 건너뛴다
+// 가이드 탭 (DESIGN.md §5): 섹션 타일 2×2(뷰티가 첫째) → 에디터 픽(섹션별 편집 점수순을 번갈아 6개, 줄마다 저장) → 피부 타입 테스트 →
+// 더 둘러보기 레일 → 광고 띠. 고를 것은 네 개뿐이다(결정 피로를 줄인다). 첫 화면에는 광고·테스트 없이 타일과 에디터 픽 첫 줄(하트)까지,
+// 광고는 테스트 버튼과 붙지 않게 사이에 레일 하나를 둔다. 카탈로그가 비면 그 블록은 건너뛴다.
+// 목록은 조회·저장·투표 집계가 아니라 편집 점수순이라 '인기'라고 부르지 않는다 (DESIGN §7-12 숫자·신호는 실제 집계만)
 export default async function GuideHubPage({ params }: PageProps<"/[locale]/guide">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
@@ -107,21 +108,19 @@ export default async function GuideHubPage({ params }: PageProps<"/[locale]/guid
         </p>
       </div>
 
-      {/* 섹션 타일 2×2: 타이포 커버(이름 · 항목 수). 첫 화면에 '지금 인기' 첫 줄까지 들어오게 타일 밖 설명 줄은 두지 않는다 */}
+      {/* 섹션 타일 2×2: 메모지(이름 · 항목 수). 낮은 2:1 이라 첫 화면(아이폰 664)에 에디터 픽 첫 줄과 하트까지 들어온다 */}
       <TrackClicks event="guide_tile_open" from="guide">
-        <ul className="grid grid-cols-2 gap-3 px-gutter pt-4">
+        <ul className="grid grid-cols-2 gap-3 px-gutter pt-5">
           {sections.map(({ section, count }) => (
             <li key={section}>
-              <Link href={SECTION_PATH[section]} className="press-soft block rounded-card">
-                <TypeCover
-                  variant="tile"
-                  tint={SECTION_TINT[section]}
-                  glyph={t(`sections.${section}.glyph`)}
-                  title={t(`sections.${section}.title`)}
-                  sub={t(`sections.${section}.count`, { count })}
-                  locale={locale}
-                />
-              </Link>
+              <SectionTile
+                href={SECTION_PATH[section]}
+                title={t(`sections.${section}.title`)}
+                sub={t(`sections.${section}.count`, { count })}
+                count={count}
+                locale={locale}
+                className="aspect-[2/1]!"
+              />
             </li>
           ))}
         </ul>
@@ -131,7 +130,7 @@ export default async function GuideHubPage({ params }: PageProps<"/[locale]/guid
         <>
           <div aria-hidden className="mt-6 h-4 bg-band" />
           <section aria-labelledby="guide-popular">
-            <SectionHeader id="guide-popular" title={t("popular")} />
+            <SectionHeader id="guide-popular" title={t("editorsPicks")} />
             <ul>
               {popular.map((item) => {
                 const section = sectionTitle(item);
