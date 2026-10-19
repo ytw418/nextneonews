@@ -18,6 +18,8 @@ interface IconProps {
 const HOME = "M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z";
 const TICKET =
   "M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4z";
+const HEART = "M12 20.5 4.6 13.1a4.6 4.6 0 0 1 6.5-6.5l.9.9.9-.9a4.6 4.6 0 0 1 6.5 6.5z";
+const STAR = "m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z";
 
 export const HomeIcon = ({ className }: IconProps) => (
   <svg {...base} className={className}>
@@ -156,7 +158,14 @@ export const ClapperIcon = ({ className }: IconProps) => (
 
 export const StarIcon = ({ className }: IconProps) => (
   <svg {...base} className={className}>
-    <path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" />
+    <path d={STAR} />
+  </svg>
+);
+
+// 별점에서 고른 별
+export const StarFilledIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d={STAR} fill="currentColor" />
   </svg>
 );
 
@@ -168,7 +177,14 @@ export const PlaneIcon = ({ className }: IconProps) => (
 
 export const HeartIcon = ({ className }: IconProps) => (
   <svg {...base} className={className}>
-    <path d="M12 20.5 4.6 13.1a4.6 4.6 0 0 1 6.5-6.5l.9.9.9-.9a4.6 4.6 0 0 1 6.5 6.5z" />
+    <path d={HEART} />
+  </svg>
+);
+
+// 저장함 (하트를 채운다, rankings/icons.tsx 응원 하트와 같은 모양)
+export const HeartFilledIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d={HEART} fill="currentColor" />
   </svg>
 );
 

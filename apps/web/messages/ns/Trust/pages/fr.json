@@ -124,7 +124,11 @@
       "cheer": "Qui tu as encouragé aujourd’hui.",
       "read": "Les articles lus récemment (200 au maximum), pour ne pas te les reproposer.",
       "install": "Le moment où tu as fermé l’invitation « Ajouter à l’écran d’accueil ».",
-      "localeSuggest": "Le fait que tu as fermé la suggestion de langue."
+      "localeSuggest": "Le fait que tu as fermé la suggestion de langue.",
+      "saved": "Ce que tu as enregistré avec le cœur (300 au maximum). Ça ne quitte jamais cet appareil.",
+      "visited": "Les lieux que tu as marqués comme visités.",
+      "vote": "Ta note pour chaque produit, soin ou drama.",
+      "skinType": "Le résultat de ton test de type de peau, pour afficher les avis par type de peau."
     },
     "session": "Ceux-ci disparaissent quand tu fermes l’onglet (sessionStorage) :",
     "sessionKeys": {

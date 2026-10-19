@@ -124,7 +124,11 @@
       "cheer": "Who you cheered for today.",
       "read": "Articles you've read recently (up to 200), so we don't suggest them again.",
       "install": "When you closed the “Add to Home Screen” prompt.",
-      "localeSuggest": "That you closed the language suggestion."
+      "localeSuggest": "That you closed the language suggestion.",
+      "saved": "What you saved with the heart (up to 300). It never leaves this device.",
+      "visited": "Places you stamped as “Been here”.",
+      "vote": "Your rating for each product, procedure or drama.",
+      "skinType": "Your skin type quiz result, so product ratings can be shown by skin type."
     },
     "session": "These disappear when you close the tab (sessionStorage):",
     "sessionKeys": {

@@ -124,7 +124,11 @@
       "cheer": "Siapa yang kamu dukung hari ini.",
       "read": "Artikel yang baru kamu baca (maksimal 200), agar tidak kami sarankan lagi.",
       "install": "Kapan kamu menutup ajakan “Tambahkan ke Layar Utama”.",
-      "localeSuggest": "Tanda bahwa kamu menutup saran bahasa."
+      "localeSuggest": "Tanda bahwa kamu menutup saran bahasa.",
+      "saved": "Yang kamu simpan dengan tombol hati (maksimal 300). Tidak pernah keluar dari perangkat ini.",
+      "visited": "Tempat yang kamu tandai “Sudah ke sini”.",
+      "vote": "Penilaianmu untuk setiap produk, perawatan klinik, atau drama.",
+      "skinType": "Hasil tes jenis kulitmu, agar penilaian produk bisa ditampilkan per jenis kulit."
     },
     "session": "Data berikut hilang saat kamu menutup tab (sessionStorage):",
     "sessionKeys": {

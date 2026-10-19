@@ -17,7 +17,23 @@ export type TrackEvent =
   | "scroll_75"
   | "cheer"
   | "rank_row_open"
-  | "feed_page";
+  | "feed_page"
+  // ── 가이드·저장 (docs/monetize/PLAN.md §8). params 는 평면으로:
+  // kind·id(저장·평가 항목), partner·placement·item·tagged(제휴), choice·facet(평가), quiz·result(테스트), from·to(레일 이동), count(개수)
+  | "save"
+  | "unsave"
+  | "saved_view"
+  | "saved_share"
+  | "saved_import"
+  | "affiliate_click"
+  | "item_vote"
+  | "quiz_start"
+  | "quiz_complete"
+  | "quiz_share"
+  | "guide_tile_open"
+  | "cross_rail_click"
+  | "visited_stamp"
+  | "buy_box_view";
 
 export function track(name: TrackEvent, params?: Record<string, string | number | boolean>): void {
   if (typeof window === "undefined") return;
