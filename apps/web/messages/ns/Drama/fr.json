@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "Guide des K-dramas",
+    "lead": "Quoi regarder ensuite, où le voir et où il a été tourné en Corée.",
+    "stats": "{count, plural, one {# série} other {# séries}} · mis à jour le {date}",
+    "metaTitle": "Guide des K-dramas : {count} séries et où les regarder",
+    "metaDescription": "Queen of Tears, Crash Landing on You, Reply 1988 et d’autres : où regarder chaque K-drama, le casting, les lieux de tournage en Corée et les notes des lectrices et lecteurs.",
+    "trendTitle": "Tendances",
+    "trendChart": "Classement K-drama",
+    "trendRank": "N° {rank} du classement K-drama du jour",
+    "trendPick": "Choix de la rédac",
+    "songsTitle": "Ce que la Corée écoute",
+    "songsSource": "Source : Apple Music Corée, les plus écoutés · {date}",
+    "listTitle": "Toutes les séries",
+    "genreFilter": "Filtrer par genre",
+    "allGenres": "Tous",
+    "shown": "{count, plural, one {# série affichée} other {# séries affichées}}"
+  },
+  "detail": {
+    "metaTitle": "{title} ({year}) : où le regarder, casting, lieux de tournage",
+    "metaDescription": "{tagline}. Où le regarder, le casting et les lieux de tournage en Corée.",
+    "episodes": "{count, plural, one {# épisode} other {# épisodes}}",
+    "watchTitle": "Où regarder",
+    "watchConfirmed": "Disponible : {regions}",
+    "watchEverywhere": "Disponible partout",
+    "watchUnconfirmed": "Selon le pays · pas encore vérifié",
+    "watchNote": "Liens ordinaires, pas de publicité. Les catalogues changent selon le pays : vérifiez dans l’appli avant de commencer.",
+    "storyTitle": "L’histoire",
+    "whyTitle": "Pourquoi le regarder",
+    "castTitle": "Casting",
+    "castRole": "dans le rôle de {role}",
+    "filmingTitle": "Lieux de tournage",
+    "similarTitle": "Dans le même esprit",
+    "share": "Partager cette série"
+  },
+  "rating": {
+    "title": "Votre note",
+    "count": "{count, plural, =0 {Pas encore de note} one {# note} other {# notes}}",
+    "first": "Pas encore de note. Lancez-vous !",
+    "average": "Moyenne de {average} sur 5",
+    "outOf": "/ 5",
+    "mine": "Votre note : {count}"
+  },
+  "newTab": "(s’ouvre dans un nouvel onglet)"
+}

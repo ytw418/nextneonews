@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "Cẩm nang phim Hàn",
+    "lead": "Xem gì tiếp, xem ở đâu và phim quay ở đâu tại Hàn Quốc.",
+    "stats": "{count} phim · cập nhật {date}",
+    "metaTitle": "Cẩm nang phim Hàn: {count} bộ phim và nơi xem",
+    "metaDescription": "Queen of Tears, Crash Landing on You, Reply 1988 và nhiều phim khác: xem ở đâu, dàn diễn viên, nơi quay tại Hàn Quốc và điểm đánh giá của độc giả.",
+    "trendTitle": "Đang hot",
+    "trendChart": "BXH phim Hàn",
+    "trendRank": "Hạng {rank} BXH phim Hàn hôm nay",
+    "trendPick": "Biên tập chọn",
+    "songsTitle": "Người Hàn đang nghe gì",
+    "songsSource": "Nguồn: Apple Music Hàn Quốc, nghe nhiều nhất · {date}",
+    "listTitle": "Tất cả phim",
+    "genreFilter": "Lọc theo thể loại",
+    "allGenres": "Tất cả",
+    "shown": "Đang hiện {count} phim"
+  },
+  "detail": {
+    "metaTitle": "{title} ({year}): Xem ở đâu, diễn viên, nơi quay",
+    "metaDescription": "{tagline}. Nơi xem, dàn diễn viên và địa điểm quay tại Hàn Quốc.",
+    "episodes": "{count} tập",
+    "watchTitle": "Xem ở đâu",
+    "watchConfirmed": "Có ở {regions}",
+    "watchEverywhere": "Xem được toàn cầu",
+    "watchUnconfirmed": "Tùy quốc gia · chưa kiểm tra",
+    "watchNote": "Đây là liên kết thường, không phải quảng cáo. Danh sách phim thay đổi theo quốc gia, hãy kiểm tra trong ứng dụng trước khi xem.",
+    "storyTitle": "Nội dung",
+    "whyTitle": "Vì sao nên xem",
+    "castTitle": "Diễn viên",
+    "castRole": "vai {role}",
+    "filmingTitle": "Nơi quay",
+    "similarTitle": "Phim tương tự",
+    "share": "Chia sẻ phim này"
+  },
+  "rating": {
+    "title": "Chấm điểm",
+    "count": "{count, plural, =0 {Chưa có đánh giá} other {# lượt đánh giá}}",
+    "first": "Chưa có đánh giá. Hãy là người đầu tiên.",
+    "average": "Trung bình {average} trên 5",
+    "outOf": "/ 5",
+    "mine": "Bạn chấm {count}"
+  },
+  "newTab": "(mở trong thẻ mới)"
+}
