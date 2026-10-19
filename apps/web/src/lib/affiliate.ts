@@ -27,6 +27,11 @@ export const PARTNER_ENV: Record<AffiliatePartner, string> = {
   airalo: "AFFILIATE_AIRALO",
 };
 
+// 문자열이 파트너 키인가 (부르는 쪽이 줄 이름에 "oliveyoung" 같은 키를 그대로 넘겼을 때 이름으로 바꾸려고)
+export function isAffiliatePartner(value: string): value is AffiliatePartner {
+  return Object.hasOwn(PARTNER_NAME, value);
+}
+
 // 모든 제휴 링크의 rel (검색엔진에 광고 링크임을 알리고, 파트너가 유입 출처를 볼 수 있게 noreferrer 는 뺀다)
 export const AFFILIATE_REL = "sponsored nofollow noopener";
 
@@ -73,9 +78,16 @@ const LOCALE_REGIONS: Record<string, Region[]> = {
   ru: [],
 };
 
-// 언어별 파트너 순서: 그 언어 독자가 실제로 쓰는 곳이 먼저 (수수료 순이 아니다)
+// 파트너 기본 판매 지역: 링크에 regions 가 없을 때 쓴다. Amazon 은 미국 사이트(amazon.com) 링크만 두어서
+// ja·zh·id 독자에게는 배송비·배송 불가라 숨긴다 (일본·대만 독자에게 amazon.com 이 먼저 뜨던 문제)
+const PARTNER_REGIONS: Partial<Record<AffiliatePartner, Region[]>> = {
+  amazon: ["us"],
+};
+
+// 언어별 파트너 순서: 그 언어 독자가 실제로 쓰는 곳이 먼저 (수수료 순이 아니다).
+// en 은 미국 배송이 되는 YesStyle → Amazon(미국만) → 올리브영 글로벌(미국 배송 안 됨) 순
 const LOCALE_ORDER: Record<string, AffiliatePartner[]> = {
-  en: ["amazon", "yesstyle", "oliveyoung", "klook", "airalo", "trip", "creatrip"],
+  en: ["yesstyle", "amazon", "oliveyoung", "klook", "airalo", "trip", "creatrip"],
   ja: ["oliveyoung", "yesstyle", "amazon", "klook", "creatrip", "trip", "airalo"],
   "zh-TW": ["oliveyoung", "yesstyle", "amazon", "klook", "creatrip", "trip", "airalo"],
   "zh-CN": ["oliveyoung", "yesstyle", "amazon", "trip", "klook", "creatrip", "airalo"],
@@ -86,9 +98,10 @@ const LOCALE_ORDER: Record<string, AffiliatePartner[]> = {
   ru: ["yesstyle", "oliveyoung", "amazon", "trip", "klook", "airalo", "creatrip"],
 };
 
-// 이 언어 독자가 살 수 있는 곳인가 (지역 제한이 없거나 global 이거나 독자 지역과 겹치면)
+// 이 언어 독자가 살 수 있는 곳인가 (지역 제한이 없거나 global 이거나 독자 지역과 겹치면).
+// 링크에 regions 가 없으면 파트너 기본 지역을 본다
 export function regionAllows(locale: string, target: AffiliateTarget): boolean {
-  const regions = target.regions;
+  const regions = target.regions ?? PARTNER_REGIONS[target.partner];
   if (!regions || regions.length === 0 || regions.includes("global")) return true;
   const mine = LOCALE_REGIONS[locale] ?? LOCALE_REGIONS.en!;
   return regions.some((r) => mine.includes(r));
