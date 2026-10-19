@@ -5,6 +5,8 @@
   "intro": "粉絲真的會去的拍攝地、偶像朝聖地和咖啡廳都在這裡。去過就蓋個章吧！",
   "counts": "{areas} 個區域·{places} 個景點",
   "areasTitle": "選個區域",
+  "kindFilter": "依類型篩選",
+  "byArea": "依區域",
   "spotCount": "{count} 個景點",
   "tileStamps": "我的打卡 {done}/{total}",
   "spotlightTitle": "韓劇拍攝地與偶像朝聖地",

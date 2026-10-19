@@ -33,6 +33,15 @@ export function stampProgress(visited: readonly string[], slugs: readonly string
   };
 }
 
+// ───────── 허브 종류 칩 ─────────
+// 칩 순서: 팬이 찾아오는 이유 순(촬영지·아이돌 먼저). 명소가 없는 종류는 칩을 그리지 않는다
+const KIND_ORDER: readonly PlaceKind[] = ["filming", "idol", "cafe", "photo", "food", "shop", "landmark"];
+
+export function placeKinds(places: readonly { kind: PlaceKind }[]): PlaceKind[] {
+  const present = new Set(places.map((p) => p.kind));
+  return KIND_ORDER.filter((kind) => present.has(kind));
+}
+
 // ───────── 허브 '촬영지·아이돌 성지' 목록 ─────────
 const SPOTLIGHT_KINDS: ReadonlySet<PlaceKind> = new Set(["filming", "idol"]);
 

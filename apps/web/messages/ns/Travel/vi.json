@@ -5,6 +5,8 @@
   "intro": "Nơi quay phim, địa điểm idol và quán cà phê mà fan thật sự ghé. Đến đâu thì đóng dấu ở đó nhé.",
   "counts": "{areas} khu phố · {places} địa điểm",
   "areasTitle": "Chọn khu phố",
+  "kindFilter": "Lọc theo loại",
+  "byArea": "Theo khu phố",
   "spotCount": "{count} địa điểm",
   "tileStamps": "Dấu của mình {done}/{total}",
   "spotlightTitle": "Nơi quay phim và địa điểm idol",

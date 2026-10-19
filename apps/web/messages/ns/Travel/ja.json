@@ -5,6 +5,8 @@
   "intro": "ファンが実際に足を運ぶロケ地・アイドルスポット・カフェを集めました。行った場所にはスタンプを押してね。",
   "counts": "{areas}エリア・{places}スポット",
   "areasTitle": "エリアを選ぶ",
+  "kindFilter": "種類で絞り込む",
+  "byArea": "エリア別",
   "spotCount": "{count}スポット",
   "tileStamps": "スタンプ {done}/{total}",
   "spotlightTitle": "ロケ地とアイドルスポット",

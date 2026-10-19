@@ -5,6 +5,8 @@
   "intro": "팬들이 진짜 가는 촬영지·아이돌 성지·카페만 모았어요. 다녀온 곳엔 도장을 찍어 보세요.",
   "counts": "동네 {areas}곳 · 명소 {places}곳",
   "areasTitle": "동네 고르기",
+  "kindFilter": "종류별로 보기",
+  "byArea": "동네별",
   "spotCount": "명소 {count}곳",
   "tileStamps": "내 도장 {done}/{total}",
   "spotlightTitle": "드라마 촬영지와 아이돌 성지",

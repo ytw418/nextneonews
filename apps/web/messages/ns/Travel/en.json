@@ -5,6 +5,8 @@
   "intro": "Filming spots, idol places and cafés fans actually go to. Stamp each spot once you’ve been.",
   "counts": "{areas, plural, one {#\u00a0neighborhood} other {#\u00a0neighborhoods}} · {places, plural, one {#\u00a0spot} other {#\u00a0spots}}",
   "areasTitle": "Pick a neighborhood",
+  "kindFilter": "Filter by type",
+  "byArea": "By neighborhood",
   "spotCount": "{count, plural, one {#\u00a0spot} other {#\u00a0spots}}",
   "tileStamps": "My stamps {done}/{total}",
   "spotlightTitle": "Filming spots & idol places",
