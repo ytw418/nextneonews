@@ -3,7 +3,7 @@
   "metaDescription": "首爾、釜山、濟州9大區域36個景點：韓劇拍攝地、偶像朝聖地、咖啡廳和市場，附最近車站和出發前的小提醒。",
   "title": "韓國旅遊",
   "intro": "粉絲真的會去的拍攝地、偶像朝聖地和咖啡廳都在這裡。去過就蓋個章吧！",
-  "counts": "{areas} 個區域・{places} 個景點",
+  "counts": "{areas} 個區域·{places} 個景點",
   "areasTitle": "選個區域",
   "spotCount": "{count} 個景點",
   "tileStamps": "我的打卡 {done}/{total}",

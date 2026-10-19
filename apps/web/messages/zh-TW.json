@@ -74,7 +74,7 @@
     "until": "至 {date}",
     "lineup": "演出陣容",
     "releases": "發行",
-    "dayN": "第{n}天・{date}",
+    "dayN": "第{n}天·{date}",
     "hosts": "主持人：{names}",
     "lineupTba": "各組演出日期尚未公布",
     "lineupPartial": "演出陣容可能還會增加。",
@@ -115,7 +115,7 @@
     "KBEAUTY": "韓系美妝",
     "TRAVEL": "旅遊",
     "STUDY": "韓國留學",
-    "LOVE": "戀愛・婚姻",
+    "LOVE": "戀愛·婚姻",
     "WORKING_HOLIDAY": "打工度假",
     "JOBS": "工作",
     "HOUSING": "租屋",
@@ -150,7 +150,7 @@
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "娛樂",
-    "LIFESTYLE": "美食・美妝・旅遊",
+    "LIFESTYLE": "美食·美妝·旅遊",
     "LIVING": "在韓國生活",
     "OTHER": "其他主題"
   },

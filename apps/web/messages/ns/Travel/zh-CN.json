@@ -3,7 +3,7 @@
   "metaDescription": "首尔、釜山、济州9大区域36个景点：韩剧取景地、爱豆打卡地、咖啡馆和市场，附最近车站和出发前的小贴士。",
   "title": "韩国旅游",
   "intro": "粉丝真会去的取景地、爱豆打卡地和咖啡馆都在这里。去过就盖个章吧！",
-  "counts": "{areas} 个区域・{places} 个景点",
+  "counts": "{areas} 个区域·{places} 个景点",
   "areasTitle": "选个区域",
   "spotCount": "{count} 个景点",
   "tileStamps": "我的打卡 {done}/{total}",

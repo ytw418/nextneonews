@@ -8,7 +8,7 @@
   "categoriesLabel": "美妆品类",
   "crumbsLabel": "当前位置",
   "winnersTitle": "各品类No.1",
-  "priceLegend": "₩ 1万韩元以下・₩₩ 1～3万・₩₩₩ 3万以上（韩国定价）",
+  "priceLegend": "₩ 1万韩元以下·₩₩ 1～3万·₩₩₩ 3万以上（韩国定价）",
   "priceTier": {
     "1": "价格：1万韩元以下",
     "2": "价格：1万～3万韩元",
@@ -17,7 +17,7 @@
   "newBadge": "NEW",
   "listSep": "、",
   "rank": "第{rank}名",
-  "basis": "编辑评分＋读者评价 {count} 票・{date} 更新",
+  "basis": "编辑评分＋读者评价 {count} 票·{date} 更新",
   "awardsName": "Unnie 大奖",
   "editorsPicks": "编辑精选",
   "seeAll": "查看全部",
@@ -36,9 +36,9 @@
     "disclosure": "我们会收到<link>佣金</link>，价格不变"
   },
   "ship": {
-    "oliveyoung": "支持海外配送・运费因地区而异",
-    "yesstyle": "全球配送・运费因地区而异",
-    "amazon": "美国 Amazon.com・配送美国"
+    "oliveyoung": "支持海外配送·运费因地区而异",
+    "yesstyle": "全球配送·运费因地区而异",
+    "amazon": "美国 Amazon.com·配送美国"
   },
   "method": {
     "title": "排名怎么算",
@@ -48,7 +48,7 @@
     "independent": "品牌不能花钱买排名，购物链接也不会影响排序。"
   },
   "awards": {
-    "title": "{category}・{kind}",
+    "title": "{category}·{kind}",
     "metaTitle": "韩国{category}推荐｜{kind}",
     "metaDescription": "{intro} 按编辑评分和读者投票排名，附适合肤质、价位和购买渠道。"
   },
@@ -56,7 +56,7 @@
     "metaTitle": "{brand} {name}｜适合肤质、用法、在哪里买",
     "metaDescription": "{tagline}。适合哪些肤质、怎么用、读者评价和购买渠道，一次看完（{category}）。",
     "share": "分享这款产品",
-    "rankIn": "{category}・{kind} 第{rank}名",
+    "rankIn": "{category}·{kind} 第{rank}名",
     "suits": "适合肤质",
     "ingredients": "主要成分",
     "rating": "读者分数 {value}／5（{count} 票，本命 5、还可以 3、不适合 1 换算）",
@@ -115,7 +115,7 @@
     "retake": "再测一次",
     "picks": "{name}推荐",
     "allTitle": "查看全部韩国美妆",
-    "allSub": "10个品类・{count}款",
+    "allSub": "10个品类·{count}款",
     "tips": "护理小技巧",
     "others": "其他肤质"
   }

@@ -77,7 +77,7 @@
   "voteError": "沒有送出成功，請再試一次。",
   "voteTooFast": "按太多次了，請稍後再試。",
   "starLabel": "{count} 顆星",
-  "starAverage": "{average} 分（滿分 5 分）・{count} 人評分",
+  "starAverage": "{average} 分（滿分 5 分）·{count} 人評分",
   "visited": "已打卡",
   "markVisited": "我去過了！打卡",
   "savedTabCount": "收藏 {count} 項",
