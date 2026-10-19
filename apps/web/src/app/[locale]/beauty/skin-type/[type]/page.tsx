@@ -5,8 +5,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
+import { BuyStrip } from "@/components/beauty/BuyStrip";
 import { Crumbs } from "@/components/beauty/Crumbs";
 import { ProductCard } from "@/components/beauty/ProductCard";
+import { RankHero } from "@/components/beauty/RankHero";
 import { CrossRail } from "@/components/guide/CrossRail";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
@@ -18,7 +20,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SKIN_TYPES, type SkinType } from "@/data/beauty/types";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
-import { isSkinType, picksForSkin, rankAwards, SHARE_DOMAIN, SKIN_CODE } from "@/lib/beauty";
+import { partnersForLocale } from "@/lib/affiliate";
+import { BEAUTY_DETAIL_BUY_ANCHOR, isSkinType, picksForSkin, rankAwards, SHARE_DOMAIN, SKIN_CODE } from "@/lib/beauty";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 
 import { loadBeauty, staticParamsFor } from "../../data";
@@ -27,7 +30,7 @@ import { absoluteUrl, beautyCrumbs, beautyMetadata, webPageLd } from "../../meta
 // 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (../../data.ts). 색인 언어 밖은 첫 요청 때 만들고, 없는 타입은 notFound
 export const revalidate = false;
 
-// 이 타입을 위한 제품 수 (2열 그리드 + 마지막 칸은 뷰티 전체)
+// 이 타입을 위한 제품 수 (첫 추천 전폭 + 2열 2줄)
 const PICKS = 5;
 
 export function generateStaticParams({ params }: { params: { locale: string } }) {
@@ -50,7 +53,8 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/s
 }
 
 // 테스트 결과: 틴트 히어로(타입 코드·주소) → 타입 이름 → 한 줄 → 공유·다시 하기 → 이 타입을 위한 제품 5
-// → 관리 팁 3 → 다른 타입 → 광고 → 다른 섹션. 공유 링크로 들어온 친구는 이 화면만 본다 (이 기기 타입은 바꾸지 않는다)
+// (첫 추천은 전폭 카드 + 구매 줄 — 결과에서 구매까지 1탭) → 관리 팁 3 → 다른 타입 → 광고 → 다른 섹션.
+// 공유 링크로 들어온 친구는 이 화면만 본다 (이 기기 타입은 바꾸지 않는다)
 export default async function SkinTypeResultPage({ params }: PageProps<"/[locale]/beauty/skin-type/[type]">) {
   const { locale, type } = await params;
   if (!isLocale(locale) || !isSkinType(type)) notFound();
@@ -66,6 +70,8 @@ export default async function SkinTypeResultPage({ params }: PageProps<"/[locale
   const result = data.text.skinType.results[skin];
   const name = t(`skin.result.${skin}`);
   const picks = picksForSkin(rankAwards(data.entries, data.totals), skin, PICKS);
+  const [top, ...rest] = picks;
+  const topShop = top ? partnersForLocale(locale, top.buy)[0] : undefined;
   const quizUrl = absoluteUrl(locale, "/beauty/skin-type");
   const pageUrl = absoluteUrl(locale, `/beauty/skin-type/${skin}`);
   const picksTitle = t("result.picks", { name });
@@ -138,25 +144,30 @@ export default async function SkinTypeResultPage({ params }: PageProps<"/[locale
         <p className="mt-3 text-st12 text-ink-600">{data.text.skinType.disclaimer}</p>
       </div>
 
-      {picks.length > 0 && (
+      {top && (
         <section aria-labelledby="skin-picks">
-          <SectionHeader id="skin-picks" title={picksTitle} />
+          <SectionHeader id="skin-picks" title={picksTitle} href="/beauty" linkLabel={t("seeAll")} />
           <ul className="grid grid-cols-2 gap-x-3 gap-y-5 px-gutter">
-            {picks.map((p) => (
-              <ProductCard key={p.slug} entry={p} locale={locale} label={data.text.categories[p.category].name} />
+            <RankHero
+              entry={top}
+              locale={locale}
+              label={data.text.categories[top.category].name}
+              action={
+                topShop && (
+                  <BuyStrip
+                    locale={locale}
+                    target={topShop}
+                    itemId={top.slug}
+                    moreHref={`/beauty/p/${top.slug}#${BEAUTY_DETAIL_BUY_ANCHOR}`}
+                    placement="skin-result"
+                    inset
+                  />
+                )
+              }
+            />
+            {rest.map((p) => (
+              <ProductCard key={p.slug} entry={p} locale={locale} lead={data.text.categories[p.category].name} />
             ))}
-            <li>
-              <Link href="/beauty" className="press-soft block">
-                <TypeCover
-                  tint={SECTION_TINT.beauty}
-                  glyph={String(data.entries.length)}
-                  label={t("title")}
-                  title={t("result.allTitle")}
-                  sub={t("result.allSub", { count: data.entries.length })}
-                  locale={locale}
-                />
-              </Link>
-            </li>
           </ul>
         </section>
       )}

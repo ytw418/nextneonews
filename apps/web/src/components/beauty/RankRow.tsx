@@ -10,7 +10,7 @@ import { brandGlyph } from "@/lib/beauty";
 
 import { Price } from "./Price";
 
-// 4위부터의 목록 한 줄: 순위 숫자 · 작은 커버 · 이름 / 브랜드 · ₩ · 맞는 피부 타입 · 오른쪽 하트.
+// 4위부터의 목록 한 줄: 순위 숫자 · 작은 커버 · 이름 / 브랜드 · 가격 · 맞는 피부 타입 · 오른쪽 하트.
 // ListRow 와 같은 높이·구분선이지만 하트를 링크 밖에 두려고 따로 그린다 (링크 안 버튼 금지)
 export async function RankRow({ entry, locale, rank }: { entry: BeautyEntry; locale: string; rank: number }) {
   const t = await getTranslations({ locale, namespace: "Beauty" });
@@ -28,7 +28,7 @@ export async function RankRow({ entry, locale, rank }: { entry: BeautyEntry; loc
             <Words text={entry.text.name} locale={locale} />
           </span>
           <span className="mt-0.5 block truncate text-t7 text-ink-600">
-            {entry.brand} · <Price tier={entry.priceTier} label={t(`priceTier.${entry.priceTier}`)} /> · {skins}
+            {entry.brand} · <Price tier={entry.priceTier} locale={locale} /> · {skins}
           </span>
         </span>
       </Link>

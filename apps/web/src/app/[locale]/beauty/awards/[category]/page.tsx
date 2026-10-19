@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/a
   });
 }
 
-// 분류 어워드: h1(분류 · 어워드|에디터 픽) → 산식 한 줄·₩ 범례 → 분류 칩 → 1위 카드 → 2·3위 → 4위~ 목록 → 산식 설명 → 광고 → 다른 섹션
+// 분류 어워드: h1(분류 · 어워드|에디터 픽) → 분류 소개 → 분류 칩 → 1위 카드 → 2·3위 → 4위~ 목록 → 산식 설명(한국 정가 포함) → 광고 → 다른 섹션
 export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/beauty/awards/[category]">) {
   const { locale, category } = await params;
   if (!isLocale(locale) || !isCategory(category)) notFound();
@@ -111,7 +111,6 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
         <p className="mt-1 text-t6 text-ink-600">
           <Words text={data.text.categories[category].intro} locale={locale} />
         </p>
-        <p className="mt-2 text-st12 text-ink-600">{t("priceLegend")}</p>
       </div>
       <div className="pt-3">
         <CategoryChips label={t("categoriesLabel")} names={names} active={category} />
@@ -119,7 +118,7 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
 
       <div className="pt-4">
         <ol className="grid grid-cols-2 gap-x-3 gap-y-5 px-gutter">
-          {first && <RankHero entry={first.item} locale={locale} basis={basis} />}
+          {first && <RankHero entry={first.item} locale={locale} rank={first.rank} basis={basis} />}
           {grid.map((r) => (
             <ProductCard key={r.item.slug} entry={r.item} locale={locale} rank={r.rank} />
           ))}

@@ -8,11 +8,11 @@
   "categoriesLabel": "Beauty categories",
   "crumbsLabel": "You are here",
   "winnersTitle": "Top pick in each category",
-  "priceLegend": "₩ under ₩10,000 · ₩₩ ₩10,000–30,000 · ₩₩₩ over ₩30,000 (Korean retail price)",
+  "priceLegend": "Price ranges are Korean retail prices. Shops abroad may charge differently.",
   "priceTier": {
-    "1": "Price: under ₩10,000",
-    "2": "Price: ₩10,000 to ₩30,000",
-    "3": "Price: over ₩30,000"
+    "1": "Under ₩{low, number}",
+    "2": "₩{low, number}–{high, number}",
+    "3": "Over ₩{high, number}"
   },
   "newBadge": "NEW",
   "listSep": ", ",
@@ -115,8 +115,6 @@
     "shareText": "My skin type is {name}! What’s yours? Take the 6-question test",
     "retake": "Take it again",
     "picks": "Picks for {name}",
-    "allTitle": "All K‑beauty picks",
-    "allSub": "{count} products in 10 categories",
     "tips": "Care tips",
     "others": "Other skin types"
   }

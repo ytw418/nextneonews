@@ -11,7 +11,6 @@ import { Crumbs } from "@/components/beauty/Crumbs";
 import { Price } from "@/components/beauty/Price";
 import { ProductCard } from "@/components/beauty/ProductCard";
 import { ProductVote } from "@/components/beauty/ProductVote";
-import { ChevronDownIcon } from "@/components/icons";
 import { CrossRail } from "@/components/guide/CrossRail";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
@@ -23,7 +22,7 @@ import { beautySlugs, beautyText, getBeauty, isBeautySlug } from "@/data/beauty"
 import { isNew, SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
-import { brandGlyph, isEditorsPick, readerRating } from "@/lib/beauty";
+import { BEAUTY_DETAIL_BUY_ANCHOR, brandGlyph, isEditorsPick, readerRating } from "@/lib/beauty";
 import { emptyTotals } from "@/lib/item-votes";
 import { breadcrumbLd, graph, productLd } from "@/lib/jsonld-catalog";
 
@@ -35,7 +34,9 @@ export const revalidate = false;
 
 // 같은 분류 다른 제품 수 (2열 그리드 + 마지막 칸은 분류 전체 보기)
 const RELATED = 3;
-const BUY_ANCHOR = "affiliate-beauty-detail"; // AffiliateBox 제목 id (affiliate-{placement})
+// 커버 높이 상한: 4:3(390폭에서 292px)은 첫 화면의 44% 가 빈 색 상자였다. 128px 이면 이름·가격·구매·투표가 첫 화면에 든다.
+// 폭을 w-full 로 정해 둔다 — 폭이 auto 면 비율 때문에 높이 상한이 폭으로 옮겨 가 커버가 반쪽이 된다
+const HERO_SIZE = "w-full max-h-32";
 
 export function generateStaticParams({ params }: { params: { locale: string } }) {
   return staticParamsFor(params.locale, "slug", beautySlugs());
@@ -65,8 +66,8 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/p
   return { ...meta, title: { absolute: title } };
 }
 
-// 제품 상세: 커버 → 이름·브랜드·₩(범례는 접힘) → 구매 줄(PR·고지·버튼 1) → 써 봤어요? → 한 줄 → 피부 타입·성분 → 왜·쓰는 법·주의
-// → 어디서 사나 → 같은 분류 3 → 광고 → 다른 섹션. 아이폰 15(390×844) 첫 화면에 구매 버튼과 투표 칩이 함께 들어오고 광고는 0.
+// 제품 상세: 낮은 커버 → 이름·브랜드·가격 → 구매 줄(PR·고지·버튼 1) → 써 봤어요? → 한 줄 → 피부 타입·성분 → 왜·쓰는 법·주의
+// → 어디서 사나 → 같은 분류 3 → 광고 → 다른 섹션. 아이폰 사파리에서 보이는 높이(390×664)에 제품명·구매 버튼·투표 칩이 함께 들어오고 광고는 0.
 // 광고는 구매 상자와 그리드 한 블록 이상 떨어진다
 export default async function BeautyProductPage({ params }: PageProps<"/[locale]/beauty/p/[slug]">) {
   const { locale, slug } = await params;
@@ -134,6 +135,7 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
         isNew={isNew(entry.addedAt)}
         newLabel={t("newBadge")}
         locale={locale}
+        className={HERO_SIZE}
       >
         {/* 사진 대신 커버의 주인공은 순위 숫자 (어워드 안 순위) */}
         {rank && (
@@ -153,25 +155,17 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
         <h1 className="text-t3 font-bold text-ink-900">
           <Words text={name} locale={locale} />
         </h1>
-        {/* 가격 범례는 가격 옆 ▾ 로 접는다 (두 줄을 펼쳐 두면 투표 칩이 첫 화면 밖으로 밀린다). 자바스크립트 없이 열린다 */}
-        <details className="group mt-1">
-          <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-2 [&::-webkit-details-marker]:hidden">
-            <span className="text-t6 font-semibold text-ink-600">{entry.brand}</span>
-            <span aria-hidden className="text-ink-400">
-              ·
-            </span>
-            <Price
-              tier={entry.priceTier}
-              label={t(`priceTier.${entry.priceTier}`)}
-              className="text-t5 font-semibold text-ink-900"
-            />
-            <ChevronDownIcon className="size-4 text-ink-400 transition-transform duration-200 ease-expo group-open:rotate-180" />
-          </summary>
-          <p className="mt-0.5 text-st12 text-ink-600">{t("priceLegend")}</p>
-        </details>
+        {/* 가격은 범위 글자 그대로 (₩₩ 기호·펼침 없음). 한국 정가라는 설명은 산식 공개(MethodNote)와 어워드 화면에 있다 */}
+        <p className="mt-1 flex flex-wrap items-baseline gap-x-2">
+          <span className="text-t6 font-semibold text-ink-600">{entry.brand}</span>
+          <span aria-hidden className="text-ink-400">
+            ·
+          </span>
+          <Price tier={entry.priceTier} locale={locale} className="text-t5 font-semibold text-ink-900" />
+        </p>
       </div>
 
-      {shops[0] && <BuyStrip locale={locale} target={shops[0]} itemId={slug} moreHref={`#${BUY_ANCHOR}`} />}
+      {shops[0] && <BuyStrip locale={locale} target={shops[0]} itemId={slug} moreHref={`#${BEAUTY_DETAIL_BUY_ANCHOR}`} />}
 
       <div className="px-gutter pt-4">
         <ProductVote itemId={slug} initial={totals} />

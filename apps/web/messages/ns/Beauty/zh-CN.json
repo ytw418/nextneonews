@@ -8,11 +8,11 @@
   "categoriesLabel": "美妆品类",
   "crumbsLabel": "当前位置",
   "winnersTitle": "各品类首选",
-  "priceLegend": "₩ 1万韩元以下·₩₩ 1～3万·₩₩₩ 3万以上（韩国定价）",
+  "priceLegend": "价格区间以韩国定价为准，海外商店的售价可能不同。",
   "priceTier": {
-    "1": "价格：1万韩元以下",
-    "2": "价格：1万～3万韩元",
-    "3": "价格：3万韩元以上"
+    "1": "{low, number, ::compact-short}韩元以下",
+    "2": "{low, number, ::compact-short}～{high, number, ::compact-short}韩元",
+    "3": "{high, number, ::compact-short}韩元以上"
   },
   "newBadge": "NEW",
   "listSep": "、",
@@ -115,8 +115,6 @@
     "shareText": "我是{name}！你呢？6道题测出你的肤质",
     "retake": "再测一次",
     "picks": "{name}推荐",
-    "allTitle": "查看全部韩国美妆",
-    "allSub": "10个品类·{count}款",
     "tips": "护理小技巧",
     "others": "其他肤质"
   }

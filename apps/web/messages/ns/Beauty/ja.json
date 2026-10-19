@@ -8,11 +8,11 @@
   "categoriesLabel": "コスメのカテゴリー",
   "crumbsLabel": "現在地",
   "winnersTitle": "カテゴリー別いちおし",
-  "priceLegend": "₩ 1万ウォン未満・₩₩ 1〜3万ウォン・₩₩₩ 3万ウォン以上（韓国の定価）",
+  "priceLegend": "価格帯は韓国の定価です。海外のショップでは値段が変わることがあります。",
   "priceTier": {
-    "1": "価格：1万ウォン未満",
-    "2": "価格：1万〜3万ウォン",
-    "3": "価格：3万ウォン以上"
+    "1": "{low, number, ::compact-short}ウォン未満",
+    "2": "{low, number, ::compact-short}〜{high, number, ::compact-short}ウォン",
+    "3": "{high, number, ::compact-short}ウォン以上"
   },
   "newBadge": "NEW",
   "listSep": "・",
@@ -115,8 +115,6 @@
     "shareText": "わたしは{name}でした！あなたは？6問の肌タイプチェック",
     "retake": "もう一度",
     "picks": "{name}におすすめ",
-    "allTitle": "韓国コスメをすべて見る",
-    "allSub": "10カテゴリー・{count}アイテム",
     "tips": "ケアのコツ",
     "others": "ほかの肌タイプ"
   }

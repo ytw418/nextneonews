@@ -8,11 +8,11 @@
   "categoriesLabel": "Catégories beauté",
   "crumbsLabel": "Vous êtes ici",
   "winnersTitle": "Premier choix de chaque catégorie",
-  "priceLegend": "₩ moins de 10 000 ₩ · ₩₩ 10 000–30 000 ₩ · ₩₩₩ plus de 30 000 ₩ (prix public en Corée)",
+  "priceLegend": "Les fourchettes de prix correspondent aux prix publics en Corée. Les boutiques à l’étranger peuvent pratiquer d’autres prix.",
   "priceTier": {
-    "1": "Prix : moins de 10 000 ₩",
-    "2": "Prix : de 10 000 à 30 000 ₩",
-    "3": "Prix : plus de 30 000 ₩"
+    "1": "Moins de {low, number} ₩",
+    "2": "{low, number}–{high, number} ₩",
+    "3": "Plus de {high, number} ₩"
   },
   "newBadge": "NEW",
   "listSep": ", ",
@@ -115,8 +115,6 @@
     "shareText": "Mon type de peau : {name} ! Et vous ? Faites le test en 6 questions",
     "retake": "Refaire le test",
     "picks": "La sélection pour : {name}",
-    "allTitle": "Toute la sélection K‑beauté",
-    "allSub": "{count} produits dans 10 catégories",
     "tips": "Conseils de soin",
     "others": "Autres types de peau"
   }
