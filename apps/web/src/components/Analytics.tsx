@@ -6,7 +6,9 @@ export function analyticsId(): string | null {
   return id && process.env.VERCEL_ENV === "production" ? id : null;
 }
 
-// GA4. 동의 기본값(EEA·영국·스위스 기본 거부)은 HeadScripts 가 <head> 에서 먼저 넣는다
+// GA4. 동의 기본값(EEA·영국·스위스 기본 거부)은 HeadScripts 가 <head> 에서 먼저 넣는다.
+// 설정(ga-init)은 하이드레이션 뒤 바로 dataLayer 에 넣고, gtag.js(gzip 175KB)는 페이지를 다 받은 뒤 쉬는 틈에 받는다:
+// 그 사이 track() 이벤트도 dataLayer 에 순서대로 쌓였다가 gtag.js 가 오면 함께 보낸다 (gtag 함수는 HeadScripts 가 먼저 만든다)
 export function Analytics() {
   const id = analyticsId();
   if (!id) return null;
@@ -23,7 +25,7 @@ export function Analytics() {
   return (
     <>
       <Script id="ga-init" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: init }} />
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`} strategy="afterInteractive" />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`} strategy="lazyOnload" />
     </>
   );
 }

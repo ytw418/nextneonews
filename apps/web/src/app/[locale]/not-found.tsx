@@ -1,16 +1,20 @@
-import { useTranslations } from "next-intl";
+import { type Locale, LOCALE_PATH_PREFIX } from "@kmedia/core";
+import { getLocale, getTranslations } from "next-intl/server";
 
-import { Button } from "@/components/ui/Button";
+import { ErrorScreen } from "@/app/_error/ErrorScreen";
 
-export default function NotFound() {
-  const t = useTranslations("NotFound");
+// 페이지가 notFound() 를 부를 때(없는 글·인물·카테고리). 레이아웃 안이라 탭바가 함께 보인다.
+// 주소가 어느 화면에도 맞지 않거나 목록에 없는 상세 주소(dynamicParams=false)는 루트 app/not-found.tsx 가 정적으로 낸다
+export default async function NotFound() {
+  const [locale, t] = await Promise.all([getLocale(), getTranslations("ErrorPage")]);
+  const home = LOCALE_PATH_PREFIX[locale as Locale] ?? LOCALE_PATH_PREFIX.en;
 
   return (
-    <section className="px-gutter py-16 text-center">
-      <h1 className="text-st2 font-bold text-ink-900">{t("title")}</h1>
-      <Button href="/" size="m" variant="neutral" className="mt-6">
-        {t("back")}
-      </Button>
-    </section>
+    <ErrorScreen
+      code="404"
+      text={{ title: t("notFoundTitle"), body: t("notFoundBody"), home: t("home"), guide: t("guide") }}
+      homeHref={home}
+      guideHref={`${home}/guide`}
+    />
   );
 }

@@ -6,20 +6,39 @@
 const STANDARD_WIDTHS = [120, 250, 330, 500, 960, 1280, 1920];
 // 원본 폭을 모를 때의 상한 (작은 원본을 크게 늘려 받지 않게)
 const UNKNOWN_MAX = 960;
+// 원본보다 작은 썸네일이 원본 폭의 이 비율 이상이면 원본 대신 받는다: 586px 원본 PNG(2.5MB) 대신 500px 썸네일(0.4MB).
+// 326px 원본을 250px 로 줄이면(0.77) 화면 폭 히어로에서 흐려져 원본을 쓴다
+const MIN_THUMB_RATIO = 0.8;
+
+// 아이폰 3배 화면이 사진을 2배 남짓으로만 받게 하는 srcset 후보 (next.config.ts images.deviceSizes 에 함께 넣는다).
+// 브라우저는 '칸 폭 × 화면 배율' 이상인 첫 후보를 고른다: 반 폭 카드(390×0.45×3 = 527px)는 640w 를, 화면 폭 히어로
+// (390×3 = 1170px)는 1200w 를 고르는데, 로더가 이 두 후보를 그 아래 표준 폭(500·960)으로 내려 준다.
+// 2배 화면은 원래대로 500w·960w 를 고른다. next/image 도 width 고정 사진은 2배까지만 받는다 (get-img-props getWidths)
+export const DPR_CAP_WIDTHS = [640, 1200];
 
 // upload.wikimedia.org/wikipedia/commons/a/ab/파일 또는 .../commons/thumb/a/ab/파일/1280px-파일 (thumb. 호스트도 같은 경로)
 const COMMONS = /^https:\/\/(?:upload|thumb)\.wikimedia\.org\/wikipedia\/commons\/(?:thumb\/)?([0-9a-f])\/([0-9a-f]{2})\/([^/?#]+)/;
 const HINT = /#ow=(\d+)$/;
 
-// 요청 폭 이상인 첫 표준 폭. null 이면 원본을 쓴다.
-// 원본 폭을 알면 원본보다 작은 표준 폭만 고르고(같거나 큰 썸네일은 오류), 요청이 그보다 크면 원본을 쓴다
-// (326px 원본을 화면 폭 히어로에 250px 썸네일로 줄여 받지 않게). 모르면 960 안에서 고른다 (큰 원본을 통째로 받지 않게)
+// 3배 화면용 후보는 그보다 작은 가장 큰 표준 폭으로 내린다. 그 밖의 폭은 그 이상인 첫 표준 폭을 고른다(thumbWidth)
+function targetWidth(requested: number): number {
+  if (!DPR_CAP_WIDTHS.includes(requested)) return requested;
+  return STANDARD_WIDTHS.filter((w) => w <= requested).at(-1) ?? requested;
+}
+
+// 받을 표준 폭. null 이면 원본을 쓴다.
+// 원본 폭을 알면 원본보다 작은 표준 폭만 고르고(같거나 큰 썸네일은 오류), 요청이 그보다 크면 원본에 가까운
+// 썸네일(MIN_THUMB_RATIO 이상)이나 원본을 쓴다. 모르면 960 안에서 고른다 (큰 원본을 통째로 받지 않게)
 export function thumbWidth(requested: number, originalWidth?: number): number | null {
+  const target = targetWidth(requested);
   const known = !!originalWidth && originalWidth > 0;
   const fits = STANDARD_WIDTHS.filter((w) => (known ? w < originalWidth! : w <= UNKNOWN_MAX));
-  const hit = fits.find((w) => w >= requested);
+  const hit = fits.find((w) => w >= target);
   if (hit) return hit;
-  return known || fits.length === 0 ? null : fits[fits.length - 1];
+  const largest = fits.at(-1);
+  if (largest === undefined) return null;
+  if (!known) return largest;
+  return largest / originalWidth! >= MIN_THUMB_RATIO ? largest : null;
 }
 
 export default function imageLoader({ src, width }: { src: string; width: number; quality?: number }): string {

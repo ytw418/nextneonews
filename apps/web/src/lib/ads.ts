@@ -28,8 +28,9 @@ const COUPANG_MEDIA_HOSTS: readonly string[] = ["unnienote.app", "hallyu-brief.v
 
 // 쿠팡은 한국 안에서만 팔고 배송해서, 기기 시간대가 한국(Asia/Seoul)인 방문자에게만 배너를 보인다.
 // 유럽 등 해외 방문자에게는 동의 없이 쿠팡 쿠키가 생기지 않는다. 시간대는 브라우저 안에서만 보고 서버로 보내지 않는다.
-// <head> 에서 그리기 전에 html[data-coupang] 을 달아, 배너 칸이 하이드레이션 뒤에 끼어들어 아래가 밀리지 않게 한다
-const COUPANG_GATE = `try{if(${JSON.stringify(COUPANG_MEDIA_HOSTS)}.indexOf(location.hostname)>-1&&Intl.DateTimeFormat().resolvedOptions().timeZone==="Asia/Seoul")document.documentElement.setAttribute("data-coupang","")}catch(e){}`;
+// <head> 에서 그리기 전에 html[data-coupang] 을 달아, 배너 칸이 하이드레이션 뒤에 끼어들어 아래가 밀리지 않게 한다.
+// 데이터 절약 모드(Save-Data, lib/save-data.ts)면 칸째 내지 않는다 — 배너를 내지 않는 것은 정책 위반이 아니다
+const COUPANG_GATE = `try{if(${JSON.stringify(COUPANG_MEDIA_HOSTS)}.indexOf(location.hostname)>-1&&Intl.DateTimeFormat().resolvedOptions().timeZone==="Asia/Seoul"&&!(navigator.connection&&navigator.connection.saveData))document.documentElement.setAttribute("data-coupang","")}catch(e){}`;
 
 // 배너를 보일지 정하는 인라인 스크립트. Vercel 운영 배포에서만 (미리보기·로컬은 등록 미디어가 아니다)
 export function coupangGateScript(): string | null {
