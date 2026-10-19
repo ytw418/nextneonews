@@ -83,7 +83,7 @@
   },
   "questions": {
     "title": "Questions to ask the clinic",
-    "hint": "Tick each one as you ask it. Save this page to find the list again.",
+    "hint": "Tick each one as you ask it. Ticks stay on this screen only; save this page to find the questions again.",
     "showKorean": "Show in Korean at the clinic",
     "koreanHint": "Show this screen to the clinic staff."
   },
