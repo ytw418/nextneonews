@@ -83,7 +83,7 @@
   },
   "questions": {
     "title": "Câu hỏi nên hỏi phòng khám",
-    "hint": "Hỏi xong câu nào thì đánh dấu câu đó. Lưu trang này để mở lại sau.",
+    "hint": "Hỏi xong câu nào thì đánh dấu câu đó. Dấu tích chỉ giữ trên màn hình này; lưu trang để mở lại danh sách câu hỏi.",
     "showKorean": "Hiện tiếng Hàn tại phòng khám",
     "koreanHint": "Đưa màn hình này cho nhân viên phòng khám xem."
   },

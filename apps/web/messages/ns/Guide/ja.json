@@ -8,30 +8,26 @@
     "beauty": {
       "title": "Kビューティー",
       "line": "いちおし・肌タイプ別・買える場所",
-      "glyph": "美",
       "count": "{count}アイテム"
     },
     "travel": {
       "title": "韓国旅行",
       "line": "エリア・ロケ地・旅の準備",
-      "glyph": "旅",
       "count": "{count}スポット"
     },
     "clinic": {
       "title": "施術ガイド",
       "line": "ダウンタイム・リスク・聞くべきこと",
-      "glyph": "医",
       "count": "施術{count}種"
     },
     "drama": {
       "title": "韓ドラガイド",
       "line": "何を観る？どこで観る？",
-      "glyph": "劇",
       "count": "{count}作品"
     }
   },
   "railTitle": "韓国ガイド",
-  "popular": "いま人気",
+  "editorsPicks": "編集部おすすめ",
   "crossTitle": "こちらもどうぞ",
   "newBadge": "NEW",
   "skinCta": {

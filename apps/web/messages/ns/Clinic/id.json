@@ -83,7 +83,7 @@
   },
   "questions": {
     "title": "Pertanyaan untuk klinik",
-    "hint": "Centang setiap pertanyaan setelah Anda menanyakannya. Simpan halaman ini agar bisa dibuka lagi.",
+    "hint": "Centang setiap pertanyaan setelah Anda menanyakannya. Centang hanya ada di layar ini; simpan halaman ini untuk membuka daftarnya lagi.",
     "showKorean": "Tunjukkan dalam bahasa Korea di klinik",
     "koreanHint": "Tunjukkan layar ini kepada staf klinik."
   },

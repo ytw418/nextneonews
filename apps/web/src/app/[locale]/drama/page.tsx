@@ -12,18 +12,21 @@ import { KpopChartRail } from "@/components/drama/KpopChartRail";
 import { trendingCards } from "@/components/drama/queries";
 import { TrendingRail } from "@/components/drama/TrendingRail";
 import { CrossRail } from "@/components/guide/CrossRail";
+import { LiveTotals } from "@/components/guide/LiveTotals";
 import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { dramaSlugs, dramaText, listDrama } from "@/data/drama";
 import { genreOrder } from "@/lib/drama";
-import { emptyTotals, getItemTotals } from "@/lib/item-votes";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 import { getKpopChart } from "@/lib/kpop-chart";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 시간으로는 다시 만들지 않는다(배포 때 9개 언어). DB 는 '지금 화제'(랭킹 최신판)만 이때 읽고(언어끼리 한 번 읽어 나눠 쓴다 — queries.ts),
+// 별점 집계는 브라우저가 받는다. 새 랭킹을 반영하려면 랭킹을 만든 작업이 /api/revalidate 로 /{locale}/drama 를 무효화한다
+// (KPOP_CHART=on 이면 차트 fetch 주기 때문에 하루 한 번 다시 만든다 — lib/kpop-chart.ts)
+export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/drama">): Promise<Metadata> {
   const { locale } = await params;
@@ -65,13 +68,7 @@ export default async function DramaHubPage({ params }: PageProps<"/[locale]/dram
     dramaText(locale),
     getKpopChart(),
   ]);
-  const [trending, totals] = await Promise.all([
-    trendingCards(locale, dramas),
-    getItemTotals(
-      "drama",
-      dramas.map((d) => d.slug),
-    ),
-  ]);
+  const trending = await trendingCards(locale, dramas);
 
   const home = `${SITE_URL}${LOCALE_PATH_PREFIX[locale]}`;
   const pageUrl = `${home}/drama`;
@@ -122,24 +119,26 @@ export default async function DramaHubPage({ params }: PageProps<"/[locale]/dram
       <div aria-hidden className="mt-6 h-4 bg-band" />
       <section aria-labelledby="drama-list">
         <SectionHeader id="drama-list" title={t("listTitle")} count={dramas.length} />
-        <GenreFilter
-          genres={genreOrder(dramas).map((key) => ({ key, label: genreName(key) }))}
-          items={dramas.map((d) => ({
-            id: d.slug,
-            genres: d.genres,
-            node: (
-              <DramaCard
-                href={`/drama/${d.slug}`}
-                title={d.text.title}
-                glyph={String(d.episodes)}
-                locale={locale}
-                sub={`${d.year} · ${d.network}`}
-                saveId={d.slug}
-                meta={<CardRating totals={totals.get(d.slug) ?? emptyTotals("drama")} locale={locale} />}
-              />
-            ),
-          }))}
-        />
+        <LiveTotals kind="drama" ids={dramas.map((d) => d.slug)}>
+          <GenreFilter
+            genres={genreOrder(dramas).map((key) => ({ key, label: genreName(key) }))}
+            items={dramas.map((d) => ({
+              id: d.slug,
+              genres: d.genres,
+              node: (
+                <DramaCard
+                  href={`/drama/${d.slug}`}
+                  title={d.text.title}
+                  glyph={String(d.episodes)}
+                  locale={locale}
+                  sub={`${d.year} · ${d.network}`}
+                  saveId={d.slug}
+                  meta={<CardRating id={d.slug} />}
+                />
+              ),
+            }))}
+          />
+        </LiveTotals>
       </section>
 
       <AdBand label={tArticle("ad")} />

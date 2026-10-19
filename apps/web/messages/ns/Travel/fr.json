@@ -5,6 +5,8 @@
   "intro": "Lieux de tournage, spots d’idols et cafés où vont vraiment les fans. Tamponne chaque lieu une fois visité.",
   "counts": "{areas, plural, one {#\u00a0quartier} other {#\u00a0quartiers}} · {places, plural, one {#\u00a0lieu} other {#\u00a0lieux}}",
   "areasTitle": "Choisir un quartier",
+  "kindFilter": "Filtrer par type",
+  "byArea": "Par quartier",
   "spotCount": "{count, plural, one {#\u00a0lieu} other {#\u00a0lieux}}",
   "tileStamps": "Mes tampons {done}/{total}",
   "spotlightTitle": "Lieux de tournage et spots d’idols",

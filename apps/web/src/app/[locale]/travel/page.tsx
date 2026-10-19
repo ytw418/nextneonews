@@ -12,15 +12,17 @@ import { JsonLd } from "@/components/JsonLd";
 import { AdBand } from "@/components/travel/AdBand";
 import { AreaTile } from "@/components/travel/AreaTile";
 import { Crumbs } from "@/components/travel/Crumbs";
+import { KindFilter } from "@/components/travel/KindFilter";
 import { PlaceRow } from "@/components/travel/PlaceRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { listAreas, travelText } from "@/data/travel";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
-import { areaGlyph, PREP_ROWS, prepBoxItems, spotlightPlaces } from "@/lib/travel";
+import { areaGlyph, placeKinds, PREP_ROWS, prepBoxItems, spotlightPlaces } from "@/lib/travel";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 카탈로그만 읽는 정적 페이지(DB 없음)라 다시 만들지 않는다. 바뀌면 배포가 새로 만든다
+export const revalidate = false;
 
 // 허브 아래 '촬영지·아이돌 성지' 줄 수 (여행 준비 상자와 광고 사이의 본문 한 덩어리)
 const SPOTLIGHT = 6;
@@ -47,8 +49,9 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/travel">
   };
 }
 
-// 여행 허브: 동네 9 타일(첫 타일 넓게, 내 도장 n/4) → 여행 준비 제휴 상자(eSIM 첫 줄) → 촬영지·아이돌 성지 →
-// 광고 → 다른 섹션 레일. 첫 화면은 타일뿐이다 (광고·제휴 없음)
+// 여행 허브: 종류 칩(동네별·촬영지·아이돌…) + 동네 9 타일(첫 타일 넓게, 내 도장 n/4) → 여행 준비 제휴 상자(eSIM 첫 줄) →
+// 촬영지·아이돌 성지 → 광고 → 다른 섹션 레일. 첫 화면은 칩과 타일뿐이다 (광고·제휴 없음).
+// 종류 칩을 고르면 타일 자리에 동네를 가로지른 그 종류 명소 줄이 온다 (KindFilter)
 export default async function TravelHubPage({ params }: PageProps<"/[locale]/travel">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
@@ -92,7 +95,7 @@ export default async function TravelHubPage({ params }: PageProps<"/[locale]/tra
         )}
       />
 
-      <div className="px-gutter pt-4">
+      <div className="px-gutter pt-2">
         <Crumbs label={t("breadcrumb")} items={[{ name: tGuide("title"), href: "/guide" }]} />
         <h1 className="text-st2 font-bold text-ink-900">{t("title")}</h1>
         <p className="mt-1 text-t6 text-ink-600">
@@ -107,24 +110,47 @@ export default async function TravelHubPage({ params }: PageProps<"/[locale]/tra
         <h2 id="travel-areas" className="sr-only">
           {t("areasTitle")}
         </h2>
-        <TrackClicks event="guide_tile_open" from="travel">
-          <ul className="grid grid-cols-2 gap-x-3 gap-y-4 px-gutter pt-5">
-            {areas.map((area, i) => (
-              <li key={area.slug} className={i === 0 ? "col-span-2" : undefined}>
-                <AreaTile
-                  slug={area.slug}
-                  name={area.text.name}
-                  count={t("spotCount", { count: area.places.length })}
-                  glyph={areaGlyph(area.slug, area.text.name, locale)}
-                  placeSlugs={area.places.map((p) => p.slug)}
-                  tagline={area.text.tagline}
-                  wide={i === 0}
-                  locale={locale}
-                />
-              </li>
-            ))}
-          </ul>
-        </TrackClicks>
+        <KindFilter
+          label={t("kindFilter")}
+          allLabel={t("byArea")}
+          kinds={placeKinds(places).map((kind) => ({
+            key: kind,
+            label: t(`kinds.${kind}`),
+            shown: t("spotCount", { count: places.filter((p) => p.kind === kind).length }),
+          }))}
+          items={places.map((place) => ({
+            id: place.slug,
+            kind: place.kind,
+            node: (
+              <PlaceRow
+                slug={place.slug}
+                name={place.text.name}
+                sub={areaName.get(place.area) ?? ""}
+                glyph={areaGlyph(place.area, areaName.get(place.area) ?? "", locale)}
+                locale={locale}
+              />
+            ),
+          }))}
+        >
+          <TrackClicks event="guide_tile_open" from="travel">
+            <ul className="grid grid-cols-2 gap-x-3 gap-y-4 px-gutter pt-5">
+              {areas.map((area, i) => (
+                <li key={area.slug} className={i === 0 ? "col-span-2" : undefined}>
+                  <AreaTile
+                    slug={area.slug}
+                    name={area.text.name}
+                    count={t("spotCount", { count: area.places.length })}
+                    glyph={areaGlyph(area.slug, area.text.name, locale)}
+                    placeSlugs={area.places.map((p) => p.slug)}
+                    tagline={area.text.tagline}
+                    wide={i === 0}
+                    locale={locale}
+                  />
+                </li>
+              ))}
+            </ul>
+          </TrackClicks>
+        </KindFilter>
       </section>
 
       <div aria-hidden className="mt-6 h-4 bg-band" />

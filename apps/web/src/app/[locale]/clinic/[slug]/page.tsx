@@ -7,6 +7,7 @@ import { cache } from "react";
 import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
 import { ClinicSection, DotList } from "@/components/clinic/ClinicSection";
+import { ClinicVote } from "@/components/clinic/ClinicVote";
 import { FactTable } from "@/components/clinic/FactTable";
 import { longDate, painPhrase, recoveryPhrase, shortUrl } from "@/components/clinic/format";
 import { MedicalNotice } from "@/components/clinic/MedicalNotice";
@@ -14,10 +15,10 @@ import { PriceCard } from "@/components/clinic/PriceCard";
 import { ProcedureRow } from "@/components/clinic/ProcedureRow";
 import { QuestionChecklist } from "@/components/clinic/QuestionChecklist";
 import { CrossRail } from "@/components/guide/CrossRail";
+import { guidePrerender } from "@/components/guide/prerender";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { ExternalIcon } from "@/components/icons";
-import { VoteChips } from "@/components/ItemVote";
 import { JsonLd } from "@/components/JsonLd";
 import { SaveButton } from "@/components/SaveButton";
 import { ShareButton } from "@/components/ShareButton";
@@ -28,16 +29,16 @@ import { clinicSlugs, clinicText, getClinic, listClinic } from "@/data/clinic";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { coverGlyph, koreanLines } from "@/lib/clinic";
-import { emptyTotals, getItemTotals } from "@/lib/item-votes";
 import { breadcrumbLd, faqLd, graph } from "@/lib/jsonld-catalog";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// DB 를 읽지 않는 정적 페이지: 색인 언어만 빌드 때 만들고 다른 언어는 처음 요청 때 만들어 배포까지 쓴다(components/guide/prerender).
+// 관심 투표 집계는 브라우저가 받는다(ClinicVote). 없는 slug 는 사이트 화면 안의 404
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return clinicSlugs().map((slug) => ({ slug }));
+  return guidePrerender("slug", clinicSlugs());
 }
 
 const VOTE_CHOICES = ["curious", "done", "pass"] as const;
@@ -92,13 +93,12 @@ export default async function ClinicProcedurePage({ params }: PageProps<"/[local
   const entry = await loadProcedure(locale, slug);
   if (!entry) notFound();
 
-  const [t, tGuide, tArticle, text, all, votes, koText, enText] = await Promise.all([
+  const [t, tGuide, tArticle, text, all, koText, enText] = await Promise.all([
     getTranslations("Clinic"),
     getTranslations("Guide"),
     getTranslations("Article"),
     clinicText(locale),
     listClinic(locale),
-    getItemTotals("clinic", [slug]),
     locale === "ko" ? null : clinicText("ko"),
     clinicText("en"),
   ]);
@@ -183,10 +183,8 @@ export default async function ClinicProcedurePage({ params }: PageProps<"/[local
         <DotList items={copy.risks} />
       </ClinicSection>
 
-      <VoteChips
-        kind="clinic"
+      <ClinicVote
         itemId={slug}
-        initial={votes.get(slug) ?? emptyTotals("clinic")}
         choices={VOTE_CHOICES.map((key) => ({ key, label: t(`vote.${key}`) }))}
         question={t("vote.question")}
         note={t("vote.note")}

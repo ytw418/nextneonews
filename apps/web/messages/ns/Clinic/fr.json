@@ -83,7 +83,7 @@
   },
   "questions": {
     "title": "Questions à poser à la clinique",
-    "hint": "Cochez chaque question une fois posée. Enregistrez cette page pour retrouver la liste.",
+    "hint": "Cochez chaque question une fois posée. Les coches ne restent que sur cet écran : enregistrez la page pour retrouver la liste.",
     "showKorean": "Afficher en coréen à la clinique",
     "koreanHint": "Montrez cet écran au personnel de la clinique."
   },

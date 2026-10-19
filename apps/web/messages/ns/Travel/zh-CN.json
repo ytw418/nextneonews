@@ -5,6 +5,8 @@
   "intro": "粉丝真会去的取景地、爱豆打卡地和咖啡馆都在这里。去过就盖个章吧！",
   "counts": "{areas} 个区域·{places} 个景点",
   "areasTitle": "选个区域",
+  "kindFilter": "按类型筛选",
+  "byArea": "按区域",
   "spotCount": "{count} 个景点",
   "tileStamps": "我的打卡 {done}/{total}",
   "spotlightTitle": "韩剧取景地与爱豆打卡地",

@@ -8,30 +8,26 @@
     "beauty": {
       "title": "Làm đẹp Hàn",
       "line": "Lựa chọn nổi bật, chọn theo loại da, nơi mua",
-      "glyph": "Be",
       "count": "{count}\u00a0sản phẩm"
     },
     "travel": {
       "title": "Du lịch Hàn",
       "line": "Khu phố, phim trường, chuẩn bị chuyến đi",
-      "glyph": "Tr",
       "count": "{count}\u00a0địa điểm"
     },
     "clinic": {
       "title": "Cẩm nang thẩm mỹ",
       "line": "Hồi phục, rủi ro và câu hỏi nên hỏi",
-      "glyph": "Cl",
       "count": "{count}\u00a0liệu trình"
     },
     "drama": {
       "title": "Phim Hàn",
       "line": "Xem gì và xem ở đâu",
-      "glyph": "Dr",
       "count": "{count}\u00a0phim"
     }
   },
   "railTitle": "Cẩm nang Hàn Quốc",
-  "popular": "Đang được quan tâm",
+  "editorsPicks": "Ban biên tập chọn",
   "crossTitle": "Khám phá thêm",
   "newBadge": "Mới",
   "skinCta": {

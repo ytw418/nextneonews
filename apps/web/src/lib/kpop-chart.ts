@@ -4,11 +4,12 @@ import { z } from "zod";
 
 // '한국에서 지금 듣는 노래' (/drama 허브): 애플 뮤직 한국 인기곡 RSS (애플 공개 마케팅 도구, 키 없음).
 // 이용 조건을 확인하기 전까지 기본은 꺼 둔다 — 환경변수 KPOP_CHART=on 일 때만 부른다 (docs/monetize/BM-VALIDATION.md P6-2).
-// 실패(네트워크·형식·빈 목록)하면 null 이라 화면은 레일을 숨긴다. DB 에 저장하지 않고 한 시간마다 다시 받는다
+// 실패(네트워크·형식·빈 목록)하면 null 이라 화면은 레일을 숨긴다. DB 에 저장하지 않고 하루에 한 번 다시 받는다
 
 export const KPOP_CHART_URL = "https://rss.marketingtools.apple.com/api/v2/kr/music/most-played/25/songs.json";
 export const KPOP_CHART_SIZE = 10;
-const REVALIDATE_SECONDS = 3600;
+// fetch 의 revalidate 는 허브 페이지(revalidate=false)의 재생성 주기가 된다. 재생성은 '지금 화제' 랭킹 조회로 DB 를 깨우니 하루 한 번
+const REVALIDATE_SECONDS = 86400;
 // 애플이 늦으면 허브 렌더 전체가 기다리므로 짧게 끊는다
 const TIMEOUT_MS = 4000;
 // 곡 링크는 애플 뮤직 주소만 (피드가 바뀌어도 엉뚱한 곳으로 보내지 않게)

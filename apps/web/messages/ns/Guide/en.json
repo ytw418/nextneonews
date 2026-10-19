@@ -8,30 +8,26 @@
     "beauty": {
       "title": "K-Beauty",
       "line": "Top picks, skin type picks, where to buy",
-      "glyph": "Be",
       "count": "{count, plural, one {#\u00a0pick} other {#\u00a0picks}}"
     },
     "travel": {
       "title": "Korea Travel",
       "line": "Neighborhoods, filming spots, trip prep",
-      "glyph": "Tr",
       "count": "{count, plural, one {#\u00a0place} other {#\u00a0places}}"
     },
     "clinic": {
       "title": "Clinic Guide",
       "line": "Recovery, risks and questions to ask",
-      "glyph": "Cl",
       "count": "{count, plural, one {#\u00a0treatment} other {#\u00a0treatments}}"
     },
     "drama": {
       "title": "K-Drama Guide",
       "line": "What to watch and where to stream",
-      "glyph": "Dr",
       "count": "{count, plural, one {#\u00a0drama} other {#\u00a0dramas}}"
     }
   },
   "railTitle": "Korea guides",
-  "popular": "Popular now",
+  "editorsPicks": "Editors’ picks",
   "crossTitle": "More to explore",
   "newBadge": "New",
   "skinCta": {

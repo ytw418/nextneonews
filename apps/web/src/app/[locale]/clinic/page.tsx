@@ -18,7 +18,8 @@ import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-cata
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 카탈로그만 읽는 정적 페이지(DB 없음)라 다시 만들지 않는다. 바뀌면 배포가 새로 만든다
+export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/clinic">): Promise<Metadata> {
   const { locale } = await params;

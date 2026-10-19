@@ -5,6 +5,8 @@
   "intro": "Lokasi syuting, tempat idol, dan kafe yang benar-benar didatangi fans. Kasih cap setiap kali kamu sudah ke sana.",
   "counts": "{areas} kawasan · {places} spot",
   "areasTitle": "Pilih kawasan",
+  "kindFilter": "Saring menurut jenis",
+  "byArea": "Per kawasan",
   "spotCount": "{count} spot",
   "tileStamps": "Cap saya {done}/{total}",
   "spotlightTitle": "Lokasi syuting & tempat idol",

@@ -8,30 +8,26 @@
     "beauty": {
       "title": "韓國美妝",
       "line": "分類首選、依膚質挑選、哪裡買",
-      "glyph": "美",
       "count": "{count} 項好物"
     },
     "travel": {
       "title": "韓國旅遊",
       "line": "街區、拍攝地、行前準備",
-      "glyph": "旅",
       "count": "{count} 個景點"
     },
     "clinic": {
       "title": "療程指南",
       "line": "恢復期、風險、該問的問題",
-      "glyph": "醫",
       "count": "{count} 種療程"
     },
     "drama": {
       "title": "韓劇指南",
       "line": "看什麼、在哪裡看",
-      "glyph": "劇",
       "count": "{count} 部韓劇"
     }
   },
   "railTitle": "韓國指南",
-  "popular": "現在熱門",
+  "editorsPicks": "編輯精選",
   "crossTitle": "延伸探索",
   "newBadge": "新",
   "skinCta": {

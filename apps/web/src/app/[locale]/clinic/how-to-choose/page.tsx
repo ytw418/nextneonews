@@ -37,7 +37,8 @@ const SOURCES = {
   kmedi: "https://www.k-medi.or.kr/eng/",
 } as const;
 
-export const revalidate = 3600;
+// 카탈로그만 읽는 정적 페이지(DB 없음)라 다시 만들지 않는다. 바뀌면 배포가 새로 만든다
+export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/clinic/how-to-choose">): Promise<Metadata> {
   const { locale } = await params;

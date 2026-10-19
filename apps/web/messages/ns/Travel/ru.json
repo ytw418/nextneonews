@@ -5,6 +5,8 @@
   "intro": "Места съёмок, места айдолов и кафе, куда фанаты правда ходят. Ставьте штамп там, где уже побывали.",
   "counts": "{areas, plural, one {#\u00a0район} few {#\u00a0района} many {#\u00a0районов} other {#\u00a0района}} · {places, plural, one {#\u00a0место} few {#\u00a0места} many {#\u00a0мест} other {#\u00a0места}}",
   "areasTitle": "Выберите район",
+  "kindFilter": "Фильтр по типу",
+  "byArea": "По районам",
   "spotCount": "{count, plural, one {#\u00a0место} few {#\u00a0места} many {#\u00a0мест} other {#\u00a0места}}",
   "tileStamps": "Мои штампы {done}/{total}",
   "spotlightTitle": "Места съёмок и места айдолов",

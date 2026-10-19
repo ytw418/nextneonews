@@ -18,11 +18,13 @@ export interface CoverArtProps {
 }
 
 // 사진 없는 커버의 뼈대 (줄바꿈 처리 없는 제목). 서버 화면은 TypeCover 를 쓰고,
-// 클라이언트 화면(저장함)은 이걸 바로 쓴다 — TypeCover 의 Phrase(budoux 사전)를 브라우저 번들에 싣지 않으려고
+// 클라이언트 화면(저장함)은 이걸 바로 쓴다 — TypeCover 의 Phrase(budoux 사전)를 브라우저 번들에 싣지 않으려고.
+// 상세 히어로는 5:2(아이폰 15에서 156px): 4:3(292px)은 첫 화면 44%가 빈 색 상자라 '사진이 깨졌다'로 읽혔고,
+// 제목·지도·도장·투표 같은 첫 행동이 탭바 밑으로 밀렸다
 const RATIO: Record<TypeCoverVariant, string> = {
   grid: "aspect-[3/4] rounded-card",
   square: "aspect-square rounded-btn-m",
-  hero: "aspect-[4/3]",
+  hero: "aspect-[5/2]",
   tile: "aspect-[5/4] rounded-card",
 };
 

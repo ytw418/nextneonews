@@ -16,9 +16,10 @@ interface Props {
 }
 
 // 동네 타일: 틴트 타이포 커버(동네 글자) + 이름·명소 수 + 왼쪽 위 '내 도장 n/4'
+// 링크는 미리 받지 않는다(prefetch=false, 누를 때 받는다): 촘촘한 목록이 보일 때마다 화면 수십 개를 받아 데이터를 쓰고, 요청 때 만드는 언어 페이지를 한꺼번에 깨웠다
 export function AreaTile({ slug, name, count, glyph, placeSlugs, tagline, wide = false, locale }: Props) {
   return (
-    <Link href={`/travel/${slug}`} className="press-soft block">
+    <Link href={`/travel/${slug}`} prefetch={false} className="press-soft block">
       <TypeCover
         tint={SECTION_TINT.travel}
         glyph={glyph}
