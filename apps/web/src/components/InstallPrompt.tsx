@@ -9,7 +9,7 @@ import { isLocaleSuggesting, LOCALE_SUGGEST_DONE } from "@/components/LocaleSugg
 import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
 import { usePathname } from "@/i18n/navigation";
-import { INSTALL_EVENT_KEY } from "@/lib/install";
+import { INSTALL_EVENT_KEY, isInAppBrowser } from "@/lib/install";
 import { sessionGet, sessionSet, storageGet, storageSet } from "@/lib/storage";
 
 // 크롬(안드로이드)이 설치 조건을 채우면 보내는 이벤트. 표준이 아니라 타입이 없다
@@ -26,6 +26,21 @@ const SNOOZE_MS = 7 * 86_400_000;
 const FIRST_DELAY_MS = 2000; // 첫 화면을 먼저 보게 하고, 언어 제안이 뜰지 정해질 때까지 기다린다
 const SCROLL_PX = 120; // 첫 화면에서는 띄우지 않는다: 처음 그릴 때 '지금 인기' 제목과 1위를 가렸다
 const AFTER_SUGGEST_MS = 1000;
+const SCROLL_SETTLE_MS = 150;
+// 카드가 뜨는 화면 아래쪽(탭바 + 카드 높이)에 구매 링크(제휴, rel=sponsored)·평가 칩이 있으면 그때는 띄우지 않고
+// 다음 스크롤에 다시 본다 — 카드가 '어디서 사나' 줄과 투표를 덮었다
+const AVOID = 'a[rel~="sponsored"], [data-install-avoid]';
+const AVOID_ZONE_PX = 240;
+// 아이폰 사파리가 아닌 일반 브라우저 (공유 → 홈 화면에 추가 자리가 다르다). 앱 안 브라우저는 lib/install.ts
+const OTHER_IOS_BROWSER = /CriOS|FxiOS|EdgiOS|OPiOS|DuckDuckGo|NAVER|Whale/;
+
+function blockerInView(): boolean {
+  const zoneTop = window.innerHeight - AVOID_ZONE_PX;
+  return Array.from(document.querySelectorAll(AVOID)).some((el) => {
+    const box = el.getBoundingClientRect();
+    return box.bottom > zoneTop && box.top < window.innerHeight;
+  });
+}
 
 function standalone(): boolean {
   return (
@@ -44,7 +59,7 @@ function iosSafari(): Mode | null {
   const ua = navigator.userAgent;
   const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   if (!ios || !/Safari\//.test(ua)) return null;
-  if (/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|DuckDuckGo|Instagram|FBAN|FBAV|Line\/|KAKAOTALK|NAVER|Whale/.test(ua)) return null;
+  if (isInAppBrowser(ua) || OTHER_IOS_BROWSER.test(ua)) return null;
   const version = Number(/Version\/(\d+)/.exec(ua)?.[1] ?? 0);
   return { kind: "ios", more: version >= 26 };
 }
@@ -53,7 +68,7 @@ function iosSafari(): Mode | null {
 // - 안드로이드·크롬: beforeinstallprompt 를 붙잡아 두었다가 '설치' 버튼으로 띄운다
 // - 아이폰 사파리: 공유 → 홈 화면에 추가 순서를 아이콘으로 보여 준다
 // - 이미 앱으로 열었으면(standalone) 안 띄운다. ×로 닫으면 7일 동안 안 띄운다
-// - 첫 화면에서는 띄우지 않고, 조금 스크롤한 뒤에 (읽기 시작한 사람에게)
+// - 첫 화면에서는 띄우지 않고, 조금 스크롤한 뒤에 (읽기 시작한 사람에게). 아래쪽에 구매 링크·평가 칩이 보이면 미룬다
 // - 언어 제안 토스트와 같은 자리라 같이 뜨지 않는다: 언어 제안이 먼저, 내려가고 1초 뒤에
 // - 다른 페이지로 옮기면 내려간다 (이번 방문에는 다시 안 띄우고, 다음 방문에 다시)
 export function InstallPrompt() {
@@ -83,7 +98,9 @@ export function InstallPrompt() {
     let retry = 0;
     const tryShow = () => {
       if (!ready || !scrolled || !mode || isLocaleSuggesting() || snoozed() || sessionGet(SEEN)) return;
+      if (blockerInView()) return; // 다음 스크롤에 다시
       sessionSet(SEEN, "1");
+      window.removeEventListener("scroll", onScroll);
       setShown(mode);
     };
     // 크롬이 스스로 띄우는 작은 설치 막대는 막는다 (닫은 뒤 7일 약속을 지키려고)
@@ -104,12 +121,14 @@ export function InstallPrompt() {
     if (early) onBeforeInstall(early);
     window.addEventListener("appinstalled", onInstalled);
     window.addEventListener(LOCALE_SUGGEST_DONE, onSuggestDone);
-    const onScroll = () => {
+    // 스크롤이 멈춘 뒤 한 번 본다 (스크롤마다 화면 요소를 재지 않게)
+    let settle = 0;
+    function onScroll() {
       if (window.scrollY < SCROLL_PX) return;
       scrolled = true;
-      window.removeEventListener("scroll", onScroll);
-      tryShow();
-    };
+      clearTimeout(settle);
+      settle = window.setTimeout(tryShow, SCROLL_SETTLE_MS);
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
     const first = window.setTimeout(() => {
       ready = true;
@@ -118,6 +137,7 @@ export function InstallPrompt() {
     return () => {
       clearTimeout(first);
       clearTimeout(retry);
+      clearTimeout(settle);
       window.removeEventListener("beforeinstallprompt", onBeforeInstall);
       window.removeEventListener("appinstalled", onInstalled);
       window.removeEventListener(LOCALE_SUGGEST_DONE, onSuggestDone);
@@ -155,10 +175,10 @@ export function InstallPrompt() {
         aria-labelledby="install-title"
         className="pointer-events-auto flex items-center gap-3 rounded-card bg-floating py-2 pr-1 pl-3 shadow-float ring-1 ring-line animate-toast-in"
       >
-        {/* 홈 화면에 생길 아이콘 그대로 (apple-icon 과 같은 모양) */}
+        {/* 홈 화면에 생길 아이콘 그대로 (apple-icon·api/pwa-icon 과 같은 'U.') */}
         <span aria-hidden className="grid size-9 shrink-0 place-items-center rounded-btn-m bg-bg ring-1 ring-line">
           <span className="wordmark">
-            H<span className="wordmark-dot">.</span>
+            U<span className="wordmark-dot">.</span>
           </span>
         </span>
         <div className="min-w-0 flex-1 py-1">

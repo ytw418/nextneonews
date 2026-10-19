@@ -280,7 +280,14 @@ export function VoteChips({ kind, itemId, initial, choices, facet, question, sho
         {question}
       </h2>
       {note && <p className="mt-1 text-t7 text-ink-600">{note}</p>}
-      <div role="group" aria-labelledby={headingId} aria-busy={busy || undefined} className="mt-4 flex flex-wrap gap-2">
+      {/* data-install-avoid: 설치 안내 카드가 이 칩이 화면 아래쪽에 있을 때는 뜨지 않는다 (InstallPrompt) */}
+      <div
+        role="group"
+        aria-labelledby={headingId}
+        aria-busy={busy || undefined}
+        data-install-avoid
+        className="mt-4 flex flex-wrap gap-2"
+      >
         {choices.map((c) => {
           const on = mine === c.key;
           return (
