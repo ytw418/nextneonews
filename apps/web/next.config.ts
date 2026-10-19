@@ -11,8 +11,23 @@ const repoRoot = path.resolve(process.cwd(), "../..");
 // PostHog 요청을 우리 도메인으로 받아 넘기는 경로 (광고 차단기에 덜 막힌다). proxy.ts matcher 에서도 뺀다
 const POSTHOG_RELAY = "/relay";
 
+// 모든 응답에 붙이는 보안 헤더. Vercel 라우팅 단계에서 붙어 정적·ISR 캐시를 깨지 않는다 (함수 호출 없음).
+// - 클릭재킹: 남의 사이트가 우리 화면(투표·제휴 링크)을 투명 iframe 에 넣지 못하게 frame-ancestors 만 둔다.
+//   PostHog 앱의 히트맵·툴바는 사이트를 us.posthog.com iframe 에 띄우므로 연다. X-Frame-Options(SAMEORIGIN)는 그 화면을 막고,
+//   frame-ancestors 를 아는 브라우저는 어차피 무시해서 넣지 않는다. 다른 CSP 지시어는 넣지 않는다(애드센스·쿠팡 iframe·GA 를 막지 않게)
+// - Permissions-Policy: 쓰지 않는 기기 권한만 끈다. 애드센스가 쓰는 광고 API(attribution-reporting·browsing-topics 등)는 건드리지 않는다
+// - Referrer-Policy: 브라우저 기본값과 같지만 점검 도구가 확인할 수 있게 적는다 (쿠팡 iframe 은 자기 referrerPolicy 를 쓴다)
+const SECURITY_HEADERS = [
+  { key: "Content-Security-Policy", value: "frame-ancestors 'self' https://us.posthog.com" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+];
+
 const nextConfig: NextConfig = {
   transpilePackages: ["@kmedia/core", "@kmedia/db"],
+  // 'X-Powered-By: Next.js' 를 내지 않는다
+  poweredByHeader: false,
   // PostHog 토큰(Vercel 운영 환경변수, 프로젝트 'Hallyu Brief')은 운영 배포 빌드에만 넣는다 (로컬·미리보기는 집계하지 않는다).
   // 여기 env 가 NEXT_PUBLIC_* 자동 인라인보다 우선한다. 쓰는 곳: src/instrumentation-client.ts
   env: {
@@ -37,8 +52,9 @@ const nextConfig: NextConfig = {
     }));
   },
   // 가이드 섹션은 en·ja·zh-TW 만 검색에 내고, 치과·성형 시술은 모든 언어에서 noindex (목록은 src/lib/guide-seo.ts 한 곳)
+  // 규칙이 여럿 맞으면 Next 가 헤더를 모두 붙인다 (보안 헤더 + 가이드 noindex)
   async headers() {
-    return guideNoindexHeaders();
+    return [{ source: "/:path*", headers: SECURITY_HEADERS }, ...guideNoindexHeaders()];
   },
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
   skipTrailingSlashRedirect: true,
