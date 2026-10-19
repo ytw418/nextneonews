@@ -1,0 +1,69 @@
+{
+  "howTo": {
+    "title": "How to Check a Korean Clinic Before You Book",
+    "description": "Check a clinic’s registration for international patients, the doctor’s specialty, written prices and consent, interpreters and where to turn if something goes wrong, with official Korean sources.",
+    "lead": "Five checks to make before you book a skin, dental or cosmetic treatment in Korea. Each one links to an official source you can open yourself.",
+    "updatedLabel": "Last updated",
+    "sourcesLabel": "Official sources",
+    "registeredTitle": "1. Is the clinic registered for international patients?",
+    "registered": "Under Korea’s Act on Supporting Overseas Expansion of Medical Services and Attraction of International Patients, a clinic that takes international patients must register. It needs at least one board-certified specialist for each relevant department, with some exceptions, and must carry medical malpractice insurance or join a mutual aid fund.",
+    "registeredAgency": "Agencies and coordinators that arrange clinic visits must register too, and attracting international patients without registering is a crime in Korea. Look up both the clinic and any agency before you pay.",
+    "registeredCheck": "Medical Korea, run by the Korea Health Industry Development Institute, keeps the official lists in English. You can search them by name and region.",
+    "registeredLinks": {
+      "hospitals": "Registered hospitals and clinics (Medical Korea)",
+      "facilitators": "Registered agencies (Medical Korea)",
+      "act": "The Act in English (Korea Legislation Research Institute)"
+    },
+    "doctorTitle": "2. Who will treat you, and are they a specialist?",
+    "doctorSign": "In Korea, only a board-certified specialist may put a specialty in a clinic’s name, such as “OO Dermatology Clinic” (OO피부과의원). When “Dermatology” appears only as a treatment area (진료과목) next to the name, the doctor may not be a dermatology specialist.",
+    "doctorAsk": "Ask for the name and specialty of the doctor who will do your treatment. For surgery, blood transfusion or general anesthesia, the explanation you get must include the names of the doctor explaining it and the main doctor doing it, and the clinic must tell you in writing if the main doctor changes.",
+    "doctorLinks": {
+      "specialty": "Medical Service Act, Article 77 (Korean)",
+      "consent": "Medical Service Act, Article 24-2 (Korean)"
+    },
+    "estimateTitle": "3. Get the price and the consent form in writing",
+    "estimatePrice": "Korean law requires clinics to make self-pay prices easy for patients to find, and they cannot charge more than the price they posted. Ask for a written estimate that shows:",
+    "estimateItems": [
+      "The total price, including tax and anything charged separately",
+      "The product or device and the amount (mL, units or shots)",
+      "How many sessions you need and how far apart",
+      "What is included: anesthesia, follow-up visits, medicine and touch-ups",
+      "The refund rules if you cancel"
+    ],
+    "estimateConsent": "Before surgery, a blood transfusion or general anesthesia, you sign a written consent form. You can ask for a copy, and the clinic cannot refuse without good reason.",
+    "estimateLinks": {
+      "fees": "Medical Service Act, Article 45 (Korean)",
+      "consent": "Medical Service Act, Article 24-2 (Korean)"
+    },
+    "interpreterTitle": "4. Make sure you understand everything",
+    "interpreter": "Ask the clinic in writing whether a medical interpreter is included and whether the estimate, consent form and aftercare instructions come in your language. Don’t sign anything you can’t read.",
+    "interpreterHotline": "The 1330 Korea Travel Helpline, run by the Korea Tourism Organization, helps with interpretation by phone and chat. Dial 1330 in Korea or +82-2-1330 from abroad.",
+    "interpreterLinks": {
+      "hotline": "1330 Korea Travel Helpline (Korea Tourism Organization)"
+    },
+    "questionsTitle": "5. Questions to ask at the consultation",
+    "questionsIntro": "Save this page and bring the list to the clinic. Turn on Korean to show the staff each question in Korean.",
+    "questions": [
+      "Who will do my treatment, and are they a specialist in this field?",
+      "Is this clinic registered for international patients?",
+      "What is the total price, and what costs extra?",
+      "Which product or device will you use, and how much (mL, units or shots)?",
+      "How many sessions do I need, and can I finish them during my stay?",
+      "Can I ask for a female doctor or a female staff member?",
+      "Is there a private space where I can change clothes?",
+      "Can my interpreter or a companion stay with me?",
+      "Can I get the consent form and aftercare instructions in my language?",
+      "Who do I contact if I have a problem after I fly home?"
+    ],
+    "disputeTitle": "If something goes wrong",
+    "disputeKeep": "Keep your written estimate, receipts, consent form, aftercare instructions, photos and messages with the clinic.",
+    "disputeRecords": "You can ask the clinic to let you see your medical records or give you copies, and it cannot refuse without good reason.",
+    "disputeAgency": "The Korea Medical Dispute Mediation and Arbitration Agency (K-medi) is the public agency for medical disputes. Its English site explains how to apply, including by email. Counseling line: 1670-2545, weekdays 9:00–18:00 Korea time.",
+    "disputeLinks": {
+      "kmedi": "K-medi English site",
+      "records": "Medical Service Act, Article 21 (Korean)"
+    },
+    "moreTitle": "Treatments explained",
+    "moreLink": "Recovery, risks and questions for 22 treatments"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "howTo": {
+    "title": "Cara Mengecek Klinik di Korea Sebelum Membuat Janji",
+    "description": "Cek pendaftaran klinik untuk pasien internasional, spesialisasi dokter, harga dan formulir persetujuan tertulis, penerjemah, serta ke mana harus mengadu jika ada masalah, lengkap dengan sumber resmi Korea.",
+    "lead": "Lima hal yang perlu dicek sebelum membuat janji perawatan kulit, gigi, atau bedah plastik di Korea. Setiap poin disertai sumber resmi yang bisa Anda buka sendiri.",
+    "updatedLabel": "Terakhir diperbarui",
+    "sourcesLabel": "Sumber resmi",
+    "registeredTitle": "1. Apakah klinik terdaftar untuk pasien internasional?",
+    "registered": "Menurut undang-undang Korea tentang dukungan ekspansi layanan medis ke luar negeri dan penarikan pasien internasional, fasilitas medis yang menerima pasien internasional wajib mendaftar. Kecuali beberapa pengecualian, setiap departemen terkait harus punya setidaknya satu dokter spesialis, dan fasilitas itu wajib punya asuransi malapraktik medis atau ikut dana bersama.",
+    "registeredAgency": "Agen dan koordinator yang mengatur kunjungan ke klinik juga wajib mendaftar, dan menarik pasien internasional tanpa terdaftar adalah tindak pidana di Korea. Cek klinik maupun agennya sebelum membayar.",
+    "registeredCheck": "Medical Korea, yang dikelola Korea Health Industry Development Institute, memuat daftar resmi dalam bahasa Inggris. Anda bisa mencarinya berdasarkan nama dan wilayah.",
+    "registeredLinks": {
+      "hospitals": "Daftar rumah sakit dan klinik terdaftar (Medical Korea, bahasa Inggris)",
+      "facilitators": "Daftar agen terdaftar (Medical Korea, bahasa Inggris)",
+      "act": "Undang-undang dalam bahasa Inggris (Korea Legislation Research Institute)"
+    },
+    "doctorTitle": "2. Siapa yang akan menangani Anda, dan apakah ia spesialis?",
+    "doctorSign": "Di Korea, hanya dokter spesialis yang boleh mencantumkan spesialisasi di nama klinik, misalnya “Klinik Dermatologi OO” (OO피부과의원). Jika “Dermatologi” hanya tertulis sebagai bidang layanan (진료과목) di samping nama klinik, dokternya mungkin bukan spesialis kulit.",
+    "doctorAsk": "Tanyakan nama dan spesialisasi dokter yang akan menangani Anda. Untuk operasi, transfusi darah, atau bius total, penjelasan yang Anda terima wajib mencantumkan nama dokter yang menjelaskan dan dokter utama yang menangani, dan klinik wajib memberi tahu secara tertulis jika dokter utama berganti.",
+    "doctorLinks": {
+      "specialty": "Undang-Undang Layanan Medis, Pasal 77 (bahasa Korea)",
+      "consent": "Undang-Undang Layanan Medis, Pasal 24-2 (bahasa Korea)"
+    },
+    "estimateTitle": "3. Minta harga dan formulir persetujuan secara tertulis",
+    "estimatePrice": "Hukum Korea mewajibkan klinik menampilkan harga layanan nonasuransi agar mudah dilihat pasien, dan klinik tidak boleh menagih lebih dari harga yang diumumkan. Sebelum setuju, minta penawaran tertulis yang mencantumkan:",
+    "estimateItems": [
+      "Total biaya, termasuk pajak dan biaya terpisah lainnya",
+      "Produk atau alat yang dipakai dan jumlahnya (mL, unit, atau shot)",
+      "Berapa sesi yang dibutuhkan dan jaraknya",
+      "Apa yang sudah termasuk: bius, kontrol ulang, obat, dan perbaikan",
+      "Aturan pengembalian dana jika Anda membatalkan"
+    ],
+    "estimateConsent": "Sebelum operasi, transfusi darah, atau bius total, Anda menandatangani formulir persetujuan tertulis. Anda boleh meminta salinannya, dan klinik tidak boleh menolak tanpa alasan yang sah.",
+    "estimateLinks": {
+      "fees": "Undang-Undang Layanan Medis, Pasal 45 (bahasa Korea)",
+      "consent": "Undang-Undang Layanan Medis, Pasal 24-2 (bahasa Korea)"
+    },
+    "interpreterTitle": "4. Pastikan Anda memahami semuanya",
+    "interpreter": "Tanyakan secara tertulis apakah klinik menyediakan penerjemah medis dan apakah penawaran harga, formulir persetujuan, serta petunjuk perawatan tersedia dalam bahasa Anda. Jangan tanda tangani dokumen yang tidak bisa Anda baca.",
+    "interpreterHotline": "1330 Korea Travel Helpline milik Korea Tourism Organization membantu penerjemahan lewat telepon dan chat. Hubungi 1330 di Korea atau +82-2-1330 dari luar negeri.",
+    "interpreterLinks": {
+      "hotline": "1330 Korea Travel Helpline (Korea Tourism Organization)"
+    },
+    "questionsTitle": "5. Pertanyaan saat konsultasi",
+    "questionsIntro": "Simpan halaman ini dan tunjukkan daftarnya di klinik. Nyalakan bahasa Korea agar staf bisa membaca setiap pertanyaan dalam bahasa Korea.",
+    "questions": [
+      "Siapa yang akan menangani saya, dan apakah ia spesialis di bidang ini?",
+      "Apakah klinik ini terdaftar untuk pasien internasional?",
+      "Berapa total biayanya, dan apa saja yang dikenakan biaya tambahan?",
+      "Produk atau alat apa yang dipakai, dan berapa banyak (mL, unit, atau shot)?",
+      "Berapa sesi yang saya perlukan, dan bisakah selesai selama saya di sini?",
+      "Bisakah saya meminta dokter atau staf perempuan?",
+      "Apakah ada ruang tertutup untuk berganti pakaian?",
+      "Bolehkah penerjemah atau pendamping saya ikut menemani?",
+      "Bisakah formulir persetujuan dan petunjuk perawatan diberikan dalam bahasa saya?",
+      "Siapa yang harus saya hubungi jika ada masalah setelah saya pulang?"
+    ],
+    "disputeTitle": "Jika terjadi masalah",
+    "disputeKeep": "Simpan penawaran tertulis, kuitansi, formulir persetujuan, petunjuk perawatan, foto, dan pesan dengan klinik.",
+    "disputeRecords": "Anda boleh meminta klinik memperlihatkan rekam medis Anda atau memberikan salinannya, dan klinik tidak boleh menolak tanpa alasan yang sah.",
+    "disputeAgency": "Korea Medical Dispute Mediation and Arbitration Agency (K-medi) adalah lembaga pemerintah untuk sengketa medis. Situs bahasa Inggrisnya menjelaskan cara mengajukan, termasuk lewat email. Layanan konsultasi: 1670-2545, hari kerja pukul 9.00–18.00 waktu Korea.",
+    "disputeLinks": {
+      "kmedi": "Situs K-medi dalam bahasa Inggris",
+      "records": "Undang-Undang Layanan Medis, Pasal 21 (bahasa Korea)"
+    },
+    "moreTitle": "Penjelasan perawatan",
+    "moreLink": "Pemulihan, risiko, dan pertanyaan untuk 22 perawatan"
+  }
+}

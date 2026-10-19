@@ -1,0 +1,69 @@
+{
+  "howTo": {
+    "title": "Comment vérifier une clinique coréenne avant de réserver",
+    "description": "Vérifiez l’enregistrement de la clinique pour les patients étrangers, la spécialité du médecin, le devis et le consentement écrits, l’interprète et à qui s’adresser en cas de problème, avec des sources officielles coréennes.",
+    "lead": "Cinq vérifications à faire avant de réserver un soin de peau, dentaire ou de chirurgie esthétique en Corée. Chacune renvoie à une source officielle que vous pouvez ouvrir vous-même.",
+    "updatedLabel": "Dernière mise à jour",
+    "sourcesLabel": "Sources officielles",
+    "registeredTitle": "1. La clinique est-elle enregistrée pour les patients étrangers ?",
+    "registered": "Selon la loi coréenne sur le soutien à l’expansion des services médicaux à l’étranger et à l’accueil des patients internationaux, un établissement qui reçoit des patients étrangers doit être enregistré. Sauf exceptions, il doit compter au moins un médecin spécialiste dans chaque service concerné et souscrire une assurance responsabilité civile médicale ou adhérer à un fonds mutuel.",
+    "registeredAgency": "Les agences et coordinateurs qui organisent les rendez-vous doivent aussi être enregistrés, et attirer des patients étrangers sans enregistrement est un délit en Corée. Vérifiez la clinique et l’agence avant de payer.",
+    "registeredCheck": "Medical Korea, géré par le Korea Health Industry Development Institute, publie les listes officielles en anglais. Vous pouvez y chercher par nom et par région.",
+    "registeredLinks": {
+      "hospitals": "Hôpitaux et cliniques enregistrés (Medical Korea, en anglais)",
+      "facilitators": "Agences enregistrées (Medical Korea, en anglais)",
+      "act": "La loi en anglais (Korea Legislation Research Institute)"
+    },
+    "doctorTitle": "2. Qui vous soignera, et est-ce un spécialiste ?",
+    "doctorSign": "En Corée, seul un médecin spécialiste peut faire figurer sa spécialité dans le nom de la clinique, par exemple « Clinique de dermatologie OO » (OO피부과의원). Si « dermatologie » n’apparaît que comme domaine de consultation (진료과목) à côté du nom, le médecin n’est peut-être pas dermatologue.",
+    "doctorAsk": "Demandez le nom et la spécialité du médecin qui fera votre soin. Pour une chirurgie, une transfusion ou une anesthésie générale, l’explication doit mentionner le nom du médecin qui l’explique et celui du médecin principal, et la clinique doit vous prévenir par écrit si le médecin principal change.",
+    "doctorLinks": {
+      "specialty": "Loi sur les services médicaux, article 77 (en coréen)",
+      "consent": "Loi sur les services médicaux, article 24-2 (en coréen)"
+    },
+    "estimateTitle": "3. Obtenez le prix et le consentement par écrit",
+    "estimatePrice": "La loi coréenne oblige les cliniques à rendre leurs tarifs non remboursés faciles à trouver, et elles ne peuvent pas facturer plus que le prix affiché. Avant d’accepter, demandez un devis écrit qui indique :",
+    "estimateItems": [
+      "Le prix total, taxes et frais séparés compris",
+      "Le produit ou l’appareil utilisé et la quantité (mL, unités ou tirs)",
+      "Le nombre de séances et leur espacement",
+      "Ce qui est inclus : anesthésie, visites de contrôle, médicaments et retouches",
+      "Les conditions de remboursement en cas d’annulation"
+    ],
+    "estimateConsent": "Avant une chirurgie, une transfusion ou une anesthésie générale, vous signez un formulaire de consentement écrit. Vous pouvez en demander une copie, et la clinique ne peut pas refuser sans motif valable.",
+    "estimateLinks": {
+      "fees": "Loi sur les services médicaux, article 45 (en coréen)",
+      "consent": "Loi sur les services médicaux, article 24-2 (en coréen)"
+    },
+    "interpreterTitle": "4. Assurez-vous de tout comprendre",
+    "interpreter": "Demandez par écrit à la clinique si un interprète médical est inclus et si le devis, le consentement et les consignes de soins existent dans votre langue. Ne signez rien que vous ne pouvez pas lire.",
+    "interpreterHotline": "La ligne 1330 Korea Travel Helpline de l’Office national du tourisme coréen aide à l’interprétation par téléphone et par chat. Composez le 1330 en Corée ou le +82-2-1330 depuis l’étranger.",
+    "interpreterLinks": {
+      "hotline": "1330 Korea Travel Helpline (Office national du tourisme coréen)"
+    },
+    "questionsTitle": "5. Questions à poser pendant la consultation",
+    "questionsIntro": "Enregistrez cette page et montrez la liste à la clinique. Activez le coréen pour que le personnel lise chaque question en coréen.",
+    "questions": [
+      "Qui fera mon soin, et est-ce un spécialiste de ce domaine ?",
+      "La clinique est-elle enregistrée pour les patients étrangers ?",
+      "Quel est le prix total, et qu’est-ce qui est facturé en plus ?",
+      "Quel produit ou appareil utilisez-vous, et en quelle quantité (mL, unités ou tirs) ?",
+      "Combien de séances me faut-il, et puis-je les terminer pendant mon séjour ?",
+      "Puis-je demander une femme médecin ou une membre du personnel féminin ?",
+      "Y a-t-il un espace privé pour me changer ?",
+      "Mon interprète ou un proche peut-il rester avec moi ?",
+      "Puis-je recevoir le consentement et les consignes de soins dans ma langue ?",
+      "Qui contacter si j’ai un problème après mon retour ?"
+    ],
+    "disputeTitle": "En cas de problème",
+    "disputeKeep": "Gardez le devis écrit, les reçus, le formulaire de consentement, les consignes de soins, les photos et vos messages avec la clinique.",
+    "disputeRecords": "Vous pouvez demander à consulter votre dossier médical ou à en recevoir une copie, et la clinique ne peut pas refuser sans motif valable.",
+    "disputeAgency": "La Korea Medical Dispute Mediation and Arbitration Agency (K-medi) est l’organisme public chargé des litiges médicaux. Son site en anglais explique comment déposer une demande, y compris par e-mail. Ligne de conseil : 1670-2545, en semaine de 9 h à 18 h, heure coréenne.",
+    "disputeLinks": {
+      "kmedi": "Site de K-medi en anglais",
+      "records": "Loi sur les services médicaux, article 21 (en coréen)"
+    },
+    "moreTitle": "Les soins expliqués",
+    "moreLink": "Récupération, risques et questions pour 22 soins"
+  }
+}

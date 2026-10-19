@@ -1,0 +1,69 @@
+{
+  "howTo": {
+    "title": "Cách kiểm tra phòng khám Hàn Quốc trước khi đặt lịch",
+    "description": "Kiểm tra đăng ký tiếp nhận bệnh nhân nước ngoài, chuyên khoa của bác sĩ, báo giá và giấy đồng ý bằng văn bản, phiên dịch và nơi cần liên hệ khi có sự cố, kèm nguồn chính thức của Hàn Quốc.",
+    "lead": "Năm điều nên kiểm tra trước khi đặt lịch làm da liễu, nha khoa hay thẩm mỹ ở Hàn Quốc. Mỗi mục đều có nguồn chính thức để bạn tự mở xem.",
+    "updatedLabel": "Cập nhật lần cuối",
+    "sourcesLabel": "Nguồn chính thức",
+    "registeredTitle": "1. Phòng khám đã đăng ký tiếp nhận bệnh nhân nước ngoài chưa?",
+    "registered": "Theo Luật hỗ trợ mở rộng dịch vụ y tế ra nước ngoài và thu hút bệnh nhân quốc tế của Hàn Quốc, cơ sở y tế nhận bệnh nhân nước ngoài phải đăng ký. Trừ một số ngoại lệ, mỗi khoa liên quan phải có ít nhất một bác sĩ chuyên khoa, và cơ sở phải mua bảo hiểm trách nhiệm sai sót y khoa hoặc tham gia quỹ tương trợ.",
+    "registeredAgency": "Công ty môi giới và điều phối viên giới thiệu phòng khám cũng phải đăng ký, và thu hút bệnh nhân quốc tế mà không đăng ký là phạm pháp ở Hàn Quốc. Hãy tra cứu cả phòng khám lẫn công ty môi giới trước khi trả tiền.",
+    "registeredCheck": "Medical Korea, do Viện Phát triển Công nghiệp Y tế Hàn Quốc vận hành, có danh sách chính thức bằng tiếng Anh. Bạn có thể tìm theo tên và khu vực.",
+    "registeredLinks": {
+      "hospitals": "Danh sách bệnh viện, phòng khám đã đăng ký (Medical Korea, tiếng Anh)",
+      "facilitators": "Danh sách công ty môi giới đã đăng ký (Medical Korea, tiếng Anh)",
+      "act": "Bản tiếng Anh của luật (Viện Nghiên cứu Pháp chế Hàn Quốc)"
+    },
+    "doctorTitle": "2. Ai sẽ điều trị cho bạn, có phải bác sĩ chuyên khoa không?",
+    "doctorSign": "Ở Hàn Quốc, chỉ bác sĩ chuyên khoa mới được ghi chuyên khoa vào tên phòng khám, ví dụ “Phòng khám Da liễu OO” (OO피부과의원). Nếu “Da liễu” chỉ được ghi là lĩnh vực khám (진료과목) bên cạnh tên, bác sĩ có thể không phải bác sĩ chuyên khoa da liễu.",
+    "doctorAsk": "Hãy hỏi tên và chuyên khoa của bác sĩ sẽ trực tiếp làm cho bạn. Với phẫu thuật, truyền máu hoặc gây mê toàn thân, phần giải thích phải có tên bác sĩ giải thích và bác sĩ chính thực hiện, và phòng khám phải báo bằng văn bản nếu bác sĩ chính thay đổi.",
+    "doctorLinks": {
+      "specialty": "Luật Y tế, Điều 77 (tiếng Hàn)",
+      "consent": "Luật Y tế, Điều 24-2 (tiếng Hàn)"
+    },
+    "estimateTitle": "3. Lấy báo giá và giấy đồng ý bằng văn bản",
+    "estimatePrice": "Luật Hàn Quốc yêu cầu phòng khám công khai giá dịch vụ tự chi trả để bệnh nhân dễ thấy, và không được thu cao hơn giá đã công bố. Trước khi đồng ý, hãy xin báo giá bằng văn bản ghi rõ:",
+    "estimateItems": [
+      "Tổng chi phí, gồm thuế và các khoản tính riêng",
+      "Sản phẩm hoặc thiết bị và liều lượng (mL, đơn vị hoặc số shot)",
+      "Cần bao nhiêu buổi và cách nhau bao lâu",
+      "Những gì đã bao gồm: gây tê, tái khám, thuốc và chỉnh sửa",
+      "Quy định hoàn tiền nếu bạn hủy"
+    ],
+    "estimateConsent": "Trước phẫu thuật, truyền máu hoặc gây mê toàn thân, bạn sẽ ký giấy đồng ý bằng văn bản. Bạn có thể xin bản sao, và phòng khám không được từ chối nếu không có lý do chính đáng.",
+    "estimateLinks": {
+      "fees": "Luật Y tế, Điều 45 (tiếng Hàn)",
+      "consent": "Luật Y tế, Điều 24-2 (tiếng Hàn)"
+    },
+    "interpreterTitle": "4. Chắc chắn bạn hiểu hết mọi điều",
+    "interpreter": "Hãy hỏi phòng khám bằng văn bản xem có phiên dịch y tế không, và báo giá, giấy đồng ý, hướng dẫn chăm sóc sau điều trị có bằng ngôn ngữ của bạn không. Đừng ký giấy tờ bạn không đọc được.",
+    "interpreterHotline": "Đường dây 1330 Korea Travel Helpline của Tổng cục Du lịch Hàn Quốc hỗ trợ phiên dịch qua điện thoại và chat. Gọi 1330 khi ở Hàn Quốc hoặc +82-2-1330 từ nước ngoài.",
+    "interpreterLinks": {
+      "hotline": "1330 Korea Travel Helpline (Tổng cục Du lịch Hàn Quốc)"
+    },
+    "questionsTitle": "5. Câu hỏi nên hỏi khi tư vấn",
+    "questionsIntro": "Lưu trang này và đưa danh sách cho phòng khám xem. Bật tiếng Hàn để nhân viên đọc từng câu bằng tiếng Hàn.",
+    "questions": [
+      "Ai sẽ làm cho tôi, và họ có phải bác sĩ chuyên khoa trong lĩnh vực này không?",
+      "Phòng khám có đăng ký tiếp nhận bệnh nhân nước ngoài không?",
+      "Tổng chi phí là bao nhiêu, khoản nào phải trả thêm?",
+      "Dùng sản phẩm hay thiết bị nào, và dùng bao nhiêu (mL, đơn vị hoặc số shot)?",
+      "Tôi cần bao nhiêu buổi, và có làm xong trong thời gian tôi ở đây không?",
+      "Tôi có thể yêu cầu bác sĩ nữ hoặc nhân viên nữ không?",
+      "Có phòng riêng để thay đồ không?",
+      "Phiên dịch viên hoặc người đi cùng có được ở bên tôi không?",
+      "Tôi có thể nhận giấy đồng ý và hướng dẫn chăm sóc bằng ngôn ngữ của mình không?",
+      "Nếu có vấn đề sau khi về nước, tôi liên hệ ai?"
+    ],
+    "disputeTitle": "Nếu có sự cố",
+    "disputeKeep": "Giữ lại báo giá bằng văn bản, hóa đơn, giấy đồng ý, hướng dẫn chăm sóc, ảnh và tin nhắn với phòng khám.",
+    "disputeRecords": "Bạn có thể yêu cầu phòng khám cho xem hồ sơ bệnh án hoặc cấp bản sao, và phòng khám không được từ chối nếu không có lý do chính đáng.",
+    "disputeAgency": "Cơ quan Hòa giải và Trọng tài Tranh chấp Y tế Hàn Quốc (K-medi) là cơ quan nhà nước giải quyết tranh chấp y tế. Trang tiếng Anh có hướng dẫn nộp đơn, kể cả qua email. Đường dây tư vấn: 1670-2545, ngày thường 9:00–18:00 giờ Hàn Quốc.",
+    "disputeLinks": {
+      "kmedi": "Trang tiếng Anh của K-medi",
+      "records": "Luật Y tế, Điều 21 (tiếng Hàn)"
+    },
+    "moreTitle": "Giải thích các liệu trình",
+    "moreLink": "Hồi phục, rủi ro và câu hỏi cho 22 liệu trình"
+  }
+}
