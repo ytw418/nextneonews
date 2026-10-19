@@ -1,1 +1,97 @@
-{}
+{
+  "title": "Panduan Klinik",
+  "intro": "22 perawatan kulit, gigi, dan bedah plastik: masa pemulihan, rasa sakit, risiko, dan apa yang perlu ditanyakan.",
+  "metaTitle": "Perawatan Klinik di Korea: Pemulihan, Risiko, dan Pertanyaan Penting",
+  "metaDescription": "Masa pemulihan, tingkat rasa sakit, risiko, dan pertanyaan untuk klinik pada 22 perawatan kulit, gigi, dan bedah plastik di Korea. Tanpa nama klinik, peringkat, atau ulasan.",
+  "detailMetaTitle": "{name} di Korea: Pemulihan, Risiko, dan Pertanyaan Penting",
+  "detailMetaDescription": "{name}: {recovery} · {pain}. Risiko, perawatan setelahnya, dan pertanyaan untuk klinik di Korea sebelum membuat janji. Tanpa nama klinik atau ulasan.",
+  "checked": "Informasi diperiksa {date}",
+  "fieldsNav": "Jenis perawatan",
+  "share": "Bagikan halaman ini",
+  "seeAll": "Lihat semua",
+  "newTab": "(terbuka di tab baru)",
+  "notice": {
+    "title": "Baca dulu",
+    "body": "Ini informasi umum, bukan saran medis, dan kami tidak merujuk Anda ke klinik mana pun. Kami tidak memuat nama klinik, ulasan, atau peringkat.",
+    "independent": "Unnie Note adalah media independen yang tidak terkait dengan klinik atau layanan pemesanan mana pun.",
+    "howTo": "Cara mengecek klinik sebelum membuat janji"
+  },
+  "listMeta": {
+    "recovery": "Pemulihan {value}",
+    "pain": "Rasa sakit: {level}"
+  },
+  "facts": {
+    "title": "Sekilas",
+    "recovery": "Pemulihan",
+    "none": "Tanpa masa pemulihan",
+    "range": "{min}–{max}",
+    "daysUnit": "hari",
+    "daysUnitRange": "hari",
+    "days": "{min}–{max} hari",
+    "daysOne": "{count} hari",
+    "pain": "Rasa sakit",
+    "painLevel": {
+      "1": "Ringan",
+      "2": "Sedang",
+      "3": "Kuat"
+    },
+    "duration": "Durasi",
+    "minutes": "{min}–{max} menit",
+    "minutesOne": "{count} menit",
+    "sessions": "Jumlah sesi",
+    "sessionsOne": "{count} sesi",
+    "sessionsAbout": "Sekitar {count} sesi",
+    "sessionsRange": "{min}–{max} sesi",
+    "sessionsAtLeast": "{count}+ sesi",
+    "sessionsSeveral": "Beberapa kunjungan",
+    "sessionsPeriodic": "Kunjungan rutin",
+    "type": "Jenis",
+    "surgical": "Operasi",
+    "nonSurgical": "Tanpa operasi",
+    "multiVisit": "Ada jeda antarsesi, jadi dalam perjalanan singkat Anda mungkin hanya sempat satu sesi."
+  },
+  "sections": {
+    "what": "Apa ini",
+    "whoFor": "Cocok untuk siapa",
+    "steps": "Cara melakukannya",
+    "recovery": "Pemulihan",
+    "risks": "Risiko dan efek samping",
+    "aftercare": "Perawatan setelahnya",
+    "faq": "Pertanyaan yang sering diajukan",
+    "sources": "Sumber",
+    "sourcesIntro": "Fakta di halaman ini berasal dari perhimpunan medis, lembaga pemerintah, dan jurnal medis.",
+    "other": "Perawatan {field} lainnya"
+  },
+  "price": {
+    "title": "Harga dalam data publik",
+    "unit": {
+      "session": "per sesi",
+      "tooth": "per gigi",
+      "area": "per area",
+      "procedure": "per tindakan"
+    },
+    "source": "Sumber: {host}",
+    "asOf": "Data per {date}",
+    "varies": "Harga berbeda menurut klinik, bahan, dan area yang dirawat.",
+    "noneTitle": "Mengapa kami tidak mencantumkan harga",
+    "noneReasons": [
+      "Kami hanya mencantumkan harga yang bisa dicek di statistik publik resmi, dan kami belum menemukannya untuk perawatan ini.",
+      "Harga sangat berbeda menurut klinik, area yang dirawat, produk, dan jumlahnya.",
+      "Saat konsultasi, minta secara tertulis total biaya, produk dan jumlahnya (mL atau unit), serta jumlah sesi."
+    ],
+    "howTo": "Apa saja yang perlu diminta secara tertulis"
+  },
+  "questions": {
+    "title": "Pertanyaan untuk klinik",
+    "hint": "Centang setiap pertanyaan setelah Anda menanyakannya. Simpan halaman ini agar bisa dibuka lagi.",
+    "showKorean": "Tunjukkan dalam bahasa Korea di klinik",
+    "koreanHint": "Tunjukkan layar ini kepada staf klinik."
+  },
+  "vote": {
+    "question": "Tertarik dengan perawatan ini?",
+    "curious": "Penasaran",
+    "done": "Pernah",
+    "pass": "Lewati",
+    "note": "Ini menghitung minat, bukan menilai hasil."
+  }
+}

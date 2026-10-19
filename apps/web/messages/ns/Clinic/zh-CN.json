@@ -1,1 +1,97 @@
-{}
+{
+  "title": "疗程指南",
+  "intro": "整理了22种皮肤科、口腔科、整形外科疗程的恢复期、疼痛、风险，以及该问诊所的问题。",
+  "metaTitle": "韩国医美与口腔疗程整理：恢复期、风险、该问的问题",
+  "metaDescription": "在韩国做皮肤科、口腔科、整形外科疗程前，先看22种疗程的恢复期、疼痛程度、风险和该问诊所的问题。不列出诊所名称、排名或评价。",
+  "detailMetaTitle": "在韩国做{name}：恢复期、风险、该问的问题",
+  "detailMetaDescription": "{name}：{recovery}・{pain}。整理了风险、术后护理，以及预约前该问韩国诊所的问题。不列出诊所名称或评价。",
+  "checked": "信息核对日期 {date}",
+  "fieldsNav": "疗程分类",
+  "share": "分享本页",
+  "seeAll": "查看全部",
+  "newTab": "（在新标签页打开）",
+  "notice": {
+    "title": "请先阅读",
+    "body": "这里是一般信息，不是医疗建议，我们也不介绍或转介任何诊所。不列出诊所名称、评价或排名。",
+    "independent": "Unnie Note 是与诊所、预约服务没有任何关系的独立媒体。",
+    "howTo": "预约前如何核实诊所"
+  },
+  "listMeta": {
+    "recovery": "恢复期 {value}",
+    "pain": "疼痛：{level}"
+  },
+  "facts": {
+    "title": "要点一览",
+    "recovery": "恢复期",
+    "none": "基本无需恢复期",
+    "range": "{min}～{max}",
+    "daysUnit": "天",
+    "daysUnitRange": "天",
+    "days": "{min}～{max}天",
+    "daysOne": "{count}天",
+    "pain": "疼痛",
+    "painLevel": {
+      "1": "轻微",
+      "2": "中等",
+      "3": "明显"
+    },
+    "duration": "疗程时长",
+    "minutes": "{min}～{max}分钟",
+    "minutesOne": "{count}分钟",
+    "sessions": "次数",
+    "sessionsOne": "{count}次",
+    "sessionsAbout": "约{count}次",
+    "sessionsRange": "{min}～{max}次",
+    "sessionsAtLeast": "{count}次以上",
+    "sessionsSeveral": "需多次复诊",
+    "sessionsPeriodic": "定期做",
+    "type": "类型",
+    "surgical": "手术",
+    "nonSurgical": "非手术",
+    "multiVisit": "每次疗程之间要间隔一段时间，短期旅行可能只能做1次。"
+  },
+  "sections": {
+    "what": "这是什么疗程",
+    "whoFor": "适合谁",
+    "steps": "怎么做",
+    "recovery": "恢复",
+    "risks": "风险与副作用",
+    "aftercare": "术后护理",
+    "faq": "常见问题",
+    "sources": "资料来源",
+    "sourcesIntro": "本页内容依据医学会、政府机构和医学期刊的资料整理。",
+    "other": "其他{field}疗程"
+  },
+  "price": {
+    "title": "公开统计中的价格",
+    "unit": {
+      "session": "每次",
+      "tooth": "每颗牙",
+      "area": "每个部位",
+      "procedure": "每项疗程"
+    },
+    "source": "来源：{host}",
+    "asOf": "{date}数据",
+    "varies": "价格因诊所、材料和部位而不同。",
+    "noneTitle": "为什么不列价格",
+    "noneReasons": [
+      "我们只列出能在官方公开统计中查到的价格，这个疗程没有找到此类资料。",
+      "价格会因诊所、部位、产品和用量相差很大。",
+      "面诊时请拿到书面资料，写明总价、产品和用量（mL・单位）以及次数。"
+    ],
+    "howTo": "要拿到哪些书面资料"
+  },
+  "questions": {
+    "title": "该问诊所的问题",
+    "hint": "问完一个就勾一个。收藏本页，之后可以再打开。",
+    "showKorean": "在诊所用韩文给对方看",
+    "koreanHint": "把这个画面直接给诊所工作人员看。"
+  },
+  "vote": {
+    "question": "你对这个疗程感兴趣吗？",
+    "curious": "好奇",
+    "done": "做过",
+    "pass": "跳过",
+    "note": "这是关注度统计，不是效果评价。"
+  }
+}

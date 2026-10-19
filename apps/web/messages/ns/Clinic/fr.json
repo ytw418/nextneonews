@@ -1,1 +1,97 @@
-{}
+{
+  "title": "Guide des soins",
+  "intro": "22 soins de peau, dentaires et esthétiques expliqués : récupération, douleur, risques et questions à poser.",
+  "metaTitle": "Soins esthétiques et dentaires en Corée : récupération, risques, questions",
+  "metaDescription": "Temps de récupération, niveau de douleur, risques et questions à poser à la clinique pour 22 soins de peau, dentaires et esthétiques en Corée. Ni noms de cliniques, ni classements, ni avis.",
+  "detailMetaTitle": "{name} en Corée : récupération, risques et questions à poser",
+  "detailMetaDescription": "{name} : {recovery} · {pain}. Risques, soins après le traitement et questions à poser à une clinique coréenne avant de réserver. Ni noms de cliniques ni avis.",
+  "checked": "Informations vérifiées le {date}",
+  "fieldsNav": "Types de soins",
+  "share": "Partager cette page",
+  "seeAll": "Tout voir",
+  "newTab": "(s’ouvre dans un nouvel onglet)",
+  "notice": {
+    "title": "À lire d’abord",
+    "body": "Il s’agit d’informations générales, pas d’un avis médical, et nous ne vous orientons vers aucune clinique. Nous ne publions ni noms de cliniques, ni avis, ni classements.",
+    "independent": "Unnie Note est un média indépendant, sans lien avec aucune clinique ni aucun service de réservation.",
+    "howTo": "Comment vérifier une clinique avant de réserver"
+  },
+  "listMeta": {
+    "recovery": "Récupération {value}",
+    "pain": "Douleur : {level}"
+  },
+  "facts": {
+    "title": "En bref",
+    "recovery": "Récupération",
+    "none": "Pas d’éviction sociale",
+    "range": "{min}–{max}",
+    "daysUnit": "{count, plural, one {jour} other {jours}}",
+    "daysUnitRange": "jours",
+    "days": "{min}–{max} jours",
+    "daysOne": "{count, plural, one {# jour} other {# jours}}",
+    "pain": "Douleur",
+    "painLevel": {
+      "1": "Légère",
+      "2": "Modérée",
+      "3": "Forte"
+    },
+    "duration": "Durée",
+    "minutes": "{min}–{max} min",
+    "minutesOne": "{count} min",
+    "sessions": "Séances",
+    "sessionsOne": "{count, plural, one {# séance} other {# séances}}",
+    "sessionsAbout": "Environ {count} séances",
+    "sessionsRange": "{min}–{max} séances",
+    "sessionsAtLeast": "{count} séances ou plus",
+    "sessionsSeveral": "Plusieurs visites",
+    "sessionsPeriodic": "Visites régulières",
+    "type": "Type",
+    "surgical": "Chirurgie",
+    "nonSurgical": "Sans chirurgie",
+    "multiVisit": "Les séances sont espacées : lors d’un court séjour, vous n’en ferez peut-être qu’une."
+  },
+  "sections": {
+    "what": "De quoi s’agit-il",
+    "whoFor": "Pour qui",
+    "steps": "Comment ça se passe",
+    "recovery": "Récupération",
+    "risks": "Risques et effets secondaires",
+    "aftercare": "Soins après le traitement",
+    "faq": "Questions fréquentes",
+    "sources": "Sources",
+    "sourcesIntro": "Les faits de cette page proviennent de sociétés médicales, d’organismes publics et de revues médicales.",
+    "other": "Autres soins : {field}"
+  },
+  "price": {
+    "title": "Prix selon les données publiques",
+    "unit": {
+      "session": "par séance",
+      "tooth": "par dent",
+      "area": "par zone",
+      "procedure": "par intervention"
+    },
+    "source": "Source : {host}",
+    "asOf": "Données de {date}",
+    "varies": "Le prix varie selon la clinique, le matériau et la zone traitée.",
+    "noneTitle": "Pourquoi nous n’indiquons pas de prix",
+    "noneReasons": [
+      "Nous n’indiquons que des prix vérifiables dans des statistiques publiques officielles, et nous n’en avons pas trouvé pour ce soin.",
+      "Le prix varie beaucoup selon la clinique, la zone traitée, le produit et la quantité.",
+      "Lors de la consultation, demandez par écrit le prix total, le produit et la quantité (mL ou unités) et le nombre de séances."
+    ],
+    "howTo": "Ce qu’il faut obtenir par écrit"
+  },
+  "questions": {
+    "title": "Questions à poser à la clinique",
+    "hint": "Cochez chaque question une fois posée. Enregistrez cette page pour retrouver la liste.",
+    "showKorean": "Afficher en coréen à la clinique",
+    "koreanHint": "Montrez cet écran au personnel de la clinique."
+  },
+  "vote": {
+    "question": "Ce soin vous intéresse ?",
+    "curious": "Ça m’intéresse",
+    "done": "Déjà fait",
+    "pass": "Pas pour moi",
+    "note": "On compte l’intérêt, pas les résultats."
+  }
+}
