@@ -108,7 +108,7 @@ export default async function TravelAreaPage({ params }: PageProps<"/[locale]/tr
         )}
       />
 
-      <div className="px-gutter pt-4">
+      <div className="px-gutter pt-2">
         <Crumbs
           label={t("breadcrumb")}
           items={[

@@ -159,7 +159,7 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
         )}
       />
 
-      {/* 사진이 없는 커버라 4:3 대신 2:1 — 도장 버튼이 첫 화면(아이폰 15)에 들어오게 */}
+      {/* 사진이 없는 커버라 낮은 히어로(5:2) — 지도 버튼·도장이 첫 화면(아이폰 15)에 들어오게 */}
       <TypeCover
         tint={SECTION_TINT.travel}
         glyph={glyph}
@@ -167,10 +167,9 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
         label={t(`kinds.${place.kind}`)}
         isNew={isNew(place.addedAt)}
         newLabel={t("newBadge")}
-        className="aspect-[2/1]!"
       />
 
-      <div className="px-gutter pt-3">
+      <div className="px-gutter pt-1">
         <Crumbs
           label={t("breadcrumb")}
           items={[

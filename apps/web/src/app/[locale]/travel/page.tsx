@@ -93,7 +93,7 @@ export default async function TravelHubPage({ params }: PageProps<"/[locale]/tra
         )}
       />
 
-      <div className="px-gutter pt-4">
+      <div className="px-gutter pt-2">
         <Crumbs label={t("breadcrumb")} items={[{ name: tGuide("title"), href: "/guide" }]} />
         <h1 className="text-st2 font-bold text-ink-900">{t("title")}</h1>
         <p className="mt-1 text-t6 text-ink-600">
