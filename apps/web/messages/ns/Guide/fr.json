@@ -7,19 +7,27 @@
   "sections": {
     "beauty": {
       "title": "K-beauté",
-      "line": "Palmarès, choix par type de peau, où acheter"
+      "line": "Palmarès, choix par type de peau, où acheter",
+      "glyph": "Be",
+      "count": "{count, plural, one {#\u00a0produit} other {#\u00a0produits}}"
     },
     "travel": {
       "title": "Voyage en Corée",
-      "line": "Quartiers, lieux de tournage, préparatifs"
+      "line": "Quartiers, lieux de tournage, préparatifs",
+      "glyph": "Tr",
+      "count": "{count, plural, one {#\u00a0lieu} other {#\u00a0lieux}}"
     },
     "clinic": {
       "title": "Guide des soins",
-      "line": "Récupération, risques, questions à poser"
+      "line": "Récupération, risques, questions à poser",
+      "glyph": "Cl",
+      "count": "{count, plural, one {#\u00a0soin} other {#\u00a0soins}}"
     },
     "drama": {
       "title": "Guide K-drama",
-      "line": "Quoi regarder et où"
+      "line": "Quoi regarder et où",
+      "glyph": "Dr",
+      "count": "{count, plural, one {#\u00a0drama} other {#\u00a0dramas}}"
     }
   },
   "railTitle": "Guides Corée",
@@ -30,5 +38,6 @@
     "title": "Quel est votre type de peau ?",
     "body": "Six questions rapides, puis des produits choisis pour vous. Pour le plaisir, ce n’est pas un diagnostic.",
     "button": "Faire le test"
-  }
+  },
+  "moreCard": "Voir tous les guides"
 }

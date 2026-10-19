@@ -181,10 +181,25 @@ export const HeartIcon = ({ className }: IconProps) => (
   </svg>
 );
 
-// 저장함 (하트를 채운다, rankings/icons.tsx 응원 하트와 같은 모양)
+// 채운 하트 (rankings/icons.tsx 응원 하트와 같은 모양). 하트는 글 반응·응원 전용, 저장은 북마크
 export const HeartFilledIcon = ({ className }: IconProps) => (
   <svg {...base} className={className}>
     <path d={HEART} fill="currentColor" />
+  </svg>
+);
+
+// 저장(북마크). 글 반응 하트와 헷갈리지 않게 저장 버튼·저장 탭·저장함은 이 모양만 쓴다
+const BOOKMARK = "M7 3.8h10a1.2 1.2 0 0 1 1.2 1.2v15.2L12 16.1l-6.2 4.1V5A1.2 1.2 0 0 1 7 3.8z";
+
+export const BookmarkIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d={BOOKMARK} />
+  </svg>
+);
+
+export const BookmarkFilledIcon = ({ className }: IconProps) => (
+  <svg {...base} className={className}>
+    <path d={BOOKMARK} fill="currentColor" />
   </svg>
 );
 

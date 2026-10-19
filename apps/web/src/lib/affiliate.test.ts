@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { affiliateHref } from "./affiliate";
+import { affiliateHref, partnersForLocale } from "./affiliate";
 
 // server-only 는 Next 서버 번들 밖(vitest)에서 import 하면 던진다
 vi.mock("server-only", () => ({}));
@@ -32,5 +32,17 @@ describe("affiliateHref", () => {
     vi.stubEnv("AFFILIATE_OLIVEYOUNG", " ");
     const url = "https://global.oliveyoung.com/product/detail?prdtNo=GA123";
     expect(affiliateHref({ partner: "oliveyoung", url })).toEqual({ href: url, tagged: false, partner: "oliveyoung" });
+  });
+});
+
+describe("partnersForLocale", () => {
+  it("ja 에서는 미국 전용 amazon 이 빠지고, en 은 yesstyle → amazon → oliveyoung 순이다", () => {
+    const targets = [
+      { partner: "oliveyoung", url: "https://global.oliveyoung.com/p" },
+      { partner: "amazon", url: "https://www.amazon.com/dp/B0ABC" },
+      { partner: "yesstyle", url: "https://www.yesstyle.com/p" },
+    ] as const;
+    expect(partnersForLocale("ja", [...targets]).map((t) => t.partner)).toEqual(["oliveyoung", "yesstyle"]);
+    expect(partnersForLocale("en", [...targets]).map((t) => t.partner)).toEqual(["yesstyle", "amazon", "oliveyoung"]);
   });
 });

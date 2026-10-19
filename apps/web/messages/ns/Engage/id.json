@@ -42,7 +42,7 @@
   "copied": "Tautan disalin",
   "firstComment": "Tulis komentar pertama",
   "allComments": "Lihat semua {count} komentar",
-  "savedTab": "Simpan",
+  "savedTab": "Tersimpan",
   "save": "Simpan",
   "saveItem": "Simpan “{title}”",
   "savedState": "Tersimpan",
@@ -52,7 +52,7 @@
   "savedTitle": "Simpanan",
   "savedCount": "{count}\u00a0item",
   "savedMonth": "Bulan ini kamu menyimpan {count}\u00a0item",
-  "savedEmpty": "Ketuk hati di mana pun kamu suka, semuanya terkumpul di sini.",
+  "savedEmpty": "Ketuk ikon penanda di mana pun kamu suka, semuanya terkumpul di sini.",
   "savedBrowse": "Lihat panduan",
   "savedShare": "Bagikan daftarku",
   "savedImport": "Ada {count}\u00a0item di daftar yang dibagikan",
@@ -79,5 +79,28 @@
   "starLabel": "{count}\u00a0bintang",
   "starAverage": "{average} dari 5 · {count}\u00a0penilaian",
   "visited": "Sudah ke sini",
-  "markVisited": "Aku sudah ke sini"
+  "markVisited": "Aku sudah ke sini",
+  "savedTabCount": "Tersimpan, {count}\u00a0item",
+  "savedFirstToast": "Simpanan cuma ada di browser ini. Kirim tautannya ke dirimu sendiri biar nggak hilang.",
+  "sendToSelf": "Kirim ke diri sendiri",
+  "sendToSelfAction": "Salin tautan",
+  "sendToSelfText": "Daftar simpanan Unnie Note-ku",
+  "sendToSelfCopied": "Tautan disalin. Tempel di Catatan atau chat ke dirimu sendiri, ya.",
+  "inAppNotice": "Yang kamu simpan di browser dalam aplikasi ini nggak akan muncul di Safari. Kirim tautannya ke dirimu sendiri dulu.",
+  "voteResults": "Hasil",
+  "facetAsk": {
+    "title": "Jenis kulitmu apa?",
+    "body": "Kami akan tunjukkan penilaian orang dengan jenis kulit yang sama. Cuma ditanya sekali dan hanya tersimpan di perangkat ini.",
+    "skip": "Lewati"
+  },
+  "skinTypes": {
+    "dry": "Kulit kering",
+    "oily": "Kulit berminyak",
+    "combination": "Kulit kombinasi",
+    "sensitive": "Kulit sensitif",
+    "normal": "Kulit normal"
+  },
+  "facetSummary": "{facet}: {percent}% memilih “{choice}”",
+  "starFew": "{count}\u00a0penilaian",
+  "starMine": "Nilaimu: {count}"
 }

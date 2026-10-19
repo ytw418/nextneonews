@@ -1,18 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-import type { SavedItem, SavedKind } from "@/lib/saved";
+import type { CatalogSummary } from "@/data/types";
+import type { SavedItem } from "@/lib/saved";
 
-// 저장함 한 줄에 그릴 요약. GET /api/saved 가 돌려주는 모양.
-// 카탈로그 타입(src/data/types.ts 의 CatalogSummary)과 같은 모양을 여기 따로 둔다 — 통합 뒤 그 타입으로 바꿔도 된다
-export interface CatalogSummary {
-  kind: SavedKind;
-  id: string;
-  href: string; // 언어 접두사 없는 앱 경로 (/beauty/p/x)
-  title: string;
-  sub?: string;
-  tint: string; // "var(--tint-kbeauty)" 처럼 CSS 변수
-  badge?: "new";
-}
+// 저장함 한 줄에 그릴 요약은 GET /api/saved 가 돌려주는 CatalogSummary
+export type { CatalogSummary };
 
 // 키(kind:id) → 요약. null = 서버가 모르는 항목·불러오기 실패, 키가 없으면 불러오는 중
 export type Summaries = Record<string, CatalogSummary | null>;

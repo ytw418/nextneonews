@@ -7,19 +7,27 @@
   "sections": {
     "beauty": {
       "title": "K-Beauty",
-      "line": "Award, pilihan per jenis kulit, tempat beli"
+      "line": "Award, pilihan per jenis kulit, tempat beli",
+      "glyph": "Be",
+      "count": "{count}\u00a0produk"
     },
     "travel": {
       "title": "Wisata Korea",
-      "line": "Kawasan, lokasi syuting, persiapan"
+      "line": "Kawasan, lokasi syuting, persiapan",
+      "glyph": "Tr",
+      "count": "{count}\u00a0tempat"
     },
     "clinic": {
       "title": "Panduan Klinik",
-      "line": "Pemulihan, risiko, pertanyaan penting"
+      "line": "Pemulihan, risiko, pertanyaan penting",
+      "glyph": "Cl",
+      "count": "{count}\u00a0perawatan"
     },
     "drama": {
       "title": "Panduan Drakor",
-      "line": "Nonton apa dan di mana"
+      "line": "Nonton apa dan di mana",
+      "glyph": "Dr",
+      "count": "{count}\u00a0drama"
     }
   },
   "railTitle": "Panduan Korea",
@@ -30,5 +38,6 @@
     "title": "Jenis kulitmu apa?",
     "body": "Jawab 6 pertanyaan singkat dan lihat produk yang cocok untukmu. Cuma untuk seru-seruan, bukan diagnosis.",
     "button": "Ikuti tes"
-  }
+  },
+  "moreCard": "Lihat semua panduan"
 }
