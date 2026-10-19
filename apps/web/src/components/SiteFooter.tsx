@@ -1,6 +1,7 @@
 import { categorySlug, type Locale, LOCALE_NAME, LOCALE_PATH_PREFIX, LOCALES, SITE_NAME } from "@kmedia/core";
 import { getTranslations } from "next-intl/server";
 
+import { SECTION_PATH, SECTIONS } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { listActiveCategories } from "@/lib/articles";
 import { categoryTint } from "@/lib/cover";
@@ -12,12 +13,13 @@ const HEAD = "text-t7 font-semibold text-ink-600";
 const ROW = "flex min-h-11 items-center text-t6 font-medium text-ink-700";
 
 // 모든 화면 맨 아래의 서버 렌더링 푸터. 메뉴 시트(클라이언트) 안 링크는 크롤러가 못 보므로
-// 카테고리(글이 있는 것만)·일정·랭킹·RSS·소개 페이지·9개 언어 홈을 진짜 <a href> 로 한 번 더 깐다
+// 카테고리(글이 있는 것만)·가이드 섹션·일정·랭킹·RSS·소개·제휴 고지 페이지·9개 언어 홈을 진짜 <a href> 로 한 번 더 깐다
 export async function SiteFooter({ locale }: { locale: Locale }) {
-  const [t, tNav, tCat, categories] = await Promise.all([
+  const [t, tNav, tCat, tGuide, categories] = await Promise.all([
     getTranslations("Seo.footer"),
     getTranslations("Nav"),
     getTranslations("Category"),
+    getTranslations("Guide"),
     listActiveCategories(locale),
   ]);
   const [word, ...rest] = SITE_NAME.split(" ");
@@ -65,6 +67,19 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           </h2>
           <ul>
             <li>
+              <Link href="/guide" className={ROW}>
+                {t("guide")}
+              </Link>
+            </li>
+            {/* 가이드 섹션 이름은 가이드 허브 타일과 같은 문구 */}
+            {SECTIONS.map((section) => (
+              <li key={section}>
+                <Link href={SECTION_PATH[section]} className={ROW}>
+                  {tGuide(`sections.${section}.title`)}
+                </Link>
+              </li>
+            ))}
+            <li>
               <Link href="/schedule" className={ROW}>
                 {tNav("schedule")}
               </Link>
@@ -106,6 +121,16 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
             <li>
               <Link href="/privacy" className={ROW}>
                 {t("privacy")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/partners" className={ROW}>
+                {t("partners")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/disclosure" className={ROW}>
+                {t("disclosure")}
               </Link>
             </li>
           </ul>

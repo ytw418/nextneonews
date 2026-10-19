@@ -9,6 +9,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { CategoryRail } from "@/components/CategoryRail";
 import { EmptyMemo } from "@/components/EmptyMemo";
 import { Feed } from "@/components/Feed";
+import { GuideRail } from "@/components/guide/GuideRail";
 import { PopularChips } from "@/components/home/PopularChips";
 import { ChevronRightIcon } from "@/components/icons";
 import { BuzzTop5Rail } from "@/components/rankings/BuzzTop5Rail";
@@ -115,7 +116,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     </EmptyMemo>
   );
 
-  // 홈 = 오늘의 소식. 칩 → 많이 읽는 번호 알약 → 일정 티켓 5개 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
+  // 홈 = 오늘의 소식. 칩 → 많이 읽는 번호 알약 → 일정 티켓 5개 → 가이드 4칸 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
   // 섹션 제목은 모두 위 24·아래 12
   return (
     <>
@@ -126,6 +127,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <CategoryRail />
       <PopularChips locale={locale} />
       <UpcomingRail locale={locale} />
+      <GuideRail locale={locale} />
       {rankingsRail}
       <TrendingNow locale={locale} />
       {items.length > 0 && <SectionHeader title={t("latest")} />}

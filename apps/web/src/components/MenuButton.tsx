@@ -11,7 +11,8 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
-import { ChevronRightIcon, GlobeIcon, MenuIcon, TicketIcon } from "@/components/icons";
+import { CompassIcon } from "@/components/guide/icons";
+import { ChevronRightIcon, GlobeIcon, HeartIcon, MenuIcon, TicketIcon } from "@/components/icons";
 import { LanguageSheet } from "@/components/LanguageSheet";
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { IconButton } from "@/components/ui/IconButton";
@@ -20,15 +21,17 @@ import { categoryTint } from "@/lib/cover";
 
 const GROUPS = Object.entries(CATEGORY_GROUPS) as [keyof typeof CATEGORY_GROUPS, readonly CategoryKey[]][];
 
-// 메뉴 시트 아래쪽 줄 (일정·언어). 왼쪽 동그라미 아이콘, 오른쪽 꺾쇠
+// 메뉴 시트 아래쪽 줄 (가이드·저장·일정·언어). 왼쪽 동그라미 아이콘, 오른쪽 꺾쇠
 const ROW = "press-row flex min-h-14 w-full items-center gap-3 px-6 text-left text-t5 font-semibold text-ink-900";
 
-// 상단바 오른쪽 끝 햄버거. 카테고리(묶음별, 글이 있는 것만)·일정·언어를 한 시트에 모은다.
+// 상단바 오른쪽 끝 햄버거. 카테고리(묶음별, 글이 있는 것만)·가이드·저장·일정·언어를 한 시트에 모은다.
 // categories 는 서버에서 listActiveCategories 로 받은 '글이 있는 카테고리'
 export function MenuButton({ categories }: { categories: readonly CategoryKey[] }) {
   const t = useTranslations("Nav");
   const tCat = useTranslations("Category");
   const tGroup = useTranslations("CategoryGroup");
+  const tGuide = useTranslations("Guide");
+  const tEngage = useTranslations("Engage");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -94,6 +97,24 @@ export function MenuButton({ categories }: { categories: readonly CategoryKey[] 
         ))}
 
         <ul className="mt-1 border-t border-line pt-1">
+          <li>
+            <Link href="/guide" onClick={close} className={ROW}>
+              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-weak text-brand-ink">
+                <CompassIcon className="size-5" />
+              </span>
+              <span className="min-w-0 flex-1">{tGuide("tab")}</span>
+              <ChevronRightIcon className="size-5 shrink-0 text-ink-400" />
+            </Link>
+          </li>
+          <li>
+            <Link href="/saved" onClick={close} className={ROW}>
+              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-weak text-brand-ink">
+                <HeartIcon className="size-5" />
+              </span>
+              <span className="min-w-0 flex-1">{tEngage("savedTab")}</span>
+              <ChevronRightIcon className="size-5 shrink-0 text-ink-400" />
+            </Link>
+          </li>
           <li>
             <Link href="/schedule" onClick={close} className={ROW}>
               <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-weak text-brand-ink">
