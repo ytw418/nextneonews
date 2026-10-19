@@ -50,6 +50,7 @@
   --tint-kbeauty: oklch(0.93 0.045 335);
   --tint-study: oklch(0.93 0.045 220);
   --tint-love: oklch(0.93 0.045 10);
+  --tint-clinic: oklch(0.93 0.045 230); /* 가이드 '클리닉' 섹션 (카테고리 아님). 뷰티 분홍·여행 초록·드라마 보라 옆에서 갈리는 맑은 하늘색 */
 
   /* 이벤트 틴트 (티켓 스텁): 메모보다 진해서 티켓이 메모처럼 보이지 않는다 */
   --tint-event-comeback: oklch(0.9 0.07 0);
@@ -123,6 +124,7 @@
     --tint-kbeauty: oklch(0.34 0.07 335);
     --tint-study: oklch(0.34 0.07 220);
     --tint-love: oklch(0.34 0.07 10);
+    --tint-clinic: oklch(0.34 0.07 230);
 
     --tint-event-comeback: oklch(0.38 0.08 0);
     --tint-event-awards: oklch(0.38 0.07 75); /* 다른 이벤트 틴트와 같은 밝기. 더 밝고 진하면 진흙 갈색으로 보였다 */
@@ -250,6 +252,7 @@
   --color-tint-kbeauty: var(--tint-kbeauty);
   --color-tint-study: var(--tint-study);
   --color-tint-love: var(--tint-love);
+  --color-tint-clinic: var(--tint-clinic);
   --color-tint-event-comeback: var(--tint-event-comeback);
   --color-tint-event-awards: var(--tint-event-awards);
   --color-tint-event-concert: var(--tint-event-concert);

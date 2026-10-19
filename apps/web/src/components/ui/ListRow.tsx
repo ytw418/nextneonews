@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 interface Props {
   href?: string;
   external?: boolean; // 사이트 밖으로 (새 탭, 바깥 화살표)
+  rel?: string; // 바깥 링크의 rel. 제휴 링크는 "sponsored nofollow noopener" (기본은 noopener noreferrer)
   left?: ReactNode;
   title: ReactNode;
   sub?: ReactNode;
@@ -31,6 +32,7 @@ const WEIGHT = { bold: "font-bold", semibold: "font-semibold", medium: "font-med
 export function ListRow({
   href,
   external,
+  rel,
   left,
   title,
   sub,
@@ -74,7 +76,7 @@ export function ListRow({
         <a
           href={href}
           target="_blank"
-          rel="noopener noreferrer"
+          rel={rel ?? "noopener noreferrer"}
           aria-label={ariaLabel}
           className={`press-row ${inner}`}
         >

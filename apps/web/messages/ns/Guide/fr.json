@@ -1,0 +1,34 @@
+{
+  "tab": "Guides",
+  "title": "Guides",
+  "intro": "Beauté, voyage, soins et dramas, choisis pour les fans de la Corée.",
+  "metaTitle": "Guides K-beauté, voyage en Corée et K-dramas",
+  "metaDescription": "Le palmarès K-beauté et les choix par type de peau, les quartiers et lieux de tournage de Séoul, les soins en clinique expliqués et où regarder les K-dramas.",
+  "sections": {
+    "beauty": {
+      "title": "K-beauté",
+      "line": "Palmarès, choix par type de peau, où acheter"
+    },
+    "travel": {
+      "title": "Voyage en Corée",
+      "line": "Quartiers, lieux de tournage, préparatifs"
+    },
+    "clinic": {
+      "title": "Guide des soins",
+      "line": "Récupération, risques, questions à poser"
+    },
+    "drama": {
+      "title": "Guide K-drama",
+      "line": "Quoi regarder et où"
+    }
+  },
+  "railTitle": "Guides Corée",
+  "popular": "Populaire en ce moment",
+  "crossTitle": "À découvrir aussi",
+  "newBadge": "Nouveau",
+  "skinCta": {
+    "title": "Quel est votre type de peau ?",
+    "body": "Six questions rapides, puis des produits choisis pour vous. Pour le plaisir, ce n’est pas un diagnostic.",
+    "button": "Faire le test"
+  }
+}
