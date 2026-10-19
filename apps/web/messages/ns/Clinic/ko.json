@@ -1,1 +1,97 @@
-{}
+{
+  "title": "시술 가이드",
+  "intro": "피부과·치과·성형외과 시술 22가지의 회복 기간, 통증, 부작용, 병원에 물어볼 질문을 정리했어요.",
+  "metaTitle": "한국 피부과·치과·성형 시술 정리: 회복 기간, 부작용, 물어볼 질문",
+  "metaDescription": "한국에서 받는 피부과·치과·성형외과 시술 22가지의 회복 기간, 통증 정도, 부작용, 병원에 물어볼 질문. 병원 이름·순위·후기는 싣지 않아요.",
+  "detailMetaTitle": "{name}: 회복 기간·부작용·병원에 물어볼 질문",
+  "detailMetaDescription": "{name}: {recovery} · {pain}. 부작용과 관리법, 예약 전에 한국 병원에 물어볼 질문을 정리했어요. 병원 이름·후기는 싣지 않아요.",
+  "checked": "정보 기준일 {date}",
+  "fieldsNav": "시술 분야",
+  "share": "이 페이지 공유하기",
+  "seeAll": "전체 보기",
+  "newTab": "(새 탭에서 열림)",
+  "notice": {
+    "title": "먼저 읽어 주세요",
+    "body": "일반 정보일 뿐 의료 조언이 아니며, 병원을 소개하거나 연결하지 않아요. 병원 이름·후기·순위는 싣지 않아요.",
+    "independent": "언니노트는 병원·예약 서비스와 관계없는 독립 정보 매체입니다.",
+    "howTo": "예약 전에 병원 확인하는 법"
+  },
+  "listMeta": {
+    "recovery": "회복 {value}",
+    "pain": "통증 {level}"
+  },
+  "facts": {
+    "title": "한눈에 보기",
+    "recovery": "회복 기간",
+    "none": "회복 기간 없음",
+    "range": "{min}–{max}",
+    "daysUnit": "일",
+    "daysUnitRange": "일",
+    "days": "{min}–{max}일",
+    "daysOne": "{count}일",
+    "pain": "통증",
+    "painLevel": {
+      "1": "약함",
+      "2": "보통",
+      "3": "강함"
+    },
+    "duration": "소요 시간",
+    "minutes": "{min}–{max}분",
+    "minutesOne": "{count}분",
+    "sessions": "횟수",
+    "sessionsOne": "{count}회",
+    "sessionsAbout": "{count}회 안팎",
+    "sessionsRange": "{min}–{max}회",
+    "sessionsAtLeast": "{count}회 이상",
+    "sessionsSeveral": "여러 번 방문",
+    "sessionsPeriodic": "정기적으로",
+    "type": "종류",
+    "surgical": "수술",
+    "nonSurgical": "비수술",
+    "multiVisit": "회차 간격이 있어 짧은 여행 중엔 1회만 받게 될 수 있어요."
+  },
+  "sections": {
+    "what": "어떤 시술인가요",
+    "whoFor": "누구에게 맞나요",
+    "steps": "어떻게 하나요",
+    "recovery": "회복",
+    "risks": "위험과 부작용",
+    "aftercare": "시술 후 관리",
+    "faq": "자주 묻는 질문",
+    "sources": "출처",
+    "sourcesIntro": "이 페이지의 사실은 의학 학회, 공공기관, 의학 학술지 자료를 바탕으로 했어요.",
+    "other": "{field} 다른 시술"
+  },
+  "price": {
+    "title": "공개 통계 속 가격",
+    "unit": {
+      "session": "1회당",
+      "tooth": "치아 1개당",
+      "area": "부위당",
+      "procedure": "시술 1건당"
+    },
+    "source": "출처: {host}",
+    "asOf": "{date} 기준",
+    "varies": "병원·재료·부위마다 가격이 달라요.",
+    "noneTitle": "가격을 싣지 않는 이유",
+    "noneReasons": [
+      "공식 공개 통계로 확인할 수 있는 가격만 싣는데, 이 시술은 그런 자료를 찾지 못했어요.",
+      "병원, 부위, 제품, 용량에 따라 가격 차이가 커요.",
+      "상담 때 총액, 제품과 용량(mL·단위), 횟수를 서면으로 받아 두세요."
+    ],
+    "howTo": "서면으로 받아 둘 것"
+  },
+  "questions": {
+    "title": "병원에 물어볼 질문",
+    "hint": "하나씩 물어볼 때마다 체크하세요. 이 페이지를 저장해 두면 다시 찾을 수 있어요.",
+    "showKorean": "병원에서 한국어로 보여 주기",
+    "koreanHint": "이 화면을 병원 직원에게 보여 주세요."
+  },
+  "vote": {
+    "question": "이 시술, 관심 있나요?",
+    "curious": "궁금해요",
+    "done": "해봤어요",
+    "pass": "패스",
+    "note": "효과 평가가 아닌 관심 집계예요."
+  }
+}

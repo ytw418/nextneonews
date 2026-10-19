@@ -1,1 +1,97 @@
-{}
+{
+  "title": "療程指南",
+  "intro": "整理了22種皮膚科、牙科、整形外科療程的恢復期、疼痛、風險，以及該問診所的問題。",
+  "metaTitle": "韓國醫美與牙科療程整理：恢復期、風險、該問的問題",
+  "metaDescription": "在韓國做皮膚科、牙科、整形外科療程前，先看22種療程的恢復期、疼痛程度、風險和該問診所的問題。不列出診所名稱、排名或評價。",
+  "detailMetaTitle": "在韓國做{name}：恢復期、風險、該問的問題",
+  "detailMetaDescription": "{name}：{recovery}・{pain}。整理了風險、術後照護，以及預約前該問韓國診所的問題。不列出診所名稱或評價。",
+  "checked": "資料確認日期 {date}",
+  "fieldsNav": "療程分類",
+  "share": "分享這一頁",
+  "seeAll": "看全部",
+  "newTab": "（在新分頁開啟）",
+  "notice": {
+    "title": "請先閱讀",
+    "body": "這裡是一般資訊，不是醫療建議，我們也不介紹或轉介任何診所。不列出診所名稱、評價或排名。",
+    "independent": "Unnie Note 是與診所、預約服務沒有任何關係的獨立媒體。",
+    "howTo": "預約前怎麼確認診所"
+  },
+  "listMeta": {
+    "recovery": "恢復期 {value}",
+    "pain": "疼痛：{level}"
+  },
+  "facts": {
+    "title": "重點一覽",
+    "recovery": "恢復期",
+    "none": "幾乎不需恢復期",
+    "range": "{min}～{max}",
+    "daysUnit": "天",
+    "daysUnitRange": "天",
+    "days": "{min}～{max}天",
+    "daysOne": "{count}天",
+    "pain": "疼痛",
+    "painLevel": {
+      "1": "輕微",
+      "2": "中等",
+      "3": "明顯"
+    },
+    "duration": "療程時間",
+    "minutes": "{min}～{max}分鐘",
+    "minutesOne": "{count}分鐘",
+    "sessions": "次數",
+    "sessionsOne": "{count}次",
+    "sessionsAbout": "約{count}次",
+    "sessionsRange": "{min}～{max}次",
+    "sessionsAtLeast": "{count}次以上",
+    "sessionsSeveral": "需多次回診",
+    "sessionsPeriodic": "定期做",
+    "type": "類型",
+    "surgical": "手術",
+    "nonSurgical": "非手術",
+    "multiVisit": "每次療程之間要隔一段時間，短期旅行可能只能做到1次。"
+  },
+  "sections": {
+    "what": "這是什麼療程",
+    "whoFor": "適合誰",
+    "steps": "怎麼進行",
+    "recovery": "恢復",
+    "risks": "風險與副作用",
+    "aftercare": "術後照護",
+    "faq": "常見問題",
+    "sources": "資料來源",
+    "sourcesIntro": "本頁的內容根據醫學會、公家機關和醫學期刊的資料整理。",
+    "other": "其他{field}療程"
+  },
+  "price": {
+    "title": "公開統計中的價格",
+    "unit": {
+      "session": "每次",
+      "tooth": "每顆牙",
+      "area": "每個部位",
+      "procedure": "每項療程"
+    },
+    "source": "來源：{host}",
+    "asOf": "{date}資料",
+    "varies": "價格依診所、材料和部位而不同。",
+    "noneTitle": "為什麼不列價格",
+    "noneReasons": [
+      "我們只列出能在官方公開統計中查到的價格，這個療程沒有找到這類資料。",
+      "價格會因診所、部位、產品和用量差很多。",
+      "諮詢時請拿到書面資料，寫清楚總價、產品和用量（mL・單位）以及次數。"
+    ],
+    "howTo": "要拿到哪些書面資料"
+  },
+  "questions": {
+    "title": "該問診所的問題",
+    "hint": "問完一題就勾一題。把這頁收藏起來，之後就能再打開。",
+    "showKorean": "在診所用韓文給對方看",
+    "koreanHint": "把這個畫面直接拿給診所人員看。"
+  },
+  "vote": {
+    "question": "你對這個療程有興趣嗎？",
+    "curious": "好奇",
+    "done": "做過",
+    "pass": "跳過",
+    "note": "這是關注度統計，不是效果評價。"
+  }
+}

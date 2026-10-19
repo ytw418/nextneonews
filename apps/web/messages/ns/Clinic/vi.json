@@ -1,1 +1,97 @@
-{}
+{
+  "title": "Cẩm nang thẩm mỹ",
+  "intro": "22 liệu trình da liễu, nha khoa và phẫu thuật thẩm mỹ: thời gian hồi phục, mức đau, rủi ro và những câu nên hỏi.",
+  "metaTitle": "Liệu trình thẩm mỹ và nha khoa ở Hàn Quốc: hồi phục, rủi ro, câu hỏi nên hỏi",
+  "metaDescription": "Thời gian hồi phục, mức đau, rủi ro và câu hỏi nên hỏi phòng khám cho 22 liệu trình da liễu, nha khoa và thẩm mỹ ở Hàn Quốc. Không có tên phòng khám, xếp hạng hay đánh giá.",
+  "detailMetaTitle": "{name} ở Hàn Quốc: hồi phục, rủi ro và câu hỏi nên hỏi",
+  "detailMetaDescription": "{name}: {recovery} · {pain}. Rủi ro, chăm sóc sau điều trị và những câu nên hỏi phòng khám Hàn Quốc trước khi đặt lịch. Không có tên phòng khám hay đánh giá.",
+  "checked": "Thông tin kiểm tra ngày {date}",
+  "fieldsNav": "Nhóm liệu trình",
+  "share": "Chia sẻ trang này",
+  "seeAll": "Xem tất cả",
+  "newTab": "(mở trong thẻ mới)",
+  "notice": {
+    "title": "Vui lòng đọc trước",
+    "body": "Đây là thông tin chung, không phải lời khuyên y tế, và chúng tôi không giới thiệu bạn đến phòng khám nào. Chúng tôi không đăng tên phòng khám, đánh giá hay xếp hạng.",
+    "independent": "Unnie Note là trang thông tin độc lập, không liên quan đến bất kỳ phòng khám hay dịch vụ đặt lịch nào.",
+    "howTo": "Cách kiểm tra phòng khám trước khi đặt lịch"
+  },
+  "listMeta": {
+    "recovery": "Hồi phục {value}",
+    "pain": "Mức đau: {level}"
+  },
+  "facts": {
+    "title": "Tóm tắt nhanh",
+    "recovery": "Hồi phục",
+    "none": "Không cần nghỉ dưỡng",
+    "range": "{min}–{max}",
+    "daysUnit": "ngày",
+    "daysUnitRange": "ngày",
+    "days": "{min}–{max} ngày",
+    "daysOne": "{count} ngày",
+    "pain": "Mức đau",
+    "painLevel": {
+      "1": "Nhẹ",
+      "2": "Vừa",
+      "3": "Nhiều"
+    },
+    "duration": "Thời gian",
+    "minutes": "{min}–{max} phút",
+    "minutesOne": "{count} phút",
+    "sessions": "Số buổi",
+    "sessionsOne": "{count} buổi",
+    "sessionsAbout": "Khoảng {count} buổi",
+    "sessionsRange": "{min}–{max} buổi",
+    "sessionsAtLeast": "Từ {count} buổi",
+    "sessionsSeveral": "Nhiều lần khám",
+    "sessionsPeriodic": "Định kỳ",
+    "type": "Loại",
+    "surgical": "Phẫu thuật",
+    "nonSurgical": "Không phẫu thuật",
+    "multiVisit": "Các buổi cách nhau một khoảng, nên trong chuyến đi ngắn bạn có thể chỉ làm được một buổi."
+  },
+  "sections": {
+    "what": "Đây là gì",
+    "whoFor": "Phù hợp với ai",
+    "steps": "Thực hiện thế nào",
+    "recovery": "Hồi phục",
+    "risks": "Rủi ro và tác dụng phụ",
+    "aftercare": "Chăm sóc sau điều trị",
+    "faq": "Câu hỏi thường gặp",
+    "sources": "Nguồn",
+    "sourcesIntro": "Thông tin trên trang này dựa trên tài liệu của các hiệp hội y khoa, cơ quan nhà nước và tạp chí y khoa.",
+    "other": "Liệu trình {field} khác"
+  },
+  "price": {
+    "title": "Giá trong thống kê công khai",
+    "unit": {
+      "session": "mỗi buổi",
+      "tooth": "mỗi răng",
+      "area": "mỗi vùng",
+      "procedure": "mỗi lần thực hiện"
+    },
+    "source": "Nguồn: {host}",
+    "asOf": "Số liệu {date}",
+    "varies": "Giá khác nhau tùy phòng khám, vật liệu và vùng điều trị.",
+    "noneTitle": "Vì sao chúng tôi không đăng giá",
+    "noneReasons": [
+      "Chúng tôi chỉ đăng giá có thể kiểm tra trong thống kê công khai chính thức, và chưa tìm thấy số liệu như vậy cho liệu trình này.",
+      "Giá chênh lệch nhiều tùy phòng khám, vùng điều trị, sản phẩm và liều lượng.",
+      "Khi tư vấn, hãy xin bằng văn bản tổng chi phí, sản phẩm và liều lượng (mL hoặc đơn vị) và số buổi."
+    ],
+    "howTo": "Những gì nên xin bằng văn bản"
+  },
+  "questions": {
+    "title": "Câu hỏi nên hỏi phòng khám",
+    "hint": "Hỏi xong câu nào thì đánh dấu câu đó. Lưu trang này để mở lại sau.",
+    "showKorean": "Hiện tiếng Hàn tại phòng khám",
+    "koreanHint": "Đưa màn hình này cho nhân viên phòng khám xem."
+  },
+  "vote": {
+    "question": "Bạn có quan tâm liệu trình này?",
+    "curious": "Tò mò",
+    "done": "Đã làm",
+    "pass": "Bỏ qua",
+    "note": "Đây là số người quan tâm, không phải đánh giá hiệu quả."
+  }
+}

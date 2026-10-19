@@ -1,1 +1,97 @@
-{}
+{
+  "title": "Clinic Guide",
+  "intro": "22 skin, dental and cosmetic treatments explained: recovery, pain, risks and what to ask.",
+  "metaTitle": "Korean Clinic Treatments Explained: Recovery, Risks and Questions",
+  "metaDescription": "Recovery time, pain level, risks and questions to ask for 22 skin, dental and cosmetic treatments in Korea. No clinic names, rankings or reviews.",
+  "detailMetaTitle": "{name} in Korea: Recovery, Risks and What to Ask",
+  "detailMetaDescription": "{name}: {recovery} · {pain}. Risks, aftercare and questions to ask a Korean clinic before you book. No clinic names or reviews.",
+  "checked": "Information checked {date}",
+  "fieldsNav": "Treatment types",
+  "share": "Share this page",
+  "seeAll": "See all",
+  "newTab": "(opens in a new tab)",
+  "notice": {
+    "title": "Please read first",
+    "body": "This is general information, not medical advice, and we don’t refer you to any clinic. We don’t list clinic names, reviews or rankings.",
+    "independent": "Unnie Note is an independent publication with no ties to any clinic or booking service.",
+    "howTo": "How to check a clinic before you book"
+  },
+  "listMeta": {
+    "recovery": "Recovery {value}",
+    "pain": "Pain: {level}"
+  },
+  "facts": {
+    "title": "At a glance",
+    "recovery": "Recovery",
+    "none": "No downtime",
+    "range": "{min}–{max}",
+    "daysUnit": "{count, plural, one {day} other {days}}",
+    "daysUnitRange": "days",
+    "days": "{min}–{max} days",
+    "daysOne": "{count, plural, one {# day} other {# days}}",
+    "pain": "Pain",
+    "painLevel": {
+      "1": "Mild",
+      "2": "Moderate",
+      "3": "Strong"
+    },
+    "duration": "Time",
+    "minutes": "{min}–{max} min",
+    "minutesOne": "{count} min",
+    "sessions": "Sessions",
+    "sessionsOne": "{count, plural, one {# session} other {# sessions}}",
+    "sessionsAbout": "About {count} sessions",
+    "sessionsRange": "{min}–{max} sessions",
+    "sessionsAtLeast": "{count}+ sessions",
+    "sessionsSeveral": "Several visits",
+    "sessionsPeriodic": "Regular visits",
+    "type": "Type",
+    "surgical": "Surgery",
+    "nonSurgical": "Non-surgical",
+    "multiVisit": "Sessions are spaced apart, so on a short trip you may only get one."
+  },
+  "sections": {
+    "what": "What it is",
+    "whoFor": "Who it’s for",
+    "steps": "How it’s done",
+    "recovery": "Recovery",
+    "risks": "Risks and side effects",
+    "aftercare": "Aftercare",
+    "faq": "Questions people ask",
+    "sources": "Sources",
+    "sourcesIntro": "Facts on this page come from medical societies, public agencies and medical journals.",
+    "other": "More in {field}"
+  },
+  "price": {
+    "title": "Price in public data",
+    "unit": {
+      "session": "per session",
+      "tooth": "per tooth",
+      "area": "per area",
+      "procedure": "per procedure"
+    },
+    "source": "Source: {host}",
+    "asOf": "Data as of {date}",
+    "varies": "Prices vary by clinic, material and area treated.",
+    "noneTitle": "Why we don’t list a price",
+    "noneReasons": [
+      "We only show prices we can check in official public statistics, and we couldn’t find one for this treatment.",
+      "Prices vary widely by clinic, area treated, product and amount.",
+      "At the consultation, get the total price, the product and amount (mL or units) and the number of sessions in writing."
+    ],
+    "howTo": "What to get in writing"
+  },
+  "questions": {
+    "title": "Questions to ask the clinic",
+    "hint": "Tick each one as you ask it. Save this page to find the list again.",
+    "showKorean": "Show in Korean at the clinic",
+    "koreanHint": "Show this screen to the clinic staff."
+  },
+  "vote": {
+    "question": "Thinking about this one?",
+    "curious": "Curious",
+    "done": "I’ve had it",
+    "pass": "Not for me",
+    "note": "This counts interest, not results."
+  }
+}
