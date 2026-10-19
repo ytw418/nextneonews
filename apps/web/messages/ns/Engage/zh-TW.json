@@ -52,7 +52,7 @@
   "savedTitle": "我的收藏",
   "savedCount": "{count} 項",
   "savedMonth": "這個月收藏了 {count} 項",
-  "savedEmpty": "看到喜歡的就按愛心，全部都會收在這裡",
+  "savedEmpty": "看到喜歡的就按書籤，全部都會收在這裡",
   "savedBrowse": "逛逛指南",
   "savedShare": "分享我的清單",
   "savedImport": "朋友分享的清單裡有 {count} 項",
@@ -79,5 +79,28 @@
   "starLabel": "{count} 顆星",
   "starAverage": "{average} 分（滿分 5 分）・{count} 人評分",
   "visited": "已打卡",
-  "markVisited": "我去過了！打卡"
+  "markVisited": "我去過了！打卡",
+  "savedTabCount": "收藏 {count} 項",
+  "savedFirstToast": "收藏只存在這個瀏覽器，用 LINE 傳給自己備份吧",
+  "sendToSelf": "用 LINE 傳給自己",
+  "sendToSelfAction": "LINE 傳送",
+  "sendToSelfText": "我的 Unnie Note 收藏清單",
+  "sendToSelfCopied": "已複製連結，貼到備忘錄或傳給自己吧",
+  "inAppNotice": "在 App 內建瀏覽器收藏的內容，用 Safari 打開會看不到，先把連結傳給自己吧",
+  "voteResults": "結果",
+  "facetAsk": {
+    "title": "你是哪種膚質？",
+    "body": "我們會顯示同膚質的人怎麼評價。只問這一次，答案只存在這台裝置上",
+    "skip": "略過"
+  },
+  "skinTypes": {
+    "dry": "乾肌",
+    "oily": "油肌",
+    "combination": "混合肌",
+    "sensitive": "敏感肌",
+    "normal": "中性肌"
+  },
+  "facetSummary": "{facet}有 {percent}% 選「{choice}」",
+  "starFew": "{count} 則評分",
+  "starMine": "你的評分：{count}"
 }

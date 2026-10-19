@@ -52,7 +52,7 @@
   "savedTitle": "저장함",
   "savedCount": "{count}개",
   "savedMonth": "이번 달 {count}개 저장했어요",
-  "savedEmpty": "마음에 드는 건 하트로 저장해 두세요. 여기 모여요",
+  "savedEmpty": "마음에 드는 건 북마크로 저장해 두세요. 여기 모여요",
   "savedBrowse": "가이드 둘러보기",
   "savedShare": "내 목록 공유하기",
   "savedImport": "공유받은 목록에 {count}개가 있어요",
@@ -79,5 +79,28 @@
   "starLabel": "별 {count}개",
   "starAverage": "5점 만점에 {average}점 · {count}명 평가",
   "visited": "가 봤어요",
-  "markVisited": "가 봤어요 도장 찍기"
+  "markVisited": "가 봤어요 도장 찍기",
+  "savedTabCount": "저장 {count}개",
+  "savedFirstToast": "저장한 건 이 브라우저에만 남아요. 잃어버리지 않게 링크를 나에게 보내 두세요",
+  "sendToSelf": "나에게 보내기",
+  "sendToSelfAction": "링크 복사",
+  "sendToSelfText": "내 Unnie Note 저장 목록",
+  "sendToSelfCopied": "링크를 복사했어요. 메모나 나와의 채팅에 붙여 두세요",
+  "inAppNotice": "앱 안 브라우저에서 저장한 건 Safari에서 안 보여요. 링크를 나에게 보내 두세요",
+  "voteResults": "결과",
+  "facetAsk": {
+    "title": "피부 타입이 어떻게 돼요?",
+    "body": "같은 피부 타입인 사람들이 어떻게 평가했는지 보여 드릴게요. 한 번만 묻고, 이 기기에만 남아요",
+    "skip": "건너뛰기"
+  },
+  "skinTypes": {
+    "dry": "건성",
+    "oily": "지성",
+    "combination": "복합성",
+    "sensitive": "민감성",
+    "normal": "중성"
+  },
+  "facetSummary": "{facet} {percent}%가 ‘{choice}’",
+  "starFew": "평가 {count}개",
+  "starMine": "내 별점 {count}"
 }

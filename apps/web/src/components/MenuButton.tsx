@@ -12,7 +12,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
 import { CompassIcon } from "@/components/guide/icons";
-import { ChevronRightIcon, GlobeIcon, HeartIcon, MenuIcon, TicketIcon } from "@/components/icons";
+import { BookmarkIcon, ChevronRightIcon, GlobeIcon, MenuIcon, TicketIcon } from "@/components/icons";
 import { LanguageSheet } from "@/components/LanguageSheet";
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { IconButton } from "@/components/ui/IconButton";
@@ -109,9 +109,9 @@ export function MenuButton({ categories }: { categories: readonly CategoryKey[] 
           <li>
             <Link href="/saved" onClick={close} className={ROW}>
               <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-weak text-brand-ink">
-                <HeartIcon className="size-5" />
+                <BookmarkIcon className="size-5" />
               </span>
-              <span className="min-w-0 flex-1">{tEngage("savedTab")}</span>
+              <span className="min-w-0 flex-1">{tEngage("savedTitle")}</span>
               <ChevronRightIcon className="size-5 shrink-0 text-ink-400" />
             </Link>
           </li>

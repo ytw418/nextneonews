@@ -52,7 +52,7 @@
   "savedTitle": "保存リスト",
   "savedCount": "{count}件",
   "savedMonth": "今月は{count}件保存",
-  "savedEmpty": "気になるものはハートで保存。ぜんぶここに集まります",
+  "savedEmpty": "気になるものはブックマークで保存。ぜんぶここに集まります",
   "savedBrowse": "ガイドを見る",
   "savedShare": "リストをシェア",
   "savedImport": "シェアされたリストに{count}件あります",
@@ -79,5 +79,28 @@
   "starLabel": "星{count}つ",
   "starAverage": "5点中{average}点・{count}人が評価",
   "visited": "行った！",
-  "markVisited": "行ったよスタンプを押す"
+  "markVisited": "行ったよスタンプを押す",
+  "savedTabCount": "保存 {count}件",
+  "savedFirstToast": "保存はこのブラウザだけに残ります。LINEで自分に送っておくと安心です",
+  "sendToSelf": "LINEで自分に送る",
+  "sendToSelfAction": "LINEで送る",
+  "sendToSelfText": "Unnie Noteの保存リスト",
+  "sendToSelfCopied": "リンクをコピーしました。メモや自分とのトークに貼っておいてください",
+  "inAppNotice": "アプリ内ブラウザで保存したものはSafariには出てきません。リンクを自分に送っておいてください",
+  "voteResults": "結果",
+  "facetAsk": {
+    "title": "あなたの肌タイプは？",
+    "body": "同じ肌タイプの人がどう評価したかを表示します。聞くのは一度だけで、答えはこの端末にだけ残ります",
+    "skip": "スキップ"
+  },
+  "skinTypes": {
+    "dry": "乾燥肌",
+    "oily": "脂性肌",
+    "combination": "混合肌",
+    "sensitive": "敏感肌",
+    "normal": "普通肌"
+  },
+  "facetSummary": "{facet}の{percent}%が「{choice}」",
+  "starFew": "評価{count}件",
+  "starMine": "あなたの評価：{count}"
 }

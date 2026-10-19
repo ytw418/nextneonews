@@ -52,7 +52,7 @@
   "savedTitle": "Saved",
   "savedCount": "{count, plural, one {#\u00a0item} other {#\u00a0items}}",
   "savedMonth": "You saved {count} this month",
-  "savedEmpty": "Tap the heart on anything you love and it’ll wait for you here.",
+  "savedEmpty": "Tap the bookmark on anything you love and it’ll wait for you here.",
   "savedBrowse": "Browse the guides",
   "savedShare": "Share my list",
   "savedImport": "{count, plural, one {A shared list with #\u00a0pick} other {A shared list with #\u00a0picks}}",
@@ -79,5 +79,28 @@
   "starLabel": "{count, plural, one {#\u00a0star} other {#\u00a0stars}}",
   "starAverage": "{average} out of 5 · {count, plural, one {#\u00a0rating} other {#\u00a0ratings}}",
   "visited": "Been here",
-  "markVisited": "I’ve been here"
+  "markVisited": "I’ve been here",
+  "savedTabCount": "Saved, {count, plural, one {#\u00a0item} other {#\u00a0items}}",
+  "savedFirstToast": "Saved on this browser only. Send yourself the link so you don’t lose it.",
+  "sendToSelf": "Send to myself",
+  "sendToSelfAction": "Copy link",
+  "sendToSelfText": "My Unnie Note saved list",
+  "sendToSelfCopied": "Link copied. Paste it into Notes or a chat with yourself.",
+  "inAppNotice": "Things you save in this in-app browser won’t show up in Safari. Send yourself the link to keep them.",
+  "voteResults": "Results",
+  "facetAsk": {
+    "title": "What’s your skin type?",
+    "body": "We’ll show how people with your skin type rated it. We only ask once, and it stays on this device.",
+    "skip": "Skip"
+  },
+  "skinTypes": {
+    "dry": "Dry skin",
+    "oily": "Oily skin",
+    "combination": "Combination skin",
+    "sensitive": "Sensitive skin",
+    "normal": "Normal skin"
+  },
+  "facetSummary": "{facet}: {percent}% chose “{choice}”",
+  "starFew": "{count, plural, one {#\u00a0rating} other {#\u00a0ratings}}",
+  "starMine": "Your rating: {count}"
 }

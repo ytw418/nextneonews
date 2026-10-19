@@ -52,7 +52,7 @@
   "savedTitle": "Favoris",
   "savedCount": "{count, plural, one {#\u00a0élément} other {#\u00a0éléments}}",
   "savedMonth": "{count, plural, one {#\u00a0ajout ce mois-ci} other {#\u00a0ajouts ce mois-ci}}",
-  "savedEmpty": "Touchez le cœur sur ce qui vous plaît\u00a0: tout vous attend ici.",
+  "savedEmpty": "Touchez le signet sur ce qui vous plaît\u00a0: tout vous attend ici.",
   "savedBrowse": "Parcourir les guides",
   "savedShare": "Partager ma liste",
   "savedImport": "{count, plural, one {Une liste partagée avec #\u00a0élément} other {Une liste partagée avec #\u00a0éléments}}",
@@ -79,5 +79,28 @@
   "starLabel": "{count, plural, one {#\u00a0étoile} other {#\u00a0étoiles}}",
   "starAverage": "{average} sur 5 · {count, plural, one {#\u00a0avis} other {#\u00a0avis}}",
   "visited": "Déjà visité",
-  "markVisited": "Marquer comme visité"
+  "markVisited": "Marquer comme visité",
+  "savedTabCount": "Favoris, {count, plural, one {#\u00a0élément} other {#\u00a0éléments}}",
+  "savedFirstToast": "Enregistré dans ce navigateur uniquement. Envoyez-vous le lien pour ne pas le perdre.",
+  "sendToSelf": "M’envoyer la liste",
+  "sendToSelfAction": "Copier le lien",
+  "sendToSelfText": "Ma liste Unnie Note",
+  "sendToSelfCopied": "Lien copié. Collez-le dans Notes ou dans une discussion avec vous-même.",
+  "inAppNotice": "Ce que vous enregistrez dans ce navigateur intégré n’apparaîtra pas dans Safari. Envoyez-vous le lien pour le garder.",
+  "voteResults": "Résultats",
+  "facetAsk": {
+    "title": "Quel est votre type de peau\u00a0?",
+    "body": "Nous vous montrerons l’avis des personnes qui ont le même type de peau. Une seule question, gardée sur cet appareil.",
+    "skip": "Passer"
+  },
+  "skinTypes": {
+    "dry": "Peau sèche",
+    "oily": "Peau grasse",
+    "combination": "Peau mixte",
+    "sensitive": "Peau sensible",
+    "normal": "Peau normale"
+  },
+  "facetSummary": "{facet}\u00a0: {percent}\u00a0% ont choisi «\u00a0{choice}\u00a0»",
+  "starFew": "{count, plural, one {#\u00a0avis} other {#\u00a0avis}}",
+  "starMine": "Votre note\u00a0: {count}"
 }

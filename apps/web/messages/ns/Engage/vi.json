@@ -52,7 +52,7 @@
   "savedTitle": "Đã lưu",
   "savedCount": "{count}\u00a0mục",
   "savedMonth": "Tháng này bạn đã lưu {count}\u00a0mục",
-  "savedEmpty": "Nhấn tim vào những gì bạn thích, tất cả sẽ chờ bạn ở đây.",
+  "savedEmpty": "Nhấn biểu tượng dấu trang vào những gì bạn thích, tất cả sẽ chờ bạn ở đây.",
   "savedBrowse": "Xem cẩm nang",
   "savedShare": "Chia sẻ danh sách",
   "savedImport": "Danh sách được chia sẻ có {count}\u00a0mục",
@@ -79,5 +79,28 @@
   "starLabel": "{count}\u00a0sao",
   "starAverage": "{average}/5 · {count}\u00a0lượt đánh giá",
   "visited": "Đã đến",
-  "markVisited": "Mình đã đến đây"
+  "markVisited": "Mình đã đến đây",
+  "savedTabCount": "Đã lưu, {count}\u00a0mục",
+  "savedFirstToast": "Mục đã lưu chỉ nằm trên trình duyệt này. Hãy gửi link cho chính bạn để không bị mất.",
+  "sendToSelf": "Gửi cho chính mình",
+  "sendToSelfAction": "Sao chép link",
+  "sendToSelfText": "Danh sách đã lưu trên Unnie Note",
+  "sendToSelfCopied": "Đã sao chép link. Hãy dán vào Ghi chú hoặc nhắn cho chính bạn.",
+  "inAppNotice": "Những gì bạn lưu trong trình duyệt của ứng dụng này sẽ không hiện trên Safari. Hãy gửi link cho chính bạn.",
+  "voteResults": "Kết quả",
+  "facetAsk": {
+    "title": "Da bạn thuộc loại nào?",
+    "body": "Chúng tôi sẽ cho bạn xem người cùng loại da đánh giá thế nào. Chỉ hỏi một lần và chỉ lưu trên thiết bị này.",
+    "skip": "Bỏ qua"
+  },
+  "skinTypes": {
+    "dry": "Da khô",
+    "oily": "Da dầu",
+    "combination": "Da hỗn hợp",
+    "sensitive": "Da nhạy cảm",
+    "normal": "Da thường"
+  },
+  "facetSummary": "{facet}: {percent}% chọn “{choice}”",
+  "starFew": "{count}\u00a0lượt đánh giá",
+  "starMine": "Bạn chấm: {count}\u00a0sao"
 }
