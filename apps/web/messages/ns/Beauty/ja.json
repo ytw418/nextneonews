@@ -1,1 +1,122 @@
-{}
+{
+  "title": "Kビューティー",
+  "intro": "韓国のスキンケアとメイクを、決め方まで公開してランキング。自分の肌に合うものと、買える場所がわかります。",
+  "metaTitle": "韓国コスメ カテゴリー別・肌タイプ別のおすすめ",
+  "metaDescription": "クレンジング、化粧水、美容液、日焼け止めなど人気の韓国コスメを、編集部の評価と読者の肌タイプ別の投票でランキング。買える場所もまとめました。",
+  "skinChip": "肌タイプがわからない？6問でチェック",
+  "skinChipMine": "{skin}向けのおすすめ",
+  "categoriesLabel": "コスメのカテゴリー",
+  "crumbsLabel": "現在地",
+  "winnersTitle": "カテゴリー別No.1",
+  "priceLegend": "₩ 1万ウォン未満・₩₩ 1〜3万ウォン・₩₩₩ 3万ウォン以上（韓国の定価）",
+  "priceTier": {
+    "1": "価格：1万ウォン未満",
+    "2": "価格：1万〜3万ウォン",
+    "3": "価格：3万ウォン以上"
+  },
+  "newBadge": "NEW",
+  "listSep": "・",
+  "rank": "{rank}位",
+  "basis": "編集部スコア＋読者の評価{count}票・{date}更新",
+  "awardsName": "Unnie Awards",
+  "editorsPicks": "編集部ピック",
+  "seeAll": "すべて見る",
+  "copied": "リンクをコピーしました",
+  "newTab": "（新しいタブで開きます）",
+  "tile": {
+    "label": "テスト",
+    "title": "肌タイプ別のおすすめ",
+    "sub": "6問でサクッと"
+  },
+  "buy": {
+    "hubTitle": "韓国コスメが買えるところ",
+    "title": "どこで買える？",
+    "at": "{partner}で買う",
+    "more": "ほかのショップ",
+    "disclosure": "当サイトに<link>手数料</link>が入ります（価格は同じ）"
+  },
+  "ship": {
+    "oliveyoung": "海外発送あり・送料は国や地域によって異なる",
+    "yesstyle": "世界各国へ発送・送料は国によって異なる",
+    "amazon": "米国のAmazon.com・米国向け"
+  },
+  "method": {
+    "title": "ランキングの決め方",
+    "formula": "スコア＝編集部スコア＋{weight}×（神アイテム−合わなかった）÷（全投票数＋{damping}）",
+    "votes": "読者の評価は、各アイテムの「使ったことある？」ボタンから集めています。1台につき1票で、あとから変えられます。",
+    "editors": "読者の評価が{count}票に届くまでは「アワード」ではなく「編集部ピック」と呼びます。",
+    "independent": "ブランドがお金を払って順位を買うことはできません。ショップのリンクも順位には影響しません。"
+  },
+  "awards": {
+    "title": "{category}・{kind}",
+    "metaTitle": "韓国コスメ{category}のおすすめ｜{kind}",
+    "metaDescription": "{intro} 編集部の評価と読者の投票でランキング。合う肌タイプ、価格帯、買える場所もわかります。"
+  },
+  "product": {
+    "metaTitle": "{brand} {name}｜合う肌タイプ・使い方・買える場所",
+    "metaDescription": "{tagline}。合う肌タイプ、使い方、読者の評価、買える場所をまとめました（{category}）。",
+    "share": "このアイテムをシェア",
+    "rankIn": "{category}・{kind} {rank}位",
+    "suits": "合う肌タイプ",
+    "ingredients": "注目成分",
+    "rating": "読者スコア {value}／5（{count}票・神アイテム5、まあまあ3、合わなかった1で換算）",
+    "why": "人気の理由",
+    "howTo": "使い方",
+    "caution": "知っておきたいこと",
+    "related": "{category}をもっと見る",
+    "relatedAll": "{category}をすべて見る",
+    "relatedCount": "{count}アイテムのランキング"
+  },
+  "vote": {
+    "question": "使ったことある？",
+    "love": "神アイテム",
+    "ok": "まあまあ",
+    "meh": "合わなかった",
+    "facetPercent": "{skin}の{percent}%が「神アイテム」（{count}票）",
+    "facetCount": "{skin}の評価はまだ{count}票",
+    "facetFirst": "{skin}の評価はまだありません。最初の1票をどうぞ。",
+    "facetTest": "肌タイプを調べて、同じ肌の人の評価を見る"
+  },
+  "skin": {
+    "short": {
+      "dry": "乾燥肌",
+      "oily": "脂性肌",
+      "combination": "混合肌",
+      "sensitive": "敏感肌",
+      "normal": "普通肌"
+    },
+    "result": {
+      "dry": "乾燥肌さん",
+      "oily": "オイリー肌さん",
+      "combination": "混合肌さん",
+      "sensitive": "敏感肌さん",
+      "normal": "普通肌さん"
+    },
+    "tag": {
+      "dry": "乾燥肌",
+      "oily": "脂性肌",
+      "combination": "混合肌",
+      "sensitive": "敏感肌",
+      "normal": "普通肌"
+    }
+  },
+  "quiz": {
+    "metaTitle": "あなたの肌タイプは？6問の肌タイプチェック",
+    "metaDescription": "毎日の肌の感じ方についての6つの質問で、肌タイプと合う韓国コスメがわかります。医学的な診断ではなく、お楽しみ用です。",
+    "back": "戻る",
+    "progress": "{current}／{total}問"
+  },
+  "result": {
+    "metaTitle": "{name}の結果と、合う韓国コスメ",
+    "metaDescription": "肌タイプチェックの結果は{name}。合う韓国コスメとケアのコツ3つを紹介。6問であなたもチェック。",
+    "label": "肌タイプチェック",
+    "share": "結果をシェア",
+    "shareText": "わたしは{name}でした！あなたは？6問の肌タイプチェック",
+    "retake": "もう一度",
+    "picks": "{name}におすすめ",
+    "allTitle": "韓国コスメをすべて見る",
+    "allSub": "10カテゴリー・{count}アイテム",
+    "tips": "ケアのコツ",
+    "others": "ほかの肌タイプ"
+  }
+}
