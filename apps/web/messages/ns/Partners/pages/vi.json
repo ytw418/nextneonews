@@ -1,0 +1,64 @@
+{
+  "updated": "Cập nhật lần cuối",
+  "more": "Thêm về Unnie Note",
+  "nav": {
+    "disclosure": "Công bố liên kết tiếp thị",
+    "editorial": "Chính sách biên tập",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ"
+  },
+  "title": "Dành cho thương hiệu",
+  "description": "Bài viết tài trợ bằng 9 ngôn ngữ và hợp tác cẩm nang du lịch cho thương hiệu muốn tiếp cận người hâm mộ văn hóa Hàn trẻ ở nước ngoài. Chúng tôi không bán thứ hạng.",
+  "lead": "Chúng tôi giới thiệu thương hiệu, địa điểm và dịch vụ Hàn Quốc đến người hâm mộ văn hóa Hàn trẻ ở nước ngoài, bằng chính ngôn ngữ của họ và luôn ghi rõ là tài trợ.",
+  "languages": "ngôn ngữ, viết cho người hâm mộ văn hóa Hàn từ tuổi teen đến ngoài 30, phần lớn đọc trên điện thoại",
+  "ctaEmail": "Gửi email về hợp tác",
+  "ctaContact": "Liên hệ",
+  "audienceTitle": "Chúng tôi viết cho ai",
+  "audienceLead": "Mỗi phiên bản ngôn ngữ được viết cho độc giả ở những nơi này.",
+  "regions": {
+    "en": "Mỹ, Anh, Philippines, Singapore",
+    "ja": "Nhật Bản",
+    "zh-TW": "Đài Loan, Hồng Kông",
+    "zh-CN": "Singapore, Malaysia",
+    "ko": "Hàn Quốc",
+    "vi": "Việt Nam",
+    "id": "Indonesia, Malaysia",
+    "fr": "Pháp, Bỉ, Canada",
+    "ru": "Nga, Kazakhstan"
+  },
+  "packagesTitle": "Chúng tôi có thể làm gì",
+  "packages": [
+    {
+      "name": "Bài viết tài trợ bằng 9 ngôn ngữ",
+      "line": "Ban biên tập viết một bài về sản phẩm, địa điểm hoặc sự kiện của bạn bằng giọng văn của chúng tôi và đăng bằng cả 9 ngôn ngữ. Bài viết ở lại trên trang và nằm trên dải trang chủ trong một tuần.",
+      "includes": [
+        "Ban biên tập viết và dịch",
+        "Ghi “Tài trợ” phía trên tiêu đề",
+        "Một tuần trên dải trang chủ",
+        "Liên kết được đánh dấu là tài trợ với công cụ tìm kiếm"
+      ]
+    },
+    {
+      "name": "Hợp tác cẩm nang du lịch",
+      "line": "Với tour, vé, eSIM và chỗ ở cho khách đến Hàn Quốc: liên kết đặt chỗ của bạn có thể xuất hiện trong mục “Trước khi đi” của cẩm nang du lịch.",
+      "includes": [
+        "Trả theo hoa hồng trên mỗi lượt đặt",
+        "Luôn kèm nhãn Quảng cáo và câu công bố",
+        "Thứ tự dựa trên mức phù hợp với độc giả từng ngôn ngữ, không dựa trên hoa hồng"
+      ]
+    }
+  ],
+  "notForSale": "Chúng tôi không bán vị trí trong bảng xếp hạng, giải thưởng hay bảng chart. Đối tác trả tiền cũng không thay đổi được thứ tự hay điểm số.",
+  "neverTitle": "Những điều chúng tôi không làm",
+  "never": [
+    "Quảng cáo bệnh viện, phòng khám, bài tài trợ hay liên kết tiếp thị cho phòng khám",
+    "Đánh giá, lời chứng thực hay bài “mình đã dùng thử” được trả tiền",
+    "Vị trí trả phí trong bảng xếp hạng, giải thưởng hay chart K-pop",
+    "Nội dung tài trợ không ghi nhãn, hoặc giấu nhãn trong bình luận hay menu “xem thêm”"
+  ],
+  "contactTitle": "Liên hệ",
+  "contact": "Hãy kể cho chúng tôi về thương hiệu và ý tưởng của bạn. Mọi email đều được một thành viên trong nhóm đọc trực tiếp.",
+  "contactPending": "Email hợp tác đang được thiết lập. Trong lúc chờ, bạn vui lòng liên hệ qua <contact>trang liên hệ</contact>.",
+  "mailSubject": "Hợp tác — Unnie Note",
+  "mailBody": "Công ty:\nÝ tưởng hợp tác:\nNgôn ngữ hoặc quốc gia muốn tiếp cận:\n"
+}

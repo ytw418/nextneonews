@@ -1,0 +1,43 @@
+{
+  "updated": "Terakhir diperbarui",
+  "more": "Selengkapnya tentang Unnie Note",
+  "nav": {
+    "partners": "Untuk brand",
+    "editorial": "Kebijakan redaksi",
+    "privacy": "Kebijakan privasi",
+    "contact": "Kontak"
+  },
+  "title": "Pengungkapan afiliasi",
+  "description": "Cara kerja tautan afiliasi di Unnie Note, mitra mana yang membayar komisi kepada kami, dan cara kami memisahkannya dari peringkat dan halaman medis.",
+  "lead": "Sebagian tautan di Unnie Note adalah tautan afiliasi. Begini cara kerjanya dan aturan yang kami pegang.",
+  "howTitle": "Cara kerja tautan afiliasi",
+  "how": "Kalau kamu membeli atau memesan lewat tautan ini, toko membayar komisi kecil kepada kami. Harga yang kamu bayar sama seperti kalau langsung ke toko: komisinya dari toko, bukan dari kamu.",
+  "sampleLabel": "Setiap kotak tautan afiliasi selalu diawali seperti ini:",
+  "partnersTitle": "Mitra kami",
+  "partnersLead": "Ini toko dan layanan yang mungkin kami tautkan. Tautan tetap berupa tautan biasa sampai kemitraan disetujui, jadi belum semua tautan menghasilkan komisi.",
+  "partnerUse": {
+    "oliveyoung": "Produk K-beauty",
+    "yesstyle": "Produk K-beauty",
+    "amazon": "Produk K-beauty, khusus AS",
+    "klook": "eSIM, tur, dan tiket di Korea",
+    "creatrip": "Tur dan layanan di Korea",
+    "trip": "Hotel dan antar-jemput bandara",
+    "airalo": "eSIM"
+  },
+  "coupang": "Coupang Partners",
+  "coupangUse": "Banner di sebagian artikel, hanya tampil jika zona waktu perangkatmu diatur ke Korea",
+  "labelTitle": "Cara kami menandainya",
+  "label": [
+    "Label Iklan dan kalimat di atas selalu muncul lebih dulu, sebelum tautan apa pun.",
+    "Tautan afiliasi terbuka di tab baru dan ditandai sebagai bersponsor untuk mesin pencari.",
+    "Kami tidak pernah menyelipkannya di komentar, menu “lainnya”, atau gambar tanpa label."
+  ],
+  "independenceTitle": "Independensi redaksi",
+  "independence": "Mitra tidak bisa melihat, menyetujui, atau membayar isi tulisan kami. Urutan toko disusun sesuai pembaca tiap bahasa, yaitu tempat mereka benar-benar bisa membeli dan menerima kiriman, bukan berdasarkan komisi. Daftar penghargaan memakai rumus terbuka (skor redaksi ditambah suara pembaca sungguhan), dan tidak ada brand yang bisa membayar untuk masuk atau naik peringkat.",
+  "medicalTitle": "Halaman medis",
+  "medical": "<clinic>Panduan prosedur klinik</clinic> kami tidak memuat tautan afiliasi, banner Coupang, atau iklan klinik, paling banyak satu iklan display berlabel. Kami tidak menyebut nama, memeringkat, atau mengulas klinik maupun dokter.",
+  "catalogTitle": "Cara kami menulis panduan",
+  "catalog": "Deskripsi produk, tempat, prosedur, dan drama ditulis oleh tim redaksi dengan bantuan AI, berdasarkan sumber resmi seperti halaman brand, Korea Tourism Organization, asosiasi medis, regulator, dan stasiun TV. Isinya deskripsi, bukan ulasan pengalaman pribadi: kami tidak memuat testimoni “aku sudah coba”, dan jumlah suara serta bintang hanya berasal dari pembaca sungguhan.",
+  "contactTitle": "Pertanyaan",
+  "contact": "Kalau ada tautan yang aneh atau label yang hilang, <contact>kabari kami</contact> dan akan kami perbaiki."
+}
