@@ -1,5 +1,8 @@
 import { CATEGORY_GROUPS } from "@kmedia/core";
 
+import type { PrepKey } from "@/data/travel/types";
+import type { AffiliateTarget } from "@/data/types";
+
 // ───────── 구글 애드센스 ─────────
 
 const CLIENT_ID = /^ca-pub-\d+$/;
@@ -18,8 +21,8 @@ export function adsenseClient(): string | null {
 // ───────── 쿠팡 파트너스 ─────────
 
 // 파트너스에 등록한 미디어 주소. 여기 없는 주소(미리보기·배포마다 생기는 *.vercel.app·로컬)에는 배너를 내지 않는다.
-// 도메인을 바꾸면 파트너스 '미디어 관리'에 먼저 등록하고 여기에 더한다
-const COUPANG_MEDIA_HOSTS: readonly string[] = ["hallyu-brief.vercel.app"];
+// 도메인을 바꾸면 파트너스 '미디어 관리'에 먼저 등록하고 여기에 더한다 (unnienote.app 은 2026-10-19 도메인 이전, 옛 주소는 301 로 넘어온다)
+const COUPANG_MEDIA_HOSTS: readonly string[] = ["unnienote.app", "hallyu-brief.vercel.app"];
 
 // 쿠팡은 한국 안에서만 팔고 배송해서, 기기 시간대가 한국(Asia/Seoul)인 방문자에게만 배너를 보인다.
 // 유럽 등 해외 방문자에게는 동의 없이 쿠팡 쿠키가 생기지 않는다. 시간대는 브라우저 안에서만 보고 서버로 보내지 않는다.
@@ -42,7 +45,8 @@ export const coupangWidgetSrc = (id: CoupangBannerId) =>
 const ENTERTAINMENT: readonly string[] = CATEGORY_GROUPS.ENTERTAINMENT;
 const LIVING: readonly string[] = CATEGORY_GROUPS.LIVING;
 
-// 글 하나에 붙일 쿠팡 배너 (없으면 null). 쿠팡은 한국 안에서만 팔고 배송한다.
+// 글 하나에 붙일 쿠팡 배너 (없으면 null). 쿠팡은 한국 안에서만 팔고 배송한다. 글 페이지에서만 부른다 —
+// 가이드 섹션(뷰티·여행·클리닉·드라마), 특히 의료(클리닉) 화면에는 쿠팡을 붙이지 않는다 (scripts/check-catalog.mjs 가 검사)
 // - 한국어: 뷰티 글은 뷰티 베스트, 푸드 글은 푸드 베스트, 나머지는 개인화 추천
 // - 다른 언어: 한국에 사는 외국인이 읽는 생활 카테고리(유학·연애/결혼·워홀·일자리·집·생활)만 개인화 추천.
 //   케이팝 뷰티·음식·여행 글은 대부분 해외에서 읽어 사도 받을 수 없다
@@ -63,4 +67,22 @@ export function coupangBannerFor({
     return COUPANG_BANNER.general;
   }
   return LIVING.includes(category) ? COUPANG_BANNER.general : null;
+}
+
+// ───────── 생활 글의 여행 준비 제휴 ─────────
+
+// 한국에 오거나 사는 독자가 읽는 생활 글: 글 끝(교차 레일 앞)에 '여행 준비' 제휴 상자를 단다 (docs/monetize/BM-VALIDATION.md §6 P7-3)
+const PREP_CATEGORIES: readonly string[] = ["TRAVEL", "WORKING_HOLIDAY", "STUDY", "HOUSING"];
+
+// eSIM(Klook 수수료가 가장 확실하다) → 공항 이동 → 숙소. 주소는 파트너 사이트의 보통 주소, 추적 값은 lib/affiliate.ts 가 붙인다
+const ARTICLE_PREP: readonly { key: PrepKey; target: AffiliateTarget }[] = [
+  { key: "esim", target: { partner: "klook", url: "https://www.klook.com/esim/" } },
+  { key: "airport", target: { partner: "trip", url: "https://www.trip.com/airport-transfers/" } },
+  { key: "stay", target: { partner: "trip", url: "https://www.trip.com/hotels/seoul-hotels-list-274/" } },
+];
+
+// 이 분류·언어의 글에 붙일 여행 준비 줄 (없으면 빈 목록). 이름·설명은 여행 카탈로그 문구(prep.items)를 쓴다.
+// 한국어판 독자는 대부분 한국에 있어 eSIM·공항 이동이 쓸모없다 (한국어 글에는 쿠팡 배너가 대신 붙는다)
+export function articlePrepFor(category: string, locale: string): readonly { key: PrepKey; target: AffiliateTarget }[] {
+  return locale !== "ko" && PREP_CATEGORIES.includes(category) ? ARTICLE_PREP : [];
 }

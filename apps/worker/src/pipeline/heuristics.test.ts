@@ -31,5 +31,8 @@ describe("evaluate", () => {
   it("연예인·생활 단어가 없는 일반 뉴스는 관련 없음으로 둔다", () => {
     expect(evaluate({ title: "9월 수출 1천2백억 달러 첫 돌파…반도체 호조", source: "yonhap" }, []).relevant).toBe(false);
     expect(evaluate({ title: "외국인 관광객 택스리펀 기준 바뀐다", source: "yonhap" }, []).relevant).toBe(true);
+    // 해외 축구·코인은 사전에 걸린 이름이 있어도 무관 (2026-10-19 레알 마드리드 기사가 K-POP 으로 발행됐다)
+    expect(evaluate({ title: "레알 마드리드, 세비야 4-1 꺾고 선두", source: "yonhap" }, [IU]).relevant).toBe(false);
+    expect(evaluate({ title: "스테이블코인 결제, 전 세계 매장으로 확산", source: "yonhap" }, []).relevant).toBe(false);
   });
 });

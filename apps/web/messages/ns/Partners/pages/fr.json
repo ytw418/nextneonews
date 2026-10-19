@@ -1,0 +1,64 @@
+{
+  "updated": "Dernière mise à jour",
+  "more": "En savoir plus sur Unnie Note",
+  "nav": {
+    "disclosure": "Liens affiliés",
+    "editorial": "Charte éditoriale",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "title": "Travailler avec Unnie Note",
+  "description": "Articles sponsorisés en 9 langues et partenariats pour nos guides de voyage, pour les marques qui veulent toucher les jeunes fans de culture coréenne à l'étranger. Nos classements ne sont jamais à vendre.",
+  "lead": "Nous présentons des marques, des lieux et des services coréens aux jeunes fans de culture coréenne à l'étranger, dans leur langue, et toujours avec une mention claire.",
+  "languages": "langues, pour des fans de culture coréenne de l'adolescence à la trentaine, qui nous lisent surtout sur leur téléphone",
+  "ctaEmail": "Nous écrire pour un partenariat",
+  "ctaContact": "Nous contacter",
+  "audienceTitle": "Pour qui nous écrivons",
+  "audienceLead": "Chaque édition est écrite pour les lecteurs de ces pays.",
+  "regions": {
+    "en": "États-Unis, Royaume-Uni, Philippines, Singapour",
+    "ja": "Japon",
+    "zh-TW": "Taïwan, Hong Kong",
+    "zh-CN": "Singapour, Malaisie",
+    "ko": "Corée",
+    "vi": "Viêt Nam",
+    "id": "Indonésie, Malaisie",
+    "fr": "France, Belgique, Canada",
+    "ru": "Russie, Kazakhstan"
+  },
+  "packagesTitle": "Ce que nous proposons",
+  "packages": [
+    {
+      "name": "Article sponsorisé en 9 langues",
+      "line": "Notre rédaction écrit un article sur votre produit, votre lieu ou votre événement, avec sa propre voix, et le publie dans les 9 langues. L'article reste en ligne et figure une semaine dans le carrousel de la page d'accueil.",
+      "includes": [
+        "Rédigé et traduit par notre rédaction",
+        "Mention « Sponsorisé » au-dessus du titre",
+        "Une semaine dans le carrousel d'accueil",
+        "Liens signalés comme sponsorisés aux moteurs de recherche"
+      ]
+    },
+    {
+      "name": "Partenariat guides de voyage",
+      "line": "Pour les visites, pass, eSIM et hébergements destinés aux voyageurs en Corée : votre lien de réservation peut apparaître dans l'encadré « Avant de partir » de nos guides de voyage.",
+      "includes": [
+        "Rémunéré à la commission sur les réservations",
+        "Toujours avec la mention Publicité et notre phrase d'information",
+        "Ordre fixé selon ce qui convient aux lecteurs de chaque langue, jamais selon la commission"
+      ]
+    }
+  ],
+  "notForSale": "Nous ne vendons aucune place dans nos classements, prix ou charts. Un partenaire payant ne change jamais un ordre ni une note.",
+  "neverTitle": "Ce que nous ne faisons pas",
+  "never": [
+    "Publicité pour des hôpitaux ou cliniques, articles sponsorisés ou liens affiliés de cliniques",
+    "Avis, témoignages ou récits « j'ai testé » rémunérés",
+    "Places payantes dans nos classements, prix ou charts K-pop",
+    "Contenu sponsorisé sans mention, ou mention cachée dans les commentaires ou un menu « plus »"
+  ],
+  "contactTitle": "Nous contacter",
+  "contact": "Parlez-nous de votre marque et de votre projet. Chaque message est lu par une personne de l'équipe.",
+  "contactPending": "Notre adresse e-mail pour les partenariats est en cours de création. En attendant, écrivez-nous via la <contact>page de contact</contact>.",
+  "mailSubject": "Partenariat — Unnie Note",
+  "mailBody": "Entreprise :\nVotre projet :\nLangues ou pays visés :\n"
+}

@@ -1,5 +1,6 @@
 import type { CategoryKey } from "@kmedia/core";
 
+import { offTopicTerm } from "../collectors/policy";
 import type { SignalMetrics } from "../collectors/types";
 
 // 품질 체크 2단계를 AI 없이 한다 (비용 0원). 기준은 docs/production.md ①과 같다.
@@ -96,8 +97,11 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
         ? "KDRAMA"
         : "KENT"
     : (lifeCategory ?? "LIFE");
-  // 연예인도, 생활 카테고리 단어도, 외국인 생활 단어도 없으면 우리 독자와 상관없는 일반 뉴스다 (경제·정치·건강 등)
-  const relevant = Boolean(top) || Boolean(lifeCategory) || has(title, FOREIGNER_WORDS);
+  // 연예인도, 생활 카테고리 단어도, 외국인 생활 단어도 없으면 우리 독자와 상관없는 일반 뉴스다 (경제·정치·건강 등).
+  // 해외 축구·코인·해외 처형처럼 무관 주제 단어가 있으면 사전에 걸린 이름이 있어도 뺀다 (collectors/policy.ts OFF_TOPIC_TERMS)
+  const offTopic = offTopicTerm(title);
+  if (offTopic) reasons.push(`무관:${offTopic}`);
+  const relevant = !offTopic && (Boolean(top) || Boolean(lifeCategory) || has(title, FOREIGNER_WORDS));
 
   const format: HeuristicResult["format"] = community
     ? "REACTION"

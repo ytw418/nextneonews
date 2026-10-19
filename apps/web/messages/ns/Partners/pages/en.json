@@ -1,0 +1,64 @@
+{
+  "updated": "Last updated",
+  "more": "More about Unnie Note",
+  "nav": {
+    "disclosure": "Affiliate disclosure",
+    "editorial": "Editorial policy",
+    "about": "About us",
+    "contact": "Contact"
+  },
+  "title": "Work with Unnie Note",
+  "description": "Sponsored stories in nine languages and travel guide partnerships for brands that want to reach young fans of Korean culture abroad. Rankings are never for sale.",
+  "lead": "We help Korean brands, places and services reach young fans of Korean culture abroad, in their own language and always clearly labelled.",
+  "languages": "languages, written for fans of Korean culture in their teens to thirties, mostly reading on their phones",
+  "ctaEmail": "Email us about a partnership",
+  "ctaContact": "Contact us",
+  "audienceTitle": "Who we write for",
+  "audienceLead": "Each edition is written for readers in these places.",
+  "regions": {
+    "en": "US, UK, Philippines, Singapore",
+    "ja": "Japan",
+    "zh-TW": "Taiwan, Hong Kong",
+    "zh-CN": "Singapore, Malaysia",
+    "ko": "Korea",
+    "vi": "Vietnam",
+    "id": "Indonesia, Malaysia",
+    "fr": "France, Belgium, Canada",
+    "ru": "Russia, Kazakhstan"
+  },
+  "packagesTitle": "What we offer",
+  "packages": [
+    {
+      "name": "Sponsored story in nine languages",
+      "line": "We write one story about your product, place or event in our own voice and publish it in all nine languages. It stays on the site and sits in the home page rail for one week.",
+      "includes": [
+        "Written and translated by our editorial team",
+        "Labelled “Sponsored” above the headline",
+        "One week in the home page rail",
+        "Links marked as sponsored for search engines"
+      ]
+    },
+    {
+      "name": "Travel guide partnership",
+      "line": "For tours, passes, eSIMs and stays for visitors to Korea: your booking link can appear in the “Before you go” box on our travel guides.",
+      "includes": [
+        "Paid by commission on bookings",
+        "Shown with an Ad label and our disclosure line",
+        "Order set by what suits readers of each language, not by commission"
+      ]
+    }
+  ],
+  "notForSale": "We don't sell ranking, award or chart spots. A paying partner never changes an order or a score.",
+  "neverTitle": "What we don't do",
+  "never": [
+    "Hospital or clinic advertising, sponsored clinic stories or clinic affiliate links",
+    "Paid reviews, testimonials or “I tried it” stories",
+    "Paid positions in our rankings, awards or K-pop charts",
+    "Sponsored content without a label, or labels hidden in comments or “more” menus"
+  ],
+  "contactTitle": "Get in touch",
+  "contact": "Tell us about your brand and what you have in mind. Every message is read by a person on our team.",
+  "contactPending": "Our partnership email is being set up. Until then, please reach us through the <contact>contact page</contact>.",
+  "mailSubject": "Partnership — Unnie Note",
+  "mailBody": "Company:\nWhat you have in mind:\nLanguages or countries you want to reach:\n"
+}

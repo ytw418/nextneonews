@@ -12,7 +12,13 @@ import {
 } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 
+import { listBeauty } from "@/data/beauty";
+import { BEAUTY_CATEGORIES, SKIN_TYPES } from "@/data/beauty/types";
+import { listClinic } from "@/data/clinic";
+import { listDrama } from "@/data/drama";
+import { listAreas, listTravel } from "@/data/travel";
 import { listActiveCategories, listSitemapEntries } from "@/lib/articles";
+import { GUIDE_INDEX_LOCALES, guideIndexable } from "@/lib/guide-seo";
 import { articlePath, SITE_URL } from "@/lib/url";
 import { xmlEscape } from "@/lib/xml";
 
@@ -81,12 +87,54 @@ async function rankingEntries(): Promise<MetadataRoute.Sitemap> {
   ];
 }
 
-// 언어별 URL 마다 다른 언어 대체 링크(hreflang)를 함께 적는다. 글은 색인 대상(indexable)인 번역끼리만 잇는다
+// 가이드 섹션(뷰티·여행·클리닉·드라마): 검색에 내는 언어(en·ja·zh-TW)만 적고 hreflang 도 그 언어끼리 잇는다.
+// 치과·성형 시술은 모든 언어에서 뺀다 (next.config.ts 가 같은 목록으로 noindex 헤더를 단다 — lib/guide-seo.ts).
+// 카탈로그 항목은 영어 문구가 있는 것만(로더가 거른다), 날짜는 카탈로그에 넣은 날
+async function guideEntries(): Promise<MetadataRoute.Sitemap> {
+  const [products, places, areas, procedures, dramas] = await Promise.all([
+    listBeauty("en"),
+    listTravel("en"),
+    listAreas("en"),
+    listClinic("en"),
+    listDrama("en"),
+  ]);
+  const pages: { path: string; priority: number; lastModified?: string }[] = [
+    { path: "/guide", priority: 0.7 },
+    { path: "/beauty", priority: 0.7 },
+    ...BEAUTY_CATEGORIES.map((c) => ({ path: `/beauty/awards/${c}`, priority: 0.6 })),
+    ...products.map((p) => ({ path: `/beauty/p/${p.slug}`, priority: 0.6, lastModified: p.addedAt })),
+    { path: "/beauty/skin-type", priority: 0.6 },
+    ...SKIN_TYPES.map((type) => ({ path: `/beauty/skin-type/${type}`, priority: 0.4 })),
+    { path: "/travel", priority: 0.7 },
+    ...areas.map((a) => ({ path: `/travel/${a.slug}`, priority: 0.6 })),
+    ...places.map((p) => ({ path: `/travel/place/${p.slug}`, priority: 0.6, lastModified: p.addedAt })),
+    { path: "/clinic", priority: 0.5 },
+    { path: "/clinic/how-to-choose", priority: 0.5 },
+    ...procedures.map((p) => ({ path: `/clinic/${p.slug}`, priority: 0.5, lastModified: p.addedAt })),
+    { path: "/drama", priority: 0.7 },
+    ...dramas.map((d) => ({ path: `/drama/${d.slug}`, priority: 0.6, lastModified: d.addedAt })),
+  ];
+  return pages.flatMap(({ path, priority, lastModified }) => {
+    const locales = GUIDE_INDEX_LOCALES.filter((l) => guideIndexable(l, path));
+    const alternates = hreflang(Object.fromEntries(locales.map((l) => [l, `${LOCALE_PATH_PREFIX[l]}${path}`])));
+    return locales.map((l) => ({
+      url: abs(`${LOCALE_PATH_PREFIX[l]}${path}`),
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority,
+      alternates,
+    }));
+  });
+}
+
+// 언어별 URL 마다 다른 언어 대체 링크(hreflang)를 함께 적는다. 글은 색인 대상(indexable)인 번역끼리만 잇는다.
+// 저장함(/saved, 이 기기에만 있는 목록)·협찬 안내(/partners)는 noindex 라 넣지 않는다
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [entries, activeByLocale, rankings] = await Promise.all([
+  const [entries, activeByLocale, rankings, guides] = await Promise.all([
     listSitemapEntries(),
     Promise.all(LOCALES.map(async (l) => [l, await listActiveCategories(l)] as const)),
     rankingEntries(),
+    guideEntries(),
   ]);
 
   const byArticle = new Map<string, typeof entries>();
@@ -105,8 +153,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return locales.map((l) => ({ url: abs(path(l)), changeFrequency: "daily" as const, priority: 0.6, alternates }));
   });
 
-  // 소개·편집 방침·개인정보 (문의는 메일 주소를 설정했을 때만 색인된다)
-  const trustPages = ["/about", "/editorial-policy", "/privacy", ...(process.env.NEXT_PUBLIC_CONTACT_EMAIL ? ["/contact"] : [])];
+  // 소개·편집 방침·개인정보·제휴 고지 (문의는 메일 주소를 설정했을 때만 색인된다). 제휴 고지는 카탈로그가 아니라 신뢰 페이지라 9개 언어 모두
+  const trustPages = [
+    "/about",
+    "/editorial-policy",
+    "/privacy",
+    "/disclosure",
+    ...(process.env.NEXT_PUBLIC_CONTACT_EMAIL ? ["/contact"] : []),
+  ];
 
   return [
     ...everyLocale("", { changeFrequency: "hourly", priority: 1 }),
@@ -114,6 +168,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...everyLocale("/schedule", { changeFrequency: "daily", priority: 0.7 }),
     ...UPCOMING.flatMap((e) => everyLocale(`/schedule/${e.id}`, { changeFrequency: "weekly", priority: 0.6 })),
     ...rankings,
+    ...guides,
     ...trustPages.flatMap((p) => everyLocale(p, { changeFrequency: "monthly", priority: 0.3 })),
     ...entries.map((e) => {
       const siblings = byArticle.get(e.articleId) ?? [];

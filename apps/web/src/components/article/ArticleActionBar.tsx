@@ -32,7 +32,7 @@ interface Props {
   upNextHref?: string; // 원래 글의 '다음 글' 주소 (UpNextCard 와 같은 글)
 }
 
-// 글 화면 하단 고정 캡슐 바: [댓글 n] [반응 n] [공유] [다음 →]. 탭바와 같은 모양·자리.
+// 글 화면 하단 고정 캡슐 바: [댓글 n] [반응 n] [공유] [다음 →]. 탭바와 같은 모양·자리. 0 은 숫자를 띄우지 않는다 (빈 가게처럼 보였다).
 // 제목(h1)이 화면 위로 지나간 뒤에만 보이고, 댓글을 쓰는 동안에는 숨는다.
 // 다음 글이 이어 붙어 지금 글이 바뀌면(hb:current-article) 그 글을 대상으로 바꾼다
 export function ArticleActionBar({ locale, article: initial, upNextHref }: Props) {
@@ -193,11 +193,11 @@ export function ArticleActionBar({ locale, article: initial, upNextHref }: Props
       >
         <button type="button" onClick={openComments} aria-label={t("barComments", { count: article.commentCount })} className={`${ITEM} text-ink-700`}>
           <CommentIcon className="size-5" />
-          <span className="tabular-nums">{article.commentCount}</span>
+          {article.commentCount > 0 && <span className="tabular-nums">{article.commentCount}</span>}
         </button>
         <button type="button" onClick={openReactions} aria-label={t("barReactions", { count: reactionCount })} className={`${ITEM} text-ink-700`}>
           <HeartIcon className="size-5" />
-          <span className="tabular-nums">{reactionCount}</span>
+          {reactionCount > 0 && <span className="tabular-nums">{reactionCount}</span>}
         </button>
         <button type="button" onClick={() => void share()} aria-label={t("barShare")} className={`${ITEM} text-ink-700`}>
           <ShareIcon className="size-5" />

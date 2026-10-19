@@ -1,0 +1,64 @@
+{
+  "updated": "Terakhir diperbarui",
+  "more": "Selengkapnya tentang Unnie Note",
+  "nav": {
+    "disclosure": "Pengungkapan afiliasi",
+    "editorial": "Kebijakan redaksi",
+    "about": "Tentang kami",
+    "contact": "Kontak"
+  },
+  "title": "Untuk brand",
+  "description": "Artikel bersponsor dalam 9 bahasa dan kemitraan panduan wisata untuk brand yang ingin menjangkau penggemar budaya Korea muda di luar negeri. Peringkat tidak pernah kami jual.",
+  "lead": "Kami memperkenalkan brand, tempat, dan layanan Korea kepada penggemar budaya Korea muda di luar negeri, dalam bahasa mereka sendiri dan selalu diberi label yang jelas.",
+  "languages": "bahasa, ditulis untuk penggemar budaya Korea usia belasan hingga tiga puluhan, yang kebanyakan membaca lewat ponsel",
+  "ctaEmail": "Kirim email soal kerja sama",
+  "ctaContact": "Hubungi kami",
+  "audienceTitle": "Untuk siapa kami menulis",
+  "audienceLead": "Setiap edisi bahasa ditulis untuk pembaca di tempat-tempat ini.",
+  "regions": {
+    "en": "AS, Inggris, Filipina, Singapura",
+    "ja": "Jepang",
+    "zh-TW": "Taiwan, Hong Kong",
+    "zh-CN": "Singapura, Malaysia",
+    "ko": "Korea",
+    "vi": "Vietnam",
+    "id": "Indonesia, Malaysia",
+    "fr": "Prancis, Belgia, Kanada",
+    "ru": "Rusia, Kazakhstan"
+  },
+  "packagesTitle": "Yang bisa kami tawarkan",
+  "packages": [
+    {
+      "name": "Artikel bersponsor dalam 9 bahasa",
+      "line": "Tim redaksi menulis satu artikel tentang produk, tempat, atau acaramu dengan gaya kami sendiri, lalu menerbitkannya dalam 9 bahasa. Artikel tetap ada di situs dan tampil di rel beranda selama seminggu.",
+      "includes": [
+        "Ditulis dan diterjemahkan tim redaksi",
+        "Label “Bersponsor” di atas judul",
+        "Seminggu di rel beranda",
+        "Tautan ditandai sebagai bersponsor untuk mesin pencari"
+      ]
+    },
+    {
+      "name": "Kemitraan panduan wisata",
+      "line": "Untuk tur, tiket terusan, eSIM, dan penginapan bagi wisatawan ke Korea: tautan pemesananmu bisa tampil di kotak “Sebelum berangkat” di panduan wisata kami.",
+      "includes": [
+        "Dibayar lewat komisi per pemesanan",
+        "Selalu dengan label Iklan dan kalimat pengungkapan",
+        "Urutan ditentukan oleh kecocokan dengan pembaca tiap bahasa, bukan besar komisi"
+      ]
+    }
+  ],
+  "notForSale": "Kami tidak menjual posisi di peringkat, penghargaan, atau tangga lagu. Mitra yang membayar pun tidak bisa mengubah urutan atau skor.",
+  "neverTitle": "Yang tidak kami lakukan",
+  "never": [
+    "Iklan rumah sakit atau klinik, artikel bersponsor klinik, atau tautan afiliasi klinik",
+    "Ulasan, testimoni, atau cerita “aku sudah coba” yang dibayar",
+    "Posisi berbayar di peringkat, penghargaan, atau tangga lagu K-pop",
+    "Konten bersponsor tanpa label, atau label yang disembunyikan di komentar atau menu “lainnya”"
+  ],
+  "contactTitle": "Hubungi kami",
+  "contact": "Ceritakan tentang brand dan rencanamu. Setiap pesan dibaca langsung oleh anggota tim kami.",
+  "contactPending": "Email kerja sama sedang kami siapkan. Sementara itu, hubungi kami lewat <contact>halaman kontak</contact>.",
+  "mailSubject": "Kerja sama — Unnie Note",
+  "mailBody": "Perusahaan:\nRencana kerja sama:\nBahasa atau negara yang ingin dijangkau:\n"
+}

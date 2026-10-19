@@ -20,6 +20,7 @@ import { collectProducts } from "./products";
 import { ensureWeeklyPoll, runRankings, syncEntityMeta, syncWiki } from "./rankings";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
+import { unpublish } from "./pipeline/unpublish";
 import { collectTranslations, submitTranslations } from "./pipeline/translate";
 import { writeArticles } from "./pipeline/write";
 import { upsertSignals } from "./store";
@@ -87,6 +88,8 @@ const USAGE = `usage: cli.ts <command>
   comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기
   seed-guides              가이드 주제(apps/worker/data/guides.json)를 대기열에 넣기 (이미 있으면 건너뜀)
   recheck                  최근 30일 글의 원문이 삭제됐으면(404·410) 글을 내려 확인 대기로 (하루 1번)
+  unpublish <id|slug|끝6자리…> [--dry] | unpublish --off-topic [--dry]
+                           발행 글 내리기 (REJECTED). --off-topic: 무관 주제 단어(해외 축구·코인·처형)가 제목에 있는 글
   products                 편의점 상품 수집 (K-쇼핑 주간 랭킹, 하루 1번)
   rankings                 오늘(KST) 랭킹 스냅숏 만들기 (AI 없음, 하루 1번)
   wiki-sync [--backfill]   위키백과 언어별 조회수 수집 (--backfill: 90일치)
@@ -147,6 +150,9 @@ try {
       break;
     case "recheck":
       await recheckSources();
+      break;
+    case "unpublish":
+      await unpublish(args);
       break;
     case "seed-guides":
       await seedGuides();

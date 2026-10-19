@@ -1,0 +1,43 @@
+{
+  "updated": "Cập nhật lần cuối",
+  "more": "Thêm về Unnie Note",
+  "nav": {
+    "partners": "Dành cho thương hiệu",
+    "editorial": "Chính sách biên tập",
+    "privacy": "Chính sách quyền riêng tư",
+    "contact": "Liên hệ"
+  },
+  "title": "Công bố liên kết tiếp thị",
+  "description": "Cách liên kết tiếp thị trên Unnie Note hoạt động, những đối tác trả hoa hồng cho chúng tôi, và cách chúng tôi tách chúng khỏi bảng xếp hạng và trang y tế.",
+  "lead": "Một số liên kết trên Unnie Note là liên kết tiếp thị. Đây là cách chúng hoạt động và những nguyên tắc chúng tôi giữ.",
+  "howTitle": "Liên kết tiếp thị hoạt động thế nào",
+  "how": "Khi bạn mua hoặc đặt chỗ qua các liên kết này, cửa hàng trả cho chúng tôi một khoản hoa hồng nhỏ. Giá bạn trả vẫn như khi vào thẳng cửa hàng: hoa hồng do cửa hàng trả, không phải bạn.",
+  "sampleLabel": "Mọi khung liên kết tiếp thị đều bắt đầu như thế này:",
+  "partnersTitle": "Đối tác của chúng tôi",
+  "partnersLead": "Đây là các cửa hàng và dịch vụ chúng tôi có thể dẫn liên kết tới. Liên kết chỉ là liên kết thường cho đến khi hợp tác được duyệt, nên hiện chưa phải liên kết nào cũng mang lại hoa hồng.",
+  "partnerUse": {
+    "oliveyoung": "Mỹ phẩm Hàn Quốc",
+    "yesstyle": "Mỹ phẩm Hàn Quốc",
+    "amazon": "Mỹ phẩm Hàn Quốc, chỉ ở Mỹ",
+    "klook": "eSIM, tour và vé ở Hàn Quốc",
+    "creatrip": "Tour và dịch vụ tại Hàn Quốc",
+    "trip": "Khách sạn và đưa đón sân bay",
+    "airalo": "eSIM"
+  },
+  "coupang": "Coupang Partners",
+  "coupangUse": "Banner trong một số bài viết, chỉ hiện khi thiết bị của bạn đặt múi giờ Hàn Quốc",
+  "labelTitle": "Cách chúng tôi ghi nhãn",
+  "label": [
+    "Nhãn Quảng cáo và câu ở trên luôn đứng trước mọi liên kết.",
+    "Liên kết tiếp thị mở trong tab mới và được đánh dấu là tài trợ với công cụ tìm kiếm.",
+    "Chúng tôi không giấu chúng trong bình luận, menu “xem thêm” hay hình ảnh không ghi nhãn."
+  ],
+  "independenceTitle": "Độc lập biên tập",
+  "independence": "Đối tác không được xem trước, duyệt hay trả tiền để quyết định nội dung chúng tôi viết. Cửa hàng được xếp theo thứ tự phù hợp với độc giả từng ngôn ngữ, tức là nơi họ thật sự mua và nhận hàng được, chứ không theo hoa hồng. Danh sách giải thưởng dùng công thức công khai (điểm biên tập cộng phiếu bầu thật của độc giả), và không thương hiệu nào có thể trả tiền để được vào danh sách hay lên hạng.",
+  "medicalTitle": "Trang y tế",
+  "medical": "<clinic>Cẩm nang thủ thuật tại phòng khám</clinic> không có liên kết tiếp thị, không có banner Coupang và không có quảng cáo phòng khám, nhiều nhất chỉ một quảng cáo hiển thị có ghi nhãn. Chúng tôi không nêu tên, xếp hạng hay đánh giá phòng khám hoặc bác sĩ.",
+  "catalogTitle": "Cách chúng tôi viết cẩm nang",
+  "catalog": "Phần mô tả sản phẩm, địa điểm, thủ thuật và phim do ban biên tập viết với sự hỗ trợ của AI, dựa trên nguồn chính thức như trang thương hiệu, Tổng cục Du lịch Hàn Quốc, hội y khoa, cơ quan quản lý và đài truyền hình. Đó là mô tả, không phải đánh giá trải nghiệm cá nhân: chúng tôi không đăng lời kể “mình đã dùng thử”, và số phiếu bầu, số sao chỉ đến từ độc giả thật.",
+  "contactTitle": "Câu hỏi",
+  "contact": "Nếu thấy liên kết có vấn đề hoặc thiếu nhãn, hãy <contact>báo cho chúng tôi</contact> để chúng tôi sửa."
+}

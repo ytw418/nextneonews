@@ -1,0 +1,43 @@
+{
+  "updated": "Dernière mise à jour",
+  "more": "En savoir plus sur Unnie Note",
+  "nav": {
+    "partners": "Marques",
+    "editorial": "Charte éditoriale",
+    "privacy": "Politique de confidentialité",
+    "contact": "Contact"
+  },
+  "title": "Liens affiliés",
+  "description": "Comment fonctionnent les liens affiliés d'Unnie Note, quels partenaires nous versent une commission et comment nous les tenons à l'écart des classements et des pages médicales.",
+  "lead": "Certains liens d'Unnie Note sont des liens affiliés. Voici comment ils fonctionnent et les règles que nous suivons.",
+  "howTitle": "Comment fonctionnent les liens affiliés",
+  "how": "Quand vous achetez ou réservez via l'un de ces liens, la boutique nous verse une petite commission. Vous payez le même prix qu'en allant directement sur la boutique : la commission est payée par la boutique, pas par vous.",
+  "sampleLabel": "Chaque encadré de liens affiliés commence ainsi :",
+  "partnersTitle": "Nos partenaires",
+  "partnersLead": "Voici les boutiques et services vers lesquels nous pouvons renvoyer. Un lien reste un lien ordinaire tant que le partenariat n'est pas validé : tous les liens ne nous rapportent donc pas encore de commission.",
+  "partnerUse": {
+    "oliveyoung": "Produits de beauté coréens",
+    "yesstyle": "Produits de beauté coréens",
+    "amazon": "Produits de beauté coréens, États-Unis uniquement",
+    "klook": "eSIM, visites et billets en Corée",
+    "creatrip": "Visites et services en Corée",
+    "trip": "Hôtels et transferts aéroport",
+    "airalo": "eSIM"
+  },
+  "coupang": "Coupang Partners",
+  "coupangUse": "Bannières dans certains articles, affichées seulement si votre appareil est réglé sur l'heure coréenne",
+  "labelTitle": "Comment nous les signalons",
+  "label": [
+    "La mention Publicité et la phrase ci-dessus passent toujours avant le moindre lien.",
+    "Les liens affiliés s'ouvrent dans un nouvel onglet et sont signalés comme sponsorisés aux moteurs de recherche.",
+    "Nous ne les cachons jamais dans les commentaires, un menu « plus » ou des images sans mention."
+  ],
+  "independenceTitle": "Indépendance éditoriale",
+  "independence": "Nos partenaires ne voient pas, ne valident pas et ne paient pas ce que nous écrivons. Les boutiques sont classées selon ce qui convient aux lecteurs de chaque langue, c'est-à-dire là où ils peuvent vraiment acheter et se faire livrer, et non selon la commission. Les palmarès suivent une formule publique (note de la rédaction plus votes réels des lecteurs), et aucune marque ne peut payer pour y figurer ou y monter.",
+  "medicalTitle": "Pages médicales",
+  "medical": "Nos <clinic>guides des actes en clinique</clinic> ne contiennent ni liens affiliés, ni bannières Coupang, ni publicité pour des cliniques : au plus une annonce publicitaire signalée. Nous ne nommons, ne classons et ne notons ni cliniques ni médecins.",
+  "catalogTitle": "Comment nos guides sont écrits",
+  "catalog": "Les descriptions de produits, de lieux, d'actes et de dramas sont rédigées par notre équipe avec l'aide de l'IA, à partir de sources officielles comme les sites des marques, l'Office national du tourisme coréen, les sociétés savantes médicales, les autorités de régulation et les chaînes de télévision. Ce sont des descriptions, pas des avis à la première personne : nous ne publions pas de témoignages « j'ai testé », et les votes comme les étoiles viennent uniquement de vrais lecteurs.",
+  "contactTitle": "Une question ?",
+  "contact": "Si un lien semble incorrect ou qu'une mention manque, <contact>dites-le-nous</contact> et nous corrigerons."
+}

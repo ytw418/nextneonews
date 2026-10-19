@@ -1,0 +1,43 @@
+{
+  "updated": "Last updated",
+  "more": "More about Unnie Note",
+  "nav": {
+    "partners": "For brands",
+    "editorial": "Editorial policy",
+    "privacy": "Privacy policy",
+    "contact": "Contact"
+  },
+  "title": "Affiliate disclosure",
+  "description": "How affiliate links on Unnie Note work, which partners pay us a commission, and how we keep that apart from rankings and medical pages.",
+  "lead": "Some links on Unnie Note are affiliate links. Here's how they work and the rules we keep.",
+  "howTitle": "How affiliate links work",
+  "how": "When you buy or book through one of these links, the shop pays us a small commission. You pay the same price as going to the shop directly: the commission comes from the shop, not from you.",
+  "sampleLabel": "Every box of affiliate links starts like this:",
+  "partnersTitle": "Our partners",
+  "partnersLead": "These are the shops and services we may link to. A link stays a plain link until a partnership is approved, so not every link earns us a commission yet.",
+  "partnerUse": {
+    "oliveyoung": "K-beauty products",
+    "yesstyle": "K-beauty products",
+    "amazon": "K-beauty products, US only",
+    "klook": "eSIMs, tours and tickets in Korea",
+    "creatrip": "Tours and services in Korea",
+    "trip": "Hotels and airport transfers",
+    "airalo": "eSIMs"
+  },
+  "coupang": "Coupang Partners",
+  "coupangUse": "Banners on some articles, shown only when your device is set to Korea time",
+  "labelTitle": "How we mark them",
+  "label": [
+    "The Ad label and the sentence above always come first, before any link.",
+    "Affiliate links open in a new tab and are marked as sponsored for search engines.",
+    "We never tuck them into comments, “more” menus or unlabelled images."
+  ],
+  "independenceTitle": "Editorial independence",
+  "independence": "Partners don't see, approve or pay for what we write. Shops are listed in the order that suits readers of each language, meaning where they can actually buy and get delivery, not by commission. Award lists use a public formula (our editorial score plus real reader votes), and no brand can pay to appear or to move up.",
+  "medicalTitle": "Medical pages",
+  "medical": "Our <clinic>clinic procedure guides</clinic> carry no affiliate links, no Coupang banners and no clinic advertising, only one labelled display ad at most. We don't name, rank or review clinics or doctors.",
+  "catalogTitle": "How our guides are written",
+  "catalog": "Descriptions of products, places, procedures and dramas are written by our editorial team with AI assistance, based on official sources such as brand pages, the Korea Tourism Organization, medical societies, regulators and broadcasters. They're descriptions, not first-person reviews: we don't publish “I tried it” testimonials, and vote counts and star ratings come only from real readers.",
+  "contactTitle": "Questions",
+  "contact": "If a link looks wrong or a label is missing, <contact>tell us</contact> and we'll fix it."
+}
