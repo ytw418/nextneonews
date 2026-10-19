@@ -18,6 +18,7 @@
   "listSep": ", ",
   "rank": "{rank}위",
   "basis": "편집 점수 + 독자 평가 {count}표 · {date} 갱신",
+  "basisEditorial": "편집 점수 · {date} 갱신",
   "awardsName": "언니 어워드",
   "editorsPicks": "에디터 픽",
   "seeAll": "전체 보기",

@@ -18,6 +18,7 @@
   "listSep": ", ",
   "rank": "Hạng {rank}",
   "basis": "Điểm biên tập + {count} lượt đánh giá của độc giả · cập nhật {date}",
+  "basisEditorial": "Điểm biên tập · cập nhật {date}",
   "awardsName": "Giải Unnie",
   "editorsPicks": "Biên tập viên chọn",
   "seeAll": "Xem tất cả",

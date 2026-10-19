@@ -21,17 +21,17 @@ import { Link } from "@/i18n/navigation";
 import { isSkinType, picksForSkin, rankAwards, SHARE_DOMAIN, SKIN_CODE } from "@/lib/beauty";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 
-import { loadBeauty } from "../../data";
+import { loadBeauty, staticParamsFor } from "../../data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata, webPageLd } from "../../meta";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (../../data.ts). 색인 언어 밖은 첫 요청 때 만들고, 없는 타입은 notFound
+export const revalidate = false;
 
 // 이 타입을 위한 제품 수 (2열 그리드 + 마지막 칸은 뷰티 전체)
 const PICKS = 5;
 
-export function generateStaticParams() {
-  return SKIN_TYPES.map((type) => ({ type }));
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return staticParamsFor(params.locale, "type", SKIN_TYPES);
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/skin-type/[type]">): Promise<Metadata> {

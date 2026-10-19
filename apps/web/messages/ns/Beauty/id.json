@@ -18,6 +18,7 @@
   "listSep": ", ",
   "rank": "No. {rank}",
   "basis": "Skor editor + {count} vote pembaca · diperbarui {date}",
+  "basisEditorial": "Skor editor · diperbarui {date}",
   "awardsName": "Unnie Awards",
   "editorsPicks": "Pilihan Editor",
   "seeAll": "Lihat semua",

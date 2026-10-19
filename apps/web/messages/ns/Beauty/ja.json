@@ -18,6 +18,7 @@
   "listSep": "・",
   "rank": "{rank}位",
   "basis": "編集部スコア＋読者の評価{count}票・{date}更新",
+  "basisEditorial": "編集部スコア・{date}更新",
   "awardsName": "Unnie Awards",
   "editorsPicks": "編集部ピック",
   "seeAll": "すべて見る",

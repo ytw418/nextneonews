@@ -18,6 +18,7 @@
   "listSep": ", ",
   "rank": "N° {rank}",
   "basis": "Note de la rédaction + {count, plural, =0 {aucun vote de lecteur pour l’instant} one {# vote de lecteur} other {# votes de lecteurs}} · mis à jour le {date}",
+  "basisEditorial": "Note de la rédaction · mis à jour le {date}",
   "awardsName": "Prix Unnie",
   "editorsPicks": "Choix de la rédaction",
   "seeAll": "Tout voir",

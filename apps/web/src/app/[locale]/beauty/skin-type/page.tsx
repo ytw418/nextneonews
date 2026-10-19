@@ -15,7 +15,8 @@ import { breadcrumbLd, graph } from "@/lib/jsonld-catalog";
 
 import { absoluteUrl, beautyCrumbs, beautyMetadata, webPageLd } from "../meta";
 
-export const revalidate = 3600;
+// DB 를 읽지 않는 정적 화면 (9개 언어 모두 빌드 때 만든다 — 하위 동적 값이 없어 언어만 거를 수 없다)
+export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/skin-type">): Promise<Metadata> {
   const { locale } = await params;

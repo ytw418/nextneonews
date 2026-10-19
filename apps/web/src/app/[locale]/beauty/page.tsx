@@ -26,7 +26,8 @@ import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-cata
 import { loadBeauty } from "./data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata } from "./meta";
 
-export const revalidate = 3600;
+// 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (./data.ts). 9개 언어 모두 빌드 때 만든다 (빌드는 DB 를 읽지 않는다)
+export const revalidate = false;
 
 // 허브 '어디서 사나': 제품이 아니라 가게 자체로 (검색·목록 주소). 순서는 언어별 partnersForLocale
 const HUB_SHOPS: AffiliateTarget[] = [
@@ -116,7 +117,11 @@ export default async function BeautyHubPage({ params }: PageProps<"/[locale]/bea
               entry={hero.item}
               locale={locale}
               label={names[hero.category]}
-              basis={t("basis", { count: data.votes.get(hero.category) ?? 0, date: updatedDate(locale) })}
+              basis={
+                data.withVotes
+                  ? t("basis", { count: data.votes.get(hero.category) ?? 0, date: updatedDate(locale) })
+                  : t("basisEditorial", { date: updatedDate(locale) })
+              }
             />
             {others.map((w) => (
               <ProductCard key={w.item.slug} entry={w.item} locale={locale} label={names[w.category]} />

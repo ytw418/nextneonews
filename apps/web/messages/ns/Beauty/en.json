@@ -18,6 +18,7 @@
   "listSep": ", ",
   "rank": "No. {rank}",
   "basis": "Editorial score + {count, plural, =0 {no reader votes yet} one {# reader vote} other {# reader votes}} · updated {date}",
+  "basisEditorial": "Editorial score · updated {date}",
   "awardsName": "Unnie Awards",
   "editorsPicks": "Editors’ Picks",
   "seeAll": "See all",

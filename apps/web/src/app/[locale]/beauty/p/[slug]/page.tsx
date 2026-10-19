@@ -19,35 +19,36 @@ import { JsonLd } from "@/components/JsonLd";
 import { SaveButton } from "@/components/SaveButton";
 import { ShareButton } from "@/components/ShareButton";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { beautySlugs, getBeauty } from "@/data/beauty";
+import { beautySlugs, beautyText, getBeauty, isBeautySlug } from "@/data/beauty";
 import { isNew, SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
-import { brandGlyph, isEditorsPick, PERCENT_MIN_VOTES, readerRating } from "@/lib/beauty";
+import { brandGlyph, isEditorsPick, readerRating } from "@/lib/beauty";
 import { emptyTotals } from "@/lib/item-votes";
 import { breadcrumbLd, graph, productLd } from "@/lib/jsonld-catalog";
 
-import { loadBeauty } from "../../data";
+import { loadBeauty, staticParamsFor } from "../../data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata } from "../../meta";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (../../data.ts). 색인 언어 밖은 첫 요청 때 만들고, 없는 slug 는 notFound
+export const revalidate = false;
 
 // 같은 분류 다른 제품 수 (2열 그리드 + 마지막 칸은 분류 전체 보기)
 const RELATED = 3;
 const BUY_ANCHOR = "affiliate-beauty-detail"; // AffiliateBox 제목 id (affiliate-{placement})
 
-export function generateStaticParams() {
-  return beautySlugs().map((slug) => ({ slug }));
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return staticParamsFor(params.locale, "slug", beautySlugs());
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/p/[slug]">): Promise<Metadata> {
   const { locale, slug } = await params;
-  if (!isLocale(locale)) return {};
-  const [t, entry, data] = await Promise.all([
+  // 없는 주소(봇이 지어낸 slug)는 문구·집계를 읽기 전에 돌려보낸다
+  if (!isLocale(locale) || !isBeautySlug(slug)) return {};
+  const [t, entry, text] = await Promise.all([
     getTranslations({ locale, namespace: "Beauty" }),
     getBeauty(slug, locale),
-    loadBeauty(locale),
+    beautyText(locale),
   ]);
   if (!entry) return {};
   const title = t("product.metaTitle", { brand: entry.brand, name: entry.text.name });
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/p
     title,
     description: t("product.metaDescription", {
       tagline: entry.text.tagline,
-      category: data.text.categories[entry.category].name,
+      category: text.categories[entry.category].name,
     }),
   });
   // 제품 상세는 사이트명 꼬리(' | Unnie Note')를 뺀다 — 긴 제품명에서 검색 결과 제목이 잘리지 않게 ('어디서 사나' 가 앞)
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/p
 // 광고는 구매 상자와 그리드 한 블록 이상 떨어진다
 export default async function BeautyProductPage({ params }: PageProps<"/[locale]/beauty/p/[slug]">) {
   const { locale, slug } = await params;
-  if (!isLocale(locale)) notFound();
+  if (!isLocale(locale) || !isBeautySlug(slug)) notFound();
   setRequestLocale(locale);
 
   const [t, tGuide, tArticle, entry, data] = await Promise.all([
@@ -173,7 +174,7 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
       {shops[0] && <BuyStrip locale={locale} target={shops[0]} itemId={slug} moreHref={`#${BUY_ANCHOR}`} />}
 
       <div className="px-gutter pt-4">
-        <ProductVote itemId={slug} initial={totals} showPercent={totals.total >= PERCENT_MIN_VOTES} />
+        <ProductVote itemId={slug} initial={totals} />
         {rating && (
           <p className="mt-1 px-1 text-t7 tabular-nums text-ink-600">
             {t("product.rating", { value: rating.value, count: rating.count })}

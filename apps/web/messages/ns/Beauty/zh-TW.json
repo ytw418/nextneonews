@@ -18,6 +18,7 @@
   "listSep": "、",
   "rank": "第{rank}名",
   "basis": "編輯評分＋讀者評價 {count} 票·{date} 更新",
+  "basisEditorial": "編輯評分·{date} 更新",
   "awardsName": "Unnie 大賞",
   "editorsPicks": "編輯精選",
   "seeAll": "看全部",

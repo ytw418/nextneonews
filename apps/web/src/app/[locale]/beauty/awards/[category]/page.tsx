@@ -18,17 +18,17 @@ import { BEAUTY_CATEGORIES, type BeautyCategory } from "@/data/beauty/types";
 import { isEditorsPick, updatedDate } from "@/lib/beauty";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 
-import { loadBeauty } from "../../data";
+import { loadBeauty, staticParamsFor } from "../../data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata } from "../../meta";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (../../data.ts). 색인 언어 밖은 첫 요청 때 만들고, 없는 분류는 notFound
+export const revalidate = false;
 
 // 비대칭 랭킹: 1위 전폭 · 2·3위 2열 · 4위부터 목록
 const GRID_UNTIL = 3;
 
-export function generateStaticParams() {
-  return BEAUTY_CATEGORIES.map((category) => ({ category }));
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return staticParamsFor(params.locale, "category", BEAUTY_CATEGORIES);
 }
 
 function isCategory(value: string): value is BeautyCategory {
@@ -77,7 +77,9 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
     string
   >;
   const title = t("awards.title", { category: name, kind });
-  const basis = t("basis", { count: votes, date: updatedDate(locale) });
+  const basis = data.withVotes
+    ? t("basis", { count: votes, date: updatedDate(locale) })
+    : t("basisEditorial", { date: updatedDate(locale) });
   const pageUrl = absoluteUrl(locale, `/beauty/awards/${category}`);
   const [first, ...rest] = ranked;
   const grid = rest.slice(0, GRID_UNTIL - 1);
