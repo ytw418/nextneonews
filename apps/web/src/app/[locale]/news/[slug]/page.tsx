@@ -58,7 +58,9 @@ import { displayName } from "@/lib/rankings";
 import { dateStamp } from "@/lib/time";
 import { articlePath, feedAlternate, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
-export const revalidate = 300;
+// 시간이 지나도 다시 만들지 않는다. 글을 내거나 내릴 때, 하루 1번 최근·반응이 온 글을 worker 가 비우고 바로 다시 요청한다
+// (apps/worker/src/pipeline/announce.ts · refresh.ts). 시간 기반 재생성은 봇 방문마다 DB 를 깨워 Neon 무료 한도를 넘겼다 (2026-10-19)
+export const revalidate = false;
 
 // 글 페이지는 빌드 때 만들지 않고 첫 요청 때 만든 뒤 캐시한다.
 export function generateStaticParams() {

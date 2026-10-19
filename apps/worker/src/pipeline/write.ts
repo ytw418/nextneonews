@@ -133,7 +133,7 @@ function pollOptionIds(riskTier: Topic["riskTier"], drafts: Localized[]): string
 }
 
 // 검사(숫자·원문 겹침) 뒤 기사와 5개 언어판을 저장한다. 경고가 있으면 사람 확인(REVIEW)으로 둔다
-async function saveArticle({ topic, draft, sources, sourceText, entities, reaction }: SaveInput): Promise<string> {
+async function saveArticle({ topic, draft, sources, sourceText, entities, reaction }: SaveInput): Promise<Saved> {
   const en = clean(draft.en);
   const [year, month, day] = kstToday().split("-").map((part) => String(Number(part)));
   const warnings = unsupportedNumbers({ facts: draft.facts, ...en }, [year!, month!, day!]).map(
@@ -205,17 +205,21 @@ async function saveArticle({ topic, draft, sources, sourceText, entities, reacti
   });
   if (warnings.length > 0) log.warn("write: check warnings", { articleId: article.id, warnings, published: publish });
   await attachImage(article.id);
-  // 발행했으면 사이트맵·홈·피드를 바로 새로 그리고 검색엔진에 알린다 (실패해도 계속)
-  if (publish) {
-    const pages: AnnouncedPage[] = locales.map(([locale]) => ({
-      locale,
-      slug,
-      category: topic.category,
-      indexable: isIndexable(locale, topic.category, topic.format),
-    }));
-    await announce(pages);
-  }
-  return article.id;
+  // 발행했으면 알릴 언어판을 돌려준다. 사이트 캐시 비우기·미리 요청은 이번 실행의 글을 모아 끝에 한 번 한다 (writeArticles)
+  const pages: AnnouncedPage[] = publish
+    ? locales.map(([locale]) => ({
+        locale,
+        slug,
+        category: topic.category,
+        indexable: isIndexable(locale, topic.category, topic.format),
+      }))
+    : [];
+  return { articleId: article.id, pages };
+}
+
+interface Saved {
+  articleId: string;
+  pages: AnnouncedPage[]; // 바로 발행했으면 그 언어판들 (사람 확인 대기면 빈 배열)
 }
 
 // 더쿠 신호가 있으면 댓글을 따로 받아 표본을 만든다 (반응 요약용). 못 받아도 글은 쓴다
@@ -236,7 +240,7 @@ async function readReaction(signals: Signal[]): Promise<Reaction | null> {
 }
 
 // 뉴스·화제 주제: 원문 한 편에서 사실을 뽑아 쓴다
-async function writeNews(topic: SaveInput["topic"]): Promise<string> {
+async function writeNews(topic: SaveInput["topic"]): Promise<Saved> {
   // 같은 주제에 신호가 여럿이면 사실을 확인할 수 있는 뉴스를 먼저 쓴다 (커뮤니티 글은 화제 신호일 뿐이다)
   const signals = await prisma.signal.findMany({ where: { topicId: topic.id }, orderBy: { lastSeenAt: "desc" } });
   const signal = signals.find((s) => NEWS_SOURCES.has(s.source)) ?? signals[0];
@@ -255,7 +259,7 @@ async function writeNews(topic: SaveInput["topic"]): Promise<string> {
 }
 
 // 가이드 주제: 공식 페이지 사실 목록으로만 쓴다 (숫자·요금·날짜는 목록에 있는 것만)
-async function writeGuide(topic: SaveInput["topic"]): Promise<string> {
+async function writeGuide(topic: SaveInput["topic"]): Promise<Saved> {
   const keywords = `${topic.keyword} ${topic.angle ?? ""}`.split(/[\s:·,()'"?]+/).filter((w) => w.length > 1);
   const pack = await buildFactPack(topic.factUrls, keywords);
   const factChars = pack.reduce((n, p) => n + p.text.length, 0);
@@ -280,7 +284,7 @@ async function writeGuide(topic: SaveInput["topic"]): Promise<string> {
   });
 }
 
-async function writeTopic(topic: Topic): Promise<string> {
+async function writeTopic(topic: Topic): Promise<Saved> {
   const { category, format } = topic;
   if (!category || !format) throw new Error(`topic ${topic.id} missing category/format`);
   const ready = { ...topic, category, format };
@@ -297,6 +301,7 @@ export async function writeArticles(limit = 3): Promise<{ written: string[]; ski
   });
 
   const written: string[] = [];
+  const published: AnnouncedPage[] = [];
   let skipped = 0;
   // 4편씩 동시에 쓴다 (100편 기준 약 33분 → 8분)
   const queue = [...topics];
@@ -308,9 +313,10 @@ export async function writeArticles(limit = 3): Promise<{ written: string[]; ski
   const writeOne = async (topic: Topic) => {
     await prisma.topic.update({ where: { id: topic.id }, data: { status: "WRITING" } });
     try {
-      const articleId = await writeTopic(topic);
+      const { articleId, pages } = await writeTopic(topic);
       await prisma.topic.update({ where: { id: topic.id }, data: { status: "DONE" } });
       written.push(articleId);
+      published.push(...pages);
       log.info("write: article created", { topic: topic.keyword, articleId });
     } catch (error) {
       if (error instanceof BudgetExceededError) {
@@ -324,7 +330,12 @@ export async function writeArticles(limit = 3): Promise<{ written: string[]; ski
       log.error("write: failed", { topic: topic.keyword, error: String(error), permanent });
     }
   };
-  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, topics.length) }, worker));
+  try {
+    await Promise.all(Array.from({ length: Math.min(CONCURRENCY, topics.length) }, worker));
+  } finally {
+    // 발행한 글은 모아서 한 번에 알린다: 홈·피드·카테고리를 글마다 다시 그리지 않게 (예산 초과로 멈춰도 이미 낸 글은 알린다)
+    await announce(published);
+  }
   log.info("write: done", { written: written.length, skipped });
   return { written, skipped };
 }

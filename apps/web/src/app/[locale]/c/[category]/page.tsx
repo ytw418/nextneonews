@@ -14,7 +14,8 @@ import { categoryTint } from "@/lib/cover";
 import { FIRST_PAGE_SIZE, pageCount } from "@/lib/feed";
 import { articlePath, localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
-export const revalidate = 300;
+// 시간이 지나도 다시 만들지 않는다. 이 카테고리에 글을 낼 때 worker announce 가 비우고 바로 다시 요청한다
+export const revalidate = false;
 
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ category: categorySlug(c) }));

@@ -35,8 +35,9 @@ import { listForEvent, toFeedItems } from "@/lib/articles";
 import { eventJsonLd } from "@/lib/jsonld";
 import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-// 일정 파일(packages/core/src/upcoming.ts)에 있는 일정만 빌드 때 만든다. D-day 때문에 한 시간마다 다시 만든다
-export const revalidate = 3600;
+// 일정 파일(packages/core/src/upcoming.ts)에 있는 일정만 빌드 때 만든다. 관련 뉴스가 DB 를 읽어 시간 기반으로는 다시 만들지 않고,
+// D-day 가 바뀌는 KST 자정 뒤 첫 파이프라인과 05시에 worker 가 비우고 바로 다시 요청한다 (refresh date·day)
+export const revalidate = false;
 export const dynamicParams = false;
 
 export function generateStaticParams() {

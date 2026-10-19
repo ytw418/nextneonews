@@ -10,7 +10,7 @@ import { EventRow } from "@/components/schedule/EventRow";
 import { scheduleJsonLd } from "@/lib/jsonld";
 import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-// D-day 가 KST 자정에 바뀌니 한 시간마다 다시 만든다
+// D-day 가 KST 자정에 바뀌니 한 시간마다 다시 만든다. 일정은 코드 파일이고 머리말 카테고리는 공유 캐시라 다시 만들어도 DB 를 깨우지 않는다
 export const revalidate = 3600;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/schedule">): Promise<Metadata> {

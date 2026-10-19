@@ -5,8 +5,8 @@ import { articlePath, SITE_URL } from "@/lib/url";
 import { xmlEscape } from "@/lib/xml";
 
 // 구글 뉴스 사이트맵: 최근 48시간에 발행한 색인 대상 글만, 최대 1000개 (developers.google.com/search/docs/crawling-indexing/sitemaps/news-sitemap).
-// 자동 발행 직후 worker 의 announce 가 /api/revalidate 로 바로 다시 만든다
-export const revalidate = 600;
+// 자동 발행 직후 worker 의 announce 가 /api/revalidate 로 비우고 바로 다시 요청한다. 시간 기반 재생성은 하지 않는다
+export const revalidate = false;
 
 const WINDOW_MS = 48 * 3_600_000;
 const MAX_URLS = 1000;

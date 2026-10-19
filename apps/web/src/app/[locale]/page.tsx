@@ -25,7 +25,9 @@ import { FIRST_PAGE_SIZE, pageCount } from "@/lib/feed";
 import { CHART_KEY, getEntities, getLatestSnapshot } from "@/lib/rankings";
 import { localeAlternates, ogBase } from "@/lib/url";
 
-export const revalidate = 300;
+// 시간이 지나도 다시 만들지 않는다. 글을 낼 때(announce)·KST 자정(일정 D-day)·05시 랭킹 뒤에 worker 가 비우고 바로 다시 요청한다.
+// 봇이 DB 를 깨우지 않게 재생성은 파이프라인이 도는 동안에만 일어난다 (apps/worker/src/pipeline/refresh.ts)
+export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
