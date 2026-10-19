@@ -80,6 +80,18 @@ export function encodeSavedShare(items: readonly SavedItem[]): string {
   return btoa(text).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
+// 붙여 넣은 글(복원 링크 전체, 또는 ?i= 값만) → 목록. 홈 화면 앱의 저장함 붙여넣기 칸(PasteLink)
+export function decodePastedShare(text: string, now = Date.now()): SavedItem[] {
+  const value = text.trim();
+  let code: string | null;
+  try {
+    code = new URL(value).searchParams.get("i");
+  } catch {
+    code = /^[A-Za-z0-9_-]+$/.test(value) ? value : null;
+  }
+  return code ? decodeSavedShare(code, now) : [];
+}
+
 // 공유 링크(?i=)의 값 → 목록. 주소는 아무나 만들 수 있으니 형식이 맞는 것만, 최대 SAVED_SHARE_MAX 개.
 // 순서를 지키려고 앞 항목일수록 최근 시각을 준다
 export function decodeSavedShare(code: string, now = Date.now()): SavedItem[] {

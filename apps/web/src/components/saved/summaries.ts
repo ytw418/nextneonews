@@ -1,10 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 
-import type { GlyphedSummary } from "@/data/catalog";
+import type { SavedSummary } from "@/data/catalog";
 import type { SavedItem } from "@/lib/saved";
 
-// 저장함 한 줄에 그릴 요약은 GET /api/saved 가 돌려주는 CatalogSummary (+ 상세와 같은 커버 유령 글자 glyph)
-export type CatalogSummary = GlyphedSummary;
+// 저장함 한 줄에 그릴 요약은 GET /api/saved 가 돌려주는 SavedSummary
+// (+ 상세와 같은 커버 유령 글자 glyph, 일본어·중국어 제목 조각 chunks, 뷰티 구매 링크 buy)
+export type CatalogSummary = SavedSummary;
+
+function isBuy(value: unknown): boolean {
+  if (!value || typeof value !== "object") return false;
+  const v = value as Record<string, unknown>;
+  // 제휴 링크는 파트너 사이트(https)로만 연다
+  return typeof v.href === "string" && v.href.startsWith("https://") && typeof v.partner === "string" && typeof v.name === "string";
+}
 
 // 키(kind:id) → 요약. null = 서버가 모르는 항목·불러오기 실패, 키가 없으면 불러오는 중
 export type Summaries = Record<string, CatalogSummary | null>;
@@ -24,6 +32,8 @@ function isSummary(value: unknown): value is CatalogSummary {
     typeof v.tint === "string" &&
     (v.glyph === undefined || typeof v.glyph === "string") &&
     (v.lang === undefined || typeof v.lang === "string") &&
+    (v.chunks === undefined || (Array.isArray(v.chunks) && v.chunks.every((c) => typeof c === "string"))) &&
+    (v.buy === undefined || isBuy(v.buy)) &&
     // 앱 안 경로만 (언어가 붙는 Link 로 연다)
     typeof v.href === "string" &&
     v.href.startsWith("/") &&

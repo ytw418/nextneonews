@@ -2,9 +2,15 @@ import "server-only";
 
 import { DEFAULT_LOCALE, type Locale } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
+import {
+  loadDefaultJapaneseParser,
+  loadDefaultSimplifiedChineseParser,
+  loadDefaultTraditionalChineseParser,
+} from "budoux";
 import { getTranslations } from "next-intl/server";
 
 import { coverGlyph } from "@/components/guide/glyph";
+import { type AffiliateHref, affiliateHref, PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
 import { categoryTint } from "@/lib/cover";
 
 import { beautyFeatured, beautySummary, isBeautySlug } from "./beauty";
@@ -130,8 +136,49 @@ export async function summarize(kind: SavedKind, id: string, locale: Locale): Pr
   return summary && withGlyph(summary, locale);
 }
 
+// ───────── 저장함 한 줄 (/api/saved) ─────────
+// 저장함은 클라이언트 화면이라 줄바꿈 사전(budoux, 전송 142KB)을 싣지 않는다: 일본어·중국어 제목은 여기서 구(句)로 나눠 보내고
+// 화면은 조각 사이에 <wbr> 만 넣는다. 뷰티 줄에는 이 언어 독자가 살 수 있는 1순위 파트너 구매 링크를 붙인다 (시술은 제휴 금지)
+export interface SavedSummary extends GlyphedSummary {
+  chunks?: string[]; // 제목을 구 단위로 나눈 조각 (ja·zh)
+  buy?: AffiliateHref & { name: string }; // name: 파트너 이름 (화면 읽기용)
+}
+
+type PhraseParser = ReturnType<typeof loadDefaultJapaneseParser>;
+const PHRASE_PARSERS: Partial<Record<Locale, () => PhraseParser>> = {
+  ja: loadDefaultJapaneseParser,
+  "zh-TW": loadDefaultTraditionalChineseParser,
+  "zh-CN": loadDefaultSimplifiedChineseParser,
+};
+const parsers = new Map<Locale, PhraseParser>();
+
+function titleChunks(title: string, locale: Locale): string[] | undefined {
+  const load = PHRASE_PARSERS[locale];
+  if (!load) return undefined;
+  let parser = parsers.get(locale);
+  if (!parser) {
+    parser = load();
+    parsers.set(locale, parser);
+  }
+  return parser.parse(title);
+}
+
+const BEAUTY_BUY = new Map(BEAUTY_ITEMS.map((i) => [i.slug, i.buy]));
+
+// 클라이언트 화면(저장함)에 넘기는 요약: 일본어·중국어 제목을 구 조각으로 나눠 둔다
+export function withTitleChunks(summary: GlyphedSummary, locale: Locale): SavedSummary {
+  const chunks = summary.lang ? undefined : titleChunks(summary.title, locale);
+  return chunks && chunks.length > 1 ? { ...summary, chunks } : summary;
+}
+
+function forSaved(summary: GlyphedSummary, locale: Locale): SavedSummary {
+  const target = summary.kind === "beauty" ? partnersForLocale(locale, BEAUTY_BUY.get(summary.id) ?? [])[0] : undefined;
+  const out = withTitleChunks(summary, locale);
+  return target ? { ...out, buy: { ...affiliateHref(target), name: PARTNER_NAME[target.partner] } } : out;
+}
+
 export interface SummaryBatch {
-  items: GlyphedSummary[];
+  items: SavedSummary[];
   partial: boolean; // 글 조회가 실패해 글 줄을 뺐다 (DB 장애). 부르는 쪽은 이 응답을 캐시하지 않는다
 }
 
@@ -150,7 +197,9 @@ export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<Su
   const summaries = await Promise.all(
     refs.map((r) => (r.kind === "article" ? (articles.get(r.id) ?? null) : SUMMARY[r.kind](r.id, locale))),
   );
-  const items = summaries.filter((s): s is CatalogSummary => s !== null).map((s) => withGlyph(s, locale));
+  const items = summaries
+    .filter((s): s is CatalogSummary => s !== null)
+    .map((s) => forSaved(withGlyph(s, locale), locale));
   return { items, partial };
 }
 
