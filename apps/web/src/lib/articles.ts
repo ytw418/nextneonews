@@ -3,10 +3,12 @@ import {
   loadDefaultSimplifiedChineseParser,
   loadDefaultTraditionalChineseParser,
 } from "budoux";
+import { unstable_cache } from "next/cache";
+import { unstable_rethrow } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { cache } from "react";
 
-import { eventMatches, kst, type UpcomingEvent } from "@kmedia/core";
+import { CATEGORIES, eventMatches, kst, kstToday, type UpcomingEvent } from "@kmedia/core";
 import { type Category, type MediaKind, type Prisma, prisma } from "@kmedia/db";
 
 import type { FeedItem } from "@/components/FeedCard";
@@ -161,13 +163,37 @@ export async function findTranslatedLocale(slug: string): Promise<string | null>
   return locales.includes("en") ? "en" : (locales[0] ?? null);
 }
 
-// 이 언어로 읽을 글이 있는 카테고리만 (빈 카테고리는 탭·메뉴에 띄우지 않는다)
+// 요청을 넘어 공유하는 '글이 있는 카테고리' 캐시의 태그. 자동으로는 비우지 않는다 — 모든 화면의 머리말·푸터가 쓰는 값이라
+// 이 태그를 비우면 수천 쪽이 한꺼번에 낡은 판이 되어 봇이 하루 넘게 하나씩 다시 그리며 DB 를 깨운다.
+// 메뉴를 바로 고쳐야 할 때만 사람이 /api/revalidate 에 {"tags":["categories"]} 로 비운다
+export const CATEGORIES_TAG = "categories";
+
+// 데이터 캐시에 KST 날짜별로 둔다 (하루 수명). 기한(revalidate)을 주면 그 값이 이 조회를 쓰는 모든 화면(글 1만여 쪽 포함)의
+// 재생성 주기가 되어 봇이 DB 를 다시 깨운다 (2026-10-19 Neon 한도 초과). 날짜를 키에 넣으면 화면 주기는 그대로 두고
+// 값만 날마다 새로 읽는다: 카테고리가 새로 생기거나 비면 다음 날부터 새로 그리는 화면(홈은 다음 발행 때)에 반영된다
+// day 는 캐시 키에만 쓴다 (unstable_cache 는 인자 전체로 키를 만든다)
+const activeCategories = unstable_cache(
+  async ({ locale }: { locale: string; day: string }): Promise<Category[]> => {
+    const rows = await prisma.article.groupBy({
+      by: ["category"],
+      where: { status: "PUBLISHED", translations: { some: { locale } } },
+    });
+    return rows.map((r) => r.category);
+  },
+  ["active-categories"],
+  { tags: [CATEGORIES_TAG] },
+);
+
+// 이 언어로 읽을 글이 있는 카테고리만 (빈 카테고리는 탭·메뉴에 띄우지 않는다).
+// DB 가 멈추면 카테고리 전체로 대신해, DB 를 쓰지 않는 화면(가이드·일정·소개)은 그대로 그려지게 한다 (대신한 값은 캐시에 남지 않는다)
 export const listActiveCategories = cache(async (locale: string): Promise<Category[]> => {
-  const rows = await prisma.article.groupBy({
-    by: ["category"],
-    where: { status: "PUBLISHED", translations: { some: { locale } } },
-  });
-  return rows.map((r) => r.category);
+  try {
+    return await activeCategories({ locale, day: kstToday() });
+  } catch (error) {
+    unstable_rethrow(error);
+    console.error("listActiveCategories: DB unavailable, showing every category", error);
+    return [...CATEGORIES];
+  }
 });
 
 export type FeedRow = Awaited<ReturnType<typeof listLatest>>[number];

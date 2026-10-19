@@ -37,8 +37,8 @@ import {
   CHART_TINT,
   displayName,
   eventsFor,
-  getLatestSnapshot,
   periodLabel,
+  readLatestSnapshot,
   secondaryName,
   todayCheers,
 } from "@/lib/rankings";
@@ -61,7 +61,8 @@ const loadIdol = cache(async (locale: Locale, slug: string) => {
   if (!entity) return null;
   const chart = entityChart(entity.type);
   const [snapshot, articles, interest, top30] = await Promise.all([
-    chart ? getLatestSnapshot(chart) : null,
+    // 공유 캐시(랭킹 태그)를 쓰지 않는다: 매일 랭킹 태그를 비울 때 인물 3,400쪽이 함께 비워지면 봇이 DB 를 깨운다
+    chart ? readLatestSnapshot(chart) : null,
     listEntityArticles(locale, entity),
     getLanguageInterest(entity.id),
     inRecentTop30(entity.id),

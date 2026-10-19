@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { cache } from "react";
 
 import {
@@ -81,14 +82,44 @@ function toSnapshot(row: RankingSnapshot): Snapshot {
 const DAILY = { not: { contains: "-w" } } satisfies Prisma.StringFilter;
 const WEEKLY = { contains: "-w" } satisfies Prisma.StringFilter;
 
-// 지금 보여 줄 차트. 팬 투표(fan-pick)는 주간 결과뿐이라 주간판 중 최신
-export const getLatestSnapshot = cache(async (chart: ChartId, scope = "all"): Promise<Snapshot | null> => {
+// 요청을 넘어 공유하는 '최신 차트' 캐시의 태그. 하루 1번 랭킹을 만든 뒤 worker 가 /api/revalidate 로 비운다
+// (apps/worker/src/pipeline/site.ts 와 같은 이름)
+export const RANKINGS_TAG = "rankings";
+
+async function findLatest(chart: ChartId, scope: string): Promise<Snapshot | null> {
   const row = await prisma.rankingSnapshot.findFirst({
     where: { chart, scope, period: chart === "fan-pick" ? WEEKLY : DAILY },
     orderBy: { period: "desc" },
   });
   return row ? toSnapshot(row) : null;
+}
+
+// 데이터 캐시는 JSON 으로 남아 Date 가 문자열이 된다. 발행 시각은 ISO 로 넣고 꺼낼 때 Date 로 되돌린다
+type StoredSnapshot = Omit<Snapshot, "publishedAt"> & { publishedAt: string };
+
+// 기한 없이 두고 태그로만 비운다. 기한을 주면 이 조회를 쓰는 화면의 재생성 주기가 그 값으로 줄어든다
+const sharedLatest = unstable_cache(
+  async (chart: ChartId, scope: string): Promise<StoredSnapshot | null> => {
+    const snapshot = await findLatest(chart, scope);
+    return snapshot && { ...snapshot, publishedAt: snapshot.publishedAt.toISOString() };
+  },
+  ["latest-snapshot"],
+  { tags: [RANKINGS_TAG] },
+);
+
+// 지금 보여 줄 차트. 팬 투표(fan-pick)는 주간 결과뿐이라 주간판 중 최신.
+// 홈·랭킹·드라마 화면이 함께 쓰는 값이라 요청을 넘어 공유한다 (화면을 다시 만들 때 DB 를 부르지 않는다).
+// 이 함수를 쓴 화면은 RANKINGS_TAG 를 달고 매일 랭킹 뒤 함께 비워진다
+export const getLatestSnapshot = cache(async (chart: ChartId, scope = "all"): Promise<Snapshot | null> => {
+  const stored = await sharedLatest(chart, scope);
+  return stored && { ...stored, publishedAt: new Date(stored.publishedAt) };
 });
+
+// 같은 조회를 이 요청 안에서만 쓴다. 글·인물 페이지용: 이 화면들은 1만 쪽이 넘어 RANKINGS_TAG 로 매일 한꺼번에
+// 비우면 봇이 다시 열 때마다 DB 를 깨운다. 그래서 태그 없이 글을 내거나 하루 1번 다시 만들 때의 값을 쓴다
+export const readLatestSnapshot = cache(
+  async (chart: ChartId, scope = "all"): Promise<Snapshot | null> => findLatest(chart, scope),
+);
 
 export const getWeeklySnapshot = cache(async (chart: ChartId, period: string): Promise<Snapshot | null> => {
   const row = await prisma.rankingSnapshot.findUnique({ where: { chart_scope_period: { chart, scope: "all", period } } });
