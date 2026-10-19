@@ -30,7 +30,8 @@ const nextConfig: NextConfig = {
       source: "/:path*",
       has: [{ type: "host" as const, value: host }],
       destination: "https://unnienote.app/:path*",
-      permanent: true,
+      // permanent(308) 이 아니라 301: 서치 콘솔 '주소 변경' 검사가 홈페이지 301 만 통과시킨다 (2026-10-19)
+      statusCode: 301 as const,
     }));
   },
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
