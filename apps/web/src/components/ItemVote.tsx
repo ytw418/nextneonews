@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useId, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 
 import { saveSkinType, useSkinType } from "@/components/beauty/useSkinType";
 import { BottomSheet } from "@/components/ui/BottomSheet";
@@ -64,6 +64,24 @@ export function useItemVote(kind: VoteKind, itemId: string, initial: ItemTotals)
   const [totals, setTotals] = useState(initial);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const answered = useRef(false); // 이번 화면에서 투표 응답을 받았으면 true — 그보다 늦게 온 재조회가 새 숫자를 덮지 않게
+
+  // 상세 페이지는 집계를 HTML 에 구워 최대 1시간 묵는다. 이 기기에 내 표가 있으면 마운트 뒤 한 번 다시 받아
+  // '아직 평가 없음 · 내 별점 5' 같은 어긋난 화면을 막는다. 공용 캐시(5분)를 건너뛰려고 주소에 시각을 붙인다
+  const hasStored = stored !== null;
+  useEffect(() => {
+    if (!hasStored || answered.current) return;
+    const controller = new AbortController();
+    fetch(`/api/items/${kind}/${encodeURIComponent(itemId)}?t=${Date.now()}`, { signal: controller.signal })
+      .then((res) => (res.ok ? (res.json() as Promise<Partial<ItemTotals>>) : null))
+      .then((data) => {
+        if (data?.totals && !answered.current) setTotals(readTotals(data));
+      })
+      .catch(() => {
+        // 못 받으면 서버 렌더 숫자 그대로
+      });
+    return () => controller.abort();
+  }, [kind, itemId, hasStored]);
 
   // 표가 들어갔으면 true
   async function vote(choice: string, facet?: string): Promise<boolean> {
@@ -79,11 +97,15 @@ export function useItemVote(kind: VoteKind, itemId: string, initial: ItemTotals)
       });
       const data = (await res.json().catch(() => null)) as (Partial<ItemTotals> & { counted?: boolean }) | null;
       if (res.ok) {
+        answered.current = true;
         setTotals(readTotals(data));
         setVoted(choice);
         storageSet(keyOf(kind, itemId), choice);
         window.dispatchEvent(new Event(CHANGED));
-        if (data?.counted) track("item_vote", { kind, id: itemId, choice, ...(facet ? { facet } : {}) });
+        // 시술 답('해봤어요' 등)은 건강 정보라 분석 도구로 보내지 않는다 — 이벤트와 kind·id 만 (개인정보처리방침 '익명 집계에만')
+        if (data?.counted) {
+          track("item_vote", { kind, id: itemId, ...(kind === "clinic" ? {} : { choice }), ...(facet ? { facet } : {}) });
+        }
         return true;
       }
       setError(t(res.status === 429 ? "voteTooFast" : "voteError"));

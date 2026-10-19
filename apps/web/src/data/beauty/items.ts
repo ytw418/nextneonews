@@ -239,7 +239,6 @@ export const BEAUTY_ITEMS: BeautyProduct[] = [
     keyIngredients: ["Azelaic Acid", "Niacinamide", "Panthenol", "Sodium Hyaluronate"],
     editorialScore: 88,
     buy: [
-      { partner: "oliveyoung", url: "https://global.oliveyoung.com/display/search?query=Anua%20Azelaic%20Acid%2010%20Hyaluron%20Redness%20Soothing%20Serum" },
       { partner: "yesstyle", url: "https://www.yesstyle.com/en/list.html?q=Anua%20Azelaic%20Acid%2010%20Hyaluron%20Redness%20Soothing%20Serum" },
       { partner: "amazon", url: "https://www.amazon.com/s?k=Anua%20Azelaic%20Acid%2010%20Hyaluron%20Redness%20Soothing%20Serum" },
     ],
@@ -469,7 +468,6 @@ export const BEAUTY_ITEMS: BeautyProduct[] = [
     functional: ["sun"],
     editorialScore: 76,
     buy: [
-      { partner: "oliveyoung", url: "https://global.oliveyoung.com/display/search?query=innisfree%20Daily%20UV%20Defense%20Sunscreen" },
       { partner: "amazon", url: "https://www.amazon.com/s?k=innisfree%20Daily%20UV%20Defense%20Sunscreen" },
     ],
     addedAt: "2026-10-19",

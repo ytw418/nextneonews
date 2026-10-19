@@ -10,6 +10,7 @@ import { AffiliateBox } from "@/components/affiliate/AffiliateBox";
 import { AppHeader } from "@/components/AppHeader";
 import { ArticleThumb } from "@/components/ArticleThumb";
 import { ArticleActionBar } from "@/components/article/ArticleActionBar";
+import { CurrentArticleSaveButton } from "@/components/article/CurrentArticleSaveButton";
 import { NetizenCard } from "@/components/article/NetizenCard";
 import { type CurrentArticle, NextArticleLoader } from "@/components/article/NextArticleLoader";
 import { PollCard } from "@/components/article/PollCard";
@@ -28,7 +29,6 @@ import { PhotoCredit } from "@/components/PhotoCredit";
 import { Phrase } from "@/components/Phrase";
 import { RANKED_MIN, RankedArticles, THUMB_LARGE_TEXT } from "@/components/RankedArticles";
 import { EntityRankStrip } from "@/components/rankings/EntityRankStrip";
-import { SaveButton } from "@/components/SaveButton";
 import { ShareButton } from "@/components/ShareButton";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -218,7 +218,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         action={
           <>
             {/* 저장 키는 글 slug (번역이 모두 같은 slug 를 쓴다 — 저장함이 (언어, slug) 로 제목을 찾는다) */}
-            <SaveButton kind="article" id={slug} title={translation.title} />
+            <CurrentArticleSaveButton slug={slug} title={translation.title} />
             <ShareButton title={translation.title} label={t("share")} copiedLabel={t("copied")} />
           </>
         }
