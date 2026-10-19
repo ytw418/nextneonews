@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 
 // 가로 레일·2열 그리드의 카드 한 장 (DESIGN.md ③·⑪): 3:4 타이포 커버 하나가 카드 전체다.
 // 커버 안에 분류 라벨·제목·부제·NEW 가 다 있어서 커버 밖에 제목을 또 쓰지 않는다
+// 링크는 미리 받지 않는다(prefetch=false, 누를 때 받는다): 촘촘한 목록이 보일 때마다 화면 수십 개를 받아 데이터를 쓰고, 요청 때 만드는 언어 페이지를 한꺼번에 깨웠다
 export function GuideCard({
   item,
   locale,
@@ -17,7 +18,7 @@ export function GuideCard({
   newLabel?: string; // 없으면 NEW 를 달지 않는다 (목록이 전부 새것일 때 — badges.ts)
 }) {
   return (
-    <Link href={item.href} className="press-soft block rounded-card">
+    <Link href={item.href} prefetch={false} className="press-soft block rounded-card">
       <TypeCover
         variant="grid"
         tint={item.tint}
