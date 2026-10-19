@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { saveDataOn } from "@/lib/save-data";
+
 declare global {
   interface Window {
     adsbygoogle?: unknown[];
@@ -16,6 +18,11 @@ export function AdsenseUnit({ client, slot }: { client: string; slot: string }) 
   useEffect(() => {
     const ins = ref.current;
     if (!ins || ins.dataset.adsbygoogleStatus) return;
+    // 데이터 절약 모드면 광고를 요청하지 않고 자리째 숨긴다 (AdSlot). 광고를 내지 않는 것은 정책 위반이 아니다
+    if (saveDataOn()) {
+      ins.dataset.adBlocked = "";
+      return;
+    }
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch {
