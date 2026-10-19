@@ -3,6 +3,8 @@ import path from "node:path";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
+import { guideNoindexHeaders } from "./src/lib/guide-seo";
+
 // 환경변수는 레포 루트 .env 를 dotenv-cli 로 넘긴다 (package.json scripts 참고).
 const repoRoot = path.resolve(process.cwd(), "../..");
 
@@ -33,6 +35,10 @@ const nextConfig: NextConfig = {
       // permanent(308) 이 아니라 301: 서치 콘솔 '주소 변경' 검사가 홈페이지 301 만 통과시킨다 (2026-10-19)
       statusCode: 301 as const,
     }));
+  },
+  // 가이드 섹션은 en·ja·zh-TW 만 검색에 내고, 치과·성형 시술은 모든 언어에서 noindex (목록은 src/lib/guide-seo.ts 한 곳)
+  async headers() {
+    return guideNoindexHeaders();
   },
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
   skipTrailingSlashRedirect: true,
