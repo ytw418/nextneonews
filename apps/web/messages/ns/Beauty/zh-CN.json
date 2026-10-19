@@ -1,1 +1,122 @@
-{}
+{
+  "title": "韩国美妆",
+  "intro": "韩国护肤和彩妆，连排名方法都公开。看看哪些适合你的肤质，以及在哪里买。",
+  "metaTitle": "韩国美妆推荐：按品类、按肤质挑选",
+  "metaDescription": "卸妆、化妆水、精华、防晒等人气韩国美妆，按编辑评分和读者的肤质投票排名，每一款都附上购买渠道。",
+  "skinChip": "不知道自己的肤质？6道题测一测",
+  "skinChipMine": "{skin}的推荐",
+  "categoriesLabel": "美妆品类",
+  "crumbsLabel": "当前位置",
+  "winnersTitle": "各品类No.1",
+  "priceLegend": "₩ 1万韩元以下・₩₩ 1～3万・₩₩₩ 3万以上（韩国定价）",
+  "priceTier": {
+    "1": "价格：1万韩元以下",
+    "2": "价格：1万～3万韩元",
+    "3": "价格：3万韩元以上"
+  },
+  "newBadge": "NEW",
+  "listSep": "、",
+  "rank": "第{rank}名",
+  "basis": "编辑评分＋读者评价 {count} 票・{date} 更新",
+  "awardsName": "Unnie 大奖",
+  "editorsPicks": "编辑精选",
+  "seeAll": "查看全部",
+  "copied": "链接已复制",
+  "newTab": "（在新标签页打开）",
+  "tile": {
+    "label": "测试",
+    "title": "按肤质找推荐",
+    "sub": "6道题快速测"
+  },
+  "buy": {
+    "hubTitle": "韩国美妆在哪里买",
+    "title": "在哪里买",
+    "at": "去 {partner} 购买",
+    "more": "其他商店",
+    "disclosure": "我们会收到<link>佣金</link>，价格不变"
+  },
+  "ship": {
+    "oliveyoung": "支持海外配送・运费因地区而异",
+    "yesstyle": "全球配送・运费因地区而异",
+    "amazon": "美国 Amazon.com・配送美国"
+  },
+  "method": {
+    "title": "排名怎么算",
+    "formula": "分数＝编辑评分＋{weight}×（本命－不适合）÷（全部票数＋{damping}）",
+    "votes": "读者评价来自每款产品的“用过吗？”按钮。每台设备一票，之后可以修改。",
+    "editors": "品类的读者评价达到 {count} 票之前，我们称它为“编辑精选”，而不是大奖。",
+    "independent": "品牌不能花钱买排名，购物链接也不会影响排序。"
+  },
+  "awards": {
+    "title": "{category}・{kind}",
+    "metaTitle": "韩国{category}推荐｜{kind}",
+    "metaDescription": "{intro} 按编辑评分和读者投票排名，附适合肤质、价位和购买渠道。"
+  },
+  "product": {
+    "metaTitle": "{brand} {name}｜适合肤质、用法、在哪里买",
+    "metaDescription": "{tagline}。适合哪些肤质、怎么用、读者评价和购买渠道，一次看完（{category}）。",
+    "share": "分享这款产品",
+    "rankIn": "{category}・{kind} 第{rank}名",
+    "suits": "适合肤质",
+    "ingredients": "主要成分",
+    "rating": "读者分数 {value}／5（{count} 票，本命 5、还可以 3、不适合 1 换算）",
+    "why": "为什么大家爱用",
+    "howTo": "怎么用",
+    "caution": "注意事项",
+    "related": "更多{category}",
+    "relatedAll": "查看全部{category}",
+    "relatedCount": "{count} 款排名"
+  },
+  "vote": {
+    "question": "用过吗？",
+    "love": "本命",
+    "ok": "还可以",
+    "meh": "不适合",
+    "facetPercent": "{skin}有 {percent}% 说是本命（{count} 票）",
+    "facetCount": "{skin}目前 {count} 票",
+    "facetFirst": "还没有{skin}的评价，来投第一票吧。",
+    "facetTest": "测出肤质，看看同肤质的人怎么说"
+  },
+  "skin": {
+    "short": {
+      "dry": "干皮",
+      "oily": "油皮",
+      "combination": "混合皮",
+      "sensitive": "敏感肌",
+      "normal": "中性皮"
+    },
+    "result": {
+      "dry": "干皮",
+      "oily": "油皮",
+      "combination": "混合皮",
+      "sensitive": "敏感肌",
+      "normal": "中性皮"
+    },
+    "tag": {
+      "dry": "干皮",
+      "oily": "油皮",
+      "combination": "混合皮",
+      "sensitive": "敏感肌",
+      "normal": "中性皮"
+    }
+  },
+  "quiz": {
+    "metaTitle": "你是哪种肤质？6道题肤质小测试",
+    "metaDescription": "用6个关于日常肤感的问题，找出你的肤质和适合的韩国护肤品。仅供娱乐，不是医学诊断。",
+    "back": "上一题",
+    "progress": "第 {current}／{total} 题"
+  },
+  "result": {
+    "metaTitle": "我是{name}｜肤质测试结果与韩国美妆推荐",
+    "metaDescription": "肤质测试结果：{name}。适合的韩国护肤品和3个护理小技巧。6道题，你也来测。",
+    "label": "肤质测试",
+    "share": "分享结果",
+    "shareText": "我是{name}！你呢？6道题测出你的肤质",
+    "retake": "再测一次",
+    "picks": "{name}推荐",
+    "allTitle": "查看全部韩国美妆",
+    "allSub": "10个品类・{count}款",
+    "tips": "护理小技巧",
+    "others": "其他肤质"
+  }
+}

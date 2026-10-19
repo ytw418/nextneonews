@@ -1,1 +1,122 @@
-{}
+{
+  "title": "K-beauté",
+  "intro": "Soins et maquillage coréens, classés à découvert, méthode comprise. Voyez ce qui convient à votre peau et où l’acheter.",
+  "metaTitle": "K-beauté : sélection par catégorie et type de peau",
+  "metaDescription": "Nettoyants, toners, sérums, protections solaires coréens et plus, classés selon la note de la rédaction et les votes des lecteurs par type de peau, avec où les acheter.",
+  "skinChip": "Pas sûre de votre type de peau ? 6 questions",
+  "skinChipMine": "Sélection pour : {skin}",
+  "categoriesLabel": "Catégories beauté",
+  "crumbsLabel": "Vous êtes ici",
+  "winnersTitle": "N° 1 de chaque catégorie",
+  "priceLegend": "₩ moins de 10 000 ₩ · ₩₩ 10 000–30 000 ₩ · ₩₩₩ plus de 30 000 ₩ (prix public en Corée)",
+  "priceTier": {
+    "1": "Prix : moins de 10 000 ₩",
+    "2": "Prix : de 10 000 à 30 000 ₩",
+    "3": "Prix : plus de 30 000 ₩"
+  },
+  "newBadge": "NEW",
+  "listSep": ", ",
+  "rank": "N° {rank}",
+  "basis": "Note de la rédaction + {count, plural, =0 {aucun vote de lecteur pour l’instant} one {# vote de lecteur} other {# votes de lecteurs}} · mis à jour le {date}",
+  "awardsName": "Prix Unnie",
+  "editorsPicks": "Choix de la rédaction",
+  "seeAll": "Tout voir",
+  "copied": "Lien copié",
+  "newTab": "(s’ouvre dans un nouvel onglet)",
+  "tile": {
+    "label": "Test",
+    "title": "La sélection pour votre peau",
+    "sub": "6 questions rapides"
+  },
+  "buy": {
+    "hubTitle": "Où acheter de la K-beauté",
+    "title": "Où l’acheter",
+    "at": "Acheter sur {partner}",
+    "more": "Autres boutiques",
+    "disclosure": "Nous touchons une <link>commission</link>, sans surcoût pour vous."
+  },
+  "ship": {
+    "oliveyoung": "Livraison internationale · frais selon le pays",
+    "yesstyle": "Livraison dans le monde entier · frais selon le pays",
+    "amazon": "Amazon.com (États-Unis) · livraison aux États-Unis"
+  },
+  "method": {
+    "title": "Notre méthode de classement",
+    "formula": "Score = note de la rédaction + {weight} × (coup de cœur − pas pour moi) ÷ (tous les votes + {damping})",
+    "votes": "Les votes viennent du bouton « Vous l’avez testé ? » de chaque produit. Un vote par appareil, modifiable à tout moment.",
+    "editors": "Tant qu’une catégorie n’a pas {count} votes de lecteurs, nous parlons de Choix de la rédaction, pas de prix.",
+    "independent": "Aucune marque ne peut payer pour une place, et les liens vers les boutiques ne changent jamais l’ordre."
+  },
+  "awards": {
+    "title": "{category} · {kind}",
+    "metaTitle": "{category} coréens à connaître : {kind}",
+    "metaDescription": "{intro} Classement selon la note de la rédaction et les votes des lecteurs, avec types de peau, gamme de prix et où acheter."
+  },
+  "product": {
+    "metaTitle": "{brand} {name} : types de peau, utilisation, où l’acheter",
+    "metaDescription": "{tagline}. Pour quels types de peau, comment l’utiliser, l’avis des lecteurs et où l’acheter ({category}).",
+    "share": "Partager ce produit",
+    "rankIn": "N° {rank} · {category} · {kind}",
+    "suits": "Convient aux peaux",
+    "ingredients": "Ingrédients clés",
+    "rating": "Note des lecteurs : {value} sur 5 pour {count} votes (coup de cœur 5 · correct 3 · pas pour moi 1)",
+    "why": "Pourquoi on l’aime",
+    "howTo": "Comment l’utiliser",
+    "caution": "Bon à savoir",
+    "related": "Plus de {category}",
+    "relatedAll": "Tous les {category}",
+    "relatedCount": "{count} produits classés"
+  },
+  "vote": {
+    "question": "Vous l’avez testé ?",
+    "love": "Coup de cœur",
+    "ok": "Correct",
+    "meh": "Pas pour moi",
+    "facetPercent": "{skin} : {percent} % en font un coup de cœur ({count} votes)",
+    "facetCount": "{skin} : {count, plural, one {# vote} other {# votes}} pour l’instant",
+    "facetFirst": "Aucun vote pour le moment ({skin}). Le vôtre sera le premier.",
+    "facetTest": "Trouvez votre type de peau pour voir l’avis des peaux comme la vôtre"
+  },
+  "skin": {
+    "short": {
+      "dry": "Peau sèche",
+      "oily": "Peau grasse",
+      "combination": "Peau mixte",
+      "sensitive": "Peau sensible",
+      "normal": "Peau normale"
+    },
+    "result": {
+      "dry": "Peau sèche",
+      "oily": "Peau grasse",
+      "combination": "Peau mixte",
+      "sensitive": "Peau sensible",
+      "normal": "Peau normale"
+    },
+    "tag": {
+      "dry": "Sèche",
+      "oily": "Grasse",
+      "combination": "Mixte",
+      "sensitive": "Sensible",
+      "normal": "Normale"
+    }
+  },
+  "quiz": {
+    "metaTitle": "Quel est votre type de peau ? Le test K-beauté en 6 questions",
+    "metaDescription": "Six questions rapides sur les sensations de votre peau au quotidien. Découvrez votre type de peau et les soins coréens qui lui conviennent. Pour le plaisir, pas un diagnostic médical.",
+    "back": "Retour",
+    "progress": "Question {current} sur {total}"
+  },
+  "result": {
+    "metaTitle": "{name} : résultat du test et sélection K-beauté",
+    "metaDescription": "Résultat du test de type de peau : {name}. Les soins coréens qui conviennent et trois conseils. Faites le test en 6 questions.",
+    "label": "Test de type de peau",
+    "share": "Partager mon résultat",
+    "shareText": "Mon type de peau : {name} ! Et vous ? Faites le test en 6 questions",
+    "retake": "Refaire le test",
+    "picks": "La sélection pour : {name}",
+    "allTitle": "Toute la sélection K‑beauté",
+    "allSub": "{count} produits dans 10 catégories",
+    "tips": "Conseils de soin",
+    "others": "Autres types de peau"
+  }
+}

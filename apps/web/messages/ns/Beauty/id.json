@@ -1,1 +1,122 @@
-{}
+{
+  "title": "K-Beauty",
+  "intro": "Skincare dan makeup Korea, diurutkan secara terbuka termasuk cara hitungnya. Lihat yang cocok untuk kulitmu dan tempat belinya.",
+  "metaTitle": "Pilihan K-Beauty per Kategori dan Jenis Kulit",
+  "metaDescription": "Pembersih, toner, serum, tabir surya Korea dan lainnya, diurutkan dari skor editor dan vote pembaca per jenis kulit, lengkap dengan tempat belinya.",
+  "skinChip": "Belum tahu jenis kulitmu? 6 pertanyaan",
+  "skinChipMine": "Pilihan untuk {skin}",
+  "categoriesLabel": "Kategori kecantikan",
+  "crumbsLabel": "Kamu di sini",
+  "winnersTitle": "No.1 tiap kategori",
+  "priceLegend": "₩ di bawah ₩10.000 · ₩₩ ₩10.000–30.000 · ₩₩₩ di atas ₩30.000 (harga resmi di Korea)",
+  "priceTier": {
+    "1": "Harga: di bawah ₩10.000",
+    "2": "Harga: ₩10.000 sampai ₩30.000",
+    "3": "Harga: di atas ₩30.000"
+  },
+  "newBadge": "NEW",
+  "listSep": ", ",
+  "rank": "No. {rank}",
+  "basis": "Skor editor + {count} vote pembaca · diperbarui {date}",
+  "awardsName": "Unnie Awards",
+  "editorsPicks": "Pilihan Editor",
+  "seeAll": "Lihat semua",
+  "copied": "Tautan disalin",
+  "newTab": "(terbuka di tab baru)",
+  "tile": {
+    "label": "Tes",
+    "title": "Pilihan sesuai jenis kulit",
+    "sub": "6 pertanyaan singkat"
+  },
+  "buy": {
+    "hubTitle": "Tempat beli K-beauty",
+    "title": "Beli di mana",
+    "at": "Beli di {partner}",
+    "more": "Toko lain",
+    "disclosure": "Kami dapat <link>komisi</link>, harga untukmu tetap sama."
+  },
+  "ship": {
+    "oliveyoung": "Kirim ke luar negeri · ongkir tergantung negara",
+    "yesstyle": "Kirim ke seluruh dunia · ongkir tergantung negara",
+    "amazon": "Amazon.com AS · kirim dalam AS"
+  },
+  "method": {
+    "title": "Cara kami mengurutkan",
+    "formula": "Skor = skor editor + {weight} × (holy grail − nggak cocok) ÷ (semua vote + {damping})",
+    "votes": "Vote pembaca berasal dari tombol “Pernah coba?” di tiap produk. Satu vote per perangkat, dan bisa diubah.",
+    "editors": "Sebelum satu kategori punya {count} vote pembaca, kami menyebutnya Pilihan Editor, bukan award.",
+    "independent": "Brand tidak bisa membayar untuk dapat posisi, dan tautan toko tidak mengubah urutan."
+  },
+  "awards": {
+    "title": "{category} · {kind}",
+    "metaTitle": "{category} Korea Teratas: {kind}",
+    "metaDescription": "{intro} Diurutkan dari skor editor dan vote pembaca, dengan jenis kulit yang cocok, kisaran harga, dan tempat beli."
+  },
+  "product": {
+    "metaTitle": "{brand} {name}: jenis kulit, cara pakai, tempat beli",
+    "metaDescription": "{tagline}. Cocok untuk jenis kulit apa, cara pakai, penilaian pembaca, dan tempat belinya ({category}).",
+    "share": "Bagikan produk ini",
+    "rankIn": "No.{rank} di {category} · {kind}",
+    "suits": "Cocok untuk",
+    "ingredients": "Bahan utama",
+    "rating": "Skor pembaca {value} dari 5 dari {count} vote (holy grail 5 · lumayan 3 · nggak cocok 1)",
+    "why": "Kenapa banyak yang suka",
+    "howTo": "Cara pakai",
+    "caution": "Perlu diketahui",
+    "related": "{category} lainnya",
+    "relatedAll": "Semua {category}",
+    "relatedCount": "{count} produk berperingkat"
+  },
+  "vote": {
+    "question": "Pernah coba?",
+    "love": "Holy grail",
+    "ok": "Lumayan",
+    "meh": "Nggak cocok",
+    "facetPercent": "{skin}: {percent}% bilang holy grail ({count} vote)",
+    "facetCount": "{skin}: baru {count} vote",
+    "facetFirst": "Belum ada vote dari {skin}. Jadi yang pertama, yuk.",
+    "facetTest": "Cari tahu jenis kulitmu untuk lihat penilaian kulit yang sama"
+  },
+  "skin": {
+    "short": {
+      "dry": "Kulit kering",
+      "oily": "Kulit berminyak",
+      "combination": "Kulit kombinasi",
+      "sensitive": "Kulit sensitif",
+      "normal": "Kulit normal"
+    },
+    "result": {
+      "dry": "Kulit kering",
+      "oily": "Kulit berminyak",
+      "combination": "Kulit kombinasi",
+      "sensitive": "Kulit sensitif",
+      "normal": "Kulit normal"
+    },
+    "tag": {
+      "dry": "Kering",
+      "oily": "Berminyak",
+      "combination": "Kombinasi",
+      "sensitive": "Sensitif",
+      "normal": "Normal"
+    }
+  },
+  "quiz": {
+    "metaTitle": "Apa Jenis Kulitmu? Tes K-Beauty 6 Pertanyaan",
+    "metaDescription": "Enam pertanyaan singkat tentang kondisi kulitmu sehari-hari. Ketahui jenis kulit dan skincare Korea yang cocok. Hanya untuk seru-seruan, bukan diagnosis medis.",
+    "back": "Kembali",
+    "progress": "Pertanyaan {current} dari {total}"
+  },
+  "result": {
+    "metaTitle": "{name}: Hasil Tes Jenis Kulit dan Pilihan K-Beauty",
+    "metaDescription": "Hasil tes jenis kulit: {name}. Skincare Korea yang cocok dan 3 tips perawatan. Coba sendiri tes 6 pertanyaannya.",
+    "label": "Tes jenis kulit",
+    "share": "Bagikan hasilku",
+    "shareText": "Jenis kulitku {name}! Kamu apa? Coba tes 6 pertanyaan",
+    "retake": "Ulangi tes",
+    "picks": "Pilihan untuk {name}",
+    "allTitle": "Semua pilihan K‑beauty",
+    "allSub": "{count} produk di 10 kategori",
+    "tips": "Tips perawatan",
+    "others": "Jenis kulit lain"
+  }
+}

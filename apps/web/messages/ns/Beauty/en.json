@@ -1,1 +1,122 @@
-{}
+{
+  "title": "K-Beauty",
+  "intro": "Korean skincare and makeup picks, ranked in the open. See what suits your skin and where to buy it.",
+  "metaTitle": "K-Beauty Picks by Category and Skin Type",
+  "metaDescription": "The top Korean cleanser, toner, serum, sunscreen and more, ranked by our editors and reader votes by skin type, with where to buy each one.",
+  "skinChip": "Not sure of your skin type? 6 questions",
+  "skinChipMine": "Picks for my skin: {skin}",
+  "categoriesLabel": "Beauty categories",
+  "crumbsLabel": "You are here",
+  "winnersTitle": "No.1 in each category",
+  "priceLegend": "₩ under ₩10,000 · ₩₩ ₩10,000–30,000 · ₩₩₩ over ₩30,000 (Korean retail price)",
+  "priceTier": {
+    "1": "Price: under ₩10,000",
+    "2": "Price: ₩10,000 to ₩30,000",
+    "3": "Price: over ₩30,000"
+  },
+  "newBadge": "NEW",
+  "listSep": ", ",
+  "rank": "No. {rank}",
+  "basis": "Editorial score + {count, plural, =0 {no reader votes yet} one {# reader vote} other {# reader votes}} · updated {date}",
+  "awardsName": "Unnie Awards",
+  "editorsPicks": "Editors’ Picks",
+  "seeAll": "See all",
+  "copied": "Link copied",
+  "newTab": "(opens in a new tab)",
+  "tile": {
+    "label": "Test",
+    "title": "Picks for your skin type",
+    "sub": "6 quick questions"
+  },
+  "buy": {
+    "hubTitle": "Where to buy K-beauty",
+    "title": "Where to buy",
+    "at": "Buy at {partner}",
+    "more": "Other shops",
+    "disclosure": "We earn a <link>commission</link>; your price stays the same."
+  },
+  "ship": {
+    "oliveyoung": "Ships to many countries · not to the US",
+    "yesstyle": "Ships worldwide · shipping fees vary by country",
+    "amazon": "US store · for shoppers in the US"
+  },
+  "method": {
+    "title": "How we rank",
+    "formula": "Score = editorial score + {weight} × (holy grail − not for me) ÷ (all votes + {damping})",
+    "votes": "Reader votes come from the “Tried it?” buttons on each product. One vote per device, and you can change it.",
+    "editors": "Until a category has {count} reader votes, we call it Editors’ Picks instead of awards.",
+    "independent": "Brands can’t pay for a spot, and shop links never change the order."
+  },
+  "awards": {
+    "title": "{category} · {kind}",
+    "metaTitle": "Top Korean {category}: {kind}",
+    "metaDescription": "{intro} Ranked by our editors and reader votes, with skin types, price range and where to buy."
+  },
+  "product": {
+    "metaTitle": "{brand} {name}: skin types, how to use and where to buy",
+    "metaDescription": "{tagline}. Which skin types it suits, how to use it, how readers rate it and where to buy it. From the {category} picks.",
+    "share": "Share this product",
+    "rankIn": "No.{rank} in {category} · {kind}",
+    "suits": "Suits",
+    "ingredients": "Key ingredients",
+    "rating": "Reader score {value} out of 5 from {count} votes (holy grail 5 · okay 3 · not for me 1)",
+    "why": "Why people love it",
+    "howTo": "How to use",
+    "caution": "Good to know",
+    "related": "More {category}",
+    "relatedAll": "All {category}",
+    "relatedCount": "{count} picks, ranked"
+  },
+  "vote": {
+    "question": "Tried it?",
+    "love": "Holy grail",
+    "ok": "It’s okay",
+    "meh": "Not for me",
+    "facetPercent": "{skin}: {percent}% call it a holy grail ({count} votes)",
+    "facetCount": "{skin}: {count, plural, one {# vote} other {# votes}} so far",
+    "facetFirst": "No votes from {skin} yet. Yours would be the first.",
+    "facetTest": "Find your skin type to see how it rates"
+  },
+  "skin": {
+    "short": {
+      "dry": "Dry skin",
+      "oily": "Oily skin",
+      "combination": "Combination skin",
+      "sensitive": "Sensitive skin",
+      "normal": "Normal skin"
+    },
+    "result": {
+      "dry": "Dry skin",
+      "oily": "Oily skin",
+      "combination": "Combination skin",
+      "sensitive": "Sensitive skin",
+      "normal": "Normal skin"
+    },
+    "tag": {
+      "dry": "Dry",
+      "oily": "Oily",
+      "combination": "Combo",
+      "sensitive": "Sensitive",
+      "normal": "Normal"
+    }
+  },
+  "quiz": {
+    "metaTitle": "What’s Your Skin Type? 6-Question K-Beauty Test",
+    "metaDescription": "Six quick questions about how your skin feels day to day. Get your skin type and Korean skincare picks that suit it. Just for fun, not a diagnosis.",
+    "back": "Back",
+    "progress": "Question {current} of {total}"
+  },
+  "result": {
+    "metaTitle": "{name}: Skin Type Result and K-Beauty Picks",
+    "metaDescription": "Skin type test result: {name}. Korean skincare picks that suit it and three care tips. Take the 6-question test yourself.",
+    "label": "Skin type test",
+    "share": "Share my result",
+    "shareText": "My skin type is {name}! What’s yours? Take the 6-question test",
+    "retake": "Take it again",
+    "picks": "Picks for {name}",
+    "allTitle": "All K‑beauty picks",
+    "allSub": "{count} products in 10 categories",
+    "tips": "Care tips",
+    "others": "Other skin types"
+  }
+}

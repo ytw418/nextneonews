@@ -1,1 +1,122 @@
-{}
+{
+  "title": "Làm đẹp Hàn",
+  "intro": "Mỹ phẩm dưỡng da và trang điểm Hàn Quốc, xếp hạng công khai cả cách tính. Xem món nào hợp da bạn và mua ở đâu.",
+  "metaTitle": "Mỹ phẩm Hàn Quốc theo từng loại và từng loại da",
+  "metaDescription": "Sữa rửa mặt, toner, serum, kem chống nắng Hàn Quốc được xếp hạng theo điểm biên tập và bình chọn của độc giả theo loại da, kèm nơi mua từng món.",
+  "skinChip": "Chưa biết loại da? Làm 6 câu",
+  "skinChipMine": "Gợi ý cho {skin}",
+  "categoriesLabel": "Danh mục làm đẹp",
+  "crumbsLabel": "Bạn đang ở đây",
+  "winnersTitle": "Số 1 mỗi danh mục",
+  "priceLegend": "₩ dưới 10.000 won · ₩₩ 10.000–30.000 won · ₩₩₩ trên 30.000 won (giá niêm yết tại Hàn)",
+  "priceTier": {
+    "1": "Giá: dưới 10.000 won",
+    "2": "Giá: 10.000 đến 30.000 won",
+    "3": "Giá: trên 30.000 won"
+  },
+  "newBadge": "NEW",
+  "listSep": ", ",
+  "rank": "Hạng {rank}",
+  "basis": "Điểm biên tập + {count} lượt đánh giá của độc giả · cập nhật {date}",
+  "awardsName": "Giải Unnie",
+  "editorsPicks": "Biên tập viên chọn",
+  "seeAll": "Xem tất cả",
+  "copied": "Đã sao chép liên kết",
+  "newTab": "(mở trong thẻ mới)",
+  "tile": {
+    "label": "Trắc nghiệm",
+    "title": "Gợi ý theo loại da",
+    "sub": "6 câu hỏi nhanh"
+  },
+  "buy": {
+    "hubTitle": "Mua mỹ phẩm Hàn ở đâu",
+    "title": "Mua ở đâu",
+    "at": "Mua tại {partner}",
+    "more": "Cửa hàng khác",
+    "disclosure": "Chúng tôi nhận <link>hoa hồng</link>, giá bạn trả không đổi."
+  },
+  "ship": {
+    "oliveyoung": "Giao quốc tế · phí ship tùy quốc gia",
+    "yesstyle": "Giao toàn cầu · phí ship tùy quốc gia",
+    "amazon": "Amazon.com Mỹ · giao trong nước Mỹ"
+  },
+  "method": {
+    "title": "Cách chúng tôi xếp hạng",
+    "formula": "Điểm = điểm biên tập + {weight} × (chân ái − không hợp) ÷ (tổng lượt + {damping})",
+    "votes": "Đánh giá của độc giả đến từ nút “Đã dùng thử chưa?” ở mỗi sản phẩm. Mỗi thiết bị một lượt và có thể đổi lại.",
+    "editors": "Khi một danh mục chưa đủ {count} lượt đánh giá, chúng tôi gọi là “Biên tập viên chọn” thay vì giải thưởng.",
+    "independent": "Thương hiệu không thể trả tiền mua thứ hạng, và liên kết cửa hàng không làm thay đổi thứ tự."
+  },
+  "awards": {
+    "title": "{category} · {kind}",
+    "metaTitle": "{category} Hàn Quốc nổi bật: {kind}",
+    "metaDescription": "{intro} Xếp hạng theo điểm biên tập và bình chọn của độc giả, kèm loại da phù hợp, mức giá và nơi mua."
+  },
+  "product": {
+    "metaTitle": "{brand} {name}: loại da phù hợp, cách dùng, nơi mua",
+    "metaDescription": "{tagline}. Hợp loại da nào, cách dùng, độc giả đánh giá ra sao và mua ở đâu ({category}).",
+    "share": "Chia sẻ sản phẩm này",
+    "rankIn": "Hạng {rank} · {category} · {kind}",
+    "suits": "Hợp với",
+    "ingredients": "Thành phần chính",
+    "rating": "Điểm độc giả {value}/5 từ {count} lượt (chân ái 5 · tạm ổn 3 · không hợp 1)",
+    "why": "Vì sao được yêu thích",
+    "howTo": "Cách dùng",
+    "caution": "Nên biết",
+    "related": "Thêm {category}",
+    "relatedAll": "Tất cả {category}",
+    "relatedCount": "{count} sản phẩm được xếp hạng"
+  },
+  "vote": {
+    "question": "Bạn đã dùng thử chưa?",
+    "love": "Chân ái",
+    "ok": "Tạm ổn",
+    "meh": "Không hợp",
+    "facetPercent": "{skin}: {percent}% gọi là chân ái ({count} lượt)",
+    "facetCount": "{skin}: mới có {count} lượt",
+    "facetFirst": "Chưa có đánh giá từ {skin}. Hãy là người đầu tiên.",
+    "facetTest": "Tìm loại da để xem người cùng loại da đánh giá"
+  },
+  "skin": {
+    "short": {
+      "dry": "Da khô",
+      "oily": "Da dầu",
+      "combination": "Da hỗn hợp",
+      "sensitive": "Da nhạy cảm",
+      "normal": "Da thường"
+    },
+    "result": {
+      "dry": "Da khô",
+      "oily": "Da dầu",
+      "combination": "Da hỗn hợp",
+      "sensitive": "Da nhạy cảm",
+      "normal": "Da thường"
+    },
+    "tag": {
+      "dry": "Khô",
+      "oily": "Dầu",
+      "combination": "Hỗn hợp",
+      "sensitive": "Nhạy cảm",
+      "normal": "Thường"
+    }
+  },
+  "quiz": {
+    "metaTitle": "Da bạn thuộc loại nào? Trắc nghiệm 6 câu",
+    "metaDescription": "Sáu câu hỏi nhanh về cảm giác da mỗi ngày. Biết loại da và những món mỹ phẩm Hàn hợp với bạn. Chỉ để vui, không phải chẩn đoán y khoa.",
+    "back": "Quay lại",
+    "progress": "Câu {current}/{total}"
+  },
+  "result": {
+    "metaTitle": "{name}: kết quả trắc nghiệm và gợi ý mỹ phẩm Hàn",
+    "metaDescription": "Kết quả trắc nghiệm loại da: {name}. Mỹ phẩm Hàn phù hợp và 3 mẹo chăm da. Làm thử 6 câu nhé.",
+    "label": "Trắc nghiệm loại da",
+    "share": "Chia sẻ kết quả",
+    "shareText": "Mình là {name}! Còn bạn? Làm trắc nghiệm 6 câu",
+    "retake": "Làm lại",
+    "picks": "Gợi ý cho {name}",
+    "allTitle": "Tất cả mỹ phẩm Hàn",
+    "allSub": "{count} sản phẩm trong 10 danh mục",
+    "tips": "Mẹo chăm da",
+    "others": "Loại da khác"
+  }
+}
