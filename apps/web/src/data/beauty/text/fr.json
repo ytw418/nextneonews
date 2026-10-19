@@ -1,11 +1,465 @@
 {
-  "categories": {},
-  "products": {},
+  "categories": {
+    "cleanser": {
+      "name": "Nettoyants",
+      "intro": "Huiles, baumes et mousses douces pour un double nettoyage net et confortable."
+    },
+    "toner": {
+      "name": "Toners",
+      "intro": "Premières couches aqueuses et disques imbibés qui préparent la peau après le nettoyage."
+    },
+    "serum": {
+      "name": "Sérums & essences",
+      "intro": "Des soins concentrés pour l’hydratation, l’apaisement et l’éclat."
+    },
+    "moisturizer": {
+      "name": "Crèmes hydratantes",
+      "intro": "Du gel-crème à la crème riche, pour sceller l’hydratation."
+    },
+    "sunscreen": {
+      "name": "Protections solaires",
+      "intro": "Des SPF K-beauty légers et confortables à porter tous les jours."
+    },
+    "mask": {
+      "name": "Masques",
+      "intro": "Masques en tissu, en hydrogel et de nuit pour un coup d’hydratation rapide."
+    },
+    "lip": {
+      "name": "Lèvres",
+      "intro": "Les tints et baumes vers lesquels les Coréens reviennent sans cesse."
+    },
+    "base": {
+      "name": "Teint",
+      "intro": "Cushions, BB crème et poudre pour un teint lisse et frais."
+    },
+    "eye": {
+      "name": "Yeux",
+      "intro": "Palettes et soins du contour des yeux pour des looks doux et faciles à porter."
+    },
+    "hair-body": {
+      "name": "Cheveux & corps",
+      "intro": "Sérums capillaires, soins à rincer et laits corps des drugstores coréens."
+    }
+  },
+  "products": {
+    "cosrx-low-ph-good-morning-gel-cleanser": {
+      "name": "Low pH Good Morning Gel Cleanser",
+      "tagline": "Un gel nettoyant doux à pH bas, pensé pour le matin",
+      "why": "Un classique de la K-beauty : un gel transparent au pH légèrement acide (environ 5,3) qui se rince sans tiraillement. Salicylate de bétaïne et huile d’arbre à thé laissent un fini frais, adapté aux peaux grasses et mixtes.",
+      "howTo": "Fais mousser une petite quantité avec de l’eau, masse sur peau humide environ 30 secondes, puis rince. Le matin, ou en deuxième étape d’un double nettoyage."
+    },
+    "anua-heartleaf-pore-control-cleansing-oil": {
+      "name": "Heartleaf Pore Control Cleansing Oil",
+      "tagline": "Huile légère qui fait fondre maquillage et solaire",
+      "why": "Huile démaquillante légère (jojoba, pépins de raisin, macadamia) au houttuynia (heartleaf). Elle dissout maquillage, solaire et excès de sébum, devient laiteuse avec l’eau et se rince : un premier pas facile du double nettoyage.",
+      "howTo": "Mets 2 à 3 pressions dans tes mains sèches et masse sur le visage sec. Ajoute un peu d’eau jusqu’à ce qu’elle devienne laiteuse, rince, puis enchaîne avec un nettoyant à base d’eau.",
+      "caution": "Contient du parfum. Fais d’abord un test cutané si ta peau réagit facilement."
+    },
+    "round-lab-1025-dokdo-cleanser": {
+      "name": "1025 Dokdo Cleanser",
+      "tagline": "Mousse douce, légèrement acide, à l’eau de mer d’Ulleungdo",
+      "why": "Le nettoyant de la gamme phare 1025 Dokdo de Round Lab associe l’eau de mer profonde d’Ulleungdo, l’île voisine de Dokdo, au panthénol et à l’allantoïne. Il mousse doucement et se rince sans laisser la peau décapée.",
+      "howTo": "Fais mousser l’équivalent d’un petit pois avec de l’eau, masse délicatement sur peau humide, puis rince à l’eau tiède. Matin et soir."
+    },
+    "banila-co-clean-it-zero-cleansing-balm-original": {
+      "name": "Clean It Zero Cleansing Balm Original",
+      "tagline": "Baume texture sorbet qui fond en huile démaquillante",
+      "why": "Un classique de la K-beauty en pot rose. Le baume texture sorbet devient huile au massage, retire le maquillage longue tenue et waterproof, puis émulsionne et se rince à l’eau. Extrait d’acérola et vitamine E complètent la formule.",
+      "howTo": "Prélève un peu de baume avec la spatule, masse sur peau sèche jusqu’à ce qu’il fonde, ajoute de l’eau pour émulsionner, puis rince. Enchaîne avec un second nettoyant.",
+      "caution": "Contient du parfum. Laisse la spatule dans le pot pour ne pas y plonger les doigts."
+    },
+    "manyo-pure-soybean-cleansing-oil": {
+      "name": "Pure Soybean Cleansing Oil",
+      "tagline": "Huile végétale qui devient laiteuse au rinçage",
+      "why": "Ex-Pure Cleansing Oil, ce mélange d’huiles de soja, d’argan, de jojoba et d’autres huiles végétales a reçu un Allure Beauty Award 2025 (huiles démaquillantes). Il fait fondre maquillage et sébum, puis devient un lait léger avec l’eau.",
+      "howTo": "Applique 2 à 3 pressions sur le visage sec avec les mains sèches et masse. Ajoute un peu d’eau pour émulsionner, rince bien, puis enchaîne avec un nettoyant mousse ou gel."
+    },
+    "round-lab-1025-dokdo-toner": {
+      "name": "1025 Dokdo Toner",
+      "tagline": "Toner aqueux du quotidien, habitué des Olive Young Awards",
+      "why": "L’un des toners les plus achetés en Corée, habitué des prix annuels d’Olive Young. Sa formule aqueuse (eau de mer profonde d’Ulleungdo, bétaïne, panthénol) hydrate et laisse le grain de peau plus lisse au toucher après le nettoyage.",
+      "howTo": "Après le nettoyage, imbibe un coton et passe-le vers l’extérieur, ou tapote quelques gouttes avec les paumes. Enchaîne avec sérum et crème."
+    },
+    "anua-heartleaf-77-soothing-toner": {
+      "name": "Heartleaf 77 Soothing Toner",
+      "tagline": "Toner apaisant au houttuynia, léger et aqueux",
+      "why": "Succès mondial de la K-beauty, souvent distingué aux Olive Young Awards. L’eau de houttuynia (heartleaf) compose l’essentiel de la formule, avec du panthénol et plusieurs types d’acide hyaluronique pour une couche apaisante et hydratante.",
+      "howTo": "Tapote sur peau propre avec les mains ou un coton. Pour un masque apaisant express, pose des cotons imbibés 5 à 10 minutes."
+    },
+    "medicube-zero-pore-pad": {
+      "name": "Zero Pore Pads",
+      "tagline": "Disques double face AHA et BHA pour une peau plus lisse",
+      "why": "Parmi les produits K-beauty les plus achetés sur Amazon US. Une face gaufrée pour essuyer, une face lisse pour presser ; la lotion à l’acide lactique (AHA) et salicylique (BHA) laisse la peau grasse plus lisse et moins luisante.",
+      "howTo": "Après le nettoyage, passe la face gaufrée sur le visage, puis presse la face lisse sur les zones plus grasses. Commence un jour sur deux, le soir.",
+      "caution": "Contient des acides exfoliants et de l’alcool. Évite la peau lésée, ne l’associe pas à d’autres exfoliants forts et porte une protection solaire le jour."
+    },
+    "skin1004-madagascar-centella-toning-toner": {
+      "name": "Madagascar Centella Toning Toner",
+      "tagline": "Toner PHA doux à la centella de Madagascar",
+      "why": "Un toner doux du quotidien, issu de la gamme centella de SKIN1004. La gluconolactone (un PHA) aide à éliminer en douceur les cellules mortes ; extrait de centella et bétaïne gardent la formule apaisante et hydratante.",
+      "howTo": "Après le nettoyage, verse sur un coton et passe-le délicatement sur le visage, ou fais pénétrer en tapotant avec les paumes.",
+      "caution": "Contient un acide exfoliant doux (PHA). Porte une protection solaire dans la journée."
+    },
+    "torriden-dive-in-toner": {
+      "name": "DIVE IN Toner",
+      "tagline": "Toner frais à l’acide hyaluronique, sans effet collant",
+      "why": "Le toner de la gamme populaire DIVE IN de Torriden associe cinq tailles d’acide hyaluronique au panthénol et à l’allantoïne. Il pénètre vite, avec un fini frais et non collant, bien adapté aux peaux normales à mixtes.",
+      "howTo": "Après le nettoyage, verse dans tes paumes ou sur un coton et tapote uniformément sur le visage. Les jours plus secs, applique deux couches."
+    },
+    "cosrx-advanced-snail-96-mucin-power-essence": {
+      "name": "Advanced Snail 96 Mucin Power Essence",
+      "tagline": "L’essence à la mucine d’escargot derrière la glass skin",
+      "why": "Sans doute le produit K-beauty le plus connu à l’étranger, pilier des classements beauté d’Amazon US. Ses 96 % de filtrat de sécrétion d’escargot donnent une texture glissante et moelleuse, hydratante, au fini lumineux sans lourdeur.",
+      "howTo": "Après le toner, mets 2 à 3 pressions dans ta paume et tapote sur le visage jusqu’à absorption. Enchaîne avec une crème."
+    },
+    "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+      "name": "Glow Serum : Propolis + Niacinamide",
+      "tagline": "Sérum à la propolis couleur miel, pour un effet bonne mine",
+      "why": "Un sérum culte de Beauty of Joseon à petit prix. Extrait de propolis et niacinamide dans un gel léger qui hydrate et donne à la peau un aspect lumineux, ce qui convient bien aux peaux grasses et mixtes.",
+      "howTo": "Après le toner, applique 2 à 3 gouttes et tapote délicatement. Enchaîne avec une crème, et une protection solaire le matin.",
+      "caution": "À éviter en cas d’allergie aux produits de la ruche comme la propolis ou le miel."
+    },
+    "torriden-dive-in-serum": {
+      "name": "DIVE IN Serum",
+      "tagline": "Sérum hyaluronique aqueux pour une hydratation qui dure",
+      "why": "Le sérum phare de Torriden et un incontournable d’Olive Young. Cinq tailles d’acide hyaluronique, du panthénol et de l’allantoïne dans une texture aqueuse qui pénètre vite et se superpose bien sous toute crème ou maquillage.",
+      "howTo": "Après le toner, applique une pipette sur le visage et tapote jusqu’à absorption. Sur peau très sèche, ajoute une seconde couche, puis scelle avec une crème."
+    },
+    "skin1004-madagascar-centella-ampoule": {
+      "name": "Madagascar Centella Ampoule",
+      "tagline": "Ampoule centella minimaliste au toucher léger",
+      "why": "Ampoule à la liste d’ingrédients courte, centrée sur l’extrait de centella asiatica de Madagascar. Fine et aqueuse, elle pénètre vite et procure une sensation apaisante : un choix fréquent pour les peaux sensibles ou qui rougissent vite.",
+      "howTo": "Après le nettoyage et le toner, applique quelques gouttes et tapote. Matin et soir, sous la crème."
+    },
+    "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+      "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+      "tagline": "Sérum à l’acide azélaïque adouci d’ingrédients apaisants",
+      "why": "Un succès récent d’Anua sur Amazon US. Il associe acide azélaïque, niacinamide, panthénol et acide hyaluronique dans un sérum léger, pensé pour les peaux grasses qui veulent aussi une étape apaisante et hydratante.",
+      "howTo": "Après le toner, applique une petite quantité sur le visage une fois par jour, d’abord le soir. Enchaîne avec une crème, et une protection solaire le jour.",
+      "caution": "Contient de l’acide azélaïque et un BHA doux. De légers picotements sont courants au début ; fais un test cutané et évite de l’associer à d’autres acides forts."
+    },
+    "medicube-pdrn-pink-peptide-serum": {
+      "name": "PDRN Pink Peptide Serum",
+      "tagline": "Sérum rose au PDRN, aux peptides et à la niacinamide",
+      "why": "L’un des produits qui ont fait du PDRN (ADN issu du saumon, noté sodium DNA) un mot à la mode de la K-beauty, avec des milliers d’avis Amazon. Ce sérum rose et léger hydrate et laisse un fini brillant, effet bonne mine.",
+      "howTo": "Après le toner, applique 1 à 2 pressions et tapote sur le visage. Enchaîne avec une crème.",
+      "caution": "Contient des ingrédients issus du poisson ; passe ton tour si tu les évites."
+    },
+    "mixsoon-bean-essence": {
+      "name": "Bean Essence",
+      "tagline": "Essence au soja fermenté à la texture filante virale",
+      "why": "Une essence devenue célèbre sur TikTok, faite surtout de soja fermenté et d’autres ferments. Sa texture un peu collante se masse jusqu’à absorption ; on l’utilise souvent le soir comme étape douce pour lisser le grain de peau.",
+      "howTo": "Le soir, masse quelques pressions sur le visage jusqu’à absorption, retire l’excédent avec une serviette tiède ou un disque de toner, puis hydrate.",
+      "caution": "Contient des ingrédients dérivés du soja."
+    },
+    "manyo-bifida-biome-complex-ampoule": {
+      "name": "Bifida Biome Complex Ampoule",
+      "tagline": "Ampoule aux ferments, pour une peau rebondie et hydratée",
+      "why": "Un best-seller de longue date de ma:nyo, à base de lysat de ferment de bifida, avec d’autres ferments, de la niacinamide et du squalane. Ce sérum laiteux semble nourrissant sans lourdeur et convient aux peaux sèches et normales.",
+      "howTo": "Après le toner, applique 2 à 3 gouttes et tapote. Enchaîne avec une crème."
+    },
+    "cosrx-advanced-snail-92-all-in-one-cream": {
+      "name": "Advanced Snail 92 All in One Cream",
+      "tagline": "Gel-crème rebondi à l’escargot qui retient l’hydratation",
+      "why": "La crème associée à la célèbre essence à l’escargot de COSRX. 92 % de filtrat de sécrétion d’escargot dans un gel-crème rebondi qui retient l’hydratation sans effet gras : elle convient toute l’année à la plupart des peaux.",
+      "howTo": "En dernière étape de soin, étale l’équivalent d’une perle sur le visage et tapote jusqu’à absorption. Matin et soir."
+    },
+    "aestura-atobarrier365-cream": {
+      "name": "ATOBARRIER365 Cream",
+      "tagline": "Crème à capsules de céramides, peaux sèches et sensibles",
+      "why": "La crème de la marque dermo d’Amorepacific, distinguée dans la catégorie crèmes des Olive Young Awards. Capsules de céramides, cholestérol et squalane forment une couche riche mais non grasse pour les peaux sèches et vite irritées.",
+      "howTo": "En dernière étape, réchauffe l’équivalent d’un petit pois entre tes doigts et presse sur le visage. Réapplique sur les zones sèches si besoin."
+    },
+    "beauty-of-joseon-dynasty-cream": {
+      "name": "Dynasty Cream",
+      "tagline": "Crème riche et lumineuse inspirée de recettes de Joseon",
+      "why": "La crème phare de Beauty of Joseon, à base d’eau de son de riz et d’eau de racine de ginseng, avec squalane et niacinamide. Sa texture crémeuse laisse un fini lumineux et moelleux, adapté aux peaux sèches et normales.",
+      "howTo": "Applique une petite quantité en dernière étape, matin ou soir. Le soir, mets-en un peu plus sur les zones sèches."
+    },
+    "belif-the-true-cream-aqua-bomb": {
+      "name": "The True Cream Aqua Bomb",
+      "tagline": "Gel-crème rafraîchissant qui libère de l’eau",
+      "why": "Un favori de longue date aux États-Unis, signé par la marque aux plantes de LG H&H. Cette crème gelée libère de l’eau au contact de la peau : une couche d’hydratation fraîche que peaux grasses et mixtes portent sous le maquillage.",
+      "howTo": "Après le sérum, prélève l’équivalent d’une noisette et tapote délicatement sur le visage, matin et soir."
+    },
+    "medicube-collagen-niacinamide-jelly-cream": {
+      "name": "Collagen Niacinamide Jelly Cream",
+      "tagline": "Crème gelée transparente au collagène, fini brillant",
+      "why": "Une crème gelée transparente qui cumule des milliers d’avis sur Amazon. Collagène hydrolysé et niacinamide dans une texture rebondie, légère comme l’eau, qui hydrate et laisse un fini brillant, effet bonne mine.",
+      "howTo": "En dernière étape de soin, étale une quantité suffisante sur le visage et tapote jusqu’à absorption."
+    },
+    "illiyoon-ceramide-ato-concentrate-cream": {
+      "name": "Ceramide Ato Concentrate Cream",
+      "tagline": "Crème familiale épaisse aux céramides, peaux très sèches",
+      "why": "Un classique des drugstores coréens signé Amorepacific, utilisé sur le visage et le corps par toute la famille. Un pseudo-céramide dans une crème épaisse et moelleuse garde les peaux très sèches confortables, surtout en hiver.",
+      "howTo": "Après la toilette, applique généreusement sur le visage ou le corps pendant que la peau est encore un peu humide. Réapplique sur les zones sèches si besoin."
+    },
+    "beauty-of-joseon-relief-sun-rice-probiotics": {
+      "name": "Relief Sun : Rice + Probiotics",
+      "tagline": "Solaire crémeux SPF50+ PA++++ sans traces blanches",
+      "why": "Le solaire qui a fait connaître les SPF K-beauty dans le monde. Protection UV SPF50+ PA++++ dans une texture crémeuse et légère à l’extrait de riz, qui s’estompe sans traces blanches et se porte confortablement sous le maquillage.",
+      "howTo": "En dernière étape de soin, applique une quantité généreuse (environ deux longueurs de doigt pour le visage) 15 minutes avant de sortir. Réapplique toutes les 2 à 3 heures à l’extérieur.",
+      "caution": "Vendu en Corée sous le nom 맑은쌀선크림 ; formules et étiquettes peuvent varier selon les marchés."
+    },
+    "round-lab-birch-juice-moisturizing-sun-cream": {
+      "name": "Birch Juice Moisturizing Sun Cream",
+      "tagline": "Crème solaire hydratante qui s’applique comme un lait",
+      "why": "Une crème solaire populaire chez Olive Young, de la gamme bouleau de Round Lab. Protection UV dans une texture hydratante façon lait, à la sève de bouleau : confortable sur peau sèche, elle sert aussi d’hydratant de jour léger.",
+      "howTo": "En dernière étape de soin, applique uniformément sur le visage et le cou avant de sortir. Réapplique toutes les 2 à 3 heures à l’extérieur."
+    },
+    "skin1004-hyalu-cica-water-fit-sun-serum": {
+      "name": "Hyalu-Cica Water-Fit Sun Serum",
+      "tagline": "SPF50+ léger comme un sérum, presque imperceptible",
+      "why": "Un solaire aqueux de type sérum, apprécié pour sa légèreté. Sa protection UV SPF50+ s’estompe en transparence, avec centella et acide hyaluronique : un choix fréquent pour les peaux grasses et sous le maquillage.",
+      "howTo": "En dernière étape de soin, applique généreusement et uniformément sur le visage et le cou. Réapplique toutes les 2 à 3 heures à l’extérieur."
+    },
+    "dalba-white-truffle-waterfull-essence-sunscreen": {
+      "name": "White Truffle Waterfull Essence Sunscreen",
+      "tagline": "SPF50+ texture essence à la truffe blanche, fini lumineux",
+      "why": "Le solaire phare de d’Alba associe une protection UV SPF50+ à une texture d’essence à la truffe blanche, aux céramides et à l’acide hyaluronique. Il laisse un fini frais et lumineux, adapté aux peaux normales à sèches.",
+      "howTo": "Applique généreusement et uniformément sur le visage et le cou en dernière étape de soin. Réapplique toutes les 2 à 3 heures à l’extérieur.",
+      "caution": "Contient des huiles essentielles comme l’huile d’orange ; fais un test cutané si ta peau réagit au parfum."
+    },
+    "innisfree-daily-uv-defense-sunscreen": {
+      "name": "Daily UV Defense Sunscreen",
+      "tagline": "SPF50+ léger du quotidien au thé vert",
+      "why": "Le solaire de tous les jours d’innisfree offre une protection SPF50+ dans un lait léger au thé vert et à la centella, qui pénètre vite et sert de base, à la manière d’un primer.",
+      "howTo": "Applique uniformément sur le visage et le cou en dernière étape de soin, 15 minutes avant l’exposition. Réapplique toutes les 2 heures à l’extérieur.",
+      "caution": "Formules et filtres UV varient selon les marchés ; la version américaine est un solaire OTC (en vente libre) avec son propre étiquetage."
+    },
+    "aestura-derma-uv365-barrier-hydro-mineral-sunscreen": {
+      "name": "DERMA UV365 Barrier Hydro Mineral Sunscreen",
+      "tagline": "SPF50+ PA++++ minéral pensé pour peaux sèches et sensibles",
+      "why": "Un solaire minéral (oxyde de zinc) d’AESTURA, avec protection UV SPF50+ PA++++. Céramides et acide hyaluronique le rendent hydratant, et la marque indique une faible irritation oculaire en test : il convient aux peaux sensibles.",
+      "howTo": "En dernière étape de soin, applique uniformément et tapote délicatement pour atténuer d’éventuelles traces blanches. Réapplique toutes les 2 à 3 heures à l’extérieur."
+    },
+    "biodance-bio-collagen-real-deep-mask": {
+      "name": "Bio-Collagen Real Deep Mask",
+      "tagline": "Masque hydrogel de nuit qui devient transparent",
+      "why": "Le masque hydrogel devenu viral dans le monde, en haut des classements beauté d’Amazon US. Il devient transparent à mesure que l’essence pénètre ; en Corée, il est enregistré comme cosmétique fonctionnel éclat et soin des rides.",
+      "howTo": "Après le toner ou le sérum, pose le masque 3 à 4 heures ou toute la nuit, jusqu’à ce qu’il devienne transparent. Retire-le et fais pénétrer le reste."
+    },
+    "laneige-water-sleeping-mask": {
+      "name": "Water Sleeping Mask",
+      "tagline": "Masque gel sans rinçage pour une hydratation de nuit",
+      "why": "Le masque de nuit qui a fait connaître LANEIGE à l’étranger. Un gel léger au squalane et à un ferment d’origine probiotique sert de dernière couche le soir : au réveil, la peau est douce et hydratée au toucher.",
+      "howTo": "En dernière étape du soir, étale une fine couche sur le visage et laisse poser toute la nuit. Rince le matin. 2 à 3 fois par semaine, ou chaque soir."
+    },
+    "mediheal-teatree-essential-mask": {
+      "name": "Teatree Essential Mask",
+      "tagline": "Masque tissu frais à l’arbre à thé pour peaux grasses",
+      "why": "Signé MEDIHEAL, l’une des plus grandes marques de masques en tissu de Corée. Une feuille fine imbibée d’arbre à thé, de panthénol et d’allantoïne apporte un coup d’hydratation apaisant après le soleil, la chaleur ou une longue journée.",
+      "howTo": "Après le toner, pose le masque 15 à 20 minutes, retire-le et fais pénétrer le reste d’essence. 2 à 3 fois par semaine."
+    },
+    "medicube-collagen-night-wrapping-mask": {
+      "name": "Collagen Night Wrapping Mask",
+      "tagline": "Masque de nuit peel-off qui enveloppe d’hydratation",
+      "why": "Un masque peel-off viral : on l’étale le soir, il forme un film fin, et on le retire le matin. Collagène, niacinamide et acide hyaluronique restent sous le film pour garder la peau hydratée toute la nuit.",
+      "howTo": "En dernière étape du soir, étale une couche uniforme, pas trop fine, en évitant yeux, sourcils et racine des cheveux. Laisse sécher, dors, puis retire le film et rince.",
+      "caution": "Évite la racine des cheveux, les sourcils et le contour des yeux. Ne pas utiliser sur une peau irritée ou lésée."
+    },
+    "laneige-lip-sleeping-mask": {
+      "name": "Lip Sleeping Mask",
+      "tagline": "Baume de nuit pour des lèvres douces au réveil",
+      "why": "L’un des produits K-beauty les plus connus au monde. Un baume épais (Berry est le parfum d’origine) à l’huile de coco et aux beurres de murumuru et de karité, qui garde les lèvres douces la nuit et sert de baume brillant le jour.",
+      "howTo": "Applique une couche généreuse avec la spatule avant de dormir. Essuie le matin, ou porte une fine couche dans la journée."
+    },
+    "romand-the-juicy-lasting-tint": {
+      "name": "The Juicy Lasting Tint",
+      "tagline": "Tint brillant et juteux à la couleur longue tenue",
+      "why": "Le tint phare de rom&nd et l’un des produits lèvres les plus achetés chez Olive Young. Un fini brillant et sirupeux qui laisse une teinte en s’estompant, en des dizaines de nuances, des tons fruités légers aux baies profondes.",
+      "howTo": "Applique au centre des lèvres et estompe pour un dégradé, ou couvre toute la lèvre pour une couleur intense. Superpose sur un baume pour plus de brillance."
+    },
+    "peripera-ink-the-velvet": {
+      "name": "Ink the Velvet",
+      "tagline": "Tint velours mat doux dans une très large gamme de teintes",
+      "why": "Le tint phare de peripera, épuisé quelques jours après son lancement et toujours populaire depuis. Sa texture fouettée et veloutée floute les ridules des lèvres et laisse une teinte mate et douce.",
+      "howTo": "Presse le plat de l’applicateur au centre des lèvres et estompe vers l’extérieur pour un dégradé, ou applique partout pour une couleur intense."
+    },
+    "laneige-lip-glowy-balm": {
+      "name": "Lip Glowy Balm",
+      "tagline": "Baume teinté transparent et brillant pour tous les jours",
+      "why": "Le partenaire de jour du masque lèvres de LANEIGE. Un tube souple de baume transparent et brillant aux beurres de karité et de murumuru, qui donne aux lèvres une légère teinte et de l’éclat sans coller.",
+      "howTo": "Applique directement sur les lèvres dès qu’elles sont sèches. Seul, ou par-dessus un rouge à lèvres pour plus de brillance."
+    },
+    "torriden-solid-in-lip-essence": {
+      "name": "SOLID IN Lip Essence",
+      "tagline": "Essence aux céramides pour lèvres sèches qui pèlent",
+      "why": "Un soin lèvres apprécié chez Olive Young, issu de la gamme céramides de Torriden. Cinq types de céramides, beurre de karité et acide hyaluronique forment une couche lisse et brillante qui aide les lèvres sèches à rester confortables.",
+      "howTo": "Applique sur les lèvres dès qu’elles sont sèches, et en couche épaisse avant de dormir. Sert aussi de base sous un tint."
+    },
+    "tirtir-mask-fit-red-cushion": {
+      "name": "Mask Fit Red Cushion",
+      "tagline": "Cushion rouge longue tenue à la large gamme de teintes",
+      "why": "Le cushion à boîtier rouge devenu viral en passant à environ 40 teintes. Couvrance moyenne à forte, longue tenue, fini légèrement lumineux ; la version coréenne est un cosmétique fonctionnel SPF40 PA++.",
+      "howTo": "Presse la houppette dans le cushion, puis tapote du centre du visage vers l’extérieur. Ajoute une seconde fine couche là où tu veux plus de couvrance.",
+      "caution": "Les noms de teintes et les indices SPF peuvent différer entre les versions coréenne et internationale."
+    },
+    "clio-kill-cover-founwear-cushion": {
+      "name": "Kill Cover Founwear Cushion The Original",
+      "tagline": "Cushion haute couvrance SPF50+ PA+++",
+      "why": "Le cushion Kill Cover de CLIO s’est vendu à des millions d’exemplaires depuis 2015. La version Founwear offre une couvrance élevée longue tenue, au fini naturel, et une protection UV SPF50+ PA+++, selon la fiche produit officielle coréenne.",
+      "howTo": "Tapote légèrement la houppette dans le cushion et presse sur la peau du centre vers l’extérieur. Superpose de fines couches sur les imperfections au lieu d’appuyer plus fort."
+    },
+    "missha-m-perfect-cover-bb-cream": {
+      "name": "M Perfect Cover BB Cream SPF42 PA+++",
+      "tagline": "BB crème classique SPF42 à la couvrance modulable",
+      "why": "L’une des BB crèmes qui ont fait découvrir le teint K-beauty au monde. Couvrance moyenne à forte en un seul tube, protection UV SPF42 PA+++, plus acide hyaluronique et céramides pour un fini hydraté.",
+      "howTo": "Après tes soins, dépose une petite quantité par points sur le visage et estompe du bout des doigts ou avec une éponge humide. Ajoute une fine couche si besoin."
+    },
+    "hera-black-cushion-foundation": {
+      "name": "Black Cushion Foundation",
+      "tagline": "Cushion premium semi-mat, fini lisse et longue tenue",
+      "why": "HERA est la marque de maquillage premium d’Amorepacific, et le Black Cushion son produit signature. Il dépose une couche fine, semi-mate et longue tenue, qui paraît lisse sur les peaux mixtes et grasses.",
+      "howTo": "Presse légèrement la houppette dans le cushion et tapote du centre du visage vers l’extérieur. Superpose de fines couches pour plus de couvrance."
+    },
+    "innisfree-no-sebum-mineral-powder": {
+      "name": "No-Sebum Mineral Powder",
+      "tagline": "Mini poudre libre qui limite la brillance toute la journée",
+      "why": "Une poudre libre bon marché, format poche, incontournable des drugstores coréens depuis des années. À base de silice, elle fixe le maquillage et absorbe l’excès de sébum pour un fini mat doux, sans effet plâtré.",
+      "howTo": "Prends un peu de poudre sur une houppette ou un pinceau, presse sur la zone T après le teint, et retouche dans la journée."
+    },
+    "clio-pro-eye-palette-air": {
+      "name": "Pro Eye Palette Air",
+      "tagline": "Palette légère de 12 teintes aux tons K-beauty portables",
+      "why": "Les palettes de CLIO sont des habituées d’Olive Young ; la version Air réunit douze fards de 0,6 g, mats doux, irisés et pailletés, dans un boîtier fin, pensés pour le maquillage des yeux coréen du quotidien.",
+      "howTo": "Balaye une teinte mate claire sur la paupière, intensifie le creux et le coin externe, puis presse un fard irisé ou pailleté au centre de la paupière du bout du doigt."
+    },
+    "romand-better-than-palette": {
+      "name": "Better Than Palette",
+      "tagline": "Palettes au thème jardin, mats doux et paillettes",
+      "why": "La gamme de fards de rom&nd, déclinée en nombreuses collections saisonnières « jardin ». Chaque palette mêle mats faciles à estomper et paillettes fines dans des tons doux et portables, pour un regard coréen tout en douceur.",
+      "howTo": "Utilise le mat le plus clair en base, estompe un ton moyen dans le creux, puis ajoute des paillettes au centre de la paupière ou sous les yeux."
+    },
+    "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+      "name": "Revive Eye Serum : Ginseng + Retinal",
+      "tagline": "Crème contour des yeux légère au ginseng et rétinal doux",
+      "why": "La crème yeux de Beauty of Joseon associe extrait de racine de ginseng, rétinal, niacinamide et céramides dans un sérum crémeux et léger qui garde hydratée la peau fine du contour de l’œil, à petit prix.",
+      "howTo": "Le soir, tapote une petite quantité autour de l’os orbital avec l’annulaire. Commence un soir sur deux, puis augmente selon ta tolérance.",
+      "caution": "Contient du rétinal. Évite la ligne des cils, porte une protection solaire le jour et demande l’avis d’un professionnel avant usage si tu es enceinte ou allaites."
+    },
+    "mise-en-scene-perfect-serum-original": {
+      "name": "Perfect Serum Original",
+      "tagline": "L’huile-sérum culte en Corée : frisottis domptés, brillance",
+      "why": "Un incontournable des soins capillaires des drugstores coréens, signé Amorepacific. Un sérum-huile léger à l’argan, au jojoba et au camélia qui discipline les frisottis et fait briller les pointes sèches sans alourdir.",
+      "howTo": "Frotte 1 à 2 pressions entre tes paumes et lisse sur les pointes essorées à la serviette avant le brushing. Sur cheveux secs, un peu plus en finition."
+    },
+    "lador-perfect-hair-fill-up": {
+      "name": "Perfect Hair Fill-Up",
+      "tagline": "Filler protéiné pour cheveux secs à l’aspect abîmé",
+      "why": "Un filler capillaire coréen à rincer, très populaire, qui passe de l’eau à la crème. Kératine hydrolysée, soie et céramides rendent les cheveux secs, décolorés ou lissés à chaud plus lisses au toucher et plus faciles à démêler.",
+      "howTo": "Après le shampooing, masse sur les longueurs mouillées pendant qu’il passe de l’eau à la crème, puis rince bien à l’eau tiède."
+    },
+    "illiyoon-ceramide-ato-lotion": {
+      "name": "Ceramide Ato Lotion",
+      "tagline": "Lait corps aux céramides, grand format familial",
+      "why": "Un lait corps en grand flacon, habitué des drugstores coréens. Céramides et squalane, dans une texture légère qui pénètre vite, gardent la peau sèche du corps confortable ; assez doux pour tout le corps au quotidien.",
+      "howTo": "Applique généreusement sur tout le corps juste après la douche, sur peau encore un peu humide."
+    }
+  },
   "skinType": {
-    "title": "",
-    "intro": "",
-    "disclaimer": "",
-    "questions": {},
-    "results": {}
+    "title": "Quel est ton type de peau ?",
+    "intro": "Six questions rapides sur ce que ressent ta peau au quotidien. Découvre ton type, puis les produits K-beauty qui lui vont.",
+    "disclaimer": "Juste pour s’amuser, ce n’est pas un diagnostic médical. Pour des soucis de peau qui durent, consulte un dermatologue.",
+    "questions": {
+      "afternoon": {
+        "q": "En milieu d’après-midi, comment est ta peau ?",
+        "options": {
+          "tight": "Elle tiraille ou pèle un peu",
+          "shiny-all": "Brillante partout",
+          "shiny-t": "Brillante seulement sur le front et le nez",
+          "comfortable": "Confortable, pas brillante"
+        }
+      },
+      "after-wash": {
+        "q": "Juste après t’être lavé le visage, ta peau…",
+        "options": {
+          "tight": "Tiraille. Il me faut une crème tout de suite",
+          "sting": "Chauffe, rougit ou picote un peu",
+          "fine": "Va bien, pas besoin d’hydrater tout de suite"
+        }
+      },
+      "pores": {
+        "q": "Tes pores sont-ils visibles ?",
+        "options": {
+          "large-all": "Visibles sur presque tout le visage",
+          "t-zone": "Surtout autour du nez et sur le front",
+          "barely": "À peine visibles"
+        }
+      },
+      "new-product": {
+        "q": "Quand tu essaies un nouveau soin…",
+        "options": {
+          "often": "Rougeurs, démangeaisons ou picotements sont fréquents",
+          "sometimes": "De temps en temps, un produit me gêne",
+          "rarely": "Ma peau réagit rarement"
+        }
+      },
+      "makeup": {
+        "q": "En fin de journée, ton fond de teint…",
+        "options": {
+          "patchy": "S’accroche aux zones sèches",
+          "slides": "Glisse ou paraît gras",
+          "t-fade": "S’efface sur le nez et le front",
+          "stays": "Tient plutôt bien"
+        }
+      },
+      "weather": {
+        "q": "Par temps froid, venteux ou sec, ta peau…",
+        "options": {
+          "flaky": "Devient rêche ou pèle",
+          "flushed": "Rougit ou démange",
+          "mixed": "Joues sèches, mais zone T toujours grasse",
+          "same": "Ne change pas beaucoup"
+        }
+      }
+    },
+    "results": {
+      "dry": {
+        "name": "Peau sèche",
+        "oneLiner": "Ta peau réclame d’abord de l’hydratation et adore les couches riches et moelleuses.",
+        "tips": [
+          "Nettoie avec un produit doux et peu moussant, et évite l’eau très chaude.",
+          "Applique un toner ou une essence hydratante sur peau encore un peu humide.",
+          "Scelle le tout avec une crème plus riche le soir et porte un solaire le jour."
+        ]
+      },
+      "oily": {
+        "name": "Peau grasse",
+        "oneLiner": "L’éclat vient tout seul. Tu veux juste qu’il reste frais, pas gras.",
+        "tips": [
+          "Matin et soir, un gel ou un nettoyant à pH bas plutôt que des gommages agressifs.",
+          "Garde une crème légère, type gel-crème. S’en passer peut déséquilibrer ta peau.",
+          "Choisis un solaire aqueux ou mat, et éponge la brillance au lieu de repoudrer."
+        ]
+      },
+      "combination": {
+        "name": "Peau mixte",
+        "oneLiner": "Deux peaux en une : une zone T grasse et des joues plus sèches.",
+        "tips": [
+          "Chaque zone à sa façon : du léger sur la zone T, plus d’hydratation sur les joues.",
+          "Un toner doux aide à équilibrer les sensations de ta peau sans la décaper.",
+          "Crème légère partout, et crème plus riche seulement là où ça tiraille."
+        ]
+      },
+      "sensitive": {
+        "name": "Peau sensible",
+        "oneLiner": "Ta peau remarque tout : les routines courtes et douces lui vont bien.",
+        "tips": [
+          "Teste un nouveau produit quelques jours sur la mâchoire avant tout le visage.",
+          "Garde une routine courte et choisis des formules sans parfum quand c’est possible.",
+          "Un nouveau produit à la fois ; si rougeurs ou démangeaisons reviennent, vois un dermato."
+        ]
+      },
+      "normal": {
+        "name": "Peau normale",
+        "oneLiner": "Équilibrée et facile à vivre. Mise sur la simplicité et la régularité.",
+        "tips": [
+          "Une routine simple suffit : nettoyant doux, couche hydratante, crème, solaire.",
+          "Adapte-toi aux saisons : plus léger en été, plus riche en hiver.",
+          "Le solaire quotidien, c’est l’étape à ne jamais sauter."
+        ]
+      }
+    }
   }
 }

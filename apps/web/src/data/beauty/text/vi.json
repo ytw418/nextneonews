@@ -1,11 +1,465 @@
 {
-  "categories": {},
-  "products": {},
+  "categories": {
+    "cleanser": {
+      "name": "Làm sạch",
+      "intro": "Dầu, sáp và sữa rửa mặt tạo bọt dịu nhẹ cho bước làm sạch kép sạch sẽ, dễ chịu."
+    },
+    "toner": {
+      "name": "Toner",
+      "intro": "Lớp đầu tiên lỏng như nước và miếng pad giúp chuẩn bị da sau khi rửa mặt."
+    },
+    "serum": {
+      "name": "Serum & tinh chất",
+      "intro": "Các lớp cô đặc giúp cấp ẩm, làm dịu và tạo độ bóng khỏe."
+    },
+    "moisturizer": {
+      "name": "Kem dưỡng ẩm",
+      "intro": "Từ gel-cream đến kem đặc, giúp khóa ẩm cho da."
+    },
+    "sunscreen": {
+      "name": "Kem chống nắng",
+      "intro": "Kem chống nắng K-beauty nhẹ, dễ chịu để dùng mỗi ngày."
+    },
+    "mask": {
+      "name": "Mặt nạ",
+      "intro": "Mặt nạ giấy, hydrogel và mặt nạ ngủ giúp cấp ẩm nhanh."
+    },
+    "lip": {
+      "name": "Môi",
+      "intro": "Son tint và son dưỡng mà người Hàn mua đi mua lại."
+    },
+    "base": {
+      "name": "Trang điểm nền",
+      "intro": "Cushion, BB cream và phấn phủ cho lớp nền mịn, tươi tắn."
+    },
+    "eye": {
+      "name": "Mắt",
+      "intro": "Bảng phấn mắt và sản phẩm chăm sóc vùng mắt cho lớp trang điểm nhẹ nhàng, dễ dùng."
+    },
+    "hair-body": {
+      "name": "Tóc & cơ thể",
+      "intro": "Serum dưỡng tóc, sản phẩm chăm sóc tóc dạng xả và sữa dưỡng thể từ drugstore Hàn Quốc."
+    }
+  },
+  "products": {
+    "cosrx-low-ph-good-morning-gel-cleanser": {
+      "name": "Low pH Good Morning Gel Cleanser",
+      "tagline": "Gel rửa mặt pH thấp, dịu nhẹ cho buổi sáng",
+      "why": "Món kinh điển lâu năm của K-beauty: gel rửa mặt trong suốt có pH hơi axit (khoảng 5,3), rửa sạch mà không gây khô căng. Betaine salicylate và dầu tràm trà cho cảm giác tươi mát, hợp da dầu và da hỗn hợp.",
+      "howTo": "Tạo bọt một lượng nhỏ với nước, mát-xa lên da ẩm khoảng 30 giây rồi rửa sạch. Dùng buổi sáng hoặc làm bước thứ hai khi làm sạch kép."
+    },
+    "anua-heartleaf-pore-control-cleansing-oil": {
+      "name": "Heartleaf Pore Control Cleansing Oil",
+      "tagline": "Dầu tẩy trang nhẹ, hòa tan makeup và kem chống nắng",
+      "why": "Dầu tẩy trang nhẹ từ dầu jojoba, hạt nho, macadamia cùng chiết xuất diếp cá. Dầu hòa tan makeup, kem chống nắng và bã nhờn thừa, gặp nước chuyển màu sữa và rửa sạch: bước đầu dễ dàng của làm sạch kép.",
+      "howTo": "Bơm 2-3 lần ra tay khô, mát-xa lên mặt khô. Thêm chút nước đến khi chuyển màu sữa, rửa sạch rồi dùng tiếp sữa rửa mặt gốc nước.",
+      "caution": "Có chứa hương liệu. Hãy thử trước trên một vùng da nhỏ nếu da bạn dễ kích ứng."
+    },
+    "round-lab-1025-dokdo-cleanser": {
+      "name": "1025 Dokdo Cleanser",
+      "tagline": "Bọt mềm, hơi axit với nước biển Ulleungdo",
+      "why": "Sữa rửa mặt thuộc dòng 1025 Dokdo nổi tiếng của Round Lab, kết hợp nước biển sâu Ulleungdo (hòn đảo cạnh Dokdo) với panthenol và allantoin. Bọt mềm mịn, rửa sạch mà không khiến da khô căng.",
+      "howTo": "Tạo bọt một lượng bằng hạt đậu với nước, mát-xa nhẹ lên da ẩm rồi rửa bằng nước ấm. Dùng sáng và tối."
+    },
+    "banila-co-clean-it-zero-cleansing-balm-original": {
+      "name": "Clean It Zero Cleansing Balm Original",
+      "tagline": "Sáp mịn như sherbet, tan thành dầu tẩy trang",
+      "why": "Món kinh điển K-beauty trong hũ hồng. Sáp dạng sherbet chuyển thành dầu khi mát-xa, cuốn trôi cả makeup lâu trôi và chống nước, rồi nhũ hóa và rửa sạch với nước. Có thêm chiết xuất acerola và vitamin E.",
+      "howTo": "Lấy một ít bằng thìa đi kèm, mát-xa lên da khô đến khi tan, thêm nước để nhũ hóa rồi rửa sạch. Sau đó dùng thêm sữa rửa mặt.",
+      "caution": "Có chứa hương liệu. Để thìa trong hũ để không phải nhúng ngón tay vào."
+    },
+    "manyo-pure-soybean-cleansing-oil": {
+      "name": "Pure Soybean Cleansing Oil",
+      "tagline": "Dầu tẩy trang thực vật, chuyển màu sữa khi rửa",
+      "why": "Trước đây có tên Pure Cleansing Oil, hỗn hợp dầu đậu nành, argan, jojoba và các dầu thực vật khác này đoạt giải Allure Beauty Award 2025 hạng mục dầu tẩy trang. Dầu tan makeup và bã nhờn, gặp nước thành sữa nhẹ.",
+      "howTo": "Bơm 2-3 lần, thoa lên mặt khô bằng tay khô và mát-xa. Thêm chút nước để nhũ hóa, rửa kỹ rồi dùng tiếp sữa rửa mặt dạng bọt hoặc gel."
+    },
+    "round-lab-1025-dokdo-toner": {
+      "name": "1025 Dokdo Toner",
+      "tagline": "Toner lỏng hằng ngày, quen mặt ở Olive Young Awards",
+      "why": "Một trong những toner bán chạy nhất Hàn Quốc, thường có tên trong giải thưởng thường niên của Olive Young. Kết cấu lỏng với nước biển sâu Ulleungdo, betaine và panthenol giúp cấp ẩm và làm bề mặt da mịn hơn sau khi rửa mặt.",
+      "howTo": "Sau khi rửa mặt, thấm đẫm bông tẩy trang và lau ra ngoài, hoặc vỗ vài giọt bằng lòng bàn tay. Tiếp theo là serum và kem dưỡng."
+    },
+    "anua-heartleaf-77-soothing-toner": {
+      "name": "Heartleaf 77 Soothing Toner",
+      "tagline": "Toner diếp cá làm dịu, nhẹ và lỏng như nước",
+      "why": "Hiện tượng K-beauty toàn cầu, thường được chọn ở Olive Young Awards. Nước diếp cá chiếm phần lớn công thức, kết hợp panthenol và nhiều loại hyaluronic acid cho một lớp dưỡng làm dịu, cấp ẩm.",
+      "howTo": "Vỗ lên da sạch bằng tay hoặc bông tẩy trang. Muốn làm dịu nhanh, thấm ướt bông và đắp 5-10 phút."
+    },
+    "medicube-zero-pore-pad": {
+      "name": "Zero Pore Pads",
+      "tagline": "Pad toner hai mặt với AHA và BHA cho da mịn hơn",
+      "why": "Thuộc nhóm sản phẩm K-beauty bán chạy nhất trên Amazon Mỹ. Mỗi miếng pad có mặt nhám để lau và mặt mịn để áp; toner chứa lactic acid (AHA) và salicylic acid (BHA) giúp da dầu mịn hơn, bớt bóng nhờn.",
+      "howTo": "Sau khi rửa mặt, lau mặt nhám khắp mặt, rồi áp mặt mịn lên vùng nhiều dầu. Bắt đầu cách ngày, vào buổi tối.",
+      "caution": "Chứa axit tẩy tế bào chết và cồn. Tránh vùng da trầy xước, không dùng chung với sản phẩm tẩy tế bào chết mạnh khác, và thoa kem chống nắng ban ngày."
+    },
+    "skin1004-madagascar-centella-toning-toner": {
+      "name": "Madagascar Centella Toning Toner",
+      "tagline": "Toner PHA dịu nhẹ với rau má Madagascar",
+      "why": "Toner hằng ngày dịu nhẹ thuộc dòng rau má của SKIN1004. Gluconolactone (một loại PHA) giúp nhẹ nhàng loại bỏ tế bào chết, còn chiết xuất rau má và betaine giữ công thức êm dịu, cấp ẩm, hợp dùng mỗi ngày.",
+      "howTo": "Sau khi rửa mặt, đổ ra bông tẩy trang và lau nhẹ khắp mặt, hoặc vỗ bằng lòng bàn tay.",
+      "caution": "Chứa axit tẩy tế bào chết nhẹ (PHA). Thoa kem chống nắng vào ban ngày."
+    },
+    "torriden-dive-in-toner": {
+      "name": "DIVE IN Toner",
+      "tagline": "Toner hyaluronic acid tươi mát, không bết dính",
+      "why": "Toner thuộc dòng DIVE IN nổi tiếng của Torriden, dùng hyaluronic acid 5 kích thước cùng panthenol và allantoin. Thấm nhanh, để lại cảm giác tươi mát, không dính, hợp với da thường đến da hỗn hợp.",
+      "howTo": "Sau khi rửa mặt, đổ ra lòng bàn tay hoặc bông tẩy trang và vỗ đều khắp mặt. Những ngày da khô, thoa thêm lớp thứ hai."
+    },
+    "cosrx-advanced-snail-96-mucin-power-essence": {
+      "name": "Advanced Snail 96 Mucin Power Essence",
+      "tagline": "Tinh chất ốc sên đứng sau trào lưu da thủy tinh",
+      "why": "Có lẽ là sản phẩm K-beauty nổi tiếng nhất ở nước ngoài, luôn có mặt trên bảng xếp hạng làm đẹp Amazon Mỹ. 96% dịch lọc nhầy ốc sên cho kết cấu trơn, đàn hồi, cấp ẩm và để lại độ căng bóng mà không nặng mặt.",
+      "howTo": "Sau toner, bơm 2-3 lần ra lòng bàn tay và vỗ lên mặt đến khi thấm. Tiếp theo là kem dưỡng."
+    },
+    "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+      "name": "Glow Serum : Propolis + Niacinamide",
+      "tagline": "Serum keo ong màu mật cho làn da trông bóng khỏe",
+      "why": "Serum được nhiều người mê của Beauty of Joseon với giá dễ chịu. Chiết xuất keo ong và niacinamide trong kết cấu gel nhẹ giúp cấp ẩm và để lại vẻ căng bóng, rất hợp với da dầu và da hỗn hợp.",
+      "howTo": "Sau toner, lấy 2-3 giọt và vỗ nhẹ. Tiếp theo là kem dưỡng, và kem chống nắng vào buổi sáng.",
+      "caution": "Không dùng nếu bạn dị ứng với sản phẩm từ ong như keo ong hoặc mật ong."
+    },
+    "torriden-dive-in-serum": {
+      "name": "DIVE IN Serum",
+      "tagline": "Serum hyaluronic acid lỏng nhẹ, giữ ẩm cả ngày",
+      "why": "Serum đặc trưng của Torriden, món quen thuộc ở Olive Young. Hyaluronic acid 5 kích thước cùng panthenol và allantoin cho kết cấu lỏng như nước, thấm nhanh và dễ lót dưới mọi loại kem hay lớp trang điểm.",
+      "howTo": "Sau toner, nhỏ một ống bóp lên mặt và vỗ đến khi thấm. Da rất khô có thể thoa lớp thứ hai, rồi khóa ẩm bằng kem."
+    },
+    "skin1004-madagascar-centella-ampoule": {
+      "name": "Madagascar Centella Ampoule",
+      "tagline": "Ampoule rau má tối giản thành phần, cảm giác nhẹ",
+      "why": "Ampoule có bảng thành phần ngắn, xoay quanh chiết xuất rau má (centella asiatica) từ Madagascar. Kết cấu mỏng như nước thấm nhanh, mang lại cảm giác dịu da, nên thường được da nhạy cảm hoặc dễ ửng đỏ lựa chọn.",
+      "howTo": "Sau khi rửa mặt và dùng toner, lấy vài giọt và vỗ nhẹ. Dùng sáng và tối, trước kem dưỡng."
+    },
+    "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+      "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+      "tagline": "Serum azelaic acid cân bằng cùng thành phần làm dịu",
+      "why": "Sản phẩm gần đây gây sốt trên Amazon Mỹ của Anua. Azelaic acid kết hợp niacinamide, panthenol và hyaluronic acid trong serum nhẹ, dành cho da dầu muốn có thêm bước làm dịu và cấp ẩm.",
+      "howTo": "Sau toner, thoa một lượng nhỏ lên mặt mỗi ngày một lần, lúc đầu dùng buổi tối. Tiếp theo là kem dưỡng, và kem chống nắng ban ngày.",
+      "caution": "Chứa azelaic acid và BHA nhẹ. Lúc đầu có thể hơi châm chích; hãy thử trước trên vùng da nhỏ và tránh dùng cùng các axit mạnh khác."
+    },
+    "medicube-pdrn-pink-peptide-serum": {
+      "name": "PDRN Pink Peptide Serum",
+      "tagline": "Serum PDRN màu hồng với peptide và niacinamide",
+      "why": "Một trong những sản phẩm đưa PDRN (DNA chiết từ cá hồi, ghi là sodium DNA) thành từ khóa K-beauty, với hàng nghìn đánh giá trên Amazon. Serum hồng nhẹ bổ sung độ ẩm, cho da vẻ căng bóng, khỏe khoắn.",
+      "howTo": "Sau toner, bơm 1-2 lần và vỗ khắp mặt. Tiếp theo là kem dưỡng.",
+      "caution": "Chứa thành phần có nguồn gốc từ cá; bỏ qua nếu bạn tránh loại thành phần này."
+    },
+    "mixsoon-bean-essence": {
+      "name": "Bean Essence",
+      "tagline": "Tinh chất đậu nành lên men, kết cấu kéo sợi gây sốt",
+      "why": "Tinh chất nổi tiếng trên TikTok, chủ yếu từ đậu nành lên men và các thành phần lên men khác. Kết cấu hơi dính được mát-xa đến khi thấm, thường dùng như bước làm mịn bề mặt da nhẹ nhàng vào buổi tối.",
+      "howTo": "Buổi tối, mát-xa vài lần bơm lên mặt đến khi thấm, lau phần còn dư bằng khăn ấm hoặc pad toner, rồi dưỡng ẩm.",
+      "caution": "Chứa thành phần có nguồn gốc từ đậu nành."
+    },
+    "manyo-bifida-biome-complex-ampoule": {
+      "name": "Bifida Biome Complex Ampoule",
+      "tagline": "Ampoule lên men cho cảm giác căng mọng, đủ ẩm",
+      "why": "Ampoule bán chạy lâu năm của ma:nyo, nền bifida ferment lysate cùng các thành phần lên men khác, niacinamide và squalane. Serum màu sữa nuôi dưỡng mà không nặng, hợp da khô và da thường.",
+      "howTo": "Sau toner, lấy 2-3 giọt và vỗ nhẹ. Tiếp theo là kem dưỡng."
+    },
+    "cosrx-advanced-snail-92-all-in-one-cream": {
+      "name": "Advanced Snail 92 All in One Cream",
+      "tagline": "Gel-cream ốc sên đàn hồi giúp khóa ẩm",
+      "why": "Kem đi cặp với tinh chất ốc sên nổi tiếng của COSRX. 92% dịch lọc nhầy ốc sên trong gel-cream đàn hồi giữ ẩm mà không gây nhờn, dùng được quanh năm cho hầu hết các loại da.",
+      "howTo": "Ở bước dưỡng da cuối cùng, thoa một lượng bằng hạt ngọc trai khắp mặt và vỗ đến khi thấm. Dùng sáng và tối."
+    },
+    "aestura-atobarrier365-cream": {
+      "name": "ATOBARRIER365 Cream",
+      "tagline": "Kem viên nang ceramide cho da khô, nhạy cảm",
+      "why": "Kem của thương hiệu derma thuộc Amorepacific, được vinh danh ở hạng mục kem của Olive Young Awards. Viên nang ceramide, cholesterol và squalane tạo lớp dưỡng ẩm giàu nhưng không nhờn cho da khô, dễ kích ứng.",
+      "howTo": "Ở bước cuối, làm ấm một lượng bằng hạt đậu giữa các đầu ngón tay rồi áp lên mặt. Thoa thêm lên vùng khô khi cần."
+    },
+    "beauty-of-joseon-dynasty-cream": {
+      "name": "Dynasty Cream",
+      "tagline": "Kem đặc, căng bóng lấy cảm hứng từ công thức thời Joseon",
+      "why": "Kem dưỡng đặc trưng của Beauty of Joseon, dùng nước cám gạo và nước rễ nhân sâm cùng squalane và niacinamide. Kết cấu kem cho lớp hoàn thiện căng bóng, êm mịn, hợp da khô và da thường.",
+      "howTo": "Thoa một lượng nhỏ ở bước cuối, sáng hoặc tối. Buổi tối dùng nhiều hơn một chút ở vùng da khô."
+    },
+    "belif-the-true-cream-aqua-bomb": {
+      "name": "The True Cream Aqua Bomb",
+      "tagline": "Gel-cream mát lạnh, vỡ ra thành nước",
+      "why": "Món được yêu thích lâu năm ở Mỹ từ thương hiệu thảo mộc của LG H&H. Kem dạng thạch vỡ thành nước khi chạm da, cho lớp ẩm mát và tươi mà da dầu, da hỗn hợp có thể dùng dưới lớp trang điểm.",
+      "howTo": "Sau serum, lấy một lượng bằng đồng xu nhỏ và vỗ nhẹ khắp mặt, sáng và tối."
+    },
+    "medicube-collagen-niacinamide-jelly-cream": {
+      "name": "Collagen Niacinamide Jelly Cream",
+      "tagline": "Kem thạch trong suốt chứa collagen, hoàn thiện căng bóng",
+      "why": "Kem thạch trong suốt với hàng nghìn đánh giá trên Amazon. Collagen thủy phân và niacinamide trong kết cấu đàn hồi, nhẹ như nước giúp bổ sung độ ẩm và cho da vẻ căng bóng, khỏe khoắn.",
+      "howTo": "Ở bước dưỡng da cuối, thoa một lượng vừa đủ khắp mặt và vỗ đến khi thấm."
+    },
+    "illiyoon-ceramide-ato-concentrate-cream": {
+      "name": "Ceramide Ato Concentrate Cream",
+      "tagline": "Kem ceramide đặc cho cả nhà, dành cho da rất khô",
+      "why": "Món kinh điển ở drugstore Hàn của Amorepacific, cả nhà dùng cho mặt và cơ thể. Pseudo-ceramide trong kem đặc, êm giúp da rất khô luôn dễ chịu, nhất là vào mùa đông.",
+      "howTo": "Sau khi tắm rửa, thoa nhiều lên mặt hoặc cơ thể khi da còn hơi ẩm. Thoa lại lên vùng khô khi cần."
+    },
+    "beauty-of-joseon-relief-sun-rice-probiotics": {
+      "name": "Relief Sun : Rice + Probiotics",
+      "tagline": "Kem chống nắng SPF50+ PA++++ dạng kem, không vệt trắng",
+      "why": "Kem chống nắng đưa SPF K-beauty ra thế giới. Chống tia UV SPF50+ PA++++ trong kết cấu kem nhẹ với chiết xuất gạo, tán đều không để lại vệt trắng và nằm êm dưới lớp trang điểm.",
+      "howTo": "Ở bước dưỡng da cuối, thoa đủ lượng (cho mặt khoảng dài hai ngón tay) 15 phút trước khi ra ngoài. Thoa lại mỗi 2-3 giờ khi ở ngoài trời.",
+      "caution": "Tại Hàn Quốc bán với tên 맑은쌀선크림; công thức và nhãn có thể khác nhau tùy thị trường."
+    },
+    "round-lab-birch-juice-moisturizing-sun-cream": {
+      "name": "Birch Juice Moisturizing Sun Cream",
+      "tagline": "Kem chống nắng dưỡng ẩm, thoa như lotion",
+      "why": "Kem chống nắng được ưa chuộng ở Olive Young thuộc dòng bạch dương của Round Lab. Chống tia UV trong kết cấu lotion cấp ẩm với nhựa cây bạch dương, dễ chịu trên da khô và có thể thay kem dưỡng nhẹ ban ngày.",
+      "howTo": "Ở bước dưỡng da cuối, thoa đều lên mặt và cổ trước khi ra ngoài. Thoa lại mỗi 2-3 giờ khi ở ngoài trời."
+    },
+    "skin1004-hyalu-cica-water-fit-sun-serum": {
+      "name": "Hyalu-Cica Water-Fit Sun Serum",
+      "tagline": "SPF50+ nhẹ như serum, gần như không có cảm giác",
+      "why": "Kem chống nắng dạng serum lỏng được yêu thích vì rất nhẹ. Chống tia UV SPF50+, tán trong suốt với rau má và hyaluronic acid, thường được chọn cho da dầu và để dùng dưới lớp trang điểm.",
+      "howTo": "Ở bước dưỡng da cuối, thoa đủ lượng và đều lên mặt, cổ. Thoa lại mỗi 2-3 giờ khi ở ngoài trời."
+    },
+    "dalba-white-truffle-waterfull-essence-sunscreen": {
+      "name": "White Truffle Waterfull Essence Sunscreen",
+      "tagline": "SPF50+ dạng tinh chất căng bóng với nấm truffle trắng",
+      "why": "Kem chống nắng đặc trưng của d'Alba: chống tia UV SPF50+ trong kết cấu như tinh chất với nấm truffle trắng, ceramide và hyaluronic acid. Lớp hoàn thiện căng mướt, hợp da thường đến da khô.",
+      "howTo": "Thoa đủ lượng và đều lên mặt, cổ ở bước dưỡng da cuối. Thoa lại mỗi 2-3 giờ khi ở ngoài trời.",
+      "caution": "Chứa tinh dầu như dầu cam; hãy thử trước trên vùng da nhỏ nếu da bạn nhạy với hương liệu."
+    },
+    "innisfree-daily-uv-defense-sunscreen": {
+      "name": "Daily UV Defense Sunscreen",
+      "tagline": "SPF50+ nhẹ dùng hằng ngày với trà xanh",
+      "why": "Kem chống nắng hằng ngày của innisfree, chống nắng SPF50+ trong lotion nhẹ với trà xanh và rau má, thấm nhanh và có thể dùng như một lớp lót.",
+      "howTo": "Thoa đều lên mặt và cổ ở bước dưỡng da cuối, 15 phút trước khi ra nắng. Thoa lại mỗi 2 giờ khi ở ngoài trời.",
+      "caution": "Công thức và màng lọc UV khác nhau tùy thị trường; phiên bản Mỹ là kem chống nắng OTC với nhãn riêng."
+    },
+    "aestura-derma-uv365-barrier-hydro-mineral-sunscreen": {
+      "name": "DERMA UV365 Barrier Hydro Mineral Sunscreen",
+      "tagline": "SPF50+ PA++++ vật lý cho da khô, nhạy cảm",
+      "why": "Kem chống nắng vật lý (zinc oxide) của AESTURA, chống tia UV SPF50+ PA++++. Ceramide và hyaluronic acid giữ ẩm, và thương hiệu công bố mức kích ứng mắt thấp trong thử nghiệm, nên hợp da nhạy cảm.",
+      "howTo": "Ở bước dưỡng da cuối, thoa đều và vỗ nhẹ để giảm vệt trắng. Thoa lại mỗi 2-3 giờ khi ở ngoài trời."
+    },
+    "biodance-bio-collagen-real-deep-mask": {
+      "name": "Bio-Collagen Real Deep Mask",
+      "tagline": "Mặt nạ hydrogel qua đêm, trong dần khi thấm",
+      "why": "Mặt nạ hydrogel gây sốt toàn cầu, đứng gần top bảng xếp hạng làm đẹp Amazon Mỹ. Mặt nạ trong dần khi tinh chất thấm vào da; tại Hàn Quốc, sản phẩm được đăng ký là mỹ phẩm chức năng làm sáng da và cải thiện nếp nhăn.",
+      "howTo": "Sau toner hoặc serum, đắp mặt nạ 3-4 giờ hoặc qua đêm đến khi trong suốt. Gỡ ra và vỗ phần tinh chất còn lại."
+    },
+    "laneige-water-sleeping-mask": {
+      "name": "Water Sleeping Mask",
+      "tagline": "Mặt nạ gel để qua đêm, cấp ẩm khi ngủ",
+      "why": "Mặt nạ ngủ làm nên tên tuổi LANEIGE ở nước ngoài. Lớp gel nhẹ với squalane và thành phần lên men từ lợi khuẩn là lớp khóa ẩm cuối cùng ban đêm, để sáng ra da mềm và đủ ẩm.",
+      "howTo": "Ở bước cuối buổi tối, thoa một lớp mỏng khắp mặt và để qua đêm. Rửa lại vào buổi sáng. Dùng 2-3 lần/tuần hoặc mỗi tối."
+    },
+    "mediheal-teatree-essential-mask": {
+      "name": "Teatree Essential Mask",
+      "tagline": "Mặt nạ giấy tràm trà mát lạnh cho da dầu, da mệt mỏi",
+      "why": "Từ MEDIHEAL, một trong những thương hiệu mặt nạ giấy lớn nhất Hàn Quốc. Miếng giấy mỏng thấm tràm trà, panthenol và allantoin giúp làm dịu, cấp ẩm nhanh sau khi đi nắng, trời nóng hay một ngày dài.",
+      "howTo": "Sau toner, đắp mặt nạ 15-20 phút, gỡ ra rồi vỗ phần tinh chất còn lại cho thấm. Dùng 2-3 lần/tuần."
+    },
+    "medicube-collagen-night-wrapping-mask": {
+      "name": "Collagen Night Wrapping Mask",
+      "tagline": "Mặt nạ lột qua đêm, bao bọc độ ẩm",
+      "why": "Mặt nạ lột gây sốt: thoa buổi tối, mặt nạ khô thành lớp màng mỏng, sáng hôm sau lột ra. Collagen, niacinamide và hyaluronic acid nằm dưới lớp màng giúp giữ ẩm cho da suốt đêm.",
+      "howTo": "Ở bước cuối buổi tối, thoa một lớp đều, không quá mỏng, tránh mắt, lông mày và chân tóc. Để khô, đi ngủ, sáng lột ra và rửa sạch.",
+      "caution": "Tránh chân tóc, lông mày và vùng mắt. Không dùng trên da đang kích ứng hoặc trầy xước."
+    },
+    "laneige-lip-sleeping-mask": {
+      "name": "Lip Sleeping Mask",
+      "tagline": "Son dưỡng qua đêm, môi mềm đến sáng",
+      "why": "Một trong những sản phẩm K-beauty được biết đến nhiều nhất thế giới. Lớp dưỡng dày (mùi Berry là bản gốc) với dầu dừa, bơ murumuru và bơ hạt mỡ giữ môi mềm qua đêm, ban ngày làm son dưỡng bóng.",
+      "howTo": "Thoa một lớp dày bằng thìa đi kèm trước khi ngủ. Lau đi vào buổi sáng, hoặc thoa lớp mỏng vào ban ngày."
+    },
+    "romand-the-juicy-lasting-tint": {
+      "name": "The Juicy Lasting Tint",
+      "tagline": "Son tint bóng mọng, giữ màu lâu",
+      "why": "Son tint đặc trưng của rom&nd, một trong những son bán chạy nhất ở Olive Young. Lớp hoàn thiện bóng như siro, để lại lớp lên màu khi phai, với hàng chục màu từ tông trái cây trong trẻo đến berry đậm.",
+      "howTo": "Thoa vào giữa môi và tán nhẹ để có hiệu ứng gradient, hoặc phủ kín môi để lên màu trọn. Thoa lên son dưỡng để thêm bóng."
+    },
+    "peripera-ink-the-velvet": {
+      "name": "Ink the Velvet",
+      "tagline": "Son tint nhung lì mềm với bảng màu cực rộng",
+      "why": "Son tint chủ lực của peripera, cháy hàng chỉ vài ngày sau khi ra mắt và vẫn được ưa chuộng đến nay. Kết cấu nhung như được đánh bông làm mờ rãnh môi và để lại lớp màu lì mềm.",
+      "howTo": "Ấn mặt phẳng của đầu cọ vào giữa môi rồi tán ra ngoài để có gradient, hoặc thoa kín môi để lên màu trọn."
+    },
+    "laneige-lip-glowy-balm": {
+      "name": "Lip Glowy Balm",
+      "tagline": "Son dưỡng có màu, trong và bóng cho mỗi ngày",
+      "why": "Người bạn ban ngày của mặt nạ ngủ môi LANEIGE. Tuýp bóp chứa son dưỡng trong, bóng với bơ hạt mỡ và bơ murumuru, cho môi màu nhẹ và độ bóng mà không dính.",
+      "howTo": "Thoa trực tiếp lên môi mỗi khi thấy khô. Dùng riêng hoặc thoa lên son môi để thêm bóng."
+    },
+    "torriden-solid-in-lip-essence": {
+      "name": "SOLID IN Lip Essence",
+      "tagline": "Tinh chất môi ceramide cho môi khô, bong tróc",
+      "why": "Sản phẩm dưỡng môi được ưa chuộng ở Olive Young thuộc dòng ceramide của Torriden. 5 loại ceramide cùng bơ hạt mỡ và hyaluronic acid tạo lớp mịn, bóng, giúp môi khô, bong tróc thấy dễ chịu.",
+      "howTo": "Thoa lên môi mỗi khi thấy khô, và thoa lớp dày trước khi ngủ. Có thể dùng làm lớp lót dưới son tint."
+    },
+    "tirtir-mask-fit-red-cushion": {
+      "name": "Mask Fit Red Cushion",
+      "tagline": "Cushion đỏ bền màu, nổi tiếng với dải tông màu rộng",
+      "why": "Cushion vỏ đỏ gây sốt khi mở rộng lên khoảng 40 tông màu. Độ che phủ từ trung bình đến cao, bền lâu, hoàn thiện căng nhẹ; bản Hàn là mỹ phẩm chức năng với SPF40 PA++.",
+      "howTo": "Ấn bông mút vào cushion, rồi dặm từ giữa mặt ra ngoài. Dặm thêm một lớp mỏng ở chỗ cần che nhiều hơn.",
+      "caution": "Tên tông màu và nhãn SPF có thể khác nhau giữa bản Hàn và bản quốc tế."
+    },
+    "clio-kill-cover-founwear-cushion": {
+      "name": "Kill Cover Founwear Cushion The Original",
+      "tagline": "Cushion che phủ cao với SPF50+ PA+++",
+      "why": "Cushion Kill Cover của CLIO đã bán hàng triệu chiếc từ năm 2015. Bản Founwear cho độ che phủ cao, bền lâu, hoàn thiện tự nhiên và chống tia UV SPF50+ PA+++, theo thông tin sản phẩm chính thức tại Hàn Quốc.",
+      "howTo": "Chấm nhẹ bông mút vào cushion và ấn lên da từ giữa ra ngoài. Với vết thâm, dặm lớp mỏng chồng lên thay vì ấn mạnh."
+    },
+    "missha-m-perfect-cover-bb-cream": {
+      "name": "M Perfect Cover BB Cream SPF42 PA+++",
+      "tagline": "BB cream kinh điển SPF42, độ che phủ dễ tăng giảm",
+      "why": "Một trong những BB cream đưa trang điểm nền K-beauty ra thế giới. Độ che phủ trung bình đến cao trong một tuýp, chống tia UV SPF42 PA+++, cùng hyaluronic acid và ceramide cho lớp hoàn thiện ẩm.",
+      "howTo": "Sau dưỡng da, chấm một lượng nhỏ lên mặt và tán bằng đầu ngón tay hoặc mút ẩm. Dặm thêm lớp mỏng ở chỗ cần."
+    },
+    "hera-black-cushion-foundation": {
+      "name": "Black Cushion Foundation",
+      "tagline": "Cushion bán lì cao cấp, mịn và bền lâu",
+      "why": "HERA là thương hiệu trang điểm cao cấp của Amorepacific, và Black Cushion là sản phẩm đặc trưng. Sản phẩm cho lớp nền mỏng, bán lì, bền lâu, trông mịn trên da hỗn hợp và da dầu.",
+      "howTo": "Ấn nhẹ bông mút vào cushion và dặm từ giữa mặt ra ngoài. Dặm chồng lớp mỏng để che phủ hơn."
+    },
+    "innisfree-no-sebum-mineral-powder": {
+      "name": "No-Sebum Mineral Powder",
+      "tagline": "Phấn phủ bột nhỏ gọn, kiềm dầu cả ngày",
+      "why": "Phấn phủ bột giá rẻ, nhỏ vừa túi, là món quen thuộc ở drugstore Hàn nhiều năm. Bột nền silica giúp cố định lớp trang điểm và hút dầu thừa cho lớp lì mềm mà không nặng mặt.",
+      "howTo": "Lấy một ít bằng bông phấn hoặc cọ, ấn lên vùng chữ T sau lớp nền, và dặm lại trong ngày."
+    },
+    "clio-pro-eye-palette-air": {
+      "name": "Pro Eye Palette Air",
+      "tagline": "Bảng 12 màu nhẹ với tông K-beauty dễ dùng",
+      "why": "Bảng phấn mắt CLIO là gương mặt quen ở Olive Young, và bản Air gói 12 ô 0,6 g gồm màu lì, ánh nhũ và kim tuyến trong vỏ mỏng, xây dựng quanh lối trang điểm mắt Hàn Quốc hằng ngày.",
+      "howTo": "Quét màu lì sáng lên mí, tán đậm ở nếp mí và đuôi mắt, rồi dùng đầu ngón tay ấn nhũ hoặc kim tuyến lên giữa mí."
+    },
+    "romand-better-than-palette": {
+      "name": "Better Than Palette",
+      "tagline": "Bảng màu chủ đề khu vườn, lì mềm và kim tuyến",
+      "why": "Dòng phấn mắt của rom&nd, ra mắt theo nhiều câu chuyện màu 'khu vườn' theo mùa. Mỗi bảng phối màu lì dễ tán với kim tuyến mịn trong tông trầm, dễ dùng, hợp lối trang điểm mắt Hàn Quốc nhẹ nhàng.",
+      "howTo": "Dùng màu lì sáng làm nền, tán màu trung tính vào nếp mí, rồi thêm kim tuyến lên giữa mí hoặc bọng mắt."
+    },
+    "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+      "name": "Revive Eye Serum : Ginseng + Retinal",
+      "tagline": "Kem mắt nhẹ với nhân sâm và retinal dịu nhẹ",
+      "why": "Kem mắt của Beauty of Joseon dùng chiết xuất rễ nhân sâm cùng retinal, niacinamide và ceramide trong serum dạng kem nhẹ, giữ ẩm cho vùng da mỏng quanh mắt với mức giá phải chăng.",
+      "howTo": "Buổi tối, dùng ngón áp út vỗ nhẹ một lượng nhỏ quanh xương hốc mắt. Bắt đầu cách đêm, rồi tăng dần khi da đã quen.",
+      "caution": "Chứa retinal. Tránh chân mi, thoa kem chống nắng ban ngày, và hỏi ý kiến chuyên gia trước khi dùng nếu đang mang thai hoặc cho con bú."
+    },
+    "mise-en-scene-perfect-serum-original": {
+      "name": "Perfect Serum Original",
+      "tagline": "Serum dầu dưỡng tóc quen thuộc ở Hàn, giảm xơ, thêm bóng",
+      "why": "Món dưỡng tóc quen thuộc ở drugstore Hàn của Amorepacific. Serum dầu nhẹ với dầu argan, jojoba và hoa trà giúp chế ngự tóc xơ, thêm độ bóng cho đuôi tóc khô mà không làm tóc nặng.",
+      "howTo": "Xoa 1-2 lần bơm giữa hai lòng bàn tay, vuốt lên đuôi tóc đã lau khăn trước khi sấy. Với tóc khô, dùng thêm chút để hoàn thiện."
+    },
+    "lador-perfect-hair-fill-up": {
+      "name": "Perfect Hair Fill-Up",
+      "tagline": "Hair filler protein cho tóc khô, có cảm giác hư tổn",
+      "why": "Hair filler dạng xả nổi tiếng ở Hàn, chuyển từ nước thành kem. Keratin thủy phân, lụa và ceramide trong công thức xả nhẹ giúp tóc khô, tẩy màu hoặc hay tạo kiểu bằng nhiệt có cảm giác mượt hơn, dễ chải hơn.",
+      "howTo": "Sau khi gội, mát-xa lên thân tóc ướt đến khi chuyển từ nước thành kem, rồi xả kỹ bằng nước ấm."
+    },
+    "illiyoon-ceramide-ato-lotion": {
+      "name": "Ceramide Ato Lotion",
+      "tagline": "Sữa dưỡng thể ceramide chai lớn cho cả nhà",
+      "why": "Sữa dưỡng thể chai lớn quen thuộc ở drugstore Hàn. Ceramide và squalane trong lotion nhẹ, thấm nhanh giúp da cơ thể khô luôn dễ chịu, và đủ dịu nhẹ để dùng toàn thân mỗi ngày.",
+      "howTo": "Thoa nhiều khắp cơ thể ngay sau khi tắm, khi da còn hơi ẩm."
+    }
+  },
   "skinType": {
-    "title": "",
-    "intro": "",
-    "disclaimer": "",
-    "questions": {},
-    "results": {}
+    "title": "Da bạn thuộc loại nào?",
+    "intro": "Sáu câu hỏi nhanh về cảm giác của da bạn mỗi ngày. Biết loại da của mình, rồi xem các sản phẩm K-beauty hợp với bạn.",
+    "disclaimer": "Chỉ để tham khảo cho vui, không phải chẩn đoán y khoa. Nếu da có vấn đề kéo dài, hãy hỏi bác sĩ da liễu.",
+    "questions": {
+      "afternoon": {
+        "q": "Đến giữa buổi chiều, da bạn thấy thế nào?",
+        "options": {
+          "tight": "Căng, hoặc hơi bong tróc",
+          "shiny-all": "Bóng dầu toàn mặt",
+          "shiny-t": "Chỉ bóng ở trán và mũi",
+          "comfortable": "Dễ chịu, không bóng"
+        }
+      },
+      "after-wash": {
+        "q": "Ngay sau khi rửa mặt, da bạn…",
+        "options": {
+          "tight": "Căng. Phải dưỡng ẩm ngay",
+          "sting": "Nóng, đỏ hoặc hơi rát",
+          "fine": "Bình thường, không vội dưỡng ẩm"
+        }
+      },
+      "pores": {
+        "q": "Lỗ chân lông của bạn lộ rõ đến mức nào?",
+        "options": {
+          "large-all": "Lộ rõ trên gần cả mặt",
+          "t-zone": "Chủ yếu quanh mũi và trán",
+          "barely": "Gần như không thấy"
+        }
+      },
+      "new-product": {
+        "q": "Khi thử một sản phẩm dưỡng da mới…",
+        "options": {
+          "often": "Thường bị đỏ, ngứa hoặc châm chích",
+          "sometimes": "Thỉnh thoảng có món làm da khó chịu",
+          "rarely": "Da hiếm khi phản ứng"
+        }
+      },
+      "makeup": {
+        "q": "Đến tối, lớp nền của bạn…",
+        "options": {
+          "patchy": "Bám vào vùng da khô",
+          "slides": "Trôi hoặc trông bóng dầu",
+          "t-fade": "Phai ở mũi và trán",
+          "stays": "Hầu như vẫn giữ nguyên"
+        }
+      },
+      "weather": {
+        "q": "Vào ngày lạnh, nhiều gió hoặc hanh khô, da bạn…",
+        "options": {
+          "flaky": "Trở nên thô ráp hoặc bong tróc",
+          "flushed": "Ửng đỏ hoặc ngứa",
+          "mixed": "Má khô, vùng chữ T vẫn đổ dầu",
+          "same": "Không thay đổi nhiều"
+        }
+      }
+    },
+    "results": {
+      "dry": {
+        "name": "Da khô",
+        "oneLiner": "Da bạn cần độ ẩm trước tiên và thích những lớp dưỡng giàu ẩm, êm mịn.",
+        "tips": [
+          "Rửa mặt bằng sữa rửa mặt dịu nhẹ, ít bọt và tránh nước quá nóng.",
+          "Thoa toner hoặc tinh chất cấp ẩm khi da còn hơi ẩm.",
+          "Khóa ẩm bằng kem đặc hơn vào buổi tối và thoa kem chống nắng ban ngày."
+        ]
+      },
+      "oily": {
+        "name": "Da dầu",
+        "oneLiner": "Da dễ có độ bóng. Bạn chỉ muốn nó luôn tươi tắn, không nhờn.",
+        "tips": [
+          "Dùng sữa rửa mặt dạng gel hoặc pH thấp sáng và tối thay vì tẩy da chết thô ráp.",
+          "Chọn kem dưỡng nhẹ như gel-cream. Bỏ qua bước này có thể khiến da mất cân bằng.",
+          "Chọn kem chống nắng lỏng hoặc lì, và thấm dầu thay vì dặm thêm phấn."
+        ]
+      },
+      "combination": {
+        "name": "Da hỗn hợp",
+        "oneLiner": "Hai loại da trên một gương mặt: vùng chữ T dầu và hai má khô hơn.",
+        "tips": [
+          "Chăm từng vùng khác nhau: lớp nhẹ cho vùng chữ T, thêm ẩm cho hai má.",
+          "Toner dịu nhẹ giúp da có cảm giác đều hơn mà không bị khô.",
+          "Thoa kem dưỡng nhẹ toàn mặt và chỉ thêm kem đặc ở chỗ thấy căng."
+        ]
+      },
+      "sensitive": {
+        "name": "Da nhạy cảm",
+        "oneLiner": "Da bạn nhận ra mọi thay đổi, nên chu trình ngắn và dịu nhẹ sẽ hợp.",
+        "tips": [
+          "Thử sản phẩm mới ở đường viền hàm vài ngày trước khi dùng toàn mặt.",
+          "Giữ chu trình ngắn và chọn công thức không hương liệu khi có thể.",
+          "Thêm từng sản phẩm một, và gặp bác sĩ da liễu nếu đỏ hoặc ngứa cứ tái lại."
+        ]
+      },
+      "normal": {
+        "name": "Da thường",
+        "oneLiner": "Cân bằng và dễ chịu. Cứ giữ mọi thứ đơn giản và đều đặn.",
+        "tips": [
+          "Chu trình đơn giản là đủ: sữa rửa mặt dịu, cấp ẩm, kem dưỡng, kem chống nắng.",
+          "Điều chỉnh theo mùa: nhẹ hơn vào mùa hè, giàu ẩm hơn vào mùa đông.",
+          "Kem chống nắng mỗi ngày là bước không nên bỏ qua."
+        ]
+      }
+    }
   }
 }

@@ -1,11 +1,465 @@
 {
-  "categories": {},
-  "products": {},
+  "categories": {
+    "cleanser": {
+      "name": "Pembersih",
+      "intro": "Minyak, balm, dan sabun busa lembut untuk double cleansing yang bersih dan nyaman."
+    },
+    "toner": {
+      "name": "Toner",
+      "intro": "Lapisan pertama yang cair dan toner pad untuk menyiapkan kulit setelah cuci muka."
+    },
+    "serum": {
+      "name": "Serum & Esens",
+      "intro": "Lapisan pekat untuk hidrasi, menenangkan kulit, dan kilau."
+    },
+    "moisturizer": {
+      "name": "Pelembap",
+      "intro": "Dari gel-cream hingga krim kaya yang mengunci kelembapan."
+    },
+    "sunscreen": {
+      "name": "Tabir Surya",
+      "intro": "Sunscreen K-beauty yang ringan dan nyaman untuk dipakai setiap hari."
+    },
+    "mask": {
+      "name": "Masker",
+      "intro": "Sheet mask, masker hidrogel, dan masker semalam untuk dorongan kelembapan yang cepat."
+    },
+    "lip": {
+      "name": "Bibir",
+      "intro": "Liptint dan lip balm yang terus dibeli ulang oleh orang Korea."
+    },
+    "base": {
+      "name": "Makeup Dasar",
+      "intro": "Cushion, BB cream, dan bedak untuk base yang halus dan segar."
+    },
+    "eye": {
+      "name": "Mata",
+      "intro": "Palet dan perawatan mata untuk tampilan lembut yang mudah dipakai."
+    },
+    "hair-body": {
+      "name": "Rambut & Tubuh",
+      "intro": "Serum rambut, perawatan rambut bilas, dan losion tubuh dari drugstore Korea."
+    }
+  },
+  "products": {
+    "cosrx-low-ph-good-morning-gel-cleanser": {
+      "name": "Low pH Good Morning Gel Cleanser",
+      "tagline": "Gel pembersih ber-pH rendah yang lembut untuk pagi hari",
+      "why": "Andalan K-beauty sejak lama: gel pembersih bening dengan pH sedikit asam (sekitar 5,3) yang terbilas tanpa rasa kesat dan ketarik. Betaine salicylate dan tea tree oil memberi hasil segar, cocok untuk kulit berminyak dan kombinasi.",
+      "howTo": "Busakan sedikit dengan air, pijat di kulit yang lembap sekitar 30 detik, lalu bilas. Pakai di pagi hari atau sebagai langkah kedua double cleansing."
+    },
+    "anua-heartleaf-pore-control-cleansing-oil": {
+      "name": "Heartleaf Pore Control Cleansing Oil",
+      "tagline": "Cleansing oil ringan yang meluruhkan makeup dan sunscreen",
+      "why": "Cleansing oil ringan dari minyak jojoba, biji anggur, dan makadamia dengan ekstrak heartleaf (houttuynia). Melarutkan makeup, sunscreen, dan sebum berlebih, lalu berubah seperti susu saat kena air dan terbilas bersih.",
+      "howTo": "Pompa 2-3 kali ke tangan kering, pijat ke wajah kering. Tambah sedikit air sampai seperti susu, bilas, lalu lanjutkan dengan pembersih berbasis air.",
+      "caution": "Mengandung pewangi. Lakukan uji tempel dulu jika kulitmu mudah bereaksi."
+    },
+    "round-lab-1025-dokdo-cleanser": {
+      "name": "1025 Dokdo Cleanser",
+      "tagline": "Busa lembut sedikit asam dengan air laut Ulleungdo",
+      "why": "Pembersih dari lini andalan 1025 Dokdo milik Round Lab, memadukan air laut dalam Ulleungdo (pulau di sebelah Dokdo) dengan panthenol dan allantoin. Busanya lembut dan terbilas tanpa membuat kulit terasa kering.",
+      "howTo": "Busakan seukuran biji kacang dengan air, pijat lembut di kulit lembap, lalu bilas dengan air hangat. Pagi dan malam."
+    },
+    "banila-co-clean-it-zero-cleansing-balm-original": {
+      "name": "Clean It Zero Cleansing Balm Original",
+      "tagline": "Balm bertekstur sherbet yang meleleh jadi minyak",
+      "why": "Klasik K-beauty dalam wadah pink. Balm bertekstur sherbet berubah jadi minyak saat dipijat, mengangkat makeup tahan lama dan waterproof, lalu mengemulsi dan terbilas dengan air. Dilengkapi ekstrak acerola dan vitamin E.",
+      "howTo": "Ambil sedikit dengan spatula, pijat di kulit kering sampai meleleh, tambahkan air untuk mengemulsi, lalu bilas. Lanjutkan dengan pembersih kedua.",
+      "caution": "Mengandung pewangi. Simpan spatula di dalam wadah agar jari tidak perlu dicelupkan."
+    },
+    "manyo-pure-soybean-cleansing-oil": {
+      "name": "Pure Soybean Cleansing Oil",
+      "tagline": "Pembersih minyak nabati yang jadi seperti susu saat dibilas",
+      "why": "Dulu dijual sebagai Pure Cleansing Oil, campuran minyak kedelai, argan, jojoba, dan minyak nabati lain ini meraih Allure Beauty Award 2025 untuk kategori oil cleanser. Melarutkan makeup dan sebum, lalu jadi susu ringan saat kena air.",
+      "howTo": "Pompa 2-3 kali ke wajah kering dengan tangan kering, lalu pijat. Tambah sedikit air untuk mengemulsi, bilas bersih, lalu lanjutkan dengan pembersih busa atau gel."
+    },
+    "round-lab-1025-dokdo-toner": {
+      "name": "1025 Dokdo Toner",
+      "tagline": "Toner cair harian, langganan Olive Young Awards",
+      "why": "Salah satu toner terlaris di Korea dan nama yang rutin muncul di penghargaan tahunan Olive Young. Formula cairnya dengan air laut dalam Ulleungdo, betaine, dan panthenol menghidrasi dan membuat tekstur kulit terasa lebih halus.",
+      "howTo": "Setelah cuci muka, basahi kapas dan usap ke arah luar, atau tepuk beberapa tetes dengan telapak tangan. Lanjutkan dengan serum dan pelembap."
+    },
+    "anua-heartleaf-77-soothing-toner": {
+      "name": "Heartleaf 77 Soothing Toner",
+      "tagline": "Toner heartleaf yang menenangkan, ringan dan cair",
+      "why": "Hit K-beauty global dan pilihan yang sering muncul di Olive Young Awards. Air heartleaf (houttuynia) menjadi bagian terbesar formulanya, ditambah panthenol dan beberapa jenis hyaluronic acid untuk lapisan yang menenangkan dan menghidrasi.",
+      "howTo": "Tepuk ke kulit bersih dengan tangan atau kapas. Untuk masker penenang cepat, basahi kapas dan tempel 5-10 menit."
+    },
+    "medicube-zero-pore-pad": {
+      "name": "Zero Pore Pads",
+      "tagline": "Toner pad dua sisi ber-AHA dan BHA untuk kulit lebih halus",
+      "why": "Termasuk produk K-beauty terlaris di Amazon AS. Tiap pad punya sisi bertekstur untuk mengusap dan sisi halus untuk ditekan; tonernya memadukan lactic acid (AHA) dan salicylic acid (BHA) agar kulit berminyak terasa lebih halus dan tak licin.",
+      "howTo": "Setelah cuci muka, usapkan sisi bertekstur ke wajah, lalu tekan sisi halus di area berminyak. Mulai dua hari sekali, di malam hari.",
+      "caution": "Mengandung asam eksfoliasi dan alkohol. Hindari kulit yang luka, jangan dipakai bersama eksfolian kuat lain, dan pakai sunscreen di siang hari."
+    },
+    "skin1004-madagascar-centella-toning-toner": {
+      "name": "Madagascar Centella Toning Toner",
+      "tagline": "Toner PHA lembut dengan centella Madagaskar",
+      "why": "Toner harian yang lembut dari lini centella SKIN1004. Gluconolactone (PHA) membantu mengangkat sel kulit mati dengan lembut, sementara ekstrak centella dan betaine menjaga formulanya menenangkan dan menghidrasi, cocok dipakai tiap hari.",
+      "howTo": "Setelah cuci muka, tuang ke kapas dan usap lembut ke wajah, atau tepuk dengan telapak tangan.",
+      "caution": "Mengandung asam eksfoliasi ringan (PHA). Pakai sunscreen di siang hari."
+    },
+    "torriden-dive-in-toner": {
+      "name": "DIVE IN Toner",
+      "tagline": "Toner hyaluronic acid yang segar dan tidak lengket",
+      "why": "Toner dari lini populer DIVE IN milik Torriden dengan lima ukuran hyaluronic acid, panthenol, dan allantoin. Cepat meresap dengan hasil segar dan tidak lengket, cocok untuk kulit normal hingga kombinasi.",
+      "howTo": "Setelah cuci muka, tuang ke telapak tangan atau kapas lalu tepuk merata ke wajah. Di hari yang lebih kering, pakai dua lapis."
+    },
+    "cosrx-advanced-snail-96-mucin-power-essence": {
+      "name": "Advanced Snail 96 Mucin Power Essence",
+      "tagline": "Esens lendir siput di balik tren glass skin",
+      "why": "Bisa dibilang produk K-beauty paling terkenal di luar negeri dan langganan tangga beauty Amazon AS. 96% snail secretion filtrate memberi tekstur licin dan kenyal yang menghidrasi dan meninggalkan hasil dewy tanpa terasa berat.",
+      "howTo": "Setelah toner, pompa 2-3 kali ke telapak tangan dan tepuk ke wajah hingga meresap. Lanjutkan dengan pelembap."
+    },
+    "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+      "name": "Glow Serum : Propolis + Niacinamide",
+      "tagline": "Serum propolis warna madu untuk kulit tampak sehat berkilau",
+      "why": "Serum kultus dari Beauty of Joseon dengan harga terjangkau. Ekstrak propolis dan niacinamide dalam gel ringan yang menghidrasi dan membuat kulit tampak glowing, sangat cocok untuk kulit berminyak dan kombinasi.",
+      "howTo": "Setelah toner, pakai 2-3 tetes dan tepuk lembut. Lanjutkan dengan pelembap, dan sunscreen di pagi hari.",
+      "caution": "Hindari jika kamu alergi produk lebah seperti propolis atau madu."
+    },
+    "torriden-dive-in-serum": {
+      "name": "DIVE IN Serum",
+      "tagline": "Serum hyaluronic acid cair untuk lapisan lembap seharian",
+      "why": "Serum andalan Torriden dan produk wajib di Olive Young. Lima ukuran hyaluronic acid dengan panthenol dan allantoin memberi tekstur cair yang cepat meresap dan mudah dilapis di bawah krim atau makeup apa pun.",
+      "howTo": "Setelah toner, teteskan satu pipet ke wajah dan tepuk hingga meresap. Untuk kulit sangat kering, ulangi sekali lagi, lalu kunci dengan krim."
+    },
+    "skin1004-madagascar-centella-ampoule": {
+      "name": "Madagascar Centella Ampoule",
+      "tagline": "Ampul centella berbahan minimal yang terasa ringan",
+      "why": "Ampul dengan daftar bahan pendek yang berpusat pada ekstrak centella asiatica dari Madagaskar. Teksturnya tipis dan cair, cepat meresap dan terasa menenangkan, sehingga sering dipilih untuk kulit sensitif atau mudah memerah.",
+      "howTo": "Setelah cuci muka dan toner, pakai beberapa tetes dan tepuk. Gunakan pagi dan malam sebelum pelembap."
+    },
+    "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+      "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+      "tagline": "Serum azelaic acid yang diimbangi bahan penenang",
+      "why": "Hit terbaru Anua di Amazon AS. Memadukan azelaic acid dengan niacinamide, panthenol, dan hyaluronic acid dalam serum ringan, ditujukan untuk kulit berminyak yang juga butuh langkah menenangkan dan menghidrasi.",
+      "howTo": "Setelah toner, oleskan sedikit ke wajah sekali sehari, awalnya di malam hari. Lanjutkan dengan pelembap, dan sunscreen di siang hari.",
+      "caution": "Mengandung azelaic acid dan BHA ringan. Rasa sedikit perih biasa terjadi di awal; lakukan uji tempel dan hindari memakainya bersama asam kuat lain."
+    },
+    "medicube-pdrn-pink-peptide-serum": {
+      "name": "PDRN Pink Peptide Serum",
+      "tagline": "Serum PDRN pink dengan peptida dan niacinamide",
+      "why": "Salah satu produk yang membuat PDRN (DNA dari ikan salmon, tertulis sodium DNA) jadi kata kunci K-beauty, dengan ribuan ulasan di Amazon. Serum pink yang ringan ini menambah kelembapan dan hasil glowing yang tampak sehat.",
+      "howTo": "Setelah toner, pompa 1-2 kali dan tepuk ke wajah. Lanjutkan dengan pelembap.",
+      "caution": "Mengandung bahan turunan ikan; lewati jika kamu menghindarinya."
+    },
+    "mixsoon-bean-essence": {
+      "name": "Bean Essence",
+      "tagline": "Esens kedelai fermentasi dengan tekstur melar yang viral",
+      "why": "Esens yang terkenal di TikTok, sebagian besar dari kedelai fermentasi dan bahan fermentasi lain. Teksturnya agak lengket dan dipijat hingga meresap, dan sering dipakai malam hari sebagai langkah lembut untuk menghaluskan tekstur kulit.",
+      "howTo": "Di malam hari, pijat beberapa pompa ke wajah hingga meresap, seka sisanya dengan handuk hangat atau toner pad, lalu pakai pelembap.",
+      "caution": "Mengandung bahan turunan kedelai."
+    },
+    "manyo-bifida-biome-complex-ampoule": {
+      "name": "Bifida Biome Complex Ampoule",
+      "tagline": "Ampul fermentasi untuk kulit terasa kenyal dan lembap",
+      "why": "Ampul laris jangka panjang dari ma:nyo berbasis bifida ferment lysate dengan fermentasi lain, niacinamide, dan squalane. Serum seperti susu ini terasa menutrisi tanpa berat, cocok untuk kulit kering dan normal.",
+      "howTo": "Setelah toner, pakai 2-3 tetes dan tepuk. Lanjutkan dengan pelembap."
+    },
+    "cosrx-advanced-snail-92-all-in-one-cream": {
+      "name": "Advanced Snail 92 All in One Cream",
+      "tagline": "Gel-cream lendir siput yang kenyal untuk mengunci kelembapan",
+      "why": "Pasangan krim dari esens siput COSRX yang terkenal. 92% snail secretion filtrate dalam gel-cream kenyal mengunci hidrasi tanpa rasa berminyak, jadi bisa dipakai sepanjang tahun untuk kebanyakan jenis kulit.",
+      "howTo": "Sebagai langkah skincare terakhir, ratakan seukuran mutiara ke wajah dan tepuk hingga meresap. Pakai pagi dan malam."
+    },
+    "aestura-atobarrier365-cream": {
+      "name": "ATOBARRIER365 Cream",
+      "tagline": "Krim kapsul ceramide untuk kulit kering dan sensitif",
+      "why": "Krim dari brand derma Amorepacific yang masuk kategori krim Olive Young Awards. Kapsul ceramide, kolesterol, dan squalane memberi lapisan lembap yang kaya tapi tidak berminyak untuk kulit kering yang mudah iritasi.",
+      "howTo": "Di langkah terakhir rutinitas, hangatkan seukuran biji kacang di ujung jari lalu tekan ke wajah. Oleskan ulang di area kering bila perlu."
+    },
+    "beauty-of-joseon-dynasty-cream": {
+      "name": "Dynasty Cream",
+      "tagline": "Krim kaya dan dewy terinspirasi resep era Joseon",
+      "why": "Pelembap andalan Beauty of Joseon dengan air dedak padi dan air akar ginseng, ditambah squalane dan niacinamide. Teksturnya creamy dengan hasil dewy dan empuk, cocok untuk kulit kering dan normal.",
+      "howTo": "Oleskan sedikit sebagai langkah terakhir, pagi atau malam. Pakai sedikit lebih banyak di area kering pada malam hari."
+    },
+    "belif-the-true-cream-aqua-bomb": {
+      "name": "The True Cream Aqua Bomb",
+      "tagline": "Gel-cream sejuk yang pecah jadi air",
+      "why": "Favorit lama di AS dari brand herbal LG H&H. Krim seperti jeli ini pecah menjadi air saat menyentuh kulit, memberi lapisan lembap yang sejuk dan segar yang bisa dipakai kulit berminyak dan kombinasi di bawah makeup.",
+      "howTo": "Setelah serum, ambil seukuran koin kecil dan tepuk lembut ke wajah, pagi dan malam."
+    },
+    "medicube-collagen-niacinamide-jelly-cream": {
+      "name": "Collagen Niacinamide Jelly Cream",
+      "tagline": "Krim jeli bening dengan kolagen untuk hasil glowing",
+      "why": "Krim jeli transparan yang sudah mengumpulkan ribuan ulasan Amazon. Kolagen terhidrolisis dan niacinamide dalam tekstur kenyal seringan air menambah kelembapan dan hasil glowing yang tampak sehat.",
+      "howTo": "Sebagai langkah skincare terakhir, ratakan secukupnya ke wajah dan tepuk hingga meresap."
+    },
+    "illiyoon-ceramide-ato-concentrate-cream": {
+      "name": "Ceramide Ato Concentrate Cream",
+      "tagline": "Krim ceramide kental keluarga untuk kulit sangat kering",
+      "why": "Klasik drugstore Korea dari Amorepacific yang dipakai seluruh keluarga untuk wajah dan tubuh. Pseudo-ceramide dalam krim kental yang empuk menjaga kulit sangat kering tetap nyaman, terutama saat musim dingin.",
+      "howTo": "Setelah mandi atau cuci muka, oleskan banyak ke wajah atau tubuh saat kulit masih sedikit lembap. Ulangi di area kering bila perlu."
+    },
+    "beauty-of-joseon-relief-sun-rice-probiotics": {
+      "name": "Relief Sun : Rice + Probiotics",
+      "tagline": "Sunscreen krim SPF50+ PA++++ tanpa white cast",
+      "why": "Sunscreen yang membawa SPF K-beauty ke panggung global. Perlindungan UV SPF50+ PA++++ dalam tekstur krim ringan dengan ekstrak beras yang membaur tanpa white cast dan nyaman di bawah makeup.",
+      "howTo": "Sebagai langkah skincare terakhir, oleskan banyak (sekitar sepanjang dua jari untuk wajah) 15 menit sebelum keluar. Ulangi tiap 2-3 jam saat di luar ruangan.",
+      "caution": "Di Korea dijual sebagai 맑은쌀선크림; formula dan label bisa berbeda di tiap pasar."
+    },
+    "round-lab-birch-juice-moisturizing-sun-cream": {
+      "name": "Birch Juice Moisturizing Sun Cream",
+      "tagline": "Sun cream melembapkan yang dipakai seperti losion",
+      "why": "Sun cream populer di Olive Young dari lini birch Round Lab. Melindungi dari UV dalam tekstur seperti losion yang menghidrasi dengan sari pohon birch, nyaman di kulit kering dan bisa jadi pelembap ringan di siang hari.",
+      "howTo": "Sebagai langkah skincare terakhir, ratakan ke wajah dan leher sebelum keluar. Ulangi tiap 2-3 jam saat di luar ruangan."
+    },
+    "skin1004-hyalu-cica-water-fit-sun-serum": {
+      "name": "Hyalu-Cica Water-Fit Sun Serum",
+      "tagline": "SPF50+ seringan serum, nyaris tak terasa",
+      "why": "Sunscreen tipe serum yang cair, disukai karena terasa sangat ringan. Perlindungan UV SPF50+ membaur bening dengan centella dan hyaluronic acid, jadi sering dipilih untuk kulit berminyak dan dipakai di bawah makeup.",
+      "howTo": "Sebagai langkah skincare terakhir, oleskan banyak secara merata ke wajah dan leher. Ulangi tiap 2-3 jam saat di luar ruangan."
+    },
+    "dalba-white-truffle-waterfull-essence-sunscreen": {
+      "name": "White Truffle Waterfull Essence Sunscreen",
+      "tagline": "SPF50+ tipe esens yang glowing dengan white truffle",
+      "why": "Sunscreen andalan d'Alba memadukan perlindungan UV SPF50+ dengan tekstur seperti esens berisi white truffle, ceramide, dan hyaluronic acid. Hasilnya dewy dan glowing, cocok untuk kulit normal hingga kering.",
+      "howTo": "Oleskan banyak secara merata ke wajah dan leher sebagai langkah skincare terakhir. Ulangi tiap 2-3 jam saat di luar ruangan.",
+      "caution": "Mengandung minyak esensial seperti minyak jeruk; lakukan uji tempel jika kulitmu sensitif terhadap pewangi."
+    },
+    "innisfree-daily-uv-defense-sunscreen": {
+      "name": "Daily UV Defense Sunscreen",
+      "tagline": "SPF50+ harian yang ringan dengan teh hijau",
+      "why": "Sunscreen harian innisfree dengan perlindungan SPF50+ dalam losion ringan berisi teh hijau dan centella yang cepat meresap dan bisa berfungsi seperti primer.",
+      "howTo": "Ratakan ke wajah dan leher sebagai langkah skincare terakhir, 15 menit sebelum terkena matahari. Ulangi tiap 2 jam saat di luar ruangan.",
+      "caution": "Formula dan filter UV berbeda di tiap pasar; versi AS adalah sunscreen OTC dengan labelnya sendiri."
+    },
+    "aestura-derma-uv365-barrier-hydro-mineral-sunscreen": {
+      "name": "DERMA UV365 Barrier Hydro Mineral Sunscreen",
+      "tagline": "Mineral SPF50+ PA++++ untuk kulit kering dan sensitif",
+      "why": "Sunscreen mineral (zinc oxide) dari AESTURA dengan perlindungan UV SPF50+ PA++++. Ceramide dan hyaluronic acid membuatnya melembapkan, dan brand melaporkan iritasi mata rendah dalam pengujian, jadi cocok untuk kulit sensitif.",
+      "howTo": "Sebagai langkah skincare terakhir, ratakan dan tepuk lembut untuk mengurangi white cast. Ulangi tiap 2-3 jam saat di luar ruangan."
+    },
+    "biodance-bio-collagen-real-deep-mask": {
+      "name": "Bio-Collagen Real Deep Mask",
+      "tagline": "Masker hidrogel semalam yang berubah bening saat bekerja",
+      "why": "Masker hidrogel yang viral di seluruh dunia dan bertengger dekat puncak tangga beauty Amazon AS. Masker jadi transparan saat esensnya meresap, dan di Korea terdaftar sebagai kosmetik fungsional untuk mencerahkan dan merawat kerutan.",
+      "howTo": "Setelah toner atau serum, tempel masker dan diamkan 3-4 jam atau semalaman hingga bening. Lepas dan tepuk sisa esensnya."
+    },
+    "laneige-water-sleeping-mask": {
+      "name": "Water Sleeping Mask",
+      "tagline": "Masker gel tanpa bilas untuk hidrasi semalaman",
+      "why": "Masker tidur yang membuat LANEIGE terkenal di luar negeri. Gel ringan dengan squalane dan fermentasi turunan probiotik menjadi lapisan penutup di malam hari, sehingga kulit terasa lembut dan lembap di pagi hari.",
+      "howTo": "Sebagai langkah terakhir rutinitas malam, ratakan lapisan tipis ke wajah dan biarkan semalaman. Bilas di pagi hari. Pakai 2-3 kali seminggu atau tiap malam."
+    },
+    "mediheal-teatree-essential-mask": {
+      "name": "Teatree Essential Mask",
+      "tagline": "Sheet mask tea tree sejuk untuk kulit berminyak dan lelah",
+      "why": "Dari MEDIHEAL, salah satu brand sheet mask terbesar di Korea. Lembaran tipis yang direndam tea tree, panthenol, dan allantoin memberi dorongan lembap yang cepat dan menenangkan setelah kena matahari, panas, atau hari yang panjang.",
+      "howTo": "Setelah toner, pakai sheet 15-20 menit, lepas, lalu tepuk sisa esens ke kulit. Pakai 2-3 kali seminggu."
+    },
+    "medicube-collagen-night-wrapping-mask": {
+      "name": "Collagen Night Wrapping Mask",
+      "tagline": "Masker peel-off semalam yang membungkus kelembapan",
+      "why": "Masker peel-off yang viral: oleskan di malam hari, masker mengering jadi lapisan tipis, lalu kelupas di pagi hari. Kolagen, niacinamide, dan hyaluronic acid di bawah lapisan itu menjaga kulit tetap lembap semalaman.",
+      "howTo": "Sebagai langkah terakhir malam, ratakan lapisan yang tidak terlalu tipis, hindari mata, alis, dan garis rambut. Biarkan kering, tidur, lalu kelupas dan bilas.",
+      "caution": "Hindari garis rambut, alis, dan area mata. Jangan dipakai pada kulit yang iritasi atau luka."
+    },
+    "laneige-lip-sleeping-mask": {
+      "name": "Lip Sleeping Mask",
+      "tagline": "Lip balm semalam yang menjaga bibir lembut sampai pagi",
+      "why": "Salah satu produk K-beauty yang paling dikenal di dunia. Balm tebal (aroma Berry adalah versi aslinya) dengan minyak kelapa, murumuru, dan shea butter yang menjaga bibir lembut semalaman dan bisa jadi lip balm berkilau di siang hari.",
+      "howTo": "Oleskan lapisan tebal dengan spatula sebelum tidur. Seka di pagi hari, atau pakai lapisan tipis di siang hari."
+    },
+    "romand-the-juicy-lasting-tint": {
+      "name": "The Juicy Lasting Tint",
+      "tagline": "Liptint glossy dan juicy dengan warna tahan lama",
+      "why": "Liptint andalan rom&nd dan salah satu produk bibir terlaris di Olive Young. Hasil glossy seperti sirup yang meninggalkan noda warna saat memudar, dalam puluhan warna dari nuansa buah yang tipis hingga berry pekat.",
+      "howTo": "Oleskan di tengah bibir dan tepuk untuk efek gradasi, atau ratakan ke seluruh bibir untuk warna penuh. Lapisi di atas lip balm untuk kilau ekstra."
+    },
+    "peripera-ink-the-velvet": {
+      "name": "Ink the Velvet",
+      "tagline": "Velvet tint soft-matte dengan pilihan warna sangat banyak",
+      "why": "Liptint unggulan peripera yang terjual habis dalam beberapa hari setelah rilis dan tetap populer sejak itu. Tekstur velvet yang seperti dikocok menyamarkan garis bibir dan meninggalkan noda warna soft matte.",
+      "howTo": "Tekan sisi datar aplikator ke tengah bibir dan baurkan ke luar untuk gradasi, atau oleskan merata untuk warna penuh."
+    },
+    "laneige-lip-glowy-balm": {
+      "name": "Lip Glowy Balm",
+      "tagline": "Tinted balm bening dan glossy untuk pemakaian harian",
+      "why": "Pasangan siang dari lip mask LANEIGE. Tube pencet berisi balm bening dan glossy dengan shea dan murumuru butter yang memberi bibir sedikit warna dan kilau tanpa lengket.",
+      "howTo": "Oleskan langsung ke bibir kapan pun terasa kering. Pakai sendiri atau di atas lipstik untuk kilau."
+    },
+    "torriden-solid-in-lip-essence": {
+      "name": "SOLID IN Lip Essence",
+      "tagline": "Lip essence ceramide untuk bibir kering dan mengelupas",
+      "why": "Favorit perawatan bibir di Olive Young dari lini ceramide Torriden. Lima jenis ceramide dengan shea butter dan hyaluronic acid memberi lapisan halus dan glossy yang membantu bibir kering dan mengelupas terasa nyaman.",
+      "howTo": "Oleskan ke bibir kapan pun terasa kering, dan lapisan tebal sebelum tidur. Bisa jadi base di bawah liptint."
+    },
+    "tirtir-mask-fit-red-cushion": {
+      "name": "Mask Fit Red Cushion",
+      "tagline": "Cushion merah tahan lama dengan pilihan shade yang luas",
+      "why": "Cushion berwadah merah yang viral karena diperluas hingga sekitar 40 shade. Memberi coverage medium hingga full yang tahan lama dengan hasil soft glow; versi Korea adalah kosmetik fungsional dengan SPF40 PA++.",
+      "howTo": "Tekan puff ke cushion, lalu tepuk dari tengah wajah ke arah luar. Tambah satu lapisan tipis di area yang butuh coverage lebih.",
+      "caution": "Nama shade dan label SPF bisa berbeda antara versi Korea dan versi luar negeri."
+    },
+    "clio-kill-cover-founwear-cushion": {
+      "name": "Kill Cover Founwear Cushion The Original",
+      "tagline": "Cushion high coverage dengan SPF50+ PA+++",
+      "why": "Cushion Kill Cover dari CLIO telah terjual jutaan unit sejak 2015. Versi Founwear memberi coverage tinggi yang tahan lama dengan hasil natural dan perlindungan UV SPF50+ PA+++, sesuai keterangan produk resmi di Korea.",
+      "howTo": "Tepuk ringan puff ke cushion dan tekan ke kulit dari tengah ke luar. Untuk noda, lapisi tipis-tipis daripada menekan lebih keras."
+    },
+    "missha-m-perfect-cover-bb-cream": {
+      "name": "M Perfect Cover BB Cream SPF42 PA+++",
+      "tagline": "BB cream klasik SPF42 dengan coverage yang bisa dibangun",
+      "why": "Salah satu BB cream yang memperkenalkan base makeup K-beauty ke dunia. Coverage medium hingga tinggi dalam satu tube dengan perlindungan UV SPF42 PA+++, plus hyaluronic acid dan ceramide untuk hasil lembap.",
+      "howTo": "Setelah skincare, totolkan sedikit ke wajah dan baurkan dengan ujung jari atau spons lembap. Tambah lapisan tipis bila perlu."
+    },
+    "hera-black-cushion-foundation": {
+      "name": "Black Cushion Foundation",
+      "tagline": "Cushion semi-matte premium dengan hasil halus dan tahan lama",
+      "why": "HERA adalah brand makeup premium Amorepacific, dan Black Cushion adalah produk andalannya. Memberi lapisan tipis, semi-matte, dan tahan lama yang tampak halus di kulit kombinasi dan berminyak.",
+      "howTo": "Tekan ringan puff ke cushion dan tepuk dari tengah wajah ke luar. Lapisi tipis-tipis untuk coverage lebih."
+    },
+    "innisfree-no-sebum-mineral-powder": {
+      "name": "No-Sebum Mineral Powder",
+      "tagline": "Bedak tabur mungil yang meredam kilap seharian",
+      "why": "Bedak tabur murah seukuran saku yang sudah bertahun-tahun jadi andalan drugstore Korea. Bedak berbasis silika ini mengunci makeup dan menyerap minyak berlebih untuk hasil soft matte tanpa terlihat tebal.",
+      "howTo": "Tuang sedikit ke puff atau kuas, tekan di area T setelah base makeup, dan pakai untuk touch up di siang hari."
+    },
+    "clio-pro-eye-palette-air": {
+      "name": "Pro Eye Palette Air",
+      "tagline": "Palet ringan 12 warna bernuansa K-beauty yang mudah dipakai",
+      "why": "Palet eyeshadow CLIO adalah langganan Olive Young, dan versi Air memuat dua belas warna 0,6 g berupa matte lembut, shimmer, dan glitter dalam wadah tipis, dirancang untuk tampilan mata Korea sehari-hari.",
+      "howTo": "Sapukan warna matte terang ke kelopak, pertegas lipatan dan sudut luar mata, lalu tekan shimmer atau glitter di tengah kelopak dengan ujung jari."
+    },
+    "romand-better-than-palette": {
+      "name": "Better Than Palette",
+      "tagline": "Palet bertema taman berisi matte lembut dan glitter",
+      "why": "Lini eyeshadow rom&nd yang hadir dalam banyak cerita warna 'garden' musiman. Tiap palet memadukan matte yang mudah dibaurkan dengan glitter halus dalam nuansa kalem yang mudah dipakai, pas untuk tampilan mata ala Korea yang lembut.",
+      "howTo": "Pakai matte terang sebagai dasar, baurkan warna tengah ke lipatan kelopak, lalu tambahkan glitter di tengah kelopak atau di bawah mata."
+    },
+    "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+      "name": "Revive Eye Serum : Ginseng + Retinal",
+      "tagline": "Krim mata ringan dengan ginseng dan retinal yang lembut",
+      "why": "Krim mata Beauty of Joseon memakai ekstrak akar ginseng dengan retinal, niacinamide, dan ceramide dalam serum creamy yang ringan, menjaga kulit tipis di sekitar mata tetap lembap dengan harga terjangkau.",
+      "howTo": "Di malam hari, tepuk sedikit di sekitar tulang mata dengan jari manis. Mulai dua malam sekali, lalu tingkatkan sesuai toleransi kulit.",
+      "caution": "Mengandung retinal. Hindari garis bulu mata, pakai sunscreen di siang hari, dan konsultasikan ke tenaga profesional sebelum memakainya jika sedang hamil atau menyusui."
+    },
+    "mise-en-scene-perfect-serum-original": {
+      "name": "Perfect Serum Original",
+      "tagline": "Serum minyak rambut andalan Korea untuk frizz dan kilau",
+      "why": "Andalan perawatan rambut di drugstore Korea dari Amorepacific. Serum minyak ringan dengan minyak argan, jojoba, dan camellia yang menjinakkan frizz dan memberi kilau pada ujung rambut kering tanpa membuatnya lepek.",
+      "howTo": "Gosok 1-2 pompa di telapak tangan dan ratakan ke ujung rambut yang sudah dikeringkan handuk sebelum blow-dry. Pakai sedikit lebih banyak di rambut kering sebagai sentuhan akhir."
+    },
+    "lador-perfect-hair-fill-up": {
+      "name": "Perfect Hair Fill-Up",
+      "tagline": "Hair filler protein untuk rambut kering yang terasa rusak",
+      "why": "Hair filler bilas populer Korea yang berubah dari air menjadi krim. Keratin terhidrolisis, sutra, dan ceramide dalam formula bilas ringan membuat rambut kering, di-bleach, atau sering di-styling panas terasa lebih halus dan mudah disisir.",
+      "howTo": "Setelah keramas, pijat ke batang rambut yang basah hingga berubah dari air menjadi krim, lalu bilas bersih dengan air hangat."
+    },
+    "illiyoon-ceramide-ato-lotion": {
+      "name": "Ceramide Ato Lotion",
+      "tagline": "Losion tubuh ceramide botol besar untuk seluruh keluarga",
+      "why": "Losion tubuh botol besar yang jadi langganan drugstore Korea. Ceramide dan squalane dalam losion ringan yang cepat meresap menjaga kulit tubuh kering tetap nyaman, dan cukup lembut untuk dipakai ke seluruh tubuh setiap hari.",
+      "howTo": "Oleskan banyak ke seluruh tubuh tepat setelah mandi, saat kulit masih sedikit lembap."
+    }
+  },
   "skinType": {
-    "title": "",
-    "intro": "",
-    "disclaimer": "",
-    "questions": {},
-    "results": {}
+    "title": "Apa jenis kulitmu?",
+    "intro": "Enam pertanyaan singkat tentang rasa kulitmu sehari-hari. Ketahui jenis kulitmu, lalu lihat produk K-beauty yang cocok untukmu.",
+    "disclaimer": "Hanya untuk seru-seruan, bukan diagnosis medis. Untuk masalah kulit yang terus berlanjut, konsultasikan dengan dokter kulit.",
+    "questions": {
+      "afternoon": {
+        "q": "Menjelang sore, kulitmu terasa seperti apa?",
+        "options": {
+          "tight": "Ketarik, atau sedikit mengelupas",
+          "shiny-all": "Berminyak di seluruh wajah",
+          "shiny-t": "Hanya berminyak di dahi dan hidung",
+          "comfortable": "Nyaman, tidak berminyak"
+        }
+      },
+      "after-wash": {
+        "q": "Tepat setelah cuci muka, kulitmu terasa…",
+        "options": {
+          "tight": "Ketarik. Harus langsung pakai pelembap",
+          "sting": "Hangat, merah, atau sedikit perih",
+          "fine": "Biasa saja, tidak buru-buru pakai pelembap"
+        }
+      },
+      "pores": {
+        "q": "Seberapa terlihat pori-porimu?",
+        "options": {
+          "large-all": "Terlihat di hampir seluruh wajah",
+          "t-zone": "Kebanyakan di sekitar hidung dan dahi",
+          "barely": "Hampir tidak terlihat"
+        }
+      },
+      "new-product": {
+        "q": "Saat mencoba produk skincare baru…",
+        "options": {
+          "often": "Sering muncul kemerahan, gatal, atau perih",
+          "sometimes": "Sesekali ada yang bikin kulit tidak nyaman",
+          "rarely": "Kulitku jarang bereaksi"
+        }
+      },
+      "makeup": {
+        "q": "Menjelang malam, base makeup-mu…",
+        "options": {
+          "patchy": "Menempel di area kering",
+          "slides": "Luntur atau tampak berminyak",
+          "t-fade": "Pudar di hidung dan dahi",
+          "stays": "Sebagian besar tetap di tempat"
+        }
+      },
+      "weather": {
+        "q": "Saat hari dingin, berangin, atau kering, kulitmu…",
+        "options": {
+          "flaky": "Jadi kasar atau mengelupas",
+          "flushed": "Memerah atau gatal",
+          "mixed": "Pipi terasa kering, area T tetap berminyak",
+          "same": "Tidak banyak berubah"
+        }
+      }
+    },
+    "results": {
+      "dry": {
+        "name": "Kulit kering",
+        "oneLiner": "Kulitmu butuh kelembapan dulu dan suka lapisan yang kaya dan empuk.",
+        "tips": [
+          "Cuci muka dengan pembersih lembut yang sedikit busa dan hindari air terlalu panas.",
+          "Lapisi toner atau esens yang menghidrasi saat kulit masih sedikit lembap.",
+          "Kunci dengan krim yang lebih kaya di malam hari dan pakai sunscreen di siang hari."
+        ]
+      },
+      "oily": {
+        "name": "Kulit berminyak",
+        "oneLiner": "Kilau datang dengan mudah. Kamu hanya ingin tetap segar, bukan berminyak.",
+        "tips": [
+          "Pakai pembersih gel atau ber-pH rendah pagi dan malam, bukan scrub yang kasar.",
+          "Pilih pelembap ringan seperti gel-cream. Melewatkannya bisa bikin kulit tak seimbang.",
+          "Pilih sunscreen cair atau matte, dan serap kilap dengan kertas minyak, bukan bedak."
+        ]
+      },
+      "combination": {
+        "name": "Kulit kombinasi",
+        "oneLiner": "Dua jenis kulit dalam satu wajah: area T berminyak dan pipi lebih kering.",
+        "tips": [
+          "Rawat tiap area berbeda: lapisan ringan di area T, lebih banyak hidrasi di pipi.",
+          "Toner yang lembut membantu kulit terasa lebih merata tanpa membuatnya kering.",
+          "Pakai pelembap ringan di seluruh wajah, tambah krim hanya di bagian yang ketarik."
+        ]
+      },
+      "sensitive": {
+        "name": "Kulit sensitif",
+        "oneLiner": "Kulitmu peka pada segala hal, jadi rutinitas yang singkat dan lembut cocok untukmu.",
+        "tips": [
+          "Uji produk baru di garis rahang beberapa hari sebelum dipakai ke seluruh wajah.",
+          "Buat rutinitas tetap singkat dan pilih formula bebas pewangi bila bisa.",
+          "Tambah satu produk baru tiap kali; temui dokter kulit jika merah atau gatal kambuh."
+        ]
+      },
+      "normal": {
+        "name": "Kulit normal",
+        "oneLiner": "Seimbang dan santai. Cukup jaga rutinitas tetap sederhana dan konsisten.",
+        "tips": [
+          "Rutinitas sederhana sudah cukup: pembersih lembut, hidrasi, pelembap, sunscreen.",
+          "Sesuaikan dengan musim: lebih ringan di musim panas, lebih kaya di musim dingin.",
+          "Sunscreen setiap hari adalah satu langkah yang jangan dilewatkan."
+        ]
+      }
+    }
   }
 }

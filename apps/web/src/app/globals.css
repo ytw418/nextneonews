@@ -74,6 +74,7 @@
   /* 틴트 위 글자. 틴트 위에는 ink-600 을 쓰지 않는다 (4.4:1 로 미달) */
   --on-tint: #1b1520;
   --on-tint-sub: rgba(27, 21, 32, 0.72);
+  --on-tint-ghost: rgba(27, 21, 32, 0.1); /* 사진 없는 커버(TypeCover)의 잘린 큰 글자. 장식이라 대비 기준 밖 */
   --tape: rgba(255, 255, 255, 0.55);
   --rule: rgba(27, 21, 32, 0.08); /* 메모 제목 밑줄 (노트 줄) */
 
@@ -144,6 +145,7 @@
 
     --on-tint: #f6eff3;
     --on-tint-sub: rgba(246, 239, 243, 0.76);
+    --on-tint-ghost: rgba(246, 239, 243, 0.1);
     --tape: rgba(255, 255, 255, 0.12);
     --rule: rgba(255, 255, 255, 0.08);
 
@@ -181,6 +183,11 @@
   --text-st12--line-height: 1.5;
   --text-st13: clamp(11px, 0.6471rem, 31px);
   --text-st13--line-height: 1.5;
+  /* 가이드 섹션: 숫자가 주인공인 자리(순위 1~3·별점 평균·도장 n/4·테스트 결과)와 커버의 잘린 큰 글자 */
+  --text-display: clamp(44px, 2.5882rem, 60px);
+  --text-display--line-height: 1;
+  --text-poster: clamp(96px, 5.6471rem, 120px);
+  --text-poster--line-height: 1;
   /* 높이가 고정된 바 안에서만: 상단바 제목, 탭 이름 (48px 줄이 커지지 않게 상한을 낮게) */
   --text-chrome-title: clamp(17px, 1rem, 22px);
   --text-chrome-title--line-height: 1.3;
@@ -215,6 +222,8 @@
   --animate-toast-in: toast-in 200ms var(--ease-expo) both;
   --animate-burst: burst 700ms var(--ease-expo) both;
   --animate-dot: dot 900ms var(--ease-standard) infinite;
+  --animate-heart-pop: heart-pop 320ms var(--ease-expo) both;
+  --animate-stamp-in: stamp-in 260ms var(--ease-expo) both;
 }
 
 @theme inline {
@@ -239,6 +248,8 @@
   --color-on-danger: var(--on-danger);
   --color-on-tint: var(--on-tint);
   --color-on-tint-sub: var(--on-tint-sub);
+  --color-on-tint-ghost: var(--on-tint-ghost);
+  --color-tape: var(--tape); /* 커버 위 하트 받침 (bg-tape) */
   --color-surface-note: var(--surface-note);
   --color-tint-kpop: var(--tint-kpop);
   --color-tint-kent: var(--tint-kent);
@@ -634,6 +645,45 @@ html:lang(ko) .article-body {
   50% {
     opacity: 1;
   }
+}
+
+/* 저장 아이콘 팝 · '가 봤어요' 도장 찍기 (움직임 줄이기 설정이면 아래 규칙이 1ms 로 줄인다) */
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.35);
+  }
+  55% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes stamp-in {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) scale(1.6);
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: rotate(-12deg) scale(1);
+  }
+}
+
+/* 순위 1·2·3 과 'No.' 에만 로고 서체 숫자를 쓴다 ('Unnie.' 의 기울인 세리프가 숫자에서 다시 나온다).
+   TSX 에서 font-display·italic 직접 사용은 lint-tokens 가 막으므로 이 클래스로만 쓴다 */
+.numeral {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (prefers-reduced-motion: reduce) {

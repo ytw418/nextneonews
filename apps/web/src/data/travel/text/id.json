@@ -1,8 +1,428 @@
 {
-  "areas": {},
-  "places": {},
+  "areas": {
+    "seongsu": {
+      "name": "Seongsu",
+      "tagline": "Kafe bekas pabrik, flagship kecantikan, dan markas SM",
+      "intro": "Bekas kawasan pabrik Seoul ini kini hidup dari kafe di gudang yang direnovasi, toko pop-up, dan flagship K-beauty raksasa. Kantor pusat SM Entertainment dan Seoul Forest ada di sisi baratnya, jadi satu sore cukup untuk belanja, idol, dan taman."
+    },
+    "hongdae": {
+      "name": "Hongdae",
+      "tagline": "Busker, musik indie, dan lingkungan YG",
+      "intro": "Jalanan di sekitar Universitas Hongik adalah taman bermain anak muda Seoul: busker dan kru dance, musik indie, mural, serta jajanan larut malam. YG Entertainment ada di sebelahnya di Hapjeong, sementara Yeontral Park dan Pasar Mangwon cocok untuk mampir lebih santai."
+    },
+    "myeongdong": {
+      "name": "Myeongdong",
+      "tagline": "Belanja kecantikan tepat di bawah Namsan",
+      "intro": "Myeongdong memadatkan flagship kosmetik, jajanan kaki lima, dan rumah mi legendaris dalam beberapa blok yang mudah dijelajahi jalan kaki, dengan katedral Katolik pertama di Korea di salah satu ujungnya. Namsan dan N Seoul Tower menjulang tepat di belakangnya untuk pemandangan malam."
+    },
+    "hannam-itaewon": {
+      "name": "Hannam · Itaewon",
+      "tagline": "Lokasi Itaewon Class, HYBE, dan kuliner dunia",
+      "intro": "Lingkungan perbukitan Yongsan memadukan kuliner dunia, galeri, dan kehidupan malam. Penggemar Itaewon Class menuju jembatan penyeberangan Noksapyeong, penggemar K-pop ke kantor pusat HYBE dekat Yongnidan-gil, dan pencinta seni ke Leeum di Hannam-dong."
+    },
+    "apgujeong-cheongdam": {
+      "name": "Apgujeong · Cheongdam",
+      "tagline": "K-Star Road, flagship desainer, dan bagel",
+      "intro": "Distrik mode Gangnam, tempat salon dan flagship desainer berjajar di Apgujeong-ro. Telusuri K-Star Road melewati patung idol GangnamDol, lalu menyeberang ke area Taman Dosan untuk Haus Dosan dan London Bagel Museum."
+    },
+    "bukchon-ikseon": {
+      "name": "Bukchon · Ikseon",
+      "tagline": "Gang hanok, foto istana, dan Lovely Runner",
+      "intro": "Seoul lama di antara istana-istana: gang hanok Bukchon yang masih dihuni, Gyeongbokgung untuk foto hanbok, dan kafe hanok mungil di Ikseon-dong. Penggemar Winter Sonata dan Lovely Runner bisa menambahkan SMA Choong Ang di puncak bukit."
+    },
+    "yeouido": {
+      "name": "Yeouido",
+      "tagline": "Piknik Sungai Han, Music Bank, dan The Hyundai",
+      "intro": "Pulau perkantoran dan stasiun TV di Sungai Han. KBS menyiarkan Music Bank dari sini, The Hyundai Seoul menggelar pop-up di bawah atap kaca, dan taman tepi sungainya jadi tempat warga Seoul piknik dengan mi instan dari minimarket."
+    },
+    "busan": {
+      "name": "Busan",
+      "tagline": "Desa tepi laut, kuil di tebing, dan Sky Capsule",
+      "intro": "Kota terbesar kedua Korea ini identik dengan laut: desa perbukitan berwarna pastel, kuil di atas batu karang, dan kereta kapsul yang meluncur di sepanjang pantai Haeundae. Sisihkan satu hari penuh atau lebih; sebagian besar tempat perlu naik bus dari stasiun subway."
+    },
+    "jeju": {
+      "name": "Jeju",
+      "tagline": "Matahari terbit di gunung api, kebun teh, kamelia",
+      "intro": "Pulau vulkanik Korea, lokasi syuting When Life Gives You Tangerines. Nikmati matahari terbit di Seongsan Ilchulbong, seruput teh hijau di samping kebun teh O'sulloc, lalu akhiri di kios pasar malam Dongmun. Mobil sewaan atau taksi akan memudahkan."
+    }
+  },
+  "places": {
+    "kwangya-seoul": {
+      "name": "KWANGYA@Seoul",
+      "summary": "Toko K-pop flagship SM Entertainment di basement kantor pusat SM di Seongsu. Jelajahi album dan merchandise resmi artis SM, lalu bermain di zona media, buku tamu AR, dan bingkai foto 4 potong.",
+      "address": "B1F, 83-21 Wangsimni-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "Pintu keluar 5 Stasiun Seoul Forest hanya sekitar satu menit dari pintu masuk.",
+        "Jam buka bisa berubah saat hari libur; pengumuman ada di Instagram toko.",
+        "Taman Seoul Forest hanya beberapa menit jalan kaki untuk beristirahat."
+      ]
+    },
+    "olive-young-n-seongsu": {
+      "name": "Olive Young N Seongsu",
+      "summary": "Flagship Olive Young berbasis pengalaman di Yeonmujang-gil, Seongsu, dibuka November 2024. Beberapa lantai berisi tester K-beauty, display merek baru, dan layanan perawatan kecantikan; menurut Olive Young, sekitar 3 dari 4 pengunjung asing ke Seongsu mampir ke sini.",
+      "address": "13 Yeonmujang 7-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "Toko ini melayani tax refund: bawa paspor untuk pengembalian pajak langsung.",
+        "Pembeli asing antre sebelum buka pukul 10.00; pagi hari kerja lebih sepi.",
+        "Stasiun Seongsu (Jalur 2) sekitar dua menit jalan kaki."
+      ]
+    },
+    "seoul-forest": {
+      "name": "Seoul Forest",
+      "summary": "Taman kota luas yang dibuka pada 2005 di tepi Seongsu. Saat musim semi penuh bunga sakura dan tulip, dan kolam cerminnya memantulkan gedung-gedung Seongsu serta pohon platanus. Tempat piknik santai di sela toko dan kafe.",
+      "address": "273 Ttukseom-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "Akhir pekan musim semi paling ramai, saat sakura dan tulip mekar.",
+        "Air mancur lantai beroperasi Mei–Oktober: enam sesi 30 menit mulai 12.00.",
+        "Masuk gratis; pusat pengunjung buka 09.00–18.00."
+      ]
+    },
+    "cafe-onion-seongsu": {
+      "name": "Onion Seongsu",
+      "summary": "Kafe bakeri di bekas pabrik era 1970-an yang ikut membentuk tren kafe industrial Seongsu. Dinding beton ekspos dan halaman dalam membangun suasana; pandoro dan ang butter adalah roti andalannya.",
+      "address": "8 Achasan-ro 9-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "Pandoro bertabur gula halus adalah roti andalannya.",
+        "Pintu keluar 2 Stasiun Seongsu sekitar dua menit jalan kaki.",
+        "Buka mulai 08.00 di hari kerja, pas untuk sarapan sebelum belanja."
+      ]
+    },
+    "yg-entertainment": {
+      "name": "Kantor Pusat YG Entertainment",
+      "summary": "Markas YG Entertainment, agensi di balik BLACKPINK dan BABYMONSTER. Penggemar datang untuk memotret gedungnya yang khas di Hapjeong-dong; ini kantor yang aktif, jadi nikmati dari pinggir jalan saja.",
+      "address": "7 Huiujeong-ro 1-gil, Mapo-gu, Seoul",
+      "tips": [
+        "Foto dari trotoar dan jangan menghalangi pintu masuk.",
+        "Pintu keluar 8 Stasiun Hapjeong sekitar 7 menit jalan kaki.",
+        "Pasar Mangwon hanya satu stasiun di Jalur 6."
+      ]
+    },
+    "hongdae-street": {
+      "name": "Hongdae (Jalan Universitas Hongik)",
+      "summary": "Kawasan anak muda di sekitar Universitas Hongik, terkenal dengan street fashion, musik indie, serta busker dan kru dance yang tampil di jalanan. Mural dan grafiti tersembunyi di gang menanjak di kiri gerbang utama kampus.",
+      "address": "20 Hongik-ro, Mapo-gu, Seoul",
+      "tips": [
+        "Busker dan kru dance menarik kerumunan; jangan halangi jalan saat menonton.",
+        "Untuk mural, belok kiri dari gerbang utama Universitas Hongik ke gang-gang.",
+        "Jalanan musik live berkumpul dekat Pintu keluar 1 Stasiun Sangsu."
+      ]
+    },
+    "yeontral-park": {
+      "name": "Gyeongui Line Forest Park (Yeontral Park)",
+      "summary": "Taman sepanjang 6,3 km yang dibangun di atas bekas rel kereta Gyeongui. Ruas Yeonnam-dong, dijuluki Yeontral Park, adalah jalur berumput dengan kafe di kedua sisinya, favorit untuk piknik dan foto jalanan santai.",
+      "address": "Yeonnam-dong, Mapo-gu, Seoul",
+      "tips": [
+        "Mulai dari Pintu keluar 3 Stasiun Hongik Univ. lalu jalan ke utara ke Yeonnam-dong.",
+        "Gyeongui Line Book Street, dengan kios bertema buku, ada di taman yang sama."
+      ]
+    },
+    "mangwon-market": {
+      "name": "Pasar Mangwon",
+      "summary": "Pasar tradisional yang sudah berjalan lebih dari 40 tahun, tempat warga lokal belanja dan jajan dengan harga murah. Cicipi dakgangjeong (ayam goreng renyah berlapis saus manis), kroket, dan donat sambil menyusuri lorong beratap.",
+      "address": "27 Poeun-ro 6-gil, Mapo-gu, Seoul",
+      "tips": [
+        "Pintu keluar 2 Stasiun Mangwon sekitar 5 menit jalan kaki.",
+        "Jam kios berbeda-beda, jadi datanglah sebelum malam untuk pilihan lengkap.",
+        "Gabungkan dengan gedung YG di Hapjeong, satu stasiun di Jalur 6."
+      ]
+    },
+    "olive-young-myeongdong": {
+      "name": "Olive Young Myeongdong Flagship",
+      "summary": "Flagship Olive Young di tengah jalan belanja Myeongdong, dibagi menjadi zona bertema perawatan kulit, makeup, perawatan tubuh, dan parfum agar kamu bisa mencoba sebelum membeli.",
+      "address": "53 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "Buka sampai 22.30, pas setelah makan malam di Myeongdong.",
+        "Pintu keluar 8 Stasiun Myeong-dong sekitar 5 menit jalan kaki.",
+        "Ingin toko bergaya pengalaman yang lebih baru? Coba Olive Young N Seongsu."
+      ]
+    },
+    "n-seoul-tower": {
+      "name": "N Seoul Tower (Namsan Seoul Tower)",
+      "summary": "Landmark Seoul di puncak Namsan, dengan pemandangan 360° dari observatorium dan pagar penuh gembok cinta. Penggemar drama mengenalnya dari My Love from the Star, dan menara ini muncul beberapa kali di KPop Demon Hunters.",
+      "address": "105 Namsangongwon-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Bus Sirkulasi Namsan 01 berangkat dari Pintu keluar 2 Stasiun Chungmuro ke menara.",
+        "Kereta gantung Namsan beroperasi 10.00–23.00; PP dewasa 15.000 won (2026).",
+        "Datang menjelang matahari terbenam untuk melihat kota saat terang dan gelap."
+      ]
+    },
+    "myeongdong-cathedral": {
+      "name": "Katedral Myeongdong",
+      "summary": "Gereja paroki Katolik Roma pertama di Korea sekaligus bangunan bergaya Gotik pertamanya, berstatus situs bersejarah. Menara bata merahnya menjulang di atas jalan belanja Myeongdong dan menawarkan jeda yang tenang.",
+      "address": "74 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "Gereja ini masih aktif: jaga ketenangan dan jangan memotret saat Misa.",
+        "Stasiun Euljiro 1-ga dan Euljiro 3-ga juga sekitar 8 menit jauhnya."
+      ]
+    },
+    "myeongdong-kyoja": {
+      "name": "Myeongdong Kyoja",
+      "summary": "Rumah mi legendaris di Myeongdong yang terkenal dengan kalguksu: mi gandum segar dan kenyal dalam kaldu ayam yang kaya dan gurih. Satu mangkuk sekitar 10.000 won.",
+      "address": "29 Myeongdong 10-gil, Jung-gu, Seoul",
+      "tips": [
+        "Bersiaplah antre pada jam makan siang.",
+        "Pintu keluar 8 Stasiun Myeong-dong sekitar 3 menit jalan kaki."
+      ]
+    },
+    "hybe-yongsan": {
+      "name": "Kantor Pusat HYBE",
+      "summary": "Kantor pusat HYBE di Yongsan Trade Center, markas label-label di balik BTS, SEVENTEEN, dan LE SSERAFIM. Penggemar berfoto dengan logo di depan, dan gang di belakangnya ramai dengan kafe ulang tahun yang dikelola penggemar.",
+      "address": "42 Hangang-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "Gedung hanya untuk staf; berfoto dari luar boleh.",
+        "Kafe di belakang gedung dihias photocard saat idol berulang tahun.",
+        "Kafe dan restoran Yongnidan-gil ada tepat di sebelahnya."
+      ]
+    },
+    "noksapyeong-overpass": {
+      "name": "Jembatan Penyeberangan Noksapyeong",
+      "summary": "Jembatan penyeberangan dekat Stasiun Noksapyeong dengan pemandangan lurus ke Namsan dan N Seoul Tower. Di Itaewon Class, Park Sae-ro-yi dan Jo Yi-seo berbagi percakapan penting di sini. Bagus siang maupun malam.",
+      "address": "Noksapyeong Station, 195 Noksapyeong-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "Pintu keluar 3 Stasiun Noksapyeong sekitar satu menit.",
+        "Datang saat senja hingga blue hour untuk menara berlatar lampu kota.",
+        "Menepilah saat berfoto agar orang lain bisa lewat."
+      ]
+    },
+    "leeum-museum": {
+      "name": "Leeum Museum of Art",
+      "summary": "Museum seni Samsung di Hannam-dong: keramik, kaligrafi, dan kerajinan logam Korea di satu gedung, seni modern dan kontemporer di gedung lain, dalam kompleks rancangan Mario Botta, Jean Nouvel, dan Rem Koolhaas.",
+      "address": "60-16 Itaewon-ro 55-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Masuk dengan reservasi, dibuka 14 hari sebelumnya; tiket di lokasi jika tersisa.",
+        "Pameran permanen gratis tetapi tetap perlu reservasi.",
+        "Panduan digital gratis berbahasa Inggris, Mandarin, dan Jepang; bawa paspor."
+      ]
+    },
+    "seoul-central-mosque": {
+      "name": "Masjid Pusat Seoul",
+      "summary": "Masjid pertama di Korea, dibuka pada 1976 di bukit di atas Itaewon. Restoran halal, toko daging halal, dan supermarket halal berjajar di jalan di depannya, memudahkan wisatawan Muslim.",
+      "address": "39 Usadan-ro 10-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Dilarang baju tanpa lengan, celana atau rok pendek; penutup dan hijab dipinjamkan.",
+        "Non-Muslim boleh masuk; jangan arahkan kamera ke orang yang sedang salat.",
+        "Pintu keluar 3 Stasiun Itaewon sekitar 6 menit jalan kaki menanjak."
+      ]
+    },
+    "k-star-road": {
+      "name": "K-Star Road (Hallyu Star Road)",
+      "summary": "'Jalan bintang Hallyu' sepanjang sekitar 1 km di Apgujeong-ro, dari department store Galleria ke arah perempatan Cheongdam. Art toy GangnamDol yang terinspirasi grup K-pop seperti Girls' Generation, EXO, dan Red Velvet berjajar di sepanjang jalan.",
+      "address": "407 Apgujeong-ro, Gangnam-gu, Seoul",
+      "tips": [
+        "GangnamDol besar pertama berdiri di depan Galleria Luxury Hall East.",
+        "Jalan ke timur dari Stasiun Apgujeong Rodeo ke arah Cheongdam untuk melihat patungnya.",
+        "1330 Travel Hotline (+82-2-1330) melayani bahasa Inggris, Jepang, dan Mandarin."
+      ]
+    },
+    "haus-dosan": {
+      "name": "Haus Dosan (Gentle Monster)",
+      "summary": "Flagship multi-merek Gentle Monster dekat Taman Dosan, ditata seperti instalasi seni: kafe dessert Nudake di B1, kacamata Gentle Monster di lantai 1–3, dan wewangian Tamburins di lantai 4.",
+      "address": "50 Apgujeong-ro 46-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Turun ke B1 untuk dessert Nudake yang menyerupai patung.",
+        "Taman Dosan hanya beberapa menit jalan kaki."
+      ]
+    },
+    "dosan-park": {
+      "name": "Taman Dosan",
+      "summary": "Taman hijau yang tenang di antara jalan butik Gangnam, dibangun untuk menghormati aktivis kemerdekaan dan pendidik Ahn Chang-ho, yang dikenal sebagai Dosan. Dosan Ahn Chang-ho Memorial Hall berdiri di dalamnya.",
+      "address": "20 Dosan-daero 45-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Masuk gratis; gedung peringatan buka setiap hari 10.00–18.00.",
+        "Haus Dosan dan London Bagel Museum beberapa menit jalan kaki."
+      ]
+    },
+    "london-bagel-museum-dosan": {
+      "name": "London Bagel Museum Dosan",
+      "summary": "Kafe bakeri bagel bergaya London dengan lebih dari 10 jenis bagel plus cream cheese, selai, dan sup. Bagel keju kentang dan sandwich jambon butter adalah andalannya; tempat ini populer, jadi siapkan waktu antre.",
+      "address": "33 Eonju-ro 168-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Menu andalan: bagel keju kentang dan sandwich jambon butter.",
+        "Tutup pukul 18.00; datang lebih awal untuk pilihan lengkap."
+      ]
+    },
+    "bukchon-hanok-village": {
+      "name": "Desa Hanok Bukchon",
+      "summary": "Gang-gang rumah hanok tradisional di antara Istana Gyeongbokgung dan Changdeokgung, dengan sejarah 600 tahun. Ini permukiman yang dihuni, bukan taman hiburan; sumur Bokjeong di sini muncul di Lovely Runner.",
+      "address": "37 Gyedong-gil, Jongno-gu, Seoul",
+      "tips": [
+        "Zona terbatas tertutup bagi pengunjung pukul 17.00 hingga 10.00.",
+        "Warga tinggal di sini: pelankan suara dan jangan membuka gerbang atau pintu.",
+        "Pintu keluar 3 Stasiun Anguk sekitar 7 menit jalan kaki."
+      ]
+    },
+    "gyeongbokgung": {
+      "name": "Istana Gyeongbokgung",
+      "summary": "Istana kerajaan pertama dan terbesar Dinasti Joseon, dibangun pada 1395. Pengunjung yang memakai hanbok lengkap masuk gratis, menjadikannya latar klasik Seoul untuk foto hanbok.",
+      "address": "161 Sajik-ro, Jongno-gu, Seoul",
+      "tips": [
+        "Tutup setiap Selasa; masuk terakhir satu jam sebelum tutup.",
+        "Pakai hanbok lengkap untuk masuk gratis (cek panduan busananya).",
+        "Selain itu, dewasa asing membayar 3.000 won."
+      ]
+    },
+    "ikseon-dong-hanok-street": {
+      "name": "Jalan Hanok Ikseon-dong",
+      "summary": "Sekitar 800 m gang sempit berisi hanok kecil dekat Jongno 3-ga, kini penuh kafe, toko dessert, dan restoran. Ditetapkan sebagai kawasan pelestarian hanok pada 2018, tempat ini memadukan atap genteng tua dengan interior kekinian.",
+      "address": "Ikseon-dong, Jongno-gu, Seoul",
+      "tips": [
+        "Mulai dari Pintu keluar 6 Stasiun Jongno 3-ga, sekitar 3 menit.",
+        "Gang-gangnya seperti labirin; simpan lokasinya di aplikasi peta sebelum pergi.",
+        "Sore akhir pekan ramai; pagi hari kerja lebih sepi."
+      ]
+    },
+    "choong-ang-high-school": {
+      "name": "SMA Choong Ang",
+      "summary": "Sekolah swasta yang didirikan pada 1908 di puncak Bukchon, dikenal dengan gedung bersejarahnya yang mencolok. Ini lokasi syuting Winter Sonata, dan Pemerintah Kota Seoul mencantumkannya sebagai latar adegan masa sekolah Lovely Runner.",
+      "address": "164 Changdeokgung-gil, Jongno-gu, Seoul",
+      "tips": [
+        "Sekolah ini masih aktif: ikuti aturan masuk yang dipasang dan jaga ketenangan.",
+        "Pintu keluar 3 Stasiun Anguk sekitar 9 menit jalan kaki menanjak.",
+        "Desa Hanok Bukchon tepat di bawahnya, jadi kunjungi keduanya sekaligus."
+      ]
+    },
+    "the-hyundai-seoul": {
+      "name": "The Hyundai Seoul",
+      "summary": "Department store ikonik Seoul yang dibangun mengelilingi Sounds Forest, taman dalam ruang 3.306 m² di bawah atap kaca, dan taman air terjun. Ruang acaranya rutin menggelar pop-up merek, K-pop, dan K-drama.",
+      "address": "108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Cek situs web atau Instagram toko untuk pop-up terkini sebelum datang.",
+        "Pintu keluar 1 Stasiun Yeouinaru sekitar 5 menit jalan kaki.",
+        "Tersedia loker, termasuk loker berpendingin untuk makanan."
+      ]
+    },
+    "kbs-music-bank": {
+      "name": "KBS Yeouido (Music Bank)",
+      "summary": "Pusat siaran KBS di Yeouido, yang aula New Wing dan Annex-nya menjadi tempat acara seperti Music Bank dan 2 Days & 1 Night. Music Bank tayang langsung setiap Jumat, dengan penonton studio diatur lewat fan club tiap artis.",
+      "address": "13 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul (KBS Annex Hall)",
+      "tips": [
+        "Music Bank biasanya tayang langsung Jumat pukul 17.05 KST; cek minggu libur.",
+        "Kursi penonton lewat pengumuman fan club resmi artis, bukan lewat KBS.",
+        "Pintu keluar 4 Stasiun National Assembly sekitar 4 menit jalan kaki."
+      ]
+    },
+    "yeouido-hangang-park": {
+      "name": "Taman Hangang Yeouido",
+      "summary": "Salah satu taman tepi sungai paling ramai di Seoul, sibuk dengan sakura di musim semi dan Seoul International Fireworks Festival di musim gugur. Ikuti kebiasaan warga lokal: beli mi instan di minimarket tepi sungai dan makan di pinggir air.",
+      "address": "330 Yeouidong-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Sewa sepeda umum Ttareungi untuk bersepeda di sepanjang sungai.",
+        "Kapal Hangang Bus berhenti di dermaga Yeouido; tap kartu T-money untuk naik.",
+        "Stasiun Yeouinaru (Jalur 5) tepat di tepi taman."
+      ]
+    },
+    "seouldal": {
+      "name": "SEOULDAL (Seoul Moon Balloon)",
+      "summary": "Balon helium tertambat yang naik lurus di atas Taman Yeouido untuk pemandangan Sungai Han dan kota. Dibuka pada 2024 sebagai atraksi malam, balon ini bersinar seperti bulan di langit Yeouido.",
+      "address": "68-1 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Tiket dewasa 25.000 won, dijual di lokasi dan online.",
+        "Penerbangan malam menampilkan lampu kota; peluncuran terakhir pukul 21.30.",
+        "Penerbangan bergantung cuaca; cek halaman pembaruan resmi hari itu."
+      ]
+    },
+    "gamcheon-culture-village": {
+      "name": "Desa Budaya Gamcheon",
+      "summary": "Desa perbukitan berisi rumah-rumah pastel yang dibangun pengungsi Perang Korea, diubah menjadi desa seni dengan mural dan patung sejak 2009. Patung Pangeran Kecil adalah spot foto klasik, dan STAYC pernah syuting di sini dengan busana retro.",
+      "address": "203 Gamnae 2-ro, Saha-gu, Busan",
+      "tips": [
+        "Dari Pintu keluar 6 Stasiun Toseong (Jalur 1), naik bus desa ke atas bukit.",
+        "Sewa hanbok atau busana era retro di desa untuk berfoto.",
+        "Warga tinggal di sini: pelankan suara di gang-gang."
+      ]
+    },
+    "huinnyeoul-culture-village": {
+      "name": "Desa Budaya Huinnyeoul",
+      "summary": "Desa di atas tebing tepi laut di Yeongdo, ditata ulang menjadi desa seni pada 2011. Kutipan dari film The Attorney dilukis di dinding rumah Jin-woo, dan terowongan pantai membingkai laut untuk foto siluet.",
+      "address": "Huinnyeoul-gil, Yeongdo-gu, Busan",
+      "tips": [
+        "Dari Pintu keluar 6 Stasiun Nampo (Jalur 1), naik bus 7, 71, atau 508.",
+        "STAYC menjelajahi desa ini di acara jalan-jalan Busan mereka.",
+        "Jalan dan tangganya curam; pakai sepatu yang nyaman."
+      ]
+    },
+    "haedong-yonggungsa": {
+      "name": "Kuil Haedong Yonggungsa",
+      "summary": "Kuil Buddha di atas batu karang tepi laut, pertama kali dibangun pada 1376, hal yang langka di Korea karena kebanyakan kuil berada di pegunungan. Turuni 108 anak tangga di antara pohon pinus dan lempar koin dari jembatan sambil membuat permohonan.",
+      "address": "86 Yonggung-gil, Gijang-eup, Gijang-gun, Busan",
+      "tips": [
+        "Dari Pintu keluar 1 Stasiun Osiria (Jalur Donghae), naik bus 139.",
+        "Gerbang buka pukul 04.30, cukup pagi untuk matahari terbit di atas laut.",
+        "Temukan shio tahun lahirmu di antara 12 patung zodiak di pintu masuk."
+      ]
+    },
+    "haeundae-blueline-park": {
+      "name": "Haeundae Blueline Park",
+      "summary": "Bekas rel kereta pantai sepanjang 4,8 km yang dihidupkan kembali sebagai wahana tepi laut. Sky Capsule berkapasitas empat orang meluncur 2 km dari Mipo ke Cheongsapo, 7–10 m di atas laut, dan Beach Train berlanjut ke Songjeong.",
+      "address": "116 Cheongsapo-ro, Haeundae-gu, Busan",
+      "tips": [
+        "Sky Capsule sekitar 30 menit sekali jalan; pesan dulu di hari ramai.",
+        "Stasiun Mipo, di ujung timur Pantai Haeundae, adalah titik awal yang umum.",
+        "Tetap beroperasi saat hujan, tapi bisa berhenti saat topan atau hujan deras."
+      ]
+    },
+    "seongsan-ilchulbong": {
+      "name": "Seongsan Ilchulbong (Puncak Matahari Terbit)",
+      "summary": "Kerucut tuf setinggi 180 m yang muncul dari laut sekitar 5.000 tahun lalu, bagian dari Warisan Alam Dunia UNESCO di Jeju. Daki ke kawah selebar 600 m untuk melihat matahari terbit; ini lokasi syuting When Life Gives You Tangerines.",
+      "address": "284-12 Ilchul-ro, Seongsan-eup, Seogwipo-si, Jeju",
+      "tips": [
+        "Tiket dewasa 5.000 won; loket tutup satu jam sebelum jam tutup.",
+        "Saat musim panas, gerbang buka pukul 04.30 untuk pendaki matahari terbit.",
+        "Pantai Gwangchigi di dekatnya adalah lokasi syuting Welcome to Samdal-ri."
+      ]
+    },
+    "osulloc-tea-museum": {
+      "name": "Museum Teh O'sulloc",
+      "summary": "Museum teh milik Amorepacific, dibuka pada 2001 di samping kebun teh O'sulloc Seogwang. Masuk gratis: lihat galeri teh, coba dessert teh hijau di kafe, lalu berjalan ke deretan tanaman teh.",
+      "address": "15 Sinhwayeoksa-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "Masuk gratis; beberapa program pengalaman dikenai biaya tambahan.",
+        "Jam buka bisa berubah saat cuaca buruk.",
+        "Kebun teh Seogwang di sebelahnya termasuk yang terbesar di Korea."
+      ]
+    },
+    "dongmun-market": {
+      "name": "Pasar Tradisional Dongmun",
+      "summary": "Pasar permanen terbesar di Jeju, berdiri sejak 1945, terkenal dengan hasil laut segar seperti ikan layur dan hidangan seperti tteokgalbi dengan abalon utuh. Setelah gelap, pasar malam berisi kios makanan buka dekat Gerbang 8.",
+      "address": "20 Gwandeok-ro 14-gil, Jeju-si, Jeju",
+      "tips": [
+        "Kios pasar malam dekat Gerbang 8 tutup lebih awal jika dagangan habis.",
+        "Datang dengan perut kosong: bagi beberapa piring kecil, bukan satu porsi besar."
+      ]
+    },
+    "camellia-hill": {
+      "name": "Camellia Hill",
+      "summary": "Arboretum seluas 172.000 m² dengan sekitar 6.000 pohon kamelia dari 500 spesies, paling berwarna saat kamelia merah mekar di musim dingin. Sepasang peserta acara kencan EXchange 3 (Transit Love) pernah berkencan berkesan di sini.",
+      "address": "166 Byeongak-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "Tiket dewasa 12.000 won; masuk terakhir satu jam sebelum tutup.",
+        "Musim dingin (Nov–Feb) adalah puncak musim kamelia."
+      ]
+    }
+  },
   "prep": {
-    "title": "",
-    "items": {}
+    "title": "Sebelum berangkat",
+    "items": {
+      "esim": {
+        "label": "eSIM & data",
+        "sub": "Pasang eSIM Korea sebelum mendarat agar peta dan penerjemah langsung jalan sejak di bandara."
+      },
+      "tmoney": {
+        "label": "Kartu T-money",
+        "sub": "Satu kartu tap untuk subway, bus, dan Hangang Bus; isi ulang di minimarket."
+      },
+      "airport": {
+        "label": "Transfer bandara",
+        "sub": "Pesan dulu tiket kereta atau bus bandara ke Seoul agar kedatangan lebih mudah."
+      },
+      "stay": {
+        "label": "Tempat menginap",
+        "sub": "Myeongdong, Hongdae, dan Seongsu jadi basis praktis di jalur subway langsung."
+      },
+      "tour": {
+        "label": "Tur & tiket",
+        "sub": "Pesan sewa hanbok, tur sehari, dan tiket atraksi sebelum berangkat."
+      }
+    }
   }
 }

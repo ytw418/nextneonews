@@ -1,4 +1,928 @@
 {
-  "fields": {},
-  "procedures": {}
+  "fields": {
+    "derma": {
+      "name": "Da liễu",
+      "intro": "Các liệu trình laser, thiết bị năng lượng và tiêm tại phòng khám da liễu. Mỗi trang ghi thời gian hồi phục, mức đau, rủi ro và những câu nên hỏi. Không có tên phòng khám, bảng xếp hạng hay đánh giá."
+    },
+    "dental": {
+      "name": "Nha khoa",
+      "intro": "Lấy cao răng, tẩy trắng, trám răng, mặt dán sứ, cấy ghép implant và niềng răng trong suốt: mỗi thủ thuật gồm những gì, mất bao lâu và có thể gặp vấn đề gì."
+    },
+    "plastic": {
+      "name": "Phẫu thuật thẩm mỹ",
+      "intro": "Các thủ thuật ở mí mắt, mũi và khuôn mặt. Phẫu thuật có rủi ro thật và cần thời gian hồi phục; các trang này nói về cả hai, không có tên phòng khám hay ảnh trước–sau."
+    }
+  },
+  "procedures": {
+    "laser-toning": {
+      "name": "Laser toning",
+      "aka": ["Laser Q-switched Nd:YAG năng lượng thấp", "Laser toning 1064 nm", "QS Nd:YAG toning"],
+      "what": "Chiếu laser Q-switched Nd:YAG bước sóng 1064 nm ở năng lượng thấp, lặp lại nhiều lượt trên khắp khuôn mặt. Phương pháp này được dùng rộng rãi ở châu Á cho nám và sắc tố không đều. Một tổng quan hệ thống năm 2022 gồm 42 nghiên cứu cho thấy nhìn chung có hiệu quả với nám, nhưng kết quả khác nhau và một số nghiên cứu ghi nhận sắc tố quay lại trong khoảng ba tháng sau khi ngừng điều trị.",
+      "whoFor": "Người bị nám hoặc sắc tố không đều lan tỏa, có thể theo một chuỗi nhiều buổi. Viện Da liễu Hoa Kỳ (AAD) mô tả laser và liệu pháp ánh sáng là phần bổ sung cho người đang dùng thuốc bôi da được kê đơn và chống nắng hằng ngày.",
+      "steps": "Tẩy trang và che mắt. Laser được lướt nhiều lượt ở năng lượng thấp trên vùng điều trị, sau đó thoa kem chống nắng.",
+      "recovery": "Hầu như không cần nghỉ dưỡng; đỏ nhẹ thường hết trong một ngày. Kết quả tăng dần qua nhiều buổi. Trong một nghiên cứu trên bệnh nhân Hàn Quốc, liệu trình trung vị là 10 buổi, cách nhau khoảng một tuần.",
+      "risks": [
+        "Giảm sắc tố lốm đốm (đốm trắng) có thể kéo dài, liên quan đến tổng năng lượng laser cao",
+        "Sạm trở lại (tăng sắc tố) do viêm, nhất là khi cài đặt mạnh hoặc với da sẫm màu",
+        "Nám quay lại sau khi kết thúc liệu trình",
+        "Đỏ da tạm thời sau mỗi buổi"
+      ],
+      "questionsToAsk": [
+        "Bác sĩ da liễu đã xác nhận vết sắc tố của tôi là nám chứ không phải bệnh khác chưa?",
+        "Dự kiến bao nhiêu buổi, cách nhau bao lâu và tổng chi phí là bao nhiêu?",
+        "Bạn cài đặt năng lượng thế nào để giảm nguy cơ đốm trắng hoặc sạm trở lại?",
+        "Tôi nên dùng kem hay thuốc nào kèm theo, và trong bao lâu?",
+        "Nếu sắc tố sẫm hơn trong liệu trình thì bạn sẽ xử lý thế nào?"
+      ],
+      "aftercare": [
+        "Thoa kem chống nắng phổ rộng (SPF 30 trở lên) mỗi ngày và thoa lại khi ở ngoài trời",
+        "Tiếp tục chế độ chăm sóc da mà bác sĩ da liễu đã kê giữa các buổi",
+        "Báo ngay cho phòng khám nếu xuất hiện mảng trắng hoặc sẫm màu mới"
+      ],
+      "faq": [
+        {
+          "q": "Laser toning có xóa nám vĩnh viễn không?",
+          "a": "Không. Các tổng quan ghi nhận cải thiện nhưng cũng có tái phát sau khi ngừng điều trị. Phần lớn kế hoạch điều trị bao gồm chống nắng lâu dài và duy trì."
+        },
+        {
+          "q": "Thường cần bao nhiêu buổi?",
+          "a": "Phác đồ mỗi nơi một khác. Trong một nghiên cứu trên bệnh nhân Hàn Quốc, trung vị là 10 buổi, cách nhau khoảng một tuần. Hãy hỏi số buổi dự kiến và tổng giá trước khi bắt đầu."
+        },
+        {
+          "q": "Nó có thể làm sắc tố nặng hơn không?",
+          "a": "Có. Một tổng quan hệ thống năm 2022 ghi nhận tăng sắc tố trở lại khi cài đặt mạnh, nhất là ở da sẫm màu, và đốm trắng kéo dài liên quan đến tổng năng lượng cao."
+        }
+      ]
+    },
+    "pico-laser": {
+      "name": "Laser pico",
+      "aka": ["Laser picosecond", "Laser picosecond phân đoạn"],
+      "what": "Loại laser phát xung dài vài picosecond (một phần nghìn tỷ giây) để phá sắc tố thành các hạt rất nhỏ. Ban đầu nó dùng để xóa hình xăm, nay còn dùng cho tàn nhang và đốm nắng, kết cấu da, sẹo mụn và nám. Một tổng quan hệ thống năm 2021 đánh giá bằng chứng mạnh nhất cho hình xăm và yếu hơn cho trẻ hóa da, nám và sẹo.",
+      "whoFor": "Người muốn điều trị hình xăm, đốm sắc tố lành tính, kết cấu da hoặc sẹo mụn. Mỗi loại đốm đáp ứng khác nhau, nên cần bác sĩ da liễu chẩn đoán sắc tố trước.",
+      "steps": "Làm sạch da và che mắt. Có thể thoa kem gây tê. Tùy mục tiêu, laser được chiếu vào từng đốm hoặc lướt khắp vùng điều trị.",
+      "recovery": "Tùy cài đặt. Trong một nghiên cứu về đốm nắng (lentigo), đỏ, sưng và vảy nhỏ phần lớn hết trong 3–5 ngày.",
+      "risks": [
+        "Tăng sắc tố sau viêm (sạm tạm thời)",
+        "Giảm sắc tố (mảng da sáng hơn)",
+        "Đỏ, sưng, đóng vảy hoặc chảy máu li ti",
+        "Với nám, loại 755 nm không hiệu quả hơn kem làm sáng da trong một phân tích gộp năm 2023 và có liên quan đến sạm da"
+      ],
+      "questionsToAsk": [
+        "Bạn sẽ dùng bước sóng và cài đặt nào cho loại đốm của tôi, và tại sao?",
+        "Dự kiến bao nhiêu buổi, cách nhau bao lâu?",
+        "Với tông da của tôi, khả năng xuất hiện mảng sẫm hoặc sáng hơn là bao nhiêu?",
+        "Tôi nên làm gì nếu bị đóng vảy hoặc sạm da?",
+        "Giá tính theo buổi hay theo gói?"
+      ],
+      "aftercare": [
+        "Bảo vệ vùng da đã điều trị khỏi ánh nắng bằng kem chống nắng và che chắn",
+        "Để vảy tự bong, không cạy",
+        "Làm theo hướng dẫn chăm sóc bằng văn bản của phòng khám và báo khi da sạm bất thường"
+      ],
+      "faq": [
+        {
+          "q": "Laser pico có giống laser toning không?",
+          "a": "Không. Cả hai đều nhắm vào sắc tố, nhưng laser pico dùng xung ngắn hơn nhiều. Với nám, một phân tích gộp năm 2023 thấy laser picosecond 1064 nm có lợi, còn loại 755 nm không hiệu quả hơn kem bôi. Công cụ phù hợp tùy vào chẩn đoán."
+        },
+        {
+          "q": "Thời gian nghỉ dưỡng bao lâu?",
+          "a": "Tùy cài đặt. Trong một nghiên cứu về đốm nắng, đỏ, sưng và đóng vảy phần lớn hết trong 3–5 ngày. Một số ít người bị sạm nhẹ, mờ đi trong khoảng một tháng nhờ thuốc bôi."
+        },
+        {
+          "q": "Nó được dùng để làm gì?",
+          "a": "Theo một tổng quan hệ thống năm 2021: xóa hình xăm (bằng chứng mạnh nhất), đốm sắc tố lành tính, trẻ hóa da, nám và sẹo mụn."
+        }
+      ]
+    },
+    "rejuran": {
+      "name": "Rejuran (tiêm polynucleotide)",
+      "aka": ["REJURAN", "Tiêm polynucleotide (PN)", "Skin booster PN"],
+      "what": "Tiêm polynucleotide (PN), phân tử có nguồn gốc từ DNA, vào da bằng nhiều mũi tiêm nhỏ. Một tổng quan năm 2024 mô tả REJURAN là sản phẩm PN nổi bật ở châu Á. Các nghiên cứu ghi nhận cải thiện nếp nhăn nhỏ, kết cấu và độ đàn hồi, nhưng một tổng quan hệ thống năm 2025 chỉ tìm được chín nghiên cứu, chất lượng thấp đến trung bình.",
+      "whoFor": "Người trưởng thành muốn cải thiện kết cấu da, nếp nhăn nhỏ hoặc chất lượng da, chấp nhận tiêm nhiều buổi với thay đổi từ từ và không nhiều.",
+      "steps": "Làm sạch mặt và gây tê. PN được tiêm từng lượng nhỏ khắp vùng điều trị bằng kim nhỏ, rồi làm sạch da.",
+      "recovery": "Đỏ và sưng thường kéo dài vài giờ. Lúc đầu hay có các nốt sần nhỏ ở chỗ tiêm, thường chỉ tạm thời. Có thể bị bầm.",
+      "risks": [
+        "Đau, đỏ và sưng ở chỗ tiêm",
+        "Bầm tím và vết kim thấy rõ",
+        "Nốt sần nhỏ tạm thời dưới da",
+        "Hiếm gặp: u hạt dị vật (cục cứng kéo dài) hoặc sạm da sau viêm"
+      ],
+      "questionsToAsk": [
+        "Sản phẩm nào và tiêm bao nhiêu mL? Tôi có thể xem hộp còn niêm phong không?",
+        "Bao nhiêu buổi, cách nhau bao lâu và tổng chi phí là bao nhiêu?",
+        "Ai là người tiêm, và họ có phải bác sĩ có giấy phép hành nghề không?",
+        "Tôi có cần ngừng thuốc hay thực phẩm bổ sung nào trước không?",
+        "Tôi nên làm gì nếu nốt sần hoặc vết bầm không hết?"
+      ],
+      "aftercare": [
+        "Không chà xát hay ấn vào nốt sần trừ khi phòng khám hướng dẫn",
+        "Dùng sản phẩm chăm sóc da dịu nhẹ và kem chống nắng trong vài ngày tiếp theo",
+        "Liên hệ phòng khám nếu cục cứng, cơn đau hoặc vùng đỏ nặng hơn"
+      ],
+      "faq": [
+        {
+          "q": "Rejuran có phải là filler không?",
+          "a": "Không theo nghĩa thông thường. Nó thuộc nhóm skin booster, nhằm cải thiện chất lượng da (kết cấu, độ ẩm, độ đàn hồi) chứ không làm đầy thể tích."
+        },
+        {
+          "q": "Hiệu quả kéo dài bao lâu?",
+          "a": "Một đồng thuận châu Âu được trích trong tổng quan năm 2024 ghi nhận hiệu quả kéo dài khoảng 6–12 tháng sau liệu trình ba buổi. Kết quả mỗi người khác nhau."
+        },
+        {
+          "q": "Bằng chứng mạnh đến mức nào?",
+          "a": "Còn hạn chế. Một tổng quan hệ thống năm 2025 tìm được chín nghiên cứu với 219 bệnh nhân, chất lượng thấp đến trung bình. Tác dụng phụ nhìn chung nhẹ và tạm thời, nhưng vẫn cần các nghiên cứu lớn hơn, chất lượng cao hơn."
+        }
+      ]
+    },
+    "skin-booster": {
+      "name": "Skin booster (axit hyaluronic)",
+      "aka": ["Skin booster axit hyaluronic", "Tiêm cấp ẩm cho da", "Skin booster cải thiện chất lượng da"],
+      "what": "Tiêm lượng nhỏ axit hyaluronic (HA) vào da bằng nhiều mũi tiêm sát nhau để cải thiện độ ẩm, kết cấu và độ căng bóng, thay vì làm đầy thể tích. 'Skin booster' là tên gọi rộng: các phòng khám còn dùng nó cho PN, PLLA và các loại tiêm khác, nên hãy hỏi sản phẩm được dùng là gì.",
+      "whoFor": "Người trưởng thành có da trông khô, xỉn màu hoặc có nếp nhăn nhỏ, muốn chất lượng da thay đổi từ từ mà không thêm thể tích.",
+      "steps": "Làm sạch da và gây tê. Nhiều mũi tiêm nhỏ được đặt sát nhau bằng kim rất mảnh, sau đó làm sạch vùng tiêm.",
+      "recovery": "Đỏ và sưng nhẹ thường kéo dài vài giờ. Có thể xuất hiện nốt sần nhỏ, thường tạm thời. Có thể bị bầm và vết kim.",
+      "risks": [
+        "Đau, bầm tím và vết kim",
+        "Nốt sần hoặc 'hạt' (sẩn), nhất là khi HA liên kết chéo được tiêm quá nông",
+        "Đỏ và sưng trong vài giờ",
+        "Hiếm gặp: u hạt (cục cứng kéo dài)",
+        "Hiếm nhưng nghiêm trọng với mọi loại filler HA: tiêm vào mạch máu, có thể gây tổn thương da hoặc thị lực"
+      ],
+      "questionsToAsk": [
+        "Chính xác đây là sản phẩm gì: HA, PN, PLLA hay hỗn hợp?",
+        "Sản phẩm có được cơ quan quản lý dược Hàn Quốc (MFDS) cấp phép không, và tôi có thể xem hộp không?",
+        "Dự kiến bao nhiêu buổi và tổng giá là bao nhiêu?",
+        "Bạn làm gì để giảm khả năng nổi nốt sần?",
+        "Tôi nên làm gì nếu thấy da đổi màu hoặc đau dữ dội?"
+      ],
+      "aftercare": [
+        "Không ấn hay xoa bóp vùng tiêm trừ khi được hướng dẫn",
+        "Không trang điểm đậm trong phần còn lại của ngày nếu phòng khám dặn",
+        "Đi khám ngay nếu đau dữ dội, da tái nhợt hoặc tím sẫm, hay có bất kỳ thay đổi thị lực nào"
+      ],
+      "faq": [
+        {
+          "q": "Skin booster khác filler thế nào?",
+          "a": "Filler làm đầy thể tích và tạo hình. Skin booster dùng các mũi tiêm nhỏ, nông, thường là HA liên kết chéo nhẹ hoặc không liên kết chéo, nhắm vào độ ẩm và kết cấu da."
+        },
+        {
+          "q": "Khi nào tôi thấy kết quả?",
+          "a": "Một hội đồng chuyên gia ghi nhận hiệu quả thấy được sau buổi đầu, và cải thiện dần đến 12 tháng khi lặp lại mỗi 4–6 tháng sau liệu trình ban đầu tối đa ba buổi."
+        },
+        {
+          "q": "Có đau không?",
+          "a": "Đau, khó chịu và bầm tím được liệt kê là tác dụng phụ vì dùng nhiều mũi tiêm nhỏ. Hãy hỏi xem có thoa kem gây tê không."
+        }
+      ]
+    },
+    "potenza": {
+      "name": "Potenza (vi kim RF)",
+      "aka": ["Vi kim sóng cao tần", "Vi kim RF", "Vi kim RF phân đoạn"],
+      "what": "Thiết bị đưa các kim nhỏ vào da và phát năng lượng sóng cao tần (RF) ở đầu kim, làm nóng các lớp sâu hơn để kích hoạt tái cấu trúc collagen. Potenza là một thiết bị vi kim RF, có thể chạy ở chế độ đơn cực hoặc lưỡng cực. Các nghiên cứu bao gồm trẻ hóa da, sẹo mụn, mụn đang viêm và rạn da.",
+      "whoFor": "Người có sẹo mụn, kết cấu da không đều hoặc chảy xệ nhẹ, chấp nhận kết quả chậm và từ từ. Một tổng quan năm 2021 cho thấy có thể dùng cho các loại da sẫm màu.",
+      "steps": "Thoa kem gây tê. Cài độ sâu kim và năng lượng, di chuyển đầu máy khắp vùng điều trị, sau đó làm mát và làm dịu da.",
+      "recovery": "Đỏ thường kéo dài khoảng 1–7 ngày, và các nốt sần nhỏ ở chỗ kim thường gặp trong 1–2 ngày đầu. Vết dạng lưới có thể kéo dài 1–2 tuần sau khi điều trị năng lượng cao. Cải thiện có thể tiếp tục đến 6 tháng.",
+      "risks": [
+        "Bỏng, sẹo, mất mỡ, biến dạng hoặc tổn thương thần kinh: tháng 10/2025, FDA Hoa Kỳ đã cảnh báo về các báo cáo biến chứng nghiêm trọng này",
+        "Đỏ, sưng, bầm tím và vết dạng lưới",
+        "Tăng sắc tố sau viêm, chủ yếu ở da sẫm màu",
+        "Bùng mụn, tái phát mụn rộp môi (herpes) hoặc nhiễm trùng nông"
+      ],
+      "questionsToAsk": [
+        "Dùng thiết bị và đầu kim nào, và ai vận hành?",
+        "Độ sâu và năng lượng dự kiến là bao nhiêu, và bạn điều chỉnh thế nào cho tông da của tôi?",
+        "Dự kiến bao nhiêu buổi, cách nhau bao lâu?",
+        "Tôi có cần thuốc kháng virus nếu hay bị mụn rộp môi không?",
+        "Nếu tôi bị bỏng hoặc để lại vết lâu dài thì sao?"
+      ],
+      "aftercare": [
+        "Tránh trang điểm khoảng 24–48 giờ và dùng sữa rửa mặt dịu nhẹ",
+        "Tránh nắng khoảng 2 tuần và dùng kem chống nắng",
+        "Kê cao đầu khi ngủ 2–3 đêm để giảm sưng mặt",
+        "Liên hệ phòng khám nếu bị phồng rộp, đau tăng hoặc có dấu hiệu nhiễm trùng"
+      ],
+      "faq": [
+        {
+          "q": "Có thể làm vi kim RF tại nhà không?",
+          "a": "Không. FDA mô tả vi kim RF là thủ thuật y khoa, không phải liệu trình thẩm mỹ thông thường, và cho biết không nên dùng các thiết bị này tại nhà."
+        },
+        {
+          "q": "Khi nào tôi thấy kết quả?",
+          "a": "Tái cấu trúc collagen diễn ra chậm và dần dần. Một tổng quan năm 2021 ghi nhận cải thiện tiếp tục đến 6 tháng sau điều trị."
+        },
+        {
+          "q": "Thời gian nghỉ dưỡng bao lâu?",
+          "a": "Thường vài ngày đỏ da và nốt sần nhỏ. Đỏ có thể kéo dài đến khoảng một tuần, và vết dạng lưới sau cài đặt năng lượng cao có thể mất 1–2 tuần để mờ."
+        }
+      ]
+    },
+    "ulthera": {
+      "name": "Ulthera (siêu âm hội tụ vi điểm)",
+      "aka": ["Ultherapy", "Siêu âm hội tụ vi điểm có hình ảnh (MFU-V)"],
+      "what": "Thiết bị không xâm lấn tập trung năng lượng siêu âm ở các độ sâu định sẵn dưới da, tạo các điểm nhiệt nhỏ để kích thích collagen mới. Hình ảnh siêu âm tích hợp giúp người thực hiện thấy các lớp đang được điều trị. Thiết bị được FDA cấp phép để nâng và săn chắc một số vùng nhất định và không thay thế được phẫu thuật căng da mặt.",
+      "whoFor": "Người trưởng thành, thường từ 30 tuổi trở lên, có da mặt và cổ chảy xệ nhẹ đến vừa.",
+      "steps": "Làm sạch da và thoa gel siêu âm. Đầu máy hiển thị các lớp da và phát năng lượng theo từng đường, sau đó lau sạch gel.",
+      "recovery": "Thường không cần nghỉ dưỡng. Đỏ nhẹ có thể kéo dài khoảng một giờ. Một số người bị sưng, bầm hoặc đau khi chạm dọc vùng xương đến một tháng. Kết quả đầy đủ cần 3–6 tháng để thấy rõ.",
+      "risks": [
+        "Khó chịu hoặc đau trong khi điều trị",
+        "Đỏ, sưng, bầm hoặc đau khi chạm, đôi khi kéo dài nhiều tuần",
+        "Yếu hoặc tê dây thần kinh mặt tạm thời",
+        "Hiếm gặp: phồng rộp, loét, teo mô hoặc hoại tử da, được báo cáo trong một loạt ca năm 2018"
+      ],
+      "questionsToAsk": [
+        "Đây là hệ thống Ulthera hay một thiết bị siêu âm hội tụ (HIFU) khác?",
+        "Mặt tôi sẽ được làm bao nhiêu đường và ở những độ sâu nào?",
+        "Có biện pháp giảm đau nào?",
+        "Khi nào tôi sẽ thấy thay đổi, và có thể cần làm lại không?",
+        "Bạn tránh các vùng có dây thần kinh thế nào?"
+      ],
+      "aftercare": [
+        "Thường có thể sinh hoạt bình thường ngay",
+        "Có thể thấy đau khi chạm dọc đường hàm hoặc gò má",
+        "Báo cho phòng khám nếu bị tê, cử động mặt yếu đi hoặc phồng rộp"
+      ],
+      "faq": [
+        {
+          "q": "Ulthera có giống HIFU không?",
+          "a": "Ulthera (Ultherapy) là một hệ thống siêu âm hội tụ vi điểm có hình ảnh tích hợp. Các thiết bị khác bán dưới tên 'HIFU' cũng dùng siêu âm hội tụ nhưng thiết kế khác, nên hãy hỏi thiết bị được dùng là gì."
+        },
+        {
+          "q": "Khi nào thấy kết quả?",
+          "a": "Một số người thấy thay đổi ngay, nhưng Cleveland Clinic cho biết kết quả đầy đủ cần 3–6 tháng."
+        },
+        {
+          "q": "Nó có thay thế phẫu thuật căng da mặt không?",
+          "a": "Không. Cleveland Clinic lưu ý nó phù hợp với chảy xệ nhẹ đến vừa và không thay thế phẫu thuật căng da mặt."
+        }
+      ]
+    },
+    "thermage": {
+      "name": "Thermage (sóng cao tần đơn cực)",
+      "aka": ["Sóng cao tần đơn cực (MRF)", "ThermaCool", "Thermage FLX"],
+      "what": "Thiết bị không xâm lấn làm nóng lớp da sâu (trung bì) bằng sóng cao tần đơn cực trong khi bảo vệ bề mặt, khiến collagen co lại và tái cấu trúc. Nó được dùng cho da chảy xệ và nếp nhăn mức nhẹ đến vừa. Một tổng quan hệ thống năm 2022 thấy độ chảy xệ cải thiện đo được, với biến chứng phần lớn nhẹ và ngắn hạn.",
+      "whoFor": "Người trưởng thành có da chảy xệ nhẹ đến vừa. Trong một khảo sát bác sĩ da liễu Hàn Quốc, người ở độ tuổi 40 được cho là đáp ứng nhiều nhất, và độ dày da là yếu tố chính ảnh hưởng đến đáp ứng.",
+      "steps": "Làm sạch da. Đầu điều trị truyền nhiệt qua nhiều lượt trong khi bề mặt được làm mát, và cảm nhận của bạn về độ nóng giúp điều chỉnh năng lượng.",
+      "recovery": "Đỏ ngay sau điều trị là thường gặp và thường hết trong 1–2 ngày. Thời gian nghỉ dưỡng rất ít.",
+      "risks": [
+        "Đau hoặc khó chịu do nhiệt trong khi điều trị",
+        "Đỏ và sưng trong 1–2 ngày",
+        "Hiếm gặp: bỏng nông hoặc đóng vảy",
+        "Hiếm gặp: đường nét hơi không đều (vết lõm) hoặc nốt đỏ nhỏ dưới da"
+      ],
+      "questionsToAsk": [
+        "Đây có phải thiết bị và đầu Thermage chính hãng không, và dự kiến bao nhiêu shot?",
+        "Bạn có điều chỉnh năng lượng theo cảm nhận nhiệt của tôi không?",
+        "Nếu tôi bị phồng rộp hoặc lõm da thì xử lý thế nào?",
+        "Mức độ chảy xệ và độ dày da của tôi có phù hợp với liệu trình này không?",
+        "Khi nào thì làm lại là hợp lý?"
+      ],
+      "aftercare": [
+        "Thường có thể sinh hoạt bình thường ngay trong ngày",
+        "Dùng sản phẩm chăm sóc da dịu nhẹ và kem chống nắng",
+        "Báo cho phòng khám nếu bị phồng rộp, đóng vảy hoặc lõm da"
+      ],
+      "faq": [
+        {
+          "q": "Thermage khác Ulthera thế nào?",
+          "a": "Cả hai đều là thiết bị dùng nhiệt, không phẫu thuật. Thermage dùng sóng cao tần để làm nóng trung bì, còn Ulthera dùng siêu âm hội tụ ở các độ sâu định sẵn. Bác sĩ chọn dựa trên làn da và mục tiêu."
+        },
+        {
+          "q": "Khi nào thấy kết quả?",
+          "a": "Trong một khảo sát năm 2007 trên 5.700 lượt điều trị dùng phương pháp năng lượng thấp hơn, nhiều lượt, 87% thấy da săn lại ngay và 92% vẫn săn lại ở thời điểm sáu tháng."
+        },
+        {
+          "q": "Có đau không?",
+          "a": "Bạn sẽ cảm thấy nóng. Trong cùng khảo sát, 5% thấy phương pháp nhiều lượt, năng lượng thấp quá đau, so với 45% ở phương pháp năng lượng cao kiểu cũ."
+        }
+      ]
+    },
+    "botox": {
+      "name": "Botox (độc tố botulinum)",
+      "aka": ["Độc tố botulinum type A", "Chất điều biến thần kinh", "Botox®", "Dysport®", "Xeomin®", "Jeuveau®"],
+      "what": "Tiêm liều nhỏ độc tố botulinum vào những cơ nhất định để chặn tín hiệu thần kinh khiến cơ co lại. Nó làm mềm nếp nhăn giữa hai lông mày, nếp nhăn trán và vết chân chim, đồng thời được dùng để làm mềm đường hàm vuông, giảm dải cơ ở cổ và chỉnh cười hở lợi.",
+      "whoFor": "Người trưởng thành khó chịu vì nếp nhăn biểu cảm hoặc hàm rộng do cơ phát triển, chấp nhận kết quả tạm thời cần làm lại.",
+      "steps": "Bác sĩ đánh giá các cơ và tiêm lượng nhỏ bằng kim rất mảnh. Thường không cần gây tê.",
+      "recovery": "Không cần nghỉ dưỡng, có thể sinh hoạt bình thường ngay. Kết quả xuất hiện trong vài ngày và đầy đủ trong khoảng 5–7 ngày, thường kéo dài 3–4 tháng.",
+      "risks": [
+        "Bầm và đau ở chỗ tiêm",
+        "Đau đầu",
+        "Sụp mí hoặc sụp lông mày tạm thời",
+        "Yếu cơ mặt tạm thời nếu độc tố lan sang cơ lân cận",
+        "Rất hiếm: lan ra ngoài vùng tiêm gây khó thở, khó nuốt, yếu cơ hoặc nói ngọng"
+      ],
+      "questionsToAsk": [
+        "Dùng sản phẩm (thương hiệu) nào và bao nhiêu đơn vị cho mỗi vùng?",
+        "Sản phẩm có được cấp phép tại Hàn Quốc không, và có mở hộp trước mặt tôi không?",
+        "Ai là người tiêm?",
+        "Nếu kết quả trông không đều thì khi nào tôi nên quay lại?",
+        "Tiền sử bệnh của tôi, như mang thai, bệnh cơ hoặc thần kinh, hay thuốc đang dùng, có ảnh hưởng gì không?"
+      ],
+      "aftercare": [
+        "Không chà xát hay xoa bóp vùng đã tiêm",
+        "Có thể sinh hoạt bình thường ngay",
+        "Đi cấp cứu ngay nếu khó thở, khó nuốt hoặc khó nói"
+      ],
+      "faq": [
+        {
+          "q": "Botox kéo dài bao lâu?",
+          "a": "Thường khoảng 3–4 tháng. Khi hết tác dụng, cơ cử động lại và nếp nhăn quay lại."
+        },
+        {
+          "q": "Vì sao không nên xoa vùng tiêm sau đó?",
+          "a": "Theo Hiệp hội Bác sĩ Phẫu thuật Thẩm mỹ Hoa Kỳ (ASPS), xoa có thể làm độc tố di chuyển sang cơ lân cận và gây yếu cơ hoặc sụp tạm thời."
+        },
+        {
+          "q": "'Botox' có phải là một thương hiệu không?",
+          "a": "Botox® là một thương hiệu độc tố botulinum. Các thương hiệu khác gồm Dysport®, Xeomin® và Jeuveau®. Mỗi phòng khám dùng sản phẩm khác nhau, nên hãy hỏi loại nào và liều bao nhiêu."
+        }
+      ]
+    },
+    "filler": {
+      "name": "Filler (chất làm đầy)",
+      "aka": ["Filler axit hyaluronic (HA)", "Chất làm đầy mô mềm", "Filler dạng tiêm"],
+      "what": "Gel được tiêm dưới da để làm đầy thể tích hoặc làm mờ nếp nhăn ở các vùng như môi, má, cằm và rãnh cười. Phần lớn filler thẩm mỹ là axit hyaluronic (HA), được cơ thể hấp thụ dần theo thời gian. Các loại khác như calcium hydroxylapatite, axit poly-L-lactic và PMMA kéo dài lâu hơn và có thể khó loại bỏ hơn.",
+      "whoFor": "Người trưởng thành muốn làm đầy hoặc làm mờ nếp nhăn tạm thời. Ở Mỹ, filler được phê duyệt cho người từ 22 tuổi trở lên. FDA Hoa Kỳ chưa phê duyệt filler cho mũi, vùng giữa hai lông mày, quanh mắt, trán hay cổ.",
+      "steps": "Vùng tiêm được đánh giá và đánh dấu, rồi gây tê. Filler được tiêm vào và vùng đó có thể được nắn nhẹ để tạo dáng.",
+      "recovery": "Phần lớn hoạt động có thể làm ngay, nhưng tránh tập luyện cường độ cao trong 24–48 giờ. Sưng, bầm, đỏ hoặc trông bị làm đầy quá mức thường cải thiện trong vài giờ đến vài ngày.",
+      "risks": [
+        "Bầm tím, đỏ, sưng, đau khi chạm và ngứa",
+        "Cục cứng, filler sờ thấy dưới da, hoặc làm đầy chưa đủ hay quá mức",
+        "Nhiễm trùng hoặc phản ứng dị ứng",
+        "Filler di chuyển khỏi chỗ tiêm",
+        "Hiếm nhưng nghiêm trọng: tiêm vào mạch máu, có thể gây hoại tử da, giảm thị lực hoặc mù, hay đột quỵ"
+      ],
+      "questionsToAsk": [
+        "Đây là sản phẩm gì (HA hay vật liệu khác), và có thể làm tan nếu cần không?",
+        "Dùng bao nhiêu mL, và giá mỗi ống là bao nhiêu?",
+        "Bạn làm gì để giảm nguy cơ tiêm vào mạch máu, và kế hoạch xử lý cấp cứu là gì?",
+        "Vùng tôi muốn làm có nằm trong những vùng FDA chưa phê duyệt filler không?",
+        "Ngoài giờ làm việc, tôi liên hệ ai nếu bị đau, đổi màu da hoặc có vấn đề về thị lực?"
+      ],
+      "aftercare": [
+        "Tránh tập luyện cường độ cao trong 24–48 giờ",
+        "Chườm đá để giảm sưng nếu phòng khám hướng dẫn",
+        "Đi cấp cứu nếu thị lực thay đổi, hoặc đau dữ dội hay yếu một bên cơ thể"
+      ],
+      "faq": [
+        {
+          "q": "Filler kéo dài bao lâu?",
+          "a": "Tùy vật liệu và vùng tiêm. Filler HA được hấp thụ dần, còn các vật liệu như PMMA là bán vĩnh viễn."
+        },
+        {
+          "q": "Filler mũi có được phê duyệt không?",
+          "a": "FDA Hoa Kỳ chưa phê duyệt filler để tiêm vào mũi và khuyến cáo không tiêm filler vào vùng này. Quy định mỗi nước khác nhau, nên hãy hỏi sản phẩm được cấp phép cho mục đích gì tại Hàn Quốc."
+        },
+        {
+          "q": "Có thể lấy filler ra không?",
+          "a": "FDA lưu ý rằng việc loại bỏ có thể khó hơn với filler 'vĩnh viễn' và filler không làm từ các vật liệu như HA. Hãy hỏi trước khi điều trị."
+        },
+        {
+          "q": "Dấu hiệu cảnh báo sau khi tiêm filler là gì?",
+          "a": "Đau dữ dội, da gần chỗ tiêm tái nhợt hoặc tím sẫm, hay bất kỳ thay đổi thị lực nào có thể là dấu hiệu tắc mạch máu và cần cấp cứu ngay."
+        }
+      ]
+    },
+    "aqua-peel": {
+      "name": "Aqua peel (mài da vi điểm bằng nước)",
+      "aka": ["Hydradermabrasion"],
+      "what": "Liệu trình chăm sóc da mặt không xâm lấn, kết hợp mài da vi điểm không dùng tinh thể (tẩy tế bào chết bằng đầu hút) với truyền serum dạng lỏng, thường kèm hút làm sạch lỗ chân lông. HydraFacial là một phiên bản mang thương hiệu. Trong một nghiên cứu ngẫu nhiên nhỏ năm 2008, sáu buổi đã cải thiện nếp nhăn nhỏ, kích thước lỗ chân lông và sắc tố.",
+      "whoFor": "Người muốn một liệu trình tẩy tế bào chết và làm sạch nhẹ nhàng, ít thời gian nghỉ dưỡng. Hãy cho người thực hiện biết nếu bạn đang có bệnh da hoặc vừa làm liệu trình da gần đây.",
+      "steps": "Làm sạch da và tẩy tế bào chết bằng đầu hút, làm sạch lỗ chân lông bằng lực hút, rồi truyền serum.",
+      "recovery": "Rất ít. Có thể trang điểm và sinh hoạt bình thường ngay. Đỏ và sưng nhẹ thường hết trong 48 giờ.",
+      "risks": [
+        "Đỏ và sưng nhẹ, thường dưới 48 giờ",
+        "Hiếm gặp: phồng rộp, bầm nhẹ, đổi màu da hoặc da nhạy cảm",
+        "Hiếm gặp: mụn rộp môi hoặc nhiễm trùng",
+        "Hiếm gặp: tổn thương da hoặc sẹo"
+      ],
+      "questionsToAsk": [
+        "Dùng serum nào, và có chứa thành phần tôi bị kích ứng không?",
+        "Tôi có cần ngừng retinoid hay sản phẩm chứa axit trước không?",
+        "Đầu hút có dùng một lần không, và ai thực hiện?",
+        "Bạn gợi ý bao nhiêu buổi, và vì sao?",
+        "Có thể kết hợp với liệu trình khác trong cùng ngày không?"
+      ],
+      "aftercare": [
+        "Tránh sản phẩm retinoid hoặc AHA trong 3–5 ngày",
+        "Thoa kem chống nắng và hạn chế ra nắng ít nhất 2 tuần",
+        "Gọi cho phòng khám nếu bị phát ban, bầm, hoặc đỏ hay sưng kéo dài hơn một tuần"
+      ],
+      "faq": [
+        {
+          "q": "Aqua peel có phải là peel hóa học không?",
+          "a": "Không hẳn. Nó kết hợp tẩy tế bào chết, hút làm sạch và truyền serum. Một số phiên bản có thêm bước peel hóa học nhẹ."
+        },
+        {
+          "q": "Tôi có nên ngừng Botox hay retinoid trước đó không?",
+          "a": "Cleveland Clinic khuyên tránh tiêm Botox ít nhất hai tuần trước, và ngừng sản phẩm retinoid hoặc AHA 3–5 ngày trước."
+        },
+        {
+          "q": "Tôi có thể làm bao lâu một lần?",
+          "a": "Một số người làm 3–6 lần, cách nhau 2–4 tuần. Nơi thực hiện cũng có thể gợi ý mỗi tháng một lần."
+        }
+      ]
+    },
+    "scaling": {
+      "name": "Lấy cao răng (vệ sinh răng chuyên nghiệp)",
+      "aka": ["Vệ sinh răng", "Cạo vôi răng", "Làm sạch răng dự phòng"],
+      "what": "Loại bỏ mảng bám và cao răng cứng trên bề mặt răng bằng dụng cụ chuyên dụng, thường sau đó là đánh bóng. Làm sạch sâu dưới đường viền nướu (cạo vôi và xử lý mặt chân răng) là một điều trị riêng cho bệnh nướu.",
+      "whoFor": "Bất kỳ ai có mảng bám hoặc cao răng tích tụ. Tại Hàn Quốc, người tham gia Bảo hiểm Y tế Quốc gia từ 19 tuổi trở lên được bảo hiểm chi trả một lần lấy cao răng toàn hàm mỗi năm dương lịch.",
+      "steps": "Nha sĩ kiểm tra răng và nướu. Cao răng được lấy trên răng và quanh đường viền nướu, răng được đánh bóng và có thể được bôi fluor.",
+      "recovery": "Có thể ăn uống và sinh hoạt bình thường trong ngày. Có thể ê răng hoặc đau nướu, thường hết trong vài ngày.",
+      "risks": [
+        "Ê buốt răng tạm thời với nóng và lạnh",
+        "Đau nướu và chảy máu nhẹ",
+        "Nướu có thể trông hơi tụt khi hết sưng (chủ yếu sau làm sạch sâu)",
+        "Hiếm gặp: nhiễm trùng, chủ yếu sau làm sạch sâu"
+      ],
+      "questionsToAsk": [
+        "Đây là vệ sinh định kỳ hay làm sạch sâu (cạo vôi và xử lý mặt chân răng)?",
+        "Tôi có bị bệnh nướu không, và có cần điều trị tiếp không?",
+        "Bảo hiểm của tôi có chi trả không, và tôi phải trả bao nhiêu?",
+        "Bạn có chụp X-quang không, và chi phí bao nhiêu?",
+        "Tôi nên quay lại bao lâu một lần?"
+      ],
+      "aftercare": [
+        "Dùng kem đánh răng chống ê buốt nếu răng nhạy cảm",
+        "Tiếp tục đánh răng và dùng chỉ nha khoa hằng ngày",
+        "Liên hệ nha sĩ nếu chảy máu không ngừng"
+      ],
+      "faq": [
+        {
+          "q": "Lấy cao răng ở Hàn Quốc có được bảo hiểm chi trả không?",
+          "a": "Người tham gia Bảo hiểm Y tế Quốc gia từ 19 tuổi trở lên được chi trả một lần lấy cao răng toàn hàm mỗi năm (từ tháng 1 đến tháng 12), với mức đồng chi trả thông thường. Các lần làm thêm, và lấy cao răng để tẩy trắng, chỉnh nha hoặc trị hôi miệng, không được chi trả. Du khách không có bảo hiểm Hàn Quốc trả theo mức phí của phòng khám."
+        },
+        {
+          "q": "Vì sao răng tôi bị ê sau khi lấy cao răng?",
+          "a": "Loại bỏ mảng bám và cao răng có thể làm răng nhạy cảm hơn với nóng và lạnh. Sau vệ sinh định kỳ, cảm giác này thường hết trong vài ngày. Sau làm sạch sâu, có thể mất một đến hai tháng."
+        },
+        {
+          "q": "Mất bao lâu?",
+          "a": "Phần lớn lần vệ sinh mất 30–60 phút. Làm sạch sâu mất 1–2 giờ và có thể chia thành hai lần hẹn."
+        }
+      ]
+    },
+    "whitening": {
+      "name": "Tẩy trắng răng",
+      "aka": ["Tẩy màu răng", "Tẩy trắng tại phòng khám", "Tẩy trắng bằng laser"],
+      "what": "Làm sáng màu răng thật bằng gel peroxide (hydrogen peroxide hoặc carbamide peroxide). Có thể làm một buổi tại phòng khám, đôi khi dùng đèn hoặc laser, hoặc dùng bộ khay do nha sĩ làm riêng để đeo tại nhà trong vài tuần.",
+      "whoFor": "Người trưởng thành có răng thật bị ố hoặc sẫm màu, răng và nướu khỏe mạnh. Hướng dẫn của NHS cho biết không thực hiện cho người từ 17 tuổi trở xuống và không nên làm khi mang thai hoặc cho con bú. Tẩy trắng không đổi màu mão răng, răng giả hay implant.",
+      "steps": "Nha sĩ kiểm tra răng và nướu, nướu được bảo vệ bằng tấm chắn hoặc chất phủ. Gel tẩy trắng được bôi lên, đôi khi kích hoạt bằng đèn hoặc laser, rồi rửa sạch. Với tẩy trắng tại nhà, bạn đeo khay làm riêng trong vài tuần.",
+      "recovery": "Không cần nghỉ dưỡng. Ê răng tạm thời và kích ứng nướu thường gặp và thường nhanh hết.",
+      "risks": [
+        "Ê răng khi ăn uống đồ lạnh hoặc ngọt",
+        "Đau nướu hoặc họng, hay mảng trắng trên nướu",
+        "Màu không đều cạnh mão răng hoặc miếng trám, vốn không trắng lên",
+        "Mòn men răng khi tẩy trắng quá mạnh (ghi nhận trong nghiên cứu phòng thí nghiệm)"
+      ],
+      "questionsToAsk": [
+        "Răng và nướu của tôi có đủ khỏe để tẩy trắng không?",
+        "Mão răng, miếng trám hoặc mặt dán sứ của tôi có giữ màu khác không?",
+        "Bạn dùng sản phẩm nào và nồng độ peroxide bao nhiêu?",
+        "Kết quả kéo dài bao lâu, và tôi duy trì thế nào?",
+        "Tôi có thể làm gì nếu ê buốt nhiều?"
+      ],
+      "aftercare": [
+        "Hạn chế cà phê, trà và rượu vang đỏ để chậm ố lại",
+        "Dùng kem đánh răng chống ê buốt, hoặc tạm ngừng tẩy trắng tại nhà, nếu răng nhạy cảm",
+        "Tuyệt đối không dùng hydrogen peroxide gia dụng cho răng"
+      ],
+      "faq": [
+        {
+          "q": "Tẩy trắng kéo dài bao lâu?",
+          "a": "Không vĩnh viễn. NHS cho biết kết quả có thể kéo dài khoảng 3 năm nếu chăm sóc tốt, còn Cleveland Clinic đưa ra mức sáu tháng đến ba năm."
+        },
+        {
+          "q": "Tẩy trắng ở tiệm làm đẹp có giống không?",
+          "a": "Không. NHS cho biết bộ tẩy trắng từ tiệm làm đẹp hoặc người bán online không hiệu quả bằng và có thể gây hại cho răng và nướu. Tẩy trắng nên do chuyên gia nha khoa thực hiện hoặc kê đơn."
+        },
+        {
+          "q": "Nó có làm trắng mặt dán sứ hay mão răng không?",
+          "a": "Không. Tẩy trắng chỉ làm sáng răng thật, nên phục hình sẵn có có thể trông sẫm hơn sau đó."
+        }
+      ]
+    },
+    "resin": {
+      "name": "Trám răng composite (resin)",
+      "aka": ["Trám composite resin", "Trám răng cùng màu răng", "Composite resin quang trùng hợp"],
+      "what": "Vật liệu cùng màu răng (resin trộn bột thủy tinh, thạch anh hoặc silica) được đặt trực tiếp vào lỗ sâu hoặc chỗ mẻ và làm cứng bằng đèn quang trùng hợp, thường xong trong một lần hẹn. Cùng vật liệu này được dùng để dán thẩm mỹ (bonding), chỉnh lại răng mẻ hoặc không đều.",
+      "whoFor": "Người có lỗ sâu nhỏ đến vừa, răng mẻ hoặc nứt. Tổn thương lớn hơn có thể cần inlay, onlay hoặc mão răng.",
+      "steps": "Gây tê răng nếu cần và loại bỏ phần sâu. Đặt resin, làm cứng bằng đèn quang trùng hợp, rồi tạo hình và đánh bóng.",
+      "recovery": "Thường có thể sinh hoạt bình thường ngay, trừ khi bạn được dùng thuốc an thần. Ê nhẹ và đau nướu có thể kéo dài một đến hai tuần.",
+      "risks": [
+        "Ê tạm thời khi nóng, lạnh hoặc khi cắn",
+        "Đau nướu quanh răng",
+        "Mẻ, mòn hoặc ố màu theo thời gian",
+        "Miếng trám cuối cùng sẽ cần thay"
+      ],
+      "questionsToAsk": [
+        "Resin có phù hợp với lỗ sâu cỡ này không, hay inlay hoặc mão răng sẽ bền hơn?",
+        "Trám bao nhiêu mặt răng, và giá được tính thế nào?",
+        "Răng có cần gây tê không?",
+        "Miếng trám này có thể dùng được bao lâu?",
+        "Có phần nào của điều trị được bảo hiểm chi trả không?"
+      ],
+      "aftercare": [
+        "Chờ hết tê rồi mới ăn",
+        "Dùng thuốc giảm đau không kê đơn nếu răng đau",
+        "Gặp nha sĩ nếu thấy cộm khi cắn hoặc ê buốt kéo dài quá hai tuần"
+      ],
+      "faq": [
+        {
+          "q": "Trám resin bền bao lâu?",
+          "a": "Tùy trường hợp. Cleveland Clinic đưa ra 5–8 năm cho dán thẩm mỹ và cho biết miếng trám nói chung có thể dùng 10–20 năm, tùy vật liệu và cách chăm sóc."
+        },
+        {
+          "q": "Vì sao phòng khám dùng resin thay vì amalgam (bạc)?",
+          "a": "Resin cùng màu với răng. FDA cũng đã đưa ra hướng dẫn cập nhật về amalgam cho các nhóm nguy cơ cao hơn, như người đang có kế hoạch mang thai và trẻ dưới 6 tuổi."
+        },
+        {
+          "q": "Giá trám resin ở Hàn Quốc được tính thế nào?",
+          "a": "Trong dữ liệu quốc gia về chi phí ngoài bảo hiểm, trám resin được liệt kê theo số mặt răng và theo nguyên nhân (sâu răng hay mòn răng). Hãy xin báo giá bằng văn bản cho từng răng."
+        }
+      ]
+    },
+    "laminate": {
+      "name": "Mặt dán sứ (laminate veneer)",
+      "aka": ["Veneer sứ", "Laminate gốm sứ", "Veneer composite"],
+      "what": "Lớp vỏ mỏng làm riêng, được dán lên mặt trước của răng để thay đổi màu, hình dạng hoặc kích thước, hay để đóng khe hở. Veneer sứ (gốm) được làm trong labo sau khi mài đi một ít men răng. Veneer composite được đắp trực tiếp bằng resin.",
+      "whoFor": "Người trưởng thành có răng và nướu khỏe, muốn thay đổi thẩm mỹ như che chỗ mẻ hoặc đổi màu, hay đóng khe hở. ADA (Hiệp hội Nha khoa Hoa Kỳ) lưu ý veneer có thể không phù hợp với người hay nghiến hoặc siết răng, hoặc có khớp cắn sâu.",
+      "steps": "Chọn màu và mài một ít men răng ở mặt trước và hai bên. Lấy dấu hoặc quét 3D, có thể gắn veneer tạm, rồi dán và điều chỉnh veneer làm từ labo.",
+      "recovery": "Hầu như không cần nghỉ dưỡng. Thay đổi này không thể đảo ngược vì men răng đã bị mài.",
+      "risks": [
+        "Không thể đảo ngược, vì men răng bị mài để gắn veneer",
+        "Mẻ, nứt, mòn hoặc bong, cần dán lại hoặc thay",
+        "Gắn veneer lên răng sâu hoặc nướu bệnh chưa điều trị có thể làm các vấn đề đó nặng hơn",
+        "Veneer thường cần thay sau 5–15 năm",
+        "Nhiễm trùng hoặc tổn thương thần kinh khi do người không có giấy phép thực hiện"
+      ],
+      "questionsToAsk": [
+        "Sẽ mài bao nhiêu men răng, và tẩy trắng hay dán composite có đạt được mục tiêu của tôi không?",
+        "Sứ hay composite: loại nào hợp với trường hợp của tôi, và vì sao?",
+        "Bao nhiêu răng, giá mỗi răng là bao nhiêu, và bảo hành bao gồm những gì?",
+        "Nếu veneer bị mẻ sau khi tôi về nước thì sao?",
+        "Tôi có nghiến hoặc siết răng không, và điều đó có làm thay đổi kế hoạch không?"
+      ],
+      "aftercare": [
+        "Tránh cắn vật cứng như đá viên hoặc bút bằng răng đã dán veneer",
+        "Báo nha sĩ nếu bạn nghiến hoặc siết răng",
+        "Duy trì vệ sinh răng và khám định kỳ"
+      ],
+      "faq": [
+        {
+          "q": "Veneer có thể đảo ngược không?",
+          "a": "Không. ADA cho biết điều trị không thể đảo ngược vì men răng bị mài để gắn veneer."
+        },
+        {
+          "q": "Veneer bền bao lâu?",
+          "a": "Cleveland Clinic đưa ra 5–15 năm. Một phân tích gộp năm 2025 cho thấy tỷ lệ tồn tại khoảng 94–97% sau khoảng 10 năm với các loại veneer gốm thông dụng."
+        },
+        {
+          "q": "Có thể làm veneer trong một chuyến đi ngắn không?",
+          "a": "Veneer sứ thường cần ít nhất hai lần hẹn vì được làm trong labo. Việc sửa chữa và điều chỉnh có thể khó sắp xếp hơn sau khi bạn rời Hàn Quốc."
+        }
+      ]
+    },
+    "implant": {
+      "name": "Cấy ghép implant nha khoa",
+      "aka": ["Trồng răng implant", "Mão răng trên implant"],
+      "what": "Trụ titan được đặt vào xương hàm để thay chân răng đã mất, phía trên gắn khớp nối (abutment) và mão răng, cầu răng hoặc hàm giả. Xương cần 3–9 tháng để tích hợp với trụ (tích hợp xương) trước khi gắn răng cuối cùng.",
+      "whoFor": "Người trưởng thành (thường từ 18 tuổi trở lên) đã ngừng phát triển và có đủ xương hàm khỏe. Có thể cần ghép xương nếu xương mỏng. Implant có thể không phù hợp với người bị tiểu đường chưa kiểm soát, đang có bệnh nướu hoặc hút thuốc.",
+      "steps": "Khám và chụp phim trước. Implant được đặt dưới gây tê tại chỗ, có thể chọn thêm an thần. Sau 3–9 tháng lành thương, abutment và mão răng được gắn trong lần hẹn khoảng một giờ, đôi khi kèm một tiểu phẫu thứ hai.",
+      "recovery": "Giai đoạn lành thương đầu tiên mất khoảng một tuần, hơi khó chịu và sưng. Tích hợp xương hoàn toàn mất 3–9 tháng.",
+      "risks": [
+        "Nhiễm trùng nướu hoặc xương quanh implant (nướu chảy máu hoặc sưng, mủ, sốt)",
+        "Tê do tổn thương thần kinh, hoặc thủng xoang ở hàm trên",
+        "Tổn thương răng bên cạnh, hoặc gãy xương hàm trong khi phẫu thuật",
+        "Implant lỏng hoặc thất bại, có thể cần phẫu thuật lại",
+        "Lỏng ốc abutment hoặc khớp cắn có cảm giác không đúng"
+      ],
+      "questionsToAsk": [
+        "Tôi có đủ xương không, và có cần ghép xương không (chi phí bao nhiêu)?",
+        "Giá đã bao gồm thương hiệu, mẫu implant và vật liệu mão răng nào?",
+        "Cần bao nhiêu lần hẹn, cách nhau bao nhiêu tháng?",
+        "Ai xử lý biến chứng khi tôi đã về nước?",
+        "Bao gồm theo dõi hoặc bảo hành gì?"
+      ],
+      "aftercare": [
+        "Dùng thuốc giảm đau không kê đơn theo hướng dẫn",
+        "Không hút thuốc hay thuốc lá điện tử khi đang lành thương",
+        "Vệ sinh quanh implant theo hướng dẫn và khám nha khoa định kỳ",
+        "Liên hệ nha sĩ ngay nếu implant lỏng hoặc đau, hoặc bị sưng, có mủ hay sốt"
+      ],
+      "faq": [
+        {
+          "q": "Cấy implant ở Hàn Quốc giá bao nhiêu?",
+          "a": "Bộ Y tế Hàn Quốc và HIRA (Cơ quan Thẩm định Bảo hiểm Y tế) công bố chi phí ngoài bảo hiểm. Trong đợt công bố năm 2026, mức phí trung vị cho mỗi implant tại phòng khám nha khoa là 1,1 triệu ₩ với mão kim loại, PFM hoặc zirconia, 1,2 triệu ₩ với mão toàn sứ và 1,5 triệu ₩ với mão hợp kim vàng. Mức phí do các phòng khám nha khoa báo cáo dao động từ 540.000 ₩ đến 2,5 triệu ₩. Giá khác nhau tùy phòng khám, vật liệu và thủ thuật đi kèm như ghép xương."
+        },
+        {
+          "q": "Implant dùng được bao lâu?",
+          "a": "Nếu vệ sinh tốt, implant thường có thể dùng suốt đời. Một phân tích gộp năm 2019 ước tính khoảng 96% implant tồn tại sau 10 năm. Mão răng có thể cần thay, thường sau khoảng 15 năm."
+        },
+        {
+          "q": "Tôi có thể hoàn tất implant trong một chuyến đi không?",
+          "a": "Thường là không. Xương cần 3–9 tháng để tích hợp trước khi gắn răng cuối cùng, nên điều trị thường gồm các lần hẹn cách nhau vài tháng."
+        },
+        {
+          "q": "Có đau không?",
+          "a": "Vùng đặt implant được gây tê. Hơi khó chịu và sưng sau đó là bình thường, và phần lớn mọi người cảm thấy trở lại bình thường trong khoảng một tuần."
+        }
+      ]
+    },
+    "clear-aligner": {
+      "name": "Niềng răng trong suốt",
+      "aka": ["Invisalign®", "ClearCorrect®", "Niềng răng vô hình"],
+      "what": "Khay nhựa trong suốt làm riêng, giúp dịch chuyển răng dần dần. Thường cứ khoảng hai tuần lại thay một bộ mới. Có thể gắn các nút nhỏ cùng màu răng (attachment) lên răng để khay bám tốt hơn.",
+      "whoFor": "Người có răng chen chúc, mọc lệch hoặc thưa, có thể đeo khay 22–23 giờ mỗi ngày. Cleveland Clinic lưu ý niềng mắc cài truyền thống có thể xử lý một số vấn đề nhanh hơn.",
+      "steps": "Khám và quét 3D hoặc lấy dấu, rồi lập kế hoạch điều trị. Gắn attachment, đôi khi mài bớt một chút men răng giữa các răng (mài kẽ, IPR). Khoảng hai tuần thay khay mới một lần và tái khám, cuối cùng đeo hàm duy trì.",
+      "recovery": "Không cần nghỉ dưỡng. Cảm giác ép hoặc đau mỗi khi thay khay mới thường giảm trong vài ngày.",
+      "risks": [
+        "Đau và cảm giác ép mỗi lần thay khay mới",
+        "Tiêu chân răng (chân răng ngắn đi một chút), như các phương pháp chỉnh nha khác",
+        "Sâu răng hoặc vấn đề nướu nếu răng và khay không được giữ sạch",
+        "Răng di chuyển về vị trí cũ nếu không đeo hàm duy trì"
+      ],
+      "questionsToAsk": [
+        "Trường hợp của tôi có phù hợp với niềng trong suốt không, hay mắc cài cố định sẽ hợp hơn?",
+        "Dự kiến bao nhiêu khay và bao nhiêu tháng, và tôi phải tái khám bao lâu một lần?",
+        "Có thể theo dõi tiến trình nếu tôi sống ở nước ngoài không?",
+        "Khay tinh chỉnh và hàm duy trì có nằm trong giá không?",
+        "Có mài men răng giữa các răng của tôi (mài kẽ) không?"
+      ],
+      "aftercare": [
+        "Đeo khay 22–23 giờ mỗi ngày, chỉ tháo ra khi ăn, đánh răng và dùng chỉ nha khoa",
+        "Ăn đồ mềm trong mấy ngày đầu thay khay mới nếu nhai thấy đau",
+        "Hạn chế đồ ăn, thức uống nhiều đường, và làm sạch răng trước khi đeo lại khay",
+        "Đeo hàm duy trì theo hướng dẫn sau khi kết thúc điều trị"
+      ],
+      "faq": [
+        {
+          "q": "Điều trị mất bao lâu?",
+          "a": "Răng hơi lệch có thể mất đến khoảng chín tháng. Các trường hợp phức tạp hơn mất lâu hơn."
+        },
+        {
+          "q": "Sau đó tôi có cần hàm duy trì không?",
+          "a": "Có. NHS cho biết cần hàm duy trì để răng không di chuyển về vị trí ban đầu. Bác sĩ chỉnh nha sẽ cho bạn biết cần đeo trong bao lâu."
+        },
+        {
+          "q": "Niềng trong suốt có làm ngắn chân răng không?",
+          "a": "Một mức tiêu chân răng nhất định có thể xảy ra với mọi phương pháp chỉnh nha. Một phân tích gộp năm 2021 trên các ca không nhổ răng cho thấy chân răng cửa hàm trên ngắn đi trung bình khoảng 0,5 mm, dưới ngưỡng 1 mm được xem là có ý nghĩa lâm sàng, và mức độ tương tự nhau giữa niềng trong suốt và mắc cài cố định ở phần lớn các răng."
+        }
+      ]
+    },
+    "double-eyelid": {
+      "name": "Phẫu thuật mí đôi (cắt mí)",
+      "aka": ["Tạo hình mí mắt kiểu châu Á", "Tạo hình mí trên", "Bấm mí không rạch / cắt mí có rạch"],
+      "what": "Phẫu thuật tạo nếp gấp mí trên thấy rõ. Mí lót (không có nếp gấp rõ) gặp ở khoảng một nửa số người gốc châu Á. Phương pháp gồm từ không rạch (khâu chỉ) và rạch nhỏ đến rạch toàn bộ; cách sau cũng có thể loại bỏ da hoặc mỡ thừa.",
+      "whoFor": "Người trưởng thành muốn có nếp mí vĩnh viễn và có kỳ vọng thực tế. Phẫu thuật không cần thiết về mặt y khoa, và băng dán hoặc keo kích mí có thể tạo nếp mí tạm thời.",
+      "steps": "Nếp mí được thiết kế và đánh dấu. Dưới gây tê tại chỗ hoặc gây mê toàn thân, đường rạch hoặc lỗ nhỏ được tạo dọc theo đường đã định, mô được điều chỉnh và nếp mí được cố định trước khi khâu đóng.",
+      "recovery": "Chỉ khâu thường được giữ khoảng một tuần. Phần lớn mọi người nghỉ làm khoảng 2 tuần. Bầm và đỏ có thể mất vài tuần để mờ, và hồi phục hoàn toàn mất vài tháng.",
+      "risks": [
+        "Không cân xứng hoặc nếp mí không đều",
+        "Nếp mí mờ đi hoặc mất (khoảng 2% trong một tổng quan về phương pháp rạch nhỏ)",
+        "Sẹo dễ thấy",
+        "Khô, kích ứng mắt hoặc tạm thời khó nhắm mắt",
+        "Hiếm gặp: chảy máu sau nhãn cầu, tổn thương cơ mắt hoặc thay đổi thị lực"
+      ],
+      "questionsToAsk": [
+        "Bạn dự định dùng phương pháp nào (không rạch, rạch nhỏ hay rạch toàn bộ), và vì sao?",
+        "Nếp mí sẽ cao bao nhiêu, và tôi có thể xem bản phác đường mí dự kiến không?",
+        "Ai là người phẫu thuật, và họ có bằng chuyên khoa gì?",
+        "Chính sách sửa lại thế nào nếu nếp mí không đều hoặc mờ đi?",
+        "Khi nào cắt chỉ, và khi nào tôi có thể đi máy bay?"
+      ],
+      "aftercare": [
+        "Kê cao đầu bằng gối trong vài ngày",
+        "Chườm lạnh và dùng thuốc mỡ hoặc thuốc nhỏ mắt được cấp",
+        "Tránh dụi mắt, kính áp tròng, bơi lội và vận động mạnh trong vài ngày hoặc theo chỉ dẫn",
+        "Đeo kính râm khi ra ngoài để bảo vệ mắt"
+      ],
+      "faq": [
+        {
+          "q": "Mí đôi có vĩnh viễn không?",
+          "a": "Mục tiêu là vĩnh viễn, nhưng nếp mí có thể mờ đi hoặc mất. Một tổng quan năm 2023 cho thấy tỷ lệ mất nếp mí gộp là 2% với kỹ thuật rạch nhỏ."
+        },
+        {
+          "q": "Bao lâu thì trông tự nhiên?",
+          "a": "Bầm và đỏ có thể mất vài tuần để mờ, và hồi phục hoàn toàn mất vài tháng."
+        },
+        {
+          "q": "Phương pháp không rạch và có rạch khác nhau thế nào?",
+          "a": "Phương pháp không rạch và rạch nhỏ thường có thời gian hồi phục ngắn hơn. Rạch toàn bộ cho phép loại bỏ da hoặc mỡ thừa. Bác sĩ phẫu thuật chọn dựa trên mí mắt và mục tiêu của bạn."
+        }
+      ]
+    },
+    "rhinoplasty": {
+      "name": "Phẫu thuật mũi (rhinoplasty)",
+      "aka": ["Nâng mũi", "Chỉnh hình mũi", "Phẫu thuật mũi mở", "Phẫu thuật mũi kín"],
+      "what": "Phẫu thuật thay đổi hình dạng hoặc kích thước mũi, gồm sống mũi, đầu mũi và cánh mũi, và cũng có thể cải thiện hô hấp. Có thể làm mũi nhỏ hơn bằng cách lấy bớt sụn và xương, hoặc lớn hơn bằng mảnh ghép như sụn tai. Phẫu thuật mở dùng một đường rạch nhỏ giữa hai lỗ mũi, còn phẫu thuật kín dùng đường rạch bên trong mũi.",
+      "whoFor": "Người trưởng thành đã phát triển hoàn chỉnh khuôn mặt, sức khỏe tốt và có mục tiêu thực tế.",
+      "steps": "Phẫu thuật thường được thực hiện dưới gây mê toàn thân. Rạch theo kiểu mở hoặc kín, sụn và xương được tạo hình lại hoặc ghép, sau đó đặt nẹp và băng.",
+      "recovery": "Nẹp thường được giữ khoảng 7 ngày, và có thể khó thở bằng mũi trong khoảng một tuần. Nhiều người nghỉ làm đến 2 tuần. Bầm và sưng quanh mắt mờ dần trong khoảng 3 tuần, và sưng có thể mất 6 tháng đến một năm để hết hẳn.",
+      "risks": [
+        "Chảy máu, chảy máu cam, nhiễm trùng hoặc phản ứng với thuốc mê",
+        "Khó thở, có thể vĩnh viễn",
+        "Thủng vách ngăn (lỗ trên vách giữa hai lỗ mũi)",
+        "Tê, thay đổi khứu giác, vết thương lành kém hoặc sẹo",
+        "Hình dáng không như ý, có thể cần phẫu thuật sửa"
+      ],
+      "questionsToAsk": [
+        "Bạn dùng sụn tự thân, vật liệu độn hay cả hai, và mỗi loại có rủi ro gì?",
+        "Phẫu thuật mở hay kín, và sẹo sẽ ở đâu?",
+        "Hô hấp của tôi sẽ được kiểm tra và bảo vệ thế nào?",
+        "Tôi nên ở lại Hàn Quốc bao lâu trước khi bay, và ai xử lý biến chứng sau đó?",
+        "Chính sách và chi phí phẫu thuật sửa thế nào?"
+      ],
+      "aftercare": [
+        "Kê cao đầu bằng gối trong vài ngày",
+        "Giữ nẹp khô, không xì mũi, và hắt hơi bằng miệng",
+        "Tránh tắm nước nóng cho đến khi tháo nẹp",
+        "Tránh tập luyện gắng sức và thể thao đối kháng trong 4–6 tuần"
+      ],
+      "faq": [
+        {
+          "q": "Khi nào tôi thấy hình dáng cuối cùng?",
+          "a": "Sưng ban đầu giảm trong vài tuần, nhưng Hiệp hội Bác sĩ Phẫu thuật Thẩm mỹ Hoa Kỳ cho biết có thể mất đến một năm để đường nét mới hoàn thiện."
+        },
+        {
+          "q": "Tôi cần nghỉ làm bao lâu?",
+          "a": "NHS cho biết đến 2 tuần. Nẹp thường được tháo sau khoảng một tuần, và tránh tập luyện gắng sức trong 4–6 tuần."
+        },
+        {
+          "q": "Filler mũi có phải là lựa chọn thay thế không?",
+          "a": "Một số phòng khám cung cấp filler như 'nâng mũi không phẫu thuật', nhưng FDA Hoa Kỳ chưa phê duyệt filler để tiêm vào mũi."
+        }
+      ]
+    },
+    "thread-lift": {
+      "name": "Căng chỉ",
+      "aka": ["Căng chỉ tự tiêu", "Căng chỉ có gai", "Chỉ PDO"],
+      "what": "Chỉ y tế được đặt dưới da để nâng mô chảy xệ và kích thích collagen. Đây là thủ thuật xâm lấn tối thiểu, thực hiện dưới gây tê tại chỗ. Phần lớn chỉ hiện nay tự tiêu theo thời gian, nên kết quả chỉ tạm thời, kéo dài khoảng 1–3 năm theo Cleveland Clinic.",
+      "whoFor": "Người trưởng thành có dấu hiệu chảy xệ sớm, thường từ cuối tuổi 30 đến đầu tuổi 50, muốn thay đổi nhỏ hơn so với căng da mặt và chấp nhận kết quả tạm thời.",
+      "steps": "Gây tê tại chỗ. Chỉ được luồn dưới da qua các điểm vào nhỏ, mô được nâng lên, rồi chỉ được cố định và cắt gọn.",
+      "recovery": "Sưng và bầm có thể kéo dài đến năm ngày. Phần lớn mọi người đi làm lại ngay, nhưng thường tránh tập luyện mạnh khoảng hai tuần.",
+      "risks": [
+        "Sưng (biến chứng phổ biến nhất), bầm và đau",
+        "Da lõm hoặc nhăn dúm (khoảng 10% trong một phân tích gộp năm 2021)",
+        "Tê hoặc châm chích, hoặc chỉ có thể nhìn thấy hay sờ thấy",
+        "Nhiễm trùng hoặc chỉ lòi ra ngoài da, dễ gặp hơn với chỉ không tự tiêu và ở người trên 50 tuổi",
+        "Kết quả giảm dần theo thời gian"
+      ],
+      "questionsToAsk": [
+        "Dùng chỉ chất liệu gì, bao nhiêu sợi, và có tự tiêu không?",
+        "Bạn dự kiến kết quả kéo dài bao lâu với làn da của tôi?",
+        "Bạn làm gì nếu bị lõm da hoặc thấy chỉ?",
+        "Căng chỉ có thực tế với mức độ chảy xệ của tôi không?",
+        "Tôi nên tránh những hoạt động nào, và trong bao lâu?"
+      ],
+      "aftercare": [
+        "Chườm lạnh hoặc chườm đá",
+        "Không rửa mặt trong 24 giờ đầu, và tránh trang điểm vài ngày",
+        "Kê cao đầu khi ngủ",
+        "Tránh tập luyện mạnh khoảng hai tuần",
+        "Gọi cho phòng khám nếu bị sốt, đau đầu không dứt hoặc sưng kéo dài quá 48 giờ"
+      ],
+      "faq": [
+        {
+          "q": "Căng chỉ kéo dài bao lâu?",
+          "a": "Cleveland Clinic cho biết khoảng một đến ba năm. Trong một phân tích gộp năm 2021, mức hài lòng giảm từ 98% ngay sau điều trị xuống 88% sau sáu tháng."
+        },
+        {
+          "q": "Nó có giống căng da mặt không?",
+          "a": "Không. Đây là thủ thuật xâm lấn tối thiểu, thay đổi nhỏ hơn và tạm thời. Phẫu thuật căng da mặt cắt bỏ và sắp xếp lại mô."
+        },
+        {
+          "q": "Biến chứng thường gặp nhất là gì?",
+          "a": "Một phân tích gộp năm 2021 ghi nhận sưng ở 35% trường hợp, lõm da 10%, tê hoặc châm chích 6%, chỉ nhìn thấy hoặc sờ thấy 4%, nhiễm trùng và lòi chỉ mỗi loại 2%."
+        }
+      ]
+    },
+    "fat-grafting": {
+      "name": "Cấy mỡ mặt",
+      "aka": ["Chuyển mỡ", "Tiêm mỡ tự thân", "Lipofilling"],
+      "what": "Mỡ được lấy từ vùng khác của cơ thể bằng hút mỡ (ví dụ bụng hoặc đùi), xử lý rồi tiêm vào mặt để bù thể tích ở các vùng như má, thái dương hoặc trán. Một phần mỡ bị hấp thụ trong những tháng đầu, nên thường cần hơn một lần.",
+      "whoFor": "Người trưởng thành muốn làm đầy mặt lâu dài hơn bằng mô của chính mình, có đủ mỡ để lấy và chấp nhận rằng kết quả khó đoán hơn filler làm sẵn.",
+      "steps": "Dưới gây tê tại chỗ hoặc gây mê toàn thân, mỡ được lấy qua các đường rạch nhỏ bằng ống mảnh. Mỡ được xử lý để tách máu và dịch, rồi tiêm vào mặt từng lượng nhỏ.",
+      "recovery": "Bầm và sưng ở cả hai vị trí có thể kéo dài vài tuần, và nhiều người nghỉ làm khoảng hai tuần. Kết quả cuối cùng có thể mất đến 6 tháng vì một phần mỡ bị hấp thụ.",
+      "risks": [
+        "Bầm nhiều, sưng kéo dài, tê và sẹo nhỏ",
+        "Gồ ghề, cục cứng, không cân xứng, hoại tử mỡ hoặc nang có thể cần chỉnh sửa",
+        "Tỷ lệ mỡ sống khó đoán, vì một phần mỡ bị hấp thụ",
+        "Hiếm nhưng nghiêm trọng: mỡ đi vào mạch máu (thuyên tắc), từng gây mù, đột quỵ và tử vong; vùng giữa hai lông mày (glabella) và thái dương là những vị trí được báo cáo nhiều nhất",
+        "Chảy máu dưới da (tụ máu) hoặc nhiễm trùng"
+      ],
+      "questionsToAsk": [
+        "Mỡ sẽ được lấy từ đâu, và vùng đó sau này trông thế nào?",
+        "Bạn dự kiến bao nhiêu mỡ sẽ sống, và tôi có thể cần làm thêm lần nữa không?",
+        "Bạn dùng kỹ thuật nào để giảm nguy cơ tiêm vào mạch máu?",
+        "Gây tê tại chỗ hay gây mê toàn thân?",
+        "Ai xử lý biến chứng sau khi tôi về nước?"
+      ],
+      "aftercare": [
+        "Nhờ người đưa bạn về nhà sau thủ thuật",
+        "Dự trù bầm và sưng trong vài tuần và sắp xếp thời gian nghỉ",
+        "Liên hệ bác sĩ phẫu thuật nếu sưng, đỏ hoặc đau tăng lên",
+        "Đi cấp cứu nếu thị lực thay đổi đột ngột, đau đầu dữ dội hoặc yếu người"
+      ],
+      "faq": [
+        {
+          "q": "Mỡ cấy giữ được bao lâu?",
+          "a": "Hiệp hội Bác sĩ Phẫu thuật Thẩm mỹ Hoa Kỳ cho biết khoảng 50% mỡ tiêm vào sống được và phần mỡ sống đó tồn tại lâu dài. Ở mặt, kết quả có thể khó đoán hơn và thường cần nhiều lần."
+        },
+        {
+          "q": "Biến chứng phổ biến đến mức nào?",
+          "a": "Tỷ lệ chung thường được nêu là khoảng 2%, nhưng một tổng quan hệ thống năm 2022 kết luận tỷ lệ thật chưa rõ vì báo cáo chưa đầy đủ. Các biến cố nặng như tiêm vào mạch máu hiếm gặp nhưng có thể gây tổn hại vĩnh viễn."
+        },
+        {
+          "q": "Cấy mỡ khác filler thế nào?",
+          "a": "Nó dùng mỡ của chính bạn và có thể bền hơn, nhưng là thủ thuật lớn hơn, kèm hút mỡ, khó chịu ở vùng lấy mỡ và thời gian hồi phục dài hơn."
+        }
+      ]
+    },
+    "canthoplasty": {
+      "name": "Mở góc mắt (canthoplasty)",
+      "aka": ["Mở góc mắt trong (epicanthoplasty)", "Mở góc mắt ngoài (lateral canthoplasty)"],
+      "what": "Phẫu thuật ở các góc mắt. Mở góc mắt trong giải phóng nếp da ở khóe mắt trong (nếp quạt, phổ biến ở mí mắt người Đông Á). Mở góc mắt ngoài thẩm mỹ kéo dài khóe mắt ngoài để mắt dài hơn và giảm độ xếch lên. Bác sĩ phẫu thuật thường tư vấn cùng với phẫu thuật mí đôi.",
+      "whoFor": "Người trưởng thành có nếp quạt rõ ở góc trong, hoặc muốn mắt dài hơn, và có kỳ vọng thực tế.",
+      "steps": "Dưới gây tê tại chỗ hoặc gây mê toàn thân, tạo một đường rạch nhỏ hoặc vạt da ở góc mắt. Mô được giải phóng hoặc đặt lại vị trí và khâu đóng bằng chỉ mảnh.",
+      "recovery": "Khó chịu, sưng và bầm trong khoảng hai tuần đầu. Nhiều người nghỉ khoảng một tuần trước khi đi làm hoặc đi học lại, và hồi phục hoàn toàn mất 2–4 tuần. Đường rạch thấy rõ trong 2–3 tháng rồi mờ dần.",
+      "risks": [
+        "Sẹo dễ thấy ở góc mắt (nhược điểm đã biết của các kỹ thuật mở góc trong cũ)",
+        "Chỉnh chưa đủ, tái phát hoặc góc mắt dính lại",
+        "Khô mắt hoặc khó nhắm mắt",
+        "Chảy máu, nhiễm trùng hoặc đau",
+        "Hình dáng góc ngoài không như ý: một tổng quan năm 2016 ghi nhận biến chứng sau mở góc mắt ngoài thẩm mỹ không hiếm"
+      ],
+      "questionsToAsk": [
+        "Góc trong, góc ngoài hay cả hai, và mức thay đổi thực tế với tôi là bao nhiêu?",
+        "Sẹo sẽ ở đâu, và có thể thấy rõ đến mức nào?",
+        "Khả năng góc mắt dính lại là bao nhiêu, và chính sách sửa lại thế nào?",
+        "Có làm kết hợp với phẫu thuật mí đôi không?",
+        "Tôi sẽ được gây tê tại chỗ hay gây mê toàn thân?"
+      ],
+      "aftercare": [
+        "Không dụi mắt",
+        "Không để nước, xà phòng và sản phẩm chăm sóc da dính vào vết rạch cho đến khi lành",
+        "Tránh hồ bơi và phòng xông hơi trong ba tuần",
+        "Kê cao đầu khi ngủ, và chườm đá từng đợt 15 phút để giảm sưng",
+        "Tránh tập luyện gắng sức trong vài tuần"
+      ],
+      "faq": [
+        {
+          "q": "Mở góc mắt trong và mở góc mắt ngoài khác nhau thế nào?",
+          "a": "Mở góc mắt trong tác động lên góc trong gần mũi. Mở góc mắt ngoài tác động lên góc ngoài gần tai."
+        },
+        {
+          "q": "Có để lại sẹo không?",
+          "a": "Có. Đường rạch thấy rõ trong hai đến ba tháng rồi mờ dần. Các kỹ thuật mở góc trong mới hơn dùng đường rạch ngắn hơn để giảm sẹo dễ thấy."
+        },
+        {
+          "q": "Hồi phục mất bao lâu?",
+          "a": "Cleveland Clinic cho biết hồi phục hoàn toàn mất hai đến bốn tuần, với khoảng một tuần nghỉ trước khi đi làm hoặc đi học lại."
+        }
+      ]
+    },
+    "ptosis-correction": {
+      "name": "Chỉnh sụp mí (phẫu thuật mở to mắt)",
+      "aka": ["Phẫu thuật sụp mí", "Rút ngắn cơ nâng mi", "Chỉnh độ mở mắt"],
+      "what": "Phẫu thuật làm căng hoặc rút ngắn cơ nâng mí trên (cơ nâng mi) để mí nằm cao hơn và lộ ra nhiều mắt hơn. Về y khoa, nó điều trị sụp mí (ptosis) che khuất tầm nhìn. Ở Đông Á, sụp mí nhẹ cũng được chỉnh vì mục đích thẩm mỹ, đôi khi trong lúc phẫu thuật mí đôi.",
+      "whoFor": "Người trưởng thành bị sụp mí trên do lão hóa, chấn thương hoặc bẩm sinh, hoặc muốn đôi mắt trông mở to hơn. Cần kiểm tra nguyên nhân trước, vì đôi khi sụp mí do bệnh cơ, thần kinh hoặc bệnh khác.",
+      "steps": "Dưới gây tê tại chỗ kèm an thần, cơ nâng mi được làm căng qua đường rạch ở nếp mí hoặc từ mặt trong mí mắt, không rạch da. Sau đó đường rạch được khâu đóng.",
+      "recovery": "Thường hẹn tái khám vài ngày đến một tuần sau phẫu thuật. Lúc đầu chiều cao và hình dáng mí có thể trông không đều trong khi sưng giảm dần. Sau phẫu thuật mí mắt, phần lớn mọi người trở lại sinh hoạt thường ngày trong 1–2 tuần.",
+      "risks": [
+        "Chỉnh chưa đủ hoặc quá mức (mí quá thấp hoặc quá cao)",
+        "Hai mắt không cân xứng",
+        "Khó nhắm mắt hoàn toàn (hở mi) và khô mắt",
+        "Tổn thương giác mạc",
+        "Chảy máu hoặc nhiễm trùng"
+      ],
+      "questionsToAsk": [
+        "Nguyên nhân sụp mí của tôi là gì, và các bệnh khác đã được loại trừ chưa?",
+        "Bạn sẽ nâng mỗi mí cao bao nhiêu, và xử lý không cân xứng thế nào?",
+        "Có làm kết hợp với phẫu thuật mí đôi không?",
+        "Kế hoạch là gì nếu một bên quá cao hoặc quá thấp?",
+        "Bề mặt mắt của tôi sẽ được bảo vệ thế nào nếu lúc đầu tôi không nhắm kín mắt được?"
+      ],
+      "aftercare": [
+        "Chườm lạnh và dùng thuốc nhỏ mắt hoặc thuốc mỡ được kê",
+        "Tránh dụi mắt và đeo kính áp tròng cho đến khi bác sĩ phẫu thuật cho phép",
+        "Đến tái khám, thường trong vòng một tuần",
+        "Đi khám ngay nếu thị lực thay đổi, đau dữ dội hoặc chảy máu"
+      ],
+      "faq": [
+        {
+          "q": "Chỉnh sụp mí có giống phẫu thuật mí đôi không?",
+          "a": "Không. Chỉnh sụp mí thay đổi độ mở của mí bằng cách tác động lên cơ nâng, còn phẫu thuật mí đôi tạo nếp gấp. Đôi khi hai thủ thuật được làm cùng lúc."
+        },
+        {
+          "q": "Có lựa chọn không phẫu thuật không?",
+          "a": "Với một số người trưởng thành bị sụp mí mắc phải, thuốc nhỏ mắt kê đơn (oxymetazoline) có thể giúp mí mở rộng hơn. Thuốc phải dùng hằng ngày và không có tác dụng với mọi loại sụp mí."
+        },
+        {
+          "q": "Mí không đều ngay sau phẫu thuật có bình thường không?",
+          "a": "Cleveland Clinic lưu ý chiều cao và hình dáng mí có thể trông không đều ngay sau phẫu thuật, và tình trạng chỉnh chưa đủ hoặc quá mức có thể xảy ra, thường cải thiện theo thời gian."
+        }
+      ]
+    }
+  }
 }

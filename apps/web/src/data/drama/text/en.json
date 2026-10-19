@@ -1,4 +1,257 @@
 {
-  "genres": {},
-  "dramas": {}
+  "genres": {
+    "romance": "Romance",
+    "comedy": "Comedy",
+    "melodrama": "Melodrama",
+    "family": "Family",
+    "fantasy": "Fantasy",
+    "youth": "Youth",
+    "medical": "Medical",
+    "thriller": "Thriller",
+    "mystery": "Mystery",
+    "historical": "Historical",
+    "legal": "Legal"
+  },
+  "dramas": {
+    "queen-of-tears": {
+      "title": "Queen of Tears",
+      "tagline": "A chaebol marriage on the edge, and a love worth saving",
+      "synopsis": "Hong Hae-in is the third-generation heiress of the Queens Group. Her husband, Baek Hyun-woo, is the group's legal director and a farmers' son from the village of Yongdu-ri. Three years in, their marriage is close to divorce, until sudden news forces the two of them to face each other again.",
+      "whyWatch": [
+        "Kim Soo-hyun and Kim Ji-won as a married couple who make you laugh and cry in the same scene",
+        "Big-family comedy between a rich clan and a warm country village",
+        "Seoul spots from the show you can visit, like The Hyundai Seoul and Cheonggye Plaza"
+      ]
+    },
+    "lovely-runner": {
+      "title": "Lovely Runner",
+      "tagline": "A fan travels back in time to save her favorite star",
+      "synopsis": "Im Sol has long found the will to keep going in the songs of Ryu Sun-jae, lead singer of the band Eclipse. When news of his sudden death breaks her heart, she is sent back to 2008, to the summer they were both 19, and decides to change his fate.",
+      "whyWatch": [
+        "Byeon Woo-seok's star-making turn as swimmer-turned-idol Ryu Sun-jae",
+        "A time-slip romance that jumps between the present and the late 2000s",
+        "A soundtrack built around the in-story band Eclipse"
+      ]
+    },
+    "when-life-gives-you-tangerines": {
+      "title": "When Life Gives You Tangerines",
+      "tagline": "A Jeju love story told across the four seasons of a life",
+      "synopsis": "On 1950s Jeju Island, outspoken Oh Ae-sun dreams of becoming a poet, while quiet, steady Yang Gwan-sik has eyes only for her. Told like the four seasons, the story follows the island girl and boy from childhood into the joys and hardships of growing up.",
+      "whyWatch": [
+        "IU and Park Bo-gum lead, with Moon So-ri and Park Hae-joon as their older selves",
+        "A family saga about mothers, daughters and the haenyeo divers of Jeju",
+        "Shot across Jeju, from Seongsan Ilchulbong to Hallim Port"
+      ]
+    },
+    "king-the-land": {
+      "title": "King the Land",
+      "tagline": "An heir who hates fake smiles meets a hotel's brightest one",
+      "synopsis": "Gu Won is the heir of the King Group, a luxury hotel giant, and he cannot stand fake smiles. Cheon Sa-rang is a hotelier at King Hotel who always wears one. Their first meeting goes badly, and it is only the start of a workplace romance in the middle of a family succession fight.",
+      "whyWatch": [
+        "Lee Jun-ho of 2PM and Lim Yoona of Girls' Generation as the lead couple",
+        "Glossy hotel, airline and travel settings for an easy feel-good watch",
+        "The hotel lobby scenes were shot at Parnas Hotel Jeju"
+      ]
+    },
+    "my-demon": {
+      "title": "My Demon",
+      "tagline": "A ruthless heiress and a powerless demon make a deal",
+      "synopsis": "Do Do-hee is a sharp, guarded heiress with no shortage of enemies. Jeong Gu-won is a demon who trades favors for human souls. When he suddenly loses his powers and a strange mark appears on her wrist, the two agree to an unlikely contract to keep each other safe.",
+      "whyWatch": [
+        "Song Kang as a stylish, sharp-tongued demon",
+        "A contract-marriage romance with a fantasy twist",
+        "Kim You-jung's fierce and funny heiress"
+      ]
+    },
+    "marry-my-husband": {
+      "title": "Marry My Husband",
+      "tagline": "Betrayed and sent back ten years, she rewrites her fate",
+      "synopsis": "Kang Ji-won, a kind office worker battling cancer, discovers that her husband and her best friend have betrayed her. After a tragic night, she wakes up ten years in the past and sets out to change her future, with her team leader Yoo Ji-hyuk at her side.",
+      "whyWatch": [
+        "A revenge story with a time-slip setup and very satisfying payoffs",
+        "Park Min-young and Na In-woo's slow-burn office romance",
+        "Based on a popular web novel and webtoon, with scenes at Seoul's Cheonggye Plaza"
+      ]
+    },
+    "doctor-slump": {
+      "title": "Doctor Slump",
+      "tagline": "Two burnt-out doctors and old rivals find their way back",
+      "synopsis": "In high school, Yeo Jeong-woo and Nam Ha-neul fought for the top spot in every exam. Years later, he is a star plastic surgeon and she is an overworked anesthesiology resident, and both hit rock bottom at the same time. Fate makes them neighbors again.",
+      "whyWatch": [
+        "Park Hyung-sik and Park Shin-hye as rivals turned allies",
+        "A gentle, honest look at burnout and starting over",
+        "Rom-com banter with a healing heart"
+      ]
+    },
+    "love-next-door": {
+      "title": "Love Next Door",
+      "tagline": "Your mom's friend's son knows all your secrets",
+      "synopsis": "Bae Seok-ryu had a picture-perfect life abroad: a dream job and an engagement. Then she suddenly comes home to Korea. Back in her old neighborhood she runs into Choi Seung-hyo, a top architect, her mom's best friend's son and the keeper of her childhood memories.",
+      "whyWatch": [
+        "Jung Hae-in and Jung So-min's childhood-friends chemistry",
+        "A cozy neighborhood full of nosy, lovable parents",
+        "A warm story about quitting, resting and starting again"
+      ]
+    },
+    "when-the-phone-rings": {
+      "title": "When the Phone Rings",
+      "tagline": "A cold arranged marriage and a call that changes it",
+      "synopsis": "Presidential spokesperson Baek Sa-eon and sign language interpreter Hong Hee-joo have kept up a picture-perfect marriage for three years while barely speaking to each other. Then a threatening call from a kidnapper turns their quiet arrangement upside down.",
+      "whyWatch": [
+        "A romance and thriller in one, with a mystery to solve",
+        "Yoo Yeon-seok and Chae Soo-bin's tense, slow-burning chemistry",
+        "Sign language and silence play a key part in the story"
+      ]
+    },
+    "bon-appetit-your-majesty": {
+      "title": "Bon Appétit, Your Majesty",
+      "tagline": "A modern chef ends up cooking for a Joseon king",
+      "synopsis": "Chef Yeon Ji-yeong has just won a top prize in Paris. On her flight home to Seoul, a solar eclipse sends her back to the Joseon era, straight into the court of King Lee Heon. To survive the palace, she has to win over a king with a demanding palate, one dish at a time.",
+      "whyWatch": [
+        "Lim Yoona as a confident chef in a Joseon palace kitchen",
+        "Mouthwatering cooking scenes that mix modern technique with old ingredients",
+        "Lee Chae-min as a young king who slowly lets his guard down"
+      ]
+    },
+    "our-unwritten-seoul": {
+      "title": "Our Unwritten Seoul",
+      "tagline": "Twin sisters secretly swap lives between Seoul and home",
+      "synopsis": "Identical twins Yoo Mi-ji and Yoo Mi-rae could not be more different. Mi-ji, a former sprinter, stays in their small hometown caring for their grandmother, while Mi-rae works at a public corporation in Seoul. When Mi-rae starts to struggle, Mi-ji suggests they trade places.",
+      "whyWatch": [
+        "Park Bo-young plays both twins",
+        "A tender story about work, family and finding your own pace",
+        "Seoul spots from the show, like Seongsu and Ikseon-dong's hanok street"
+      ]
+    },
+    "resident-playbook": {
+      "title": "Resident Playbook",
+      "tagline": "First-year OB-GYN residents learn hospital life",
+      "synopsis": "At the Jongno branch of Yulje Medical Center, a group of first-year residents choose obstetrics and gynecology, a department few want in an era of low birth rates. Oh Yi-young and her new colleagues face long shifts, tough seniors and the first patients they will never forget.",
+      "whyWatch": [
+        "Set in the same world as Hospital Playlist",
+        "Go Youn-jung leads a fresh group of young doctors",
+        "Friendship, humor and a realistic look at medical training"
+      ]
+    },
+    "can-this-love-be-translated": {
+      "title": "Can This Love Be Translated?",
+      "tagline": "An interpreter, a global star and love lost in translation",
+      "synopsis": "Joo Ho-jin is a multilingual interpreter who lives by logic. Cha Mu-hee is an actress who became a global star after a hit zombie film. When he takes a job interpreting for a dating show she stars in, filmed overseas, two people who speak very different languages of love end up side by side.",
+      "whyWatch": [
+        "From the Hong sisters, the writers of Hotel del Luna",
+        "Kim Seon-ho and Go Youn-jung as an odd-couple pair",
+        "Filmed in Korea, Japan, Canada and Italy"
+      ]
+    },
+    "crash-landing-on-you": {
+      "title": "Crash Landing on You",
+      "tagline": "A paragliding accident lands an heiress in North Korea",
+      "synopsis": "Yoon Se-ri, a South Korean heiress and fashion CEO, is swept off course in a paragliding accident and lands on the North Korean side of the border. There she meets Ri Jeong-hyeok, a stern army captain who decides to hide her while she looks for a way home.",
+      "whyWatch": [
+        "Hyun Bin and Son Ye-jin's much-loved chemistry",
+        "Funny, heartfelt friendships with the soldiers of Company Five",
+        "A Jeju filming spot to visit: the Ara-dong historic trail"
+      ]
+    },
+    "goblin": {
+      "title": "Guardian: The Lonely and Great God",
+      "tagline": "An immortal goblin, his bride and a grim reaper roommate",
+      "synopsis": "Also known as Goblin. For more than 900 years, Kim Shin, a general from the Goryeo era, has lived as an immortal goblin, waiting for the bride who can end his curse. Then he meets Ji Eun-tak, a cheerful high school student who can see ghosts and says she is that bride.",
+      "whyWatch": [
+        "Gong Yoo and Lee Dong-wook's housemate comedy",
+        "A fantasy romance with a beloved soundtrack",
+        "Seoul spots to walk, like Unhyeongung and Gamgodang-gil"
+      ]
+    },
+    "itaewon-class": {
+      "title": "Itaewon Class",
+      "tagline": "A small pub in Itaewon and a long game of payback",
+      "synopsis": "After a life-changing clash with the heir of the food company Jangga Group, Park Sae-ro-yi loses almost everything. Years later he opens a small pub called DanBam in Seoul's Itaewon, with a long plan to take Jangga down, joined by Jo Yi-seo, a sharp young influencer.",
+      "whyWatch": [
+        "Park Seo-joon as a stubborn underdog founder",
+        "Based on the webtoon of the same name",
+        "Itaewon filming spots, like the Noksapyeong overpass"
+      ]
+    },
+    "hotel-del-luna": {
+      "title": "Hotel del Luna",
+      "tagline": "A hotel in the heart of Seoul where only ghosts check in",
+      "synopsis": "Hidden in downtown Seoul, Hotel del Luna welcomes only ghosts. Its owner, the glamorous and sharp-tongued Jang Man-wol, has been bound to it for over a thousand years. When elite hotelier Gu Chan-sung is pulled in as the new manager, the worlds of the living and the dead begin to mix.",
+      "whyWatch": [
+        "IU's glamorous, unforgettable Jang Man-wol",
+        "A new ghost story in almost every episode",
+        "From the Hong sisters, with Seoul spots like Hyemindang"
+      ]
+    },
+    "extraordinary-attorney-woo": {
+      "title": "Extraordinary Attorney Woo",
+      "tagline": "A brilliant rookie lawyer who sees the world differently",
+      "synopsis": "Woo Young-woo graduated top of her law school class, remembers everything she reads and loves whales more than anything. As a rookie attorney with autism at the large law firm Hanbada, she takes on case after case and wins over her colleagues with her own way of thinking.",
+      "whyWatch": [
+        "Park Eun-bin's award-winning lead performance",
+        "A new legal case almost every episode, easy to dip into",
+        "Filming spots in Jeju and Seoul's Ikseon-dong"
+      ]
+    },
+    "business-proposal": {
+      "title": "Business Proposal",
+      "tagline": "A fake blind date with her own CEO goes very wrong",
+      "synopsis": "To help a rich friend escape an arranged blind date, office worker Shin Ha-ri goes in her place, planning to get rejected fast. The plan backfires when the man across the table turns out to be Kang Tae-moo, the CEO of her own company, who decides to marry her.",
+      "whyWatch": [
+        "Based on a hit webtoon, and just 12 episodes",
+        "Ahn Hyo-seop and Kim Se-jeong's laugh-out-loud chemistry",
+        "A fun second couple: Kim Min-kyu and Seol In-ah"
+      ]
+    },
+    "twenty-five-twenty-one": {
+      "title": "Twenty-Five Twenty-One",
+      "tagline": "A fencer, a dreamer and the youth they shared in 1998",
+      "synopsis": "In 1998, as a financial crisis shakes Korea, high school fencer Na Hee-do refuses to give up after her school team is cut. Baek Yi-jin, whose family lost everything, is trying to start over. Their paths cross, and a friendship begins that will shape their youth.",
+      "whyWatch": [
+        "Kim Tae-ri's bright, unstoppable Na Hee-do",
+        "Nostalgic late-1990s Korea, told through an old diary",
+        "A story about friendship and growing up as much as romance"
+      ]
+    },
+    "true-beauty": {
+      "title": "True Beauty",
+      "tagline": "Makeup, a new school and the boy who knows her secret",
+      "synopsis": "After years of being teased about her looks, Lim Ju-kyung learns makeup from online tutorials and transfers to a new school as its new 'goddess'. Keeping her bare face a secret is hard enough, until Lee Su-ho, the school's cool star, becomes the one person who knows it.",
+      "whyWatch": [
+        "Based on the hit webtoon by Yaongyi",
+        "Cha Eun-woo of ASTRO and Hwang In-youp in a love triangle",
+        "A light high school rom-com about self-confidence"
+      ]
+    },
+    "our-beloved-summer": {
+      "title": "Our Beloved Summer",
+      "tagline": "Exes forced back in front of the camera years later",
+      "synopsis": "In high school, top student Kook Yeon-soo and last-place Choi Ung were filmed for a documentary that went viral. Years after their breakup, the old footage resurfaces and the cameras return, forcing the two exes to face each other and the summer they never finished.",
+      "whyWatch": [
+        "Choi Woo-shik and Kim Da-mi, reunited after the film The Witch",
+        "A soft, documentary-style love story",
+        "Seoul's Gamgodang-gil appears in the show"
+      ]
+    },
+    "reply-1988": {
+      "title": "Reply 1988",
+      "tagline": "Five families, one alley and the warmest year in Seoul",
+      "synopsis": "In 1988, five families share a small alley in Seoul's Ssangmun-dong. Sung Deok-sun, a cheerful middle child, spends her days with childhood friends Jung-hwan, Sun-woo, Dong-ryong and Go prodigy Choi Taek, while their parents trade side dishes, worries and laughs.",
+      "whyWatch": [
+        "An ensemble family comedy that feels like home",
+        "Nostalgic late-1980s Seoul, from music to fashion",
+        "Park Bo-gum, Lee Hye-ri and Ryu Jun-yeol in breakout roles"
+      ]
+    },
+    "start-up": {
+      "title": "Start-Up",
+      "tagline": "Young founders chase big dreams in Korea's startup scene",
+      "synopsis": "Seo Dal-mi dreams of becoming Korea's Steve Jobs. Nam Do-san is a math whiz whose company, Samsan Tech, is going nowhere. A teenage pen-pal secret and a startup hub called Sandbox bring them together, while sharp investor Han Ji-pyeong watches closely.",
+      "whyWatch": [
+        "Bae Suzy, Nam Joo-hyuk and Kim Seon-ho in a love triangle",
+        "An upbeat look at founders, investors and failing forward",
+        "Seoul spots like Oil Tank Culture Park and Nodeul Island"
+      ]
+    }
+  }
 }

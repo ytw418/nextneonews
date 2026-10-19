@@ -1,4 +1,257 @@
 {
-  "genres": {},
-  "dramas": {}
+  "genres": {
+    "romance": "Romantis",
+    "comedy": "Komedi",
+    "melodrama": "Melodrama",
+    "family": "Keluarga",
+    "fantasy": "Fantasi",
+    "youth": "Masa Muda",
+    "medical": "Medis",
+    "thriller": "Thriller",
+    "mystery": "Misteri",
+    "historical": "Sejarah",
+    "legal": "Hukum"
+  },
+  "dramas": {
+    "queen-of-tears": {
+      "title": "Queen of Tears",
+      "tagline": "Pernikahan chaebol di ujung tanduk, cinta yang layak dijaga",
+      "synopsis": "Hong Hae-in adalah pewaris generasi ketiga Queens Group. Suaminya, Baek Hyun-woo, adalah direktur hukum grup itu sekaligus anak petani dari desa Yongdu-ri. Tiga tahun menikah, pernikahan mereka nyaris berakhir dengan perceraian, sampai sebuah kabar mendadak memaksa keduanya kembali saling berhadapan.",
+      "whyWatch": [
+        "Kim Soo-hyun dan Kim Ji-won sebagai suami istri yang bikin tertawa dan menangis dalam satu adegan",
+        "Komedi keluarga besar antara klan kaya dan desa yang hangat",
+        "Lokasi di Seoul dari drama ini yang bisa kamu kunjungi, seperti The Hyundai Seoul dan Cheonggye Plaza"
+      ]
+    },
+    "lovely-runner": {
+      "title": "Lovely Runner",
+      "tagline": "Penggemar kembali ke masa lalu demi menyelamatkan idolanya",
+      "synopsis": "Sejak lama, Im Sol menemukan semangat hidup lewat lagu-lagu Ryu Sun-jae, vokalis band Eclipse. Saat kabar kematiannya yang mendadak menghancurkan hatinya, ia terlempar kembali ke tahun 2008, ke musim panas saat mereka sama-sama berusia 19 tahun, dan bertekad mengubah takdir Sun-jae.",
+      "whyWatch": [
+        "Peran yang melambungkan Byeon Woo-seok: Ryu Sun-jae, perenang yang menjadi idola",
+        "Romansa time-slip yang melompat antara masa kini dan akhir 2000-an",
+        "Soundtrack yang dibangun di sekitar band Eclipse dalam cerita"
+      ]
+    },
+    "when-life-gives-you-tangerines": {
+      "title": "When Life Gives You Tangerines",
+      "tagline": "Kisah cinta di Jeju lewat empat musim kehidupan",
+      "synopsis": "Di Pulau Jeju tahun 1950-an, Oh Ae-sun yang blak-blakan bermimpi menjadi penyair, sementara Yang Gwan-sik yang pendiam dan teguh hanya memandang dirinya. Diceritakan seperti empat musim, kisah ini mengikuti gadis dan pemuda pulau itu dari masa kecil hingga suka duka saat tumbuh dewasa.",
+      "whyWatch": [
+        "IU dan Park Bo-gum jadi pemeran utama, dengan Moon So-ri dan Park Hae-joon sebagai versi paruh baya mereka",
+        "Saga keluarga tentang ibu, anak perempuan, dan para penyelam haenyeo di Jeju",
+        "Syuting di berbagai sudut Jeju, dari Seongsan Ilchulbong hingga Pelabuhan Hallim"
+      ]
+    },
+    "king-the-land": {
+      "title": "King the Land",
+      "tagline": "Pewaris yang benci senyum palsu bertemu senyum paling cerah",
+      "synopsis": "Gu Won adalah pewaris King Group, raksasa hotel mewah, dan ia tidak tahan dengan senyum palsu. Cheon Sa-rang adalah hotelier di King Hotel yang selalu tersenyum. Pertemuan pertama mereka berjalan buruk, dan itu baru awal dari romansa kantor di tengah perebutan warisan keluarga.",
+      "whyWatch": [
+        "Lee Jun-ho dari 2PM dan Lim Yoona dari Girls' Generation sebagai pasangan utama",
+        "Latar hotel, maskapai, dan perjalanan yang glamor, santai dan bikin senang",
+        "Adegan lobi hotel diambil di Parnas Hotel Jeju"
+      ]
+    },
+    "my-demon": {
+      "title": "My Demon",
+      "tagline": "Pewaris kejam dan iblis tanpa kekuatan membuat perjanjian",
+      "synopsis": "Do Do-hee adalah pewaris yang tajam, penuh waspada, dan punya banyak musuh. Jeong Gu-won adalah iblis yang menukar bantuan dengan jiwa manusia. Saat ia tiba-tiba kehilangan kekuatannya dan tanda aneh muncul di pergelangan tangan Do-hee, keduanya sepakat membuat kontrak tak terduga untuk saling melindungi.",
+      "whyWatch": [
+        "Song Kang sebagai iblis yang stylish dan bermulut tajam",
+        "Romansa kawin kontrak dengan sentuhan fantasi",
+        "Pewaris galak sekaligus lucu yang diperankan Kim You-jung"
+      ]
+    },
+    "marry-my-husband": {
+      "title": "Marry My Husband",
+      "tagline": "Dikhianati lalu kembali ke 10 tahun lalu, ia ubah takdirnya",
+      "synopsis": "Kang Ji-won, pegawai kantoran yang baik hati dan sedang berjuang melawan kanker, mendapati suami dan sahabatnya telah mengkhianatinya. Setelah malam yang tragis, ia terbangun sepuluh tahun di masa lalu dan bertekad mengubah masa depannya, dengan ketua timnya, Yoo Ji-hyuk, di sisinya.",
+      "whyWatch": [
+        "Kisah balas dendam dengan premis time-slip dan pembalasan yang sangat memuaskan",
+        "Romansa kantor slow-burn Park Min-young dan Na In-woo",
+        "Diadaptasi dari web novel dan webtoon populer, dengan adegan di Cheonggye Plaza, Seoul"
+      ]
+    },
+    "doctor-slump": {
+      "title": "Doctor Slump",
+      "tagline": "Dua dokter burnout dan rival lama menemukan jalan kembali",
+      "synopsis": "Di SMA, Yeo Jeong-woo dan Nam Ha-neul selalu bersaing jadi juara di setiap ujian. Bertahun-tahun kemudian, Jeong-woo menjadi dokter bedah plastik ternama dan Ha-neul residen anestesiologi yang kelelahan bekerja, lalu keduanya jatuh ke titik terendah bersamaan. Takdir membuat mereka bertetangga lagi.",
+      "whyWatch": [
+        "Park Hyung-sik dan Park Shin-hye sebagai rival yang jadi sekutu",
+        "Pandangan lembut dan jujur tentang burnout dan memulai lagi",
+        "Candaan rom-com yang seru dengan nuansa healing"
+      ]
+    },
+    "love-next-door": {
+      "title": "Love Next Door",
+      "tagline": "Anak teman ibumu tahu semua rahasiamu",
+      "synopsis": "Bae Seok-ryu punya hidup yang tampak sempurna di luar negeri: pekerjaan impian dan pertunangan. Lalu ia tiba-tiba pulang ke Korea. Di lingkungan lamanya, ia bertemu Choi Seung-hyo, arsitek papan atas, putra sahabat ibunya, sekaligus penyimpan kenangan masa kecilnya.",
+      "whyWatch": [
+        "Chemistry teman masa kecil Jung Hae-in dan Jung So-min",
+        "Lingkungan yang nyaman, penuh orang tua yang kepo tapi menggemaskan",
+        "Kisah hangat tentang berhenti, beristirahat, dan memulai lagi"
+      ]
+    },
+    "when-the-phone-rings": {
+      "title": "When the Phone Rings",
+      "tagline": "Nikah perjodohan yang dingin, lalu satu telepon mengubahnya",
+      "synopsis": "Juru bicara kepresidenan Baek Sa-eon dan juru bahasa isyarat Hong Hee-joo telah menjaga pernikahan yang tampak sempurna selama tiga tahun, meski nyaris tak pernah saling bicara. Lalu telepon ancaman dari seorang penculik menjungkirbalikkan kesepakatan sunyi mereka.",
+      "whyWatch": [
+        "Romansa dan thriller sekaligus, dengan misteri yang harus dipecahkan",
+        "Chemistry Yoo Yeon-seok dan Chae Soo-bin yang tegang dan perlahan membara",
+        "Bahasa isyarat dan keheningan memegang peran penting dalam cerita"
+      ]
+    },
+    "bon-appetit-your-majesty": {
+      "title": "Bon Appétit, Your Majesty",
+      "tagline": "Koki modern tiba-tiba memasak untuk raja Joseon",
+      "synopsis": "Koki Yeon Ji-yeong baru saja memenangkan penghargaan bergengsi di Paris. Dalam penerbangan pulang ke Seoul, gerhana matahari membawanya kembali ke era Joseon, langsung ke istana Raja Lee Heon. Untuk bertahan hidup di istana, ia harus memikat raja yang seleranya sangat pemilih, satu hidangan demi satu hidangan.",
+      "whyWatch": [
+        "Lim Yoona sebagai koki percaya diri di dapur istana Joseon",
+        "Adegan memasak yang menggugah selera, memadukan teknik modern dengan bahan-bahan lama",
+        "Lee Chae-min sebagai raja muda yang perlahan membuka hatinya"
+      ]
+    },
+    "our-unwritten-seoul": {
+      "title": "Our Unwritten Seoul",
+      "tagline": "Si kembar diam-diam bertukar hidup di Seoul dan kampung",
+      "synopsis": "Kembar identik Yoo Mi-ji dan Yoo Mi-rae sangat berbeda. Mi-ji, mantan pelari cepat, tinggal di kampung halaman kecil mereka untuk merawat nenek, sementara Mi-rae bekerja di perusahaan milik negara di Seoul. Saat Mi-rae mulai kesulitan, Mi-ji mengusulkan agar mereka bertukar tempat.",
+      "whyWatch": [
+        "Park Bo-young memerankan kedua saudari kembar",
+        "Kisah lembut tentang pekerjaan, keluarga, dan menemukan ritme sendiri",
+        "Lokasi di Seoul dari drama ini, seperti Seongsu dan jalan hanok Ikseon-dong"
+      ]
+    },
+    "resident-playbook": {
+      "title": "Resident Playbook",
+      "tagline": "Residen obgin tahun pertama belajar hidup di rumah sakit",
+      "synopsis": "Di cabang Jongno Yulje Medical Center, sekelompok residen tahun pertama memilih obstetri dan ginekologi, departemen yang jarang diminati di era angka kelahiran rendah. Oh Yi-young dan rekan-rekan barunya menghadapi jaga panjang, senior yang galak, dan pasien-pasien pertama yang tak akan pernah mereka lupakan.",
+      "whyWatch": [
+        "Berlatar di dunia yang sama dengan Hospital Playlist",
+        "Go Youn-jung memimpin sekelompok dokter muda yang baru",
+        "Persahabatan, humor, dan gambaran realistis tentang pendidikan kedokteran"
+      ]
+    },
+    "can-this-love-be-translated": {
+      "title": "Can This Love Be Translated?",
+      "tagline": "Penerjemah, bintang dunia, dan cinta yang sulit diartikan",
+      "synopsis": "Joo Ho-jin adalah penerjemah multibahasa yang hidup dengan logika. Cha Mu-hee adalah aktris yang jadi bintang global berkat film zombi yang sukses besar. Saat Ho-jin menjadi penerjemah untuk acara kencan Mu-hee yang syuting di luar negeri, dua orang dengan bahasa cinta yang sangat berbeda pun berdampingan.",
+      "whyWatch": [
+        "Dari Hong Sisters, penulis Hotel del Luna",
+        "Kim Seon-ho dan Go Youn-jung sebagai pasangan yang bertolak belakang",
+        "Syuting di Korea, Jepang, Kanada, dan Italia"
+      ]
+    },
+    "crash-landing-on-you": {
+      "title": "Crash Landing on You",
+      "tagline": "Kecelakaan paralayang mendaratkan pewaris di Korea Utara",
+      "synopsis": "Yoon Se-ri, pewaris kaya Korea Selatan sekaligus CEO fesyen, terseret angin dalam kecelakaan paralayang dan mendarat di sisi perbatasan Korea Utara. Di sana ia bertemu Ri Jeong-hyeok, kapten tentara yang tegas, yang memutuskan menyembunyikannya selama ia mencari jalan pulang.",
+      "whyWatch": [
+        "Chemistry Hyun Bin dan Son Ye-jin yang sangat dicintai",
+        "Persahabatan lucu dan mengharukan dengan para prajurit Kompi Lima",
+        "Lokasi syuting di Jeju yang bisa dikunjungi: jalur bersejarah Ara-dong"
+      ]
+    },
+    "goblin": {
+      "title": "Guardian: The Lonely and Great God",
+      "tagline": "Goblin abadi, sang pengantin, dan malaikat maut serumah",
+      "synopsis": "Juga dikenal sebagai Goblin. Selama lebih dari 900 tahun, Kim Shin, seorang jenderal dari era Goryeo, hidup sebagai goblin abadi, menanti pengantin yang bisa mengakhiri kutukannya. Lalu ia bertemu Ji Eun-tak, siswi SMA ceria yang bisa melihat hantu dan mengaku sebagai pengantin itu.",
+      "whyWatch": [
+        "Komedi teman serumah Gong Yoo dan Lee Dong-wook",
+        "Romansa fantasi dengan soundtrack yang sangat disukai",
+        "Lokasi di Seoul untuk jalan-jalan, seperti Unhyeongung dan Gamgodang-gil"
+      ]
+    },
+    "itaewon-class": {
+      "title": "Itaewon Class",
+      "tagline": "Pub kecil di Itaewon dan rencana balas dendam yang panjang",
+      "synopsis": "Setelah bentrok dengan pewaris perusahaan makanan Jangga Group yang mengubah hidupnya, Park Sae-ro-yi kehilangan hampir segalanya. Bertahun-tahun kemudian, ia membuka pub kecil bernama DanBam di Itaewon, Seoul, dengan rencana panjang untuk menjatuhkan Jangga, ditemani Jo Yi-seo, influencer muda yang cerdas.",
+      "whyWatch": [
+        "Park Seo-joon sebagai pendiri underdog yang keras kepala",
+        "Diadaptasi dari webtoon berjudul sama",
+        "Lokasi syuting di Itaewon, seperti jembatan penyeberangan Noksapyeong"
+      ]
+    },
+    "hotel-del-luna": {
+      "title": "Hotel del Luna",
+      "tagline": "Hotel di jantung Seoul yang hanya menerima tamu hantu",
+      "synopsis": "Tersembunyi di pusat kota Seoul, Hotel del Luna hanya menerima hantu. Pemiliknya, Jang Man-wol yang glamor dan bermulut tajam, telah terikat dengan hotel itu selama lebih dari seribu tahun. Saat hotelier elite Gu Chan-sung ditarik masuk sebagai manajer baru, dunia orang hidup dan orang mati mulai bercampur.",
+      "whyWatch": [
+        "Jang Man-wol yang glamor dan tak terlupakan dari IU",
+        "Kisah hantu baru di hampir setiap episode",
+        "Dari Hong Sisters, dengan lokasi di Seoul seperti Hyemindang"
+      ]
+    },
+    "extraordinary-attorney-woo": {
+      "title": "Extraordinary Attorney Woo",
+      "tagline": "Pengacara pemula brilian yang melihat dunia secara berbeda",
+      "synopsis": "Woo Young-woo lulus dengan peringkat teratas di angkatannya di sekolah hukum, mengingat semua yang ia baca, dan mencintai paus lebih dari apa pun. Sebagai pengacara pemula dengan autisme di firma hukum besar Hanbada, ia menangani kasus demi kasus dan memenangkan hati rekan-rekannya dengan cara berpikirnya sendiri.",
+      "whyWatch": [
+        "Akting utama Park Eun-bin yang meraih penghargaan",
+        "Kasus hukum baru di hampir setiap episode, mudah ditonton dari episode mana saja",
+        "Lokasi syuting di Jeju dan Ikseon-dong, Seoul"
+      ]
+    },
+    "business-proposal": {
+      "title": "Business Proposal",
+      "tagline": "Kencan buta pura-pura dengan CEO-nya sendiri jadi kacau",
+      "synopsis": "Demi membantu teman kayanya lolos dari kencan buta yang sudah diatur, pegawai kantoran Shin Ha-ri datang menggantikannya, berencana agar cepat ditolak. Rencana itu berantakan saat pria di seberang meja ternyata Kang Tae-moo, CEO perusahaannya sendiri, yang lalu memutuskan untuk menikahinya.",
+      "whyWatch": [
+        "Diadaptasi dari webtoon populer, dan hanya 12 episode",
+        "Chemistry Ahn Hyo-seop dan Kim Se-jeong yang bikin ngakak",
+        "Pasangan kedua yang seru: Kim Min-kyu dan Seol In-ah"
+      ]
+    },
+    "twenty-five-twenty-one": {
+      "title": "Twenty-Five Twenty-One",
+      "tagline": "Atlet anggar, si pemimpi, dan masa muda mereka di 1998",
+      "synopsis": "Tahun 1998, saat krisis keuangan mengguncang Korea, atlet anggar SMA Na Hee-do menolak menyerah setelah tim sekolahnya dibubarkan. Baek Yi-jin, yang keluarganya kehilangan segalanya, berusaha memulai lagi. Jalan mereka bersilangan, dan dimulailah persahabatan yang akan membentuk masa muda mereka.",
+      "whyWatch": [
+        "Na Hee-do yang ceria dan tak terhentikan dari Kim Tae-ri",
+        "Korea akhir 1990-an yang penuh nostalgia, diceritakan lewat buku harian lama",
+        "Kisah tentang persahabatan dan tumbuh dewasa, sama pentingnya dengan romansa"
+      ]
+    },
+    "true-beauty": {
+      "title": "True Beauty",
+      "tagline": "Makeup, sekolah baru, dan cowok yang tahu rahasianya",
+      "synopsis": "Setelah bertahun-tahun diejek soal penampilannya, Lim Ju-kyung belajar makeup dari tutorial online dan pindah ke sekolah baru sebagai 'dewi' barunya. Menyembunyikan wajah tanpa makeup saja sudah sulit, sampai Lee Su-ho, bintang keren di sekolah itu, menjadi satu-satunya orang yang tahu rahasianya.",
+      "whyWatch": [
+        "Diadaptasi dari webtoon populer karya Yaongyi",
+        "Cha Eun-woo dari ASTRO dan Hwang In-youp dalam cinta segitiga",
+        "Rom-com SMA ringan tentang rasa percaya diri"
+      ]
+    },
+    "our-beloved-summer": {
+      "title": "Our Beloved Summer",
+      "tagline": "Bertahun-tahun kemudian, dua mantan kembali di depan kamera",
+      "synopsis": "Di SMA, siswi peringkat teratas Kook Yeon-soo dan siswa peringkat terakhir Choi Ung direkam untuk film dokumenter yang lalu viral. Bertahun-tahun setelah mereka putus, rekaman lama itu muncul lagi dan kamera kembali, memaksa keduanya berhadapan lagi, juga dengan musim panas yang tak pernah mereka tuntaskan.",
+      "whyWatch": [
+        "Choi Woo-shik dan Kim Da-mi, bertemu lagi setelah film The Witch",
+        "Kisah cinta lembut bergaya dokumenter",
+        "Gamgodang-gil di Seoul muncul dalam drama ini"
+      ]
+    },
+    "reply-1988": {
+      "title": "Reply 1988",
+      "tagline": "Lima keluarga, satu gang, dan tahun paling hangat di Seoul",
+      "synopsis": "Tahun 1988, lima keluarga tinggal di satu gang kecil di Ssangmun-dong, Seoul. Sung Deok-sun, anak tengah yang ceria, menghabiskan hari bersama teman masa kecilnya Jung-hwan, Sun-woo, Dong-ryong, dan jenius baduk Choi Taek, sementara para orang tua saling berbagi lauk, kekhawatiran, dan tawa.",
+      "whyWatch": [
+        "Komedi keluarga dengan banyak tokoh yang terasa seperti rumah",
+        "Seoul akhir 1980-an yang penuh nostalgia, dari musik hingga fesyen",
+        "Park Bo-gum, Lee Hye-ri, dan Ryu Jun-yeol dalam peran yang melambungkan nama mereka"
+      ]
+    },
+    "start-up": {
+      "title": "Start-Up",
+      "tagline": "Pendiri muda mengejar mimpi besar di dunia startup Korea",
+      "synopsis": "Seo Dal-mi bermimpi menjadi Steve Jobs-nya Korea. Nam Do-san adalah jenius matematika yang perusahaannya, Samsan Tech, jalan di tempat. Rahasia sahabat pena masa remaja dan pusat startup bernama Sandbox mempertemukan mereka, sementara investor tajam Han Ji-pyeong mengawasi dari dekat.",
+      "whyWatch": [
+        "Bae Suzy, Nam Joo-hyuk, dan Kim Seon-ho dalam cinta segitiga",
+        "Pandangan ceria tentang pendiri, investor, dan bangkit dari kegagalan",
+        "Lokasi di Seoul seperti Oil Tank Culture Park dan Pulau Nodeul"
+      ]
+    }
+  }
 }

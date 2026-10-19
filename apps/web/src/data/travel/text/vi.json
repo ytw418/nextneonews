@@ -1,8 +1,428 @@
 {
-  "areas": {},
-  "places": {},
+  "areas": {
+    "seongsu": {
+      "name": "Seongsu",
+      "tagline": "Cà phê nhà xưởng, flagship làm đẹp và đại bản doanh SM",
+      "intro": "Khu nhà máy cũ của Seoul giờ sống nhờ những quán cà phê trong nhà kho cải tạo, cửa hàng pop-up và các flagship K-beauty khổng lồ. Trụ sở SM Entertainment và Seoul Forest nằm ở phía tây, nên một buổi chiều là đủ cho mua sắm, idol và công viên."
+    },
+    "hongdae": {
+      "name": "Hongdae",
+      "tagline": "Hát rong, nhạc indie và khu phố của YG",
+      "intro": "Những con phố quanh Đại học Hongik là sân chơi của giới trẻ Seoul: nghệ sĩ hát rong và nhóm nhảy, nhạc indie, tranh tường và đồ ăn đêm. YG Entertainment nằm ngay cạnh ở Hapjeong, còn Yeontral Park và chợ Mangwon là những điểm ghé thong thả hơn."
+    },
+    "myeongdong": {
+      "name": "Myeongdong",
+      "tagline": "Mua sắm làm đẹp ngay dưới chân Namsan",
+      "intro": "Myeongdong gói gọn các flagship mỹ phẩm, đồ ăn đường phố và quán mì lâu đời trong vài dãy phố đi bộ được, với nhà thờ Công giáo đầu tiên của Hàn Quốc ở một đầu. Namsan và N Seoul Tower nhô lên ngay phía sau, tiện ngắm cảnh đêm."
+    },
+    "hannam-itaewon": {
+      "name": "Hannam · Itaewon",
+      "tagline": "Cảnh phim Itaewon Class, HYBE và ẩm thực thế giới",
+      "intro": "Những khu phố trên đồi của Yongsan pha trộn ẩm thực thế giới, phòng tranh và cuộc sống về đêm. Fan Itaewon Class tìm đến cầu vượt Noksapyeong, fan K-pop đến trụ sở HYBE cạnh Yongnidan-gil, còn người mê nghệ thuật ghé Leeum ở Hannam-dong."
+    },
+    "apgujeong-cheongdam": {
+      "name": "Apgujeong · Cheongdam",
+      "tagline": "K-Star Road, flagship nhà thiết kế và bánh bagel",
+      "intro": "Khu thời trang của Gangnam, nơi các salon và flagship nhà thiết kế nối dài trên Apgujeong-ro. Đi dọc K-Star Road ngang qua các tượng idol GangnamDol, rồi rẽ sang khu công viên Dosan để ghé Haus Dosan và London Bagel Museum."
+    },
+    "bukchon-ikseon": {
+      "name": "Bukchon · Ikseon",
+      "tagline": "Ngõ hanok, ảnh cung điện và Lovely Runner",
+      "intro": "Seoul xưa nằm giữa các cung điện: những ngõ hanok vẫn có người ở của Bukchon, Gyeongbokgung để chụp ảnh hanbok và các quán cà phê hanok nhỏ xinh ở Ikseon-dong. Fan Winter Sonata và Lovely Runner có thể ghé thêm trường Trung học Choong Ang trên đỉnh dốc."
+    },
+    "yeouido": {
+      "name": "Yeouido",
+      "tagline": "Picnic sông Hàn, Music Bank và The Hyundai",
+      "intro": "Hòn đảo của văn phòng và đài truyền hình trên sông Hàn. KBS phát sóng Music Bank từ đây, The Hyundai Seoul tổ chức pop-up dưới mái kính, và công viên ven sông là nơi người Seoul picnic với mì gói từ cửa hàng tiện lợi."
+    },
+    "busan": {
+      "name": "Busan",
+      "tagline": "Làng ven biển, chùa trên ghềnh đá và Sky Capsule",
+      "intro": "Thành phố lớn thứ hai Hàn Quốc gắn liền với biển: những ngôi làng sườn đồi màu pastel, ngôi chùa trên ghềnh đá và đoàn tàu khoang nhỏ lướt dọc bờ biển Haeundae. Hãy dành trọn một ngày hoặc hơn; phần lớn điểm đến cần đi thêm xe buýt từ ga tàu điện ngầm."
+    },
+    "jeju": {
+      "name": "Jeju",
+      "tagline": "Bình minh núi lửa, đồi chè và hoa trà",
+      "intro": "Hòn đảo núi lửa của Hàn Quốc, nơi quay When Life Gives You Tangerines. Đón bình minh trên Seongsan Ilchulbong, nhâm nhi trà xanh bên đồi chè O'sulloc và kết thúc ở các sạp chợ đêm Dongmun. Thuê xe hoặc đi taxi sẽ tiện hơn."
+    }
+  },
+  "places": {
+    "kwangya-seoul": {
+      "name": "KWANGYA@Seoul",
+      "summary": "Cửa hàng K-pop flagship của SM Entertainment ở tầng hầm trụ sở SM tại Seongsu. Xem album và hàng chính hãng của nghệ sĩ SM, rồi chơi ở khu media, sổ lưu bút AR và khung ảnh 4 ô.",
+      "address": "B1F, 83-21 Wangsimni-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "Từ cửa số 5 ga Seoul Forest đến lối vào chỉ khoảng một phút.",
+        "Giờ mở cửa có thể đổi dịp lễ; cửa hàng báo trên Instagram.",
+        "Công viên Seoul Forest cách vài phút đi bộ, tiện để nghỉ chân."
+      ]
+    },
+    "olive-young-n-seongsu": {
+      "name": "Olive Young N Seongsu",
+      "summary": "Flagship thiên về trải nghiệm của Olive Young trên Yeonmujang-gil, Seongsu, khai trương tháng 11/2024. Nhiều tầng tester K-beauty, khu trưng bày thương hiệu mới và dịch vụ chăm sóc sắc đẹp; theo Olive Young, khoảng 3/4 khách nước ngoài đến Seongsu có ghé đây.",
+      "address": "13 Yeonmujang 7-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "Cửa hàng có hoàn thuế: mang hộ chiếu để được hoàn ngay tại chỗ.",
+        "Khách nước ngoài xếp hàng trước giờ mở cửa 10:00; sáng ngày thường vắng hơn.",
+        "Ga Seongsu (tuyến 2) cách khoảng hai phút đi bộ."
+      ]
+    },
+    "seoul-forest": {
+      "name": "Seoul Forest",
+      "summary": "Công viên đô thị rộng lớn mở cửa năm 2005 ở rìa Seongsu. Mùa xuân ngập hoa anh đào và tulip, mặt hồ gương phản chiếu các tòa nhà Seongsu và hàng cây tiêu huyền. Một chỗ picnic nhẹ nhàng giữa các cửa hàng và quán cà phê.",
+      "address": "273 Ttukseom-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "Cuối tuần mùa xuân đông nhất, khi hoa anh đào và tulip nở.",
+        "Đài phun nước mặt đất chạy tháng 5–10: sáu lượt 30 phút từ 12:00.",
+        "Vào cửa miễn phí; trung tâm du khách mở 09:00–18:00."
+      ]
+    },
+    "cafe-onion-seongsu": {
+      "name": "Onion Seongsu",
+      "summary": "Tiệm bánh kiêm cà phê trong một nhà máy thập niên 1970 được cải tạo, góp phần định hình phong cách cà phê công nghiệp của Seongsu. Tường bê tông thô và khoảng sân trong tạo không khí; pandoro và ang butter là các món bánh đặc trưng.",
+      "address": "8 Achasan-ro 9-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "Pandoro rắc đường bột là món bánh đặc trưng.",
+        "Cách cửa số 2 ga Seongsu khoảng hai phút.",
+        "Ngày thường mở từ 08:00, tiện ăn sáng trước khi đi mua sắm."
+      ]
+    },
+    "yg-entertainment": {
+      "name": "Trụ sở YG Entertainment",
+      "summary": "Trụ sở của YG Entertainment, công ty quản lý BLACKPINK và BABYMONSTER. Fan đến chụp ảnh tòa nhà độc đáo ở Hapjeong-dong; đây là văn phòng đang làm việc, nên chỉ ngắm từ ngoài đường thôi nhé.",
+      "address": "7 Huiujeong-ro 1-gil, Mapo-gu, Seoul",
+      "tips": [
+        "Chụp ảnh từ vỉa hè và đừng chắn lối ra vào.",
+        "Từ cửa số 8 ga Hapjeong đi bộ khoảng 7 phút.",
+        "Chợ Mangwon cách một ga trên tuyến 6."
+      ]
+    },
+    "hongdae-street": {
+      "name": "Hongdae (phố Đại học Hongik)",
+      "summary": "Khu phố trẻ quanh Đại học Hongik, nổi tiếng với thời trang đường phố, nhạc indie, nghệ sĩ hát rong và nhóm nhảy biểu diễn trên phố. Tranh tường và graffiti ẩn trong các ngõ dốc bên trái cổng chính của trường.",
+      "address": "20 Hongik-ro, Mapo-gu, Seoul",
+      "tips": [
+        "Các màn hát rong, nhảy đường phố rất đông; khi xem hãy chừa lối đi.",
+        "Muốn xem tranh tường, rẽ trái từ cổng chính Đại học Hongik vào các ngõ.",
+        "Các phố nhạc sống tập trung gần cửa số 1 ga Sangsu."
+      ]
+    },
+    "yeontral-park": {
+      "name": "Gyeongui Line Forest Park (Yeontral Park)",
+      "summary": "Công viên dài 6,3 km xây trên tuyến đường sắt Gyeongui cũ. Đoạn Yeonnam-dong, có biệt danh Yeontral Park, là lối đi viền cỏ với quán cà phê hai bên, được yêu thích để picnic và chụp ảnh đường phố thư thả.",
+      "address": "Yeonnam-dong, Mapo-gu, Seoul",
+      "tips": [
+        "Bắt đầu từ cửa số 3 ga Hongik Univ. và đi về phía bắc vào Yeonnam-dong.",
+        "Phố sách Gyeongui Line với các ki-ốt chủ đề sách cũng thuộc công viên này."
+      ]
+    },
+    "mangwon-market": {
+      "name": "Chợ Mangwon",
+      "summary": "Khu chợ truyền thống hơn 40 năm tuổi, nơi người dân địa phương đi chợ và ăn vặt với giá rẻ. Vừa đi dọc các dãy hàng có mái che vừa nếm dakgangjeong (gà chiên giòn phủ sốt ngọt), croquette và bánh donut.",
+      "address": "27 Poeun-ro 6-gil, Mapo-gu, Seoul",
+      "tips": [
+        "Từ cửa số 2 ga Mangwon đi bộ khoảng 5 phút.",
+        "Giờ mở của từng sạp khác nhau, nên đến trước buổi tối để thấy đủ hàng.",
+        "Kết hợp với tòa nhà YG ở Hapjeong, cách một ga trên tuyến 6."
+      ]
+    },
+    "olive-young-myeongdong": {
+      "name": "Olive Young Myeongdong Flagship",
+      "summary": "Flagship của Olive Young giữa các phố mua sắm Myeongdong, chia thành các khu chủ đề chăm sóc da, trang điểm, chăm sóc cơ thể và nước hoa để bạn thử trước khi mua.",
+      "address": "53 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "Mở đến 22:30, tiện ghé sau bữa tối ở Myeongdong.",
+        "Từ cửa số 8 ga Myeong-dong đi bộ khoảng 5 phút.",
+        "Muốn xem cửa hàng trải nghiệm mới hơn? Hãy ghé Olive Young N Seongsu."
+      ]
+    },
+    "n-seoul-tower": {
+      "name": "Tháp N Seoul (Namsan Seoul Tower)",
+      "summary": "Biểu tượng của Seoul trên đỉnh Namsan, với tầm nhìn 360° từ đài quan sát và những hàng rào kín ổ khóa tình yêu. Fan phim Hàn biết nơi này qua My Love from the Star, và tháp xuất hiện nhiều lần trong KPop Demon Hunters.",
+      "address": "105 Namsangongwon-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Xe buýt vòng Namsan số 01 chạy từ cửa số 2 ga Chungmuro lên tháp.",
+        "Cáp treo Namsan chạy 10:00–23:00; khứ hồi người lớn 15.000 won (2026).",
+        "Đến quanh giờ hoàng hôn để ngắm thành phố cả lúc sáng lẫn khi lên đèn."
+      ]
+    },
+    "myeongdong-cathedral": {
+      "name": "Nhà thờ chính tòa Myeongdong",
+      "summary": "Nhà thờ giáo xứ Công giáo La Mã đầu tiên của Hàn Quốc và cũng là công trình kiến trúc Gothic đầu tiên, được công nhận là di tích lịch sử. Ngọn tháp gạch đỏ vươn trên các phố mua sắm Myeongdong, là chỗ nghỉ chân yên tĩnh.",
+      "address": "74 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "Nhà thờ vẫn hoạt động: giữ yên lặng, không chụp ảnh trong Thánh lễ.",
+        "Ga Euljiro 1-ga và Euljiro 3-ga cũng chỉ cách khoảng 8 phút."
+      ]
+    },
+    "myeongdong-kyoja": {
+      "name": "Myeongdong Kyoja",
+      "summary": "Quán mì lâu năm ở Myeongdong nổi tiếng với kalguksu: sợi mì lúa mì tươi, dai trong nước dùng gà đậm đà. Một tô khoảng 10.000 won.",
+      "address": "29 Myeongdong 10-gil, Jung-gu, Seoul",
+      "tips": [
+        "Giờ cao điểm buổi trưa thường phải xếp hàng.",
+        "Từ cửa số 8 ga Myeong-dong đi bộ khoảng 3 phút."
+      ]
+    },
+    "hybe-yongsan": {
+      "name": "Trụ sở HYBE",
+      "summary": "Trụ sở HYBE trong Yongsan Trade Center, đại bản doanh của các label đứng sau BTS, SEVENTEEN và LE SSERAFIM. Fan chụp ảnh với logo phía trước, còn các con hẻm phía sau kín những café sinh nhật do fan tổ chức.",
+      "address": "42 Hangang-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "Tòa nhà chỉ dành cho nhân viên; chụp ảnh từ bên ngoài thì không sao.",
+        "Các quán cà phê phía sau được trang trí bằng photocard dịp sinh nhật idol.",
+        "Quán cà phê và nhà hàng ở Yongnidan-gil nằm ngay bên cạnh."
+      ]
+    },
+    "noksapyeong-overpass": {
+      "name": "Cầu vượt Noksapyeong",
+      "summary": "Cầu vượt cho người đi bộ cạnh ga Noksapyeong, nhìn thẳng ra Namsan và N Seoul Tower. Trong Itaewon Class, Park Sae-ro-yi và Jo Yi-seo có những cuộc trò chuyện quan trọng ở đây. Đẹp cả ngày lẫn đêm.",
+      "address": "Noksapyeong Station, 195 Noksapyeong-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "Từ cửa số 3 ga Noksapyeong chỉ khoảng một phút.",
+        "Đến từ hoàng hôn đến giờ xanh để chụp tháp giữa ánh đèn thành phố.",
+        "Đứng sát một bên khi chụp ảnh để người khác đi qua."
+      ]
+    },
+    "leeum-museum": {
+      "name": "Leeum Museum of Art",
+      "summary": "Bảo tàng nghệ thuật của Samsung ở Hannam-dong: gốm sứ, thư pháp và đồ kim loại Hàn Quốc ở một tòa, nghệ thuật hiện đại và đương đại ở tòa khác, trong quần thể do Mario Botta, Jean Nouvel và Rem Koolhaas thiết kế.",
+      "address": "60-16 Itaewon-ro 55-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Vào cửa theo đặt chỗ, mở trước 14 ngày; vé tại chỗ chỉ khi còn suất.",
+        "Triển lãm thường trực miễn phí nhưng vẫn cần đặt chỗ.",
+        "Hướng dẫn số miễn phí bằng tiếng Anh, Trung, Nhật; nhớ mang hộ chiếu."
+      ]
+    },
+    "seoul-central-mosque": {
+      "name": "Thánh đường Hồi giáo Trung tâm Seoul",
+      "summary": "Thánh đường Hồi giáo đầu tiên của Hàn Quốc, mở cửa năm 1976 trên ngọn đồi phía trên Itaewon. Nhà hàng halal, hàng thịt halal và siêu thị halal nằm dọc con phố bên ngoài, tiện cho du khách Hồi giáo.",
+      "address": "39 Usadan-ro 10-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Không mặc áo sát nách, quần short, váy ngắn; có cho mượn áo choàng và hijab.",
+        "Người ngoài đạo vẫn được vào; đừng chĩa máy ảnh vào người đang cầu nguyện.",
+        "Từ cửa số 3 ga Itaewon đi bộ lên dốc khoảng 6 phút."
+      ]
+    },
+    "k-star-road": {
+      "name": "K-Star Road (Hallyu Star Road)",
+      "summary": "Con phố 'ngôi sao Hallyu' dài khoảng 1 km dọc Apgujeong-ro, từ trung tâm thương mại Galleria về phía ngã tư Cheongdam. Các tượng art toy GangnamDol lấy cảm hứng từ những nhóm K-pop như Girls' Generation, EXO và Red Velvet xếp dọc đường.",
+      "address": "407 Apgujeong-ro, Gangnam-gu, Seoul",
+      "tips": [
+        "Tượng GangnamDol lớn đầu tiên đứng trước Galleria Luxury Hall East.",
+        "Từ ga Apgujeong Rodeo đi về phía đông hướng Cheongdam để thấy các tượng.",
+        "Đường dây du lịch 1330 (+82-2-1330) hỗ trợ tiếng Anh, Nhật và Trung."
+      ]
+    },
+    "haus-dosan": {
+      "name": "Haus Dosan (Gentle Monster)",
+      "summary": "Flagship đa thương hiệu của Gentle Monster gần công viên Dosan, bài trí như một tác phẩm sắp đặt: quán tráng miệng Nudake ở B1, kính mắt Gentle Monster ở tầng 1–3 và nước hoa Tamburins ở tầng 4.",
+      "address": "50 Apgujeong-ro 46-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Xuống B1 để xem các món tráng miệng như tác phẩm điêu khắc của Nudake.",
+        "Công viên Dosan chỉ cách vài phút đi bộ."
+      ]
+    },
+    "dosan-park": {
+      "name": "Công viên Dosan",
+      "summary": "Công viên xanh yên tĩnh giữa các con phố boutique của Gangnam, xây để tưởng nhớ nhà hoạt động độc lập và nhà giáo dục Ahn Chang-ho, hiệu Dosan. Nhà tưởng niệm Dosan Ahn Chang-ho nằm bên trong.",
+      "address": "20 Dosan-daero 45-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Vào cửa miễn phí; nhà tưởng niệm mở hằng ngày 10:00–18:00.",
+        "Haus Dosan và London Bagel Museum cách vài phút đi bộ."
+      ]
+    },
+    "london-bagel-museum-dosan": {
+      "name": "London Bagel Museum Dosan",
+      "summary": "Tiệm bánh kiêm cà phê bagel phong cách London với hơn 10 loại bagel cùng cream cheese, mứt và súp. Bagel phô mai khoai tây và sandwich jambon butter là món đặc trưng; quán đông khách nên hãy tính trước thời gian chờ.",
+      "address": "33 Eonju-ro 168-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Món đặc trưng: bagel phô mai khoai tây và sandwich jambon butter.",
+        "Quán đóng cửa lúc 18:00; đi sớm trong ngày để có đủ các loại bánh."
+      ]
+    },
+    "bukchon-hanok-village": {
+      "name": "Làng Hanok Bukchon",
+      "summary": "Những con ngõ nhà hanok truyền thống nằm giữa cung Gyeongbokgung và Changdeokgung, với 600 năm lịch sử. Đây là khu dân cư có người ở, không phải công viên chủ đề; giếng Bokjeong ở đây xuất hiện trong Lovely Runner.",
+      "address": "37 Gyedong-gil, Jongno-gu, Seoul",
+      "tips": [
+        "Khu hạn chế không đón du khách từ 17:00 đến 10:00.",
+        "Người dân sống ở đây: nói nhỏ và đừng mở cổng hay cửa nhà.",
+        "Từ cửa số 3 ga Anguk đi bộ khoảng 7 phút."
+      ]
+    },
+    "gyeongbokgung": {
+      "name": "Cung điện Gyeongbokgung",
+      "summary": "Cung điện hoàng gia đầu tiên và lớn nhất của triều Joseon, xây năm 1395. Khách mặc hanbok đầy đủ được vào cửa miễn phí, nên đây là phông nền kinh điển để chụp ảnh hanbok ở Seoul.",
+      "address": "161 Sajik-ro, Jongno-gu, Seoul",
+      "tips": [
+        "Đóng cửa thứ Ba; lượt vào cuối là một giờ trước khi đóng cửa.",
+        "Mặc hanbok đầy đủ để vào miễn phí (xem quy định trang phục).",
+        "Nếu không, người lớn nước ngoài trả 3.000 won."
+      ]
+    },
+    "ikseon-dong-hanok-street": {
+      "name": "Phố Hanok Ikseon-dong",
+      "summary": "Khoảng 800 m ngõ hẹp với những căn hanok nhỏ gần Jongno 3-ga, nay kín quán cà phê, tiệm tráng miệng và nhà hàng. Được chỉ định là khu bảo tồn hanok năm 2018, nơi đây pha trộn mái ngói cũ với nội thất hợp thời.",
+      "address": "Ikseon-dong, Jongno-gu, Seoul",
+      "tips": [
+        "Bắt đầu từ cửa số 6 ga Jongno 3-ga, cách khoảng 3 phút.",
+        "Các ngõ như mê cung; hãy lưu khu này trên app bản đồ trước khi đi.",
+        "Chiều cuối tuần đông đúc; sáng ngày thường vắng hơn."
+      ]
+    },
+    "choong-ang-high-school": {
+      "name": "Trường Trung học Choong Ang",
+      "summary": "Trường tư thục thành lập năm 1908 trên đỉnh Bukchon, nổi tiếng với các tòa nhà lịch sử ấn tượng. Đây là nơi quay Winter Sonata, và thành phố Seoul liệt kê nơi này là bối cảnh các cảnh thời đi học trong Lovely Runner.",
+      "address": "164 Changdeokgung-gil, Jongno-gu, Seoul",
+      "tips": [
+        "Trường đang hoạt động: làm theo quy định ra vào và giữ yên lặng.",
+        "Từ cửa số 3 ga Anguk đi bộ lên dốc khoảng 9 phút.",
+        "Làng Hanok Bukchon ngay dưới dốc, nên ghé cả hai cùng lúc."
+      ]
+    },
+    "the-hyundai-seoul": {
+      "name": "The Hyundai Seoul",
+      "summary": "Trung tâm thương mại nổi bật của Seoul, xây quanh Sounds Forest, khu vườn trong nhà 3.306 m² dưới mái kính, cùng một khu vườn thác nước. Các không gian sự kiện liên tục có pop-up của thương hiệu, K-pop và K-drama.",
+      "address": "108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Xem website hoặc Instagram của trung tâm để biết pop-up đang diễn ra.",
+        "Từ cửa số 1 ga Yeouinaru đi bộ khoảng 5 phút.",
+        "Có tủ gửi đồ, kể cả tủ lạnh để giữ đồ ăn."
+      ]
+    },
+    "kbs-music-bank": {
+      "name": "KBS Yeouido (Music Bank)",
+      "summary": "Trung tâm phát sóng Yeouido của KBS, nơi các sảnh New Wing và Annex tổ chức những chương trình như Music Bank và 2 Days & 1 Night. Music Bank phát trực tiếp vào thứ Sáu, khán giả trường quay được sắp xếp qua fan club của từng nghệ sĩ.",
+      "address": "13 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul (KBS Annex Hall)",
+      "tips": [
+        "Music Bank thường phát trực tiếp thứ Sáu lúc 17:05 KST; xem có tuần nghỉ không.",
+        "Suất khán giả qua thông báo fan club chính thức của nghệ sĩ, không qua KBS.",
+        "Từ cửa số 4 ga National Assembly đi bộ khoảng 4 phút."
+      ]
+    },
+    "yeouido-hangang-park": {
+      "name": "Công viên Hangang Yeouido",
+      "summary": "Một trong những công viên ven sông đông khách nhất Seoul, nhộn nhịp mùa xuân với hoa anh đào và mùa thu với Lễ hội pháo hoa quốc tế Seoul. Hãy làm như người địa phương: mua mì gói ở cửa hàng tiện lợi ven sông và ăn bên bờ nước.",
+      "address": "330 Yeouidong-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Thuê xe đạp công cộng Ttareungi để đạp dọc bờ sông.",
+        "Tàu Hangang Bus dừng ở bến Yeouido; quẹt thẻ T-money để lên tàu.",
+        "Ga Yeouinaru (tuyến 5) nằm ngay rìa công viên."
+      ]
+    },
+    "seouldal": {
+      "name": "SEOULDAL (Seoul Moon Balloon)",
+      "summary": "Khinh khí cầu heli có dây neo, bay thẳng lên trên công viên Yeouido để ngắm sông Hàn và thành phố. Ra mắt năm 2024 như một điểm tham quan về đêm, nó phát sáng như mặt trăng trên bầu trời Yeouido.",
+      "address": "68-1 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Vé người lớn 25.000 won, bán tại chỗ và trực tuyến.",
+        "Chuyến bay đêm cho thấy ánh đèn thành phố; lượt cuối lúc 21:30.",
+        "Chuyến bay tùy thời tiết; xem trang cập nhật chính thức trong ngày."
+      ]
+    },
+    "gamcheon-culture-village": {
+      "name": "Làng văn hóa Gamcheon",
+      "summary": "Ngôi làng sườn đồi với những ngôi nhà màu pastel do người tị nạn thời Chiến tranh Triều Tiên dựng nên, trở thành làng nghệ thuật với tranh tường và tượng từ năm 2009. Tượng Hoàng tử bé là góc chụp kinh điển, và STAYC từng quay ở đây trong trang phục retro.",
+      "address": "203 Gamnae 2-ro, Saha-gu, Busan",
+      "tips": [
+        "Từ cửa số 6 ga Toseong (tuyến 1), đi xe buýt làng lên đồi.",
+        "Thuê hanbok hoặc trang phục retro ngay trong làng để chụp ảnh.",
+        "Người dân sống ở đây: nói nhỏ trong các con ngõ."
+      ]
+    },
+    "huinnyeoul-culture-village": {
+      "name": "Làng văn hóa Huinnyeoul",
+      "summary": "Ngôi làng trên vách đá nhìn ra biển ở Yeongdo, được cải tạo thành làng nghệ thuật năm 2011. Lời thoại trong phim The Attorney được vẽ trên tường nhà của Jin-woo, và một đường hầm ven biển đóng khung biển cả cho ảnh bóng người.",
+      "address": "Huinnyeoul-gil, Yeongdo-gu, Busan",
+      "tips": [
+        "Từ cửa số 6 ga Nampo (tuyến 1), đi xe buýt 7, 71 hoặc 508.",
+        "STAYC từng dạo quanh làng trong show du lịch Busan của nhóm.",
+        "Đường và bậc thang dốc; hãy mang giày thoải mái."
+      ]
+    },
+    "haedong-yonggungsa": {
+      "name": "Chùa Haedong Yonggungsa",
+      "summary": "Ngôi chùa Phật giáo trên ghềnh đá cạnh biển, xây lần đầu năm 1376, điều hiếm thấy ở Hàn Quốc vì phần lớn chùa nằm trên núi. Đi xuống 108 bậc thang qua rừng thông và tung đồng xu từ cây cầu để cầu điều ước.",
+      "address": "86 Yonggung-gil, Gijang-eup, Gijang-gun, Busan",
+      "tips": [
+        "Từ cửa số 1 ga Osiria (tuyến Donghae), đi xe buýt 139.",
+        "Cổng mở lúc 04:30, đủ sớm để ngắm bình minh trên biển.",
+        "Tìm con giáp năm sinh của bạn trong 12 tượng ở lối vào."
+      ]
+    },
+    "haeundae-blueline-park": {
+      "name": "Haeundae Blueline Park",
+      "summary": "Đoạn đường sắt ven biển cũ dài 4,8 km được hồi sinh thành tuyến tàu ngắm biển. Sky Capsule bốn chỗ lướt 2 km từ Mipo đến Cheongsapo, cao 7–10 m trên mặt biển, còn Beach Train chạy tiếp đến Songjeong.",
+      "address": "116 Cheongsapo-ro, Haeundae-gu, Busan",
+      "tips": [
+        "Sky Capsule mất khoảng 30 phút một chiều; ngày đông nên đặt trước.",
+        "Thường xuất phát từ ga Mipo, ở đầu phía đông bãi biển Haeundae.",
+        "Vẫn chạy khi mưa nhưng có thể dừng khi bão hoặc mưa lớn."
+      ]
+    },
+    "seongsan-ilchulbong": {
+      "name": "Seongsan Ilchulbong (Đỉnh Mặt Trời Mọc)",
+      "summary": "Nón tuff cao 180 m nhô lên từ biển khoảng 5.000 năm trước, thuộc Di sản Thiên nhiên Thế giới UNESCO của Jeju. Leo lên miệng núi lửa rộng 600 m để ngắm bình minh; đây là nơi quay When Life Gives You Tangerines.",
+      "address": "284-12 Ilchul-ro, Seongsan-eup, Seogwipo-si, Jeju",
+      "tips": [
+        "Vé người lớn 5.000 won; ngừng bán vé một giờ trước khi đóng cửa.",
+        "Mùa hè, cổng mở lúc 04:30 cho người leo ngắm bình minh.",
+        "Bãi biển Gwangchigi gần đó là nơi quay Welcome to Samdal-ri."
+      ]
+    },
+    "osulloc-tea-museum": {
+      "name": "Bảo tàng trà O'sulloc",
+      "summary": "Bảo tàng trà của Amorepacific, mở năm 2001 bên đồi chè O'sulloc Seogwang. Vào cửa miễn phí: xem phòng trưng bày trà, thử món tráng miệng trà xanh ở quán cà phê rồi dạo ra những hàng chè.",
+      "address": "15 Sinhwayeoksa-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "Vào cửa miễn phí; một số chương trình trải nghiệm tính phí riêng.",
+        "Giờ mở cửa có thể thay đổi khi thời tiết xấu.",
+        "Đồi chè Seogwang bên cạnh thuộc hàng lớn nhất Hàn Quốc."
+      ]
+    },
+    "dongmun-market": {
+      "name": "Chợ truyền thống Dongmun",
+      "summary": "Khu chợ thường trực lớn nhất Jeju, có từ năm 1945, nổi tiếng với hải sản tươi như cá hố và các món như tteokgalbi kèm nguyên con bào ngư. Khi trời tối, chợ đêm với các quầy đồ ăn mở gần cổng số 8.",
+      "address": "20 Gwandeok-ro 14-gil, Jeju-si, Jeju",
+      "tips": [
+        "Các quầy chợ đêm gần cổng số 8 đóng sớm nếu bán hết.",
+        "Đến lúc đói bụng: chia nhau nhiều đĩa nhỏ thay vì một bữa lớn."
+      ]
+    },
+    "camellia-hill": {
+      "name": "Camellia Hill",
+      "summary": "Vườn thực vật rộng 172.000 m² với khoảng 6.000 cây hoa trà thuộc 500 loài, rực rỡ nhất khi hoa trà đỏ nở vào mùa đông. Một cặp đôi trong show hẹn hò EXchange 3 (Transit Love) từng có buổi hẹn đáng nhớ ở đây.",
+      "address": "166 Byeongak-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "Vé người lớn 12.000 won; lượt vào cuối là một giờ trước khi đóng cửa.",
+        "Mùa đông (tháng 11–2) là mùa hoa trà nở rộ."
+      ]
+    }
+  },
   "prep": {
-    "title": "",
-    "items": {}
+    "title": "Trước khi đi",
+    "items": {
+      "esim": {
+        "label": "eSIM & dữ liệu",
+        "sub": "Cài eSIM Hàn Quốc trước khi hạ cánh để dùng bản đồ và dịch ngay từ sân bay."
+      },
+      "tmoney": {
+        "label": "Thẻ T-money",
+        "sub": "Một thẻ quẹt cho tàu điện ngầm, xe buýt và Hangang Bus; nạp tiền ở cửa hàng tiện lợi."
+      },
+      "airport": {
+        "label": "Di chuyển từ sân bay",
+        "sub": "Đặt trước vé tàu hoặc xe buýt sân bay vào Seoul để đến nơi nhẹ nhàng."
+      },
+      "stay": {
+        "label": "Chọn chỗ ở",
+        "sub": "Myeongdong, Hongdae và Seongsu là nơi ở tiện lợi, có tàu điện ngầm đi thẳng."
+      },
+      "tour": {
+        "label": "Tour & vé",
+        "sub": "Đặt trước thuê hanbok, tour trong ngày và vé tham quan trước khi đi."
+      }
+    }
   }
 }

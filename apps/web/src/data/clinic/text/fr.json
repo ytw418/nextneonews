@@ -1,4 +1,928 @@
 {
-  "fields": {},
-  "procedures": {}
+  "fields": {
+    "derma": {
+      "name": "Peau et dermatologie",
+      "intro": "Lasers, appareils à énergie et injections proposés dans les cliniques de dermatologie. Chaque fiche indique la durée de récupération, le niveau de douleur, les risques et les questions à poser. Ni noms de cliniques, ni classements, ni avis."
+    },
+    "dental": {
+      "name": "Dentaire",
+      "intro": "Détartrage, blanchiment, obturations, facettes, implants et gouttières transparentes : en quoi consiste chaque soin, combien de temps il prend et ce qui peut mal tourner."
+    },
+    "plastic": {
+      "name": "Chirurgie plastique",
+      "intro": "Interventions sur les paupières, le nez et le visage. La chirurgie comporte de vrais risques et un temps de récupération, et ces fiches traitent des deux, sans noms de cliniques ni photos avant-après."
+    }
+  },
+  "procedures": {
+    "laser-toning": {
+      "name": "Laser toning",
+      "aka": ["Laser Nd:YAG Q-switched à basse fluence", "Laser toning 1064 nm", "Toning QS Nd:YAG"],
+      "what": "Passages répétés d'un laser Nd:YAG Q-switched 1064 nm à faible énergie sur le visage. Très utilisé en Asie contre le mélasma et les pigmentations irrégulières. Une revue systématique de 2022 portant sur 42 études l'a jugé globalement efficace contre le mélasma, mais les résultats varient et certaines études signalent un retour de la pigmentation dans les trois mois environ après la fin du traitement.",
+      "whoFor": "Personnes atteintes de mélasma ou d'une pigmentation diffuse irrégulière, prêtes à s'engager sur une série de séances. L'American Academy of Dermatology présente les traitements par laser et par lumière comme un complément pour les personnes qui utilisent déjà un traitement cutané prescrit et une protection solaire quotidienne.",
+      "steps": "Le maquillage est retiré et les yeux sont protégés. Le laser est passé plusieurs fois à faible énergie sur la zone traitée, puis une crème solaire est appliquée.",
+      "recovery": "Peu ou pas d'éviction sociale ; une légère rougeur disparaît généralement en un jour. Les résultats apparaissent progressivement au fil des séances. Dans une étude menée auprès de patients coréens, le protocole médian comptait 10 séances espacées d'environ une semaine.",
+      "risks": [
+        "Hypopigmentation en mouchetures (taches blanches) parfois durable, liée à une énergie laser cumulée élevée",
+        "Assombrissement rebond (hyperpigmentation) dû à l'inflammation, surtout avec des réglages agressifs ou sur peau foncée",
+        "Retour du mélasma après la fin des séances",
+        "Rougeur passagère après chaque séance"
+      ],
+      "questionsToAsk": [
+        "Un dermatologue a-t-il confirmé qu'il s'agit bien de mélasma et non d'une autre affection ?",
+        "Combien de séances prévoyez-vous, à quel intervalle, et quel est le coût total ?",
+        "Comment réglez-vous l'énergie pour limiter le risque de taches blanches ou d'assombrissement rebond ?",
+        "Quelles crèmes ou quels médicaments dois-je utiliser en parallèle, et pendant combien de temps ?",
+        "Que ferez-vous si ma pigmentation fonce pendant le traitement ?"
+      ],
+      "aftercare": [
+        "Appliquer chaque jour une crème solaire à large spectre (SPF 30 ou plus) et en remettre à l'extérieur",
+        "Continuer entre les séances les soins prescrits par votre dermatologue",
+        "Prévenir rapidement la clinique si de nouvelles taches blanches ou plus foncées apparaissent"
+      ],
+      "faq": [
+        {
+          "q": "Le laser toning élimine-t-il le mélasma définitivement ?",
+          "a": "Non. Les revues font état d'une amélioration, mais aussi de récidives après l'arrêt du traitement. La plupart des protocoles prévoient une protection solaire et un entretien sur le long terme."
+        },
+        {
+          "q": "Combien de séances faut-il en général ?",
+          "a": "Les protocoles varient. Dans une étude menée auprès de patients coréens, la médiane était de 10 séances espacées d'environ une semaine. Demandez le nombre de séances prévu et le prix total avant de commencer."
+        },
+        {
+          "q": "Peut-il aggraver la pigmentation ?",
+          "a": "Oui. Une revue systématique de 2022 a signalé une hyperpigmentation rebond avec des réglages agressifs, surtout sur peau foncée, ainsi que des taches blanches durables liées à une énergie cumulée élevée."
+        }
+      ]
+    },
+    "pico-laser": {
+      "name": "Laser picoseconde",
+      "aka": ["Pico laser", "Laser picoseconde fractionné"],
+      "what": "Un laser qui émet des impulsions de quelques picosecondes (millièmes de milliardième de seconde) pour fragmenter le pigment en particules très fines. D'abord utilisé pour le détatouage, il sert aussi aujourd'hui pour les taches de rousseur et les taches solaires, le grain de peau, les cicatrices d'acné et le mélasma. Une revue systématique de 2021 a jugé les preuves les plus solides pour les tatouages, et plus faibles pour le rajeunissement, le mélasma et les cicatrices.",
+      "whoFor": "Personnes souhaitant traiter un tatouage, des taches pigmentaires bénignes, le grain de peau ou des cicatrices d'acné. Toutes les taches ne réagissent pas de la même façon : le diagnostic du pigment par un dermatologue passe en premier.",
+      "steps": "La peau est nettoyée et les yeux sont protégés. Une crème anesthésiante peut être appliquée. Le laser vise chaque tache ou balaie toute la zone, selon l'objectif.",
+      "recovery": "Dépend des réglages. Dans une étude sur les taches solaires (lentigos), rougeurs, gonflement et petites croûtes avaient pour la plupart disparu en 3–5 jours.",
+      "risks": [
+        "Hyperpigmentation post-inflammatoire (assombrissement temporaire)",
+        "Hypopigmentation (zones plus claires)",
+        "Rougeur, gonflement, croûtes ou saignements punctiformes",
+        "Pour le mélasma, le modèle 755 nm n'a pas fait mieux que les crèmes dépigmentantes dans une méta-analyse de 2023 et a été associé à un assombrissement"
+      ],
+      "questionsToAsk": [
+        "Quelle longueur d'onde et quels réglages utiliserez-vous pour mon type de tache, et pourquoi ?",
+        "Combien de séances prévoyez-vous, et à quel intervalle ?",
+        "Quel est le risque de zones plus foncées ou plus claires avec ma carnation ?",
+        "Que dois-je faire si des croûtes ou un assombrissement apparaissent ?",
+        "Le prix est-il par séance ou par forfait ?"
+      ],
+      "aftercare": [
+        "Protéger la peau traitée du soleil avec une crème solaire et de l'ombre",
+        "Laisser les croûtes tomber d'elles-mêmes sans les gratter",
+        "Suivre les consignes écrites de la clinique et signaler tout assombrissement inattendu"
+      ],
+      "faq": [
+        {
+          "q": "Le laser picoseconde, c'est la même chose que le laser toning ?",
+          "a": "Non. Les deux ciblent le pigment, mais les lasers picosecondes utilisent des impulsions beaucoup plus courtes. Pour le mélasma, une méta-analyse de 2023 a constaté un bénéfice avec les lasers picosecondes 1064 nm, alors que le modèle 755 nm n'a pas fait mieux que les crèmes. Le bon outil dépend du diagnostic."
+        },
+        {
+          "q": "Combien de temps dure l'éviction sociale ?",
+          "a": "Cela dépend des réglages. Dans une étude sur les taches solaires, rougeurs, gonflement et croûtes avaient pour la plupart disparu en 3–5 jours. Quelques personnes ont eu un léger assombrissement qui s'est estompé en un mois environ avec un traitement local."
+        },
+        {
+          "q": "À quoi sert-il ?",
+          "a": "Au détatouage (preuves les plus solides), aux taches pigmentaires bénignes, au rajeunissement cutané, au mélasma et aux cicatrices d'acné, selon une revue systématique de 2021."
+        }
+      ]
+    },
+    "rejuran": {
+      "name": "Rejuran (injection de polynucléotides)",
+      "aka": ["REJURAN", "Injection de polynucléotides (PN)", "Skin booster PN"],
+      "what": "Injections de polynucléotides (PN), des molécules dérivées de l'ADN, réparties dans la peau par de nombreuses petites piqûres. Une revue de 2024 décrit REJURAN comme un produit PN très présent en Asie. Des études rapportent une amélioration des ridules, du grain de peau et de l'élasticité, mais une revue systématique de 2025 n'a trouvé que neuf études, de qualité faible à modérée.",
+      "whoFor": "Adultes qui souhaitent améliorer le grain de peau, les ridules ou la qualité de la peau, et qui acceptent une série d'injections aux effets progressifs et modestes.",
+      "steps": "Le visage est nettoyé et anesthésié. Le PN est injecté en petites quantités sur toute la zone avec une aiguille fine, puis la peau est nettoyée.",
+      "recovery": "Rougeur et gonflement durent souvent quelques heures. De petites bosses aux points d'injection sont fréquentes au début et généralement passagères. Des bleus sont possibles.",
+      "risks": [
+        "Douleur, rougeur et gonflement aux points d'injection",
+        "Bleus et marques d'aiguille visibles",
+        "Petites bosses passagères sous la peau",
+        "Rare : granulomes à corps étranger (nodules persistants) ou assombrissement post-inflammatoire"
+      ],
+      "questionsToAsk": [
+        "Quel produit et combien de mL seront injectés, et puis-je voir l'emballage scellé ?",
+        "Combien de séances, à quel intervalle, et quel est le coût total ?",
+        "Qui pratique l'injection, et s'agit-il d'un médecin autorisé à exercer ?",
+        "Dois-je arrêter certains médicaments ou compléments avant ?",
+        "Que dois-je faire si les bosses ou les bleus ne disparaissent pas ?"
+      ],
+      "aftercare": [
+        "Ne pas frotter ni appuyer sur les bosses, sauf indication de la clinique",
+        "Utiliser des soins doux et une crème solaire les jours suivants",
+        "Contacter la clinique si une bosse, la douleur ou la rougeur s'aggrave"
+      ],
+      "faq": [
+        {
+          "q": "Rejuran est-il un filler ?",
+          "a": "Pas au sens habituel. Il est classé parmi les skin boosters, qui visent à améliorer la qualité de la peau (grain, hydratation, élasticité) plutôt qu'à ajouter du volume."
+        },
+        {
+          "q": "Combien de temps durent les résultats ?",
+          "a": "Un consensus européen cité dans une revue de 2024 rapporte des effets d'environ 6–12 mois après une cure de trois séances. Les résultats varient selon les personnes."
+        },
+        {
+          "q": "Les preuves sont-elles solides ?",
+          "a": "Limitées. Une revue systématique de 2025 a recensé neuf études portant sur 219 patients, de qualité faible à modérée. Les effets secondaires étaient en général légers et passagers, mais des études plus larges et plus rigoureuses restent nécessaires."
+        }
+      ]
+    },
+    "skin-booster": {
+      "name": "Skin booster (acide hyaluronique)",
+      "aka": ["Skin booster à l'acide hyaluronique", "Hydratant cutané injectable", "Booster de qualité de peau"],
+      "what": "De petites quantités d'acide hyaluronique (AH) injectées dans la peau par de nombreuses piqûres rapprochées, pour améliorer l'hydratation, le grain et l'éclat plutôt que d'ajouter du volume. « Skin booster » est une étiquette large : les cliniques l'emploient aussi pour le PN, le PLLA et d'autres produits injectables, alors demandez quel produit est utilisé.",
+      "whoFor": "Adultes à la peau d'aspect sec, terne ou marquée de ridules, qui souhaitent une évolution progressive de la qualité de peau sans volume ajouté.",
+      "steps": "La peau est nettoyée et anesthésiée. De nombreuses petites injections rapprochées sont faites avec une aiguille très fine, puis la zone est nettoyée.",
+      "recovery": "Une légère rougeur et un gonflement durent généralement quelques heures. De petites bosses peuvent apparaître et sont en général passagères. Bleus et marques d'aiguille sont possibles.",
+      "risks": [
+        "Douleur, bleus et marques d'aiguille",
+        "Bosses ou « perles » (papules), surtout quand de l'AH réticulé est injecté trop en surface",
+        "Rougeur et gonflement pendant quelques heures",
+        "Rare : granulomes (nodules persistants)",
+        "Rare mais grave avec tout produit à base d'AH : injection dans un vaisseau sanguin, pouvant abîmer la peau ou la vue"
+      ],
+      "questionsToAsk": [
+        "De quel produit s'agit-il exactement : AH, PN, PLLA ou un mélange ?",
+        "Le produit est-il autorisé par l'agence coréenne du médicament (MFDS), et puis-je voir l'emballage ?",
+        "Combien de séances sont prévues et quel est le prix total ?",
+        "Comment limitez-vous le risque de bosses ?",
+        "Que dois-je faire si je remarque un changement de couleur de la peau ou une douleur intense ?"
+      ],
+      "aftercare": [
+        "Éviter d'appuyer sur la zone ou de la masser, sauf consigne contraire",
+        "Éviter le maquillage épais le reste de la journée si la clinique le conseille",
+        "Consulter en urgence en cas de douleur intense, de peau pâle ou violacée, ou de tout trouble de la vue"
+      ],
+      "faq": [
+        {
+          "q": "Quelle différence entre un skin booster et un filler ?",
+          "a": "Les fillers ajoutent du volume et redessinent. Les skin boosters reposent sur de petites injections superficielles, généralement d'AH peu ou non réticulé, pour cibler l'hydratation et le grain de peau."
+        },
+        {
+          "q": "Quand verrai-je des résultats ?",
+          "a": "Un panel d'experts a rapporté des effets visibles dès la première séance, avec une amélioration progressive jusqu'à 12 mois lorsque les séances sont répétées tous les 4–6 mois après une cure initiale de trois séances au maximum."
+        },
+        {
+          "q": "Est-ce douloureux ?",
+          "a": "Douleur, gêne et bleus figurent parmi les effets secondaires, car de nombreuses petites injections sont pratiquées. Demandez si une crème anesthésiante est appliquée."
+        }
+      ]
+    },
+    "potenza": {
+      "name": "Potenza (microneedling RF)",
+      "aka": ["Microneedling par radiofréquence", "Microneedling RF", "Microneedling fractionné par radiofréquence"],
+      "what": "Un appareil qui insère de fines aiguilles dans la peau et libère de l'énergie de radiofréquence (RF) à leur pointe, chauffant les couches profondes pour déclencher un remodelage du collagène. Potenza est l'un de ces appareils de microneedling RF et peut fonctionner en mode monopolaire ou bipolaire. Les études portent sur le rajeunissement cutané, les cicatrices d'acné, l'acné active et les vergetures.",
+      "whoFor": "Personnes présentant des cicatrices d'acné, un grain de peau irrégulier ou un léger relâchement, qui acceptent des résultats lents et progressifs. Une revue de 2021 indique qu'il peut être utilisé sur les peaux foncées.",
+      "steps": "Une crème anesthésiante est appliquée. La profondeur des aiguilles et l'énergie sont réglées, la pièce à main est déplacée sur la zone, puis la peau est refroidie et apaisée.",
+      "recovery": "La rougeur dure en général 1–7 jours environ, et de petites bosses aux points d'aiguille sont fréquentes les 1–2 premiers jours. Des marques en quadrillage peuvent persister 1–2 semaines après un traitement à haute énergie. L'amélioration peut se poursuivre jusqu'à 6 mois.",
+      "risks": [
+        "Brûlures, cicatrices, fonte graisseuse, défiguration ou lésions nerveuses : la FDA américaine a alerté en octobre 2025 sur des signalements de ces complications graves",
+        "Rougeur, gonflement, bleus et marques en quadrillage",
+        "Hyperpigmentation post-inflammatoire, surtout sur peau foncée",
+        "Poussée d'acné, récidive d'herpès labial ou infection superficielle"
+      ],
+      "questionsToAsk": [
+        "Quel appareil et quel embout d'aiguilles seront utilisés, et qui le manipule ?",
+        "Quelles profondeur et énergie sont prévues, et comment les adapterez-vous à ma carnation ?",
+        "Combien de séances prévoyez-vous, et à quel intervalle ?",
+        "Ai-je besoin d'un antiviral si je fais des boutons de fièvre ?",
+        "Que se passe-t-il si j'ai une brûlure ou une marque durable ?"
+      ],
+      "aftercare": [
+        "Éviter le maquillage pendant environ 24–48 heures et utiliser un nettoyant doux",
+        "Éviter le soleil pendant environ 2 semaines et utiliser une crème solaire",
+        "Dormir la tête surélevée 2–3 nuits pour limiter le gonflement du visage",
+        "Contacter la clinique en cas de cloques, de douleur qui s'aggrave ou de signes d'infection"
+      ],
+      "faq": [
+        {
+          "q": "Le microneedling RF peut-il se faire à domicile ?",
+          "a": "Non. La FDA le décrit comme un acte médical et non un soin cosmétique, et indique que ces appareils ne doivent pas être utilisés à domicile."
+        },
+        {
+          "q": "Quand verrai-je des résultats ?",
+          "a": "Le remodelage du collagène est lent et progressif. Une revue de 2021 a noté une amélioration continue jusqu'à 6 mois après le traitement."
+        },
+        {
+          "q": "Combien de temps dure l'éviction sociale ?",
+          "a": "En général quelques jours de rougeur et de petites bosses. La rougeur peut durer jusqu'à une semaine environ, et les marques en quadrillage après des réglages à haute énergie peuvent mettre 1–2 semaines à s'estomper."
+        }
+      ]
+    },
+    "ulthera": {
+      "name": "Ulthera (ultrasons microfocalisés)",
+      "aka": ["Ultherapy", "Ultrasons microfocalisés avec visualisation (MFU-V)"],
+      "what": "Un appareil non invasif qui concentre l'énergie ultrasonore à des profondeurs définies sous la peau, créant de petits points chauffés qui stimulent la production de collagène. L'imagerie échographique intégrée permet à l'opérateur de voir les couches traitées. Il dispose d'une autorisation de la FDA pour le lifting et le raffermissement de zones précises et ne remplace pas un lifting chirurgical.",
+      "whoFor": "Adultes, généralement à partir de la trentaine, présentant un relâchement léger à modéré du visage et du cou.",
+      "steps": "La peau est nettoyée et un gel échographique est appliqué. La pièce à main visualise les couches de la peau et délivre l'énergie ligne par ligne, puis le gel est retiré.",
+      "recovery": "En général pas d'éviction sociale. Une légère rougeur peut durer environ une heure. Certaines personnes ont un gonflement, des bleus ou une sensibilité le long des zones osseuses pendant jusqu'à un mois. Les résultats complets mettent 3–6 mois à apparaître.",
+      "risks": [
+        "Gêne ou douleur pendant la séance",
+        "Rougeur, gonflement, bleus ou sensibilité, parfois pendant des semaines",
+        "Faiblesse d'un nerf facial ou engourdissement temporaires",
+        "Rare : cloques, ulcérations, atrophie des tissus ou nécrose cutanée, rapportées dans une série de cas de 2018"
+      ],
+      "questionsToAsk": [
+        "S'agit-il du système Ulthera ou d'un autre appareil à ultrasons focalisés (HIFU) ?",
+        "Combien de lignes et quelles profondeurs seront utilisées sur mon visage ?",
+        "Quelle prise en charge de la douleur proposez-vous ?",
+        "Quand dois-je m'attendre à des changements, et une nouvelle séance pourrait-elle être nécessaire ?",
+        "Comment évitez-vous les zones nerveuses ?"
+      ],
+      "aftercare": [
+        "Les activités habituelles peuvent généralement reprendre tout de suite",
+        "Une sensibilité le long de la mâchoire ou des pommettes est à prévoir",
+        "Signaler à la clinique tout engourdissement, toute faiblesse des mouvements du visage ou toute cloque"
+      ],
+      "faq": [
+        {
+          "q": "Ulthera, c'est la même chose que le HIFU ?",
+          "a": "Ulthera (Ultherapy) est un système d'ultrasons microfocalisés doté d'une imagerie intégrée. D'autres appareils vendus sous le nom « HIFU » utilisent aussi des ultrasons focalisés mais sont conçus différemment : demandez quel appareil est utilisé."
+        },
+        {
+          "q": "Quand voit-on les résultats ?",
+          "a": "Certaines personnes remarquent un changement tout de suite, mais selon Cleveland Clinic, les résultats complets mettent 3–6 mois à apparaître."
+        },
+        {
+          "q": "Est-ce que ça remplace un lifting ?",
+          "a": "Non. Cleveland Clinic précise qu'il convient à un relâchement léger à modéré et ne remplace pas un lifting chirurgical."
+        }
+      ]
+    },
+    "thermage": {
+      "name": "Thermage (radiofréquence monopolaire)",
+      "aka": ["Radiofréquence monopolaire (MRF)", "ThermaCool", "Thermage FLX"],
+      "what": "Un appareil non invasif qui chauffe la peau profonde (le derme) par radiofréquence monopolaire tout en protégeant la surface, ce qui fait se contracter et se remodeler le collagène. Il est utilisé pour le relâchement cutané et les rides légers à modérés. Une revue systématique de 2022 a constaté une amélioration mesurable du relâchement, avec des complications surtout mineures et de courte durée.",
+      "whoFor": "Adultes présentant un relâchement cutané léger à modéré. Dans une enquête auprès de dermatologues coréens, les quadragénaires étaient jugés les plus réceptifs, et l'épaisseur de la peau était le principal facteur de réponse.",
+      "steps": "La peau est nettoyée. L'embout délivre la chaleur en plusieurs passages tandis que la surface est refroidie, et votre ressenti de la chaleur aide à régler l'énergie.",
+      "recovery": "Une rougeur juste après la séance est fréquente et disparaît en général en 1–2 jours. L'éviction sociale est minime.",
+      "risks": [
+        "Douleur ou gêne liée à la chaleur pendant la séance",
+        "Rougeur et gonflement pendant 1–2 jours",
+        "Rare : brûlures superficielles ou croûtes",
+        "Rare : légères irrégularités de contour (creux) ou petites bosses rouges sous la peau"
+      ],
+      "questionsToAsk": [
+        "S'agit-il d'un appareil et d'un embout Thermage authentiques, et combien de tirs sont prévus ?",
+        "Ajusterez-vous l'énergie selon mon ressenti de la chaleur ?",
+        "Que prévoyez-vous si j'ai une cloque ou un creux ?",
+        "Mon degré de relâchement et l'épaisseur de ma peau conviennent-ils à ce traitement ?",
+        "Quand une nouvelle séance pourrait-elle être utile ?"
+      ],
+      "aftercare": [
+        "Les activités habituelles peuvent en général reprendre le jour même",
+        "Utiliser des soins doux et une crème solaire",
+        "Signaler à la clinique toute cloque, croûte ou creux"
+      ],
+      "faq": [
+        {
+          "q": "Quelle différence entre Thermage et Ulthera ?",
+          "a": "Ce sont deux appareils non chirurgicaux qui agissent par la chaleur. Thermage chauffe le derme par radiofréquence, tandis qu'Ulthera utilise des ultrasons focalisés à des profondeurs définies. Le médecin choisit selon la peau et les objectifs."
+        },
+        {
+          "q": "Quand verrai-je des résultats ?",
+          "a": "Dans une enquête de 2007 portant sur 5 700 séances réalisées avec une méthode à plus faible énergie et à passages multiples, 87 % montraient un raffermissement immédiat et 92 % un raffermissement à six mois."
+        },
+        {
+          "q": "Est-ce douloureux ?",
+          "a": "On sent la chaleur. Dans la même enquête, 5 % ont trouvé la méthode à passages multiples et à plus faible énergie trop douloureuse, contre 45 % avec l'ancienne méthode à haute énergie."
+        }
+      ]
+    },
+    "botox": {
+      "name": "Botox (toxine botulique)",
+      "aka": ["Toxine botulique de type A", "Neuromodulateur", "Botox®", "Dysport®", "Xeomin®", "Jeuveau®"],
+      "what": "De petites doses de toxine botulique injectées dans des muscles précis pour bloquer les signaux nerveux qui les font se contracter. Elle atténue les rides du lion, les rides du front et les pattes-d'oie, et sert aussi à affiner une mâchoire carrée, à réduire les cordes du cou et à corriger un sourire gingival.",
+      "whoFor": "Adultes gênés par des rides d'expression ou une mâchoire large due au volume musculaire, qui acceptent des résultats temporaires à renouveler.",
+      "steps": "Le médecin évalue les muscles et injecte de petites quantités avec une aiguille très fine. Une anesthésie n'est généralement pas nécessaire.",
+      "recovery": "Aucune éviction sociale, et les activités habituelles peuvent reprendre tout de suite. Les effets apparaissent en quelques jours, pleinement en 5–7 jours environ, puis durent généralement 3–4 mois.",
+      "risks": [
+        "Bleus et douleur aux points d'injection",
+        "Maux de tête",
+        "Chute temporaire de la paupière ou du sourcil",
+        "Faiblesse faciale temporaire si la toxine diffuse vers des muscles voisins",
+        "Très rare : diffusion au-delà de la zone, entraînant des difficultés à respirer ou à avaler, une faiblesse musculaire ou des troubles de l'élocution"
+      ],
+      "questionsToAsk": [
+        "Quel produit (marque) et combien d'unités seront utilisés pour chaque zone ?",
+        "Le produit est-il autorisé en Corée, et sera-t-il ouvert devant moi ?",
+        "Qui pratique l'injection ?",
+        "Quand dois-je revenir si le résultat semble inégal ?",
+        "Mes antécédents médicaux, par exemple une grossesse, une maladie musculaire ou nerveuse, ou mes médicaments, ont-ils une importance ?"
+      ],
+      "aftercare": [
+        "Ne pas frotter ni masser les zones traitées",
+        "Les activités habituelles peuvent reprendre tout de suite",
+        "Consulter en urgence en cas de difficulté à respirer, à avaler ou à parler"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps dure le Botox ?",
+          "a": "Généralement 3–4 mois environ. À mesure que l'effet s'estompe, les mouvements musculaires et les rides reviennent."
+        },
+        {
+          "q": "Pourquoi ne faut-il pas frotter la zone ensuite ?",
+          "a": "Frotter peut déplacer la toxine vers des muscles voisins et provoquer une faiblesse ou un affaissement temporaire, selon l'American Society of Plastic Surgeons."
+        },
+        {
+          "q": "« Botox », c'est une marque ?",
+          "a": "Botox® est une marque de toxine botulique. Il en existe d'autres, comme Dysport®, Xeomin® et Jeuveau®. Les cliniques utilisent des produits différents : demandez lequel et à quelle dose."
+        }
+      ]
+    },
+    "filler": {
+      "name": "Filler dermique (produit de comblement)",
+      "aka": ["Filler à l'acide hyaluronique (AH)", "Produit de comblement des tissus mous", "Filler injectable"],
+      "what": "Un gel injecté sous la peau pour ajouter du volume ou lisser les rides dans des zones comme les lèvres, les joues, le menton et les plis nasogéniens. La plupart des fillers esthétiques sont à base d'acide hyaluronique (AH), que le corps résorbe avec le temps. D'autres, comme l'hydroxyapatite de calcium, l'acide poly-L-lactique et le PMMA, durent plus longtemps et peuvent être plus difficiles à retirer.",
+      "whoFor": "Adultes qui souhaitent un volume ou un lissage temporaire. Aux États-Unis, les fillers sont autorisés à partir de 22 ans. La FDA américaine n'a pas autorisé les fillers pour le nez, l'espace entre les sourcils, le contour des yeux, le front ou le cou.",
+      "steps": "La zone est évaluée et marquée, puis anesthésiée. Le filler est injecté et la zone peut être modelée doucement.",
+      "recovery": "La plupart des activités peuvent reprendre tout de suite, mais évitez le sport intense pendant 24–48 heures. Gonflement, bleus, rougeur ou aspect trop rempli s'améliorent généralement en quelques heures à quelques jours.",
+      "risks": [
+        "Bleus, rougeur, gonflement, sensibilité et démangeaisons",
+        "Bosses, filler palpable sous la peau, ou correction insuffisante ou excessive",
+        "Infection ou réaction allergique",
+        "Déplacement du filler hors du point d'injection",
+        "Rare mais grave : injection dans un vaisseau sanguin, pouvant entraîner une nécrose de la peau, une perte de vision ou une cécité, ou un AVC"
+      ],
+      "questionsToAsk": [
+        "Quel est le produit (AH ou autre matériau), et peut-il être dissous si besoin ?",
+        "Combien de mL seront utilisés, et quel est le prix par seringue ?",
+        "Comment limitez-vous le risque d'injection dans un vaisseau sanguin, et quel est votre protocole d'urgence ?",
+        "La zone que je demande fait-elle partie de celles pour lesquelles la FDA n'a pas autorisé les fillers ?",
+        "Qui dois-je contacter en dehors des heures d'ouverture en cas de douleur, de changement de couleur de la peau ou de troubles de la vue ?"
+      ],
+      "aftercare": [
+        "Éviter le sport intense pendant 24–48 heures",
+        "Appliquer de la glace pour réduire le gonflement si la clinique le conseille",
+        "Consulter en urgence en cas de troubles de la vue, ou de douleur intense ou de faiblesse d'un côté du corps"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps durent les fillers ?",
+          "a": "Cela dépend du matériau et de la zone. Les fillers à l'AH sont résorbés progressivement, tandis que des matériaux comme le PMMA sont semi-permanents."
+        },
+        {
+          "q": "Le filler du nez est-il autorisé ?",
+          "a": "La FDA américaine n'a pas autorisé les fillers dermiques pour une injection dans le nez et déconseille de les y injecter. Les règles diffèrent selon les pays : demandez pour quelles indications le produit est autorisé en Corée."
+        },
+        {
+          "q": "Peut-on retirer un filler ?",
+          "a": "La FDA indique que le retrait peut être plus difficile pour les fillers « permanents » et pour ceux qui ne sont pas faits de matériaux comme l'AH. Posez la question avant le traitement."
+        },
+        {
+          "q": "Quels sont les signes d'alerte après un filler ?",
+          "a": "Une douleur intense, une peau pâle ou violacée près du point d'injection, ou tout trouble de la vue peuvent signaler un vaisseau bouché et nécessitent des soins urgents."
+        }
+      ]
+    },
+    "aqua-peel": {
+      "name": "Aqua peel (hydrodermabrasion)",
+      "aka": ["Hydrodermabrasion"],
+      "what": "Un soin du visage non invasif qui associe une microdermabrasion sans cristaux (exfoliation avec une pièce à main aspirante) à l'infusion d'un sérum liquide, souvent avec extraction des pores. HydraFacial en est une version de marque. Dans une petite étude randomisée de 2008, six séances ont amélioré les ridules, la taille des pores et la pigmentation.",
+      "whoFor": "Personnes souhaitant un soin exfoliant et nettoyant doux, avec peu d'éviction sociale. Signalez au praticien toute maladie de peau active ou tout soin cutané récent.",
+      "steps": "La peau est nettoyée et exfoliée avec la pièce à main, les pores sont désobstrués par aspiration, puis un sérum est infusé.",
+      "recovery": "Minime. Le maquillage et les activités habituelles peuvent reprendre tout de suite. Une légère rougeur et un gonflement disparaissent généralement en 48 heures.",
+      "risks": [
+        "Légère rougeur et gonflement, généralement moins de 48 heures",
+        "Rare : cloques, petits bleus, changement de couleur ou sensibilité de la peau",
+        "Rare : boutons de fièvre ou infection",
+        "Rare : lésions cutanées ou cicatrices"
+      ],
+      "questionsToAsk": [
+        "Quel sérum est utilisé, et contient-il quelque chose auquel je réagis ?",
+        "Dois-je arrêter les rétinoïdes ou les acides avant ?",
+        "L'embout est-il à usage unique, et qui réalise le soin ?",
+        "Combien de séances proposez-vous, et pourquoi ?",
+        "Peut-il être associé à d'autres soins le même jour ?"
+      ],
+      "aftercare": [
+        "Éviter les produits aux rétinoïdes ou aux AHA pendant 3–5 jours",
+        "Porter une crème solaire et limiter l'exposition au soleil pendant au moins 2 semaines",
+        "Appeler la clinique en cas d'éruption, de bleus, ou de rougeur ou gonflement persistant plus d'une semaine"
+      ],
+      "faq": [
+        {
+          "q": "L'aqua peel est-il un peeling chimique ?",
+          "a": "Pas exactement. Il associe exfoliation, extraction et infusion de sérum. Certaines versions incluent aussi une étape de peeling chimique doux."
+        },
+        {
+          "q": "Dois-je arrêter le Botox ou les rétinoïdes avant ?",
+          "a": "Cleveland Clinic conseille d'éviter les injections de Botox au moins deux semaines avant, et d'arrêter les produits aux rétinoïdes ou aux AHA 3–5 jours avant."
+        },
+        {
+          "q": "À quelle fréquence peut-on le faire ?",
+          "a": "Certaines personnes font 3–6 séances espacées de 2–4 semaines. Les praticiens peuvent aussi proposer des séances mensuelles."
+        }
+      ]
+    },
+    "scaling": {
+      "name": "Détartrage (nettoyage dentaire professionnel)",
+      "aka": ["Nettoyage dentaire", "Élimination du tartre", "Prophylaxie dentaire"],
+      "what": "Élimination de la plaque et du tartre durci à la surface des dents avec des instruments spécifiques, généralement suivie d'un polissage. Le nettoyage en profondeur sous la gencive (détartrage et surfaçage radiculaire) est un traitement distinct, destiné à la maladie des gencives.",
+      "whoFor": "Toute personne ayant de la plaque ou du tartre. En Corée, les assurés de l'assurance maladie nationale âgés de 19 ans ou plus ont droit à un détartrage complet pris en charge par année civile.",
+      "steps": "Le dentiste examine les dents et les gencives. Le tartre est retiré des dents et le long de la gencive, les dents sont polies, et du fluor peut être appliqué.",
+      "recovery": "On peut manger et reprendre ses activités le jour même. Des dents sensibles ou des gencives douloureuses peuvent suivre et passent généralement en quelques jours.",
+      "risks": [
+        "Sensibilité dentaire temporaire au chaud et au froid",
+        "Gencives douloureuses et léger saignement",
+        "Les gencives peuvent paraître légèrement rétractées une fois l'inflammation retombée (surtout après un nettoyage en profondeur)",
+        "Rare : infection, surtout après un nettoyage en profondeur"
+      ],
+      "questionsToAsk": [
+        "S'agit-il d'un nettoyage de routine ou d'un nettoyage en profondeur (détartrage et surfaçage radiculaire) ?",
+        "Ai-je une maladie des gencives, et aurai-je besoin d'un suivi ?",
+        "Est-ce couvert par mon assurance, et combien vais-je payer ?",
+        "Ferez-vous des radiographies, et combien coûtent-elles ?",
+        "À quelle fréquence dois-je revenir ?"
+      ],
+      "aftercare": [
+        "Utiliser un dentifrice désensibilisant si les dents sont sensibles",
+        "Continuer à se brosser les dents et à passer le fil dentaire chaque jour",
+        "Contacter le dentiste si le saignement ne s'arrête pas"
+      ],
+      "faq": [
+        {
+          "q": "Le détartrage est-il couvert par l'assurance en Corée ?",
+          "a": "Pour les assurés de l'assurance maladie nationale âgés de 19 ans ou plus, un détartrage complet par an (de janvier à décembre) est pris en charge, avec le reste à charge habituel. Les nettoyages supplémentaires, et ceux réalisés pour un blanchiment, un traitement orthodontique ou la mauvaise haleine, ne sont pas couverts. Les visiteurs sans assurance coréenne paient le tarif propre à la clinique."
+        },
+        {
+          "q": "Pourquoi mes dents sont-elles sensibles après un détartrage ?",
+          "a": "Retirer la plaque et le tartre peut rendre les dents plus sensibles au chaud et au froid. Après un nettoyage de routine, cela passe généralement en quelques jours. Après un nettoyage en profondeur, cela peut prendre un ou deux mois."
+        },
+        {
+          "q": "Combien de temps cela prend-il ?",
+          "a": "La plupart des nettoyages durent 30–60 minutes. Un nettoyage en profondeur prend 1–2 heures et peut être réparti sur deux rendez-vous."
+        }
+      ]
+    },
+    "whitening": {
+      "name": "Blanchiment dentaire",
+      "aka": ["Éclaircissement des dents", "Blanchiment au cabinet", "Blanchiment au laser"],
+      "what": "Éclaircir la couleur des dents naturelles avec des gels au peroxyde (peroxyde d'hydrogène ou de carbamide). Deux options : une séance au cabinet, parfois avec une lampe ou un laser, ou des gouttières sur mesure fournies par le dentiste et portées à la maison pendant quelques semaines.",
+      "whoFor": "Adultes aux dents naturelles tachées ou assombries, avec des dents et des gencives en bonne santé. Selon les consignes du NHS, il n'est pas pratiqué chez les 17 ans et moins et il est déconseillé pendant la grossesse ou l'allaitement. Il ne change pas la couleur des couronnes, des prothèses ou des implants.",
+      "steps": "Le dentiste examine les dents et les gencives, et les gencives sont protégées par une barrière ou une pâte. Un gel de blanchiment est appliqué, parfois activé par une lampe ou un laser, puis rincé. Pour le blanchiment à domicile, on porte à la place des gouttières sur mesure pendant plusieurs semaines.",
+      "recovery": "Aucune éviction sociale. Une sensibilité dentaire et une irritation des gencives temporaires sont fréquentes et généralement de courte durée.",
+      "risks": [
+        "Sensibilité dentaire aux aliments et boissons froids ou sucrés",
+        "Gencives ou gorge irritées, ou taches blanches sur les gencives",
+        "Couleur inégale à côté des couronnes ou des obturations, qui ne blanchissent pas",
+        "Érosion de l'émail en cas de blanchiment agressif (observée en laboratoire)"
+      ],
+      "questionsToAsk": [
+        "Mes dents et mes gencives sont-elles assez saines pour un blanchiment ?",
+        "Mes couronnes, obturations ou facettes resteront-elles d'une autre teinte ?",
+        "Quel produit et quelle concentration de peroxyde utiliserez-vous ?",
+        "Combien de temps le résultat devrait-il durer, et comment l'entretenir ?",
+        "Que puis-je faire si la sensibilité est forte ?"
+      ],
+      "aftercare": [
+        "Limiter le café, le thé et le vin rouge pour ralentir la réapparition des taches",
+        "Utiliser un dentifrice désensibilisant, ou faire une pause dans le blanchiment à domicile, si les dents sont sensibles",
+        "Ne jamais utiliser d'eau oxygénée ménagère sur les dents"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps dure un blanchiment ?",
+          "a": "Il n'est pas permanent. Selon le NHS, les résultats peuvent durer environ 3 ans avec un bon entretien, et Cleveland Clinic indique de six mois à trois ans."
+        },
+        {
+          "q": "Un blanchiment en institut de beauté, c'est pareil ?",
+          "a": "Non. Le NHS indique que les kits vendus en institut ou en ligne sont moins efficaces et peuvent abîmer les dents et les gencives. Le blanchiment doit être réalisé ou prescrit par un professionnel dentaire."
+        },
+        {
+          "q": "Mes facettes ou couronnes vont-elles blanchir ?",
+          "a": "Non. Le blanchiment n'éclaircit que les dents naturelles, donc les restaurations existantes peuvent paraître plus foncées ensuite."
+        }
+      ]
+    },
+    "resin": {
+      "name": "Obturation en résine (composite)",
+      "aka": ["Obturation en résine composite", "Obturation couleur dent", "Résine composite photopolymérisable"],
+      "what": "Un matériau couleur dent (résine mélangée à de la poudre de verre, de quartz ou de silice) placé directement dans une carie ou un éclat et durci avec une lampe à polymériser, généralement en un seul rendez-vous. Le même matériau sert au collage esthétique (bonding) pour remodeler des dents ébréchées ou irrégulières.",
+      "whoFor": "Personnes ayant des caries petites à moyennes, des éclats ou des fissures. Des dégâts plus importants peuvent nécessiter plutôt un inlay, un onlay ou une couronne.",
+      "steps": "La dent est anesthésiée si besoin et la carie est retirée. La résine est posée, durcie avec une lampe à polymériser, puis façonnée et polie.",
+      "recovery": "On peut en général reprendre ses activités tout de suite, sauf en cas de sédation. Une légère sensibilité et une gêne gingivale peuvent durer une à deux semaines.",
+      "risks": [
+        "Sensibilité temporaire au chaud, au froid ou à la mastication",
+        "Gencive douloureuse autour de la dent",
+        "Éclats, usure ou coloration avec le temps",
+        "L'obturation devra un jour être remplacée"
+      ],
+      "questionsToAsk": [
+        "La résine convient-elle à une carie de cette taille, ou un inlay ou une couronne durerait-il plus longtemps ?",
+        "Combien de faces de la dent sont obturées, et comment le prix est-il calculé ?",
+        "Faudra-t-il anesthésier la dent ?",
+        "Combien de temps cette obturation devrait-elle durer ?",
+        "Une partie du traitement est-elle prise en charge par l'assurance ?"
+      ],
+      "aftercare": [
+        "Attendre la fin de l'anesthésie avant de manger",
+        "Prendre des antidouleurs en vente libre si la dent est douloureuse",
+        "Consulter le dentiste si l'occlusion semble trop haute ou si la sensibilité dure plus de deux semaines"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps durent les obturations en résine ?",
+          "a": "Cela varie. Cleveland Clinic indique 5–8 ans pour le collage esthétique et précise que les obturations en général peuvent durer 10–20 ans, selon le matériau et l'entretien."
+        },
+        {
+          "q": "Pourquoi les cliniques utilisent-elles la résine plutôt que l'amalgame (plombage argenté) ?",
+          "a": "La résine a la couleur des dents. La FDA a aussi mis à jour ses consignes sur l'amalgame pour les groupes à risque, comme les personnes ayant un projet de grossesse et les enfants de moins de 6 ans."
+        },
+        {
+          "q": "Comment la résine est-elle tarifée en Corée ?",
+          "a": "Dans les données nationales sur les tarifs non couverts, les obturations en résine sont classées par nombre de faces et par cause (carie ou usure). Demandez un devis écrit par dent."
+        }
+      ]
+    },
+    "laminate": {
+      "name": "Facettes dentaires (laminate)",
+      "aka": ["Facettes en porcelaine", "Laminate céramique", "Facettes en composite"],
+      "what": "De fines coques sur mesure collées sur la face avant des dents pour en changer la couleur, la forme ou la taille, ou pour fermer des espaces. Les facettes en porcelaine (céramique) sont fabriquées en laboratoire après le retrait d'une petite quantité d'émail. Les facettes en composite sont montées directement en résine.",
+      "whoFor": "Adultes aux dents et gencives saines qui souhaitent un changement esthétique, comme masquer des éclats ou des colorations, ou fermer des espaces. L'ADA indique que les facettes peuvent ne pas convenir aux personnes qui serrent ou grincent des dents ou qui ont une supraclusion importante.",
+      "steps": "Une teinte est choisie et une petite quantité d'émail est retirée sur l'avant et les côtés. Une empreinte ou un scan 3D est réalisé, des facettes provisoires peuvent être posées, puis les facettes fabriquées en laboratoire sont collées et ajustées.",
+      "recovery": "Pas de véritable éviction sociale. Le changement est irréversible, car de l'émail est retiré.",
+      "risks": [
+        "Irréversible, car de l'émail est retiré pour poser les facettes",
+        "Éclats, fissures, usure ou décollement nécessitant un recollage ou un remplacement",
+        "Poser des facettes sur des caries ou une maladie des gencives non traitées peut aggraver ces problèmes",
+        "Les facettes doivent généralement être remplacées après 5–15 ans",
+        "Infection ou atteinte du nerf lorsqu'elles sont posées par des praticiens non diplômés"
+      ],
+      "questionsToAsk": [
+        "Quelle quantité d'émail sera retirée, et un blanchiment ou un collage pourrait-il atteindre mon objectif à la place ?",
+        "Porcelaine ou composite : laquelle convient à mon cas, et pourquoi ?",
+        "Combien de dents, quel est le prix par dent, et que couvre la garantie ?",
+        "Que se passe-t-il si une facette s'ébrèche après mon retour dans mon pays ?",
+        "Est-ce que je serre ou grince des dents, et cela change-t-il le plan de traitement ?"
+      ],
+      "aftercare": [
+        "Éviter de mordre des objets durs comme la glace ou les stylos avec les dents à facettes",
+        "Signaler à votre dentiste si vous serrez ou grincez des dents",
+        "Continuer les détartrages et contrôles réguliers"
+      ],
+      "faq": [
+        {
+          "q": "Les facettes sont-elles réversibles ?",
+          "a": "Non. L'ADA indique que le traitement est irréversible, car l'émail dentaire est retiré pour poser une facette."
+        },
+        {
+          "q": "Combien de temps durent les facettes ?",
+          "a": "Cleveland Clinic indique 5–15 ans. Une méta-analyse de 2025 a trouvé un taux de survie d'environ 94–97 % à 10 ans environ pour les facettes céramiques courantes."
+        },
+        {
+          "q": "Peut-on faire des facettes en un court séjour ?",
+          "a": "Les facettes en porcelaine demandent généralement au moins deux rendez-vous, car elles sont fabriquées en laboratoire. Les réparations et ajustements peuvent être plus difficiles à organiser après avoir quitté la Corée."
+        }
+      ]
+    },
+    "implant": {
+      "name": "Implant dentaire",
+      "aka": ["Implant de dent", "Couronne sur implant"],
+      "what": "Une tige en titane placée dans l'os de la mâchoire pour remplacer la racine d'une dent manquante, surmontée d'un pilier et d'une couronne, d'un bridge ou d'une prothèse. L'os a besoin de 3–9 mois pour fusionner avec la tige (ostéo-intégration) avant la pose de la dent définitive.",
+      "whoFor": "Adultes (généralement à partir de 18 ans) dont la croissance est terminée et qui ont assez d'os sain dans la mâchoire. Une greffe osseuse peut être nécessaire si l'os est fin. Les implants peuvent ne pas convenir aux personnes ayant un diabète non contrôlé ou une maladie des gencives active, ni aux fumeurs.",
+      "steps": "Un examen et une imagerie ont lieu d'abord. L'implant est posé sous anesthésie locale, avec une sédation en option. Après 3–9 mois de cicatrisation, le pilier et la couronne sont fixés lors d'un rendez-vous d'environ une heure, parfois avec une seconde petite intervention.",
+      "recovery": "La première phase de cicatrisation dure environ une semaine, avec une légère gêne et un gonflement. La fusion osseuse complète prend 3–9 mois.",
+      "risks": [
+        "Infection de la gencive ou de l'os autour de l'implant (gencives qui saignent ou gonflent, pus, fièvre)",
+        "Engourdissement dû à une lésion nerveuse, ou perforation du sinus à la mâchoire supérieure",
+        "Atteinte des dents voisines, ou fracture de la mâchoire pendant l'intervention",
+        "Descellement ou échec de l'implant, pouvant nécessiter une nouvelle intervention",
+        "Vis de pilier desserrée ou occlusion qui semble anormale"
+      ],
+      "questionsToAsk": [
+        "Ai-je assez d'os, et aurai-je besoin d'une greffe osseuse (et combien coûte-t-elle) ?",
+        "Quelle marque et quel modèle d'implant, et quel matériau de couronne sont inclus dans le prix ?",
+        "Combien de rendez-vous faut-il, et à combien de mois d'intervalle ?",
+        "Qui gère les complications après mon retour chez moi ?",
+        "Quel suivi ou quelle garantie sont inclus ?"
+      ],
+      "aftercare": [
+        "Prendre des antidouleurs en vente libre selon les indications",
+        "Ne pas fumer ni vapoter pendant la cicatrisation",
+        "Nettoyer autour de l'implant comme indiqué et garder des visites dentaires régulières",
+        "Contacter le dentiste immédiatement si l'implant bouge ou fait mal, ou en cas de gonflement, de pus ou de fièvre"
+      ],
+      "faq": [
+        {
+          "q": "Combien coûte un implant en Corée ?",
+          "a": "Le ministère coréen de la Santé et le HIRA publient les tarifs non couverts. Dans la publication de 2026, le tarif médian par implant en cabinet dentaire était de 1,1 million de ₩ avec une couronne en métal, céramo-métallique (PFM) ou zircone, de 1,2 million de ₩ avec une couronne tout-céramique et de 1,5 million de ₩ avec une couronne à base d'or. Les tarifs déclarés par les cabinets allaient de 540 000 ₩ à 2,5 millions de ₩. Les prix varient selon la clinique, le matériau et les actes supplémentaires comme une greffe osseuse."
+        },
+        {
+          "q": "Combien de temps durent les implants ?",
+          "a": "Avec une bonne hygiène, les implants peuvent souvent durer toute la vie. Une méta-analyse de 2019 a estimé qu'environ 96 % des implants sont toujours en place à 10 ans. La couronne peut devoir être remplacée, souvent après une quinzaine d'années."
+        },
+        {
+          "q": "Peut-on terminer un implant en un seul séjour ?",
+          "a": "En général non. L'os a besoin de 3–9 mois pour fusionner avant la pose de la dent définitive, donc le traitement implique souvent des rendez-vous espacés de plusieurs mois."
+        },
+        {
+          "q": "Est-ce douloureux ?",
+          "a": "La zone est anesthésiée pendant la pose. Une légère gêne et un gonflement ensuite sont normaux, et la plupart des personnes retrouvent leur état habituel en une semaine environ."
+        }
+      ]
+    },
+    "clear-aligner": {
+      "name": "Gouttières transparentes (aligneurs)",
+      "aka": ["Invisalign®", "ClearCorrect®", "Appareil dentaire invisible"],
+      "what": "Des gouttières en plastique transparent sur mesure qui déplacent progressivement les dents. Une nouvelle série est généralement remise toutes les deux semaines environ. De petits taquets couleur dent peuvent être collés sur les dents pour aider les gouttières à tenir.",
+      "whoFor": "Personnes aux dents serrées, de travers ou espacées, capables de porter les gouttières 22–23 heures par jour. Cleveland Clinic note qu'un appareil classique peut corriger certains problèmes plus rapidement.",
+      "steps": "Un examen et un scan 3D ou des empreintes sont réalisés, puis un plan de traitement est établi. Les taquets sont collés, et parfois un peu d'émail est retiré entre les dents (réduction amélaire interproximale). De nouvelles gouttières suivent toutes les deux semaines environ avec des contrôles, puis une contention à la fin.",
+      "recovery": "Aucune éviction sociale. La pression ou la douleur à chaque nouvelle gouttière s'atténue généralement en quelques jours.",
+      "risks": [
+        "Douleur et pression à chaque nouvelle gouttière",
+        "Résorption radiculaire (léger raccourcissement des racines), comme avec tout traitement orthodontique",
+        "Caries ou problèmes de gencives si les dents et les gouttières ne sont pas bien nettoyées",
+        "Retour des dents à leur position si la contention n'est pas portée"
+      ],
+      "questionsToAsk": [
+        "Mon cas convient-il aux gouttières, ou un appareil fixe serait-il plus adapté ?",
+        "Combien de gouttières et de mois sont prévus, et à quelle fréquence dois-je venir ?",
+        "Le suivi est-il possible si je vis à l'étranger ?",
+        "Les gouttières de finition et les contentions sont-elles incluses dans le prix ?",
+        "De l'émail sera-t-il retiré entre mes dents (réduction amélaire interproximale) ?"
+      ],
+      "aftercare": [
+        "Porter les gouttières 22–23 heures par jour, en ne les retirant que pour manger, se brosser les dents et passer le fil",
+        "Manger des aliments mous les premiers jours d'une nouvelle gouttière si mâcher fait mal",
+        "Limiter les aliments et boissons sucrés, et nettoyer les dents avant de remettre les gouttières",
+        "Porter la contention comme indiqué après le traitement"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps dure le traitement ?",
+          "a": "Des dents légèrement de travers peuvent demander jusqu'à neuf mois environ. Les cas plus complexes prennent plus de temps."
+        },
+        {
+          "q": "Faut-il une contention après ?",
+          "a": "Oui. Le NHS indique qu'une contention est nécessaire pour empêcher les dents de revenir à leur position d'origine. Votre orthodontiste vous dira combien de temps la porter."
+        },
+        {
+          "q": "Les gouttières raccourcissent-elles les racines ?",
+          "a": "Une certaine résorption radiculaire peut survenir avec tout traitement orthodontique. Une méta-analyse de 2021 portant sur des cas sans extraction a constaté un raccourcissement moyen d'environ 0,5 mm des racines des dents antérieures supérieures, sous le seuil de 1 mm jugé cliniquement significatif, avec des valeurs similaires pour les gouttières et les appareils fixes pour la plupart des dents."
+        }
+      ]
+    },
+    "double-eyelid": {
+      "name": "Chirurgie de la double paupière",
+      "aka": ["Blépharoplastie asiatique", "Blépharoplastie supérieure", "Double paupière sans incision / avec incision"],
+      "what": "Une intervention qui crée un pli visible sur la paupière supérieure. Les paupières sans pli visible (monolid) concernent environ la moitié des personnes d'origine asiatique. Les méthodes vont des techniques sans incision (par sutures) ou à petite incision jusqu'à la chirurgie à incision complète, qui permet aussi de retirer un excès de peau ou de graisse.",
+      "whoFor": "Adultes qui souhaitent un pli permanent et ont des attentes réalistes. L'intervention n'est pas médicalement nécessaire, et du ruban ou de la colle à paupières permettent de créer un pli temporaire.",
+      "steps": "Le pli est dessiné et marqué. Sous anesthésie locale ou générale, des incisions ou de petites ponctions sont faites le long de la ligne prévue, les tissus sont ajustés et le pli est fixé avant la fermeture.",
+      "recovery": "Les points restent en général une semaine environ. La plupart des personnes prennent environ 2 semaines d'arrêt de travail. Bleus et rougeur peuvent mettre plusieurs semaines à s'estomper, et la récupération complète prend quelques mois.",
+      "risks": [
+        "Asymétrie ou plis irréguliers",
+        "Atténuation ou disparition du pli (environ 2 % dans une revue des méthodes à petite incision)",
+        "Cicatrices visibles",
+        "Yeux secs et irrités, ou difficulté temporaire à fermer les yeux",
+        "Rare : saignement derrière l'œil, lésion des muscles de l'œil ou troubles de la vue"
+      ],
+      "questionsToAsk": [
+        "Quelle méthode (sans incision, petite incision ou incision complète) prévoyez-vous, et pourquoi ?",
+        "À quelle hauteur sera le pli, et puis-je voir un croquis de la ligne prévue ?",
+        "Qui pratique l'intervention, et quelle est sa qualification de spécialiste ?",
+        "Quelle est votre politique de reprise si le pli est irrégulier ou s'efface ?",
+        "Quand les points seront-ils retirés, et quand pourrai-je voyager ?"
+      ],
+      "aftercare": [
+        "Surélever la tête avec des oreillers pendant deux ou trois jours",
+        "Utiliser des compresses froides et la pommade ou les gouttes oculaires fournies",
+        "Éviter de se frotter les yeux, les lentilles de contact, la natation et les efforts intenses pendant quelques jours ou selon les consignes",
+        "Porter des lunettes de soleil à l'extérieur pour protéger les yeux"
+      ],
+      "faq": [
+        {
+          "q": "La double paupière est-elle permanente ?",
+          "a": "C'est le but, mais le pli peut s'atténuer ou disparaître. Une revue de 2023 a trouvé un taux cumulé de perte du pli de 2 % avec les techniques à petite incision."
+        },
+        {
+          "q": "Combien de temps avant un aspect naturel ?",
+          "a": "Bleus et rougeur peuvent mettre plusieurs semaines à s'estomper, et la récupération complète prend quelques mois."
+        },
+        {
+          "q": "Quelle différence entre méthode sans incision et avec incision ?",
+          "a": "Les méthodes sans incision ou à petite incision impliquent en général une récupération plus courte. L'incision complète permet de retirer un excès de peau ou de graisse. Le chirurgien choisit selon vos paupières et vos objectifs."
+        }
+      ]
+    },
+    "rhinoplasty": {
+      "name": "Rhinoplastie (chirurgie du nez)",
+      "aka": ["Refaire le nez", "Remodelage du nez", "Rhinoplastie ouverte", "Rhinoplastie fermée"],
+      "what": "Une intervention qui modifie la forme ou la taille du nez, y compris l'arête, la pointe et les narines, et peut aussi améliorer la respiration. Elle peut réduire le nez en retirant du cartilage et de l'os, ou l'agrandir à l'aide de greffons, comme du cartilage prélevé sur l'oreille. La rhinoplastie ouverte utilise une petite incision entre les narines, la rhinoplastie fermée des incisions à l'intérieur du nez.",
+      "whoFor": "Adultes dont la croissance du visage est terminée, en bonne santé et ayant des objectifs réalistes.",
+      "steps": "L'intervention se fait généralement sous anesthésie générale. Des incisions ouvertes ou fermées sont pratiquées, le cartilage et l'os sont remodelés ou greffés, puis une attelle et un pansement sont posés.",
+      "recovery": "L'attelle reste en général environ 7 jours, et respirer par le nez peut être difficile pendant une semaine environ. Beaucoup de personnes prennent jusqu'à 2 semaines d'arrêt de travail. Les bleus et le gonflement autour des yeux s'estompent en 3 semaines environ, et le gonflement peut mettre de 6 mois à un an à se résorber complètement.",
+      "risks": [
+        "Saignement, saignements de nez, infection ou réaction à l'anesthésie",
+        "Difficultés respiratoires, qui peuvent être permanentes",
+        "Perforation de la cloison (un trou dans la paroi entre les narines)",
+        "Engourdissement, odorat modifié, mauvaise cicatrisation ou cicatrices",
+        "Un résultat esthétique insatisfaisant pouvant nécessiter une reprise chirurgicale"
+      ],
+      "questionsToAsk": [
+        "Utiliserez-vous mon propre cartilage, un implant ou les deux, et quels sont les risques de chacun ?",
+        "Voie ouverte ou fermée, et où seront les cicatrices ?",
+        "Comment ma respiration sera-t-elle évaluée et préservée ?",
+        "Combien de temps dois-je rester en Corée avant de prendre l'avion, et qui gère les complications ensuite ?",
+        "Quelle est votre politique de reprise, et quel en est le coût ?"
+      ],
+      "aftercare": [
+        "Garder la tête surélevée avec des oreillers pendant deux ou trois jours",
+        "Garder l'attelle au sec, ne pas se moucher et éternuer la bouche ouverte",
+        "Éviter les bains chauds jusqu'au retrait de l'attelle",
+        "Éviter le sport intense et les sports de contact pendant 4–6 semaines"
+      ],
+      "faq": [
+        {
+          "q": "Quand verrai-je la forme définitive ?",
+          "a": "Le gonflement initial diminue en quelques semaines, mais selon l'American Society of Plastic Surgeons, il peut falloir jusqu'à un an pour que le nouveau contour s'affine complètement."
+        },
+        {
+          "q": "Combien de temps d'arrêt de travail faut-il ?",
+          "a": "Le NHS indique jusqu'à 2 semaines. L'attelle est généralement retirée au bout d'une semaine environ, et le sport intense est évité pendant 4–6 semaines."
+        },
+        {
+          "q": "Le filler du nez est-il une alternative ?",
+          "a": "Certaines cliniques proposent le filler comme « rhinoplastie non chirurgicale », mais la FDA américaine n'a pas autorisé les fillers dermiques pour une injection dans le nez."
+        }
+      ]
+    },
+    "thread-lift": {
+      "name": "Lifting par fils",
+      "aka": ["Lifting par fils résorbables", "Lifting par fils crantés", "Fils PDO"],
+      "what": "Des fils de qualité médicale sont placés sous la peau pour soulever les tissus relâchés et stimuler le collagène. C'est une technique peu invasive réalisée sous anesthésie locale. La plupart des fils actuels se résorbent avec le temps, donc les résultats sont temporaires et durent environ 1–3 ans selon Cleveland Clinic.",
+      "whoFor": "Adultes présentant les premiers signes de relâchement, souvent entre la fin de la trentaine et le début de la cinquantaine, qui veulent un changement plus léger qu'un lifting et acceptent des résultats temporaires.",
+      "steps": "Une anesthésie locale est réalisée. Les fils sont insérés sous la peau par de petits points d'entrée, les tissus sont soulevés, puis les fils sont ancrés et coupés.",
+      "recovery": "Gonflement et bleus peuvent durer jusqu'à cinq jours. La plupart des personnes reprennent le travail tout de suite, mais le sport intense est souvent évité pendant deux semaines environ.",
+      "risks": [
+        "Gonflement (la complication la plus fréquente), bleus et douleur",
+        "Fossettes ou plissement de la peau (environ 10 % dans une méta-analyse de 2021)",
+        "Engourdissement ou picotements, ou fils visibles ou palpables",
+        "Infection ou fil qui ressort à travers la peau, plus probable avec des fils non résorbables et après 50 ans",
+        "Résultats qui s'estompent avec le temps"
+      ],
+      "questionsToAsk": [
+        "Quel matériau de fil sera utilisé, combien de fils, et sont-ils résorbables ?",
+        "Combien de temps pensez-vous que le résultat durera pour ma peau ?",
+        "Que faites-vous si une fossette ou un fil visible apparaît ?",
+        "Un lifting par fils est-il réaliste pour mon degré de relâchement ?",
+        "Quelles activités dois-je éviter, et pendant combien de temps ?"
+      ],
+      "aftercare": [
+        "Appliquer une compresse froide ou une poche de glace",
+        "Ne pas se laver le visage pendant les 24 premières heures, et éviter le maquillage pendant plusieurs jours",
+        "Dormir la tête surélevée",
+        "Éviter le sport intense pendant deux semaines environ",
+        "Appeler la clinique en cas de fièvre, de mal de tête persistant ou de gonflement durant plus de 48 heures"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps dure un lifting par fils ?",
+          "a": "Cleveland Clinic indique environ un à trois ans. Dans une méta-analyse de 2021, la satisfaction est passée de 98 % juste après le traitement à 88 % à six mois."
+        },
+        {
+          "q": "Est-ce la même chose qu'un lifting ?",
+          "a": "Non. C'est peu invasif, et le changement est plus léger et temporaire. Un lifting chirurgical retire et repositionne les tissus."
+        },
+        {
+          "q": "Quelles sont les complications les plus fréquentes ?",
+          "a": "Une méta-analyse de 2021 a relevé un gonflement dans 35 % des cas, des fossettes cutanées dans 10 %, un engourdissement ou des picotements dans 6 %, des fils visibles ou palpables dans 4 %, et une infection et une extrusion de fil dans 2 % des cas chacune."
+        }
+      ]
+    },
+    "fat-grafting": {
+      "name": "Lipofilling du visage",
+      "aka": ["Transfert de graisse", "Injection de graisse autologue", "Lipostructure"],
+      "what": "De la graisse est prélevée sur une autre partie du corps par liposuccion (par exemple l'abdomen ou les cuisses), traitée, puis injectée dans le visage pour redonner du volume à des zones comme les joues, les tempes ou le front. Une partie de la graisse est résorbée les premiers mois, donc plus d'une séance est souvent nécessaire.",
+      "whoFor": "Adultes qui souhaitent un volume facial plus durable avec leurs propres tissus, disposent d'assez de graisse à prélever et acceptent des résultats moins prévisibles qu'avec des fillers prêts à l'emploi.",
+      "steps": "Sous anesthésie locale ou générale, la graisse est prélevée par de petites incisions avec une fine canule. Elle est traitée pour séparer le sang et les liquides, puis injectée dans le visage en petites quantités.",
+      "recovery": "Bleus et gonflement aux deux sites peuvent durer quelques semaines, et beaucoup de personnes prennent environ deux semaines d'arrêt de travail. Le résultat définitif peut demander jusqu'à 6 mois, car une partie de la graisse est résorbée.",
+      "risks": [
+        "Bleus importants, gonflement prolongé, engourdissement et petites cicatrices",
+        "Irrégularités, bosses, asymétrie, nécrose graisseuse ou kystes pouvant nécessiter une correction",
+        "Survie imprévisible de la graisse, une partie étant résorbée",
+        "Rare mais grave : passage de graisse dans un vaisseau sanguin (embolie), ayant causé cécité, AVC et décès ; la glabelle (entre les sourcils) et les tempes sont les sites les plus souvent signalés",
+        "Saignement sous la peau (hématome) ou infection"
+      ],
+      "questionsToAsk": [
+        "Où la graisse sera-t-elle prélevée, et à quoi ressemblera cette zone ensuite ?",
+        "Quelle part de la graisse devrait survivre, et pourrais-je avoir besoin d'une autre séance ?",
+        "Quelles techniques utilisez-vous pour limiter le risque d'injection dans un vaisseau sanguin ?",
+        "Sera-ce sous anesthésie locale ou générale ?",
+        "Qui gère les complications après mon retour chez moi ?"
+      ],
+      "aftercare": [
+        "Prévoir que quelqu'un vous raccompagne après l'intervention",
+        "S'attendre à des bleus et à un gonflement pendant quelques semaines, et prévoir un arrêt",
+        "Contacter le chirurgien si le gonflement, la rougeur ou la douleur augmentent",
+        "Consulter en urgence en cas de trouble soudain de la vue, de mal de tête intense ou de faiblesse"
+      ],
+      "faq": [
+        {
+          "q": "Combien de temps dure une greffe de graisse ?",
+          "a": "Selon l'American Society of Plastic Surgeons, environ 50 % de la graisse injectée survit, et la graisse qui survit est durable. Au visage, les résultats peuvent être moins prévisibles, et plusieurs interventions sont souvent nécessaires."
+        },
+        {
+          "q": "Les complications sont-elles fréquentes ?",
+          "a": "Le taux global est souvent cité autour de 2 %, mais une revue systématique de 2022 a conclu que le taux réel est inconnu en raison de la sous-déclaration. Les événements graves comme l'injection dans un vaisseau sanguin sont rares mais peuvent laisser des séquelles permanentes."
+        },
+        {
+          "q": "Quelle différence entre greffe de graisse et filler ?",
+          "a": "Elle utilise votre propre graisse et peut durer plus longtemps, mais c'est une intervention plus lourde, avec liposuccion, gêne au site de prélèvement et récupération plus longue."
+        }
+      ]
+    },
+    "canthoplasty": {
+      "name": "Canthoplastie (chirurgie du coin de l'œil)",
+      "aka": ["Épicanthoplastie (coin interne)", "Canthoplastie latérale (coin externe)"],
+      "what": "Une chirurgie des coins de l'œil. L'épicanthoplastie libère le repli du coin interne (le repli épicanthique, fréquent dans les paupières d'Asie de l'Est). La canthoplastie latérale esthétique allonge le coin externe pour agrandir l'ouverture de l'œil et réduire son inclinaison vers le haut. Les chirurgiens l'abordent souvent avec la chirurgie de la double paupière.",
+      "whoFor": "Adultes ayant un repli interne marqué, ou souhaitant une ouverture de l'œil plus longue, avec des attentes réalistes.",
+      "steps": "Sous anesthésie locale ou générale, une petite incision ou un petit lambeau cutané est réalisé au coin de l'œil. Les tissus sont libérés ou repositionnés, puis refermés par des points fins.",
+      "recovery": "Gêne, gonflement et bleus sont à prévoir pendant les deux premières semaines environ. Beaucoup de personnes se reposent une semaine environ avant de reprendre le travail ou les études, et la récupération complète prend 2–4 semaines. Les lignes d'incision restent visibles 2–3 mois avant de s'estomper.",
+      "risks": [
+        "Cicatrice visible au coin de l'œil (un inconvénient connu des anciennes techniques du coin interne)",
+        "Correction insuffisante, récidive ou recollement du coin",
+        "Yeux secs ou difficulté à fermer les yeux",
+        "Saignement, infection ou douleur",
+        "Forme défavorable du coin externe : une revue de 2016 note que les complications après canthoplastie latérale esthétique ne sont pas rares"
+      ],
+      "questionsToAsk": [
+        "Coin interne, coin externe ou les deux, et quel changement est réaliste pour moi ?",
+        "Où sera la cicatrice, et à quel point pourrait-elle être visible ?",
+        "Quel est le risque que le coin se recolle, et quelle est votre politique de reprise ?",
+        "Sera-t-elle associée à une chirurgie de la double paupière ?",
+        "Serai-je sous anesthésie locale ou générale ?"
+      ],
+      "aftercare": [
+        "Ne pas se frotter les yeux",
+        "Tenir l'eau, le savon et les produits de soin à l'écart des incisions jusqu'à cicatrisation",
+        "Éviter piscines et saunas pendant trois semaines",
+        "Dormir la tête surélevée et appliquer de la glace par périodes de 15 minutes contre le gonflement",
+        "Éviter le sport intense pendant quelques semaines"
+      ],
+      "faq": [
+        {
+          "q": "Quelle différence entre épicanthoplastie et canthoplastie latérale ?",
+          "a": "L'épicanthoplastie concerne le coin interne, près du nez. La canthoplastie latérale concerne le coin externe, du côté de l'oreille."
+        },
+        {
+          "q": "Y aura-t-il une cicatrice ?",
+          "a": "Oui. Les lignes d'incision sont visibles pendant deux à trois mois, puis s'estompent. Les techniques récentes du coin interne utilisent des incisions plus courtes pour limiter les cicatrices visibles."
+        },
+        {
+          "q": "Combien de temps dure la récupération ?",
+          "a": "Selon Cleveland Clinic, deux à quatre semaines pour une récupération complète, avec environ une semaine de repos avant de reprendre le travail ou les études."
+        }
+      ]
+    },
+    "ptosis-correction": {
+      "name": "Correction du ptosis (chirurgie d'ouverture des yeux)",
+      "aka": ["Réparation de la blépharoptose", "Avancement du releveur", "Correction de l'ouverture des yeux"],
+      "what": "Une chirurgie qui retend ou raccourcit le muscle releveur de la paupière supérieure pour que la paupière soit plus haute et que l'œil soit plus découvert. Sur le plan médical, elle traite les paupières tombantes (ptosis) qui gênent la vue. La correction esthétique d'un ptosis léger se pratique aussi en Asie de l'Est, parfois pendant une chirurgie de la double paupière.",
+      "whoFor": "Adultes dont les paupières supérieures tombent, en raison de l'âge, d'une blessure ou depuis la naissance, ou qui souhaitent un regard plus ouvert. La cause doit être vérifiée d'abord, car un ptosis peut parfois venir d'une maladie musculaire, nerveuse ou autre.",
+      "steps": "Sous anesthésie locale avec sédation, le muscle releveur est retendu soit par une incision dans le pli de la paupière, soit par l'intérieur de la paupière, sans incision cutanée. L'incision est ensuite refermée.",
+      "recovery": "Une visite de contrôle est généralement prévue quelques jours à une semaine après l'intervention. La hauteur et la forme des paupières peuvent sembler inégales au début, le temps que le gonflement retombe. Après une chirurgie des paupières, la plupart des personnes reprennent leur routine en 1–2 semaines.",
+      "risks": [
+        "Correction insuffisante ou excessive (paupière trop basse ou trop haute)",
+        "Asymétrie entre les deux yeux",
+        "Difficulté à fermer complètement l'œil (lagophtalmie) et sécheresse oculaire",
+        "Lésion de la cornée",
+        "Saignement ou infection"
+      ],
+      "questionsToAsk": [
+        "Qu'est-ce qui cause ma paupière tombante, et d'autres affections ont-elles été écartées ?",
+        "À quelle hauteur placerez-vous chaque paupière, et comment gérez-vous l'asymétrie ?",
+        "Sera-t-elle associée à une chirurgie de la double paupière ?",
+        "Que prévoyez-vous si un côté finit trop haut ou trop bas ?",
+        "Comment la surface de mon œil sera-t-elle protégée si je ne peux pas le fermer complètement au début ?"
+      ],
+      "aftercare": [
+        "Utiliser des compresses froides et les gouttes ou la pommade oculaires prescrites",
+        "Éviter de se frotter les yeux et de porter des lentilles de contact jusqu'à l'accord du chirurgien",
+        "Se rendre à la visite de contrôle, généralement dans la semaine",
+        "Consulter rapidement en cas de troubles de la vue, de douleur intense ou de saignement"
+      ],
+      "faq": [
+        {
+          "q": "La correction du ptosis, c'est la même chose que la chirurgie de la double paupière ?",
+          "a": "Non. La correction du ptosis modifie la hauteur d'ouverture de la paupière en agissant sur le muscle releveur, tandis que la chirurgie de la double paupière crée un pli. Les deux sont parfois réalisées ensemble."
+        },
+        {
+          "q": "Existe-t-il une option non chirurgicale ?",
+          "a": "Pour certains adultes atteints de ptosis acquis, un collyre sur ordonnance (oxymétazoline) peut ouvrir davantage la paupière. Il doit être utilisé chaque jour et ne fonctionne pas pour tous les types de ptosis."
+        },
+        {
+          "q": "Une asymétrie juste après l'intervention est-elle normale ?",
+          "a": "Cleveland Clinic note que la hauteur et la forme des paupières peuvent sembler inégales juste après l'intervention, et qu'une correction insuffisante ou excessive peut survenir et se résout souvent avec le temps."
+        }
+      ]
+    }
+  }
 }

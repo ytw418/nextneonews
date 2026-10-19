@@ -1,4 +1,928 @@
 {
-  "fields": {},
-  "procedures": {}
+  "fields": {
+    "derma": {
+      "name": "Skin & dermatology",
+      "intro": "Lasers, energy devices and injectables offered at dermatology clinics. Each page lists recovery time, pain level, risks and questions to ask. No clinic names, rankings or reviews."
+    },
+    "dental": {
+      "name": "Dental",
+      "intro": "Cleaning, whitening, fillings, veneers, implants and clear aligners: what each involves, how long it takes and what can go wrong."
+    },
+    "plastic": {
+      "name": "Plastic surgery",
+      "intro": "Eyelid, nose and facial procedures. Surgery carries real risks and recovery time, and these pages cover both, without clinic names or before-and-after photos."
+    }
+  },
+  "procedures": {
+    "laser-toning": {
+      "name": "Laser toning",
+      "aka": ["Low-fluence Q-switched Nd:YAG laser", "1064 nm laser toning", "QS Nd:YAG toning"],
+      "what": "Repeated passes of a 1064 nm Q-switched Nd:YAG laser at low energy across the face. It is widely used in Asia for melasma and uneven pigment. A 2022 systematic review of 42 studies found it generally effective for melasma, but results vary and some studies report pigment returning within about three months after treatment ends.",
+      "whoFor": "People with melasma or diffuse uneven pigment who can commit to a series of visits. The American Academy of Dermatology describes laser and light treatments as add-ons for people already using prescribed skin medication and daily sun protection.",
+      "steps": "Makeup is removed and the eyes are covered. The laser is passed over the treatment area several times at low energy, then sunscreen is applied.",
+      "recovery": "Little or no downtime; mild redness usually settles within a day. Results build gradually over a series of sessions. In one study of Korean patients, the median course was 10 sessions about one week apart.",
+      "risks": [
+        "Mottled hypopigmentation (white spots) that can persist, linked to high cumulative laser energy",
+        "Rebound darkening (hyperpigmentation) from inflammation, especially with aggressive settings or darker skin",
+        "Melasma returning after the course ends",
+        "Temporary redness after each session"
+      ],
+      "questionsToAsk": [
+        "Has a dermatologist confirmed that my pigment is melasma and not another condition?",
+        "How many sessions do you plan, how far apart, and what is the total cost?",
+        "How do you set the energy to lower the risk of white spots or rebound darkening?",
+        "Which creams or medicines should I use alongside it, and for how long?",
+        "What will you do if my pigment gets darker during the course?"
+      ],
+      "aftercare": [
+        "Use broad-spectrum sunscreen (SPF 30 or higher) every day and reapply outdoors",
+        "Keep using the skin-care plan your dermatologist prescribed between sessions",
+        "Tell the clinic promptly if new white or darker patches appear"
+      ],
+      "faq": [
+        {
+          "q": "Does laser toning remove melasma permanently?",
+          "a": "No. Reviews report improvement, but also recurrence after treatment stops. Most plans include long-term sun protection and maintenance."
+        },
+        {
+          "q": "How many sessions are usually needed?",
+          "a": "Protocols vary. In one study of Korean patients, the median was 10 sessions about one week apart. Ask for the planned number and the total price before starting."
+        },
+        {
+          "q": "Can it make pigment worse?",
+          "a": "Yes. A 2022 systematic review reported rebound hyperpigmentation with aggressive settings, especially in darker skin, and persistent white spots linked to high cumulative energy."
+        }
+      ]
+    },
+    "pico-laser": {
+      "name": "Pico laser",
+      "aka": ["Picosecond laser", "Fractional picosecond laser"],
+      "what": "A laser that fires pulses lasting picoseconds (trillionths of a second) to break pigment into very fine particles. It was first used for tattoo removal and is now also used for freckles and sun spots, skin texture, acne scars and melasma. A 2021 systematic review rated the evidence strongest for tattoos and weaker for rejuvenation, melasma and scars.",
+      "whoFor": "People seeking treatment for tattoos, benign pigmented spots, texture or acne scars. Different spots respond differently, so a dermatologist's diagnosis of the pigment comes first.",
+      "steps": "The skin is cleansed and the eyes are covered. Numbing cream may be applied. The laser is aimed at individual spots or passed over the whole area, depending on the goal.",
+      "recovery": "Depends on the setting. In a study of sun spots (lentigines), redness, swelling and small crusts mostly cleared within 3–5 days.",
+      "risks": [
+        "Post-inflammatory hyperpigmentation (temporary darkening)",
+        "Hypopigmentation (lighter patches)",
+        "Redness, swelling, crusting or pinpoint bleeding",
+        "For melasma, the 755 nm type did not outperform skin-lightening creams in a 2023 meta-analysis and was linked to darkening"
+      ],
+      "questionsToAsk": [
+        "Which wavelength and setting will you use for my type of spot, and why?",
+        "How many sessions do you expect, and how far apart?",
+        "What is the chance of darker or lighter patches with my skin tone?",
+        "What should I do if crusts or darkening appear?",
+        "Is the price per session or per package?"
+      ],
+      "aftercare": [
+        "Protect treated skin from the sun with sunscreen and shade",
+        "Let crusts fall off on their own instead of picking them",
+        "Follow the clinic's written aftercare and report unexpected darkening"
+      ],
+      "faq": [
+        {
+          "q": "Is pico laser the same as laser toning?",
+          "a": "No. Both target pigment, but pico lasers use much shorter pulses. For melasma, a 2023 meta-analysis found benefit with 1064 nm picosecond lasers, while the 755 nm type did not outperform creams. The right tool depends on the diagnosis."
+        },
+        {
+          "q": "How long is the downtime?",
+          "a": "It varies with the setting. In a study of sun spots, redness, swelling and crusting mostly resolved within 3–5 days. A few people had mild darkening that faded within about a month with topical treatment."
+        },
+        {
+          "q": "What is it used for?",
+          "a": "Tattoo removal (strongest evidence), benign pigmented spots, skin rejuvenation, melasma and acne scars, according to a 2021 systematic review."
+        }
+      ]
+    },
+    "rejuran": {
+      "name": "Rejuran (polynucleotide injection)",
+      "aka": ["REJURAN", "Polynucleotide (PN) injection", "PN skin booster"],
+      "what": "Injections of polynucleotides (PN), DNA-derived molecules, placed into the skin with many small injections. A 2024 review describes REJURAN as a prominent PN product in Asia. Studies report improvements in fine wrinkles, texture and elasticity, but a 2025 systematic review found only nine studies, of low-to-moderate quality.",
+      "whoFor": "Adults who want to improve skin texture, fine lines or skin quality and accept a series of injections with gradual, modest change.",
+      "steps": "The face is cleansed and numbed. PN is injected in small amounts across the treatment area with a fine needle, and the skin is cleaned.",
+      "recovery": "Redness and swelling often last a few hours. Small bumps at the injection points are common at first and are usually temporary. Bruising is possible.",
+      "risks": [
+        "Pain, redness and swelling at injection points",
+        "Bruising and visible needle marks",
+        "Small temporary bumps under the skin",
+        "Rare: foreign-body granulomas (persistent lumps) or post-inflammatory darkening"
+      ],
+      "questionsToAsk": [
+        "Which product and how many mL will be injected, and can I see the sealed package?",
+        "How many sessions, how far apart, and what is the total cost?",
+        "Who performs the injection, and are they a licensed doctor?",
+        "Should I stop any medicines or supplements beforehand?",
+        "What should I do if bumps or bruises do not go away?"
+      ],
+      "aftercare": [
+        "Do not rub or press the bumps unless the clinic tells you to",
+        "Use gentle skin care and sunscreen for the next few days",
+        "Contact the clinic if a lump, pain or redness gets worse"
+      ],
+      "faq": [
+        {
+          "q": "Is Rejuran a filler?",
+          "a": "Not in the usual sense. It is grouped with skin boosters, which aim to improve skin quality (texture, hydration, elasticity) rather than add volume."
+        },
+        {
+          "q": "How long do results last?",
+          "a": "A European consensus cited in a 2024 review reported effects lasting about 6–12 months after a course of three sessions. Individual results vary."
+        },
+        {
+          "q": "How strong is the evidence?",
+          "a": "Limited. A 2025 systematic review found nine studies with 219 patients, of low-to-moderate quality. Side effects were generally mild and temporary, but larger, higher-quality studies are still needed."
+        }
+      ]
+    },
+    "skin-booster": {
+      "name": "Skin booster (hyaluronic acid)",
+      "aka": ["Hyaluronic acid skin booster", "Injectable skin hydrator", "Skin quality booster"],
+      "what": "Small amounts of hyaluronic acid (HA) injected into the skin with many closely spaced injections to improve hydration, texture and glow rather than add volume. 'Skin booster' is a broad label: clinics also use it for PN, PLLA and other injectables, so ask which product is used.",
+      "whoFor": "Adults with dry-looking, dull or finely lined skin who want gradual change in skin quality without added volume.",
+      "steps": "The skin is cleansed and numbed. Many small injections are placed close together with a very fine needle, then the area is cleaned.",
+      "recovery": "Mild redness and swelling usually last a few hours. Small bumps can appear and are usually temporary. Bruising and needle marks are possible.",
+      "risks": [
+        "Pain, bruising and needle marks",
+        "Bumps or 'beads' (papules), especially when cross-linked HA is placed too superficially",
+        "Redness and swelling for a few hours",
+        "Rare: granulomas (persistent lumps)",
+        "Rare but serious with any HA filler: injection into a blood vessel, which can damage skin or vision"
+      ],
+      "questionsToAsk": [
+        "Exactly which product is this: HA, PN, PLLA or a mix?",
+        "Is the product approved by Korea's drug regulator (MFDS), and can I see the package?",
+        "How many sessions are planned and what is the total price?",
+        "How do you reduce the chance of bumps?",
+        "What should I do if I notice skin color change or severe pain?"
+      ],
+      "aftercare": [
+        "Avoid pressing or massaging the area unless instructed",
+        "Skip heavy makeup for the rest of the day if the clinic advises it",
+        "Seek care urgently for severe pain, pale or dusky skin, or any vision change"
+      ],
+      "faq": [
+        {
+          "q": "How is a skin booster different from a filler?",
+          "a": "Fillers add volume and shape. Skin boosters use small, shallow injections, usually of lightly cross-linked or non-cross-linked HA, to target hydration and texture."
+        },
+        {
+          "q": "When will I see results?",
+          "a": "An expert panel reported visible effects after the first session, with progressive improvement for up to 12 months when repeated every 4–6 months after an initial course of up to three sessions."
+        },
+        {
+          "q": "Does it hurt?",
+          "a": "Pain, discomfort and bruising are listed side effects because many small injections are used. Ask whether numbing cream is applied."
+        }
+      ]
+    },
+    "potenza": {
+      "name": "Potenza (RF microneedling)",
+      "aka": ["Radiofrequency microneedling", "RF microneedling", "Fractional radiofrequency microneedling"],
+      "what": "A device that inserts fine needles into the skin and releases radiofrequency (RF) energy at the needle tips, heating deeper layers to trigger collagen remodeling. Potenza is one RF microneedling device and can run in monopolar or bipolar mode. Studies cover skin rejuvenation, acne scars, active acne and stretch marks.",
+      "whoFor": "People with acne scars, uneven texture or mild laxity who accept slow, gradual results. A 2021 review found it can be used in darker skin types.",
+      "steps": "Numbing cream is applied. Needle depth and energy are set, the handpiece is moved across the area, and the skin is cooled and soothed afterwards.",
+      "recovery": "Redness typically lasts about 1–7 days, and small bumps at needle points are common for the first 1–2 days. Grid-like marks can last 1–2 weeks after higher-energy treatment. Improvement can continue for up to 6 months.",
+      "risks": [
+        "Burns, scarring, fat loss, disfigurement or nerve damage: the US FDA warned in October 2025 about reports of these serious complications",
+        "Redness, swelling, bruising and grid marks",
+        "Post-inflammatory hyperpigmentation, mainly in darker skin",
+        "Acne flare, cold-sore (herpes) outbreak or superficial infection"
+      ],
+      "questionsToAsk": [
+        "Which device and needle tip will be used, and who operates it?",
+        "What depth and energy are planned, and how will you adjust them for my skin tone?",
+        "How many sessions do you plan, and how far apart?",
+        "Do I need antiviral medicine if I get cold sores?",
+        "What happens if I develop a burn or a lasting mark?"
+      ],
+      "aftercare": [
+        "Avoid makeup for about 24–48 hours and use a gentle cleanser",
+        "Stay out of the sun for about 2 weeks and use sunscreen",
+        "Sleep with your head raised for 2–3 nights to reduce facial swelling",
+        "Contact the clinic for blistering, worsening pain or signs of infection"
+      ],
+      "faq": [
+        {
+          "q": "Can RF microneedling be done at home?",
+          "a": "No. The FDA describes RF microneedling as a medical procedure, not a cosmetic treatment, and says the devices should not be used at home."
+        },
+        {
+          "q": "When will I see results?",
+          "a": "Collagen remodeling is slow and progressive. A 2021 review noted continued improvement up to 6 months after treatment."
+        },
+        {
+          "q": "How long is the downtime?",
+          "a": "Usually a few days of redness and small bumps. Redness can last up to about a week, and grid marks after high-energy settings can take 1–2 weeks to fade."
+        }
+      ]
+    },
+    "ulthera": {
+      "name": "Ulthera (microfocused ultrasound)",
+      "aka": ["Ultherapy", "Microfocused ultrasound with visualization (MFU-V)"],
+      "what": "A non-invasive device that focuses ultrasound energy at set depths under the skin, creating small heated points that trigger new collagen. Built-in ultrasound imaging lets the operator see the layers being treated. It is FDA-cleared for lifting and tightening specific areas and is not a replacement for a surgical facelift.",
+      "whoFor": "Adults, typically in their 30s or older, with mild to moderate sagging of the face and neck.",
+      "steps": "The skin is cleansed and ultrasound gel is applied. The handpiece images the skin layers and delivers energy line by line, then the gel is removed.",
+      "recovery": "Usually no downtime. Slight redness can last about an hour. Some people have swelling, bruising or tenderness along bony areas for up to a month. Full results take 3–6 months to show.",
+      "risks": [
+        "Discomfort or pain during treatment",
+        "Redness, swelling, bruising or tenderness, sometimes for weeks",
+        "Temporary facial nerve weakness or numbness",
+        "Rare: blistering, ulceration, tissue atrophy or skin necrosis, reported in a 2018 case series"
+      ],
+      "questionsToAsk": [
+        "Is this the Ulthera system or a different focused-ultrasound (HIFU) device?",
+        "How many lines and which depths will be used on my face?",
+        "What pain control is offered?",
+        "When should I expect changes, and might a repeat be needed?",
+        "How do you avoid nerve areas?"
+      ],
+      "aftercare": [
+        "Normal activities can usually resume right away",
+        "Expect some tenderness along the jaw or cheekbones",
+        "Report numbness, weakness in facial movement or blistering to the clinic"
+      ],
+      "faq": [
+        {
+          "q": "Is Ulthera the same as HIFU?",
+          "a": "Ulthera (Ultherapy) is one microfocused ultrasound system with built-in imaging. Other devices sold as 'HIFU' also use focused ultrasound but differ in design, so ask which device is used."
+        },
+        {
+          "q": "When do results show?",
+          "a": "Some people notice change right away, but Cleveland Clinic says full results take 3–6 months."
+        },
+        {
+          "q": "Does it replace a facelift?",
+          "a": "No. Cleveland Clinic notes it suits mild to moderate laxity and is not a replacement for a surgical facelift."
+        }
+      ]
+    },
+    "thermage": {
+      "name": "Thermage (monopolar radiofrequency)",
+      "aka": ["Monopolar radiofrequency (MRF)", "ThermaCool", "Thermage FLX"],
+      "what": "A non-invasive device that heats the deeper skin (dermis) with monopolar radiofrequency while protecting the surface, so collagen contracts and remodels. It is used for mild to moderate skin laxity and wrinkles. A 2022 systematic review found measurable improvement in laxity, with mostly minor, short-lived complications.",
+      "whoFor": "Adults with mild to moderate skin laxity. In a survey of Korean dermatologists, people in their 40s were thought to respond most, and skin thickness was the main factor in response.",
+      "steps": "The skin is cleansed. The treatment tip delivers heat in several passes while the surface is cooled, and your feedback on heat helps set the energy.",
+      "recovery": "Redness right after treatment is common and usually clears within 1–2 days. Downtime is minimal.",
+      "risks": [
+        "Heat pain or discomfort during treatment",
+        "Redness and swelling for 1–2 days",
+        "Rare: superficial burns or crusting",
+        "Rare: slight contour irregularities (dents) or small red bumps under the skin"
+      ],
+      "questionsToAsk": [
+        "Is this a genuine Thermage device and tip, and how many shots are planned?",
+        "Will you adjust the energy based on how the heat feels to me?",
+        "What is the plan if I develop a blister or a dent?",
+        "Is my degree of sagging and skin thickness suited to this treatment?",
+        "When might a repeat session make sense?"
+      ],
+      "aftercare": [
+        "Usual activities can typically resume the same day",
+        "Use gentle skin care and sunscreen",
+        "Report blisters, crusting or dents to the clinic"
+      ],
+      "faq": [
+        {
+          "q": "How is Thermage different from Ulthera?",
+          "a": "Both are non-surgical heat-based devices. Thermage uses radiofrequency to heat the dermis, while Ulthera uses focused ultrasound at set depths. A doctor chooses based on skin and goals."
+        },
+        {
+          "q": "When will I see results?",
+          "a": "In a 2007 survey of 5,700 treatments using a lower-energy, multiple-pass method, 87% showed immediate tightening and 92% had tightening at six months."
+        },
+        {
+          "q": "Does it hurt?",
+          "a": "Heat is felt. In the same survey, 5% found the multiple-pass, lower-energy method too painful, compared with 45% under the older high-energy method."
+        }
+      ]
+    },
+    "botox": {
+      "name": "Botox (botulinum toxin)",
+      "aka": ["Botulinum toxin type A", "Neuromodulator", "Botox®", "Dysport®", "Xeomin®", "Jeuveau®"],
+      "what": "Small doses of botulinum toxin injected into specific muscles to block the nerve signals that make them contract. It softens frown lines, forehead lines and crow's feet, and is also used to soften a square jawline, reduce neck bands and correct a gummy smile.",
+      "whoFor": "Adults bothered by expression lines or a wide jaw from muscle bulk who accept temporary results that need repeating.",
+      "steps": "The doctor assesses the muscles and injects small amounts with a very fine needle. No anesthesia is usually needed.",
+      "recovery": "No downtime, and normal activities can resume right away. Results appear within a few days and fully within about 5–7 days, then typically last 3–4 months.",
+      "risks": [
+        "Bruising and pain at injection sites",
+        "Headache",
+        "Temporary eyelid or eyebrow droop",
+        "Temporary facial weakness if the toxin spreads to nearby muscles",
+        "Very rare: spread beyond the area causing breathing or swallowing problems, muscle weakness or slurred speech"
+      ],
+      "questionsToAsk": [
+        "Which product (brand) and how many units will be used for each area?",
+        "Is the product approved in Korea, and will it be opened in front of me?",
+        "Who performs the injection?",
+        "When should I come back if the result looks uneven?",
+        "Does anything in my medical history, such as pregnancy, a muscle or nerve condition, or my medicines, matter?"
+      ],
+      "aftercare": [
+        "Do not rub or massage the treated areas",
+        "Normal activities can resume right away",
+        "Seek urgent care for trouble breathing, swallowing or speaking"
+      ],
+      "faq": [
+        {
+          "q": "How long does Botox last?",
+          "a": "Typically about 3–4 months. As it wears off, muscle movement and lines return."
+        },
+        {
+          "q": "Why shouldn't I rub the area afterwards?",
+          "a": "Rubbing can move the toxin to nearby muscles and cause temporary weakness or drooping, according to the American Society of Plastic Surgeons."
+        },
+        {
+          "q": "Is 'Botox' a brand?",
+          "a": "Botox® is one brand of botulinum toxin. Others include Dysport®, Xeomin® and Jeuveau®. Clinics use different products, so ask which one and what dose."
+        }
+      ]
+    },
+    "filler": {
+      "name": "Dermal filler",
+      "aka": ["Hyaluronic acid (HA) filler", "Soft tissue filler", "Injectable filler"],
+      "what": "Gel injected under the skin to add volume or smooth lines in areas such as the lips, cheeks, chin and smile lines. Most cosmetic fillers are hyaluronic acid (HA), which the body absorbs over time. Others, such as calcium hydroxylapatite, poly-L-lactic acid and PMMA, last longer and can be harder to remove.",
+      "whoFor": "Adults who want temporary volume or smoothing. In the US, fillers are approved for adults 22 and older. The US FDA has not approved fillers for the nose, between the eyebrows, around the eyes, the forehead or the neck.",
+      "steps": "The area is assessed and marked, then numbed. The filler is injected and the area may be gently shaped.",
+      "recovery": "Most activities can resume right away, but avoid intense exercise for 24–48 hours. Swelling, bruising, redness or an overfilled look usually improve within hours to a few days.",
+      "risks": [
+        "Bruising, redness, swelling, tenderness and itching",
+        "Lumps, filler you can feel under the skin, or under- or over-correction",
+        "Infection or allergic reaction",
+        "Filler moving away from the injection site",
+        "Rare but serious: injection into a blood vessel, which can cause skin death (necrosis), vision loss or blindness, or stroke"
+      ],
+      "questionsToAsk": [
+        "Which product is it (HA or another material), and can it be dissolved if needed?",
+        "How many mL will be used, and what is the price per syringe?",
+        "How do you reduce the risk of injecting into a blood vessel, and what is your emergency plan?",
+        "Is the area I am asking about one the FDA has not approved fillers for?",
+        "Who should I contact out of hours if I have pain, skin color change or vision problems?"
+      ],
+      "aftercare": [
+        "Avoid intense exercise for 24–48 hours",
+        "Use ice to ease swelling if the clinic advises it",
+        "Seek emergency care for vision changes, or for severe pain or weakness on one side of the body"
+      ],
+      "faq": [
+        {
+          "q": "How long do fillers last?",
+          "a": "It depends on the material and the area. HA fillers are gradually absorbed, while materials such as PMMA are semi-permanent."
+        },
+        {
+          "q": "Is nose filler approved?",
+          "a": "The US FDA has not approved dermal fillers for injection into the nose, and it advises against injecting fillers there. Rules differ by country, so ask what the product is approved for in Korea."
+        },
+        {
+          "q": "Can filler be removed?",
+          "a": "The FDA notes that removal may be harder for 'permanent' fillers and for fillers not made of materials such as HA. Ask before treatment."
+        },
+        {
+          "q": "What are the warning signs after filler?",
+          "a": "Severe pain, pale or dusky skin near the injection, or any vision change can signal a blocked blood vessel and need urgent care."
+        }
+      ]
+    },
+    "aqua-peel": {
+      "name": "Aqua peel (hydradermabrasion)",
+      "aka": ["Hydradermabrasion"],
+      "what": "A non-invasive facial that combines crystal-free microdermabrasion (exfoliation with a suction wand) with infusion of a liquid serum, and often includes pore extraction. HydraFacial is one branded version. In a small 2008 randomized study, six sessions improved fine lines, pore size and pigmentation.",
+      "whoFor": "People who want a gentle exfoliating and cleansing facial with little downtime. Tell the provider about any active skin disease or recent skin treatments.",
+      "steps": "The skin is cleansed and exfoliated with the wand, pores are cleared with suction, and a serum is infused.",
+      "recovery": "Minimal. Makeup and usual activities can resume right away. Mild redness and swelling usually fade within 48 hours.",
+      "risks": [
+        "Mild redness and swelling, usually for less than 48 hours",
+        "Rare: blisters, minor bruising, skin discoloration or sensitivity",
+        "Rare: cold sores or infection",
+        "Rare: skin damage or scarring"
+      ],
+      "questionsToAsk": [
+        "Which serum is used, and does it contain anything I react to?",
+        "Do I need to stop retinoids or acids beforehand?",
+        "Is the tip single-use, and who performs the treatment?",
+        "How many sessions do you suggest, and why?",
+        "Can it be combined with other treatments on the same day?"
+      ],
+      "aftercare": [
+        "Avoid retinoid or AHA products for 3–5 days",
+        "Wear sunscreen and limit sun exposure for at least 2 weeks",
+        "Call the clinic for a rash, bruising, or redness or swelling lasting more than a week"
+      ],
+      "faq": [
+        {
+          "q": "Is an aqua peel a chemical peel?",
+          "a": "Not exactly. It combines exfoliation, extraction and serum infusion. Some versions also include a mild chemical peel step."
+        },
+        {
+          "q": "Should I stop Botox or retinoids before it?",
+          "a": "Cleveland Clinic advises avoiding Botox injections for at least two weeks before, and stopping retinoid or AHA products 3–5 days before."
+        },
+        {
+          "q": "How often can I have it?",
+          "a": "Some people have 3–6 treatments spaced 2–4 weeks apart. Providers may also suggest monthly sessions."
+        }
+      ]
+    },
+    "scaling": {
+      "name": "Scaling (professional teeth cleaning)",
+      "aka": ["Dental cleaning", "Tartar removal", "Dental prophylaxis"],
+      "what": "Removal of plaque and hardened tartar from tooth surfaces with special instruments, usually followed by polishing. Deep cleaning below the gumline (scaling and root planing) is a separate treatment for gum disease.",
+      "whoFor": "Anyone with plaque or tartar build-up. In Korea, people enrolled in National Health Insurance aged 19 or older have one full-mouth scaling covered per calendar year.",
+      "steps": "The dentist checks the teeth and gums. Tartar is removed from the teeth and around the gumline, the teeth are polished, and fluoride may be applied.",
+      "recovery": "Eating and normal activities can resume the same day. Sensitive teeth or sore gums can follow and usually fade within a few days.",
+      "risks": [
+        "Temporary tooth sensitivity to hot and cold",
+        "Sore gums and some bleeding",
+        "Gums may look slightly receded once swelling settles (mainly after deep cleaning)",
+        "Rare: infection, mainly after deep cleaning"
+      ],
+      "questionsToAsk": [
+        "Is this a routine cleaning or a deep cleaning (scaling and root planing)?",
+        "Do I have gum disease, and will I need follow-up treatment?",
+        "Is it covered by my insurance, and what will I pay?",
+        "Will you take X-rays, and what do they cost?",
+        "How often should I come back?"
+      ],
+      "aftercare": [
+        "Use a desensitizing toothpaste if your teeth feel sensitive",
+        "Keep brushing and flossing daily",
+        "Contact the dentist if bleeding does not stop"
+      ],
+      "faq": [
+        {
+          "q": "Is scaling covered by insurance in Korea?",
+          "a": "For National Health Insurance members aged 19 or older, one full-mouth scaling per year (January to December) is covered, with the usual co-payment. Extra cleanings, and cleaning done for whitening, orthodontics or bad breath, are not covered. Visitors without Korean insurance pay the clinic's own fee."
+        },
+        {
+          "q": "Why are my teeth sensitive after scaling?",
+          "a": "Removing plaque and tartar can make teeth more sensitive to heat and cold. After a routine cleaning this usually passes within days. After deep cleaning it can take a month or two."
+        },
+        {
+          "q": "How long does it take?",
+          "a": "Most cleanings take 30–60 minutes. A deep cleaning takes 1–2 hours and may be split over two visits."
+        }
+      ]
+    },
+    "whitening": {
+      "name": "Teeth whitening",
+      "aka": ["Tooth bleaching", "In-office whitening", "Laser whitening"],
+      "what": "Lightening the color of natural teeth with peroxide gels (hydrogen or carbamide peroxide). Options are an in-office session, sometimes with a light or laser, or a dentist-made tray kit used at home for a few weeks.",
+      "whoFor": "Adults with stained or darkened natural teeth and healthy teeth and gums. NHS guidance says it is not done for people 17 or younger and is not advised during pregnancy or breastfeeding. It does not change the color of crowns, dentures or implants.",
+      "steps": "The dentist checks the teeth and gums, and the gums are protected with a shield or paste. A whitening gel is applied, sometimes activated with a light or laser, then rinsed off. With home whitening, custom trays are worn for several weeks instead.",
+      "recovery": "No downtime. Temporary tooth sensitivity and gum irritation are common and usually short-lived.",
+      "risks": [
+        "Tooth sensitivity to cold or sweet foods and drinks",
+        "Sore gums or throat, or white patches on the gums",
+        "Uneven color next to crowns or fillings, which do not whiten",
+        "Enamel erosion with aggressive bleaching (seen in laboratory studies)"
+      ],
+      "questionsToAsk": [
+        "Are my teeth and gums healthy enough for whitening?",
+        "Will my crowns, fillings or veneers stay a different shade?",
+        "Which product and peroxide strength will you use?",
+        "How long should the result last, and how can I maintain it?",
+        "What can I do if sensitivity is strong?"
+      ],
+      "aftercare": [
+        "Limit coffee, tea and red wine to slow restaining",
+        "Use a desensitizing toothpaste, or pause home whitening, if teeth feel sensitive",
+        "Never use household hydrogen peroxide on your teeth"
+      ],
+      "faq": [
+        {
+          "q": "How long does whitening last?",
+          "a": "It is not permanent. The NHS says results may last around 3 years with good care, and Cleveland Clinic gives six months to three years."
+        },
+        {
+          "q": "Is whitening at a beauty salon the same?",
+          "a": "No. The NHS says kits from salons or online sellers do not work as well and may harm teeth and gums. Whitening should be done or prescribed by a dental professional."
+        },
+        {
+          "q": "Will it whiten my veneers or crowns?",
+          "a": "No. Whitening only lightens natural teeth, so existing restorations may look darker afterwards."
+        }
+      ]
+    },
+    "resin": {
+      "name": "Resin filling (composite)",
+      "aka": ["Composite resin filling", "Tooth-colored filling", "Light-cured composite resin"],
+      "what": "A tooth-colored material (resin mixed with powdered glass, quartz or silica) placed directly into a cavity or chip and hardened with a curing light, usually in one visit. The same material is used for cosmetic bonding to reshape chipped or uneven teeth.",
+      "whoFor": "People with small to moderate cavities, chips or cracks. Larger damage may need an inlay, onlay or crown instead.",
+      "steps": "The tooth is numbed if needed and the decay is removed. Resin is placed, hardened with a curing light, then shaped and polished.",
+      "recovery": "You can usually return to normal activities right away unless you were sedated. Mild sensitivity and gum soreness can last a week or two.",
+      "risks": [
+        "Temporary sensitivity to hot, cold or biting",
+        "Gum soreness around the tooth",
+        "Chipping, wear or staining over time",
+        "The filling will eventually need replacing"
+      ],
+      "questionsToAsk": [
+        "Is resin suitable for this size of cavity, or would an inlay or crown last longer?",
+        "How many tooth surfaces are being filled, and how is the price calculated?",
+        "Will the tooth need to be numbed?",
+        "How long can I expect this filling to last?",
+        "Is any part of the treatment covered by insurance?"
+      ],
+      "aftercare": [
+        "Wait until numbness wears off before eating",
+        "Use over-the-counter pain relievers if the tooth is sore",
+        "See the dentist if your bite feels high or sensitivity lasts beyond two weeks"
+      ],
+      "faq": [
+        {
+          "q": "How long do resin fillings last?",
+          "a": "It varies. Cleveland Clinic gives 5–8 years for cosmetic bonding and says fillings in general can last 10–20 years, depending on the material and care."
+        },
+        {
+          "q": "Why do clinics use resin instead of silver (amalgam)?",
+          "a": "Resin matches tooth color. The FDA has also issued updated guidance on amalgam for higher-risk groups, such as people planning a pregnancy and children under 6."
+        },
+        {
+          "q": "How is resin priced in Korea?",
+          "a": "In the national non-covered fee data, resin fillings are listed by number of surfaces and by cause (decay or wear). Ask for a written estimate per tooth."
+        }
+      ]
+    },
+    "laminate": {
+      "name": "Laminate veneers",
+      "aka": ["Porcelain veneers", "Ceramic laminate", "Composite veneers"],
+      "what": "Thin custom shells bonded to the front of teeth to change their color, shape or size, or to close gaps. Porcelain (ceramic) veneers are made in a lab after a small amount of enamel is removed. Composite veneers are built up directly with resin.",
+      "whoFor": "Adults with healthy teeth and gums who want cosmetic changes such as covering chips or discoloration, or closing gaps. The ADA notes veneers may not be a good choice for people who clench or grind their teeth or have a deep overbite.",
+      "steps": "A shade is chosen and a small amount of enamel is removed from the front and sides. An impression or 3D scan is taken, temporary veneers may be fitted, and the lab-made veneers are then bonded and adjusted.",
+      "recovery": "No real downtime. The change is not reversible because enamel is removed.",
+      "risks": [
+        "Irreversible, because enamel is removed to place veneers",
+        "Chipping, cracking, wear or loosening that needs re-bonding or replacement",
+        "Placing veneers over untreated decay or gum disease can make those problems worse",
+        "Veneers typically need replacing after 5–15 years",
+        "Infection or nerve damage when placed by unlicensed providers"
+      ],
+      "questionsToAsk": [
+        "How much enamel will be removed, and could whitening or bonding achieve my goal instead?",
+        "Porcelain or composite: which fits my case, and why?",
+        "How many teeth, what is the price per tooth, and what does the warranty cover?",
+        "What happens if a veneer chips after I return to my country?",
+        "Do I grind or clench my teeth, and does that change the plan?"
+      ],
+      "aftercare": [
+        "Avoid biting hard objects such as ice or pens with veneered teeth",
+        "Tell your dentist if you grind or clench your teeth",
+        "Keep up regular cleanings and check-ups"
+      ],
+      "faq": [
+        {
+          "q": "Are veneers reversible?",
+          "a": "No. The ADA says treatment is not reversible because tooth enamel is removed to place a veneer."
+        },
+        {
+          "q": "How long do veneers last?",
+          "a": "Cleveland Clinic gives 5–15 years. A 2025 meta-analysis found survival of roughly 94–97% at about 10 years for common ceramic veneers."
+        },
+        {
+          "q": "Can veneers be done in one short trip?",
+          "a": "Porcelain veneers usually need at least two visits because they are made in a lab. Repairs and adjustments may be harder to arrange after you leave Korea."
+        }
+      ]
+    },
+    "implant": {
+      "name": "Dental implant",
+      "aka": ["Tooth implant", "Implant crown"],
+      "what": "A titanium post placed in the jawbone to replace a missing tooth root, topped with a connector (abutment) and a crown, bridge or denture. The bone needs 3–9 months to fuse with the post (osseointegration) before the final tooth is attached.",
+      "whoFor": "Adults (usually 18 or older) who have finished growing and have enough healthy jawbone. A bone graft may be needed if bone is thin. Implants may not suit people with unmanaged diabetes or active gum disease, or people who smoke.",
+      "steps": "Exam and imaging come first. The implant is placed under local anesthesia, with sedation as an option. After 3–9 months of healing, the abutment and crown are attached in a visit of about one hour, sometimes with a second minor surgery.",
+      "recovery": "The first stage of healing takes about one week, with slight discomfort and swelling. Full bone fusion takes 3–9 months.",
+      "risks": [
+        "Infection in the gums or bone around the implant (bleeding or swollen gums, pus, fever)",
+        "Numbness from nerve damage, or sinus perforation in the upper jaw",
+        "Damage to neighboring teeth, or jawbone fracture during surgery",
+        "Implant loosening or failure, which may need another surgery",
+        "Loose abutment screw or a bite that feels wrong"
+      ],
+      "questionsToAsk": [
+        "Do I have enough bone, and will I need a bone graft (and what does it cost)?",
+        "Which implant brand and model, and which crown material, are included in the price?",
+        "How many visits are needed, and how many months apart?",
+        "Who handles complications once I am back home?",
+        "What follow-up or warranty is included?"
+      ],
+      "aftercare": [
+        "Use over-the-counter pain relievers as directed",
+        "Do not smoke or vape while healing",
+        "Clean around the implant as instructed and keep regular dental visits",
+        "Contact the dentist right away if the implant feels loose or painful, or for swelling, pus or fever"
+      ],
+      "faq": [
+        {
+          "q": "How much does an implant cost in Korea?",
+          "a": "Korea's health ministry and HIRA publish non-covered fees. In the 2026 release, the median fee per implant at dental clinics was ₩1.1 million with metal, PFM or zirconia crowns, ₩1.2 million with all-ceramic crowns and ₩1.5 million with gold-based crowns. Fees reported by dental clinics ranged from ₩540,000 to ₩2.5 million. Prices vary by clinic, material and extra procedures such as bone grafts."
+        },
+        {
+          "q": "How long do implants last?",
+          "a": "With good hygiene, implants can often last a lifetime. A 2019 meta-analysis estimated that about 96% of implants survive 10 years. The crown may need replacing, often after around 15 years."
+        },
+        {
+          "q": "Can I finish an implant in one trip?",
+          "a": "Usually not. The bone needs 3–9 months to fuse before the final tooth is attached, so treatment often means visits several months apart."
+        },
+        {
+          "q": "Does it hurt?",
+          "a": "The area is numbed during placement. Slight discomfort and swelling afterwards are normal, and most people feel like themselves within about a week."
+        }
+      ]
+    },
+    "clear-aligner": {
+      "name": "Clear aligners",
+      "aka": ["Invisalign®", "ClearCorrect®", "Invisible braces"],
+      "what": "Custom clear plastic trays that gradually move teeth. A new set is usually given about every two weeks. Small tooth-colored attachments may be bonded to the teeth to help the trays grip.",
+      "whoFor": "People with crowded or crooked teeth or gaps who can wear trays 22–23 hours a day. Cleveland Clinic notes traditional braces may fix some problems more quickly.",
+      "steps": "Exam and a 3D scan or impressions are taken and a treatment plan is made. Attachments are bonded, and sometimes a little enamel is removed between teeth (interproximal reduction). New trays follow about every two weeks with check-ups, then a retainer at the end.",
+      "recovery": "No downtime. Pressure or soreness with each new tray usually eases within a few days.",
+      "risks": [
+        "Soreness and pressure with each new tray",
+        "Root resorption (slight shortening of tooth roots), as with other orthodontic treatment",
+        "Tooth decay or gum problems if teeth and trays are not kept clean",
+        "Teeth moving back if the retainer is not worn"
+      ],
+      "questionsToAsk": [
+        "Is my case suitable for aligners, or would fixed braces work better?",
+        "How many trays and months are planned, and how often must I visit?",
+        "Can progress be monitored if I live abroad?",
+        "Are refinement trays and retainers included in the price?",
+        "Will enamel be removed between my teeth (interproximal reduction)?"
+      ],
+      "aftercare": [
+        "Wear trays 22–23 hours a day, removing them only to eat, brush and floss",
+        "Eat soft foods for the first days of a new tray if chewing hurts",
+        "Limit sugary food and drinks, and clean teeth before putting trays back in",
+        "Wear the retainer as instructed after treatment"
+      ],
+      "faq": [
+        {
+          "q": "How long does treatment take?",
+          "a": "Slightly crooked teeth may take up to about nine months. More complex cases take longer."
+        },
+        {
+          "q": "Do I need a retainer afterwards?",
+          "a": "Yes. The NHS says a retainer is needed to stop teeth moving back to their original position. Your orthodontist will tell you how long to wear it."
+        },
+        {
+          "q": "Do aligners cause root shortening?",
+          "a": "Some root resorption can happen with any orthodontic treatment. A 2021 meta-analysis of non-extraction cases found upper front-tooth roots shortened by about 0.5 mm on average, below the 1 mm considered clinically significant, with similar amounts for aligners and fixed braces for most teeth."
+        }
+      ]
+    },
+    "double-eyelid": {
+      "name": "Double eyelid surgery",
+      "aka": ["Asian blepharoplasty", "Upper blepharoplasty", "Non-incisional / incisional double eyelid"],
+      "what": "Surgery to create a visible upper-eyelid crease. Monolids (no visible crease) occur in about half of people of Asian descent. Methods range from non-incisional (suture) and small-incision techniques to full-incision surgery, which can also remove excess skin or fat.",
+      "whoFor": "Adults who want a permanent crease and have realistic expectations. The surgery is not medically necessary, and tape or eyelid glue can create a temporary crease.",
+      "steps": "The crease is designed and marked. Under local or general anesthesia, incisions or small punctures are made along the planned line, tissue is adjusted, and the crease is fixed before closing.",
+      "recovery": "Stitches typically stay about a week. Most people take about 2 weeks off work. Bruising and redness can take several weeks to fade, and full recovery takes a few months.",
+      "risks": [
+        "Asymmetry or uneven creases",
+        "Crease fading or loss (about 2% in a review of small-incision methods)",
+        "Noticeable scarring",
+        "Dry, irritated eyes or temporary difficulty closing the eyes",
+        "Rare: bleeding behind the eye, injury to eye muscles or vision changes"
+      ],
+      "questionsToAsk": [
+        "Which method (non-incisional, small incision or full incision) do you plan, and why?",
+        "How high will the crease be, and can I see a sketch of the planned line?",
+        "Who performs the surgery, and what is their specialist qualification?",
+        "What is the revision policy if the crease is uneven or fades?",
+        "When will stitches come out, and when can I travel?"
+      ],
+      "aftercare": [
+        "Prop your head up with pillows for a couple of days",
+        "Use cold packs and the eye ointment or drops you are given",
+        "Avoid rubbing your eyes, contact lenses, swimming and strenuous activity for a few days or as advised",
+        "Wear sunglasses outdoors to protect the eyes"
+      ],
+      "faq": [
+        {
+          "q": "Is a double eyelid permanent?",
+          "a": "It is intended to be, but creases can fade or be lost. A 2023 review found a pooled crease-loss rate of 2% with small-incision techniques."
+        },
+        {
+          "q": "How long until it looks natural?",
+          "a": "Bruising and redness can take several weeks to fade, and full recovery takes a few months."
+        },
+        {
+          "q": "What is the difference between non-incisional and incisional methods?",
+          "a": "Non-incisional and small-incision methods generally mean a shorter recovery. A full incision allows removal of excess skin or fat. The surgeon chooses based on your eyelids and goals."
+        }
+      ]
+    },
+    "rhinoplasty": {
+      "name": "Rhinoplasty (nose surgery)",
+      "aka": ["Nose job", "Nose reshaping", "Open rhinoplasty", "Closed rhinoplasty"],
+      "what": "Surgery that changes the shape or size of the nose, including the bridge, tip and nostrils, and can also improve breathing. It can make the nose smaller by removing cartilage and bone, or larger using grafts such as cartilage from the ear. Open rhinoplasty uses a small cut between the nostrils, and closed rhinoplasty uses cuts inside the nose.",
+      "whoFor": "Adults whose facial growth is complete, who are in good health and have realistic goals.",
+      "steps": "The surgery is usually done under general anesthesia. Open or closed incisions are made, cartilage and bone are reshaped or grafted, and a splint and dressing are applied.",
+      "recovery": "A splint usually stays on for about 7 days, and breathing through the nose may be hard for about a week. Many people take up to 2 weeks off work. Bruising and swelling around the eyes fade over about 3 weeks, and swelling can take 6 months to a year to settle fully.",
+      "risks": [
+        "Bleeding, nosebleeds, infection or reaction to anesthesia",
+        "Breathing difficulty, which can be permanent",
+        "Septal perforation (a hole in the wall between the nostrils)",
+        "Numbness, altered sense of smell, poor wound healing or scarring",
+        "An unsatisfactory appearance that may need revision surgery"
+      ],
+      "questionsToAsk": [
+        "Will you use my own cartilage, an implant or both, and what are the risks of each?",
+        "Open or closed approach, and where will the scars be?",
+        "How will my breathing be checked and protected?",
+        "How long should I stay in Korea before flying, and who handles complications afterwards?",
+        "What is the revision policy and cost?"
+      ],
+      "aftercare": [
+        "Keep your head raised with pillows for a couple of days",
+        "Keep the splint dry, do not blow your nose, and sneeze through your mouth",
+        "Avoid hot baths until the splint is removed",
+        "Avoid strenuous exercise and contact sports for 4–6 weeks"
+      ],
+      "faq": [
+        {
+          "q": "When will I see the final shape?",
+          "a": "Initial swelling eases within a few weeks, but the American Society of Plastic Surgeons says it can take up to a year for the new contour to fully refine."
+        },
+        {
+          "q": "How long will I need off work?",
+          "a": "The NHS says up to 2 weeks. The splint usually comes off after about a week, and strenuous exercise is avoided for 4–6 weeks."
+        },
+        {
+          "q": "Is nose filler an alternative?",
+          "a": "Some clinics offer filler as a 'non-surgical nose job', but the US FDA has not approved dermal fillers for injection into the nose."
+        }
+      ]
+    },
+    "thread-lift": {
+      "name": "Thread lift",
+      "aka": ["Absorbable thread lift", "Barbed suture lift", "PDO threads"],
+      "what": "Medical-grade threads are placed under the skin to lift sagging tissue and stimulate collagen. It is minimally invasive and done under local anesthesia. Most current threads dissolve over time, so results are temporary, lasting about 1–3 years according to Cleveland Clinic.",
+      "whoFor": "Adults with early signs of sagging, often in their late 30s to early 50s, who want a smaller change than a facelift and accept temporary results.",
+      "steps": "Local anesthesia is given. Threads are inserted under the skin through small entry points, the tissue is lifted, and the threads are anchored and trimmed.",
+      "recovery": "Swelling and bruising can last up to five days. Most people return to work right away, but vigorous exercise is often avoided for about two weeks.",
+      "risks": [
+        "Swelling (the most common complication), bruising and pain",
+        "Skin dimpling or puckering (about 10% in a 2021 meta-analysis)",
+        "Numbness or tingling, or threads you can see or feel",
+        "Infection or a thread poking through the skin, which is more likely with non-absorbable threads and in people over 50",
+        "Results fading over time"
+      ],
+      "questionsToAsk": [
+        "What thread material will be used, how many threads, and are they absorbable?",
+        "How long do you expect the result to last for my skin?",
+        "What do you do if dimpling or a visible thread appears?",
+        "Is a thread lift realistic for my degree of sagging?",
+        "Which activities should I avoid, and for how long?"
+      ],
+      "aftercare": [
+        "Apply a cold compress or ice pack",
+        "Do not wash your face for the first 24 hours, and avoid makeup for several days",
+        "Sleep with your head propped up",
+        "Avoid vigorous exercise for about two weeks",
+        "Call the clinic for a fever, a headache that won't go away, or swelling lasting more than 48 hours"
+      ],
+      "faq": [
+        {
+          "q": "How long does a thread lift last?",
+          "a": "Cleveland Clinic says about one to three years. In a 2021 meta-analysis, satisfaction fell from 98% right after treatment to 88% at six months."
+        },
+        {
+          "q": "Is it the same as a facelift?",
+          "a": "No. It is minimally invasive and the change is smaller and temporary. A surgical facelift removes and repositions tissue."
+        },
+        {
+          "q": "What are the most common complications?",
+          "a": "A 2021 meta-analysis found swelling in 35% of cases, skin dimpling in 10%, numbness or tingling in 6%, visible or palpable threads in 4%, and infection and thread extrusion in 2% each."
+        }
+      ]
+    },
+    "fat-grafting": {
+      "name": "Facial fat grafting",
+      "aka": ["Fat transfer", "Autologous fat injection", "Lipofilling"],
+      "what": "Fat is taken from another part of the body by liposuction (for example the abdomen or thighs), processed, and injected into the face to restore volume in areas such as the cheeks, temples or forehead. Some of the fat is reabsorbed in the first months, so more than one session is often needed.",
+      "whoFor": "Adults who want longer-lasting facial volume using their own tissue, have enough donor fat, and accept that results are less predictable than off-the-shelf fillers.",
+      "steps": "Under local or general anesthesia, fat is removed through small cuts with a thin tube. It is processed to separate blood and fluid, then injected into the face in small amounts.",
+      "recovery": "Bruising and swelling at both sites can last a few weeks, and many people take a couple of weeks off work. Final results can take up to 6 months as some fat is reabsorbed.",
+      "risks": [
+        "Significant bruising, prolonged swelling, numbness and small scars",
+        "Irregularities, lumps, asymmetry, fat necrosis or cysts that may need correction",
+        "Unpredictable fat survival, since some fat is reabsorbed",
+        "Rare but severe: fat entering a blood vessel (embolism), which has caused blindness, stroke and death; the glabella (between the brows) and the temples are the most often reported sites",
+        "Bleeding under the skin (haematoma) or infection"
+      ],
+      "questionsToAsk": [
+        "Where will the fat be taken from, and what will that area look like afterwards?",
+        "How much fat do you expect to survive, and might I need another session?",
+        "Which techniques do you use to reduce the risk of injecting into a blood vessel?",
+        "Will it be under local or general anesthesia?",
+        "Who manages complications after I return home?"
+      ],
+      "aftercare": [
+        "Arrange for someone to take you home after the procedure",
+        "Expect bruising and swelling for a few weeks and plan time off",
+        "Contact the surgeon for increasing swelling, redness or pain",
+        "Seek emergency care for sudden vision changes, severe headache or weakness"
+      ],
+      "faq": [
+        {
+          "q": "How long do fat grafts last?",
+          "a": "The American Society of Plastic Surgeons says about 50% of injected fat survives and the surviving fat is long-lasting. In the face, results can be less predictable, and several procedures are often needed."
+        },
+        {
+          "q": "How common are complications?",
+          "a": "The overall rate is often quoted at around 2%, but a 2022 systematic review concluded the true rate is unknown because of under-reporting. Severe events such as injection into a blood vessel are rare but can cause permanent harm."
+        },
+        {
+          "q": "How is fat grafting different from filler?",
+          "a": "It uses your own fat and can last longer, but it is a more extensive procedure with liposuction, discomfort at the donor site and a longer recovery."
+        }
+      ]
+    },
+    "canthoplasty": {
+      "name": "Canthoplasty (eye-corner surgery)",
+      "aka": ["Epicanthoplasty (inner corner)", "Lateral canthoplasty (outer corner)"],
+      "what": "Surgery on the corners of the eye. Epicanthoplasty releases the fold at the inner corner (the epicanthal fold, common in East Asian eyelids). Cosmetic lateral canthoplasty extends the outer corner to lengthen the eye opening and reduce upward slant. Surgeons often discuss it together with double eyelid surgery.",
+      "whoFor": "Adults with a prominent inner fold, or who want a longer eye opening, and who have realistic expectations.",
+      "steps": "Under local or general anesthesia, a small incision or skin flap is made at the eye corner. Tissue is released or repositioned and closed with fine stitches.",
+      "recovery": "Expect discomfort, swelling and bruising for the first couple of weeks. Many people rest about a week before returning to work or school, and full recovery takes 2–4 weeks. Incision lines stay visible for 2–3 months before fading.",
+      "risks": [
+        "Visible scarring at the eye corner (a known drawback of older inner-corner techniques)",
+        "Under-correction, recurrence, or the corner reattaching",
+        "Dry eyes or difficulty closing the eyes",
+        "Bleeding, infection or pain",
+        "Unfavorable outer-corner shape: a 2016 review notes complications after cosmetic lateral canthoplasty are not uncommon"
+      ],
+      "questionsToAsk": [
+        "Inner corner, outer corner or both, and how much change is realistic for me?",
+        "Where will the scar be, and how visible might it be?",
+        "How likely is the corner to reattach, and what is your revision policy?",
+        "Will it be combined with double eyelid surgery?",
+        "Will I have local or general anesthesia?"
+      ],
+      "aftercare": [
+        "Do not rub your eyes",
+        "Keep water, soap and skincare products off the incisions until healed",
+        "Avoid pools and saunas for three weeks",
+        "Sleep with your head raised, and use ice in 15-minute intervals for swelling",
+        "Avoid strenuous exercise for a few weeks"
+      ],
+      "faq": [
+        {
+          "q": "What is the difference between epicanthoplasty and lateral canthoplasty?",
+          "a": "Epicanthoplasty works on the inner corner near the nose. Lateral canthoplasty works on the outer corner near the ear."
+        },
+        {
+          "q": "Will there be a scar?",
+          "a": "Yes. Incision lines are visible for two to three months and then fade. Newer inner-corner techniques use shorter incisions to reduce visible scarring."
+        },
+        {
+          "q": "How long is recovery?",
+          "a": "Cleveland Clinic says two to four weeks for complete recovery, with about a week of rest before returning to work or school."
+        }
+      ]
+    },
+    "ptosis-correction": {
+      "name": "Ptosis correction (eye-opening surgery)",
+      "aka": ["Blepharoptosis repair", "Levator advancement", "Eye-opening correction"],
+      "what": "Surgery that tightens or shortens the muscle that lifts the upper eyelid (levator) so the lid sits higher and more of the eye shows. Medically it treats drooping eyelids (ptosis) that block vision. Aesthetic correction of mild ptosis is also done in East Asia, sometimes during double eyelid surgery.",
+      "whoFor": "Adults whose upper lids droop, from aging, injury or since birth, or who want a more open look. The cause should be checked first, because ptosis can occasionally come from muscle, nerve or other disease.",
+      "steps": "Under local anesthesia with sedation, the lifting muscle is tightened either through an incision in the eyelid crease or from the inside of the lid, with no skin cut. The incision is then closed.",
+      "recovery": "A follow-up visit is usually set for several days to a week after surgery. Lid height and shape can look uneven at first while swelling settles. After eyelid surgery, most people return to their routine within 1–2 weeks.",
+      "risks": [
+        "Under- or over-correction (eyelid too low or too high)",
+        "Asymmetry between the eyes",
+        "Difficulty closing the eye fully (lagophthalmos) and dry eye",
+        "Damage to the cornea",
+        "Bleeding or infection"
+      ],
+      "questionsToAsk": [
+        "What is causing my droop, and have other conditions been ruled out?",
+        "How high will you set each lid, and how do you handle asymmetry?",
+        "Will it be combined with double eyelid surgery?",
+        "What is the plan if one side ends up too high or too low?",
+        "How will my eye surface be protected if I can't close it fully at first?"
+      ],
+      "aftercare": [
+        "Use cold compresses and the prescribed eye drops or ointment",
+        "Avoid rubbing your eyes and wearing contact lenses until your surgeon says it's fine",
+        "Attend the follow-up visit, usually within a week",
+        "Seek care quickly for vision changes, severe pain or bleeding"
+      ],
+      "faq": [
+        {
+          "q": "Is ptosis correction the same as double eyelid surgery?",
+          "a": "No. Ptosis correction changes how high the lid opens by working on the lifting muscle, while double eyelid surgery creates a crease. The two are sometimes done together."
+        },
+        {
+          "q": "Is there a non-surgical option?",
+          "a": "For some adults with acquired ptosis, a prescription eye drop (oxymetazoline) can open the lid wider. It must be used every day and does not work for every type of ptosis."
+        },
+        {
+          "q": "Is unevenness right after surgery normal?",
+          "a": "Cleveland Clinic notes that lid height and shape may look uneven right after surgery, and that under- or over-correction can occur and often resolves over time."
+        }
+      ]
+    }
+  }
 }

@@ -1,4 +1,257 @@
 {
-  "genres": {},
-  "dramas": {}
+  "genres": {
+    "romance": "Lãng mạn",
+    "comedy": "Hài hước",
+    "melodrama": "Tâm lý tình cảm",
+    "family": "Gia đình",
+    "fantasy": "Kỳ ảo",
+    "youth": "Thanh xuân",
+    "medical": "Y khoa",
+    "thriller": "Giật gân",
+    "mystery": "Bí ẩn",
+    "historical": "Cổ trang",
+    "legal": "Pháp lý"
+  },
+  "dramas": {
+    "queen-of-tears": {
+      "title": "Queen of Tears",
+      "tagline": "Hôn nhân tài phiệt bên bờ vực, một tình yêu đáng giữ lại",
+      "synopsis": "Hong Hae-in là người thừa kế đời thứ ba của Tập đoàn Queens. Chồng cô, Baek Hyun-woo, là giám đốc pháp chế của tập đoàn và là con trai một nhà nông ở làng Yongdu-ri. Sau ba năm, cuộc hôn nhân của họ đã cận kề ly hôn, cho đến khi một tin bất ngờ buộc hai người phải đối diện nhau lần nữa.",
+      "whyWatch": [
+        "Kim Soo-hyun và Kim Ji-won trong vai cặp vợ chồng khiến bạn vừa cười vừa khóc trong cùng một cảnh",
+        "Hài hước đại gia đình giữa một dòng họ giàu có và một làng quê ấm áp",
+        "Những địa điểm ở Seoul trong phim mà bạn có thể ghé thăm, như The Hyundai Seoul và Cheonggye Plaza"
+      ]
+    },
+    "lovely-runner": {
+      "title": "Lovely Runner",
+      "tagline": "Một người hâm mộ quay về quá khứ để cứu thần tượng",
+      "synopsis": "Từ lâu, Im Sol tìm thấy động lực sống trong những bài hát của Ryu Sun-jae, giọng ca chính của ban nhạc Eclipse. Khi tin anh đột ngột qua đời khiến cô suy sụp, cô bị đưa ngược về năm 2008, vào mùa hè cả hai cùng 19 tuổi, và quyết tâm thay đổi số phận của anh.",
+      "whyWatch": [
+        "Vai diễn đưa Byeon Woo-seok thành ngôi sao: Ryu Sun-jae, từ vận động viên bơi lội trở thành thần tượng",
+        "Chuyện tình xuyên thời gian, đan xen hiện tại và cuối những năm 2000",
+        "Nhạc phim xoay quanh ban nhạc Eclipse trong phim"
+      ]
+    },
+    "when-life-gives-you-tangerines": {
+      "title": "When Life Gives You Tangerines",
+      "tagline": "Chuyện tình Jeju kể qua bốn mùa của một đời người",
+      "synopsis": "Đảo Jeju thập niên 1950, Oh Ae-sun thẳng thắn mơ trở thành nhà thơ, còn Yang Gwan-sik trầm lặng, vững vàng chỉ có mắt cho cô. Được kể như bốn mùa trong năm, câu chuyện theo chân cô gái và chàng trai trên đảo từ thuở nhỏ đến những niềm vui và gian khó khi trưởng thành.",
+      "whyWatch": [
+        "IU và Park Bo-gum đóng chính, Moon So-ri và Park Hae-joon vào vai họ lúc trung niên",
+        "Câu chuyện gia đình về mẹ, con gái và những nữ thợ lặn haenyeo của Jeju",
+        "Quay khắp Jeju, từ Seongsan Ilchulbong đến cảng Hallim"
+      ]
+    },
+    "king-the-land": {
+      "title": "King the Land",
+      "tagline": "Thiếu gia ghét nụ cười giả gặp nụ cười tươi nhất khách sạn",
+      "synopsis": "Gu Won là người thừa kế King Group, tập đoàn khách sạn hạng sang, và anh không chịu nổi những nụ cười giả tạo. Cheon Sa-rang là nhân viên của King Hotel, người lúc nào cũng mỉm cười. Lần gặp đầu tiên chẳng suôn sẻ, và đó mới là khởi đầu của một chuyện tình công sở giữa cuộc tranh giành quyền thừa kế.",
+      "whyWatch": [
+        "Lee Jun-ho của 2PM và Lim Yoona của Girls' Generation là cặp đôi chính",
+        "Bối cảnh khách sạn, hàng không và du lịch sang trọng, xem nhẹ nhàng, dễ chịu",
+        "Các cảnh sảnh khách sạn được quay tại Parnas Hotel Jeju"
+      ]
+    },
+    "my-demon": {
+      "title": "My Demon",
+      "tagline": "Nữ thừa kế lạnh lùng và ác ma mất phép thuật lập giao kèo",
+      "synopsis": "Do Do-hee là nữ thừa kế sắc sảo, luôn đề phòng và không thiếu kẻ thù. Jeong Gu-won là ác ma đổi ân huệ lấy linh hồn con người. Khi anh bất ngờ mất hết năng lực và một dấu ấn lạ hiện trên cổ tay cô, hai người đồng ý ký một bản hợp đồng khó tin để bảo vệ lẫn nhau.",
+      "whyWatch": [
+        "Song Kang trong vai ác ma sành điệu, miệng lưỡi sắc bén",
+        "Chuyện tình hôn nhân hợp đồng pha chút kỳ ảo",
+        "Nữ thừa kế mạnh mẽ mà hài hước của Kim You-jung"
+      ]
+    },
+    "marry-my-husband": {
+      "title": "Marry My Husband",
+      "tagline": "Bị phản bội rồi quay về mười năm trước, cô viết lại số phận",
+      "synopsis": "Kang Ji-won, một nhân viên văn phòng hiền lành đang chống chọi với ung thư, phát hiện chồng và bạn thân đã phản bội mình. Sau một đêm bi kịch, cô tỉnh dậy ở mười năm trước và bắt đầu thay đổi tương lai, với trưởng nhóm Yoo Ji-hyuk luôn ở bên.",
+      "whyWatch": [
+        "Câu chuyện trả thù với thiết lập xuyên thời gian và những màn đáp trả cực kỳ hả hê",
+        "Chuyện tình công sở chậm rãi của Park Min-young và Na In-woo",
+        "Chuyển thể từ web novel và webtoon nổi tiếng, có cảnh quay tại Cheonggye Plaza, Seoul"
+      ]
+    },
+    "doctor-slump": {
+      "title": "Doctor Slump",
+      "tagline": "Hai bác sĩ kiệt sức, từng là đối thủ, tìm lại chính mình",
+      "synopsis": "Thời trung học, Yeo Jeong-woo và Nam Ha-neul tranh nhau vị trí đứng đầu trong mọi kỳ thi. Nhiều năm sau, anh là bác sĩ phẫu thuật thẩm mỹ nổi tiếng, còn cô là bác sĩ nội trú gây mê làm việc quá sức, và cả hai cùng chạm đáy một lúc. Số phận lại khiến họ thành hàng xóm.",
+      "whyWatch": [
+        "Park Hyung-sik và Park Shin-hye từ đối thủ thành đồng minh",
+        "Góc nhìn nhẹ nhàng, chân thật về kiệt sức và làm lại từ đầu",
+        "Những màn đấu khẩu rom-com với tinh thần chữa lành"
+      ]
+    },
+    "love-next-door": {
+      "title": "Love Next Door",
+      "tagline": "Con trai bạn của mẹ biết hết bí mật của bạn",
+      "synopsis": "Bae Seok-ryu từng có cuộc sống như mơ ở nước ngoài: công việc mơ ước và một lời đính hôn. Rồi cô bất ngờ trở về Hàn Quốc. Tại khu phố cũ, cô chạm mặt Choi Seung-hyo, kiến trúc sư hàng đầu, con trai bạn thân của mẹ cô và là người giữ những ký ức thuở nhỏ của cô.",
+      "whyWatch": [
+        "Phản ứng hóa học thanh mai trúc mã của Jung Hae-in và Jung So-min",
+        "Khu phố ấm cúng với những ông bố bà mẹ hay tò mò mà đáng yêu",
+        "Câu chuyện ấm áp về bỏ việc, nghỉ ngơi và bắt đầu lại"
+      ]
+    },
+    "when-the-phone-rings": {
+      "title": "When the Phone Rings",
+      "tagline": "Cuộc hôn nhân sắp đặt lạnh nhạt và cuộc gọi thay đổi tất cả",
+      "synopsis": "Người phát ngôn phủ tổng thống Baek Sa-eon và phiên dịch viên ngôn ngữ ký hiệu Hong Hee-joo đã giữ một cuộc hôn nhân hoàn hảo trong mắt người ngoài suốt ba năm, dù gần như không nói chuyện với nhau. Rồi cuộc gọi đe dọa từ một kẻ bắt cóc đảo lộn sự sắp đặt yên ả của họ.",
+      "whyWatch": [
+        "Vừa lãng mạn vừa giật gân, kèm một bí ẩn cần giải",
+        "Phản ứng hóa học căng thẳng, âm ỉ của Yoo Yeon-seok và Chae Soo-bin",
+        "Ngôn ngữ ký hiệu và sự im lặng giữ vai trò quan trọng trong câu chuyện"
+      ]
+    },
+    "bon-appetit-your-majesty": {
+      "title": "Bon Appétit, Your Majesty",
+      "tagline": "Đầu bếp hiện đại bất ngờ nấu ăn cho vua Joseon",
+      "synopsis": "Đầu bếp Yeon Ji-yeong vừa giành giải thưởng lớn tại Paris. Trên chuyến bay về Seoul, một lần nhật thực đưa cô về thời Joseon, thẳng vào triều đình của vua Lee Heon. Để sống sót trong cung, cô phải chinh phục vị vua kén ăn bằng từng món một.",
+      "whyWatch": [
+        "Lim Yoona vào vai đầu bếp tự tin trong ngự thiện phòng Joseon",
+        "Những cảnh nấu nướng hấp dẫn, kết hợp kỹ thuật hiện đại với nguyên liệu xưa",
+        "Lee Chae-min trong vai vị vua trẻ dần dần mở lòng"
+      ]
+    },
+    "our-unwritten-seoul": {
+      "title": "Our Unwritten Seoul",
+      "tagline": "Chị em sinh đôi bí mật đổi đời giữa Seoul và quê nhà",
+      "synopsis": "Cặp song sinh giống hệt nhau Yoo Mi-ji và Yoo Mi-rae lại trái ngược hoàn toàn. Mi-ji, cựu vận động viên chạy nước rút, ở lại quê nhỏ chăm sóc bà, còn Mi-rae làm việc tại một công ty nhà nước ở Seoul. Khi Mi-rae bắt đầu gặp khó khăn, Mi-ji đề nghị hai chị em đổi chỗ cho nhau.",
+      "whyWatch": [
+        "Park Bo-young đóng cả hai chị em sinh đôi",
+        "Câu chuyện dịu dàng về công việc, gia đình và tìm nhịp sống của riêng mình",
+        "Những địa điểm ở Seoul trong phim, như Seongsu và phố hanok Ikseon-dong"
+      ]
+    },
+    "resident-playbook": {
+      "title": "Resident Playbook",
+      "tagline": "Bác sĩ nội trú sản phụ khoa năm nhất làm quen với bệnh viện",
+      "synopsis": "Tại chi nhánh Jongno của Trung tâm Y tế Yulje, một nhóm bác sĩ nội trú năm nhất chọn sản phụ khoa, chuyên khoa ít người muốn vào trong thời tỷ lệ sinh thấp. Oh Yi-young và các đồng nghiệp mới đối mặt với ca trực dài, đàn anh đàn chị khó tính và những bệnh nhân đầu tiên họ sẽ không bao giờ quên.",
+      "whyWatch": [
+        "Cùng vũ trụ với Hospital Playlist",
+        "Go Youn-jung dẫn dắt một nhóm bác sĩ trẻ mới",
+        "Tình bạn, tiếng cười và góc nhìn chân thực về quá trình đào tạo y khoa"
+      ]
+    },
+    "can-this-love-be-translated": {
+      "title": "Can This Love Be Translated?",
+      "tagline": "Phiên dịch viên, ngôi sao quốc tế và tình yêu khó dịch",
+      "synopsis": "Joo Ho-jin là phiên dịch viên đa ngôn ngữ sống theo lý trí. Cha Mu-hee là nữ diễn viên thành ngôi sao toàn cầu sau một phim zombie ăn khách. Khi anh nhận phiên dịch cho chương trình hẹn hò có cô tham gia, quay ở nước ngoài, hai con người nói hai ngôn ngữ tình yêu rất khác nhau lại đứng cạnh nhau.",
+      "whyWatch": [
+        "Từ chị em nhà Hong, biên kịch của Hotel del Luna",
+        "Kim Seon-ho và Go Youn-jung trong vai cặp đôi trái ngược",
+        "Quay tại Hàn Quốc, Nhật Bản, Canada và Ý"
+      ]
+    },
+    "crash-landing-on-you": {
+      "title": "Crash Landing on You",
+      "tagline": "Tai nạn dù lượn đưa nữ thừa kế lạc sang Triều Tiên",
+      "synopsis": "Yoon Se-ri, nữ thừa kế Hàn Quốc kiêm CEO thời trang, bị cuốn chệch hướng trong một tai nạn dù lượn và rơi xuống phía Triều Tiên của biên giới. Tại đó cô gặp Ri Jeong-hyeok, một đại úy quân đội nghiêm nghị, người quyết định che giấu cô trong lúc cô tìm đường về nhà.",
+      "whyWatch": [
+        "Phản ứng hóa học được yêu mến của Hyun Bin và Son Ye-jin",
+        "Tình bạn hài hước, cảm động với những người lính Đại đội 5",
+        "Một điểm quay phim ở Jeju để ghé thăm: đường mòn lịch sử Ara-dong"
+      ]
+    },
+    "goblin": {
+      "title": "Guardian: The Lonely and Great God",
+      "tagline": "Yêu tinh bất tử, cô dâu của anh và bạn cùng nhà là thần chết",
+      "synopsis": "Còn được biết đến với tên Goblin (Yêu tinh). Suốt hơn 900 năm, Kim Shin, một vị tướng thời Goryeo, sống như một yêu tinh bất tử, chờ cô dâu có thể hóa giải lời nguyền. Rồi anh gặp Ji Eun-tak, nữ sinh trung học vui tươi có thể nhìn thấy ma và nói rằng mình chính là cô dâu ấy.",
+      "whyWatch": [
+        "Những màn hài hước khi Gong Yoo và Lee Dong-wook sống chung nhà",
+        "Chuyện tình kỳ ảo với nhạc phim được yêu thích",
+        "Những địa điểm dạo bộ ở Seoul, như Unhyeongung và Gamgodang-gil"
+      ]
+    },
+    "itaewon-class": {
+      "title": "Itaewon Class",
+      "tagline": "Một quán nhậu nhỏ ở Itaewon và cuộc báo thù dài hơi",
+      "synopsis": "Sau cuộc đụng độ làm thay đổi cả cuộc đời với người thừa kế công ty thực phẩm Jangga Group, Park Sae-ro-yi mất gần như tất cả. Nhiều năm sau, anh mở quán nhậu nhỏ DanBam ở Itaewon, Seoul, với kế hoạch dài hơi để hạ Jangga, cùng Jo Yi-seo, một influencer trẻ sắc sảo.",
+      "whyWatch": [
+        "Park Seo-joon trong vai nhà sáng lập yếu thế mà cứng đầu",
+        "Chuyển thể từ webtoon cùng tên",
+        "Các điểm quay phim ở Itaewon, như cầu vượt Noksapyeong"
+      ]
+    },
+    "hotel-del-luna": {
+      "title": "Hotel del Luna",
+      "tagline": "Khách sạn giữa lòng Seoul chỉ đón khách là hồn ma",
+      "synopsis": "Ẩn mình giữa trung tâm Seoul, Hotel del Luna chỉ tiếp đón các hồn ma. Chủ khách sạn, Jang Man-wol kiêu sa và đanh đá, đã bị ràng buộc với nơi này hơn một nghìn năm. Khi chuyên gia khách sạn Gu Chan-sung bị kéo vào làm quản lý mới, thế giới người sống và người chết bắt đầu hòa lẫn.",
+      "whyWatch": [
+        "Jang Man-wol kiêu sa, khó quên của IU",
+        "Một câu chuyện ma mới ở gần như mỗi tập",
+        "Từ chị em nhà Hong, với những địa điểm ở Seoul như Hyemindang"
+      ]
+    },
+    "extraordinary-attorney-woo": {
+      "title": "Extraordinary Attorney Woo",
+      "tagline": "Nữ luật sư tân binh tài giỏi nhìn thế giới theo cách riêng",
+      "synopsis": "Woo Young-woo tốt nghiệp thủ khoa trường luật, nhớ mọi thứ cô từng đọc và yêu cá voi hơn bất cứ điều gì. Là luật sư tân binh mắc chứng tự kỷ tại hãng luật lớn Hanbada, cô nhận hết vụ án này đến vụ án khác và chinh phục đồng nghiệp bằng cách suy nghĩ của riêng mình.",
+      "whyWatch": [
+        "Vai chính từng đoạt giải của Park Eun-bin",
+        "Gần như mỗi tập là một vụ án mới, xem từ tập nào cũng dễ",
+        "Điểm quay phim ở Jeju và Ikseon-dong, Seoul"
+      ]
+    },
+    "business-proposal": {
+      "title": "Business Proposal",
+      "tagline": "Buổi xem mắt giả với chính CEO của mình đi chệch hướng",
+      "synopsis": "Để giúp cô bạn giàu có thoát khỏi buổi xem mắt sắp đặt, nhân viên văn phòng Shin Ha-ri đi thay, định bụng sẽ bị từ chối thật nhanh. Kế hoạch đổ bể khi người đàn ông ngồi đối diện hóa ra là Kang Tae-moo, CEO của chính công ty cô, và anh quyết định cưới cô.",
+      "whyWatch": [
+        "Chuyển thể từ webtoon ăn khách, chỉ 12 tập",
+        "Phản ứng hóa học khiến bạn bật cười của Ahn Hyo-seop và Kim Se-jeong",
+        "Cặp đôi phụ thú vị: Kim Min-kyu và Seol In-ah"
+      ]
+    },
+    "twenty-five-twenty-one": {
+      "title": "Twenty-Five Twenty-One",
+      "tagline": "Cô gái đấu kiếm, chàng trai mộng mơ và tuổi trẻ năm 1998",
+      "synopsis": "Năm 1998, khi khủng hoảng tài chính rung chuyển Hàn Quốc, nữ kiếm thủ trung học Na Hee-do không chịu bỏ cuộc dù đội kiếm của trường bị giải tán. Baek Yi-jin, người có gia đình mất tất cả, đang cố làm lại từ đầu. Con đường của họ giao nhau, và một tình bạn bắt đầu, định hình tuổi trẻ của cả hai.",
+      "whyWatch": [
+        "Na Hee-do rạng rỡ, không gì cản nổi của Kim Tae-ri",
+        "Hàn Quốc cuối thập niên 1990 đầy hoài niệm, kể qua một cuốn nhật ký cũ",
+        "Câu chuyện về tình bạn và trưởng thành không kém gì tình yêu"
+      ]
+    },
+    "true-beauty": {
+      "title": "True Beauty",
+      "tagline": "Trang điểm, trường mới và chàng trai biết bí mật của cô",
+      "synopsis": "Sau nhiều năm bị trêu chọc vì ngoại hình, Lim Ju-kyung học trang điểm qua video hướng dẫn trên mạng và chuyển đến trường mới với danh hiệu \"nữ thần\" mới. Giữ bí mật gương mặt mộc đã đủ khó, cho đến khi Lee Su-ho, ngôi sao lạnh lùng của trường, trở thành người duy nhất biết chuyện.",
+      "whyWatch": [
+        "Chuyển thể từ webtoon ăn khách của Yaongyi",
+        "Cha Eun-woo của ASTRO và Hwang In-youp trong mối tình tay ba",
+        "Rom-com học đường nhẹ nhàng về sự tự tin"
+      ]
+    },
+    "our-beloved-summer": {
+      "title": "Our Beloved Summer",
+      "tagline": "Người yêu cũ buộc phải trở lại trước ống kính sau nhiều năm",
+      "synopsis": "Thời trung học, Kook Yeon-soo đứng đầu lớp và Choi Ung đứng cuối lớp được quay cho một bộ phim tài liệu gây sốt. Nhiều năm sau khi chia tay, đoạn phim cũ nổi lên trở lại và máy quay quay lại, buộc hai người yêu cũ đối diện nhau và mùa hè họ chưa bao giờ khép lại.",
+      "whyWatch": [
+        "Choi Woo-shik và Kim Da-mi tái hợp sau bộ phim The Witch",
+        "Chuyện tình nhẹ nhàng theo phong cách phim tài liệu",
+        "Gamgodang-gil ở Seoul xuất hiện trong phim"
+      ]
+    },
+    "reply-1988": {
+      "title": "Reply 1988",
+      "tagline": "Năm gia đình, một con hẻm và năm ấm áp nhất ở Seoul",
+      "synopsis": "Năm 1988, năm gia đình sống chung một con hẻm nhỏ ở Ssangmun-dong, Seoul. Sung Deok-sun, cô con gái thứ hai vui vẻ, ngày ngày bên những người bạn thơ ấu Jung-hwan, Sun-woo, Dong-ryong và thần đồng cờ vây Choi Taek, trong khi cha mẹ họ trao nhau món ăn, nỗi lo và tiếng cười.",
+      "whyWatch": [
+        "Hài kịch gia đình nhiều nhân vật, mang cảm giác như ở nhà",
+        "Seoul cuối thập niên 1980 đầy hoài niệm, từ âm nhạc đến thời trang",
+        "Park Bo-gum, Lee Hye-ri và Ryu Jun-yeol trong những vai diễn bứt phá"
+      ]
+    },
+    "start-up": {
+      "title": "Start-Up",
+      "tagline": "Nhà sáng lập trẻ chạy theo giấc mơ lớn ở giới startup Hàn",
+      "synopsis": "Seo Dal-mi mơ trở thành Steve Jobs của Hàn Quốc. Nam Do-san là thiên tài toán học có công ty Samsan Tech đang dậm chân tại chỗ. Bí mật từ những lá thư thời niên thiếu và trung tâm khởi nghiệp Sandbox đưa họ đến với nhau, trong khi nhà đầu tư sắc sảo Han Ji-pyeong dõi theo sát sao.",
+      "whyWatch": [
+        "Bae Suzy, Nam Joo-hyuk và Kim Seon-ho trong mối tình tay ba",
+        "Góc nhìn tươi vui về nhà sáng lập, nhà đầu tư và vấp ngã để tiến lên",
+        "Những địa điểm ở Seoul như Oil Tank Culture Park và đảo Nodeul"
+      ]
+    }
+  }
 }

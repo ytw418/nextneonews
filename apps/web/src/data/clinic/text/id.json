@@ -1,4 +1,928 @@
 {
-  "fields": {},
-  "procedures": {}
+  "fields": {
+    "derma": {
+      "name": "Kulit & dermatologi",
+      "intro": "Laser, alat berbasis energi, dan suntikan yang tersedia di klinik kulit. Setiap halaman memuat masa pemulihan, tingkat nyeri, risiko, dan pertanyaan untuk diajukan. Tanpa nama klinik, peringkat, atau ulasan."
+    },
+    "dental": {
+      "name": "Gigi",
+      "intro": "Scaling, pemutihan, tambalan, veneer, implan, dan aligner bening: apa saja yang dilakukan, berapa lama, dan apa yang bisa salah."
+    },
+    "plastic": {
+      "name": "Bedah plastik",
+      "intro": "Prosedur kelopak mata, hidung, dan wajah. Operasi punya risiko nyata dan butuh waktu pemulihan, dan halaman ini membahas keduanya, tanpa nama klinik atau foto sebelum-sesudah."
+    }
+  },
+  "procedures": {
+    "laser-toning": {
+      "name": "Laser toning",
+      "aka": ["Laser Q-switched Nd:YAG energi rendah", "Laser toning 1064 nm", "QS Nd:YAG toning"],
+      "what": "Laser Q-switched Nd:YAG 1064 nm berenergi rendah yang dilewatkan berulang kali ke seluruh wajah. Metode ini banyak dipakai di Asia untuk melasma dan pigmen tidak merata. Tinjauan sistematis tahun 2022 atas 42 studi menemukan metode ini umumnya efektif untuk melasma, tetapi hasilnya bervariasi dan beberapa studi melaporkan pigmen kembali dalam sekitar tiga bulan setelah perawatan dihentikan.",
+      "whoFor": "Orang dengan melasma atau pigmen tidak merata yang menyebar, yang bisa menjalani serangkaian kunjungan. American Academy of Dermatology menggambarkan perawatan laser dan cahaya sebagai tambahan bagi orang yang sudah memakai obat kulit resep dan perlindungan matahari setiap hari.",
+      "steps": "Riasan dibersihkan dan mata ditutup. Laser dilewatkan beberapa kali dengan energi rendah ke area perawatan, lalu sunscreen dioleskan.",
+      "recovery": "Hampir tanpa downtime; kemerahan ringan biasanya mereda dalam sehari. Hasil terbentuk bertahap selama serangkaian sesi. Dalam satu studi pada pasien Korea, median rangkaiannya 10 sesi dengan jarak sekitar satu minggu.",
+      "risks": [
+        "Hipopigmentasi belang (bercak putih) yang bisa menetap, terkait energi laser kumulatif yang tinggi",
+        "Penggelapan balik (hiperpigmentasi) akibat peradangan, terutama dengan pengaturan agresif atau kulit lebih gelap",
+        "Melasma kembali setelah rangkaian perawatan selesai",
+        "Kemerahan sementara setelah tiap sesi"
+      ],
+      "questionsToAsk": [
+        "Apakah dokter spesialis kulit sudah memastikan pigmen saya adalah melasma, bukan kondisi lain?",
+        "Berapa sesi yang direncanakan, dengan jarak berapa lama, dan berapa total biayanya?",
+        "Bagaimana Anda mengatur energi untuk menurunkan risiko bercak putih atau penggelapan balik?",
+        "Krim atau obat apa yang perlu saya pakai bersamaan, dan berapa lama?",
+        "Apa yang akan Anda lakukan jika pigmen saya makin gelap selama rangkaian perawatan?"
+      ],
+      "aftercare": [
+        "Pakai sunscreen spektrum luas (SPF 30 atau lebih) setiap hari dan oleskan ulang saat di luar ruangan",
+        "Lanjutkan perawatan kulit yang diresepkan dokter kulit di antara sesi",
+        "Segera beri tahu klinik jika muncul bercak putih atau gelap baru"
+      ],
+      "faq": [
+        {
+          "q": "Apakah laser toning menghilangkan melasma secara permanen?",
+          "a": "Tidak. Tinjauan melaporkan perbaikan, tetapi juga kekambuhan setelah perawatan dihentikan. Sebagian besar rencana perawatan mencakup perlindungan matahari jangka panjang dan perawatan lanjutan."
+        },
+        {
+          "q": "Biasanya butuh berapa sesi?",
+          "a": "Protokolnya berbeda-beda. Dalam satu studi pada pasien Korea, mediannya 10 sesi dengan jarak sekitar satu minggu. Tanyakan jumlah sesi yang direncanakan dan total harga sebelum mulai."
+        },
+        {
+          "q": "Bisakah pigmen jadi makin parah?",
+          "a": "Ya. Tinjauan sistematis tahun 2022 melaporkan hiperpigmentasi balik dengan pengaturan agresif, terutama pada kulit lebih gelap, serta bercak putih menetap yang terkait energi kumulatif tinggi."
+        }
+      ]
+    },
+    "pico-laser": {
+      "name": "Laser pico",
+      "aka": ["Laser pikodetik", "Laser pikodetik fraksional"],
+      "what": "Laser yang menembakkan pulsa berdurasi pikodetik (sepertriliun detik) untuk memecah pigmen menjadi partikel yang sangat halus. Awalnya dipakai untuk menghapus tato, kini juga untuk bintik dan flek matahari, tekstur kulit, bekas jerawat, dan melasma. Tinjauan sistematis tahun 2021 menilai buktinya paling kuat untuk tato dan lebih lemah untuk peremajaan kulit, melasma, dan bekas luka.",
+      "whoFor": "Orang yang ingin menangani tato, bintik pigmen jinak, tekstur kulit, atau bekas jerawat. Setiap jenis bintik bereaksi berbeda, jadi diagnosis pigmen oleh dokter spesialis kulit didahulukan.",
+      "steps": "Kulit dibersihkan dan mata ditutup. Krim anestesi bisa dioleskan. Laser diarahkan ke tiap bintik atau dilewatkan ke seluruh area, tergantung tujuannya.",
+      "recovery": "Tergantung pengaturan. Dalam studi tentang flek matahari (lentigo), kemerahan, bengkak, dan keropeng kecil sebagian besar hilang dalam 3–5 hari.",
+      "risks": [
+        "Hiperpigmentasi pascainflamasi (penggelapan sementara)",
+        "Hipopigmentasi (bercak lebih terang)",
+        "Kemerahan, bengkak, keropeng, atau perdarahan titik-titik",
+        "Untuk melasma, jenis 755 nm tidak lebih unggul dari krim pencerah kulit dalam meta-analisis tahun 2023 dan dikaitkan dengan penggelapan"
+      ],
+      "questionsToAsk": [
+        "Panjang gelombang dan pengaturan apa yang akan dipakai untuk jenis bintik saya, dan mengapa?",
+        "Berapa sesi yang diperkirakan, dengan jarak berapa lama?",
+        "Seberapa besar kemungkinan muncul bercak lebih gelap atau lebih terang pada warna kulit saya?",
+        "Apa yang harus saya lakukan jika muncul keropeng atau penggelapan?",
+        "Apakah harganya per sesi atau per paket?"
+      ],
+      "aftercare": [
+        "Lindungi kulit yang dirawat dari matahari dengan sunscreen dan berteduh",
+        "Biarkan keropeng lepas sendiri, jangan dikelupas",
+        "Ikuti petunjuk perawatan tertulis dari klinik dan laporkan penggelapan yang tidak terduga"
+      ],
+      "faq": [
+        {
+          "q": "Apakah laser pico sama dengan laser toning?",
+          "a": "Tidak. Keduanya menyasar pigmen, tetapi laser pico memakai pulsa yang jauh lebih singkat. Untuk melasma, meta-analisis tahun 2023 menemukan manfaat pada laser pikodetik 1064 nm, sedangkan jenis 755 nm tidak lebih unggul dari krim. Alat yang tepat bergantung pada diagnosis."
+        },
+        {
+          "q": "Berapa lama downtime-nya?",
+          "a": "Tergantung pengaturan. Dalam studi flek matahari, kemerahan, bengkak, dan keropeng sebagian besar hilang dalam 3–5 hari. Beberapa orang mengalami penggelapan ringan yang memudar dalam sekitar sebulan dengan obat oles."
+        },
+        {
+          "q": "Untuk apa saja laser ini dipakai?",
+          "a": "Menurut tinjauan sistematis tahun 2021: penghapusan tato (bukti terkuat), bintik pigmen jinak, peremajaan kulit, melasma, dan bekas jerawat."
+        }
+      ]
+    },
+    "rejuran": {
+      "name": "Rejuran (suntik polinukleotida)",
+      "aka": ["REJURAN", "Suntik polinukleotida (PN)", "Skin booster PN"],
+      "what": "Suntikan polinukleotida (PN), molekul turunan DNA, yang dimasukkan ke kulit lewat banyak suntikan kecil. Tinjauan tahun 2024 menyebut REJURAN sebagai produk PN yang menonjol di Asia. Studi melaporkan perbaikan garis halus, tekstur, dan elastisitas, tetapi tinjauan sistematis tahun 2025 hanya menemukan sembilan studi dengan kualitas rendah hingga sedang.",
+      "whoFor": "Orang dewasa yang ingin memperbaiki tekstur kulit, garis halus, atau kualitas kulit dan menerima serangkaian suntikan dengan perubahan bertahap dan tidak besar.",
+      "steps": "Wajah dibersihkan dan dibius. PN disuntikkan sedikit demi sedikit ke seluruh area dengan jarum halus, lalu kulit dibersihkan.",
+      "recovery": "Kemerahan dan bengkak sering bertahan beberapa jam. Benjolan kecil di titik suntikan umum terjadi di awal dan biasanya sementara. Memar bisa terjadi.",
+      "risks": [
+        "Nyeri, kemerahan, dan bengkak di titik suntikan",
+        "Memar dan bekas jarum yang terlihat",
+        "Benjolan kecil sementara di bawah kulit",
+        "Jarang: granuloma benda asing (benjolan yang menetap) atau penggelapan pascainflamasi"
+      ],
+      "questionsToAsk": [
+        "Produk apa dan berapa mL yang akan disuntikkan, dan bisakah saya melihat kemasannya yang masih tersegel?",
+        "Berapa sesi, dengan jarak berapa lama, dan berapa total biayanya?",
+        "Siapa yang menyuntik, dan apakah ia dokter berizin?",
+        "Apakah saya perlu menghentikan obat atau suplemen tertentu sebelumnya?",
+        "Apa yang harus saya lakukan jika benjolan atau memar tidak hilang?"
+      ],
+      "aftercare": [
+        "Jangan menggosok atau menekan benjolan kecuali diminta klinik",
+        "Pakai perawatan kulit yang lembut dan sunscreen selama beberapa hari",
+        "Hubungi klinik jika benjolan, nyeri, atau kemerahan memburuk"
+      ],
+      "faq": [
+        {
+          "q": "Apakah Rejuran itu filler?",
+          "a": "Bukan dalam arti biasa. Rejuran dikelompokkan sebagai skin booster, yang bertujuan memperbaiki kualitas kulit (tekstur, hidrasi, elastisitas), bukan menambah volume."
+        },
+        {
+          "q": "Berapa lama hasilnya bertahan?",
+          "a": "Konsensus Eropa yang dikutip dalam tinjauan tahun 2024 melaporkan efek bertahan sekitar 6–12 bulan setelah rangkaian tiga sesi. Hasil tiap orang berbeda."
+        },
+        {
+          "q": "Seberapa kuat buktinya?",
+          "a": "Terbatas. Tinjauan sistematis tahun 2025 menemukan sembilan studi dengan 219 pasien, berkualitas rendah hingga sedang. Efek samping umumnya ringan dan sementara, tetapi studi yang lebih besar dan berkualitas lebih tinggi masih diperlukan."
+        }
+      ]
+    },
+    "skin-booster": {
+      "name": "Skin booster (asam hialuronat)",
+      "aka": ["Skin booster asam hialuronat", "Suntik hidrasi kulit", "Booster kualitas kulit"],
+      "what": "Asam hialuronat (HA) dalam jumlah kecil yang disuntikkan ke kulit lewat banyak suntikan berjarak rapat untuk memperbaiki hidrasi, tekstur, dan kilau kulit, bukan menambah volume. 'Skin booster' adalah sebutan luas: klinik juga memakainya untuk PN, PLLA, dan suntikan lain, jadi tanyakan produk apa yang dipakai.",
+      "whoFor": "Orang dewasa dengan kulit yang tampak kering, kusam, atau bergaris halus yang ingin perubahan kualitas kulit secara bertahap tanpa tambahan volume.",
+      "steps": "Kulit dibersihkan dan dibius. Banyak suntikan kecil diberikan berdekatan dengan jarum yang sangat halus, lalu area dibersihkan.",
+      "recovery": "Kemerahan dan bengkak ringan biasanya bertahan beberapa jam. Benjolan kecil bisa muncul dan biasanya sementara. Memar dan bekas jarum bisa terjadi.",
+      "risks": [
+        "Nyeri, memar, dan bekas jarum",
+        "Benjolan atau 'butiran' (papul), terutama jika HA ikatan silang ditempatkan terlalu dangkal",
+        "Kemerahan dan bengkak selama beberapa jam",
+        "Jarang: granuloma (benjolan yang menetap)",
+        "Jarang tetapi serius pada filler HA mana pun: tersuntik ke pembuluh darah, yang bisa merusak kulit atau penglihatan"
+      ],
+      "questionsToAsk": [
+        "Produk apa persisnya: HA, PN, PLLA, atau campuran?",
+        "Apakah produk ini disetujui badan pengawas obat Korea (MFDS), dan bisakah saya melihat kemasannya?",
+        "Berapa sesi yang direncanakan dan berapa total harganya?",
+        "Bagaimana Anda mengurangi kemungkinan munculnya benjolan?",
+        "Apa yang harus saya lakukan jika warna kulit berubah atau nyeri hebat?"
+      ],
+      "aftercare": [
+        "Hindari menekan atau memijat area kecuali diminta",
+        "Lewati riasan tebal sampai akhir hari jika klinik memintanya",
+        "Segera cari pertolongan medis jika nyeri hebat, kulit pucat atau kebiruan, atau penglihatan berubah"
+      ],
+      "faq": [
+        {
+          "q": "Apa beda skin booster dan filler?",
+          "a": "Filler menambah volume dan bentuk. Skin booster memakai suntikan kecil dan dangkal, biasanya HA dengan ikatan silang ringan atau tanpa ikatan silang, untuk menyasar hidrasi dan tekstur."
+        },
+        {
+          "q": "Kapan hasilnya terlihat?",
+          "a": "Sebuah panel ahli melaporkan efek terlihat setelah sesi pertama, dengan perbaikan bertahap hingga 12 bulan bila diulang setiap 4–6 bulan setelah rangkaian awal hingga tiga sesi."
+        },
+        {
+          "q": "Apakah sakit?",
+          "a": "Nyeri, rasa tidak nyaman, dan memar tercantum sebagai efek samping karena memakai banyak suntikan kecil. Tanyakan apakah krim anestesi dioleskan."
+        }
+      ]
+    },
+    "potenza": {
+      "name": "Potenza (microneedling RF)",
+      "aka": ["Microneedling radiofrekuensi", "Microneedling RF", "Microneedling radiofrekuensi fraksional"],
+      "what": "Alat yang memasukkan jarum halus ke kulit dan melepaskan energi radiofrekuensi (RF) di ujung jarum, memanaskan lapisan lebih dalam untuk memicu remodeling kolagen. Potenza adalah salah satu alat microneedling RF dan bisa bekerja dalam mode monopolar atau bipolar. Studi mencakup peremajaan kulit, bekas jerawat, jerawat aktif, dan stretch mark.",
+      "whoFor": "Orang dengan bekas jerawat, tekstur tidak rata, atau kekenduran ringan yang menerima hasil lambat dan bertahap. Tinjauan tahun 2021 menemukan alat ini bisa dipakai pada tipe kulit lebih gelap.",
+      "steps": "Krim anestesi dioleskan. Kedalaman jarum dan energi diatur, handpiece digerakkan ke seluruh area, lalu kulit didinginkan dan ditenangkan.",
+      "recovery": "Kemerahan biasanya bertahan sekitar 1–7 hari, dan benjolan kecil di titik jarum umum terjadi pada 1–2 hari pertama. Bekas berpola kisi bisa bertahan 1–2 minggu setelah perawatan berenergi tinggi. Perbaikan bisa berlanjut hingga 6 bulan.",
+      "risks": [
+        "Luka bakar, bekas luka, hilangnya lemak, perubahan bentuk wajah, atau kerusakan saraf: FDA AS memperingatkan pada Oktober 2025 tentang laporan komplikasi serius ini",
+        "Kemerahan, bengkak, memar, dan bekas kisi",
+        "Hiperpigmentasi pascainflamasi, terutama pada kulit lebih gelap",
+        "Jerawat kambuh, herpes bibir (cold sore) muncul, atau infeksi superfisial"
+      ],
+      "questionsToAsk": [
+        "Alat dan ujung jarum apa yang akan dipakai, dan siapa yang mengoperasikannya?",
+        "Berapa kedalaman dan energi yang direncanakan, dan bagaimana Anda menyesuaikannya dengan warna kulit saya?",
+        "Berapa sesi yang direncanakan, dengan jarak berapa lama?",
+        "Apakah saya perlu obat antivirus jika sering kena herpes bibir?",
+        "Bagaimana jika saya mengalami luka bakar atau bekas yang menetap?"
+      ],
+      "aftercare": [
+        "Hindari riasan sekitar 24–48 jam dan pakai pembersih yang lembut",
+        "Hindari matahari sekitar 2 minggu dan pakai sunscreen",
+        "Tidur dengan kepala ditinggikan selama 2–3 malam untuk mengurangi bengkak di wajah",
+        "Hubungi klinik jika muncul lepuh, nyeri yang memburuk, atau tanda infeksi"
+      ],
+      "faq": [
+        {
+          "q": "Bisakah microneedling RF dilakukan di rumah?",
+          "a": "Tidak. FDA menyebut microneedling RF sebagai prosedur medis, bukan perawatan kosmetik, dan menyatakan alatnya tidak boleh dipakai di rumah."
+        },
+        {
+          "q": "Kapan hasilnya terlihat?",
+          "a": "Remodeling kolagen berlangsung lambat dan bertahap. Tinjauan tahun 2021 mencatat perbaikan berlanjut hingga 6 bulan setelah perawatan."
+        },
+        {
+          "q": "Berapa lama downtime-nya?",
+          "a": "Biasanya beberapa hari kemerahan dan benjolan kecil. Kemerahan bisa bertahan hingga sekitar seminggu, dan bekas kisi setelah pengaturan berenergi tinggi bisa butuh 1–2 minggu untuk memudar."
+        }
+      ]
+    },
+    "ulthera": {
+      "name": "Ulthera (ultrasound terfokus mikro)",
+      "aka": ["Ultherapy", "Ultrasound terfokus mikro dengan visualisasi (MFU-V)"],
+      "what": "Alat non-invasif yang memfokuskan energi ultrasound pada kedalaman tertentu di bawah kulit, menciptakan titik-titik panas kecil yang memicu kolagen baru. Pencitraan ultrasound bawaan memungkinkan operator melihat lapisan yang sedang dirawat. Alat ini mendapat izin FDA untuk mengangkat dan mengencangkan area tertentu dan tidak menggantikan operasi facelift.",
+      "whoFor": "Orang dewasa, biasanya usia 30-an ke atas, dengan kekenduran ringan hingga sedang pada wajah dan leher.",
+      "steps": "Kulit dibersihkan dan gel ultrasound dioleskan. Handpiece menampilkan lapisan kulit dan menyalurkan energi baris demi baris, lalu gel dibersihkan.",
+      "recovery": "Biasanya tanpa downtime. Kemerahan ringan bisa bertahan sekitar satu jam. Sebagian orang mengalami bengkak, memar, atau nyeri tekan di sepanjang area tulang hingga sebulan. Hasil penuh butuh 3–6 bulan untuk terlihat.",
+      "risks": [
+        "Rasa tidak nyaman atau nyeri selama perawatan",
+        "Kemerahan, bengkak, memar, atau nyeri tekan, kadang selama berminggu-minggu",
+        "Kelemahan atau mati rasa saraf wajah sementara",
+        "Jarang: lepuh, luka terbuka (ulserasi), atrofi jaringan, atau nekrosis kulit, dilaporkan dalam serial kasus tahun 2018"
+      ],
+      "questionsToAsk": [
+        "Apakah ini sistem Ulthera atau alat ultrasound terfokus (HIFU) lain?",
+        "Berapa baris dan kedalaman berapa yang akan dipakai di wajah saya?",
+        "Pengendalian nyeri apa yang ditawarkan?",
+        "Kapan saya bisa melihat perubahan, dan mungkinkah perlu diulang?",
+        "Bagaimana Anda menghindari area saraf?"
+      ],
+      "aftercare": [
+        "Aktivitas normal biasanya bisa langsung dilanjutkan",
+        "Wajar jika terasa nyeri tekan di sepanjang rahang atau tulang pipi",
+        "Laporkan mati rasa, gerakan wajah yang melemah, atau lepuh ke klinik"
+      ],
+      "faq": [
+        {
+          "q": "Apakah Ulthera sama dengan HIFU?",
+          "a": "Ulthera (Ultherapy) adalah salah satu sistem ultrasound terfokus mikro dengan pencitraan bawaan. Alat lain yang dijual sebagai 'HIFU' juga memakai ultrasound terfokus tetapi desainnya berbeda, jadi tanyakan alat apa yang dipakai."
+        },
+        {
+          "q": "Kapan hasilnya terlihat?",
+          "a": "Sebagian orang langsung merasakan perubahan, tetapi menurut Cleveland Clinic hasil penuh butuh 3–6 bulan."
+        },
+        {
+          "q": "Apakah ini menggantikan facelift?",
+          "a": "Tidak. Cleveland Clinic mencatat alat ini cocok untuk kekenduran ringan hingga sedang dan tidak menggantikan operasi facelift."
+        }
+      ]
+    },
+    "thermage": {
+      "name": "Thermage (radiofrekuensi monopolar)",
+      "aka": ["Radiofrekuensi monopolar (MRF)", "ThermaCool", "Thermage FLX"],
+      "what": "Alat non-invasif yang memanaskan lapisan kulit dalam (dermis) dengan radiofrekuensi monopolar sambil melindungi permukaan, sehingga kolagen menyusut dan terbentuk ulang. Alat ini dipakai untuk kekenduran dan kerutan ringan hingga sedang. Tinjauan sistematis tahun 2022 menemukan perbaikan kekenduran yang terukur, dengan komplikasi yang sebagian besar ringan dan singkat.",
+      "whoFor": "Orang dewasa dengan kekenduran kulit ringan hingga sedang. Dalam survei dokter kulit Korea, orang berusia 40-an dinilai paling responsif, dan ketebalan kulit menjadi faktor utama respons.",
+      "steps": "Kulit dibersihkan. Ujung perawatan menyalurkan panas dalam beberapa lintasan sementara permukaan didinginkan, dan tanggapan Anda tentang rasa panas membantu mengatur energi.",
+      "recovery": "Kemerahan setelah perawatan umum terjadi dan biasanya hilang dalam 1–2 hari. Downtime minimal.",
+      "risks": [
+        "Nyeri atau rasa tidak nyaman akibat panas selama perawatan",
+        "Kemerahan dan bengkak selama 1–2 hari",
+        "Jarang: luka bakar superfisial atau keropeng",
+        "Jarang: sedikit ketidakrataan kontur (cekungan) atau benjolan merah kecil di bawah kulit"
+      ],
+      "questionsToAsk": [
+        "Apakah ini alat dan ujung Thermage asli, dan berapa shot yang direncanakan?",
+        "Apakah Anda akan menyesuaikan energi berdasarkan rasa panas yang saya rasakan?",
+        "Apa rencananya jika saya mengalami lepuh atau cekungan?",
+        "Apakah tingkat kekenduran dan ketebalan kulit saya cocok untuk perawatan ini?",
+        "Kapan sesi ulang masuk akal?"
+      ],
+      "aftercare": [
+        "Aktivitas biasa umumnya bisa dilanjutkan di hari yang sama",
+        "Pakai perawatan kulit yang lembut dan sunscreen",
+        "Laporkan lepuh, keropeng, atau cekungan ke klinik"
+      ],
+      "faq": [
+        {
+          "q": "Apa beda Thermage dan Ulthera?",
+          "a": "Keduanya alat non-bedah berbasis panas. Thermage memakai radiofrekuensi untuk memanaskan dermis, sedangkan Ulthera memakai ultrasound terfokus pada kedalaman tertentu. Dokter memilih berdasarkan kulit dan tujuan."
+        },
+        {
+          "q": "Kapan hasilnya terlihat?",
+          "a": "Dalam survei tahun 2007 atas 5.700 perawatan dengan metode energi lebih rendah dan banyak lintasan, 87% menunjukkan pengencangan langsung dan 92% mengalami pengencangan pada bulan keenam."
+        },
+        {
+          "q": "Apakah sakit?",
+          "a": "Panasnya terasa. Dalam survei yang sama, 5% menganggap metode banyak lintasan berenergi rendah terlalu sakit, dibandingkan 45% pada metode lama berenergi tinggi."
+        }
+      ]
+    },
+    "botox": {
+      "name": "Botox (toksin botulinum)",
+      "aka": ["Toksin botulinum tipe A", "Neuromodulator", "Botox®", "Dysport®", "Xeomin®", "Jeuveau®"],
+      "what": "Toksin botulinum dosis kecil yang disuntikkan ke otot tertentu untuk menghambat sinyal saraf yang membuat otot berkontraksi. Botox melembutkan kerutan di antara alis, kerutan dahi, dan kerutan di sudut mata, juga dipakai untuk melembutkan rahang persegi, mengurangi pita otot leher, dan memperbaiki senyum gusi (gummy smile).",
+      "whoFor": "Orang dewasa yang terganggu oleh garis ekspresi atau rahang lebar karena otot yang besar dan menerima hasil sementara yang perlu diulang.",
+      "steps": "Dokter menilai otot dan menyuntikkan sedikit dengan jarum yang sangat halus. Biasanya tidak perlu bius.",
+      "recovery": "Tanpa downtime, dan aktivitas normal bisa langsung dilanjutkan. Hasil muncul dalam beberapa hari dan penuh dalam sekitar 5–7 hari, lalu biasanya bertahan 3–4 bulan.",
+      "risks": [
+        "Memar dan nyeri di titik suntikan",
+        "Sakit kepala",
+        "Kelopak mata atau alis turun sementara",
+        "Kelemahan wajah sementara jika toksin menyebar ke otot di dekatnya",
+        "Sangat jarang: menyebar di luar area sehingga menyebabkan gangguan bernapas atau menelan, kelemahan otot, atau bicara cadel"
+      ],
+      "questionsToAsk": [
+        "Produk (merek) apa dan berapa unit yang dipakai untuk tiap area?",
+        "Apakah produk ini disetujui di Korea, dan apakah akan dibuka di depan saya?",
+        "Siapa yang menyuntik?",
+        "Kapan saya perlu kembali jika hasilnya tampak tidak simetris?",
+        "Apakah riwayat kesehatan saya, seperti kehamilan, gangguan otot atau saraf, atau obat yang saya minum, berpengaruh?"
+      ],
+      "aftercare": [
+        "Jangan menggosok atau memijat area yang disuntik",
+        "Aktivitas normal bisa langsung dilanjutkan",
+        "Segera cari pertolongan darurat jika sulit bernapas, menelan, atau berbicara"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama Botox bertahan?",
+          "a": "Biasanya sekitar 3–4 bulan. Saat efeknya hilang, gerakan otot dan garis kerutan kembali."
+        },
+        {
+          "q": "Mengapa area suntikan tidak boleh digosok setelahnya?",
+          "a": "Menurut American Society of Plastic Surgeons, menggosok bisa memindahkan toksin ke otot di dekatnya dan menyebabkan kelemahan atau kelopak turun sementara."
+        },
+        {
+          "q": "Apakah 'Botox' itu merek?",
+          "a": "Botox® adalah salah satu merek toksin botulinum. Merek lain antara lain Dysport®, Xeomin®, dan Jeuveau®. Tiap klinik memakai produk berbeda, jadi tanyakan produk mana dan berapa dosisnya."
+        }
+      ]
+    },
+    "filler": {
+      "name": "Filler dermal",
+      "aka": ["Filler asam hialuronat (HA)", "Filler jaringan lunak", "Filler suntik"],
+      "what": "Gel yang disuntikkan di bawah kulit untuk menambah volume atau menghaluskan garis di area seperti bibir, pipi, dagu, dan garis senyum. Sebagian besar filler kosmetik adalah asam hialuronat (HA), yang diserap tubuh seiring waktu. Jenis lain, seperti kalsium hidroksilapatit, asam poli-L-laktat, dan PMMA, bertahan lebih lama dan bisa lebih sulit dihilangkan.",
+      "whoFor": "Orang dewasa yang ingin tambahan volume atau penghalusan sementara. Di AS, filler disetujui untuk orang dewasa berusia 22 tahun ke atas. FDA AS belum menyetujui filler untuk hidung, area di antara alis, sekitar mata, dahi, atau leher.",
+      "steps": "Area dinilai dan ditandai, lalu dibius. Filler disuntikkan dan area bisa dibentuk dengan lembut.",
+      "recovery": "Sebagian besar aktivitas bisa langsung dilanjutkan, tetapi hindari olahraga berat selama 24–48 jam. Bengkak, memar, kemerahan, atau tampilan terlalu penuh biasanya membaik dalam hitungan jam hingga beberapa hari.",
+      "risks": [
+        "Memar, kemerahan, bengkak, nyeri tekan, dan gatal",
+        "Benjolan, filler yang teraba di bawah kulit, atau koreksi kurang atau berlebih",
+        "Infeksi atau reaksi alergi",
+        "Filler berpindah dari lokasi suntikan",
+        "Jarang tetapi serius: tersuntik ke pembuluh darah, yang bisa menyebabkan kematian jaringan kulit (nekrosis), gangguan penglihatan atau kebutaan, atau stroke"
+      ],
+      "questionsToAsk": [
+        "Produk apa ini (HA atau bahan lain), dan bisakah dilarutkan jika perlu?",
+        "Berapa mL yang akan dipakai, dan berapa harga per suntikan (syringe)?",
+        "Bagaimana Anda mengurangi risiko tersuntik ke pembuluh darah, dan apa rencana daruratnya?",
+        "Apakah area yang saya minta termasuk area yang belum disetujui FDA untuk filler?",
+        "Siapa yang harus saya hubungi di luar jam praktik jika nyeri, warna kulit berubah, atau ada masalah penglihatan?"
+      ],
+      "aftercare": [
+        "Hindari olahraga berat selama 24–48 jam",
+        "Kompres es untuk meredakan bengkak jika diminta klinik",
+        "Segera cari pertolongan darurat jika penglihatan berubah, atau ada nyeri hebat atau kelemahan di satu sisi tubuh"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama filler bertahan?",
+          "a": "Tergantung bahan dan area. Filler HA diserap secara bertahap, sedangkan bahan seperti PMMA bersifat semipermanen."
+        },
+        {
+          "q": "Apakah filler hidung disetujui?",
+          "a": "FDA AS belum menyetujui filler dermal untuk disuntikkan ke hidung, dan menyarankan agar filler tidak disuntikkan di sana. Aturan tiap negara berbeda, jadi tanyakan produk itu disetujui untuk apa di Korea."
+        },
+        {
+          "q": "Bisakah filler dihilangkan?",
+          "a": "FDA mencatat bahwa penghilangan bisa lebih sulit untuk filler 'permanen' dan filler yang tidak terbuat dari bahan seperti HA. Tanyakan sebelum perawatan."
+        },
+        {
+          "q": "Apa tanda bahaya setelah filler?",
+          "a": "Nyeri hebat, kulit pucat atau kebiruan di dekat suntikan, atau perubahan penglihatan apa pun bisa menandakan pembuluh darah tersumbat dan perlu penanganan segera."
+        }
+      ]
+    },
+    "aqua-peel": {
+      "name": "Aqua peel (hidrodermabrasi)",
+      "aka": ["Hidrodermabrasi"],
+      "what": "Perawatan wajah non-invasif yang menggabungkan mikrodermabrasi tanpa kristal (pengelupasan dengan alat isap) dengan infus serum cair, dan sering disertai ekstraksi pori. HydraFacial adalah salah satu versi bermerek. Dalam studi acak kecil tahun 2008, enam sesi memperbaiki garis halus, ukuran pori, dan pigmentasi.",
+      "whoFor": "Orang yang ingin perawatan pengelupasan dan pembersihan yang lembut dengan sedikit downtime. Beri tahu penyedia layanan tentang penyakit kulit aktif atau perawatan kulit yang baru dijalani.",
+      "steps": "Kulit dibersihkan dan dikelupas dengan alat, pori dibersihkan dengan isapan, lalu serum dimasukkan.",
+      "recovery": "Minimal. Riasan dan aktivitas biasa bisa langsung dilanjutkan. Kemerahan dan bengkak ringan biasanya memudar dalam 48 jam.",
+      "risks": [
+        "Kemerahan dan bengkak ringan, biasanya kurang dari 48 jam",
+        "Jarang: lepuh, memar ringan, perubahan warna kulit, atau kulit sensitif",
+        "Jarang: herpes bibir atau infeksi",
+        "Jarang: kerusakan kulit atau bekas luka"
+      ],
+      "questionsToAsk": [
+        "Serum apa yang dipakai, dan apakah mengandung bahan yang membuat saya bereaksi?",
+        "Apakah saya perlu menghentikan retinoid atau produk asam sebelumnya?",
+        "Apakah ujung alatnya sekali pakai, dan siapa yang melakukan perawatan?",
+        "Berapa sesi yang Anda sarankan, dan mengapa?",
+        "Bisakah digabung dengan perawatan lain di hari yang sama?"
+      ],
+      "aftercare": [
+        "Hindari produk retinoid atau AHA selama 3–5 hari",
+        "Pakai sunscreen dan batasi paparan matahari setidaknya 2 minggu",
+        "Hubungi klinik jika muncul ruam, memar, atau kemerahan atau bengkak yang berlangsung lebih dari seminggu"
+      ],
+      "faq": [
+        {
+          "q": "Apakah aqua peel itu chemical peel?",
+          "a": "Tidak persis. Perawatan ini menggabungkan pengelupasan, ekstraksi, dan infus serum. Beberapa versi juga punya tahap chemical peel ringan."
+        },
+        {
+          "q": "Haruskah saya menghentikan Botox atau retinoid sebelumnya?",
+          "a": "Cleveland Clinic menyarankan menghindari suntik Botox setidaknya dua minggu sebelumnya, dan menghentikan produk retinoid atau AHA 3–5 hari sebelumnya."
+        },
+        {
+          "q": "Seberapa sering saya bisa melakukannya?",
+          "a": "Sebagian orang menjalani 3–6 perawatan dengan jarak 2–4 minggu. Penyedia layanan juga bisa menyarankan sesi bulanan."
+        }
+      ]
+    },
+    "scaling": {
+      "name": "Scaling (pembersihan karang gigi profesional)",
+      "aka": ["Pembersihan gigi", "Pembersihan karang gigi", "Profilaksis gigi"],
+      "what": "Pembersihan plak dan karang gigi yang mengeras dari permukaan gigi dengan alat khusus, biasanya dilanjutkan dengan pemolesan. Pembersihan dalam di bawah garis gusi (scaling dan root planing) adalah perawatan terpisah untuk penyakit gusi.",
+      "whoFor": "Siapa pun dengan penumpukan plak atau karang gigi. Di Korea, peserta Asuransi Kesehatan Nasional berusia 19 tahun ke atas mendapat tanggungan satu kali scaling seluruh mulut per tahun kalender.",
+      "steps": "Dokter gigi memeriksa gigi dan gusi. Karang gigi dibersihkan dari gigi dan sekitar garis gusi, gigi dipoles, dan fluorida bisa dioleskan.",
+      "recovery": "Makan dan aktivitas normal bisa dilanjutkan di hari yang sama. Gigi ngilu atau gusi sakit bisa muncul dan biasanya hilang dalam beberapa hari.",
+      "risks": [
+        "Gigi ngilu sementara terhadap panas dan dingin",
+        "Gusi sakit dan sedikit berdarah",
+        "Gusi bisa tampak sedikit turun setelah bengkak mereda (terutama setelah pembersihan dalam)",
+        "Jarang: infeksi, terutama setelah pembersihan dalam"
+      ],
+      "questionsToAsk": [
+        "Apakah ini pembersihan rutin atau pembersihan dalam (scaling dan root planing)?",
+        "Apakah saya punya penyakit gusi, dan apakah perlu perawatan lanjutan?",
+        "Apakah ditanggung asuransi saya, dan berapa yang harus saya bayar?",
+        "Apakah akan ada rontgen, dan berapa biayanya?",
+        "Seberapa sering saya harus kembali?"
+      ],
+      "aftercare": [
+        "Pakai pasta gigi untuk gigi sensitif jika gigi terasa ngilu",
+        "Tetap sikat gigi dan pakai benang gigi setiap hari",
+        "Hubungi dokter gigi jika perdarahan tidak berhenti"
+      ],
+      "faq": [
+        {
+          "q": "Apakah scaling ditanggung asuransi di Korea?",
+          "a": "Bagi peserta Asuransi Kesehatan Nasional berusia 19 tahun ke atas, satu kali scaling seluruh mulut per tahun (Januari–Desember) ditanggung, dengan biaya bagian pasien yang biasa. Pembersihan tambahan, serta pembersihan untuk pemutihan, ortodonti, atau bau mulut, tidak ditanggung. Pengunjung tanpa asuransi Korea membayar tarif klinik sendiri."
+        },
+        {
+          "q": "Mengapa gigi saya ngilu setelah scaling?",
+          "a": "Membersihkan plak dan karang gigi bisa membuat gigi lebih sensitif terhadap panas dan dingin. Setelah pembersihan rutin, biasanya hilang dalam beberapa hari. Setelah pembersihan dalam, bisa butuh satu atau dua bulan."
+        },
+        {
+          "q": "Berapa lama prosesnya?",
+          "a": "Sebagian besar pembersihan butuh 30–60 menit. Pembersihan dalam butuh 1–2 jam dan bisa dibagi menjadi dua kunjungan."
+        }
+      ]
+    },
+    "whitening": {
+      "name": "Pemutihan gigi",
+      "aka": ["Bleaching gigi", "Pemutihan di klinik", "Pemutihan laser"],
+      "what": "Mencerahkan warna gigi asli dengan gel peroksida (hidrogen atau karbamid peroksida). Pilihannya adalah sesi di klinik, kadang dengan sinar atau laser, atau kit tray buatan dokter gigi yang dipakai di rumah selama beberapa minggu.",
+      "whoFor": "Orang dewasa dengan gigi asli yang bernoda atau menggelap serta gigi dan gusi yang sehat. Panduan NHS menyebut pemutihan tidak dilakukan untuk usia 17 tahun ke bawah dan tidak disarankan saat hamil atau menyusui. Pemutihan tidak mengubah warna mahkota gigi, gigi palsu, atau implan.",
+      "steps": "Dokter gigi memeriksa gigi dan gusi, lalu gusi dilindungi dengan pelindung atau pasta. Gel pemutih dioleskan, kadang diaktifkan dengan sinar atau laser, lalu dibilas. Untuk pemutihan di rumah, tray khusus dipakai selama beberapa minggu.",
+      "recovery": "Tanpa downtime. Gigi ngilu sementara dan iritasi gusi umum terjadi dan biasanya singkat.",
+      "risks": [
+        "Gigi ngilu terhadap makanan dan minuman dingin atau manis",
+        "Gusi atau tenggorokan sakit, atau bercak putih di gusi",
+        "Warna tidak rata di sebelah mahkota atau tambalan, yang tidak ikut memutih",
+        "Erosi enamel akibat bleaching yang agresif (terlihat dalam studi laboratorium)"
+      ],
+      "questionsToAsk": [
+        "Apakah gigi dan gusi saya cukup sehat untuk pemutihan?",
+        "Apakah mahkota, tambalan, atau veneer saya akan tetap berwarna berbeda?",
+        "Produk dan kadar peroksida apa yang akan dipakai?",
+        "Berapa lama hasilnya bertahan, dan bagaimana cara merawatnya?",
+        "Apa yang bisa saya lakukan jika ngilunya kuat?"
+      ],
+      "aftercare": [
+        "Batasi kopi, teh, dan anggur merah untuk memperlambat noda kembali",
+        "Pakai pasta gigi untuk gigi sensitif, atau hentikan sementara pemutihan di rumah, jika gigi terasa ngilu",
+        "Jangan pernah memakai hidrogen peroksida rumah tangga pada gigi"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama hasil pemutihan bertahan?",
+          "a": "Tidak permanen. NHS menyebut hasilnya bisa bertahan sekitar 3 tahun dengan perawatan yang baik, dan Cleveland Clinic menyebut enam bulan hingga tiga tahun."
+        },
+        {
+          "q": "Apakah pemutihan di salon kecantikan sama saja?",
+          "a": "Tidak. NHS menyebut kit dari salon atau penjual online tidak bekerja sebaik itu dan bisa merusak gigi dan gusi. Pemutihan harus dilakukan atau diresepkan oleh tenaga profesional gigi."
+        },
+        {
+          "q": "Apakah veneer atau mahkota saya ikut memutih?",
+          "a": "Tidak. Pemutihan hanya mencerahkan gigi asli, jadi restorasi yang ada bisa tampak lebih gelap setelahnya."
+        }
+      ]
+    },
+    "resin": {
+      "name": "Tambalan resin (komposit)",
+      "aka": ["Tambalan resin komposit", "Tambalan sewarna gigi", "Resin komposit sinar"],
+      "what": "Bahan sewarna gigi (resin yang dicampur bubuk kaca, kuarsa, atau silika) yang langsung ditempatkan ke lubang atau bagian gigi yang gompal dan dikeraskan dengan sinar, biasanya dalam satu kunjungan. Bahan yang sama dipakai untuk bonding kosmetik guna membentuk ulang gigi yang gompal atau tidak rata.",
+      "whoFor": "Orang dengan lubang gigi kecil hingga sedang, gigi gompal, atau retak. Kerusakan yang lebih besar mungkin perlu inlay, onlay, atau mahkota.",
+      "steps": "Gigi dibius bila perlu dan bagian yang berlubang dibersihkan. Resin ditempatkan, dikeraskan dengan sinar, lalu dibentuk dan dipoles.",
+      "recovery": "Biasanya Anda bisa langsung kembali beraktivitas, kecuali jika diberi sedasi. Ngilu ringan dan gusi sakit bisa bertahan satu atau dua minggu.",
+      "risks": [
+        "Ngilu sementara terhadap panas, dingin, atau saat menggigit",
+        "Gusi sakit di sekitar gigi",
+        "Gompal, aus, atau bernoda seiring waktu",
+        "Tambalan pada akhirnya perlu diganti"
+      ],
+      "questionsToAsk": [
+        "Apakah resin cocok untuk lubang seukuran ini, atau inlay atau mahkota akan lebih tahan lama?",
+        "Berapa permukaan gigi yang ditambal, dan bagaimana harganya dihitung?",
+        "Apakah gigi perlu dibius?",
+        "Berapa lama tambalan ini bisa bertahan?",
+        "Apakah ada bagian perawatan yang ditanggung asuransi?"
+      ],
+      "aftercare": [
+        "Tunggu sampai efek bius hilang sebelum makan",
+        "Minum obat pereda nyeri yang dijual bebas jika gigi sakit",
+        "Temui dokter gigi jika gigitan terasa mengganjal atau ngilu berlangsung lebih dari dua minggu"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama tambalan resin bertahan?",
+          "a": "Bervariasi. Cleveland Clinic menyebut 5–8 tahun untuk bonding kosmetik dan menyatakan tambalan secara umum bisa bertahan 10–20 tahun, tergantung bahan dan perawatan."
+        },
+        {
+          "q": "Mengapa klinik memakai resin, bukan amalgam (perak)?",
+          "a": "Resin serupa dengan warna gigi. FDA juga telah mengeluarkan panduan terbaru tentang amalgam untuk kelompok berisiko lebih tinggi, seperti orang yang merencanakan kehamilan dan anak di bawah 6 tahun."
+        },
+        {
+          "q": "Bagaimana harga resin di Korea ditentukan?",
+          "a": "Dalam data nasional biaya di luar tanggungan asuransi, tambalan resin dicantumkan berdasarkan jumlah permukaan dan penyebab (gigi berlubang atau aus). Mintalah perkiraan biaya tertulis per gigi."
+        }
+      ]
+    },
+    "laminate": {
+      "name": "Veneer laminate",
+      "aka": ["Veneer porselen", "Laminate keramik", "Veneer komposit"],
+      "what": "Lapisan tipis yang dibuat khusus dan dilekatkan ke bagian depan gigi untuk mengubah warna, bentuk, atau ukurannya, atau untuk menutup celah. Veneer porselen (keramik) dibuat di laboratorium setelah sedikit enamel dikikis. Veneer komposit dibentuk langsung dengan resin.",
+      "whoFor": "Orang dewasa dengan gigi dan gusi sehat yang ingin perubahan kosmetik seperti menutupi gigi gompal atau perubahan warna, atau menutup celah. ADA (Asosiasi Dokter Gigi Amerika) mencatat veneer mungkin bukan pilihan yang cocok bagi orang yang sering mengatupkan atau menggertakkan gigi, atau memiliki gigitan dalam (deep overbite).",
+      "steps": "Warna dipilih dan sedikit enamel dikikis dari bagian depan dan samping. Cetakan atau pindaian 3D diambil, veneer sementara bisa dipasang, lalu veneer buatan laboratorium dilekatkan dan disesuaikan.",
+      "recovery": "Praktis tanpa downtime. Perubahannya tidak bisa dibatalkan karena enamel dikikis.",
+      "risks": [
+        "Tidak dapat dikembalikan, karena enamel dikikis untuk memasang veneer",
+        "Gompal, retak, aus, atau lepas sehingga perlu dilekatkan ulang atau diganti",
+        "Memasang veneer di atas gigi berlubang atau penyakit gusi yang belum dirawat bisa memperparah masalah tersebut",
+        "Veneer biasanya perlu diganti setelah 5–15 tahun",
+        "Infeksi atau kerusakan saraf jika dipasang oleh penyedia tanpa izin"
+      ],
+      "questionsToAsk": [
+        "Berapa banyak enamel yang akan dikikis, dan apakah pemutihan atau bonding bisa mencapai tujuan saya?",
+        "Porselen atau komposit: mana yang sesuai dengan kasus saya, dan mengapa?",
+        "Berapa gigi, berapa harga per gigi, dan apa saja yang dicakup garansi?",
+        "Bagaimana jika veneer gompal setelah saya kembali ke negara saya?",
+        "Apakah saya menggertakkan atau mengatupkan gigi, dan apakah itu mengubah rencana?"
+      ],
+      "aftercare": [
+        "Hindari menggigit benda keras seperti es atau pulpen dengan gigi ber-veneer",
+        "Beri tahu dokter gigi jika Anda menggertakkan atau mengatupkan gigi",
+        "Tetap rutin membersihkan karang gigi dan memeriksakan gigi"
+      ],
+      "faq": [
+        {
+          "q": "Apakah veneer bisa dikembalikan seperti semula?",
+          "a": "Tidak. ADA menyatakan perawatan ini tidak dapat dikembalikan karena enamel gigi dikikis untuk memasang veneer."
+        },
+        {
+          "q": "Berapa lama veneer bertahan?",
+          "a": "Cleveland Clinic menyebut 5–15 tahun. Meta-analisis tahun 2025 menemukan tingkat bertahan sekitar 94–97% pada sekitar 10 tahun untuk veneer keramik yang umum."
+        },
+        {
+          "q": "Bisakah veneer selesai dalam satu perjalanan singkat?",
+          "a": "Veneer porselen biasanya butuh setidaknya dua kunjungan karena dibuat di laboratorium. Perbaikan dan penyesuaian bisa lebih sulit diatur setelah Anda meninggalkan Korea."
+        }
+      ]
+    },
+    "implant": {
+      "name": "Implan gigi",
+      "aka": ["Tanam gigi implan", "Mahkota implan"],
+      "what": "Tiang titanium yang ditanam di tulang rahang untuk menggantikan akar gigi yang hilang, lalu dipasangi penghubung (abutment) dan mahkota, jembatan, atau gigi tiruan. Tulang butuh 3–9 bulan untuk menyatu dengan tiang (osseointegrasi) sebelum gigi akhir dipasang.",
+      "whoFor": "Orang dewasa (biasanya 18 tahun ke atas) yang sudah selesai masa pertumbuhan dan memiliki tulang rahang sehat yang cukup. Cangkok tulang mungkin diperlukan jika tulang tipis. Implan mungkin tidak cocok bagi orang dengan diabetes yang tidak terkontrol, penyakit gusi aktif, atau yang merokok.",
+      "steps": "Pemeriksaan dan pencitraan dilakukan lebih dulu. Implan ditanam dengan bius lokal, dengan pilihan sedasi. Setelah 3–9 bulan penyembuhan, abutment dan mahkota dipasang dalam kunjungan sekitar satu jam, kadang dengan operasi kecil kedua.",
+      "recovery": "Tahap penyembuhan pertama butuh sekitar satu minggu, dengan sedikit rasa tidak nyaman dan bengkak. Penyatuan tulang penuh butuh 3–9 bulan.",
+      "risks": [
+        "Infeksi di gusi atau tulang sekitar implan (gusi berdarah atau bengkak, nanah, demam)",
+        "Mati rasa akibat kerusakan saraf, atau perforasi sinus di rahang atas",
+        "Kerusakan gigi di sebelahnya, atau patah tulang rahang saat operasi",
+        "Implan longgar atau gagal, yang mungkin perlu operasi ulang",
+        "Sekrup abutment longgar atau gigitan yang terasa tidak pas"
+      ],
+      "questionsToAsk": [
+        "Apakah tulang saya cukup, dan apakah saya perlu cangkok tulang (berapa biayanya)?",
+        "Merek dan model implan apa, serta bahan mahkota apa, yang termasuk dalam harga?",
+        "Berapa kunjungan yang diperlukan, dan berjarak berapa bulan?",
+        "Siapa yang menangani komplikasi setelah saya pulang ke negara saya?",
+        "Kontrol lanjutan atau garansi apa yang termasuk?"
+      ],
+      "aftercare": [
+        "Minum obat pereda nyeri yang dijual bebas sesuai petunjuk",
+        "Jangan merokok atau vape selama masa penyembuhan",
+        "Bersihkan sekitar implan sesuai petunjuk dan rutin periksa ke dokter gigi",
+        "Segera hubungi dokter gigi jika implan terasa longgar atau sakit, atau ada bengkak, nanah, atau demam"
+      ],
+      "faq": [
+        {
+          "q": "Berapa biaya implan di Korea?",
+          "a": "Kementerian Kesehatan Korea dan HIRA (lembaga penilai asuransi kesehatan) memublikasikan biaya di luar tanggungan asuransi. Dalam rilis 2026, biaya median per implan di klinik gigi adalah ₩1,1 juta dengan mahkota logam, PFM, atau zirkonia, ₩1,2 juta dengan mahkota all-ceramic, dan ₩1,5 juta dengan mahkota berbahan emas. Biaya yang dilaporkan klinik gigi berkisar ₩540.000 hingga ₩2,5 juta. Harga bervariasi menurut klinik, bahan, dan prosedur tambahan seperti cangkok tulang."
+        },
+        {
+          "q": "Berapa lama implan bertahan?",
+          "a": "Dengan kebersihan yang baik, implan sering kali bisa bertahan seumur hidup. Meta-analisis tahun 2019 memperkirakan sekitar 96% implan bertahan 10 tahun. Mahkotanya mungkin perlu diganti, sering kali setelah sekitar 15 tahun."
+        },
+        {
+          "q": "Bisakah implan selesai dalam satu perjalanan?",
+          "a": "Biasanya tidak. Tulang butuh 3–9 bulan untuk menyatu sebelum gigi akhir dipasang, jadi perawatan sering berarti kunjungan berjarak beberapa bulan."
+        },
+        {
+          "q": "Apakah sakit?",
+          "a": "Area dibius saat pemasangan. Sedikit rasa tidak nyaman dan bengkak setelahnya itu normal, dan kebanyakan orang merasa pulih seperti biasa dalam sekitar seminggu."
+        }
+      ]
+    },
+    "clear-aligner": {
+      "name": "Aligner bening",
+      "aka": ["Invisalign®", "ClearCorrect®", "Kawat gigi transparan"],
+      "what": "Tray plastik bening yang dibuat khusus untuk menggeser gigi secara bertahap. Set baru biasanya diberikan sekitar setiap dua minggu. Tonjolan kecil sewarna gigi (attachment) bisa dilekatkan ke gigi agar tray mencengkeram lebih baik.",
+      "whoFor": "Orang dengan gigi berjejal, bengkok, atau bercelah yang bisa memakai tray 22–23 jam sehari. Cleveland Clinic mencatat kawat gigi konvensional bisa memperbaiki beberapa masalah lebih cepat.",
+      "steps": "Pemeriksaan dan pindaian 3D atau cetakan diambil, lalu rencana perawatan dibuat. Attachment dilekatkan, dan kadang sedikit enamel dikikis di antara gigi (interproximal reduction). Tray baru menyusul sekitar setiap dua minggu dengan kontrol, lalu retainer di akhir.",
+      "recovery": "Tanpa downtime. Rasa tertekan atau nyeri pada tiap tray baru biasanya mereda dalam beberapa hari.",
+      "risks": [
+        "Nyeri dan rasa tertekan pada tiap tray baru",
+        "Resorpsi akar (akar gigi sedikit memendek), seperti pada perawatan ortodonti lain",
+        "Gigi berlubang atau masalah gusi jika gigi dan tray tidak dijaga bersih",
+        "Gigi bergeser kembali jika retainer tidak dipakai"
+      ],
+      "questionsToAsk": [
+        "Apakah kasus saya cocok untuk aligner, atau kawat gigi cekat lebih sesuai?",
+        "Berapa tray dan berapa bulan yang direncanakan, dan seberapa sering saya harus datang?",
+        "Bisakah kemajuannya dipantau jika saya tinggal di luar negeri?",
+        "Apakah tray penyempurnaan dan retainer sudah termasuk dalam harga?",
+        "Apakah enamel di antara gigi saya akan dikikis (interproximal reduction)?"
+      ],
+      "aftercare": [
+        "Pakai tray 22–23 jam sehari, lepas hanya saat makan, menyikat gigi, dan memakai benang gigi",
+        "Makan makanan lunak pada hari-hari pertama tray baru jika mengunyah terasa sakit",
+        "Batasi makanan dan minuman manis, dan bersihkan gigi sebelum memasang tray kembali",
+        "Pakai retainer sesuai petunjuk setelah perawatan"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama perawatannya?",
+          "a": "Gigi yang sedikit bengkok bisa butuh hingga sekitar sembilan bulan. Kasus yang lebih rumit butuh waktu lebih lama."
+        },
+        {
+          "q": "Apakah saya perlu retainer setelahnya?",
+          "a": "Ya. NHS menyebut retainer diperlukan agar gigi tidak bergeser kembali ke posisi semula. Dokter gigi ortodontis Anda akan memberi tahu berapa lama harus memakainya."
+        },
+        {
+          "q": "Apakah aligner menyebabkan akar gigi memendek?",
+          "a": "Sedikit resorpsi akar bisa terjadi pada perawatan ortodonti apa pun. Meta-analisis tahun 2021 pada kasus tanpa pencabutan menemukan akar gigi depan atas memendek rata-rata sekitar 0,5 mm, di bawah 1 mm yang dianggap bermakna secara klinis, dengan besaran serupa antara aligner dan kawat gigi cekat untuk sebagian besar gigi."
+        }
+      ]
+    },
+    "double-eyelid": {
+      "name": "Operasi kelopak mata ganda",
+      "aka": ["Blefaroplasti Asia", "Blefaroplasti kelopak atas", "Kelopak ganda tanpa sayatan / dengan sayatan"],
+      "what": "Operasi untuk membuat lipatan kelopak mata atas yang terlihat. Monolid (tanpa lipatan yang terlihat) dimiliki sekitar separuh orang keturunan Asia. Metodenya berkisar dari teknik tanpa sayatan (jahitan) dan sayatan kecil hingga sayatan penuh, yang juga bisa membuang kelebihan kulit atau lemak.",
+      "whoFor": "Orang dewasa yang menginginkan lipatan permanen dan punya ekspektasi realistis. Operasi ini tidak diperlukan secara medis, dan selotip atau lem kelopak mata bisa membuat lipatan sementara.",
+      "steps": "Lipatan dirancang dan ditandai. Dengan bius lokal atau umum, sayatan atau tusukan kecil dibuat di sepanjang garis rencana, jaringan disesuaikan, dan lipatan difiksasi sebelum ditutup.",
+      "recovery": "Jahitan biasanya dipertahankan sekitar seminggu. Kebanyakan orang mengambil cuti kerja sekitar 2 minggu. Memar dan kemerahan bisa butuh beberapa minggu untuk memudar, dan pemulihan penuh butuh beberapa bulan.",
+      "risks": [
+        "Asimetri atau lipatan tidak rata",
+        "Lipatan memudar atau hilang (sekitar 2% dalam tinjauan metode sayatan kecil)",
+        "Bekas luka yang terlihat",
+        "Mata kering dan teriritasi atau sulit menutup mata untuk sementara",
+        "Jarang: perdarahan di belakang mata, cedera otot mata, atau perubahan penglihatan"
+      ],
+      "questionsToAsk": [
+        "Metode apa (tanpa sayatan, sayatan kecil, atau sayatan penuh) yang Anda rencanakan, dan mengapa?",
+        "Seberapa tinggi lipatannya, dan bisakah saya melihat sketsa garis rencananya?",
+        "Siapa yang melakukan operasi, dan apa kualifikasi spesialisnya?",
+        "Bagaimana kebijakan revisi jika lipatan tidak rata atau memudar?",
+        "Kapan jahitan dilepas, dan kapan saya boleh bepergian?"
+      ],
+      "aftercare": [
+        "Ganjal kepala dengan bantal selama beberapa hari",
+        "Pakai kompres dingin serta salep atau tetes mata yang diberikan",
+        "Hindari mengucek mata, lensa kontak, berenang, dan aktivitas berat selama beberapa hari atau sesuai petunjuk",
+        "Pakai kacamata hitam di luar ruangan untuk melindungi mata"
+      ],
+      "faq": [
+        {
+          "q": "Apakah kelopak ganda permanen?",
+          "a": "Tujuannya permanen, tetapi lipatan bisa memudar atau hilang. Tinjauan tahun 2023 menemukan tingkat hilangnya lipatan gabungan sebesar 2% dengan teknik sayatan kecil."
+        },
+        {
+          "q": "Berapa lama sampai terlihat alami?",
+          "a": "Memar dan kemerahan bisa butuh beberapa minggu untuk memudar, dan pemulihan penuh butuh beberapa bulan."
+        },
+        {
+          "q": "Apa beda metode tanpa sayatan dan dengan sayatan?",
+          "a": "Metode tanpa sayatan dan sayatan kecil umumnya berarti pemulihan lebih singkat. Sayatan penuh memungkinkan pembuangan kelebihan kulit atau lemak. Dokter bedah memilih berdasarkan kelopak mata dan tujuan Anda."
+        }
+      ]
+    },
+    "rhinoplasty": {
+      "name": "Rinoplasti (operasi hidung)",
+      "aka": ["Operasi hidung", "Pembentukan ulang hidung", "Rinoplasti terbuka", "Rinoplasti tertutup"],
+      "what": "Operasi yang mengubah bentuk atau ukuran hidung, termasuk batang, ujung, dan cuping hidung, dan juga bisa memperbaiki pernapasan. Operasi ini bisa memperkecil hidung dengan membuang tulang rawan dan tulang, atau memperbesarnya dengan cangkok seperti tulang rawan telinga. Rinoplasti terbuka memakai sayatan kecil di antara lubang hidung, sedangkan rinoplasti tertutup memakai sayatan di dalam hidung.",
+      "whoFor": "Orang dewasa yang pertumbuhan wajahnya sudah selesai, sehat, dan punya tujuan yang realistis.",
+      "steps": "Operasi biasanya dilakukan dengan bius umum. Sayatan terbuka atau tertutup dibuat, tulang rawan dan tulang dibentuk ulang atau dicangkok, lalu bidai dan perban dipasang.",
+      "recovery": "Bidai biasanya dipasang sekitar 7 hari, dan bernapas lewat hidung bisa sulit selama sekitar seminggu. Banyak orang mengambil cuti kerja hingga 2 minggu. Memar dan bengkak di sekitar mata memudar dalam sekitar 3 minggu, dan bengkak bisa butuh 6 bulan hingga setahun untuk mereda sepenuhnya.",
+      "risks": [
+        "Perdarahan, mimisan, infeksi, atau reaksi terhadap bius",
+        "Sulit bernapas, yang bisa permanen",
+        "Perforasi septum (lubang di dinding antara lubang hidung)",
+        "Mati rasa, perubahan penciuman, penyembuhan luka yang buruk, atau bekas luka",
+        "Hasil yang tidak memuaskan yang mungkin perlu operasi revisi"
+      ],
+      "questionsToAsk": [
+        "Apakah Anda akan memakai tulang rawan saya sendiri, implan, atau keduanya, dan apa risiko masing-masing?",
+        "Pendekatan terbuka atau tertutup, dan di mana bekas lukanya?",
+        "Bagaimana pernapasan saya akan diperiksa dan dilindungi?",
+        "Berapa lama saya harus tinggal di Korea sebelum terbang, dan siapa yang menangani komplikasi setelahnya?",
+        "Bagaimana kebijakan dan biaya revisi?"
+      ],
+      "aftercare": [
+        "Tinggikan kepala dengan bantal selama beberapa hari",
+        "Jaga bidai tetap kering, jangan membuang ingus, dan bersin lewat mulut",
+        "Hindari mandi air panas sampai bidai dilepas",
+        "Hindari olahraga berat dan olahraga kontak selama 4–6 minggu"
+      ],
+      "faq": [
+        {
+          "q": "Kapan saya bisa melihat bentuk akhirnya?",
+          "a": "Bengkak awal mereda dalam beberapa minggu, tetapi American Society of Plastic Surgeons menyebut kontur baru bisa butuh hingga setahun untuk benar-benar terbentuk."
+        },
+        {
+          "q": "Berapa lama saya perlu cuti kerja?",
+          "a": "NHS menyebut hingga 2 minggu. Bidai biasanya dilepas setelah sekitar seminggu, dan olahraga berat dihindari selama 4–6 minggu."
+        },
+        {
+          "q": "Apakah filler hidung bisa jadi alternatif?",
+          "a": "Beberapa klinik menawarkan filler sebagai 'operasi hidung tanpa bedah', tetapi FDA AS belum menyetujui filler dermal untuk disuntikkan ke hidung."
+        }
+      ]
+    },
+    "thread-lift": {
+      "name": "Tanam benang (thread lift)",
+      "aka": ["Thread lift benang larut", "Lift benang berduri", "Benang PDO"],
+      "what": "Benang khusus medis ditempatkan di bawah kulit untuk mengangkat jaringan yang kendur dan merangsang kolagen. Prosedurnya invasif minimal dan dilakukan dengan bius lokal. Sebagian besar benang saat ini larut seiring waktu, jadi hasilnya sementara, bertahan sekitar 1–3 tahun menurut Cleveland Clinic.",
+      "whoFor": "Orang dewasa dengan tanda awal kekenduran, sering di akhir usia 30-an hingga awal 50-an, yang menginginkan perubahan lebih kecil daripada facelift dan menerima hasil sementara.",
+      "steps": "Bius lokal diberikan. Benang dimasukkan di bawah kulit lewat titik masuk kecil, jaringan diangkat, lalu benang dikaitkan dan dipotong.",
+      "recovery": "Bengkak dan memar bisa bertahan hingga lima hari. Kebanyakan orang langsung kembali bekerja, tetapi olahraga berat sering dihindari selama sekitar dua minggu.",
+      "risks": [
+        "Bengkak (komplikasi paling umum), memar, dan nyeri",
+        "Kulit berlesung atau berkerut (sekitar 10% dalam meta-analisis tahun 2021)",
+        "Mati rasa atau kesemutan, atau benang yang terlihat atau teraba",
+        "Infeksi atau benang menembus keluar kulit, lebih mungkin terjadi pada benang yang tidak larut dan pada orang berusia di atas 50 tahun",
+        "Hasil memudar seiring waktu"
+      ],
+      "questionsToAsk": [
+        "Bahan benang apa yang dipakai, berapa banyak, dan apakah bisa larut?",
+        "Menurut Anda, berapa lama hasilnya akan bertahan pada kulit saya?",
+        "Apa yang Anda lakukan jika muncul lesung atau benang terlihat?",
+        "Apakah tanam benang realistis untuk tingkat kekenduran saya?",
+        "Aktivitas apa yang harus saya hindari, dan berapa lama?"
+      ],
+      "aftercare": [
+        "Kompres dengan kain dingin atau kantong es",
+        "Jangan mencuci muka selama 24 jam pertama, dan hindari riasan selama beberapa hari",
+        "Tidur dengan kepala diganjal lebih tinggi",
+        "Hindari olahraga berat selama sekitar dua minggu",
+        "Hubungi klinik jika demam, sakit kepala yang tidak hilang, atau bengkak lebih dari 48 jam"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama hasil tanam benang bertahan?",
+          "a": "Cleveland Clinic menyebut sekitar satu hingga tiga tahun. Dalam meta-analisis tahun 2021, kepuasan turun dari 98% tepat setelah perawatan menjadi 88% pada bulan keenam."
+        },
+        {
+          "q": "Apakah sama dengan facelift?",
+          "a": "Tidak. Prosedurnya invasif minimal dan perubahannya lebih kecil serta sementara. Operasi facelift membuang dan memposisikan ulang jaringan."
+        },
+        {
+          "q": "Apa komplikasi yang paling umum?",
+          "a": "Meta-analisis tahun 2021 menemukan bengkak pada 35% kasus, kulit berlesung 10%, mati rasa atau kesemutan 6%, benang terlihat atau teraba 4%, serta infeksi dan benang keluar masing-masing 2%."
+        }
+      ]
+    },
+    "fat-grafting": {
+      "name": "Cangkok lemak wajah",
+      "aka": ["Transfer lemak", "Suntik lemak autologus", "Lipofilling"],
+      "what": "Lemak diambil dari bagian tubuh lain dengan sedot lemak (misalnya perut atau paha), diproses, lalu disuntikkan ke wajah untuk mengembalikan volume di area seperti pipi, pelipis, atau dahi. Sebagian lemak diserap kembali pada bulan-bulan pertama, jadi sering diperlukan lebih dari satu sesi.",
+      "whoFor": "Orang dewasa yang menginginkan volume wajah lebih tahan lama dengan jaringan sendiri, memiliki cukup lemak donor, dan menerima bahwa hasilnya kurang dapat diprediksi dibanding filler siap pakai.",
+      "steps": "Dengan bius lokal atau umum, lemak diambil lewat sayatan kecil dengan tabung tipis. Lemak diproses untuk memisahkan darah dan cairan, lalu disuntikkan ke wajah sedikit demi sedikit.",
+      "recovery": "Memar dan bengkak di kedua lokasi bisa bertahan beberapa minggu, dan banyak orang mengambil cuti kerja sekitar dua minggu. Hasil akhir bisa butuh hingga 6 bulan karena sebagian lemak diserap kembali.",
+      "risks": [
+        "Memar yang cukup berat, bengkak berkepanjangan, mati rasa, dan bekas luka kecil",
+        "Ketidakrataan, benjolan, asimetri, nekrosis lemak, atau kista yang mungkin perlu dikoreksi",
+        "Kelangsungan hidup lemak yang sulit diprediksi, karena sebagian lemak diserap kembali",
+        "Jarang tetapi berat: lemak masuk ke pembuluh darah (emboli), yang pernah menyebabkan kebutaan, stroke, dan kematian; glabela (di antara alis) dan pelipis adalah lokasi yang paling sering dilaporkan",
+        "Perdarahan di bawah kulit (hematoma) atau infeksi"
+      ],
+      "questionsToAsk": [
+        "Dari mana lemak akan diambil, dan bagaimana tampilan area itu setelahnya?",
+        "Berapa banyak lemak yang diperkirakan bertahan, dan mungkinkah saya perlu sesi lagi?",
+        "Teknik apa yang Anda pakai untuk mengurangi risiko tersuntik ke pembuluh darah?",
+        "Apakah dengan bius lokal atau umum?",
+        "Siapa yang menangani komplikasi setelah saya pulang ke negara saya?"
+      ],
+      "aftercare": [
+        "Atur agar ada yang mengantar Anda pulang setelah prosedur",
+        "Bersiaplah untuk memar dan bengkak selama beberapa minggu dan rencanakan waktu istirahat",
+        "Hubungi dokter bedah jika bengkak, kemerahan, atau nyeri makin parah",
+        "Segera cari pertolongan darurat jika penglihatan tiba-tiba berubah, sakit kepala hebat, atau tubuh melemah"
+      ],
+      "faq": [
+        {
+          "q": "Berapa lama cangkok lemak bertahan?",
+          "a": "American Society of Plastic Surgeons menyebut sekitar 50% lemak yang disuntikkan bertahan hidup dan lemak yang bertahan itu awet. Di wajah, hasilnya bisa kurang dapat diprediksi, dan sering perlu beberapa prosedur."
+        },
+        {
+          "q": "Seberapa sering komplikasi terjadi?",
+          "a": "Angka keseluruhan sering disebut sekitar 2%, tetapi tinjauan sistematis tahun 2022 menyimpulkan angka sebenarnya tidak diketahui karena kurangnya pelaporan. Kejadian berat seperti tersuntik ke pembuluh darah jarang terjadi tetapi bisa menyebabkan kerusakan permanen."
+        },
+        {
+          "q": "Apa beda cangkok lemak dan filler?",
+          "a": "Prosedur ini memakai lemak Anda sendiri dan bisa bertahan lebih lama, tetapi lebih ekstensif karena melibatkan sedot lemak, rasa tidak nyaman di area donor, dan pemulihan yang lebih lama."
+        }
+      ]
+    },
+    "canthoplasty": {
+      "name": "Kantoplasti (operasi sudut mata)",
+      "aka": ["Epikantoplasti (sudut dalam)", "Kantoplasti lateral (sudut luar)"],
+      "what": "Operasi pada sudut mata. Epikantoplasti melepaskan lipatan di sudut dalam mata (lipatan epikantus, umum pada kelopak mata Asia Timur). Kantoplasti lateral kosmetik memperpanjang sudut luar untuk memperlebar bukaan mata dan mengurangi kemiringan ke atas. Dokter bedah sering membahasnya bersama operasi kelopak mata ganda.",
+      "whoFor": "Orang dewasa dengan lipatan dalam yang menonjol, atau yang menginginkan bukaan mata lebih panjang, dan punya ekspektasi realistis.",
+      "steps": "Dengan bius lokal atau umum, sayatan kecil atau flap kulit dibuat di sudut mata. Jaringan dilepaskan atau diposisikan ulang dan ditutup dengan jahitan halus.",
+      "recovery": "Rasa tidak nyaman, bengkak, dan memar wajar terjadi selama sekitar dua minggu pertama. Banyak orang beristirahat sekitar seminggu sebelum kembali bekerja atau sekolah, dan pemulihan penuh butuh 2–4 minggu. Garis sayatan tetap terlihat 2–3 bulan sebelum memudar.",
+      "risks": [
+        "Bekas luka yang terlihat di sudut mata (kelemahan yang dikenal pada teknik sudut dalam yang lebih lama)",
+        "Koreksi kurang, kambuh, atau sudut mata menyatu kembali",
+        "Mata kering atau sulit menutup mata",
+        "Perdarahan, infeksi, atau nyeri",
+        "Bentuk sudut luar yang tidak sesuai harapan: tinjauan tahun 2016 mencatat komplikasi setelah kantoplasti lateral kosmetik tidak jarang terjadi"
+      ],
+      "questionsToAsk": [
+        "Sudut dalam, sudut luar, atau keduanya, dan seberapa besar perubahan yang realistis untuk saya?",
+        "Di mana bekas lukanya, dan seberapa terlihat?",
+        "Seberapa besar kemungkinan sudut mata menyatu kembali, dan bagaimana kebijakan revisinya?",
+        "Apakah akan digabung dengan operasi kelopak mata ganda?",
+        "Apakah saya akan dibius lokal atau umum?"
+      ],
+      "aftercare": [
+        "Jangan mengucek mata",
+        "Jauhkan air, sabun, dan produk perawatan kulit dari sayatan sampai sembuh",
+        "Hindari kolam renang dan sauna selama tiga minggu",
+        "Tidur dengan kepala ditinggikan, dan kompres es dengan jeda 15 menit untuk bengkak",
+        "Hindari olahraga berat selama beberapa minggu"
+      ],
+      "faq": [
+        {
+          "q": "Apa beda epikantoplasti dan kantoplasti lateral?",
+          "a": "Epikantoplasti menangani sudut dalam dekat hidung. Kantoplasti lateral menangani sudut luar dekat telinga."
+        },
+        {
+          "q": "Apakah akan ada bekas luka?",
+          "a": "Ya. Garis sayatan terlihat selama dua hingga tiga bulan lalu memudar. Teknik sudut dalam yang lebih baru memakai sayatan lebih pendek untuk mengurangi bekas luka yang terlihat."
+        },
+        {
+          "q": "Berapa lama pemulihannya?",
+          "a": "Menurut Cleveland Clinic, pemulihan penuh butuh dua hingga empat minggu, dengan sekitar seminggu istirahat sebelum kembali bekerja atau sekolah."
+        }
+      ]
+    },
+    "ptosis-correction": {
+      "name": "Koreksi ptosis (operasi membuka mata)",
+      "aka": ["Perbaikan blefaroptosis", "Pemajuan levator", "Koreksi bukaan mata"],
+      "what": "Operasi yang mengencangkan atau memendekkan otot pengangkat kelopak mata atas (levator) sehingga kelopak berada lebih tinggi dan mata lebih banyak terlihat. Secara medis, operasi ini menangani kelopak mata turun (ptosis) yang menghalangi penglihatan. Koreksi estetik untuk ptosis ringan juga dilakukan di Asia Timur, kadang bersamaan dengan operasi kelopak mata ganda.",
+      "whoFor": "Orang dewasa yang kelopak atasnya turun, karena penuaan, cedera, atau sejak lahir, atau yang menginginkan tampilan mata lebih terbuka. Penyebabnya perlu diperiksa dulu, karena ptosis kadang berasal dari penyakit otot, saraf, atau penyakit lain.",
+      "steps": "Dengan bius lokal disertai sedasi, otot pengangkat dikencangkan lewat sayatan di lipatan kelopak atau dari sisi dalam kelopak tanpa sayatan kulit. Sayatan lalu ditutup.",
+      "recovery": "Kunjungan kontrol biasanya dijadwalkan beberapa hari hingga seminggu setelah operasi. Tinggi dan bentuk kelopak bisa tampak tidak rata pada awalnya selama bengkak mereda. Setelah operasi kelopak mata, kebanyakan orang kembali ke rutinitas dalam 1–2 minggu.",
+      "risks": [
+        "Koreksi kurang atau berlebih (kelopak terlalu rendah atau terlalu tinggi)",
+        "Asimetri antara kedua mata",
+        "Sulit menutup mata sepenuhnya (lagoftalmus) dan mata kering",
+        "Kerusakan kornea",
+        "Perdarahan atau infeksi"
+      ],
+      "questionsToAsk": [
+        "Apa penyebab kelopak saya turun, dan apakah kondisi lain sudah disingkirkan?",
+        "Seberapa tinggi Anda akan mengatur tiap kelopak, dan bagaimana menangani asimetri?",
+        "Apakah akan digabung dengan operasi kelopak mata ganda?",
+        "Apa rencananya jika satu sisi terlalu tinggi atau terlalu rendah?",
+        "Bagaimana permukaan mata saya dilindungi jika awalnya saya tidak bisa menutup mata sepenuhnya?"
+      ],
+      "aftercare": [
+        "Pakai kompres dingin serta tetes atau salep mata yang diresepkan",
+        "Hindari mengucek mata dan memakai lensa kontak sampai dokter bedah mengizinkan",
+        "Datang ke kunjungan kontrol, biasanya dalam seminggu",
+        "Segera cari pertolongan jika penglihatan berubah, nyeri hebat, atau perdarahan"
+      ],
+      "faq": [
+        {
+          "q": "Apakah koreksi ptosis sama dengan operasi kelopak mata ganda?",
+          "a": "Tidak. Koreksi ptosis mengubah seberapa tinggi kelopak membuka dengan menangani otot pengangkat, sedangkan operasi kelopak mata ganda membuat lipatan. Keduanya kadang dilakukan bersamaan."
+        },
+        {
+          "q": "Apakah ada pilihan tanpa operasi?",
+          "a": "Bagi sebagian orang dewasa dengan ptosis didapat, obat tetes mata resep (oksimetazolin) bisa membuat kelopak membuka lebih lebar. Obat ini harus dipakai setiap hari dan tidak bekerja untuk semua jenis ptosis."
+        },
+        {
+          "q": "Apakah kelopak tidak rata tepat setelah operasi itu normal?",
+          "a": "Cleveland Clinic mencatat tinggi dan bentuk kelopak bisa tampak tidak rata tepat setelah operasi, dan koreksi kurang atau berlebih bisa terjadi dan sering membaik seiring waktu."
+        }
+      ]
+    }
+  }
 }

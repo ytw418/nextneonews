@@ -1,8 +1,428 @@
 {
-  "areas": {},
-  "places": {},
+  "areas": {
+    "seongsu": {
+      "name": "Seongsu",
+      "tagline": "Factory cafés, beauty flagships and SM's home base",
+      "intro": "Seoul's old factory district now runs on cafés in converted warehouses, pop-up stores and giant K-beauty flagships. SM Entertainment's headquarters and Seoul Forest sit on its west side, so one afternoon covers shopping, idols and a park."
+    },
+    "hongdae": {
+      "name": "Hongdae",
+      "tagline": "Buskers, indie music and YG's neighborhood",
+      "intro": "The streets around Hongik University are Seoul's youth playground: buskers and dance crews, indie music, murals and late-night food. YG Entertainment is next door in Hapjeong, and Yeontral Park and Mangwon Market make slower detours."
+    },
+    "myeongdong": {
+      "name": "Myeongdong",
+      "tagline": "Beauty shopping right below Namsan",
+      "intro": "Myeongdong packs cosmetics flagships, street food and classic noodle houses into a few walkable blocks, with Korea's first Catholic cathedral at one end. Namsan and N Seoul Tower rise just behind it for night views."
+    },
+    "hannam-itaewon": {
+      "name": "Hannam · Itaewon",
+      "tagline": "Itaewon Class views, HYBE and global food",
+      "intro": "Yongsan's hillside neighborhoods mix world cuisines, galleries and nightlife. Itaewon Class fans head to the Noksapyeong overpass, K-pop fans to HYBE's headquarters by Yongnidan-gil, and art lovers to Leeum in Hannam-dong."
+    },
+    "apgujeong-cheongdam": {
+      "name": "Apgujeong · Cheongdam",
+      "tagline": "K-Star Road, designer flagships and bagels",
+      "intro": "Gangnam's fashion district, where salons and designer flagships line Apgujeong-ro. Walk K-Star Road past the GangnamDol idol statues, then cut over to the Dosan Park area for Haus Dosan and London Bagel Museum."
+    },
+    "bukchon-ikseon": {
+      "name": "Bukchon · Ikseon",
+      "tagline": "Hanok alleys, palace photos and Lovely Runner",
+      "intro": "Old Seoul between the palaces: Bukchon's lived-in hanok lanes, Gyeongbokgung for hanbok photos and Ikseon-dong's tiny hanok cafés. Winter Sonata and Lovely Runner fans can add Choong Ang High School at the top of the hill."
+    },
+    "yeouido": {
+      "name": "Yeouido",
+      "tagline": "Han River picnics, Music Bank and The Hyundai",
+      "intro": "An island of offices and broadcasters on the Han River. KBS airs Music Bank from here, The Hyundai Seoul hosts pop-ups under a glass roof, and the riverside park is where Seoul picnics with convenience-store noodles."
+    },
+    "busan": {
+      "name": "Busan",
+      "tagline": "Sea-view villages, cliff temples and Sky Capsules",
+      "intro": "Korea's second city is all about the sea: pastel hillside villages, a temple on the rocks and a capsule train gliding along the Haeundae coast. Plan a full day or more; most spots need a bus ride from the subway."
+    },
+    "jeju": {
+      "name": "Jeju",
+      "tagline": "Volcano sunrises, tea fields and camellias",
+      "intro": "Korea's volcanic island, where When Life Gives You Tangerines was filmed. Catch sunrise on Seongsan Ilchulbong, sip green tea by the O'sulloc fields and end at Dongmun Market's night stalls. A rental car or taxi helps."
+    }
+  },
+  "places": {
+    "kwangya-seoul": {
+      "name": "KWANGYA@Seoul",
+      "summary": "SM Entertainment's flagship K-pop store in the basement of SM's Seongsu headquarters. Browse official albums and goods of SM artists, then play with the media zone, AR guestbook and 4-cut photo frames.",
+      "address": "B1F, 83-21 Wangsimni-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "Seoul Forest Station Exit 5 is about a minute from the entrance.",
+        "Hours can change around holidays; the store posts notices on Instagram.",
+        "Seoul Forest park is a few minutes' walk away for a break."
+      ]
+    },
+    "olive-young-n-seongsu": {
+      "name": "Olive Young N Seongsu",
+      "summary": "Olive Young's experience-led flagship on Seongsu's Yeonmujang-gil, opened in November 2024. Floors of K-beauty testers, new-brand displays and beauty-care services; Olive Young says about 3 in 4 foreign visitors to Seongsu stop by.",
+      "address": "13 Yeonmujang 7-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "It's a tax-refund shop: bring your passport for an on-the-spot refund.",
+        "Foreign shoppers line up before the 10:00 opening; weekday mornings are calmer.",
+        "Seongsu Station (Line 2) is about two minutes away."
+      ]
+    },
+    "seoul-forest": {
+      "name": "Seoul Forest",
+      "summary": "A huge urban park opened in 2005 at the edge of Seongsu. Cherry blossoms and tulips fill it in spring, and its mirror pond reflects Seongsu's buildings and plane trees. An easy picnic break between shops and cafés.",
+      "address": "273 Ttukseom-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "Spring weekends are busiest, when cherry blossoms and tulips bloom.",
+        "The ground fountain runs May–October: six 30-minute shows from 12:00.",
+        "Entry is free; the visitor center is open 09:00–18:00."
+      ]
+    },
+    "cafe-onion-seongsu": {
+      "name": "Onion Seongsu",
+      "summary": "A bakery café in a converted 1970s factory that helped define Seongsu's industrial-chic café scene. Raw concrete walls and a courtyard set the mood; pandoro and ang butter are the signature bakes.",
+      "address": "8 Achasan-ro 9-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "Pandoro dusted with powdered sugar is the signature bake.",
+        "Seongsu Station Exit 2 is about two minutes away.",
+        "Open from 08:00 on weekdays, handy for breakfast before shopping."
+      ]
+    },
+    "yg-entertainment": {
+      "name": "YG Entertainment Headquarters",
+      "summary": "Home of YG Entertainment, the agency behind BLACKPINK and BABYMONSTER. Fans come to photograph the distinctive building in Hapjeong-dong; it's a working office, so enjoy it from the street.",
+      "address": "7 Huiujeong-ro 1-gil, Mapo-gu, Seoul",
+      "tips": [
+        "Take photos from the sidewalk and keep the entrances clear.",
+        "Hapjeong Station Exit 8 is about a 7-minute walk.",
+        "Mangwon Market is one stop away on Line 6."
+      ]
+    },
+    "hongdae-street": {
+      "name": "Hongdae (Hongik University Street)",
+      "summary": "The youth district around Hongik University, known for street fashion, indie music and buskers and dance crews performing on the streets. Murals and graffiti hide in the uphill alleys left of the university's main gate.",
+      "address": "20 Hongik-ro, Mapo-gu, Seoul",
+      "tips": [
+        "Buskers and dance crews draw crowds; keep walkways clear when watching.",
+        "For murals, turn left from Hongik University's main gate into the alleys.",
+        "Live-music streets cluster near Sangsu Station Exit 1."
+      ]
+    },
+    "yeontral-park": {
+      "name": "Gyeongui Line Forest Park (Yeontral Park)",
+      "summary": "A 6.3 km park built on the old Gyeongui railway. Its Yeonnam-dong stretch, nicknamed Yeontral Park, is a lawn-lined path with cafés on both sides, loved for picnics and relaxed street photos.",
+      "address": "Yeonnam-dong, Mapo-gu, Seoul",
+      "tips": [
+        "Start at Hongik Univ. Station Exit 3 and walk north into Yeonnam-dong.",
+        "Gyeongui Line Book Street, with book-themed kiosks, is part of the same park."
+      ]
+    },
+    "mangwon-market": {
+      "name": "Mangwon Market",
+      "summary": "A traditional market running for over 40 years where locals shop and snack for little money. Graze on dakgangjeong (crispy sweet-glazed chicken), croquettes and donuts as you walk the covered lanes.",
+      "address": "27 Poeun-ro 6-gil, Mapo-gu, Seoul",
+      "tips": [
+        "Mangwon Station Exit 2 is about a 5-minute walk.",
+        "Stall hours vary, so come before evening for the full lineup.",
+        "Pair it with YG's building in Hapjeong, one stop away on Line 6."
+      ]
+    },
+    "olive-young-myeongdong": {
+      "name": "Olive Young Myeongdong Flagship",
+      "summary": "Olive Young's flagship in the middle of Myeongdong's shopping streets, split into themed zones for skincare, makeup, body care and perfume so you can test before you buy.",
+      "address": "53 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "Open until 22:30, handy after dinner in Myeongdong.",
+        "Myeong-dong Station Exit 8 is about a 5-minute walk.",
+        "Want the newer experience-style store? Try Olive Young N Seongsu."
+      ]
+    },
+    "n-seoul-tower": {
+      "name": "N Seoul Tower (Namsan Seoul Tower)",
+      "summary": "Seoul's hilltop landmark on Namsan, with 360° views from the observatory and fences full of love locks. Drama fans know it from My Love from the Star, and it appears several times in KPop Demon Hunters.",
+      "address": "105 Namsangongwon-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Namsan Circulation Bus 01 runs from Chungmuro Station Exit 2 to the tower.",
+        "The Namsan cable car runs 10:00–23:00; adult round trip KRW 15,000 (2026).",
+        "Visit around sunset to see the city in daylight and after dark."
+      ]
+    },
+    "myeongdong-cathedral": {
+      "name": "Myeongdong Cathedral",
+      "summary": "Korea's first Roman Catholic parish church and its first Gothic-style building, a designated historic site. The red-brick spire rises above Myeongdong's shopping streets and offers a calm break.",
+      "address": "74 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "It's a working church: keep quiet and skip photos during Mass.",
+        "Euljiro 1-ga and Euljiro 3-ga stations are also about 8 minutes away."
+      ]
+    },
+    "myeongdong-kyoja": {
+      "name": "Myeongdong Kyoja",
+      "summary": "A long-running Myeongdong noodle house known for kalguksu: fresh, chewy wheat noodles in a rich, savory chicken broth. A bowl costs around KRW 10,000.",
+      "address": "29 Myeongdong 10-gil, Jung-gu, Seoul",
+      "tips": [
+        "Expect a line at peak lunch hours.",
+        "Myeong-dong Station Exit 8 is about a 3-minute walk."
+      ]
+    },
+    "hybe-yongsan": {
+      "name": "HYBE Headquarters",
+      "summary": "HYBE's headquarters in the Yongsan Trade Center, home base for labels behind BTS, SEVENTEEN and LE SSERAFIM. Fans take photos with the logo out front, and the alleys behind fill with fan-run birthday cafés.",
+      "address": "42 Hangang-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "The building is staff-only; photos from outside are fine.",
+        "Fan cafés behind the building decorate for idol birthdays with photocards.",
+        "Yongnidan-gil's cafés and restaurants are right next door."
+      ]
+    },
+    "noksapyeong-overpass": {
+      "name": "Noksapyeong Overpass",
+      "summary": "A pedestrian overpass by Noksapyeong Station with a straight view of Namsan and N Seoul Tower. In Itaewon Class, Park Sae-ro-yi and Jo Yi-seo share key conversations here. Good by day and by night.",
+      "address": "Noksapyeong Station, 195 Noksapyeong-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "Noksapyeong Station Exit 3 is about a minute away.",
+        "Go at sunset into blue hour for the tower against city lights.",
+        "Keep to the side for photos so people can pass."
+      ]
+    },
+    "leeum-museum": {
+      "name": "Leeum Museum of Art",
+      "summary": "Samsung's art museum in Hannam-dong: Korean ceramics, calligraphy and metalwork in one building, modern and contemporary art in another, in a complex by Mario Botta, Jean Nouvel and Rem Koolhaas.",
+      "address": "60-16 Itaewon-ro 55-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "Entry is by reservation, opening 14 days ahead; on-site tickets only if left.",
+        "Permanent exhibitions are free but still need a booking.",
+        "Free digital guides in English, Chinese and Japanese; bring your passport."
+      ]
+    },
+    "seoul-central-mosque": {
+      "name": "Seoul Central Mosque",
+      "summary": "Korea's first mosque, opened in 1976 on the hill above Itaewon. Halal restaurants, a halal butcher and a halal supermarket line the street outside, making it a handy stop for Muslim travelers.",
+      "address": "39 Usadan-ro 10-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "No sleeveless tops, shorts or short skirts; cover-ups and hijabs are lent on site.",
+        "Non-Muslims may enter; don't point cameras at people praying.",
+        "Itaewon Station Exit 3 is about a 6-minute uphill walk."
+      ]
+    },
+    "k-star-road": {
+      "name": "K-Star Road (Hallyu Star Road)",
+      "summary": "A roughly 1 km 'Hallyu star street' along Apgujeong-ro, from Galleria department store toward Cheongdam intersection. GangnamDol art toys inspired by K-pop acts such as Girls' Generation, EXO and Red Velvet line the way.",
+      "address": "407 Apgujeong-ro, Gangnam-gu, Seoul",
+      "tips": [
+        "The first big GangnamDol stands in front of Galleria's Luxury Hall East.",
+        "Walk east from Apgujeong Rodeo Station toward Cheongdam to find the statues.",
+        "1330 Travel Hotline (+82-2-1330) helps in English, Japanese and Chinese."
+      ]
+    },
+    "haus-dosan": {
+      "name": "Haus Dosan (Gentle Monster)",
+      "summary": "Gentle Monster's multi-brand flagship near Dosan Park, styled like an art installation: Nudake dessert café on B1, Gentle Monster eyewear on floors 1–3 and Tamburins fragrance on the 4th floor.",
+      "address": "50 Apgujeong-ro 46-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Head to B1 for Nudake's sculptural desserts.",
+        "Dosan Park is a couple of minutes' walk away."
+      ]
+    },
+    "dosan-park": {
+      "name": "Dosan Park",
+      "summary": "A quiet green park among Gangnam's boutique streets, built to honor independence activist and educator Ahn Chang-ho, known as Dosan. The Dosan Ahn Chang-ho Memorial Hall stands inside.",
+      "address": "20 Dosan-daero 45-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Free entry; the memorial hall is open daily 10:00–18:00.",
+        "Haus Dosan and London Bagel Museum are a few minutes' walk away."
+      ]
+    },
+    "london-bagel-museum-dosan": {
+      "name": "London Bagel Museum Dosan",
+      "summary": "A London-styled bagel bakery café with more than 10 kinds of bagels plus cream cheeses, jams and soups. The potato cheese bagel and jambon butter sandwich are the signatures; it's popular, so plan for a wait.",
+      "address": "33 Eonju-ro 168-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Signature picks: potato cheese bagel and jambon butter sandwich.",
+        "It closes at 18:00; go earlier in the day for the full lineup."
+      ]
+    },
+    "bukchon-hanok-village": {
+      "name": "Bukchon Hanok Village",
+      "summary": "Alleys of traditional hanok homes between Gyeongbokgung and Changdeokgung palaces, with 600 years of history. It's a lived-in neighborhood, not a theme park; its Bokjeong well appears in Lovely Runner.",
+      "address": "37 Gyedong-gil, Jongno-gu, Seoul",
+      "tips": [
+        "Restricted zones are closed to visitors from 17:00 to 10:00.",
+        "Residents live here: keep voices low and don't open gates or doors.",
+        "Anguk Station Exit 3 is about a 7-minute walk."
+      ]
+    },
+    "gyeongbokgung": {
+      "name": "Gyeongbokgung Palace",
+      "summary": "The first and largest royal palace of the Joseon Dynasty, built in 1395. Visitors in a complete hanbok enter free, which makes it Seoul's classic backdrop for hanbok photos.",
+      "address": "161 Sajik-ro, Jongno-gu, Seoul",
+      "tips": [
+        "Closed on Tuesdays; last entry is one hour before closing.",
+        "Wear a complete hanbok for free entry (check the dress guidelines).",
+        "Foreign adults otherwise pay KRW 3,000."
+      ]
+    },
+    "ikseon-dong-hanok-street": {
+      "name": "Ikseon-dong Hanok Street",
+      "summary": "About 800 m of narrow alleys of small hanok near Jongno 3-ga, now filled with cafés, dessert shops and restaurants. Designated a hanok preservation district in 2018, it mixes old tiled roofs with trendy interiors.",
+      "address": "Ikseon-dong, Jongno-gu, Seoul",
+      "tips": [
+        "Start from Jongno 3-ga Station Exit 6, about 3 minutes away.",
+        "The alleys are a maze; save the area on your map app before you go.",
+        "Weekend afternoons get crowded; weekday mornings are calmer."
+      ]
+    },
+    "choong-ang-high-school": {
+      "name": "Choong Ang High School",
+      "summary": "A private school founded in 1908 at the top of Bukchon, known for its striking historic buildings. It's a Winter Sonata filming location, and Seoul city lists it as a setting for Lovely Runner's school-days scenes.",
+      "address": "164 Changdeokgung-gil, Jongno-gu, Seoul",
+      "tips": [
+        "It's a working school: follow posted entry rules and keep noise down.",
+        "Anguk Station Exit 3 is about a 9-minute uphill walk.",
+        "Bukchon Hanok Village is just downhill, so visit both together."
+      ]
+    },
+    "the-hyundai-seoul": {
+      "name": "The Hyundai Seoul",
+      "summary": "Seoul's showpiece department store, built around Sounds Forest, a 3,306 m² indoor garden under a glass roof, and a waterfall garden. Its event spaces host a steady stream of brand, K-pop and K-drama pop-ups.",
+      "address": "108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Check the store's site or Instagram for current pop-ups before you go.",
+        "Yeouinaru Station Exit 1 is about a 5-minute walk.",
+        "Lockers, including chilled ones for food, are available."
+      ]
+    },
+    "kbs-music-bank": {
+      "name": "KBS Yeouido (Music Bank)",
+      "summary": "KBS's Yeouido broadcasting center, whose New Wing and Annex halls host shows such as Music Bank and 2 Days & 1 Night. Music Bank airs live on Fridays, with studio audiences arranged through each artist's fan club.",
+      "address": "13 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul (KBS Annex Hall)",
+      "tips": [
+        "Music Bank usually airs live Fridays at 17:05 KST; check for skipped weeks.",
+        "Audience spots come through the artist's official fan club notice, not KBS.",
+        "National Assembly Station Exit 4 is about a 4-minute walk."
+      ]
+    },
+    "yeouido-hangang-park": {
+      "name": "Yeouido Hangang Park",
+      "summary": "One of Seoul's most visited riverside parks, busy with cherry blossoms in spring and the Seoul International Fireworks Festival in autumn. Do as locals do: grab instant noodles at a riverside convenience store and eat by the water.",
+      "address": "330 Yeouidong-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Rent a Ttareungi public bike to ride along the river.",
+        "Hangang Bus boats stop at the Yeouido pier; tap a T-money card to board.",
+        "Yeouinaru Station (Line 5) sits right at the park's edge."
+      ]
+    },
+    "seouldal": {
+      "name": "SEOULDAL (Seoul Moon Balloon)",
+      "summary": "A tethered helium balloon that rises straight up over Yeouido Park for views of the Han River and the city. Opened in 2024 as a night attraction, it glows like a moon in the Yeouido sky.",
+      "address": "68-1 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "Adult tickets are KRW 25,000, sold on site and online.",
+        "Night flights show the city lights; the last launch is at 21:30.",
+        "Flights depend on weather; check the official updates page that day."
+      ]
+    },
+    "gamcheon-culture-village": {
+      "name": "Gamcheon Culture Village",
+      "summary": "A hillside village of pastel houses built by Korean War refugees, turned into an art village with murals and sculptures from 2009. The Little Prince statue is the classic shot, and STAYC filmed here in retro outfits.",
+      "address": "203 Gamnae 2-ro, Saha-gu, Busan",
+      "tips": [
+        "From Toseong Station (Line 1) Exit 6, take a village bus up the hill.",
+        "Rent a hanbok or retro-era outfit in the village for photos.",
+        "People live here: keep voices low in the alleys."
+      ]
+    },
+    "huinnyeoul-culture-village": {
+      "name": "Huinnyeoul Culture Village",
+      "summary": "A cliffside village above the sea in Yeongdo, remodeled into an art village in 2011. Lines from the film The Attorney are painted on Jin-woo's house wall, and a coastal tunnel frames the sea for silhouette photos.",
+      "address": "Huinnyeoul-gil, Yeongdo-gu, Busan",
+      "tips": [
+        "From Nampo Station (Line 1) Exit 6, take bus 7, 71 or 508.",
+        "STAYC toured the village in their Busan travel show.",
+        "Paths and stairs are steep; wear comfortable shoes."
+      ]
+    },
+    "haedong-yonggungsa": {
+      "name": "Haedong Yonggungsa Temple",
+      "summary": "A Buddhist temple on the rocks above the sea, first built in 1376, which is rare in Korea, where most temples sit in the mountains. Walk down the 108 stairs through pine trees and toss a coin from the bridge for a wish.",
+      "address": "86 Yonggung-gil, Gijang-eup, Gijang-gun, Busan",
+      "tips": [
+        "From Osiria Station (Donghae Line) Exit 1, take bus 139.",
+        "Gates open at 04:30, early enough for sunrise over the sea.",
+        "Find your birth-year animal among the 12 zodiac statues at the entrance."
+      ]
+    },
+    "haeundae-blueline-park": {
+      "name": "Haeundae Blueline Park",
+      "summary": "A 4.8 km stretch of old coastal railway reborn as a seaside ride. The four-seat Sky Capsule glides 2 km from Mipo to Cheongsapo, 7–10 m above the sea, and the Beach Train runs on to Songjeong.",
+      "address": "116 Cheongsapo-ro, Haeundae-gu, Busan",
+      "tips": [
+        "The Sky Capsule takes about 30 minutes one way; book ahead on busy days.",
+        "Mipo Station, at the east end of Haeundae Beach, is the usual start.",
+        "It runs in rain but can stop for typhoons or heavy downpours."
+      ]
+    },
+    "seongsan-ilchulbong": {
+      "name": "Seongsan Ilchulbong (Sunrise Peak)",
+      "summary": "A 180 m tuff cone that rose from the sea about 5,000 years ago, part of Jeju's UNESCO World Natural Heritage. Climb to the 600 m-wide crater for sunrise views; it's a filming location of When Life Gives You Tangerines.",
+      "address": "284-12 Ilchul-ro, Seongsan-eup, Seogwipo-si, Jeju",
+      "tips": [
+        "Adult entry is KRW 5,000; last ticket one hour before closing.",
+        "In summer the gate opens at 04:30 for sunrise climbers.",
+        "Nearby Gwangchigi Beach is a Welcome to Samdal-ri filming spot."
+      ]
+    },
+    "osulloc-tea-museum": {
+      "name": "O'sulloc Tea Museum",
+      "summary": "Amorepacific's tea museum, opened in 2001 beside the O'sulloc Seogwang tea fields. Entry is free: see the tea gallery, try green-tea desserts in the café, then walk out to the rows of tea bushes.",
+      "address": "15 Sinhwayeoksa-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "Free entry; some experience programs cost extra.",
+        "Hours can change in bad weather.",
+        "The Seogwang tea fields next door are among Korea's largest."
+      ]
+    },
+    "dongmun-market": {
+      "name": "Dongmun Traditional Market",
+      "summary": "Jeju's largest permanent market, dating back to 1945, known for fresh seafood like cutlassfish and dishes such as tteokgalbi with whole abalone. After dark a night market of food stalls opens near Gate 8.",
+      "address": "20 Gwandeok-ro 14-gil, Jeju-si, Jeju",
+      "tips": [
+        "Night market stalls near Gate 8 close early if they sell out.",
+        "Come hungry: share several small plates instead of one big meal."
+      ]
+    },
+    "camellia-hill": {
+      "name": "Camellia Hill",
+      "summary": "A 172,000 m² arboretum with about 6,000 camellia trees of 500 species, most colorful when red camellias bloom in winter. A couple from the dating show EXchange 3 (Transit Love) had a memorable date here.",
+      "address": "166 Byeongak-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "Adult entry is KRW 12,000; last admission one hour before closing.",
+        "Winter (Nov–Feb) is peak camellia season."
+      ]
+    }
+  },
   "prep": {
-    "title": "",
-    "items": {}
+    "title": "Before you go",
+    "items": {
+      "esim": {
+        "label": "eSIM & data",
+        "sub": "Set up a Korea eSIM before you land so maps and translation work from the airport."
+      },
+      "tmoney": {
+        "label": "T-money card",
+        "sub": "One tap card for subways, buses and Hangang Bus; top it up at convenience stores."
+      },
+      "airport": {
+        "label": "Airport transfer",
+        "sub": "Pre-book an airport train or bus ticket into Seoul for an easy arrival."
+      },
+      "stay": {
+        "label": "Where to stay",
+        "sub": "Myeongdong, Hongdae and Seongsu make easy bases on direct subway lines."
+      },
+      "tour": {
+        "label": "Tours & tickets",
+        "sub": "Reserve hanbok rentals, day trips and attraction tickets before you go."
+      }
+    }
   }
 }

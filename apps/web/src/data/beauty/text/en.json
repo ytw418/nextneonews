@@ -1,11 +1,465 @@
 {
-  "categories": {},
-  "products": {},
+  "categories": {
+    "cleanser": {
+      "name": "Cleansers",
+      "intro": "Oils, balms and gentle foams for a clean, comfortable double cleanse."
+    },
+    "toner": {
+      "name": "Toners",
+      "intro": "Watery first layers and pads that prep skin after cleansing."
+    },
+    "serum": {
+      "name": "Serums & Essences",
+      "intro": "Concentrated layers for hydration, soothing and glow."
+    },
+    "moisturizer": {
+      "name": "Moisturizers",
+      "intro": "Gel-creams to rich creams that seal in moisture."
+    },
+    "sunscreen": {
+      "name": "Sunscreens",
+      "intro": "Light, comfortable K-beauty SPF to wear every day."
+    },
+    "mask": {
+      "name": "Masks",
+      "intro": "Sheet, hydrogel and overnight masks for a quick moisture boost."
+    },
+    "lip": {
+      "name": "Lips",
+      "intro": "Tints and balms Korean shoppers keep reaching for."
+    },
+    "base": {
+      "name": "Base Makeup",
+      "intro": "Cushions, BB cream and powder for a smooth, fresh base."
+    },
+    "eye": {
+      "name": "Eyes",
+      "intro": "Palettes and eye care for soft, wearable looks."
+    },
+    "hair-body": {
+      "name": "Hair & Body",
+      "intro": "Hair serums, rinse-off hair care and body lotions from Korean drugstores."
+    }
+  },
+  "products": {
+    "cosrx-low-ph-good-morning-gel-cleanser": {
+      "name": "Low pH Good Morning Gel Cleanser",
+      "tagline": "A mild, low-pH gel wash made for mornings",
+      "why": "A long-running K-beauty staple: a clear gel cleanser with a mildly acidic pH (about 5.3) that rinses off without a squeaky, tight feel. Betaine salicylate and tea tree oil give it a fresh finish that suits oily and combination skin.",
+      "howTo": "Lather a small amount with water, massage over damp skin for about 30 seconds, then rinse. Use in the morning or as the second step of a double cleanse."
+    },
+    "anua-heartleaf-pore-control-cleansing-oil": {
+      "name": "Heartleaf Pore Control Cleansing Oil",
+      "tagline": "Light first-step oil that melts makeup and sunscreen",
+      "why": "A light cleansing oil of jojoba, grape seed and macadamia oils with heartleaf (houttuynia) extract. It dissolves makeup, sunscreen and excess sebum, then turns milky with water and rinses clean: an easy first step to double cleansing.",
+      "howTo": "Pump 2-3 times into dry hands and massage over a dry face. Add a little water until it turns milky, rinse, then follow with a water-based cleanser.",
+      "caution": "Contains fragrance. Patch test first if your skin reacts easily."
+    },
+    "round-lab-1025-dokdo-cleanser": {
+      "name": "1025 Dokdo Cleanser",
+      "tagline": "Soft, mildly acidic foam with Ulleungdo sea water",
+      "why": "The cleanser from Round Lab's signature 1025 Dokdo line pairs deep sea water from Ulleungdo, the island next to Dokdo, with panthenol and allantoin. It foams softly and rinses away without leaving skin feeling stripped.",
+      "howTo": "Work a pea-sized amount into a lather with water, massage gently over damp skin, then rinse with lukewarm water. Morning and night."
+    },
+    "banila-co-clean-it-zero-cleansing-balm-original": {
+      "name": "Clean It Zero Cleansing Balm Original",
+      "tagline": "Sherbet-like balm that melts into a cleansing oil",
+      "why": "A K-beauty classic in a pink tub. The sherbet-textured balm turns into oil as you massage, lifting long-wear and waterproof makeup, then emulsifies and rinses off with water. Acerola extract and vitamin E round out the formula.",
+      "howTo": "Scoop a small amount with the spatula, massage onto dry skin until it melts, add water to emulsify, then rinse. Follow with a second cleanser.",
+      "caution": "Contains fragrance. Keep the spatula in the tub to avoid dipping fingers in."
+    },
+    "manyo-pure-soybean-cleansing-oil": {
+      "name": "Pure Soybean Cleansing Oil",
+      "tagline": "Plant-oil cleanser that turns milky as it rinses",
+      "why": "Formerly sold as Pure Cleansing Oil, this blend of soybean, argan, jojoba and other plant oils won a 2025 Allure Beauty Award for oil cleansers. It melts makeup and sebum, then turns into a light milk with water.",
+      "howTo": "Apply 2-3 pumps to a dry face with dry hands and massage. Add a splash of water to emulsify, rinse well, then follow with a foam or gel cleanser."
+    },
+    "round-lab-1025-dokdo-toner": {
+      "name": "1025 Dokdo Toner",
+      "tagline": "Watery everyday toner, a regular in Olive Young awards",
+      "why": "One of the most-bought toners in Korea and a regular name in Olive Young's annual awards. The watery formula with Ulleungdo deep sea water, betaine and panthenol hydrates and leaves skin texture feeling smoother after cleansing.",
+      "howTo": "After cleansing, soak a cotton pad and sweep outward, or pat a few drops in with your palms. Follow with serum and moisturizer."
+    },
+    "anua-heartleaf-77-soothing-toner": {
+      "name": "Heartleaf 77 Soothing Toner",
+      "tagline": "Calming heartleaf toner with a light, watery feel",
+      "why": "A global K-beauty hit and a frequent Olive Young awards pick. Heartleaf (houttuynia) water makes up most of the formula, joined by panthenol and several types of hyaluronic acid for a soothing, hydrating layer.",
+      "howTo": "Pat into clean skin with your hands or a cotton pad. For a quick calming pack, soak cotton pads and leave on for 5-10 minutes."
+    },
+    "medicube-zero-pore-pad": {
+      "name": "Zero Pore Pads",
+      "tagline": "Two-sided toner pads with AHA and BHA for smoother skin",
+      "why": "Among the most-bought K-beauty items on Amazon US. Each pad has an embossed side for wiping and a smooth side for pressing; the toner combines lactic acid (AHA) and salicylic acid (BHA) to leave oily skin feeling smoother and less slick.",
+      "howTo": "After cleansing, wipe the embossed side over the face, then press the smooth side on oilier areas. Start every other day, in the evening.",
+      "caution": "Contains exfoliating acids and alcohol. Avoid broken skin, do not combine with other strong exfoliants, and wear sunscreen by day."
+    },
+    "skin1004-madagascar-centella-toning-toner": {
+      "name": "Madagascar Centella Toning Toner",
+      "tagline": "Gentle PHA toner with Madagascar centella",
+      "why": "A mild daily toner from SKIN1004's centella line. Gluconolactone (a PHA) helps lift dead skin cells gently while centella extract and betaine keep the formula soothing and hydrating, so it suits everyday use.",
+      "howTo": "After cleansing, apply to a cotton pad and sweep gently over the face, or pat in with your palms.",
+      "caution": "Contains a mild exfoliating acid (PHA). Wear sunscreen during the day."
+    },
+    "torriden-dive-in-toner": {
+      "name": "DIVE IN Toner",
+      "tagline": "Fresh, non-sticky hyaluronic acid toner",
+      "why": "The toner from Torriden's popular DIVE IN line uses five sizes of hyaluronic acid with panthenol and allantoin. It sinks in quickly with a fresh, non-sticky finish, a good match for normal to combination skin.",
+      "howTo": "After cleansing, pour onto your palms or a cotton pad and pat evenly over the face. Layer twice on drier days."
+    },
+    "cosrx-advanced-snail-96-mucin-power-essence": {
+      "name": "Advanced Snail 96 Mucin Power Essence",
+      "tagline": "The snail mucin essence behind the glass-skin trend",
+      "why": "Arguably the most famous K-beauty product abroad and a fixture of Amazon US beauty charts. 96% snail secretion filtrate gives a slippery, cushiony texture that hydrates and leaves a dewy finish without feeling heavy.",
+      "howTo": "After toner, pump 2-3 times onto your palm and pat onto the face until absorbed. Follow with moisturizer."
+    },
+    "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+      "name": "Glow Serum : Propolis + Niacinamide",
+      "tagline": "Honey-toned propolis serum for a healthy-looking glow",
+      "why": "A cult serum from Beauty of Joseon at an easy price. Propolis extract and niacinamide sit in a light gel that hydrates and leaves skin looking glossy, which suits oily and combination skin well.",
+      "howTo": "After toner, apply 2-3 drops and pat in gently. Follow with moisturizer, and sunscreen in the morning.",
+      "caution": "Avoid if you are allergic to bee products such as propolis or honey."
+    },
+    "torriden-dive-in-serum": {
+      "name": "DIVE IN Serum",
+      "tagline": "Watery hyaluronic acid serum for an all-day moisture layer",
+      "why": "Torriden's signature serum and an Olive Young staple. Five sizes of hyaluronic acid with panthenol and allantoin give a watery texture that absorbs fast and layers well under any cream or makeup.",
+      "howTo": "After toner, apply a dropper to the face and pat until absorbed. Layer a second time on very dry skin, then lock in with cream."
+    },
+    "skin1004-madagascar-centella-ampoule": {
+      "name": "Madagascar Centella Ampoule",
+      "tagline": "Minimal-ingredient centella ampoule with a light feel",
+      "why": "A short-ingredient-list ampoule built around centella asiatica extract from Madagascar. The thin, watery texture absorbs quickly and feels soothing, which makes it a common pick for sensitive or easily flushed skin.",
+      "howTo": "After cleansing and toner, apply a few drops and pat in. Use morning and night under moisturizer."
+    },
+    "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+      "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+      "tagline": "Azelaic acid serum balanced with soothing ingredients",
+      "why": "A recent Amazon US hit from Anua. It pairs azelaic acid with niacinamide, panthenol and hyaluronic acid in a light serum, aimed at oily skin that also wants a soothing, hydrating step.",
+      "howTo": "After toner, apply a small amount to the face once a day, in the evening at first. Follow with moisturizer, and sunscreen by day.",
+      "caution": "Contains azelaic acid and a mild BHA. A slight tingle is common at first; patch test and avoid using with other strong acids."
+    },
+    "medicube-pdrn-pink-peptide-serum": {
+      "name": "PDRN Pink Peptide Serum",
+      "tagline": "Pink PDRN serum with peptides and niacinamide",
+      "why": "One of the products that made PDRN (salmon-derived DNA, listed as sodium DNA) a K-beauty buzzword, with thousands of Amazon reviews. The pink, lightweight serum adds moisture and a glossy, healthy-looking finish.",
+      "howTo": "After toner, apply 1-2 pumps and pat over the face. Follow with moisturizer.",
+      "caution": "Contains fish-derived ingredients; skip it if you avoid them."
+    },
+    "mixsoon-bean-essence": {
+      "name": "Bean Essence",
+      "tagline": "Fermented soybean essence with a viral, stretchy texture",
+      "why": "A TikTok-famous essence made mostly from fermented soybean and other ferments. The slightly sticky texture is massaged in until absorbed, and it is often used as a gentle texture-smoothing step at night.",
+      "howTo": "In the evening, massage a few pumps over the face until absorbed, wipe off any residue with a warm towel or toner pad, then moisturize.",
+      "caution": "Contains soy-derived ingredients."
+    },
+    "manyo-bifida-biome-complex-ampoule": {
+      "name": "Bifida Biome Complex Ampoule",
+      "tagline": "Ferment-based ampoule for a plump, moisturized feel",
+      "why": "A long-selling ma:nyo ampoule built on bifida ferment lysate with other ferments, niacinamide and squalane. The milky serum feels nourishing without heaviness, which suits dry and normal skin.",
+      "howTo": "After toner, apply 2-3 drops and pat in. Follow with moisturizer."
+    },
+    "cosrx-advanced-snail-92-all-in-one-cream": {
+      "name": "Advanced Snail 92 All in One Cream",
+      "tagline": "Bouncy snail mucin gel-cream to seal in moisture",
+      "why": "The cream partner to COSRX's famous snail essence. 92% snail secretion filtrate in a bouncy gel-cream locks in hydration without a greasy feel, so it works year-round for most skin types.",
+      "howTo": "As the last skincare step, spread a pearl-sized amount over the face and pat until absorbed. Use morning and night."
+    },
+    "aestura-atobarrier365-cream": {
+      "name": "ATOBARRIER365 Cream",
+      "tagline": "Ceramide capsule cream for dry, sensitive skin",
+      "why": "Amorepacific's derma brand cream, recognised in the cream category of the Olive Young Awards. Ceramide capsules, cholesterol and squalane give a rich but non-greasy moisture layer for dry, easily irritated skin.",
+      "howTo": "As the last step of your routine, warm a pea-sized amount between fingertips and press over the face. Reapply on dry patches as needed."
+    },
+    "beauty-of-joseon-dynasty-cream": {
+      "name": "Dynasty Cream",
+      "tagline": "Rich, dewy cream inspired by Joseon-era recipes",
+      "why": "Beauty of Joseon's signature moisturizer, drawing on rice bran water and ginseng root water with squalane and niacinamide. The creamy texture gives a dewy, cushioned finish that suits dry and normal skin.",
+      "howTo": "Apply a small amount as the last step of your routine, morning or night. Use a little more at night on dry areas."
+    },
+    "belif-the-true-cream-aqua-bomb": {
+      "name": "The True Cream Aqua Bomb",
+      "tagline": "Cooling gel-cream with a burst of water",
+      "why": "A long-time US favourite from LG H&H's herbal brand. The jelly-like cream bursts into water on contact, giving a cool, fresh layer of moisture that oily and combination skin can wear under makeup.",
+      "howTo": "After serum, scoop a dime-sized amount and pat gently over the face, morning and night."
+    },
+    "medicube-collagen-niacinamide-jelly-cream": {
+      "name": "Collagen Niacinamide Jelly Cream",
+      "tagline": "Clear jelly cream with collagen for a glossy finish",
+      "why": "A transparent jelly cream that has racked up thousands of Amazon reviews. Hydrolyzed collagen and niacinamide in a bouncy, water-light texture add moisture and a glossy, healthy-looking finish.",
+      "howTo": "As the last skincare step, spread an appropriate amount over the face and pat until absorbed."
+    },
+    "illiyoon-ceramide-ato-concentrate-cream": {
+      "name": "Ceramide Ato Concentrate Cream",
+      "tagline": "Thick ceramide family cream for very dry skin",
+      "why": "A Korean drugstore classic from Amorepacific, used on face and body by the whole family. A pseudo-ceramide in a thick, cushiony cream keeps very dry skin comfortable, especially in winter.",
+      "howTo": "After washing, apply generously to face or body while skin is still slightly damp. Reapply to dry areas as needed."
+    },
+    "beauty-of-joseon-relief-sun-rice-probiotics": {
+      "name": "Relief Sun : Rice + Probiotics",
+      "tagline": "Creamy SPF50+ PA++++ sunscreen with no white cast",
+      "why": "The sunscreen that put K-beauty SPF on the global map. SPF50+ PA++++ UV protection in a light, creamy texture with rice extract that blends without a white cast and sits comfortably under makeup.",
+      "howTo": "As the last skincare step, apply a generous amount (about two finger lengths for the face) 15 minutes before going out. Reapply every 2-3 hours outdoors.",
+      "caution": "Sold in Korea as 맑은쌀선크림; formulas and labels may differ by market."
+    },
+    "round-lab-birch-juice-moisturizing-sun-cream": {
+      "name": "Birch Juice Moisturizing Sun Cream",
+      "tagline": "Moisturizing SPF sun cream that layers like a lotion",
+      "why": "A popular Olive Young sun cream from Round Lab's birch line. It offers UV protection in a hydrating, lotion-like texture with birch juice, so it feels comfortable on dry skin and doubles as a light day moisturizer.",
+      "howTo": "As the last skincare step, apply evenly to the face and neck before going out. Reapply every 2-3 hours when outdoors."
+    },
+    "skin1004-hyalu-cica-water-fit-sun-serum": {
+      "name": "Hyalu-Cica Water-Fit Sun Serum",
+      "tagline": "Serum-light SPF50+ that feels almost weightless",
+      "why": "A watery, serum-type sunscreen loved for how light it feels. SPF50+ UV protection blends in clear with centella and hyaluronic acid, making it a frequent pick for oily skin and for wearing under makeup.",
+      "howTo": "As the last skincare step, apply a generous amount evenly to face and neck. Reapply every 2-3 hours when outdoors."
+    },
+    "dalba-white-truffle-waterfull-essence-sunscreen": {
+      "name": "White Truffle Waterfull Essence Sunscreen",
+      "tagline": "Glowy essence-type SPF50+ with white truffle",
+      "why": "d'Alba's signature sunscreen pairs SPF50+ UV protection with an essence-like texture featuring white truffle, ceramide and hyaluronic acid. It leaves a dewy, glowy finish that suits normal to dry skin.",
+      "howTo": "Apply a generous amount evenly to face and neck as the last skincare step. Reapply every 2-3 hours when outdoors.",
+      "caution": "Contains essential oils such as orange oil; patch test if your skin reacts to fragrance."
+    },
+    "innisfree-daily-uv-defense-sunscreen": {
+      "name": "Daily UV Defense Sunscreen",
+      "tagline": "Lightweight everyday SPF50+ with green tea",
+      "why": "innisfree's everyday sunscreen offers SPF50+ protection in a light lotion with green tea and centella that absorbs quickly and works as a primer-like base.",
+      "howTo": "Apply evenly to face and neck as the final skincare step, 15 minutes before sun exposure. Reapply every 2 hours outdoors.",
+      "caution": "Formulas and UV filters differ by market; the US version is an OTC sunscreen with its own label."
+    },
+    "aestura-derma-uv365-barrier-hydro-mineral-sunscreen": {
+      "name": "DERMA UV365 Barrier Hydro Mineral Sunscreen",
+      "tagline": "Mineral SPF50+ PA++++ made for dry, sensitive skin",
+      "why": "A mineral (zinc oxide) sunscreen from AESTURA with SPF50+ PA++++ UV protection. Ceramide and hyaluronic acid keep it moisturizing, and the brand reports low eye irritation in testing, so it suits sensitive skin.",
+      "howTo": "As the last skincare step, apply evenly and pat gently to reduce any white cast. Reapply every 2-3 hours outdoors."
+    },
+    "biodance-bio-collagen-real-deep-mask": {
+      "name": "Bio-Collagen Real Deep Mask",
+      "tagline": "Overnight hydrogel mask that turns clear as it works",
+      "why": "The hydrogel mask that went viral worldwide and sits near the top of Amazon US beauty charts. It turns transparent as the essence absorbs, and in Korea it is registered as a functional cosmetic for brightening and wrinkle care.",
+      "howTo": "After toner or serum, apply the mask and leave on for 3-4 hours or overnight until it turns clear. Remove and pat in the rest."
+    },
+    "laneige-water-sleeping-mask": {
+      "name": "Water Sleeping Mask",
+      "tagline": "Leave-on gel mask for overnight hydration",
+      "why": "The overnight mask that made LANEIGE famous abroad. A light gel with squalane and a probiotic-derived ferment acts as a final sealing layer at night, so skin feels soft and hydrated in the morning.",
+      "howTo": "As the last step of your night routine, spread a thin layer over the face and leave on overnight. Rinse in the morning. Use 2-3 times a week or nightly."
+    },
+    "mediheal-teatree-essential-mask": {
+      "name": "Teatree Essential Mask",
+      "tagline": "Cooling tea tree sheet mask for oily, stressed skin",
+      "why": "From MEDIHEAL, one of Korea's biggest sheet-mask brands. A thin sheet soaked in tea tree, panthenol and allantoin gives a quick, calming moisture boost after sun, heat or a long day.",
+      "howTo": "After toner, apply the sheet for 15-20 minutes, remove, and pat the remaining essence into the skin. Use 2-3 times a week."
+    },
+    "medicube-collagen-night-wrapping-mask": {
+      "name": "Collagen Night Wrapping Mask",
+      "tagline": "Peel-off overnight mask that wraps in moisture",
+      "why": "A viral peel-off mask: spread it on at night, it sets into a thin film, and you peel it off in the morning. Collagen, niacinamide and hyaluronic acid sit under the film to keep skin moisturized overnight.",
+      "howTo": "As the last night step, spread an even, not-too-thin layer avoiding eyes, brows and hairline. Let it dry, sleep, then peel off and rinse.",
+      "caution": "Avoid the hairline, brows and eye area. Do not use on irritated or broken skin."
+    },
+    "laneige-lip-sleeping-mask": {
+      "name": "Lip Sleeping Mask",
+      "tagline": "Overnight lip balm that keeps lips soft by morning",
+      "why": "One of K-beauty's most recognised products worldwide. A thick balm (Berry is the original scent) with coconut oil, murumuru and shea butters that keeps lips soft overnight and doubles as a glossy daytime balm.",
+      "howTo": "Apply a generous layer with the spatula before bed. Wipe off in the morning, or use a thin layer during the day."
+    },
+    "romand-the-juicy-lasting-tint": {
+      "name": "The Juicy Lasting Tint",
+      "tagline": "Glossy, juicy lip tint with long-lasting color",
+      "why": "rom&nd's signature tint and one of the most-bought lip products at Olive Young. A glossy, syrupy finish that leaves a stain as it wears, in dozens of shades from sheer fruit tones to deep berries.",
+      "howTo": "Apply to the center of the lips and blot for a gradient, or cover the whole lip for full color. Layer over balm for extra shine."
+    },
+    "peripera-ink-the-velvet": {
+      "name": "Ink the Velvet",
+      "tagline": "Soft-matte velvet tint in a huge shade range",
+      "why": "peripera's flagship tint, which sold out within days of its launch and has stayed popular ever since. A whipped, velvety texture blurs lip lines and leaves a soft matte stain.",
+      "howTo": "Press onto the center of the lips with the flat side of the applicator and blend outward for a gradient, or apply all over for full color."
+    },
+    "laneige-lip-glowy-balm": {
+      "name": "Lip Glowy Balm",
+      "tagline": "Sheer, glossy tinted balm for everyday wear",
+      "why": "The daytime partner to LANEIGE's lip mask. A squeezy tube of sheer, glossy balm with shea and murumuru butters that gives lips a light tint and shine without stickiness.",
+      "howTo": "Apply directly to lips whenever they feel dry. Wear alone or over lipstick for shine."
+    },
+    "torriden-solid-in-lip-essence": {
+      "name": "SOLID IN Lip Essence",
+      "tagline": "Ceramide lip essence for dry, flaky lips",
+      "why": "A lip-care favourite at Olive Young from Torriden's ceramide line. Five types of ceramide with shea butter and hyaluronic acid give a smooth, glossy layer that helps dry, flaky lips feel comfortable.",
+      "howTo": "Apply to lips whenever they feel dry, and as a thick layer before bed. Works as a base under lip tint."
+    },
+    "tirtir-mask-fit-red-cushion": {
+      "name": "Mask Fit Red Cushion",
+      "tagline": "Long-wear red cushion known for its wide shade range",
+      "why": "The red-case cushion that went viral for expanding to around 40 shades. It gives medium-to-full, long-lasting coverage with a soft glow finish; the Korean version is a functional cosmetic with SPF40 PA++.",
+      "howTo": "Press the puff into the cushion, then tap from the center of the face outward. Build a second thin layer where you want more coverage.",
+      "caution": "Shade names and SPF labels can differ between the Korean and overseas versions."
+    },
+    "clio-kill-cover-founwear-cushion": {
+      "name": "Kill Cover Founwear Cushion The Original",
+      "tagline": "High-coverage cushion with SPF50+ PA+++",
+      "why": "CLIO's Kill Cover cushion has sold millions of units since 2015. The Founwear version gives high, long-wearing coverage with a natural finish and SPF50+ PA+++ UV protection, as listed on the official Korean product notice.",
+      "howTo": "Tap the puff lightly into the cushion and press onto skin from the center outward. Layer thinly on blemishes rather than pressing harder."
+    },
+    "missha-m-perfect-cover-bb-cream": {
+      "name": "M Perfect Cover BB Cream SPF42 PA+++",
+      "tagline": "Classic BB cream with SPF42 and buildable coverage",
+      "why": "One of the BB creams that introduced K-beauty base makeup to the world. Medium-to-high coverage in one tube with SPF42 PA+++ UV protection, plus hyaluronic acid and ceramide for a moist finish.",
+      "howTo": "After skincare, dot a small amount on the face and blend with fingertips or a damp sponge. Add a second thin layer where needed."
+    },
+    "hera-black-cushion-foundation": {
+      "name": "Black Cushion Foundation",
+      "tagline": "Premium semi-matte cushion with a smooth, long-wear finish",
+      "why": "HERA is Amorepacific's premium makeup brand and the Black Cushion is its signature product. It gives a thin, semi-matte, long-wearing layer that looks smooth on combination and oily skin.",
+      "howTo": "Lightly press the puff into the cushion and tap from the center of the face outward. Build thin layers for more coverage."
+    },
+    "innisfree-no-sebum-mineral-powder": {
+      "name": "No-Sebum Mineral Powder",
+      "tagline": "Tiny loose powder that keeps shine down all day",
+      "why": "A cheap, pocket-sized loose powder that has been a Korean drugstore staple for years. The silica-based powder sets makeup and absorbs excess oil for a soft matte finish without a heavy look.",
+      "howTo": "Tap a little onto a puff or brush, press over the T-zone after base makeup, and touch up during the day."
+    },
+    "clio-pro-eye-palette-air": {
+      "name": "Pro Eye Palette Air",
+      "tagline": "Lightweight 12-shade palette in wearable K-beauty tones",
+      "why": "CLIO's eyeshadow palettes are an Olive Young regular, and the Air version packs twelve 0.6g shades of soft mattes, shimmers and glitters into a thin case, built around everyday Korean eye-makeup looks.",
+      "howTo": "Sweep a light matte shade over the lid, deepen the crease and outer corner, then press shimmer or glitter on the center of the lid with a fingertip."
+    },
+    "romand-better-than-palette": {
+      "name": "Better Than Palette",
+      "tagline": "Garden-themed palettes of soft mattes and glitters",
+      "why": "rom&nd's eyeshadow line, sold in many seasonal 'garden' color stories. Each palette mixes blendable mattes with fine glitters in muted, easy-to-wear tones that suit a soft Korean-style eye look.",
+      "howTo": "Use the lighter matte as a base, blend a mid tone into the crease, then add glitter to the center of the lid or under the eyes."
+    },
+    "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+      "name": "Revive Eye Serum : Ginseng + Retinal",
+      "tagline": "Light eye cream with ginseng and a gentle retinal",
+      "why": "Beauty of Joseon's eye cream uses ginseng root extract with retinal, niacinamide and ceramide in a light, creamy serum that keeps the thin skin around the eyes moisturized at an affordable price.",
+      "howTo": "At night, tap a small amount around the orbital bone with your ring finger. Start every other night, then increase as tolerated.",
+      "caution": "Contains retinal. Avoid the lash line, use sunscreen by day, and check with a professional before using if pregnant or breastfeeding."
+    },
+    "mise-en-scene-perfect-serum-original": {
+      "name": "Perfect Serum Original",
+      "tagline": "Korea's go-to hair oil serum for frizz and shine",
+      "why": "A Korean drugstore hair-care staple from Amorepacific. A light oil serum with argan, jojoba and camellia oils that tames frizz and adds shine to dry ends without weighing hair down.",
+      "howTo": "Rub 1-2 pumps between palms and smooth over towel-dried ends before blow-drying. Use a little more on dry hair as a finishing touch."
+    },
+    "lador-perfect-hair-fill-up": {
+      "name": "Perfect Hair Fill-Up",
+      "tagline": "Protein hair filler for dry, damaged-feeling hair",
+      "why": "A popular Korean rinse-off hair filler that turns from water to cream. Hydrolyzed keratin, silk and ceramide in a light rinse-off formula that leaves dry, bleached or heat-styled hair feeling smoother and easier to comb.",
+      "howTo": "After shampooing, massage into wet lengths as it turns from water to cream, then rinse well with lukewarm water."
+    },
+    "illiyoon-ceramide-ato-lotion": {
+      "name": "Ceramide Ato Lotion",
+      "tagline": "Big-bottle ceramide body lotion for the whole family",
+      "why": "A big-bottle body lotion that is a Korean drugstore regular. Ceramides and squalane in a light, fast-absorbing lotion keep dry body skin comfortable, and it is mild enough for daily all-over use.",
+      "howTo": "Apply generously all over the body right after a shower, while skin is still slightly damp."
+    }
+  },
   "skinType": {
-    "title": "",
-    "intro": "",
-    "disclaimer": "",
-    "questions": {},
-    "results": {}
+    "title": "What's your skin type?",
+    "intro": "Six quick questions about how your skin feels day to day. Get your type, then see K-beauty picks that suit it.",
+    "disclaimer": "Just for fun, not a medical diagnosis. For ongoing skin concerns, talk to a dermatologist.",
+    "questions": {
+      "afternoon": {
+        "q": "By mid-afternoon, how does your skin feel?",
+        "options": {
+          "tight": "Tight, or a little flaky",
+          "shiny-all": "Shiny all over",
+          "shiny-t": "Shiny on the forehead and nose only",
+          "comfortable": "Comfortable, not shiny"
+        }
+      },
+      "after-wash": {
+        "q": "Right after washing your face, it feels…",
+        "options": {
+          "tight": "Tight. I need moisturizer right away",
+          "sting": "Warm, red or a little stingy",
+          "fine": "Fine, no rush to moisturize"
+        }
+      },
+      "pores": {
+        "q": "How visible are your pores?",
+        "options": {
+          "large-all": "Visible on most of my face",
+          "t-zone": "Mostly around my nose and forehead",
+          "barely": "Barely visible"
+        }
+      },
+      "new-product": {
+        "q": "When you try a new skincare product…",
+        "options": {
+          "often": "Redness, itching or stinging is common",
+          "sometimes": "Now and then something bothers my skin",
+          "rarely": "My skin rarely reacts"
+        }
+      },
+      "makeup": {
+        "q": "By evening, your base makeup…",
+        "options": {
+          "patchy": "Clings to dry patches",
+          "slides": "Slides off or looks greasy",
+          "t-fade": "Fades on my nose and forehead",
+          "stays": "Mostly stays in place"
+        }
+      },
+      "weather": {
+        "q": "On cold, windy or dry days, your skin…",
+        "options": {
+          "flaky": "Gets rough or flaky",
+          "flushed": "Flushes or feels itchy",
+          "mixed": "Cheeks feel dry, T-zone still gets oily",
+          "same": "Doesn't change much"
+        }
+      }
+    },
+    "results": {
+      "dry": {
+        "name": "Dry skin",
+        "oneLiner": "Your skin asks for moisture first and loves rich, cushiony layers.",
+        "tips": [
+          "Cleanse with a gentle, low-foam cleanser and skip very hot water.",
+          "Layer a hydrating toner or essence while skin is still slightly damp.",
+          "Seal it in with a richer cream at night and wear sunscreen by day."
+        ]
+      },
+      "oily": {
+        "name": "Oily skin",
+        "oneLiner": "Glow comes easily. You just want it to stay fresh, not greasy.",
+        "tips": [
+          "Use a gel or low-pH cleanser morning and night instead of harsh scrubs.",
+          "Keep moisturizer light, like a gel-cream. Skipping it can leave skin feeling off-balance.",
+          "Choose a watery or matte sunscreen and blot shine instead of adding more powder."
+        ]
+      },
+      "combination": {
+        "name": "Combination skin",
+        "oneLiner": "Two skins in one: an oily T-zone with drier cheeks.",
+        "tips": [
+          "Care for each zone differently: lighter layers on the T-zone, more moisture on the cheeks.",
+          "A gentle toner helps even out how your skin feels without stripping it.",
+          "Use a light moisturizer all over and add cream only where skin feels tight."
+        ]
+      },
+      "sensitive": {
+        "name": "Sensitive skin",
+        "oneLiner": "Your skin notices everything, so short, gentle routines work well.",
+        "tips": [
+          "Patch test new products on your jawline for a few days before using them all over.",
+          "Keep routines short and choose fragrance-free formulas where you can.",
+          "Add one new product at a time, and see a dermatologist if redness or itching keeps coming back."
+        ]
+      },
+      "normal": {
+        "name": "Normal skin",
+        "oneLiner": "Balanced and easygoing. Keep things simple and consistent.",
+        "tips": [
+          "A simple routine works: gentle cleanser, hydrating layer, moisturizer, sunscreen.",
+          "Adjust with the seasons, lighter in summer and richer in winter.",
+          "Daily sunscreen is the one step not to skip."
+        ]
+      }
+    }
   }
 }

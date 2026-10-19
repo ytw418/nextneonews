@@ -1,8 +1,428 @@
 {
-  "areas": {},
-  "places": {},
+  "areas": {
+    "seongsu": {
+      "name": "聖水洞",
+      "tagline": "工廠咖啡廳、美妝旗艦店與SM大本營",
+      "intro": "首爾的老工廠區，如今滿是倉庫改建的咖啡廳、快閃店和大型韓系美妝旗艦店。SM娛樂總部和首爾林就在西側，一個下午就能把購物、追星和逛公園一次走完。"
+    },
+    "hongdae": {
+      "name": "弘大",
+      "tagline": "街頭表演、獨立音樂，YG就在附近",
+      "intro": "弘益大學周邊是首爾年輕人的遊樂場：街頭藝人和舞團、獨立音樂、壁畫，還有開到深夜的美食。YG娛樂就在隔壁的合井，想放慢腳步，可以去延南洞的Yeontral Park或望遠市場走走。"
+    },
+    "myeongdong": {
+      "name": "明洞",
+      "tagline": "南山腳下的美妝購物街",
+      "intro": "短短幾個街區就擠滿美妝旗艦店、街頭小吃和老字號麵店，街區一端還有韓國第一座天主教座堂。南山和N首爾塔就在後方，晚上可以上去看夜景。"
+    },
+    "hannam-itaewon": {
+      "name": "漢南洞・梨泰院",
+      "tagline": "梨泰院Class場景、HYBE與異國美食",
+      "intro": "龍山區的山坡街區混合了各國料理、藝廊和夜生活。《梨泰院Class》劇迷去綠莎坪天橋，K-pop粉絲去龍理團路旁的HYBE總部，喜歡藝術的人則去漢南洞的Leeum美術館。"
+    },
+    "apgujeong-cheongdam": {
+      "name": "狎鷗亭・清潭洞",
+      "tagline": "K-Star Road、設計師旗艦店與貝果",
+      "intro": "江南的時尚街區，狎鷗亭路上林立著美髮沙龍和設計師品牌旗艦店。沿著K-Star Road看偶像造型的GangnamDol公仔，再轉往島山公園一帶逛Haus Dosan和London Bagel Museum。"
+    },
+    "bukchon-ikseon": {
+      "name": "北村・益善洞",
+      "tagline": "韓屋巷弄、宮殿拍照與背著善宰跑吧",
+      "intro": "夾在宮殿之間的老首爾：有居民生活的北村韓屋巷弄、穿韓服拍照的景福宮，還有益善洞的小巧韓屋咖啡廳。《冬季戀歌》和《背著善宰跑吧》的劇迷，可以再往坡頂走到中央高中。"
+    },
+    "yeouido": {
+      "name": "汝矣島",
+      "tagline": "漢江野餐、音樂銀行與The Hyundai",
+      "intro": "漢江上一座滿是辦公大樓和電視台的島。KBS在這裡播出《音樂銀行》，The Hyundai Seoul的玻璃屋頂下常有快閃店，河濱公園則是首爾人帶著超商泡麵野餐的地方。"
+    },
+    "busan": {
+      "name": "釜山",
+      "tagline": "海景村落、岩上古寺與天空膠囊列車",
+      "intro": "韓國第二大城市的主角就是大海：粉彩色的山坡村落、建在岩石上的寺廟，還有沿著海雲台海岸緩緩前進的膠囊列車。建議安排一整天以上，多數景點要從地鐵站再轉公車。"
+    },
+    "jeju": {
+      "name": "濟州",
+      "tagline": "火山日出、茶園與山茶花",
+      "intro": "韓國的火山島，也是《苦盡柑來遇見你》的拍攝地。在城山日出峰看日出，到O'sulloc茶園旁喝杯綠茶，最後去東門市場逛夜市。租車或搭計程車會方便很多。"
+    }
+  },
+  "places": {
+    "kwangya-seoul": {
+      "name": "KWANGYA@Seoul",
+      "summary": "位在SM娛樂聖水總部地下的SM官方K-pop旗艦店。可以逛SM旗下藝人的官方專輯和周邊，再玩玩媒體區、AR留言板和四格拍貼相框。",
+      "address": "B1F, 83-21 Wangsimni-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "從首爾林站5號出口到入口約1分鐘。",
+        "連假前後營業時間可能調整，公告會發在官方Instagram。",
+        "想休息一下，走幾分鐘就到首爾林公園。"
+      ]
+    },
+    "olive-young-n-seongsu": {
+      "name": "Olive Young N 聖水",
+      "summary": "2024年11月在聖水練武場街開幕的體驗型Olive Young旗艦店。好幾層樓都是韓系美妝試用品、新品牌展示和美容護理服務；Olive Young表示，造訪聖水的外國旅客約每4人就有3人會來逛。",
+      "address": "13 Yeonmujang 7-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "可退稅的店，帶護照就能現場退稅。",
+        "10:00開門前就有外國旅客排隊，平日上午人比較少。",
+        "從聖水站（2號線）步行約2分鐘。"
+      ]
+    },
+    "seoul-forest": {
+      "name": "首爾林",
+      "summary": "2005年在聖水洞邊緣開放的大型都市公園。春天開滿櫻花和鬱金香，如鏡的水池倒映著聖水的大樓和法國梧桐。逛街、喝咖啡之間，很適合來這裡野餐休息。",
+      "address": "273 Ttukseom-ro, Seongdong-gu, Seoul",
+      "tips": [
+        "春天櫻花和鬱金香盛開的週末人最多。",
+        "地面噴泉5～10月運轉，12:00起每場30分鐘，一天6場。",
+        "免費入園，遊客中心開放時間09:00～18:00。"
+      ]
+    },
+    "cafe-onion-seongsu": {
+      "name": "Onion 聖水",
+      "summary": "由1970年代工廠改建的烘焙咖啡廳，是帶起聖水工業風咖啡廳潮流的店家之一。清水模牆面和中庭很有氛圍，招牌是潘多洛和紅豆奶油麵包。",
+      "address": "8 Achasan-ro 9-gil, Seongdong-gu, Seoul",
+      "tips": [
+        "撒滿糖粉的潘多洛是招牌麵包。",
+        "從聖水站2號出口步行約2分鐘。",
+        "平日08:00開門，逛街前來吃早餐很方便。"
+      ]
+    },
+    "yg-entertainment": {
+      "name": "YG娛樂總部",
+      "summary": "BLACKPINK和BABYMONSTER所屬經紀公司YG娛樂的大本營。粉絲會來合井洞拍這棟造型獨特的大樓；這裡是正常上班的辦公室，請在街上欣賞就好。",
+      "address": "7 Huiujeong-ro 1-gil, Mapo-gu, Seoul",
+      "tips": [
+        "請在人行道上拍照，不要擋住出入口。",
+        "從合井站8號出口步行約7分鐘。",
+        "搭6號線一站就到望遠市場。"
+      ]
+    },
+    "hongdae-street": {
+      "name": "弘大（弘益大學街）",
+      "summary": "弘益大學周邊的年輕人聚集地，以街頭時尚、獨立音樂，以及在街上表演的街頭藝人和舞團聞名。從大學正門往左的上坡巷弄裡，藏著許多壁畫和塗鴉。",
+      "address": "20 Hongik-ro, Mapo-gu, Seoul",
+      "tips": [
+        "街頭表演常圍滿人，觀看時請讓出走道。",
+        "想看壁畫，從弘益大學正門左轉走進巷弄。",
+        "Live音樂街集中在上水站1號出口附近。"
+      ]
+    },
+    "yeontral-park": {
+      "name": "京義線林道公園（Yeontral Park）",
+      "summary": "利用舊京義線鐵道打造的6.3公里公園。延南洞這一段被暱稱為「Yeontral Park」，草地步道兩旁都是咖啡廳，是很受歡迎的野餐和隨手拍地點。",
+      "address": "Yeonnam-dong, Mapo-gu, Seoul",
+      "tips": [
+        "從弘大入口站3號出口出發，往北走進延南洞。",
+        "有書本主題小屋的「京義線書街」也屬於這座公園。"
+      ]
+    },
+    "mangwon-market": {
+      "name": "望遠市場",
+      "summary": "營業超過40年的傳統市場，是在地人花小錢買菜、吃點心的地方。在有頂棚的走道上，可以邊走邊吃甜辣酥脆的韓式炸雞塊（dakgangjeong）、可樂餅和甜甜圈。",
+      "address": "27 Poeun-ro 6-gil, Mapo-gu, Seoul",
+      "tips": [
+        "從望遠站2號出口步行約5分鐘。",
+        "各攤營業時間不同，傍晚前來攤位最齊全。",
+        "可以和合井的YG大樓排在一起，搭6號線只差一站。"
+      ]
+    },
+    "olive-young-myeongdong": {
+      "name": "Olive Young 明洞旗艦店",
+      "summary": "位在明洞購物街正中央的Olive Young旗艦店，分成保養、彩妝、身體護理和香水等主題區，可以先試用再買。",
+      "address": "53 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "營業到22:30，在明洞吃完晚餐也能來逛。",
+        "從明洞站8號出口步行約5分鐘。",
+        "想逛新型的體驗店，可以去Olive Young N 聖水。"
+      ]
+    },
+    "n-seoul-tower": {
+      "name": "N首爾塔（南山首爾塔）",
+      "summary": "矗立在南山上的首爾地標，觀景台可360°眺望市景，圍欄上掛滿愛情鎖。劇迷會想起《來自星星的你》，《KPop獵魔女團》裡也出現了好幾次。",
+      "address": "105 Namsangongwon-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "從忠武路站2號出口搭南山循環巴士01號可到塔下。",
+        "南山纜車10:00～23:00運行，成人來回15,000韓元（2026年）。",
+        "日落前後來，白天和夜晚的市景都看得到。"
+      ]
+    },
+    "myeongdong-cathedral": {
+      "name": "明洞聖堂",
+      "summary": "韓國第一座天主教堂區教堂，也是韓國第一棟哥德式建築，已列為國家史蹟。紅磚尖塔高聳在明洞購物街上方，是逛街途中安靜休息的地方。",
+      "address": "74 Myeongdong-gil, Jung-gu, Seoul",
+      "tips": [
+        "這裡是仍在使用的教堂，請保持安靜，彌撒時不要拍照。",
+        "從乙支路入口站或乙支路3街站步行也約8分鐘。"
+      ]
+    },
+    "myeongdong-kyoja": {
+      "name": "明洞餃子",
+      "summary": "明洞的老字號麵館，以刀切麵聞名：Q彈的現做麵條，配上濃郁鮮香的雞湯。一碗約10,000韓元。",
+      "address": "29 Myeongdong 10-gil, Jung-gu, Seoul",
+      "tips": [
+        "午餐尖峰時段通常要排隊。",
+        "從明洞站8號出口步行約3分鐘。"
+      ]
+    },
+    "hybe-yongsan": {
+      "name": "HYBE總部",
+      "summary": "HYBE總部位在龍山貿易中心大樓，是BTS、SEVENTEEN、LE SSERAFIM所屬廠牌的大本營。粉絲會在門口的標誌前拍照，大樓後方巷弄則滿是粉絲辦的生日應援咖啡廳。",
+      "address": "42 Hangang-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "大樓僅限員工進出，在外面拍照沒問題。",
+        "後方的應援咖啡廳會在偶像生日時用小卡等布置。",
+        "龍理團路的咖啡廳和餐廳就在旁邊。"
+      ]
+    },
+    "noksapyeong-overpass": {
+      "name": "綠莎坪天橋",
+      "summary": "綠莎坪站旁的行人天橋，正對著南山和N首爾塔。《梨泰院Class》裡，男女主角在這裡有幾段關鍵對話。白天晚上都很好拍。",
+      "address": "Noksapyeong Station, 195 Noksapyeong-daero, Yongsan-gu, Seoul",
+      "tips": [
+        "從綠莎坪站3號出口約1分鐘。",
+        "日落到藍調時刻來，能拍到首爾塔配上城市燈光。",
+        "拍照時請靠邊，讓行人通過。"
+      ]
+    },
+    "leeum-museum": {
+      "name": "Leeum美術館",
+      "summary": "三星位在漢南洞的美術館：一棟展出韓國陶瓷、書法和金屬工藝，另一棟是近現代與當代藝術，建築群由馬里奧・波塔、尚・努維爾和雷姆・庫哈斯設計。",
+      "address": "60-16 Itaewon-ro 55-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "採預約制，14天前開放預約；現場票只在有剩餘名額時販售。",
+        "常設展免費，但仍需預約。",
+        "提供免費英、中、日文數位導覽，記得帶護照。"
+      ]
+    },
+    "seoul-central-mosque": {
+      "name": "首爾中央清真寺",
+      "summary": "1976年在梨泰院山坡上啟用的韓國第一座清真寺。門外街上有清真餐廳、清真肉鋪和清真超市，對穆斯林旅客來說很方便。",
+      "address": "39 Usadan-ro 10-gil, Yongsan-gu, Seoul",
+      "tips": [
+        "不可穿無袖上衣、短褲或短裙；現場可借罩衫和頭巾。",
+        "非穆斯林也能入內，請勿對著禮拜中的人拍照。",
+        "從梨泰院站3號出口走上坡約6分鐘。"
+      ]
+    },
+    "k-star-road": {
+      "name": "K-Star Road（韓流明星大道）",
+      "summary": "沿著狎鷗亭路，從Galleria百貨往清潭十字路口延伸約1公里的「韓流明星街」。路旁排列著以少女時代、EXO、Red Velvet等K-pop團體為靈感的GangnamDol藝術公仔。",
+      "address": "407 Apgujeong-ro, Gangnam-gu, Seoul",
+      "tips": [
+        "第一座大型GangnamDol就在Galleria名品館EAST前。",
+        "從狎鷗亭羅德奧站往東朝清潭方向走，就能找到公仔。",
+        "1330旅遊諮詢熱線（+82-2-1330）提供中、英、日文服務。"
+      ]
+    },
+    "haus-dosan": {
+      "name": "Haus Dosan（Gentle Monster）",
+      "summary": "Gentle Monster在島山公園附近的複合品牌旗艦店，空間布置得像藝術裝置：B1是Nudake甜點咖啡廳，1～3樓是Gentle Monster眼鏡，4樓是Tamburins香氛。",
+      "address": "50 Apgujeong-ro 46-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "Nudake雕塑般的甜點在B1。",
+        "走兩三分鐘就到島山公園。"
+      ]
+    },
+    "dosan-park": {
+      "name": "島山公園",
+      "summary": "江南精品街區裡的一片安靜綠地，為紀念號「島山」的獨立運動家、教育家安昌浩而建，園內有島山安昌浩紀念館。",
+      "address": "20 Dosan-daero 45-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "免費入園，紀念館每天10:00～18:00開放。",
+        "走幾分鐘就到Haus Dosan和London Bagel Museum。"
+      ]
+    },
+    "london-bagel-museum-dosan": {
+      "name": "London Bagel Museum 島山店",
+      "summary": "倫敦風格的貝果烘焙咖啡廳，有10種以上的貝果，還有奶油乳酪、果醬和湯品。招牌是馬鈴薯起司貝果和火腿奶油三明治；人氣很高，要有排隊的心理準備。",
+      "address": "33 Eonju-ro 168-gil, Gangnam-gu, Seoul",
+      "tips": [
+        "招牌：馬鈴薯起司貝果、火腿奶油三明治。",
+        "18:00打烊，早點來品項比較齊全。"
+      ]
+    },
+    "bukchon-hanok-village": {
+      "name": "北村韓屋村",
+      "summary": "位在景福宮和昌德宮之間的傳統韓屋巷弄，有600年歷史。這裡是有居民生活的社區，不是主題樂園；《背著善宰跑吧》裡出現的古井「福井」就在這裡。",
+      "address": "37 Gyedong-gil, Jongno-gu, Seoul",
+      "tips": [
+        "管制區17:00至隔天10:00禁止遊客進入。",
+        "這裡有居民生活，請降低音量，不要開門。",
+        "從安國站3號出口步行約7分鐘。"
+      ]
+    },
+    "gyeongbokgung": {
+      "name": "景福宮",
+      "summary": "朝鮮王朝第一座、也是規模最大的王宮，建於1395年。穿著整套韓服可免費入場，是首爾經典的韓服拍照地點。",
+      "address": "161 Sajik-ro, Jongno-gu, Seoul",
+      "tips": [
+        "週二休館，閉館前1小時停止入場。",
+        "穿整套韓服免費入場（請先確認服裝規定）。",
+        "沒穿韓服的外國成人門票3,000韓元。"
+      ]
+    },
+    "ikseon-dong-hanok-street": {
+      "name": "益善洞韓屋街",
+      "summary": "鐘路3街附近約800公尺的小韓屋窄巷，如今滿是咖啡廳、甜點店和餐廳。2018年被指定為韓屋保存區，老瓦屋頂和時髦的室內設計交織在一起。",
+      "address": "Ikseon-dong, Jongno-gu, Seoul",
+      "tips": [
+        "從鐘路3街站6號出口出發，約3分鐘。",
+        "巷弄像迷宮，出發前先在地圖App存好位置。",
+        "週末下午人多，平日上午比較清閒。"
+      ]
+    },
+    "choong-ang-high-school": {
+      "name": "中央高中",
+      "summary": "1908年創立的私立學校，位在北村坡頂，以醒目的歷史建築聞名。這裡是《冬季戀歌》的拍攝地，首爾市也將它列為《背著善宰跑吧》學生時期場景的拍攝地點。",
+      "address": "164 Changdeokgung-gil, Jongno-gu, Seoul",
+      "tips": [
+        "這是正常上課的學校，請遵守入校規定並保持安靜。",
+        "從安國站3號出口走上坡約9分鐘。",
+        "北村韓屋村就在坡下，可以一起逛。"
+      ]
+    },
+    "the-hyundai-seoul": {
+      "name": "The Hyundai Seoul",
+      "summary": "首爾話題十足的百貨公司，核心是玻璃屋頂下3,306平方公尺的室內花園「Sounds Forest」和瀑布花園。活動空間經常推出品牌、K-pop和韓劇快閃店。",
+      "address": "108 Yeoui-daero, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "出發前先上官網或Instagram確認目前的快閃店。",
+        "從汝矣渡口站1號出口步行約5分鐘。",
+        "有置物櫃，也有放食物的冷藏櫃。"
+      ]
+    },
+    "kbs-music-bank": {
+      "name": "KBS汝矣島（音樂銀行）",
+      "summary": "KBS汝矣島廣播中心，新館公開廳和別館公開廳會舉辦《音樂銀行》、《兩天一夜》等節目。《音樂銀行》每週五直播，現場觀眾透過各歌手的粉絲俱樂部安排。",
+      "address": "13 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul (KBS Annex Hall)",
+      "tips": [
+        "《音樂銀行》通常週五17:05（韓國時間）直播，偶有停播週，請先確認。",
+        "觀眾名額由歌手官方粉絲俱樂部公告招募，不是KBS。",
+        "從國會議事堂站4號出口步行約4分鐘。"
+      ]
+    },
+    "yeouido-hangang-park": {
+      "name": "汝矣島漢江公園",
+      "summary": "首爾造訪人數最多的河濱公園之一，春天有櫻花，秋天有首爾國際煙火節。學在地人一樣，在河邊超商買碗泡麵，坐在水岸邊吃。",
+      "address": "330 Yeouidong-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "租首爾公共自行車Ttareungi，沿著漢江騎。",
+        "漢江巴士在汝矣島碼頭停靠，刷T-money卡上船。",
+        "汝矣渡口站（5號線）就在公園邊上。"
+      ]
+    },
+    "seouldal": {
+      "name": "SEOULDAL（首爾月亮氣球）",
+      "summary": "從汝矣島公園垂直升空的繫留式氦氣球，可眺望漢江和市區。2024年作為夜間景點登場，在汝矣島夜空中像月亮一樣發光。",
+      "address": "68-1 Yeouigongwon-ro, Yeongdeungpo-gu, Seoul",
+      "tips": [
+        "成人票25,000韓元，現場和網路都買得到。",
+        "夜間飛行能看城市燈光，最後一班21:30。",
+        "依天候可能停飛，當天請看官方公告頁面。"
+      ]
+    },
+    "gamcheon-culture-village": {
+      "name": "甘川文化村",
+      "summary": "韓戰難民在山坡上蓋起的粉彩色房屋聚落，2009年起以壁畫和雕塑改造成藝術村。小王子雕像是經典拍照點，STAYC也曾穿著復古服裝在這裡拍攝。",
+      "address": "203 Gamnae 2-ro, Saha-gu, Busan",
+      "tips": [
+        "從土城站（1號線）6號出口搭村落小巴上山。",
+        "可以在村裡租韓服或復古服裝拍照。",
+        "這裡有居民生活，在巷弄裡請放低音量。"
+      ]
+    },
+    "huinnyeoul-culture-village": {
+      "name": "白淺灘文化村",
+      "summary": "影島海邊懸崖上的村落，2011年改造成藝術村。電影《正義辯護人》中鎮宇家的外牆寫著片中台詞，海岸隧道把大海框成畫面，很適合拍剪影照。",
+      "address": "Huinnyeoul-gil, Yeongdo-gu, Busan",
+      "tips": [
+        "從南浦站（1號線）6號出口搭7、71或508號公車。",
+        "STAYC在釜山旅遊節目中逛過這個村子。",
+        "道路和階梯都很陡，請穿好走的鞋。"
+      ]
+    },
+    "haedong-yonggungsa": {
+      "name": "海東龍宮寺",
+      "summary": "建在海邊岩石上的佛寺，始建於1376年。韓國寺廟多半位在山中，這樣的位置相當少見。穿過松林走下108級階梯，在橋上投枚硬幣許個願。",
+      "address": "86 Yonggung-gil, Gijang-eup, Gijang-gun, Busan",
+      "tips": [
+        "從東海線奧西利亞（Osiria）站1號出口搭139號公車。",
+        "04:30開門，趕得上看海上日出。",
+        "在入口的十二生肖雕像中找找自己的生肖。"
+      ]
+    },
+    "haeundae-blueline-park": {
+      "name": "海雲台藍線公園",
+      "summary": "4.8公里的舊海岸鐵道，改造成沿海遊覽的路線。4人座的天空膠囊列車在海面上方7～10公尺處，從尾浦緩緩行駛2公里到青沙浦；海岸列車則一路開到松亭。",
+      "address": "116 Cheongsapo-ro, Haeundae-gu, Busan",
+      "tips": [
+        "天空膠囊列車單程約30分鐘，人多的日子建議提前預約。",
+        "一般從海雲台海灘東端的尾浦站出發。",
+        "下雨照常運行，但颱風或豪雨時可能停駛。"
+      ]
+    },
+    "seongsan-ilchulbong": {
+      "name": "城山日出峰",
+      "summary": "約5,000年前從海中隆起、高180公尺的凝灰岩丘，是濟州聯合國教科文組織世界自然遺產的一部分。可登上寬600公尺的火山口看日出；這裡也是《苦盡柑來遇見你》的拍攝地。",
+      "address": "284-12 Ilchul-ro, Seongsan-eup, Seogwipo-si, Jeju",
+      "tips": [
+        "成人門票5,000韓元，閉園前1小時停止售票。",
+        "夏季04:30開門，方便登頂看日出。",
+        "附近的廣峙其海邊是《歡迎來到三達里》的拍攝地。"
+      ]
+    },
+    "osulloc-tea-museum": {
+      "name": "O'sulloc 茶博物館",
+      "summary": "愛茉莉太平洋於2001年在O'sulloc西廣茶園旁開設的茶博物館。免費入場：看看茶文化展廳，在咖啡廳嚐嚐綠茶甜點，再走進一排排茶樹之間。",
+      "address": "15 Sinhwayeoksa-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "免費入場，部分體驗活動另外收費。",
+        "天候不佳時營業時間可能調整。",
+        "旁邊的西廣茶園是韓國規模最大的茶園之一。"
+      ]
+    },
+    "dongmun-market": {
+      "name": "東門傳統市場",
+      "summary": "濟州規模最大的常設市場，歷史可追溯到1945年，以白帶魚等新鮮海產，以及放上整顆鮑魚的韓式烤肉餅等料理聞名。天黑後，8號門附近會開起小吃夜市。",
+      "address": "20 Gwandeok-ro 14-gil, Jeju-si, Jeju",
+      "tips": [
+        "8號門附近的夜市攤位賣完就提早收攤。",
+        "空著肚子來，多點幾樣小份量一起分著吃。"
+      ]
+    },
+    "camellia-hill": {
+      "name": "Camellia Hill（山茶花之丘）",
+      "summary": "占地172,000平方公尺的植物園，種有500個品種、約6,000棵山茶樹，冬天紅色山茶花盛開時最繽紛。戀愛實境節目《換乘戀愛3》裡，有一對情侶在這裡留下難忘的約會。",
+      "address": "166 Byeongak-ro, Andeok-myeon, Seogwipo-si, Jeju",
+      "tips": [
+        "成人門票12,000韓元，閉園前1小時停止入場。",
+        "冬季（11月～2月）是山茶花的花季。"
+      ]
+    }
+  },
   "prep": {
-    "title": "",
-    "items": {}
+    "title": "出發前準備",
+    "items": {
+      "esim": {
+        "label": "eSIM與上網",
+        "sub": "落地前先設定好韓國eSIM，一出機場就能用地圖和翻譯。"
+      },
+      "tmoney": {
+        "label": "T-money卡",
+        "sub": "地鐵、公車和漢江巴士嗶一下就能搭，在便利商店就能加值。"
+      },
+      "airport": {
+        "label": "機場交通",
+        "sub": "先預訂進首爾市區的機場鐵路或巴士車票，抵達時更輕鬆。"
+      },
+      "stay": {
+        "label": "住宿地區",
+        "sub": "明洞、弘大、聖水都有地鐵直達，很適合當旅行據點。"
+      },
+      "tour": {
+        "label": "行程與門票",
+        "sub": "韓服租借、一日遊和景點門票，出發前先訂好。"
+      }
+    }
   }
 }

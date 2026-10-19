@@ -1,11 +1,465 @@
 {
-  "categories": {},
-  "products": {},
+  "categories": {
+    "cleanser": {
+      "name": "卸妝・洗顏",
+      "intro": "卸妝油、卸妝膏和溫和洗面乳，雙重清潔洗得乾淨又不緊繃。"
+    },
+    "toner": {
+      "name": "化妝水",
+      "intro": "洗臉後的第一步，水感化妝水和棉片幫肌膚做好準備。"
+    },
+    "serum": {
+      "name": "精華・安瓶",
+      "intro": "補水、舒緩、打造光澤感的濃縮保養。"
+    },
+    "moisturizer": {
+      "name": "乳霜",
+      "intro": "從凝霜到滋潤乳霜，把水分鎖在肌膚裡。"
+    },
+    "sunscreen": {
+      "name": "防曬",
+      "intro": "輕盈舒服、每天都能擦的韓系防曬。"
+    },
+    "mask": {
+      "name": "面膜",
+      "intro": "片狀、水凝膠和睡眠面膜，快速幫肌膚補水。"
+    },
+    "lip": {
+      "name": "唇部",
+      "intro": "韓國人一用再用的唇釉和護唇膏。"
+    },
+    "base": {
+      "name": "底妝",
+      "intro": "氣墊、BB霜和蜜粉，打造服貼清新的底妝。"
+    },
+    "eye": {
+      "name": "眼部",
+      "intro": "日常好駕馭的柔和眼影盤和眼部保養。"
+    },
+    "hair-body": {
+      "name": "美髮・身體",
+      "intro": "韓國藥妝店常見的護髮油、沖洗式護髮和身體乳。"
+    }
+  },
+  "products": {
+    "cosrx-low-ph-good-morning-gel-cleanser": {
+      "name": "Low pH Good Morning Gel Cleanser",
+      "tagline": "早上洗臉剛剛好的溫和弱酸性凝膠",
+      "why": "長年熱賣的韓系經典款。透明凝膠呈弱酸性（pH 約 5.3），洗完不會有澀澀緊繃的感覺。添加水楊酸甜菜鹼和茶樹精油，洗後清爽，適合油性肌和混合肌。",
+      "howTo": "取少量加水搓出泡沫，在濕潤的臉上按摩約 30 秒後沖淨。可當早上的洗臉，或雙重清潔的第二步。"
+    },
+    "anua-heartleaf-pore-control-cleansing-oil": {
+      "name": "Heartleaf Pore Control Cleansing Oil",
+      "tagline": "溶解彩妝和防曬的輕盈第一步卸妝油",
+      "why": "以荷荷芭油、葡萄籽油、夏威夷果油搭配魚腥草萃取的輕盈卸妝油。能溶解彩妝、防曬和多餘皮脂，遇水乳化成乳白色後就能沖淨，是雙重清潔第一步的好入門款。",
+      "howTo": "乾手按壓 2～3 下，在乾燥的臉上按摩。加少量水乳化成乳白色後沖淨，再用水性洗面乳洗一次。",
+      "caution": "含香料。肌膚容易起反應的人請先做局部測試。"
+    },
+    "round-lab-1025-dokdo-cleanser": {
+      "name": "1025 Dokdo Cleanser",
+      "tagline": "含鬱陵島海水的柔和弱酸性洗面乳",
+      "why": "Round Lab 招牌「1025 獨島」系列的洗面乳，以獨島旁鬱陵島的海洋深層水，搭配泛醇和尿囊素。泡沫柔細，沖淨後肌膚不會有被洗乾的感覺。",
+      "howTo": "取豌豆大小加水搓出泡沫，在濕潤的臉上輕輕按摩，再用溫水沖淨。早晚都可使用。"
+    },
+    "banila-co-clean-it-zero-cleansing-balm-original": {
+      "name": "ZERO零感肌瞬卸凝霜",
+      "tagline": "雪酪質地的卸妝膏，按摩後化成卸妝油",
+      "why": "粉紅色罐子的韓系經典。雪酪般的卸妝膏一按摩就化成油，能卸除持久妝和防水彩妝，遇水乳化後即可沖淨。配方中還有西印度櫻桃萃取和維他命 E。",
+      "howTo": "用附的挖棒取少量，在乾燥肌膚上按摩到融化，加水乳化後沖淨，再接著第二道洗臉。",
+      "caution": "含香料。挖棒請放在罐內，避免手指直接伸進去。"
+    },
+    "manyo-pure-soybean-cleansing-oil": {
+      "name": "Pure Soybean Cleansing Oil",
+      "tagline": "沖洗時化成乳液的植物油卸妝油",
+      "why": "舊名 Pure Cleansing Oil，以大豆油、摩洛哥堅果油、荷荷芭油等植物油調配，拿下 2025 年 Allure Beauty Awards 卸妝油獎項。能溶解彩妝和皮脂，遇水化成輕盈乳液。",
+      "howTo": "乾手取 2～3 下塗在乾燥的臉上按摩。加點水乳化後徹底沖淨，再用泡沫或凝膠洗面乳洗一次。"
+    },
+    "round-lab-1025-dokdo-toner": {
+      "name": "1025 Dokdo Toner",
+      "tagline": "Olive Young 大獎常客，水感日常化妝水",
+      "why": "在韓國銷量很高的化妝水，也是 Olive Young 年度大獎的常客。水狀質地含鬱陵島海洋深層水、甜菜鹼和泛醇，洗臉後幫肌膚補水，讓膚觸更細緻平滑。",
+      "howTo": "洗臉後用化妝棉沾濕，由內往外輕拭，或倒幾滴在掌心輕拍。接著擦精華和乳霜。"
+    },
+    "anua-heartleaf-77-soothing-toner": {
+      "name": "Heartleaf 77 Soothing Toner",
+      "tagline": "水感輕盈的魚腥草舒緩化妝水",
+      "why": "紅遍全球的韓系人氣款，也常入選 Olive Young 大獎。配方大部分是魚腥草水，再加入泛醇和多種玻尿酸，帶來舒緩又保濕的一層。",
+      "howTo": "用手或化妝棉拍在洗淨的臉上。想快速舒緩時，可把化妝棉浸濕後濕敷 5～10 分鐘。"
+    },
+    "medicube-zero-pore-pad": {
+      "name": "Zero Pore Pads",
+      "tagline": "含 AHA 和 BHA 的雙面棉片，讓膚觸更平滑",
+      "why": "美國 Amazon 上熱銷的韓系單品之一。每片一面有壓紋、用來擦拭，一面平滑、用來按壓；化妝水含乳酸（AHA）和水楊酸（BHA），讓油性肌摸起來更平滑、不那麼油亮。",
+      "howTo": "洗臉後先用壓紋面擦拭全臉，再用平滑面按壓較油的部位。一開始隔天晚上使用。",
+      "caution": "含去角質酸類和酒精。避開破皮處，不要和其他強效去角質產品併用，白天請擦防曬。"
+    },
+    "skin1004-madagascar-centella-toning-toner": {
+      "name": "Madagascar Centella Toning Toner",
+      "tagline": "含馬達加斯加積雪草的溫和 PHA 化妝水",
+      "why": "SKIN1004 積雪草系列的溫和日常化妝水。葡萄糖酸內酯（PHA）溫和帶走老廢角質，積雪草萃取和甜菜鹼讓配方保持舒緩保濕，適合每天使用。",
+      "howTo": "洗臉後倒在化妝棉上輕拭全臉，或用掌心輕拍。",
+      "caution": "含溫和的去角質酸（PHA）。白天請擦防曬。"
+    },
+    "torriden-dive-in-toner": {
+      "name": "DIVE IN Toner",
+      "tagline": "清爽不黏膩的玻尿酸化妝水",
+      "why": "Torriden 人氣 DIVE IN 系列的化妝水，含 5 種分子大小的玻尿酸，搭配泛醇和尿囊素。吸收快、觸感清爽不黏，很適合中性到混合肌。",
+      "howTo": "洗臉後倒在掌心或化妝棉上，均勻輕拍全臉。比較乾的日子可以疊擦兩次。"
+    },
+    "cosrx-advanced-snail-96-mucin-power-essence": {
+      "name": "Advanced Snail 96 Mucin Power Essence",
+      "tagline": "帶動「玻璃肌」風潮的蝸牛精華",
+      "why": "海外知名度很高的韓系保養品，也是美國 Amazon 美妝榜的常客。96% 蝸牛分泌物過濾液帶來滑溜、有彈性的質地，保濕並帶出水光感，卻不厚重。",
+      "howTo": "化妝水後取 2～3 下於掌心，輕拍全臉至吸收，再擦乳霜。"
+    },
+    "beauty-of-joseon-glow-serum-propolis-niacinamide": {
+      "name": "Glow Serum : Propolis + Niacinamide",
+      "tagline": "蜂蜜色的蜂膠精華，帶出健康光澤感",
+      "why": "Beauty of Joseon 的人氣精華，價格親民。輕盈凝膠含蜂膠萃取和菸鹼醯胺，保濕之餘讓肌膚看起來更有光澤，很適合油性肌和混合肌。",
+      "howTo": "化妝水後取 2～3 滴輕輕拍開，接著擦乳霜，早上再加防曬。",
+      "caution": "對蜂膠、蜂蜜等蜂類產品過敏的人請避免使用。"
+    },
+    "torriden-dive-in-serum": {
+      "name": "DIVE IN Serum",
+      "tagline": "水感玻尿酸精華，疊出一層保濕",
+      "why": "Torriden 的招牌精華，也是 Olive Young 的長銷款。5 種玻尿酸搭配泛醇和尿囊素，水感質地吸收快，疊在任何乳霜或底妝下都很服貼。",
+      "howTo": "化妝水後取一滴管的量於臉上，輕拍至吸收。非常乾的肌膚可再疊一次，最後用乳霜鎖住。"
+    },
+    "skin1004-madagascar-centella-ampoule": {
+      "name": "Madagascar Centella Ampoule",
+      "tagline": "成分精簡、觸感輕盈的積雪草安瓶",
+      "why": "以馬達加斯加積雪草萃取為主、成分表精簡的安瓶。稀薄水感的質地吸收快、用起來舒緩，常是敏感肌或容易泛紅肌膚的選擇。",
+      "howTo": "洗臉、擦化妝水後取幾滴拍勻。早晚使用，之後再擦乳霜。"
+    },
+    "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
+      "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
+      "tagline": "壬二酸搭配舒緩成分的精華",
+      "why": "Anua 近期在美國 Amazon 爆紅的精華。輕盈配方結合壬二酸、菸鹼醯胺、泛醇和玻尿酸，適合同時想要舒緩、保濕的油性肌。",
+      "howTo": "化妝水後取少量塗在臉上，每天一次，剛開始先在晚上用。之後擦乳霜，白天記得防曬。",
+      "caution": "含壬二酸和溫和的 BHA。剛開始常有輕微刺刺感；請先做局部測試，避免和其他強酸類產品併用。"
+    },
+    "medicube-pdrn-pink-peptide-serum": {
+      "name": "PDRN Pink Peptide Serum",
+      "tagline": "含胜肽和菸鹼醯胺的粉紅 PDRN 精華",
+      "why": "讓 PDRN（鮭魚來源的 DNA，成分標示為 Sodium DNA）成為韓系保養熱門關鍵字的產品之一，Amazon 上累積數千則評論。粉紅色的輕盈精華，帶來保濕和健康的光澤感。",
+      "howTo": "化妝水後取 1～2 下輕拍全臉，再擦乳霜。",
+      "caution": "含魚類來源成分；如果你會避開這類成分，請跳過這款。"
+    },
+    "mixsoon-bean-essence": {
+      "name": "Bean Essence",
+      "tagline": "會牽絲的質地在網路爆紅的大豆發酵精華",
+      "why": "在 TikTok 爆紅的精華，配方大多是大豆發酵物等發酵成分。略帶黏性的質地要按摩到吸收，常在晚上當作讓膚觸更平滑的溫和步驟。",
+      "howTo": "晚上取幾下按摩全臉至吸收，殘留的部分用溫毛巾或棉片擦掉，再擦保濕。",
+      "caution": "含大豆來源成分。"
+    },
+    "manyo-bifida-biome-complex-ampoule": {
+      "name": "Bifida Biome Complex Ampoule",
+      "tagline": "以發酵成分為基底，膚觸飽滿水潤的安瓶",
+      "why": "ma:nyo 的長銷安瓶，以二裂酵母發酵產物溶胞物為主，搭配其他發酵成分、菸鹼醯胺和角鯊烷。乳狀精華滋潤卻不厚重，適合乾性肌和中性肌。",
+      "howTo": "化妝水後取 2～3 滴拍勻，再擦乳霜。"
+    },
+    "cosrx-advanced-snail-92-all-in-one-cream": {
+      "name": "Advanced Snail 92 All in One Cream",
+      "tagline": "把水分鎖住的 Q 彈蝸牛凝霜",
+      "why": "COSRX 人氣蝸牛精華的同系列乳霜。92% 蝸牛分泌物過濾液做成 Q 彈凝霜，鎖住水分又不油膩，大多數膚質一年四季都能用。",
+      "howTo": "保養最後一步，取珍珠大小塗開全臉，輕拍至吸收。早晚使用。"
+    },
+    "aestura-atobarrier365-cream": {
+      "name": "ATOBARRIER365 Cream",
+      "tagline": "給乾性、敏感肌的神經醯胺膠囊乳霜",
+      "why": "愛茉莉太平洋旗下皮膚科學品牌的乳霜，曾入選 Olive Young Awards 乳霜類。神經醯胺膠囊、膽固醇和角鯊烷形成滋潤卻不油膩的保濕層，適合乾燥、容易受刺激的肌膚。",
+      "howTo": "保養的最後一步，取豌豆大小用指尖溫熱後按壓全臉。乾燥部位可視需要再補擦。"
+    },
+    "beauty-of-joseon-dynasty-cream": {
+      "name": "Dynasty Cream",
+      "tagline": "靈感來自朝鮮時代配方的滋潤水光乳霜",
+      "why": "Beauty of Joseon 的招牌保濕霜，以米糠水和人蔘根水為基底，加入角鯊烷和菸鹼醯胺。綿密質地帶來水潤、有包覆感的膚感，適合乾性肌和中性肌。",
+      "howTo": "早上或晚上，在保養最後一步取少量塗抹。晚上乾燥部位可多擦一點。"
+    },
+    "belif-the-true-cream-aqua-bomb": {
+      "name": "The True Cream Aqua Bomb",
+      "tagline": "一抹化水的清涼凝霜",
+      "why": "LG 生活健康旗下草本品牌在美國的長銷款。果凍般的乳霜一接觸肌膚就化成水，帶來清涼清爽的保濕層，油性肌和混合肌也能在上妝前使用。",
+      "howTo": "精華後取約一元硬幣大小，早晚輕拍全臉。"
+    },
+    "medicube-collagen-niacinamide-jelly-cream": {
+      "name": "Collagen Niacinamide Jelly Cream",
+      "tagline": "含膠原蛋白、帶出水光感的透明果凍霜",
+      "why": "在 Amazon 累積數千則評論的透明果凍霜。水解膠原蛋白和菸鹼醯胺做成 Q 彈、像水一樣輕盈的質地，帶來保濕和健康的光澤感。",
+      "howTo": "保養最後一步，取適量塗開全臉，輕拍至吸收。"
+    },
+    "illiyoon-ceramide-ato-concentrate-cream": {
+      "name": "Ceramide Ato Concentrate Cream",
+      "tagline": "全家都能用的濃厚神經醯胺乳霜，給很乾的肌膚",
+      "why": "愛茉莉太平洋旗下的韓國藥妝店經典款，全家人臉和身體都能用。類神經醯胺做成濃厚、有包覆感的乳霜，讓非常乾燥的肌膚保持舒適，冬天尤其好用。",
+      "howTo": "洗完臉或洗完澡後，趁肌膚還微濕時大量塗抹在臉或身體上。乾燥部位可視需要補擦。"
+    },
+    "beauty-of-joseon-relief-sun-rice-probiotics": {
+      "name": "Relief Sun : Rice + Probiotics",
+      "tagline": "不泛白的綿密 SPF50+ PA++++ 防曬",
+      "why": "讓韓系防曬紅遍全球的代表作。SPF50+ PA++++ 的防曬係數，搭配輕盈綿密的質地，添加米萃取，推開不泛白，上妝也很服貼。",
+      "howTo": "保養最後一步，出門前 15 分鐘塗上足量（臉部約兩指長）。在戶外每 2～3 小時補擦一次。",
+      "caution": "韓國販售名稱為「맑은쌀선크림」；各地區的配方和標示可能不同。"
+    },
+    "round-lab-birch-juice-moisturizing-sun-cream": {
+      "name": "Birch Juice Moisturizing Sun Cream",
+      "tagline": "像乳液一樣好疊擦的保濕防曬",
+      "why": "Round Lab 樺樹系列的 Olive Young 人氣防曬。含樺樹汁，以保濕的乳液狀質地提供防曬，乾性肌擦起來也舒服，還能當作輕薄的日間保濕。",
+      "howTo": "保養最後一步，出門前均勻塗抹臉和脖子。在戶外每 2～3 小時補擦一次。"
+    },
+    "skin1004-hyalu-cica-water-fit-sun-serum": {
+      "name": "Hyalu-Cica Water-Fit Sun Serum",
+      "tagline": "像精華一樣輕透、幾乎無感的 SPF50+",
+      "why": "因為輕盈觸感受到喜愛的水感精華型防曬。SPF50+ 防曬推開透明，含積雪草和玻尿酸，常是油性肌和妝前打底的選擇。",
+      "howTo": "保養最後一步，取足量均勻塗抹臉和脖子。在戶外每 2～3 小時補擦一次。"
+    },
+    "dalba-white-truffle-waterfull-essence-sunscreen": {
+      "name": "White Truffle Waterfull Essence Sunscreen",
+      "tagline": "含白松露的光澤感精華型 SPF50+",
+      "why": "d'Alba 的招牌防曬，結合 SPF50+ 防曬與精華般的質地，含白松露、神經醯胺和玻尿酸。擦完帶水潤光澤，適合中性到乾性肌。",
+      "howTo": "保養最後一步，取足量均勻塗抹臉和脖子。在戶外每 2～3 小時補擦一次。",
+      "caution": "含柑橘精油等精油成分；對香料敏感的人請先做局部測試。"
+    },
+    "innisfree-daily-uv-defense-sunscreen": {
+      "name": "Daily UV Defense Sunscreen",
+      "tagline": "含綠茶的輕盈日常 SPF50+",
+      "why": "innisfree 的日常防曬，以含綠茶和積雪草的輕盈乳液提供 SPF50+ 防護，吸收快，也能當作類似妝前乳的打底。",
+      "howTo": "日曬前 15 分鐘，在保養最後一步均勻塗抹臉和脖子。在戶外每 2 小時補擦一次。",
+      "caution": "各地區的配方和防曬成分不同；美國版是 OTC 防曬，標示也不一樣。"
+    },
+    "aestura-derma-uv365-barrier-hydro-mineral-sunscreen": {
+      "name": "DERMA UV365 Barrier Hydro Mineral Sunscreen",
+      "tagline": "給乾性、敏感肌的礦物 SPF50+ PA++++",
+      "why": "AESTURA 的礦物（氧化鋅）防曬，提供 SPF50+ PA++++ 防護。神經醯胺和玻尿酸讓它保有滋潤感，品牌表示測試中眼睛刺激性低，敏感肌也適用。",
+      "howTo": "保養最後一步均勻塗抹，輕輕按壓以減少泛白。在戶外每 2～3 小時補擦一次。"
+    },
+    "biodance-bio-collagen-real-deep-mask": {
+      "name": "Bio-Collagen Real Deep Mask",
+      "tagline": "隨著吸收漸漸變透明的過夜水凝膠面膜",
+      "why": "紅遍全球、在美國 Amazon 美妝榜名列前茅的水凝膠面膜。精華被吸收後面膜會變透明，在韓國登記為美白、改善皺紋的功能性化妝品。",
+      "howTo": "化妝水或精華後敷上面膜，放置 3～4 小時或一整晚，直到變透明。取下後把剩餘精華拍勻。"
+    },
+    "laneige-water-sleeping-mask": {
+      "name": "睡美人香氛水凝膜",
+      "tagline": "免沖洗的凝膠面膜，整晚補水",
+      "why": "讓 LANEIGE 在海外打響名號的睡眠面膜。含角鯊烷和益生菌來源發酵成分的輕盈凝膠，作為晚間最後一道鎖水，隔天早上肌膚柔軟水潤。",
+      "howTo": "晚間保養最後一步，薄塗全臉後直接睡覺，早上洗掉。每週 2～3 次或每晚使用皆可。"
+    },
+    "mediheal-teatree-essential-mask": {
+      "name": "Teatree Essential Mask",
+      "tagline": "給油性、疲憊肌膚的清涼茶樹面膜",
+      "why": "來自韓國最大的面膜品牌之一 MEDIHEAL。薄薄的面膜布浸滿茶樹、泛醇和尿囊素，在曬後、悶熱或忙碌一天後快速補水舒緩。",
+      "howTo": "化妝水後敷 15～20 分鐘，取下後把剩餘精華拍進肌膚。每週 2～3 次。"
+    },
+    "medicube-collagen-night-wrapping-mask": {
+      "name": "Collagen Night Wrapping Mask",
+      "tagline": "隔天撕下的晚安面膜，把水分包覆住",
+      "why": "爆紅的撕除式面膜：晚上塗上後會形成一層薄膜，早上撕掉即可。膠原蛋白、菸鹼醯胺和玻尿酸在薄膜下整晚保濕。",
+      "howTo": "晚間最後一步，避開眼睛、眉毛和髮際線，均勻塗上一層不要太薄的面膜。乾了之後就寢，早上撕下再洗臉。",
+      "caution": "避開髮際線、眉毛和眼周。肌膚受刺激或有傷口時請勿使用。"
+    },
+    "laneige-lip-sleeping-mask": {
+      "name": "睡美人極萃滋養晚安唇膜",
+      "tagline": "整晚滋潤，早上雙唇依然柔軟",
+      "why": "全球知名度很高的韓系單品之一。濃厚的唇膜（經典味道是莓果）含椰子油、穆茹穆茹籽脂和乳油木果脂，整晚讓雙唇柔軟，白天也能當光澤護唇膏。",
+      "howTo": "睡前用附的小挖棒厚塗一層，早上擦掉；白天薄擦也可以。"
+    },
+    "romand-the-juicy-lasting-tint": {
+      "name": "The Juicy Lasting Tint",
+      "tagline": "持色度好的水光果汁感唇釉",
+      "why": "rom&nd 的招牌唇釉，也是 Olive Young 熱銷的唇妝之一。糖漿般的水光質地，掉色後仍會留下唇色，色號多達數十種，從透明果色到深莓色都有。",
+      "howTo": "塗在唇中央再抿開就是漸層唇；整唇塗滿則是飽和唇色。疊在護唇膏上更有光澤。"
+    },
+    "peripera-ink-the-velvet": {
+      "name": "Ink the Velvet",
+      "tagline": "色號超多的柔霧絲絨唇釉",
+      "why": "peripera 的代表唇釉，上市幾天就賣到斷貨，人氣至今不減。打發般的絲絨質地能柔焦唇紋，留下柔霧唇色。",
+      "howTo": "用刷頭平面按壓在唇中央，往外暈開成漸層；或整唇塗滿呈現飽和色。"
+    },
+    "laneige-lip-glowy-balm": {
+      "name": "Lip Glowy Balm",
+      "tagline": "日常好用的透亮水光潤色護唇膏",
+      "why": "LANEIGE 唇膜的日間搭檔。軟管包裝的透亮水光護唇膏，含乳油木果脂和穆茹穆茹籽脂，為雙唇帶來淡淡顏色和光澤，不黏膩。",
+      "howTo": "唇部感到乾燥時直接塗抹。可單擦，也可疊在口紅上增添光澤。"
+    },
+    "torriden-solid-in-lip-essence": {
+      "name": "SOLID IN Lip Essence",
+      "tagline": "給乾燥脫皮雙唇的神經醯胺唇部精華",
+      "why": "Torriden 神經醯胺系列的唇部保養，在 Olive Young 很受歡迎。5 種神經醯胺搭配乳油木果脂和玻尿酸，形成滑順有光澤的一層，讓乾燥脫皮的雙唇更舒適。",
+      "howTo": "雙唇乾燥時隨時塗抹，睡前厚塗一層。也可當唇釉的打底。"
+    },
+    "tirtir-mask-fit-red-cushion": {
+      "name": "Mask Fit Red Cushion",
+      "tagline": "以色號齊全聞名的持久紅氣墊",
+      "why": "因擴充到約 40 個色號而爆紅的紅殼氣墊。中高遮瑕、持久，帶柔和光澤感；韓國版是 SPF40 PA++ 的功能性化妝品。",
+      "howTo": "粉撲按壓氣墊後，從臉中央往外輕拍。需要遮瑕的地方再薄薄疊一層。",
+      "caution": "韓國版和海外版的色號名稱與 SPF 標示可能不同。"
+    },
+    "clio-kill-cover-founwear-cushion": {
+      "name": "Kill Cover Founwear Cushion The Original",
+      "tagline": "SPF50+ PA+++ 的高遮瑕氣墊",
+      "why": "CLIO 的 Kill Cover 氣墊自 2015 年上市以來已售出數百萬個。Founwear 版遮瑕力高、持久，妝感自然，依韓國官方商品資訊標示，具 SPF50+ PA+++ 防曬。",
+      "howTo": "粉撲輕沾氣墊，從臉中央往外按壓。瑕疵處用薄擦疊加，不要用力壓。"
+    },
+    "missha-m-perfect-cover-bb-cream": {
+      "name": "M Perfect Cover BB Cream SPF42 PA+++",
+      "tagline": "SPF42、遮瑕度可疊加的經典 BB 霜",
+      "why": "把韓系底妝帶向全世界的 BB 霜之一。一條就有中高遮瑕和 SPF42 PA+++ 防曬，加上玻尿酸和神經醯胺，妝感水潤。",
+      "howTo": "保養後取少量點在臉上，用指腹或濕海綿推開。需要的地方再薄疊一層。"
+    },
+    "hera-black-cushion-foundation": {
+      "name": "Black Cushion Foundation",
+      "tagline": "妝感滑順持久的高級半霧面氣墊",
+      "why": "HERA 是愛茉莉太平洋的高端彩妝品牌，Black Cushion 是它的招牌。輕薄、持久的半霧面妝感，讓混合肌和油性肌看起來很滑順。",
+      "howTo": "粉撲輕沾氣墊，從臉中央往外輕拍。想要更高遮瑕就薄薄疊加。"
+    },
+    "innisfree-no-sebum-mineral-powder": {
+      "name": "無油無慮礦物控油蜜粉",
+      "tagline": "小巧蜜粉，幫你壓住油光",
+      "why": "便宜又能放進口袋的蜜粉，多年來都是韓國藥妝店的經典款。以二氧化矽為主的粉體能定妝、吸附多餘油脂，呈現柔霧妝感，不顯厚重。",
+      "howTo": "粉撲或刷子沾少量，底妝後按壓 T 字部位，白天也能補妝。"
+    },
+    "clio-pro-eye-palette-air": {
+      "name": "Pro Eye Palette Air",
+      "tagline": "日常好用韓系色調的輕巧 12 色眼影盤",
+      "why": "CLIO 眼影盤是 Olive Young 的常客，Air 版在輕薄盒中放入 12 色、每格 0.6g，有柔霧、珠光和亮片，以韓系日常眼妝為核心配色。",
+      "howTo": "先用淺色霧面鋪滿眼皮，加深眼窩和眼尾，再用指腹把珠光或亮片按壓在眼皮中央。"
+    },
+    "romand-better-than-palette": {
+      "name": "Better Than Palette",
+      "tagline": "花園主題的柔霧與亮片眼影盤",
+      "why": "rom&nd 的眼影系列，推出許多季節「花園」色系。每盤都把好暈染的霧面和細緻亮片，配成低飽和、好駕馭的色調，很適合柔和的韓系眼妝。",
+      "howTo": "以淺色霧面打底，中間色暈染眼窩，再把亮片點在眼皮中央或臥蠶。"
+    },
+    "beauty-of-joseon-revive-eye-serum-ginseng-retinal": {
+      "name": "Revive Eye Serum : Ginseng + Retinal",
+      "tagline": "含人蔘和溫和視黃醛的輕盈眼霜",
+      "why": "Beauty of Joseon 的眼霜，以人蔘根萃取搭配視黃醛、菸鹼醯胺和神經醯胺，輕盈的乳霜狀精華讓眼周薄薄的肌膚保持滋潤，價格也親民。",
+      "howTo": "晚上用無名指取少量，沿眼眶骨輕點。一開始隔晚使用，再依肌膚狀況增加次數。",
+      "caution": "含視黃醛。避開睫毛根部，白天請擦防曬；懷孕或哺乳期間，使用前請先諮詢專業人士。"
+    },
+    "mise-en-scene-perfect-serum-original": {
+      "name": "Perfect Serum Original",
+      "tagline": "韓國愛用的護髮精華油，撫平毛躁、增添光澤",
+      "why": "愛茉莉太平洋旗下的韓國藥妝店護髮經典款。含摩洛哥堅果油、荷荷芭油和山茶花油的輕盈精華油，撫平毛躁，讓乾燥髮尾有光澤又不扁塌。",
+      "howTo": "取 1～2 下在掌心搓開，抹在用毛巾擦乾的髮尾，再吹乾。乾髮也可再取少量做最後修飾。"
+    },
+    "lador-perfect-hair-fill-up": {
+      "name": "Perfect Hair Fill-Up",
+      "tagline": "給乾燥受損感頭髮的蛋白質填充護髮",
+      "why": "韓國人氣沖洗式護髮，會從水狀變成乳霜狀。輕盈配方含水解角蛋白、蠶絲和神經醯胺，讓乾燥、漂過或常用熱工具造型的頭髮摸起來更滑順、更好梳開。",
+      "howTo": "洗髮後抹在濕髮的中段到髮尾，按摩到從水變成乳霜狀，再用溫水徹底沖淨。"
+    },
+    "illiyoon-ceramide-ato-lotion": {
+      "name": "Ceramide Ato Lotion",
+      "tagline": "全家都能用的大容量神經醯胺身體乳",
+      "why": "韓國藥妝店常見的大瓶身體乳。神經醯胺和角鯊烷做成輕盈、吸收快的乳液，讓乾燥的身體肌膚保持舒適，溫和到每天全身都能用。",
+      "howTo": "洗澡後趁肌膚還微濕時，大量塗抹全身。"
+    }
+  },
   "skinType": {
-    "title": "",
-    "intro": "",
-    "disclaimer": "",
-    "questions": {},
-    "results": {}
+    "title": "你是哪種膚質？",
+    "intro": "6 個關於日常膚況的小問題。測出膚質後，看看適合你的韓系保養品。",
+    "disclaimer": "僅供娛樂，並非醫學診斷。若膚況問題持續，請諮詢皮膚科醫師。",
+    "questions": {
+      "afternoon": {
+        "q": "到了下午，你的皮膚感覺如何？",
+        "options": {
+          "tight": "緊繃，或有點脫屑",
+          "shiny-all": "全臉泛油光",
+          "shiny-t": "只有額頭和鼻子出油",
+          "comfortable": "很舒服，不油亮"
+        }
+      },
+      "after-wash": {
+        "q": "剛洗完臉，皮膚感覺…",
+        "options": {
+          "tight": "緊繃，要馬上擦保濕",
+          "sting": "發熱、泛紅或有點刺刺的",
+          "fine": "還好，不急著擦保養品"
+        }
+      },
+      "pores": {
+        "q": "你的毛孔明顯嗎？",
+        "options": {
+          "large-all": "大半張臉都看得到",
+          "t-zone": "主要在鼻子和額頭附近",
+          "barely": "幾乎看不到"
+        }
+      },
+      "new-product": {
+        "q": "試用新的保養品時…",
+        "options": {
+          "often": "常常泛紅、發癢或刺痛",
+          "sometimes": "偶爾會遇到不適合的",
+          "rarely": "皮膚很少有反應"
+        }
+      },
+      "makeup": {
+        "q": "到了晚上，你的底妝…",
+        "options": {
+          "patchy": "卡在乾燥脫皮的地方",
+          "slides": "脫妝或看起來油膩",
+          "t-fade": "鼻子和額頭先脫妝",
+          "stays": "大致都還服貼"
+        }
+      },
+      "weather": {
+        "q": "天冷、風大或乾燥的日子，你的皮膚…",
+        "options": {
+          "flaky": "變粗糙或脫皮",
+          "flushed": "泛紅或發癢",
+          "mixed": "臉頰乾，T 字部位還是出油",
+          "same": "沒什麼變化"
+        }
+      }
+    },
+    "results": {
+      "dry": {
+        "name": "乾性肌",
+        "oneLiner": "你的肌膚最先想要的是水分，和滋潤、有包覆感的層層保養很合拍。",
+        "tips": [
+          "用溫和、低泡的洗面乳，避免太燙的水。",
+          "趁肌膚還微濕時，疊擦保濕化妝水或精華。",
+          "晚上用較滋潤的乳霜鎖水，白天記得擦防曬。"
+        ]
+      },
+      "oily": {
+        "name": "油性肌",
+        "oneLiner": "天生容易有光澤，只想讓它保持清爽、不油膩。",
+        "tips": [
+          "早晚用凝膠或弱酸性洗面乳，別用刺激的磨砂膏。",
+          "保濕選輕盈的凝霜就好。完全不擦，肌膚可能會覺得失衡。",
+          "選水感或霧面防曬，出油時用吸油面紙，不要一直補蜜粉。"
+        ]
+      },
+      "combination": {
+        "name": "混合肌",
+        "oneLiner": "一張臉兩種膚質：T 字部位油，臉頰偏乾。",
+        "tips": [
+          "分區保養：T 字部位擦得輕薄，臉頰加強保濕。",
+          "溫和的化妝水能讓膚感更均勻，又不會帶走太多油脂。",
+          "全臉擦輕盈的保濕品，只在緊繃的地方加乳霜。"
+        ]
+      },
+      "sensitive": {
+        "name": "敏感肌",
+        "oneLiner": "你的肌膚對什麼都很敏銳，簡短溫和的保養很合適。",
+        "tips": [
+          "新產品先在下顎線做幾天局部測試，再擦全臉。",
+          "保養步驟精簡，盡量選無香料的配方。",
+          "一次只加一樣新產品；如果泛紅或發癢反覆出現，請看皮膚科。"
+        ]
+      },
+      "normal": {
+        "name": "中性肌",
+        "oneLiner": "平衡又好相處。保養簡單、持續就好。",
+        "tips": [
+          "簡單的步驟就夠：溫和洗臉、保濕、乳霜、防曬。",
+          "隨季節調整，夏天輕薄、冬天滋潤。",
+          "每天擦防曬，是唯一不能省的一步。"
+        ]
+      }
+    }
   }
 }
