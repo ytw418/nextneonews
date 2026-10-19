@@ -72,6 +72,7 @@
     "drama": "Dramas"
   },
   "voteFirst": "Be the first to rate this",
+  "voteFirstInterest": "Be the first to answer",
   "voteTotal": "{count, plural, one {#\u00a0vote} other {#\u00a0votes}}",
   "voteThanks": "Thanks! Tap another to change it.",
   "voteError": "Your vote didn’t go through. Try again.",

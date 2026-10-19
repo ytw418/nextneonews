@@ -248,7 +248,7 @@ export default async function ClinicProcedurePage({ params }: PageProps<"/[local
         </p>
       </section>
 
-      <MedicalNotice locale={locale} className="mt-8" />
+      <MedicalNotice locale={locale} repeat className="mt-8" />
 
       <div className="mt-6 bg-band py-2">
         <AdSlot

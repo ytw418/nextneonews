@@ -72,6 +72,7 @@
     "drama": "韩剧"
   },
   "voteFirst": "来当第一个评分的人",
+  "voteFirstInterest": "来当第一个回答的人",
   "voteTotal": "{count} 人参与",
   "voteThanks": "谢谢！点其他选项就能更改",
   "voteError": "没有提交成功，请再试一次。",

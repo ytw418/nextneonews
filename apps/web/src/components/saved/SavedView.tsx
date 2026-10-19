@@ -105,6 +105,8 @@ export function SavedView() {
         <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
           <h1 className="text-st2 font-bold text-ink-900">
             {t("savedTitle")}
+            {/* 화면 읽기에서 제목과 개수가 붙어 읽히지 않게 실제 공백을 둔다 */}
+            {hasItems && " "}
             {hasItems && (
               <span className="ml-2 text-t5 font-semibold tabular-nums text-ink-600">{t("savedCount", { count: items.length })}</span>
             )}

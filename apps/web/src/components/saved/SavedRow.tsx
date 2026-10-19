@@ -1,10 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { CoverArt } from "@/components/guide/CoverArt";
 import { coverGlyph } from "@/components/guide/glyph";
 import { ItemRow } from "@/components/guide/ItemRow";
+import { Words } from "@/components/guide/Words";
 import { CloseIcon } from "@/components/icons";
 import { IconButton } from "@/components/ui/IconButton";
 import type { SavedItem } from "@/lib/saved";
@@ -23,6 +24,7 @@ export function SavedRow({
   onRemove: (item: SavedItem) => void;
 }) {
   const t = useTranslations("Engage");
+  const locale = useLocale();
   const kindLabel = t(`savedTabs.${item.kind}`);
 
   return (
@@ -39,7 +41,8 @@ export function SavedRow({
       }
       title={
         summary ? (
-          summary.title
+          // 일본어·중국어는 구, 한국어는 어절 단위로만 줄을 바꾼다(가이드 화면과 같은 방식)
+          <Words text={summary.title} locale={locale} />
         ) : summary === null ? (
           <span className="text-ink-600">{t("savedMissing")}</span>
         ) : (

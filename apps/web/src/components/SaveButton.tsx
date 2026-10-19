@@ -12,7 +12,7 @@ import { useRouter } from "@/i18n/navigation";
 import { readSaved, type SavedKind, toggleSaved, useIsSaved } from "@/lib/saved";
 import { track } from "@/lib/track";
 
-// 토스트 한 줄에 들어가게 제목을 줄인다
+// 토스트 한 줄에 들어가게 제목을 줄인다 (화면 읽기 이름에는 쓰지 않는다 — 잘린 '…'가 그대로 읽힌다)
 const TITLE_MAX = 32;
 // 첫 저장 토스트는 읽을 게 더 많아서 조금 오래 둔다 (기본: 버튼이 있으면 5초)
 const FIRST_TOAST_MS = 8000;
@@ -25,7 +25,7 @@ function short(title: string): string {
 interface Props {
   kind: SavedKind;
   id: string;
-  title: string; // 토스트·버튼 이름에 넣는 항목 이름
+  title: string; // 항목 이름 — 토스트에는 줄여서, 버튼 이름(aria-label)에는 전체를 넣는다
   // icon: 상단바 action·카드 모서리 (44px) / chip: 본문 버튼 (Button size m)
   variant?: "icon" | "chip";
   tone?: "ink" | "inverse"; // icon 만. inverse: 어두운 면·사진 위
@@ -83,7 +83,7 @@ export function SaveButton({ kind, id, title, variant = "icon", tone = "ink", cl
       <Button
         size="m"
         variant={saved ? "neutral" : "weak"}
-        aria-label={t("saveItem", { title: short(title) })}
+        aria-label={t("saveItem", { title: title.trim() })}
         aria-pressed={saved}
         onClick={toggle}
         className={`[&_svg]:size-4 ${className}`}
@@ -96,7 +96,7 @@ export function SaveButton({ kind, id, title, variant = "icon", tone = "ink", cl
 
   return (
     <IconButton
-      label={t("saveItem", { title: short(title) })}
+      label={t("saveItem", { title: title.trim() })}
       aria-pressed={saved}
       tone={tone}
       onClick={toggle}

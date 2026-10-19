@@ -72,6 +72,7 @@
     "drama": "Phim"
   },
   "voteFirst": "Hãy là người đánh giá đầu tiên",
+  "voteFirstInterest": "Hãy là người trả lời đầu tiên",
   "voteTotal": "{count}\u00a0lượt bình chọn",
   "voteThanks": "Cảm ơn bạn! Nhấn lựa chọn khác để đổi.",
   "voteError": "Chưa gửi được đánh giá. Hãy thử lại.",

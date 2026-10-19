@@ -72,6 +72,7 @@
     "drama": "ドラマ"
   },
   "voteFirst": "最初に評価してみよう",
+  "voteFirstInterest": "最初に答えてみよう",
   "voteTotal": "{count}人が評価",
   "voteThanks": "ありがとう！ほかを押すと変更できます",
   "voteError": "評価を送れませんでした。もう一度お試しください。",

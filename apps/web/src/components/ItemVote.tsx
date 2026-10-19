@@ -214,7 +214,8 @@ export function VoteChips({ kind, itemId, initial, choices, facet, question, sho
 
       <p className="mt-3 text-t7 tabular-nums text-ink-600" aria-live="polite">
         {totals.total === 0 ? (
-          t("voteFirst")
+          // 클리닉은 효과 평가가 아닌 관심 집계라 '평가해 보세요' 대신 중립 문구
+          t(kind === "clinic" ? "voteFirstInterest" : "voteFirst")
         ) : (
           <>
             {t("voteTotal", { count: totals.total })}

@@ -20,6 +20,8 @@ export function SectionHeader({ title, id, count, href, linkLabel, inset = "gutt
     >
       <h2 id={id} className="min-w-0 grow text-t4 font-bold text-ink-900">
         {title}
+        {/* 화면 읽기에서 제목과 개수가 붙어 읽히지 않게 실제 공백을 둔다 */}
+        {count !== undefined && count > 0 && " "}
         {count !== undefined && count > 0 && <span className="ml-1.5 tabular-nums text-ink-400">{count}</span>}
       </h2>
       {href && (

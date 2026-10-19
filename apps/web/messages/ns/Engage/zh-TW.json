@@ -72,6 +72,7 @@
     "drama": "韓劇"
   },
   "voteFirst": "來當第一個評分的人",
+  "voteFirstInterest": "來當第一個回答的人",
   "voteTotal": "{count} 人參與",
   "voteThanks": "謝謝！點其他選項就能更改",
   "voteError": "沒有送出成功，請再試一次。",

@@ -72,6 +72,7 @@
     "drama": "Drama"
   },
   "voteFirst": "Jadilah yang pertama menilai",
+  "voteFirstInterest": "Jadilah yang pertama menjawab",
   "voteTotal": "{count}\u00a0suara",
   "voteThanks": "Makasih! Ketuk pilihan lain untuk mengganti.",
   "voteError": "Penilaianmu belum masuk. Coba lagi.",

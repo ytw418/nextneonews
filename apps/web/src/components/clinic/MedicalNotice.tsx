@@ -11,16 +11,19 @@ export const HOW_TO_PATH = "/clinic/how-to-choose";
 export async function MedicalNotice({
   locale,
   withHowTo = true,
+  repeat = false,
   className = "",
 }: {
   locale: Locale;
   withHowTo?: boolean; // 고르는 법 화면 자신에서는 링크를 뺀다
+  repeat?: boolean; // 같은 화면 아래쪽에 한 번 더 보일 때: 같은 이름의 랜드마크가 둘이 되지 않게 일반 div 로 그린다
   className?: string;
 }) {
   const t = await getTranslations({ locale, namespace: "Clinic" });
+  const Tag = repeat ? "div" : "aside";
   return (
-    <aside
-      aria-label={t("notice.title")}
+    <Tag
+      aria-label={repeat ? undefined : t("notice.title")}
       className={`mx-gutter rounded-card bg-band px-4 py-3 text-t7 text-ink-700 ${className}`}
     >
       <p>
@@ -35,6 +38,6 @@ export async function MedicalNotice({
           <ChevronRightIcon className="size-4" />
         </Link>
       )}
-    </aside>
+    </Tag>
   );
 }
