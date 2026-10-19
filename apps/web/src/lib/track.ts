@@ -1,4 +1,4 @@
-import posthog from "posthog-js";
+import { capturePosthog } from "@/lib/posthog";
 
 // 분석 이벤트. GA4(gtag 는 운영에서 GA ID 가 있을 때만, components/Analytics.tsx)와
 // PostHog(운영에서만 init, instrumentation-client.ts)에 같은 이름으로 보낸다. 둘 다 없으면 아무것도 하지 않는다
@@ -38,5 +38,5 @@ export type TrackEvent =
 export function track(name: TrackEvent, params?: Record<string, string | number | boolean>): void {
   if (typeof window === "undefined") return;
   window.gtag?.("event", name, params ?? {});
-  if (posthog.__loaded) posthog.capture(name, params);
+  capturePosthog(name, params); // posthog-js 는 첫 화면 뒤에 따로 불러온다 (lib/posthog.ts)
 }

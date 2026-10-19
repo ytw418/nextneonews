@@ -20,10 +20,12 @@ const Body = z
     paths: z.array(z.string().startsWith("/").max(1024)).max(MAX_PATHS).default([]),
     // 동적 경로 모양 ('/[locale]/news/page/[n]'). 그 page 파일로 그린 주소를 모두 비운다
     pages: z.array(z.string().startsWith("/").includes("[").max(1024)).max(MAX_PAGE_PATTERNS).default([]),
+    // 레이아웃 경로 모양 ('/[locale]/beauty'). 그 아래 화면과, 그 화면들이 함께 쓰는 공유 캐시(뷰티 투표 집계)를 함께 비운다
+    layouts: z.array(z.string().startsWith("/").includes("[").max(1024)).max(MAX_PAGE_PATTERNS).default([]),
     // 요청을 넘어 공유하는 데이터 캐시 (lib/articles.ts·lib/rankings.ts). 이 태그를 쓴 화면도 함께 비워진다
     tags: z.array(z.enum(TAGS)).max(TAGS.length).default([]),
   })
-  .refine((body) => body.paths.length + body.pages.length + body.tags.length > 0);
+  .refine((body) => body.paths.length + body.pages.length + body.layouts.length + body.tags.length > 0);
 
 function authorized(header: string | null): boolean {
   const secret = process.env.REVALIDATE_SECRET;
@@ -42,13 +44,14 @@ export async function POST(request: Request) {
   }
   const parsed = Body.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "invalid" }, { status: 400, headers: NO_STORE });
-  const { paths, pages, tags } = parsed.data;
+  const { paths, pages, layouts, tags } = parsed.data;
   // 태그는 오래된 값을 한 번 더 내주며 뒤에서 새로 만든다('max'). 워커가 곧바로 다시 요청하므로 묵은 판은 그 한 번뿐이다
   for (const tag of tags) revalidateTag(tag, "max");
   for (const pattern of pages) revalidatePath(pattern, "page");
+  for (const pattern of layouts) revalidatePath(pattern, "layout");
   for (const path of paths) revalidatePath(path);
   return NextResponse.json(
-    { revalidated: paths.length, pages: pages.length, tags: tags.length },
+    { revalidated: paths.length, pages: pages.length, layouts: layouts.length, tags: tags.length },
     { headers: NO_STORE },
   );
 }

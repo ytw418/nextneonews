@@ -23,6 +23,7 @@ const WARM_UA = "UnnieNoteWarm/1.0 (+https://unnienote.app/en/about#bot)";
 export interface SiteRefresh {
   paths: string[]; // 브라우저 주소 (언어 접두사는 소문자 /zh-tw/…)
   pages?: string[]; // 동적 경로 모양 — 그 page 파일로 그린 주소를 모두 비운다 ('/[locale]/news/page/[n]')
+  layouts?: string[]; // 레이아웃 경로 모양 — 그 아래 화면과 공유 캐시를 함께 비운다 ('/[locale]/beauty')
   tags?: CacheTag[];
 }
 
@@ -99,7 +100,7 @@ async function postRevalidate(body: { paths: string[]; pages?: string[]; tags?: 
 }
 
 // 사이트 캐시를 비운다. 실패해도 경고만 남긴다 — 글 작성·번역은 계속 돌아야 하고, 화면은 다음 비우기 때 새로 그린다
-export async function revalidateSite({ paths, pages = [], tags = [] }: SiteRefresh): Promise<void> {
+export async function revalidateSite({ paths, pages = [], layouts = [], tags = [] }: SiteRefresh): Promise<void> {
   const rendered = [...new Set(paths.map(renderPath))];
   const chunks: string[][] = [];
   for (let i = 0; i < rendered.length; i += MAX_PATHS) chunks.push(rendered.slice(i, i + MAX_PATHS));
@@ -107,11 +108,11 @@ export async function revalidateSite({ paths, pages = [], tags = [] }: SiteRefre
   let sent = 0;
   for (const [i, chunk] of chunks.entries()) {
     // 경로 모양·태그는 첫 묶음에만 싣는다
-    const body = i === 0 ? { paths: chunk, pages, tags } : { paths: chunk };
-    if (body.paths.length + (body.pages?.length ?? 0) + (body.tags?.length ?? 0) === 0) continue;
+    const body = i === 0 ? { paths: chunk, pages, layouts, tags } : { paths: chunk };
+    if (body.paths.length + (body.pages?.length ?? 0) + (body.layouts?.length ?? 0) + (body.tags?.length ?? 0) === 0) continue;
     if (await postRevalidate(body)) sent += chunk.length;
   }
-  log.info("revalidate: done", { paths: sent, of: rendered.length, pages: pages.length, tags });
+  log.info("revalidate: done", { paths: sent, of: rendered.length, pages: pages.length, layouts: layouts.length, tags });
 }
 
 // 비운 주소를 한 번씩 요청해 지금(DB 가 깨어 있을 때) 새로 그리게 한다. 상태 코드별 개수만 남긴다

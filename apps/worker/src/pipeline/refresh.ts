@@ -80,6 +80,9 @@ async function activeArticlePaths(): Promise<string[]> {
   return rows.map((r) => articlePath(r.locale, r.slug));
 }
 
+// 하루 1번 레이아웃째 다시 그리는 가이드 섹션 (투표 집계를 공유 캐시로 쓰는 곳)
+const GUIDE_LAYOUTS = ["/[locale]/beauty"];
+
 async function dayPlan(): Promise<Plan> {
   // 사이트맵부터 새로 그려 받는다 (인물·가이드 주소 목록)
   await revalidateSite({ paths: ["/sitemap.xml"] });
@@ -101,7 +104,8 @@ async function dayPlan(): Promise<Plan> {
     ...(await activeArticlePaths()),
     ...fromSitemap,
   ];
-  return { revalidate: { paths, tags: [CACHE_TAG.rankings] }, warm: paths };
+  // 뷰티 화면은 투표 집계를 공유 캐시 하나로 같이 쓴다. 화면을 하나씩 비우면 그 캐시가 남으므로 레이아웃째 비운다 (apps/web/src/app/[locale]/beauty/data.ts)
+  return { revalidate: { paths, layouts: GUIDE_LAYOUTS, tags: [CACHE_TAG.rankings] }, warm: paths };
 }
 
 // 배포 직후: 비울 것은 없고(새 배포는 빈 캐시로 시작한다) 사이트맵의 글·인물 화면과 최근 글의 모든 언어판을 미리 요청한다.
@@ -142,13 +146,19 @@ const PLANS: Record<RefreshSet, () => Plan | Promise<Plan>> = {
 
 export async function refreshSite(sets: RefreshSet[]): Promise<void> {
   const plans = await Promise.all([...new Set(sets)].map((set) => PLANS[set]()));
-  const merged: Required<SiteRefresh> = { paths: [], pages: [], tags: [] };
+  const merged: Required<SiteRefresh> = { paths: [], pages: [], layouts: [], tags: [] };
   for (const { revalidate } of plans) {
     merged.paths.push(...revalidate.paths);
     merged.pages.push(...(revalidate.pages ?? []));
+    merged.layouts.push(...(revalidate.layouts ?? []));
     merged.tags.push(...(revalidate.tags ?? []));
   }
-  await revalidateSite({ paths: merged.paths, pages: [...new Set(merged.pages)], tags: [...new Set(merged.tags)] });
+  await revalidateSite({
+    paths: merged.paths,
+    pages: [...new Set(merged.pages)],
+    layouts: [...new Set(merged.layouts)],
+    tags: [...new Set(merged.tags)],
+  });
   await warm(plans.flatMap((plan) => plan.warm));
   log.info("refresh: done", { sets });
 }
