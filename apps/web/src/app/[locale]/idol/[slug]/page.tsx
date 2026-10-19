@@ -30,24 +30,26 @@ import {
   wikipediaUrls,
 } from "@/lib/entities";
 import { entityPhoto } from "@/lib/entity-image";
-import { toFeedItems } from "@/lib/feed";
+import { toFeedItems } from "@/lib/articles";
 import { idolJsonLd } from "@/lib/jsonld-rankings";
 import {
   CHART_KEY,
   CHART_TINT,
   displayName,
   eventsFor,
-  getLatestSnapshot,
   periodLabel,
+  readLatestSnapshot,
   secondaryName,
   todayCheers,
 } from "@/lib/rankings";
 import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
-// 순위는 매일 05:00 KST, 조회 수·국내 화제는 하루 몇 번 바뀐다. 한 시간마다 다시 만든다
-export const revalidate = 3600;
+// 시간이 지나도 다시 만들지 않는다. 순위는 매일 05:00 KST 에 바뀌므로 색인 대상(사이트맵의 최근 30일 상위 30)만
+// worker 가 하루 1번 비우고 바로 다시 요청한다 (refresh day). 그 밖의 인물(가능한 주소 약 3,400개)은 첫 방문 때 한 번 만들고
+// 다음 배포까지 그대로 둔다 — 한 시간 주기로 두었을 때 봇이 아무 인물이나 열 때마다 DB 를 깨웠다 (2026-10-19)
+export const revalidate = false;
 
-// 인물 페이지는 빌드 때 만들지 않고 첫 요청 때 만든 뒤 캐시한다
+// 인물 페이지는 빌드 때 만들지 않고 첫 요청 때 만든 뒤 캐시한다 (빌드가 DB 에 덜 기대게)
 export function generateStaticParams() {
   return [];
 }
@@ -61,7 +63,8 @@ const loadIdol = cache(async (locale: Locale, slug: string) => {
   if (!entity) return null;
   const chart = entityChart(entity.type);
   const [snapshot, articles, interest, top30] = await Promise.all([
-    chart ? getLatestSnapshot(chart) : null,
+    // 공유 캐시(랭킹 태그)를 쓰지 않는다: 매일 랭킹 태그를 비울 때 인물 3,400쪽이 함께 비워지면 봇이 DB 를 깨운다
+    chart ? readLatestSnapshot(chart) : null,
     listEntityArticles(locale, entity),
     getLanguageInterest(entity.id),
     inRecentTop30(entity.id),

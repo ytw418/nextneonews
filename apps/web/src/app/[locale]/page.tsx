@@ -19,13 +19,15 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { UpcomingRail } from "@/components/UpcomingRail";
 import { Link } from "@/i18n/navigation";
-import { countLatest, listLatest } from "@/lib/articles";
+import { countLatest, listLatest, toFeedItems } from "@/lib/articles";
 import { weeklyPollView } from "@/lib/engagement";
-import { FIRST_PAGE_SIZE, pageCount, toFeedItems } from "@/lib/feed";
+import { FIRST_PAGE_SIZE, pageCount } from "@/lib/feed";
 import { CHART_KEY, getEntities, getLatestSnapshot } from "@/lib/rankings";
 import { localeAlternates, ogBase } from "@/lib/url";
 
-export const revalidate = 300;
+// 시간이 지나도 다시 만들지 않는다. 글을 낼 때(announce)·KST 자정(일정 D-day)·05시 랭킹 뒤에 worker 가 비우고 바로 다시 요청한다.
+// 봇이 DB 를 깨우지 않게 재생성은 파이프라인이 도는 동안에만 일어난다 (apps/worker/src/pipeline/refresh.ts)
+export const revalidate = false;
 
 export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;

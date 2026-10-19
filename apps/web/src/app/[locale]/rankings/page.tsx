@@ -15,7 +15,8 @@ import { hubJsonLd } from "@/lib/jsonld-rankings";
 import { CHART_IDS, CHART_KEY, displayName, getEntities, getLatestSnapshot, periodLabel } from "@/lib/rankings";
 import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 랭킹을 만든 직후(매일 05:00 KST) worker 가 비우고 바로 다시 요청한다. 시간 기반 재생성은 하지 않는다
+export const revalidate = false;
 
 // 차트마다 최신판 (generateMetadata 와 본문이 같은 요청에서 한 번만 조회한다 — getLatestSnapshot 은 cache)
 async function latestCharts() {

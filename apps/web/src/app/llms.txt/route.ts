@@ -21,7 +21,8 @@ import { listActiveCategories } from "@/lib/articles";
 import { guideIndexable } from "@/lib/guide-seo";
 import { articlePath, feedPath, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 하루 1번(05시 랭킹 뒤) worker 가 비우고 바로 다시 요청한다 (refresh day). 시간 기반 재생성은 하지 않는다
+export const revalidate = false;
 
 // AI 가 읽는 안내라 영어로만 쓴다. 차트 이름은 화면(messages/ns/Rankings/en.json chart.*.title)과 글자까지 같게 (다른 이름이면 다른 차트로 읽힌다)
 const CHART_NAME: Record<string, string> = {

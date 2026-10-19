@@ -7,7 +7,8 @@ import { articlePath, localeFromPrefix, SITE_URL } from "@/lib/url";
 
 // 글의 마크다운판 (/en/news/{slug}/md). AI 에이전트가 HTML 없이 본문·핵심 요약·FAQ·출처를 한 번에 읽는다.
 // 검색에는 HTML 글만 나가게 noindex + canonical 헤더를 단다
-export const revalidate = 300;
+// 본문은 고칠 때만 바뀐다. 글을 내리면 worker announce 가 이 주소도 비운다
+export const revalidate = false;
 
 export function generateStaticParams() {
   return [];

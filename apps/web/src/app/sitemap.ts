@@ -22,7 +22,8 @@ import { guideIndexLocales } from "@/lib/guide-seo";
 import { articlePath, SITE_URL } from "@/lib/url";
 import { xmlEscape } from "@/lib/xml";
 
-export const revalidate = 3600;
+// 새 글을 낼 때(announce)와 하루 1번(05시 랭킹 뒤) worker 가 비우고 바로 다시 요청한다. 시간 기반 재생성은 하지 않는다
+export const revalidate = false;
 
 const abs = (path: string) => `${SITE_URL}${path}`;
 const DAY_MS = 86_400_000;

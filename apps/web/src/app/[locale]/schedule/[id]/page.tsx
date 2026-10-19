@@ -16,7 +16,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { AppHeader } from "@/components/AppHeader";
 import { ArticleThumb } from "@/components/ArticleThumb";
-import type { FeedItem } from "@/components/FeedCard";
+import { type FeedItem, itemTime } from "@/components/FeedCard";
 import { ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { Phrase } from "@/components/Phrase";
@@ -31,13 +31,13 @@ import { Button } from "@/components/ui/Button";
 import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { listForEvent } from "@/lib/articles";
-import { toFeedItems } from "@/lib/feed";
+import { listForEvent, toFeedItems } from "@/lib/articles";
 import { eventJsonLd } from "@/lib/jsonld";
 import { localeAlternates, localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-// 일정 파일(packages/core/src/upcoming.ts)에 있는 일정만 빌드 때 만든다. D-day 때문에 한 시간마다 다시 만든다
-export const revalidate = 3600;
+// 일정 파일(packages/core/src/upcoming.ts)에 있는 일정만 빌드 때 만든다. 관련 뉴스가 DB 를 읽어 시간 기반으로는 다시 만들지 않고,
+// D-day 가 바뀌는 KST 자정 뒤 첫 파이프라인과 05시에 worker 가 비우고 바로 다시 요청한다 (refresh date·day)
+export const revalidate = false;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -95,7 +95,7 @@ function RelatedNews({ items, locale, title }: { items: FeedItem[]; locale: Loca
             title={<Phrase text={item.title} locale={locale} />}
             sub={
               <span className="text-t7">
-                <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                <Meta parts={[item.categoryLabel, itemTime(item)]} />
               </span>
             }
           />

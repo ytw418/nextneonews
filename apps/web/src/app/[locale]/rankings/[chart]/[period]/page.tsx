@@ -6,7 +6,8 @@ import { setRequestLocale } from "next-intl/server";
 import { chartMetadata, ChartView } from "@/components/rankings/ChartView";
 import { getWeeklySnapshot, isChartId, isWeekPeriod } from "@/lib/rankings";
 
-export const revalidate = 3600;
+// 주간 고정본은 발행 뒤 바뀌지 않는다 (정정이 붙으면 그 주소를 비운다)
+export const revalidate = false;
 
 // 주간 고정본만 (YYYY-Www). 매일판 아카이브는 만들지 않는다 — 얇은 페이지가 대량으로 생긴다.
 // 빌드 때 만들지 않고 첫 요청 때 만든 뒤 캐시한다

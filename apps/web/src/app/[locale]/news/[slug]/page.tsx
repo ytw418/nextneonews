@@ -20,7 +20,7 @@ import { RelatedEventCard } from "@/components/article/RelatedEventCard";
 import { UpNextCard } from "@/components/article/UpNextCard";
 import { Comments } from "@/components/Comments";
 import { CoupangBanner } from "@/components/CoupangBanner";
-import { FeedCard } from "@/components/FeedCard";
+import { FeedCard, itemTime } from "@/components/FeedCard";
 import { CrossRail } from "@/components/guide/CrossRail";
 import { ChevronDownIcon, ChevronRightIcon, ExternalIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
@@ -38,12 +38,19 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ViewPing } from "@/components/ViewPing";
 import { travelText } from "@/data/travel";
 import { Link } from "@/i18n/navigation";
-import { entityNames, findTranslatedLocale, getArticle, listLatest, listPopular, listRelated } from "@/lib/articles";
+import {
+  entityNames,
+  findTranslatedLocale,
+  getArticle,
+  listLatest,
+  listPopular,
+  listRelated,
+  toFeedItems,
+} from "@/lib/articles";
 import { articlePrepFor, coupangBannerFor } from "@/lib/ads";
 import { coverStyle } from "@/lib/cover";
 import { commentCount, netizenView, nextCandidates, pollView, readReactions } from "@/lib/engagement";
 import { matchArticleEntities } from "@/lib/entities";
-import { toFeedItems } from "@/lib/feed";
 import { imgSrc } from "@/lib/image";
 import { publisherName } from "@/lib/publishers";
 import { articleJsonLd } from "@/lib/jsonld";
@@ -51,7 +58,9 @@ import { displayName } from "@/lib/rankings";
 import { dateStamp } from "@/lib/time";
 import { articlePath, feedAlternate, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
-export const revalidate = 300;
+// 시간이 지나도 다시 만들지 않는다. 글을 내거나 내릴 때, 하루 1번 최근·반응이 온 글을 worker 가 비우고 바로 다시 요청한다
+// (apps/worker/src/pipeline/announce.ts · refresh.ts). 시간 기반 재생성은 봇 방문마다 DB 를 깨워 Neon 무료 한도를 넘겼다 (2026-10-19)
+export const revalidate = false;
 
 // 글 페이지는 빌드 때 만들지 않고 첫 요청 때 만든 뒤 캐시한다.
 export function generateStaticParams() {
@@ -252,11 +261,13 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         {hero ? (
           // 공식 이미지가 있으면 화면을 꽉 채우는 매거진 커버. 제목 블록이 흐름 안에 있어 긴 제목이면 커버가 늘어난다
           <figure className="relative flex min-h-[min(125vw,800px,78svh)] w-full flex-col justify-end overflow-hidden">
+            {/* LCP 사진: 다른 요청보다 먼저 받는다 (홈 맨 위 카드와 같은 방식. Next 16 의 priority 는 지원 중단) */}
             <Image
               src={imgSrc(hero.url, hero.width)}
               alt=""
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(max-width: 640px) 100vw, 640px"
               // 인물 사진은 얼굴이 위쪽에 있다. 제목 블록 위로 얼굴이 남게 위쪽을 기준으로 자른다
               className="object-cover object-[50%_20%]"
@@ -274,10 +285,9 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
           <div className="px-gutter pt-4">
             <div className="overflow-hidden rounded-card shadow-card">
               <MemoCover
-                title={translation.title}
+                title={<Phrase text={translation.title} locale={locale} />}
                 sticker={categoryLabel}
                 stamp={dateStamp(article.publishedAt)}
-                locale={locale}
                 style={coverStyle(slug, article.category)}
                 size="hero"
                 as="h1"
@@ -482,7 +492,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
                     }
                     sub={
                       <span className="text-t7">
-                        <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                        <Meta parts={[item.categoryLabel, itemTime(item)]} />
                       </span>
                     }
                   />

@@ -8,7 +8,8 @@ import { xmlEscape } from "@/lib/xml";
 
 // 언어별 RSS 2.0 (최신 50개). Feedly·Flipboard·AI 수집기·SNS 자동 게시가 읽는다.
 // 언어 미들웨어(proxy.ts)가 점 붙은 경로를 건너뛰어 locale 자리에 주소 접두사(zh-tw)가 그대로 들어온다
-export const revalidate = 600;
+// 새 글을 낼 때 worker announce 가 비우고 바로 다시 요청한다. 시간 기반 재생성은 하지 않는다 (봇이 DB 를 깨우지 않게)
+export const revalidate = false;
 
 export function generateStaticParams() {
   return LOCALES.map((l) => ({ locale: LOCALE_PATH_PREFIX[l].slice(1) }));

@@ -6,11 +6,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AppHeader } from "@/components/AppHeader";
 import { CategoryRail } from "@/components/CategoryRail";
 import { Feed } from "@/components/Feed";
-import { countByCategory, listByCategory } from "@/lib/articles";
-import { PAGE_SIZE, pageCount, pagePath, pageSkip, parsePage, toFeedItems } from "@/lib/feed";
+import { countByCategory, listByCategory, toFeedItems } from "@/lib/articles";
+import { PAGE_SIZE, pageCount, pagePath, pageSkip, parsePage } from "@/lib/feed";
 import { localeHomePath, ogBase, pageRobots } from "@/lib/url";
 
-export const revalidate = 300;
+// 시간이 지나도 다시 만들지 않는다. 주 1번 worker 가 쪽 화면 전체를 비우고 있는 쪽을 다시 요청한다 (refresh week)
+export const revalidate = false;
 
 // 쪽 번호 화면은 빌드 때 만들지 않고 첫 요청 때 만든 뒤 캐시한다
 export function generateStaticParams() {

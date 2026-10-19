@@ -5,7 +5,7 @@ import { ChevronRightIcon } from "@/components/icons";
 import { TrophyIcon } from "@/components/rankings/icons";
 import { RankChange } from "@/components/rankings/RankChange";
 import { Link } from "@/i18n/navigation";
-import { CHART_KEY, displayName, getLatestSnapshot } from "@/lib/rankings";
+import { CHART_KEY, displayName, readLatestSnapshot } from "@/lib/rankings";
 
 const CHART_KEYS = Object.keys(CHARTS) as ChartKey[];
 const MAX_CHIPS = 3;
@@ -22,7 +22,8 @@ export async function EntityRankStrip({
   className?: string;
 }) {
   if (entityIds.length === 0) return null;
-  const snapshots = await Promise.all(CHART_KEYS.map((chart) => getLatestSnapshot(chart)));
+  // 글 페이지 안이라 공유 캐시(태그)를 쓰지 않는다 — 랭킹 태그로 글 1만여 쪽이 한꺼번에 비워지지 않게 (lib/rankings.ts)
+  const snapshots = await Promise.all(CHART_KEYS.map((chart) => readLatestSnapshot(chart)));
   const chips = entityIds
     .flatMap((id) =>
       CHART_KEYS.flatMap((chart, i) => {

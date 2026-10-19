@@ -1,14 +1,16 @@
-import { Phrase } from "@/components/Phrase";
+import type { ReactNode } from "react";
+
 import { Badge } from "@/components/ui/Badge";
 import type { CoverStyle } from "@/lib/cover";
 
 type Size = "card" | "lead" | "hero";
 
 interface Props {
-  title: string;
+  // 제목은 줄바꿈 처리까지 해서 넘긴다: 서버 화면은 Phrase, 피드 카드는 서버가 나눈 조각(ChunkedTitle).
+  // 메모는 무한 스크롤(클라이언트)에서도 그려져서 여기서 BudouX 를 불러오지 않는다
+  title: ReactNode;
   sticker: string;
-  stamp: string; // 도장: 피드 카드는 '3시간 전', 글 히어로는 날짜 "10.15"
-  locale: string;
+  stamp: ReactNode; // 도장: 피드 카드는 발행 시각('3시간 전'), 글 히어로는 날짜 "10.15"
   style: CoverStyle;
   size?: Size;
   as?: "p" | "h1";
@@ -45,7 +47,6 @@ export function MemoCover({
   title,
   sticker,
   stamp,
-  locale,
   style,
   size = "card",
   as: Title = "p",
@@ -57,9 +58,7 @@ export function MemoCover({
       style={{ backgroundColor: style.tint, ["--tape-tilt" as string]: `${style.tapeTilt}deg` }}
     >
       <div className={`flex flex-1 flex-col ${PAD[size]}`}>
-        <Title className={`title memo-rules font-bold ${TITLE[size]}`}>
-          <Phrase text={title} locale={locale} />
-        </Title>
+        <Title className={`title memo-rules font-bold ${TITLE[size]}`}>{title}</Title>
       </div>
       {/* 도장이 길어도(큰 글자·긴 언어) 배지와 겹치지 않게 흐름 안에서 줄을 바꾼다 */}
       <div className={`flex flex-wrap items-center justify-between gap-x-2 gap-y-1 ${FOOT[size]}`}>

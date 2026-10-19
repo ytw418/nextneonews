@@ -7,7 +7,8 @@ import type { ReactNode } from "react";
 import { AppHeader } from "@/components/AppHeader";
 import { localeAlternates, localeHomePath, ogBase } from "@/lib/url";
 
-export const revalidate = 3600;
+// 글자만 있는 안내라 시간이 지나도 다시 만들지 않는다 (머리말 카테고리가 바뀌면 공유 캐시 태그로 함께 비워진다)
+export const revalidate = false;
 
 // 식은 언어와 상관없이 그대로 보인다 (worker/rankings/score.ts 의 v1 과 같다)
 const FORMULA = {

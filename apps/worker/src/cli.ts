@@ -16,6 +16,7 @@ import { listHiddenComments, restoreComments } from "./pipeline/comments";
 import { seedGuides } from "./pipeline/guides";
 import { recategorize } from "./pipeline/recategorize";
 import { recheckSources } from "./pipeline/recheck";
+import { isRefreshSet, REFRESH_SETS, refreshSite } from "./pipeline/refresh";
 import { collectProducts } from "./products";
 import { ensureWeeklyPoll, runRankings, syncEntityMeta, syncWiki } from "./rankings";
 import { backfillSimplified } from "./pipeline/simplified";
@@ -60,6 +61,17 @@ function flagValue(args: string[], name: string): string | undefined {
   return i >= 0 ? args[i + 1] : undefined;
 }
 
+// refresh date day … — 정한 묶음의 사이트 화면을 비우고 미리 요청한다 (pipeline.yml 이 날짜 키로 정해 부른다)
+async function refreshCommand(args: string[]) {
+  const sets = args.filter(isRefreshSet);
+  if (sets.length === 0 || sets.length !== args.length) {
+    log.error(`usage: refresh <${REFRESH_SETS.join("|")}>...`, { given: args });
+    process.exitCode = 1;
+    return;
+  }
+  await refreshSite(sets);
+}
+
 async function seedTopicCommand(args: string[]) {
   const title = args[0]?.trim();
   const source = flagValue(args, "--source");
@@ -97,6 +109,9 @@ const USAGE = `usage: cli.ts <command>
   weekly-poll              이번 주 팬 투표 열기 + 지난주 결과 남기기 (월요일 00시 KST)
   backfill-polls [n]       최근 글 중 투표가 없는 글에 투표 붙이기 (AI, 기본 150개)
   fix-indexable            언어·분류별 색인 규칙을 기존 번역에 다시 적용
+  refresh <${REFRESH_SETS.join("|")}>...
+                           사이트 화면 비우고 미리 요청 (date: 날짜가 바뀐 뒤 D-day, day: 랭킹 뒤 하루 1번,
+                           week: 쪽 번호 화면, deploy: 운영 배포 직후 글·인물 화면)
   seed-topic "<제목>" --source ${SEED_SOURCES.join("|")} [--url <주소>]
                            자동 수집하지 않는 커뮤니티 주제를 사람이 씨앗으로 넣기`;
 
@@ -150,6 +165,9 @@ try {
       break;
     case "recheck":
       await recheckSources();
+      break;
+    case "refresh":
+      await refreshCommand(args);
       break;
     case "unpublish":
       await unpublish(args);

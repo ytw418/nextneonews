@@ -1,5 +1,5 @@
 import { ArticleThumb } from "@/components/ArticleThumb";
-import type { FeedItem } from "@/components/FeedCard";
+import { type FeedItem, itemTime } from "@/components/FeedCard";
 import { Phrase } from "@/components/Phrase";
 import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
@@ -54,7 +54,7 @@ export function RankedArticles({ id, title, items, locale, inset = "gutter" }: P
             }
             sub={
               <span className="text-t7">
-                <Meta parts={[item.categoryLabel, item.timeAgo]} />
+                <Meta parts={[item.categoryLabel, itemTime(item)]} />
               </span>
             }
           />

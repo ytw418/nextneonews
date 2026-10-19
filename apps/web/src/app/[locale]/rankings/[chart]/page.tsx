@@ -6,8 +6,8 @@ import { setRequestLocale } from "next-intl/server";
 import { chartMetadata, ChartView } from "@/components/rankings/ChartView";
 import { CHART_IDS, getLatestSnapshot, isChartId } from "@/lib/rankings";
 
-// 랭킹은 매일 05:00 KST 에 새로 나온다. 한 시간마다 다시 만든다 (worker 가 revalidate 로 바로 부를 수도 있다)
-export const revalidate = 3600;
+// 랭킹은 매일 05:00 KST 에 새로 나온다. 시간 기반으로는 다시 만들지 않고, 랭킹을 만든 직후 worker 가 비우고 바로 다시 요청한다 (refresh day)
+export const revalidate = false;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
