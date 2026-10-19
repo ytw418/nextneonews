@@ -63,7 +63,9 @@ function KeyList({ items }: { items: { key: string; text: string }[] }) {
   );
 }
 
-// 개인정보: 회원가입 없음, IP 는 HMAC 해시로만, GA4·EEA 동의 모드, PostHog(쿠키 없음), 광고(애드센스)·제휴 배너(쿠팡), 기기 저장 키 목록, 보관 기간
+// 개인정보: 회원가입 없음, IP 는 HMAC 해시로만(댓글·투표·항목 평가, 시술 경험 답은 익명 집계용), GA4·EEA 동의 모드, PostHog(쿠키 없음, 저장·평가 이벤트 포함),
+// 광고(애드센스)·제휴 배너(쿠팡)·쇼핑 링크 쿠키, 기기 저장 키 목록(저장 목록은 /api/saved 로 제목만 조회), 보관 기간.
+// 실제 전송·저장(components/saved/summaries.ts, SaveButton·ItemVote 의 track, lib/item-votes.ts)을 바꾸면 Trust/pages 문구도 같이 고친다
 export default async function PrivacyPage({ params }: PageProps<"/[locale]/privacy">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();

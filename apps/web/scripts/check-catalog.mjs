@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // 가이드 카탈로그(src/data/{beauty,travel,clinic,drama}) 검사. 하나라도 걸리면 종료 코드 1 (docs/monetize/PLAN.md §7·§10-3).
 //  1. 9개 언어 문구 파일의 키 집합이 영어와 같다 (빠진 키는 영어로 채워지지만, 남는 키·빠진 키는 번역이 어긋났다는 뜻)
-//  2. 금지어 0건 — 화장품 효능(화장품법 §13: 치료·재생·의사 추천·최고·1위)·의료(의료법 §56: 보장·최고·부작용 없음·병원 추천)
+//  2. 금지어 0건 — 화장품 효능(화장품법 §13: 치료·재생·의사 추천·최고·1위)·의료(의료법 §56: 보장·최고·부작용 없음·병원 추천),
+//     뷰티 판매량·순위·수상 주장(베스트셀러·수백만 개·차트·어워즈·리뷰 수천 개)
 //  3. 모든 항목에 공식 출처(https) 1개 이상
 //  4. 클리닉에는 구매·제휴가 없다: 시술 항목에 buy·제휴 주소 없음, 클리닉 화면 코드에 제휴 상자·쿠팡 없음
 //  5. 교차 참조가 끊기지 않았다: 명소 → 드라마, 드라마 → 촬영지 명소·비슷한 작품
@@ -74,11 +75,25 @@ const FUNCTIONAL_WORDS = {
   wrinkle: { en: ["anti-wrinkle", "wrinkle care", "reduces wrinkles"], ja: ["シワ改善"], "zh-TW": ["抗皺"], "zh-CN": ["抗皱"], ko: ["주름 개선"], vi: ["chống nhăn"], id: ["anti-kerut"], fr: ["anti-rides"], ru: ["против морщин"] },
 };
 
-function scanBanned(section, locale, file, banned) {
+// 뷰티: 판매량·인기 순위·수상 주장. 제휴 구매 상자 옆에 실리는데 브랜드 판매 페이지 말고는 근거가 없어서 쓰지 않는다
+// (공식 발표·수상 페이지를 출처로 붙여도 화면에 출처가 안 보이므로 일단 전부 막는다). 수상명이 라틴 글자라 award 는 모든 언어에서 본다
+const BEAUTY_CLAIMS = {
+  en: ["bestseller", "best-seller", "best seller", "best-selling", "best selling", "top-selling", "most-bought", "most bought", "sold millions", "millions of units", "sold out", "award", "chart", "ranking", "thousands of", "amazon reviews", "number one", "no.1", "no. 1", "#1", "most famous", "most popular", "long-selling"],
+  ja: ["award", "売上No.1", "No.1", "1位", "ベストセラー", "よく売れ", "売れている", "売り切れ", "完売", "累計", "販売数", "ロングセラー", "アワード", "受賞", "ランキング", "数千件"],
+  "zh-TW": ["award", "銷量", "熱銷", "暢銷", "長銷", "斷貨", "售罄", "售出", "大獎", "獎項", "得獎", "排行榜", "美妝榜", "榜單", "名列前茅", "第一名", "數千則"],
+  "zh-CN": ["award", "销量", "热销", "畅销", "长销", "断货", "售罄", "售出", "大奖", "奖项", "得奖", "排行榜", "美妆榜", "榜单", "名列前茅", "第一名", "数千条"],
+  ko: ["award", "많이 팔리", "판매량", "베스트셀러", "스테디셀러", "품절", "수백만 개", "누적 판매", "어워즈", "어워드", "수상", "차트", "랭킹", "1위", "리뷰가 수천"],
+  vi: ["award", "bán chạy", "cháy hàng", "hàng triệu", "giải thưởng", "đoạt giải", "bảng xếp hạng", "số 1", "hàng nghìn đánh giá"],
+  id: ["award", "laris", "terjual habis", "terjual jutaan", "penghargaan", "tangga beauty", "peringkat", "nomor 1", "ribuan ulasan"],
+  fr: ["award", "best-seller", "meilleure vente", "meilleures ventes", "les plus achetés", "les plus vendus", "épuisé", "millions d’exemplaires", "millions d'exemplaires", "prix annuels", "classement", "n°1", "milliers d’avis", "milliers d'avis"],
+  ru: ["award", "бестселлер", "самых покупаемых", "самый продаваемый", "раскупили", "продано", "миллион", "наград", "чарт", "рейтинг", "№1", "тысячи отзывов"],
+};
+
+function scanBanned(section, locale, file, banned, rule = "금지어") {
   for (const [path, value] of strings(file)) {
     const lower = value.toLowerCase();
     for (const word of banned[locale] ?? []) {
-      if (lower.includes(word.toLowerCase())) fail("금지어", `${section}/${locale} ${path}: “${word}” — ${value.slice(0, 90)}`);
+      if (lower.includes(word.toLowerCase())) fail(rule, `${section}/${locale} ${path}: “${word}” — ${value.slice(0, 90)}`);
     }
   }
 }
@@ -114,6 +129,7 @@ for (const [section, [key, list]] of Object.entries(slugText)) {
 // ── 2. 금지어 ──
 for (const locale of LOCALES) {
   scanBanned("beauty", locale, texts.beauty[locale].products, BEAUTY_BANNED);
+  scanBanned("beauty", locale, texts.beauty[locale], BEAUTY_CLAIMS, "판매·수상 주장");
   scanBanned("clinic", locale, texts.clinic[locale], CLINIC_BANNED);
 }
 

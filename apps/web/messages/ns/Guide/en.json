@@ -3,11 +3,11 @@
   "title": "Guide",
   "intro": "Beauty, travel, clinics and dramas, picked for fans of Korea.",
   "metaTitle": "K-Beauty, Korea Travel and K-Drama Guides",
-  "metaDescription": "K-beauty awards and picks by skin type, Seoul neighborhoods and filming spots, clinic treatments explained, and where to stream K-dramas.",
+  "metaDescription": "K-beauty top picks by category and skin type, Seoul neighborhoods and filming spots, clinic treatments explained, and where to stream K-dramas.",
   "sections": {
     "beauty": {
       "title": "K-Beauty",
-      "line": "Awards, skin type picks, where to buy",
+      "line": "Top picks, skin type picks, where to buy",
       "glyph": "Be",
       "count": "{count, plural, one {#\u00a0pick} other {#\u00a0picks}}"
     },

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-import type { CatalogSummary } from "@/data/types";
+import type { GlyphedSummary } from "@/data/catalog";
 import type { SavedItem } from "@/lib/saved";
 
-// 저장함 한 줄에 그릴 요약은 GET /api/saved 가 돌려주는 CatalogSummary
-export type { CatalogSummary };
+// 저장함 한 줄에 그릴 요약은 GET /api/saved 가 돌려주는 CatalogSummary (+ 상세와 같은 커버 유령 글자 glyph)
+export type CatalogSummary = GlyphedSummary;
 
 // 키(kind:id) → 요약. null = 서버가 모르는 항목·불러오기 실패, 키가 없으면 불러오는 중
 export type Summaries = Record<string, CatalogSummary | null>;
@@ -22,6 +22,7 @@ function isSummary(value: unknown): value is CatalogSummary {
     typeof v.id === "string" &&
     typeof v.title === "string" &&
     typeof v.tint === "string" &&
+    (v.glyph === undefined || typeof v.glyph === "string") &&
     // 앱 안 경로만 (언어가 붙는 Link 로 연다)
     typeof v.href === "string" &&
     v.href.startsWith("/") &&
@@ -29,20 +30,22 @@ function isSummary(value: unknown): value is CatalogSummary {
   );
 }
 
-async function fetchSummaries(keys: string[], locale: string): Promise<Map<string, CatalogSummary>> {
+// 요청이 실패하면 null (그 묶음은 다음에 목록이 바뀔 때 다시 묻는다)
+async function fetchSummaries(keys: string[], locale: string): Promise<Map<string, CatalogSummary> | null> {
   try {
     const query = new URLSearchParams({ items: keys.join(","), locale });
     const res = await fetch(`/api/saved?${query}`);
-    if (!res.ok) return new Map();
+    if (!res.ok) return null;
     const data = (await res.json()) as { items?: unknown };
     const list = Array.isArray(data.items) ? data.items.filter(isSummary) : [];
     return new Map(list.map((s) => [savedKey(s), s]));
   } catch {
-    return new Map();
+    return null;
   }
 }
 
-// 저장 목록의 요약을 100개씩 나눠 받는다. 이미 받은 것·받는 중인 것은 다시 묻지 않는다 (지워도 다시 부르지 않음)
+// 저장 목록의 요약을 100개씩 나눠 받는다. 이미 받은 것·받는 중인 것은 다시 묻지 않는다 (지워도 다시 부르지 않음).
+// 실패한 묶음만 '물어봄'에서 빼 둬서, 항목을 지우거나 더해 목록이 바뀌면 새로고침 없이 다시 불러온다
 export function useSummaries(items: readonly SavedItem[], locale: string): Summaries {
   const [summaries, setSummaries] = useState<Summaries>({});
   const asked = useRef(new Set<string>());
@@ -54,9 +57,10 @@ export function useSummaries(items: readonly SavedItem[], locale: string): Summa
     for (let i = 0; i < keys.length; i += CHUNK) {
       const chunk = keys.slice(i, i + CHUNK);
       void fetchSummaries(chunk, locale).then((found) => {
+        if (!found) for (const key of chunk) asked.current.delete(key);
         setSummaries((prev) => {
           const next = { ...prev };
-          for (const key of chunk) next[key] = found.get(key) ?? null;
+          for (const key of chunk) next[key] = found?.get(key) ?? null;
           return next;
         });
       });

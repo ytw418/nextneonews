@@ -27,10 +27,11 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { clinicSlugs, clinicText, getClinic, listClinic } from "@/data/clinic";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
-import { clinicIndexable, coverGlyph, koreanLines } from "@/lib/clinic";
+import { coverGlyph, koreanLines } from "@/lib/clinic";
 import { emptyTotals, getItemTotals } from "@/lib/item-votes";
 import { breadcrumbLd, faqLd, graph } from "@/lib/jsonld-catalog";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -59,13 +60,14 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/clinic/[
     recovery: recoveryPhrase(t, entry.downtimeDays),
     pain: painPhrase(t, entry.painLevel),
   });
-  const alternates = localeAlternates(locale, `/clinic/${slug}`);
+  const path = `/clinic/${slug}`;
+  const alternates = guideAlternates(locale, path);
   return {
     title,
     description,
     alternates,
-    // 치과·성형은 변호사 검토 전까지 색인하지 않는다 (링크는 따라간다)
-    robots: pageRobots(clinicIndexable(entry.field)),
+    // 색인 제외 언어와 치과·성형(변호사 검토 전)은 noindex, follow — 판정은 lib/guide-seo.ts 한 곳
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "article",

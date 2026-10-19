@@ -105,14 +105,16 @@
     "hash": "Chúng tôi không lưu địa chỉ IP. Khi bạn bình luận, bình chọn, bày tỏ cảm xúc hay cổ vũ, địa chỉ IP được chuyển thành một mã một chiều (mã băm HMAC dùng khóa bí mật) và chúng tôi chỉ giữ mã đó. Mã này giúp tính mỗi thiết bị một phiếu và chặn spam, nhưng không thể chuyển ngược lại thành địa chỉ IP của bạn.",
     "hashItems": [
       "Bình luận: nội dung, biệt danh hiển thị, mã băm của khóa chỉnh sửa lưu trên thiết bị của bạn (để chỉ bạn sửa hoặc xóa được) và các mã băm địa chỉ IP.",
-      "Bình chọn, phản ứng và cổ vũ: lựa chọn của bạn, mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang, và với bình chọn và cổ vũ là quốc gia do nhà cung cấp hosting nhận diện (ví dụ “JP”) — không bao giờ là địa chỉ IP."
+      "Bình chọn, phản ứng và cổ vũ: lựa chọn của bạn, mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang, và với bình chọn và cổ vũ là quốc gia do nhà cung cấp hosting nhận diện (ví dụ “JP”) — không bao giờ là địa chỉ IP.",
+      "Đánh giá sản phẩm, thủ thuật và phim: câu trả lời của bạn (với sản phẩm, kèm loại da nếu bạn đã chọn; với thủ thuật, là “Tò mò”, “Đã làm” hoặc “Bỏ qua”), mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang và quốc gia do nhà cung cấp hosting nhận diện — không bao giờ là địa chỉ IP. Chúng tôi dùng để hiển thị số liệu tổng, ví dụ bao nhiêu độc giả thích một sản phẩm, để mỗi thiết bị chỉ được tính một lần và để chặn spam.",
+      "Câu trả lời như “Đã làm” ở trang thủ thuật có thể là thông tin liên quan đến sức khỏe. Chúng tôi chỉ dùng chúng để hiển thị số liệu tổng ẩn danh. Chúng không gắn với tên, email hay tài khoản nào, chỉ với mã băm ở trên, nên chúng tôi không thể biết ai đã trả lời."
     ],
     "analyticsTitle": "Phân tích truy cập",
     "analytics": "Chúng tôi dùng Google Analytics 4 để đếm lượt truy cập và biết bài nào được đọc. Ở Khu vực Kinh tế châu Âu (EEA), Anh và Thụy Sĩ, lưu trữ cho phân tích và quảng cáo mặc định bị tắt (Google Consent Mode v2), nên không có cookie phân tích nào được đặt trừ khi bạn đồng ý trong thông báo xin đồng ý của Google. Google Analytics 4 không ghi lại hay lưu địa chỉ IP.",
-    "posthog": "Chúng tôi cũng dùng PostHog (máy chủ ở Mỹ) để biết trang nào được xem và các nút như bình chọn, cổ vũ, chia sẻ được dùng ra sao. PostHog hoạt động không cần cookie và không lưu gì trên thiết bị của bạn. Để phân biệt các lượt truy cập, máy chủ PostHog biến địa chỉ IP và thông tin trình duyệt của bạn thành mã băm một chiều bằng một khóa đổi mỗi ngày, rồi bỏ địa chỉ IP mà không lưu lại.",
+    "posthog": "Chúng tôi cũng dùng PostHog (máy chủ ở Mỹ) để biết trang nào được xem và các nút như bình chọn, cổ vũ, chia sẻ, lưu bằng nút tim và đánh giá được dùng ra sao (ví dụ mục nào được lưu hoặc đánh giá và câu trả lời đã chọn). PostHog hoạt động không cần cookie và không lưu gì trên thiết bị của bạn. Để phân biệt các lượt truy cập, máy chủ PostHog biến địa chỉ IP và thông tin trình duyệt của bạn thành mã băm một chiều bằng một khóa đổi mỗi ngày, rồi bỏ địa chỉ IP mà không lưu lại.",
     "adsTitle": "Quảng cáo và banner tiếp thị liên kết",
     "ads": "Chúng tôi hiển thị quảng cáo qua Google AdSense. Các nhà cung cấp bên thứ ba, trong đó có Google, dùng cookie để hiển thị quảng cáo dựa trên những lần bạn từng truy cập trang này hoặc các trang web khác. Cookie quảng cáo cho phép Google và các đối tác hiển thị quảng cáo cho bạn dựa trên việc bạn truy cập trang này và/hoặc các trang khác trên Internet. Ở EEA, Anh và Thụy Sĩ, lưu trữ cho quảng cáo mặc định bị tắt và quảng cáo cá nhân hóa chỉ xuất hiện khi bạn đồng ý trong thông báo xin đồng ý của Google. Bạn có thể tắt quảng cáo cá nhân hóa trong <google>Cài đặt quảng cáo của Google</google>, hoặc từ chối cookie quảng cáo cá nhân hóa của các nhà cung cấp khác tại <aboutads>www.aboutads.info</aboutads>.",
-    "affiliate": "Một số bài viết dành cho người đang sống ở Hàn Quốc có banner Coupang Partners. Banner chỉ hiện khi múi giờ trên thiết bị của bạn là giờ Hàn Quốc; việc kiểm tra này diễn ra ngay trong trình duyệt và không được gửi cho chúng tôi. Nếu bạn mua hàng trên Coupang sau khi bấm vào banner, chúng tôi nhận được hoa hồng và bạn không phải trả thêm gì. Coupang có thể đặt cookie riêng khi banner tải hoặc khi bạn bấm vào. Banner không ảnh hưởng đến nội dung chúng tôi viết.",
+    "affiliate": "Một số bài viết dành cho người đang sống ở Hàn Quốc có banner Coupang Partners. Banner chỉ hiện khi múi giờ trên thiết bị của bạn là giờ Hàn Quốc; việc kiểm tra này diễn ra ngay trong trình duyệt và không được gửi cho chúng tôi. Nếu bạn mua hàng trên Coupang sau khi bấm vào banner, chúng tôi nhận được hoa hồng và bạn không phải trả thêm gì. Coupang có thể đặt cookie riêng khi banner tải hoặc khi bạn bấm vào. Banner không ảnh hưởng đến nội dung chúng tôi viết. Các liên kết cửa hàng trong hướng dẫn (như Olive Young, YesStyle, Amazon và Klook) có thể là liên kết tiếp thị liên kết. Khi bạn bấm vào, cửa hàng đó có thể đặt cookie riêng để ghi nhận bạn đến từ trang của chúng tôi.",
     "storageTitle": "Dữ liệu lưu trên thiết bị của bạn",
     "storage": "Các mục sau được lưu trong bộ nhớ trình duyệt (localStorage) và ở lại trên thiết bị của bạn:",
     "storageKeys": {
@@ -125,7 +127,7 @@
       "read": "Các bài bạn đọc gần đây (tối đa 200), để không gợi ý lại.",
       "install": "Thời điểm bạn đóng gợi ý “Thêm vào Màn hình chính”.",
       "localeSuggest": "Bạn đã đóng gợi ý ngôn ngữ.",
-      "saved": "Những mục bạn lưu bằng nút tim (tối đa 300). Chúng không rời khỏi thiết bị này.",
+      "saved": "Những mục bạn lưu bằng nút tim (tối đa 300). Danh sách được lưu trên thiết bị này. Khi bạn mở mục Đã lưu, mã của các mục được gửi đến máy chủ của chúng tôi chỉ để lấy tiêu đề và liên kết; chúng tôi không lưu lại.",
       "visited": "Các địa điểm bạn đã đánh dấu “Đã đến”.",
       "vote": "Đánh giá của bạn cho từng sản phẩm, liệu trình thẩm mỹ hoặc bộ phim.",
       "skinType": "Kết quả bài kiểm tra loại da, để hiển thị đánh giá sản phẩm theo loại da."
@@ -141,6 +143,7 @@
     "retention": [
       "Bình luận: cho đến khi bạn xóa (bình luận bị xóa khỏi cơ sở dữ liệu), hoặc cho đến khi chúng tôi gỡ bình luận hay bài viết.",
       "Bản ghi bình chọn, phản ứng và cổ vũ: trong thời gian cuộc bình chọn, bài viết hoặc bảng xếp hạng đó còn trên trang.",
+      "Đánh giá sản phẩm, thủ thuật và phim: trong thời gian mục đó còn trên trang.",
       "Google Analytics: dữ liệu sự kiện được giữ 2 tháng, mức ngắn nhất trong cài đặt của Google.",
       "PostHog: dữ liệu sự kiện được giữ 1 năm.",
       "Email bạn gửi: chỉ trong thời gian cần để xử lý yêu cầu của bạn.",

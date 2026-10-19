@@ -18,7 +18,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { areaSlugs, getArea, listAreas, travelText } from "@/data/travel";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 import { areaGlyph, clip, keepAll, PREP_ROWS, prepBoxItems } from "@/lib/travel";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -35,12 +36,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/travel/[
   const t = await getTranslations({ locale, namespace: "Travel" });
   const title = t("area.metaTitle", { area: area.text.name });
   const description = clip(`${area.text.tagline}. ${area.text.intro}`);
-  const alternates = localeAlternates(locale, `/travel/${area.slug}`);
+  const path = `/travel/${area.slug}`;
+  const alternates = guideAlternates(locale, path);
   return {
     title,
     description,
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "website",

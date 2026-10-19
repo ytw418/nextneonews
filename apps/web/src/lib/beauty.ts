@@ -1,6 +1,8 @@
 // 값 import 는 상대 경로로 (vitest 는 @ 별칭을 모른다)
 import { type PriceTier, SKIN_TYPES, type SkinType } from "../data/beauty/types";
 import type { ItemTotals } from "./item-votes";
+import { coverGlyph } from "../components/guide/glyph";
+import { MIN_VOTES_FOR_SUMMARY } from "./vote-rules";
 
 // 뷰티 섹션의 계산 (어워드 점수·순위·추천·피부 타입 테스트 채점·표시 규칙). 카탈로그는 읽지 않는다 —
 // 서버 페이지가 로더(src/data/beauty)로 읽어 넘기고, 테스트 채점은 클라이언트에서도 같은 함수를 쓴다
@@ -35,10 +37,7 @@ export const VOTE_DAMPING = 5;
 export const AWARDS_MIN_VOTES = 30;
 // 평가 칩에 표 수 대신 % 를 보이는 최소 표 (2표 중 2표 = 100% 같은 과장을 막는다)
 export const PERCENT_MIN_VOTES = 10;
-// '건성 n%가 인생템' 에 % 를 보이는 최소 표 (그보다 적으면 표 수만)
-export const FACET_MIN_VOTES = 5;
-// 구조화 데이터 별점·화면의 5점 환산 점수를 내는 최소 표 (jsonld-catalog productLd 와 같은 기준)
-export const RATING_MIN_VOTES = 5;
+// '건성 n%가 인생템' 의 % 와 5점 환산 점수(화면·구조화 데이터)는 lib/vote-rules 의 MIN_VOTES_FOR_SUMMARY 표 이상일 때만
 
 function count(totals: ItemTotals | undefined, choice: string): number {
   return totals?.totals[choice] ?? 0;
@@ -87,7 +86,7 @@ export function isEditorsPick(votes: number): boolean {
 const CHOICE_POINTS: Record<string, number> = { love: 5, ok: 3, meh: 1 };
 
 export function readerRating(totals: ItemTotals | undefined): { value: number; count: number } | null {
-  if (!totals || totals.total < RATING_MIN_VOTES) return null;
+  if (!totals || totals.total < MIN_VOTES_FOR_SUMMARY) return null;
   const points = Object.entries(CHOICE_POINTS).reduce((sum, [choice, p]) => sum + p * count(totals, choice), 0);
   return { value: Math.round((points / totals.total) * 10) / 10, count: totals.total };
 }
@@ -164,12 +163,8 @@ export function priceSigns(tier: PriceTier): string {
 }
 
 // 커버 유령 글자: 브랜드 라틴 이니셜 1~2자 (COSRX → C, Beauty of Joseon → BJ, Round Lab → RL)
-const GLYPH_SKIP = new Set(["of", "the", "en", "de", "&"]);
-
 export function brandGlyph(brand: string): string {
-  const words = brand.split(/\s+/).filter((w) => w && !GLYPH_SKIP.has(w.toLowerCase()));
-  const letters = words.slice(0, 2).map((w) => w.match(/[A-Za-z0-9]/)?.[0] ?? "");
-  return letters.join("").toUpperCase() || brand.slice(0, 1).toUpperCase();
+  return coverGlyph({ kind: "beauty", brand }); // 규칙은 components/guide/glyph.ts 한 곳
 }
 
 // '10.19 갱신' 의 날짜 (한국 시각, 언어별 월·일 표기)

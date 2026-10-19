@@ -77,7 +77,6 @@
   "voteError": "평가를 보내지 못했어요. 다시 시도해 주세요.",
   "voteTooFast": "너무 자주 눌렀어요. 잠시 뒤에 다시 해 주세요.",
   "starLabel": "별 {count}개",
-  "starAverage": "5점 만점에 {average}점 · {count}명 평가",
   "visited": "가 봤어요",
   "markVisited": "가 봤어요 도장 찍기",
   "savedTabCount": "저장 {count}개",
@@ -99,8 +98,5 @@
     "combination": "복합성",
     "sensitive": "민감성",
     "normal": "중성"
-  },
-  "facetSummary": "{facet} {percent}%가 ‘{choice}’",
-  "starFew": "평가 {count}개",
-  "starMine": "내 별점 {count}"
+  }
 }

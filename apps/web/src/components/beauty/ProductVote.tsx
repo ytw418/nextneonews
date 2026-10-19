@@ -6,15 +6,17 @@ import { useEffect, useState } from "react";
 import { type ItemTotals, useItemVote, VoteChips } from "@/components/ItemVote";
 import { ChevronRightIcon } from "@/components/icons";
 import { Link } from "@/i18n/navigation";
-import { busiestFacet, FACET_MIN_VOTES, facetLove, percentOf } from "@/lib/beauty";
+import type { SkinType } from "@/data/beauty/types";
+import { busiestFacet, facetLove, percentOf } from "@/lib/beauty";
+import { MIN_VOTES_FOR_SUMMARY } from "@/lib/vote-rules";
 
 import { useSkinType } from "./useSkinType";
 
 const CHOICES = ["love", "ok", "meh"] as const;
 
-// 피부 타입별 줄을 내 표 뒤에도 맞게: 이 기기의 답이 바뀌면(투표 직후·다른 탭) 집계를 다시 받는다.
-// 공용 캐시(5분)를 건너뛰려고 주소에 시각을 붙인다 — 투표한 사람에게만 한 번 일어난다
-function useLiveTotals(itemId: string, initial: ItemTotals): ItemTotals {
+// 피부 타입별 줄을 내 표 뒤에도 맞게: 이 기기의 답이나 피부 타입이 바뀌면(투표 직후·시트에서 타입 고른 뒤·다른 탭) 집계를 다시 받는다.
+// 공용 캐시(5분)를 건너뛰려고 주소에 시각을 붙인다 — 투표한 사람에게만 일어난다
+function useLiveTotals(itemId: string, initial: ItemTotals, skin: SkinType | null): ItemTotals {
   const { mine } = useItemVote("beauty", itemId, initial);
   const [live, setLive] = useState(initial);
   useEffect(() => {
@@ -29,7 +31,7 @@ function useLiveTotals(itemId: string, initial: ItemTotals): ItemTotals {
         // 못 받으면 서버 렌더 숫자 그대로
       });
     return () => controller.abort();
-  }, [itemId, mine]);
+  }, [itemId, mine, skin]);
   return live;
 }
 
@@ -45,12 +47,12 @@ interface Props {
 export function ProductVote({ itemId, initial, showPercent }: Props) {
   const t = useTranslations("Beauty");
   const mine = useSkinType();
-  const live = useLiveTotals(itemId, initial);
+  const live = useLiveTotals(itemId, initial, mine);
   const shown = mine ?? busiestFacet(live);
   const stats = shown ? facetLove(live, shown) : null;
 
   let note: string | undefined;
-  if (shown && stats && stats.total >= FACET_MIN_VOTES) {
+  if (shown && stats && stats.total >= MIN_VOTES_FOR_SUMMARY) {
     note = t("vote.facetPercent", {
       skin: t(`skin.short.${shown}`),
       percent: percentOf(stats.love, stats.total),

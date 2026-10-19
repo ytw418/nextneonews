@@ -22,7 +22,8 @@ import { KIND_SECTION, SECTION_PATH, SECTION_TINT, SECTIONS } from "@/data/secti
 import type { CatalogSummary } from "@/data/types";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbLd, collectionLd, graph } from "@/lib/jsonld-catalog";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 
@@ -34,12 +35,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/guide">)
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "Guide" });
-  const alternates = localeAlternates(locale, "/guide");
+  const path = "/guide";
+  const alternates = guideAlternates(locale, path);
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "website",

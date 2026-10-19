@@ -20,7 +20,8 @@ import { genreOrder } from "@/lib/drama";
 import { emptyTotals, getItemTotals } from "@/lib/item-votes";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 import { getKpopChart } from "@/lib/kpop-chart";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 
@@ -30,12 +31,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/drama">)
   const t = await getTranslations({ locale, namespace: "Drama.hub" });
   const title = t("metaTitle", { count: dramaSlugs().length });
   const description = t("metaDescription");
-  const alternates = localeAlternates(locale, "/drama");
+  const path = "/drama";
+  const alternates = guideAlternates(locale, path);
   return {
     title,
     description,
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "website",

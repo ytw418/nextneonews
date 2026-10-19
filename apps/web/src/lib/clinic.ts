@@ -1,4 +1,5 @@
-import type { ClinicField, Procedure } from "@/data/clinic/types";
+import type { Procedure } from "@/data/clinic/types";
+import { coverGlyph as sharedCoverGlyph } from "../components/guide/glyph"; // 값 import 는 상대 경로 (vitest 는 @ 별칭을 모른다)
 
 // 클리닉 시술 사전의 판단 규칙 (화면은 components/clinic/*). 카탈로그는 import 하지 않아 클라이언트에서도 쓸 수 있다
 
@@ -55,10 +56,6 @@ export function koreanLines(local: readonly string[], ko: readonly string[] | un
 
 // 사진 없는 커버의 유령 글자: 회복 일수 ("14d"). 숫자가 사실 표를 예고한다 (DESIGN §4-①)
 export function coverGlyph(procedure: Pick<Procedure, "downtimeDays">): string {
-  return `${procedure.downtimeDays[1]}d`;
+  return sharedCoverGlyph({ kind: "clinic", downtimeDays: procedure.downtimeDays }); // 규칙은 components/guide/glyph.ts 한 곳
 }
 
-// 치과·성형은 변호사 검토 전까지 검색에 올리지 않는다 (docs/monetize/BM-VALIDATION.md §0-4). 링크는 따라간다
-export function clinicIndexable(field: ClinicField): boolean {
-  return field === "derma";
-}

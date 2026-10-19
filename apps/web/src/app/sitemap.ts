@@ -18,7 +18,7 @@ import { listClinic } from "@/data/clinic";
 import { listDrama } from "@/data/drama";
 import { listAreas, listTravel } from "@/data/travel";
 import { listActiveCategories, listSitemapEntries } from "@/lib/articles";
-import { GUIDE_INDEX_LOCALES, guideIndexable } from "@/lib/guide-seo";
+import { guideIndexLocales } from "@/lib/guide-seo";
 import { articlePath, SITE_URL } from "@/lib/url";
 import { xmlEscape } from "@/lib/xml";
 
@@ -87,7 +87,7 @@ async function rankingEntries(): Promise<MetadataRoute.Sitemap> {
   ];
 }
 
-// 가이드 섹션(뷰티·여행·클리닉·드라마): 검색에 내는 언어(en·ja·zh-TW)만 적고 hreflang 도 그 언어끼리 잇는다.
+// 가이드 섹션(뷰티·여행·클리닉·드라마): 검색에 내는 언어(en·ja·zh-TW)만 적고 hreflang 도 그 언어끼리 잇는다 (페이지 메타의 guideAlternates 와 같은 목록).
 // 치과·성형 시술은 모든 언어에서 뺀다 (next.config.ts 가 같은 목록으로 noindex 헤더를 단다 — lib/guide-seo.ts).
 // 카탈로그 항목은 영어 문구가 있는 것만(로더가 거른다), 날짜는 카탈로그에 넣은 날
 async function guideEntries(): Promise<MetadataRoute.Sitemap> {
@@ -115,7 +115,7 @@ async function guideEntries(): Promise<MetadataRoute.Sitemap> {
     ...dramas.map((d) => ({ path: `/drama/${d.slug}`, priority: 0.6, lastModified: d.addedAt })),
   ];
   return pages.flatMap(({ path, priority, lastModified }) => {
-    const locales = GUIDE_INDEX_LOCALES.filter((l) => guideIndexable(l, path));
+    const locales = guideIndexLocales(path);
     const alternates = hreflang(Object.fromEntries(locales.map((l) => [l, `${LOCALE_PATH_PREFIX[l]}${path}`])));
     return locales.map((l) => ({
       url: abs(`${LOCALE_PATH_PREFIX[l]}${path}`),

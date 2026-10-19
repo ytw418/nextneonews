@@ -26,7 +26,8 @@ import { SECTION_TINT } from "@/data/sections";
 import { getTravel, isTravelSlug, travelText } from "@/data/travel";
 import { emptyTotals, getItemTotals } from "@/lib/item-votes";
 import { breadcrumbLd, graph, tvSeriesLd } from "@/lib/jsonld-catalog";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 // 카탈로그 24편만 빌드 때 만든다. 별점 집계가 바뀌므로 한 시간마다 다시 만든다
 export const revalidate = 3600;
@@ -44,12 +45,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/drama/[s
   const t = await getTranslations({ locale, namespace: "Drama.detail" });
   const title = t("metaTitle", { title: drama.text.title, year: drama.year });
   const description = t("metaDescription", { tagline: drama.text.tagline });
-  const alternates = localeAlternates(locale, `/drama/${slug}`);
+  const path = `/drama/${slug}`;
+  const alternates = guideAlternates(locale, path);
   return {
     title,
     description,
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "video.tv_show",

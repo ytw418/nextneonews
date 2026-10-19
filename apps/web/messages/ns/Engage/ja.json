@@ -77,7 +77,6 @@
   "voteError": "評価を送れませんでした。もう一度お試しください。",
   "voteTooFast": "押しすぎかも。少し待ってからもう一度どうぞ。",
   "starLabel": "星{count}つ",
-  "starAverage": "5点中{average}点・{count}人が評価",
   "visited": "行った！",
   "markVisited": "行ったよスタンプを押す",
   "savedTabCount": "保存 {count}件",
@@ -99,8 +98,5 @@
     "combination": "混合肌",
     "sensitive": "敏感肌",
     "normal": "普通肌"
-  },
-  "facetSummary": "{facet}の{percent}%が「{choice}」",
-  "starFew": "評価{count}件",
-  "starMine": "あなたの評価：{count}"
+  }
 }

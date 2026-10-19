@@ -6,7 +6,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdSlot } from "@/components/AdSlot";
 import { AffiliateBox } from "@/components/affiliate/AffiliateBox";
 import { AppHeader } from "@/components/AppHeader";
-import { BuyBoxView } from "@/components/beauty/BuyBoxView";
 import { CategoryChips } from "@/components/beauty/CategoryChips";
 import { MethodNote } from "@/components/beauty/MethodNote";
 import { ProductCard } from "@/components/beauty/ProductCard";
@@ -139,9 +138,7 @@ export default async function BeautyHubPage({ params }: PageProps<"/[locale]/bea
       )}
 
       <div aria-hidden className="mt-8 h-4 bg-band" />
-      <BuyBoxView placement="beauty-hub">
-        <AffiliateBox title={t("buy.hubTitle")} locale={locale} placement="beauty-hub" items={shops} />
-      </BuyBoxView>
+      <AffiliateBox title={t("buy.hubTitle")} locale={locale} placement="beauty-hub" items={shops} />
 
       <MethodNote locale={locale} />
 

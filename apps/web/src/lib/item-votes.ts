@@ -4,6 +4,7 @@ import { z } from "zod";
 import { isLocale } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 
+import { CATALOG_SLUG } from "../data/sections";
 import { clientIp, ipHash } from "./comments";
 import { country, isBot, rateLimited, voterHash } from "./voter";
 
@@ -31,7 +32,7 @@ export const FACETS: Partial<Record<VoteKind, readonly string[]>> = {
 };
 
 // 정적 카탈로그 slug 형식 (proxy.ts matcher 때문에 점은 쓰지 않는다)
-const ITEM_ID = /^[a-z0-9-]{2,64}$/;
+const ITEM_ID = CATALOG_SLUG; // 카탈로그 slug 규칙은 data/sections.ts 한 곳
 
 export interface ItemTotals {
   totals: Record<string, number>; // 답 → 표 수

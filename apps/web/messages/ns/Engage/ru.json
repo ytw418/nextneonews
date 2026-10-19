@@ -77,7 +77,6 @@
   "voteError": "Голос не учтён. Попробуйте ещё раз.",
   "voteTooFast": "Слишком много нажатий. Попробуйте чуть позже.",
   "starLabel": "{count, plural, one {#\u00a0звезда} few {#\u00a0звезды} many {#\u00a0звёзд} other {#\u00a0звезды}}",
-  "starAverage": "{average} из 5 · оценок: {count}",
   "visited": "Посещено",
   "markVisited": "Отметить как посещённое",
   "savedTabCount": "Моё, {count, plural, one {#\u00a0элемент} few {#\u00a0элемента} many {#\u00a0элементов} other {#\u00a0элемента}}",
@@ -99,8 +98,5 @@
     "combination": "Комбинированная кожа",
     "sensitive": "Чувствительная кожа",
     "normal": "Нормальная кожа"
-  },
-  "facetSummary": "{facet}: {percent}% выбрали «{choice}»",
-  "starFew": "{count, plural, one {#\u00a0оценка} few {#\u00a0оценки} many {#\u00a0оценок} other {#\u00a0оценки}}",
-  "starMine": "Ваша оценка: {count}"
+  }
 }

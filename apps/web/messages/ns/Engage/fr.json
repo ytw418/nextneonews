@@ -77,7 +77,6 @@
   "voteError": "Votre vote n’est pas passé. Réessayez.",
   "voteTooFast": "Beaucoup de votes d’un coup. Réessayez dans un instant.",
   "starLabel": "{count, plural, one {#\u00a0étoile} other {#\u00a0étoiles}}",
-  "starAverage": "{average} sur 5 · {count, plural, one {#\u00a0avis} other {#\u00a0avis}}",
   "visited": "Déjà visité",
   "markVisited": "Marquer comme visité",
   "savedTabCount": "Favoris, {count, plural, one {#\u00a0élément} other {#\u00a0éléments}}",
@@ -99,8 +98,5 @@
     "combination": "Peau mixte",
     "sensitive": "Peau sensible",
     "normal": "Peau normale"
-  },
-  "facetSummary": "{facet}\u00a0: {percent}\u00a0% ont choisi «\u00a0{choice}\u00a0»",
-  "starFew": "{count, plural, one {#\u00a0avis} other {#\u00a0avis}}",
-  "starMine": "Votre note\u00a0: {count}"
+  }
 }

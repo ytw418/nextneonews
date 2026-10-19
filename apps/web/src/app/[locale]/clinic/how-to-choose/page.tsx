@@ -17,7 +17,8 @@ import { ShareButton } from "@/components/ShareButton";
 import { ListRow } from "@/components/ui/ListRow";
 import { koreanLines } from "@/lib/clinic";
 import { breadcrumbLd, graph } from "@/lib/jsonld-catalog";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 // 문구나 출처를 바꾸면 이 날짜도 올린다
 const UPDATED = "2026-10-19";
@@ -42,12 +43,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/clinic/h
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const t = createTranslator({ locale, messages: await clinicPages(locale), namespace: "howTo" });
-  const alternates = localeAlternates(locale, "/clinic/how-to-choose");
+  const path = "/clinic/how-to-choose";
+  const alternates = guideAlternates(locale, path);
   return {
     title: t("title"),
     description: t("description"),
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "article",

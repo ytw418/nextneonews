@@ -71,25 +71,25 @@
     "manyo-pure-soybean-cleansing-oil": {
       "name": "Pure Soybean Cleansing Oil",
       "tagline": "Huile végétale qui devient laiteuse au rinçage",
-      "why": "Ex-Pure Cleansing Oil, ce mélange d’huiles de soja, d’argan, de jojoba et d’autres huiles végétales a reçu un Allure Beauty Award 2025 (huiles démaquillantes). Il fait fondre maquillage et sébum, puis devient un lait léger avec l’eau.",
+      "why": "Ex-Pure Cleansing Oil, ce mélange d’huiles de soja, d’argan, de jojoba et d’autres huiles végétales fait fondre maquillage et sébum, puis devient un lait léger avec l’eau.",
       "howTo": "Applique 2 à 3 pressions sur le visage sec avec les mains sèches et masse. Ajoute un peu d’eau pour émulsionner, rince bien, puis enchaîne avec un nettoyant mousse ou gel."
     },
     "round-lab-1025-dokdo-toner": {
       "name": "1025 Dokdo Toner",
-      "tagline": "Toner aqueux du quotidien, habitué des Olive Young Awards",
-      "why": "L’un des toners les plus achetés en Corée, habitué des prix annuels d’Olive Young. Sa formule aqueuse (eau de mer profonde d’Ulleungdo, bétaïne, panthénol) hydrate et laisse le grain de peau plus lisse au toucher après le nettoyage.",
+      "tagline": "Toner aqueux du quotidien à l’eau de mer profonde d’Ulleungdo",
+      "why": "Le toner du quotidien de Round Lab. Sa formule aqueuse (eau de mer profonde d’Ulleungdo, bétaïne, panthénol) hydrate et laisse le grain de peau plus lisse au toucher après le nettoyage.",
       "howTo": "Après le nettoyage, imbibe un coton et passe-le vers l’extérieur, ou tapote quelques gouttes avec les paumes. Enchaîne avec sérum et crème."
     },
     "anua-heartleaf-77-soothing-toner": {
       "name": "Heartleaf 77 Soothing Toner",
       "tagline": "Toner apaisant au houttuynia, léger et aqueux",
-      "why": "Succès mondial de la K-beauty, souvent distingué aux Olive Young Awards. L’eau de houttuynia (heartleaf) compose l’essentiel de la formule, avec du panthénol et plusieurs types d’acide hyaluronique pour une couche apaisante et hydratante.",
+      "why": "Le toner à l’houttuynia d’Anua. L’eau de houttuynia (heartleaf) compose l’essentiel de la formule, avec du panthénol et plusieurs types d’acide hyaluronique pour une couche apaisante et hydratante.",
       "howTo": "Tapote sur peau propre avec les mains ou un coton. Pour un masque apaisant express, pose des cotons imbibés 5 à 10 minutes."
     },
     "medicube-zero-pore-pad": {
       "name": "Zero Pore Pads",
       "tagline": "Disques double face AHA et BHA pour une peau plus lisse",
-      "why": "Parmi les produits K-beauty les plus achetés sur Amazon US. Une face gaufrée pour essuyer, une face lisse pour presser ; la lotion à l’acide lactique (AHA) et salicylique (BHA) laisse la peau grasse plus lisse et moins luisante.",
+      "why": "Les cotons imbibés double face de medicube. Une face gaufrée pour essuyer, une face lisse pour presser ; la lotion à l’acide lactique (AHA) et salicylique (BHA) laisse la peau grasse plus lisse et moins luisante.",
       "howTo": "Après le nettoyage, passe la face gaufrée sur le visage, puis presse la face lisse sur les zones plus grasses. Commence un jour sur deux, le soir.",
       "caution": "Contient des acides exfoliants et de l’alcool. Évite la peau lésée, ne l’associe pas à d’autres exfoliants forts et porte une protection solaire le jour."
     },
@@ -109,7 +109,7 @@
     "cosrx-advanced-snail-96-mucin-power-essence": {
       "name": "Advanced Snail 96 Mucin Power Essence",
       "tagline": "L’essence à la mucine d’escargot derrière la glass skin",
-      "why": "Sans doute le produit K-beauty le plus connu à l’étranger, pilier des classements beauté d’Amazon US. Ses 96 % de filtrat de sécrétion d’escargot donnent une texture glissante et moelleuse, hydratante, au fini lumineux sans lourdeur.",
+      "why": "L’essence à la bave d’escargot de COSRX. Ses 96 % de filtrat de sécrétion d’escargot donnent une texture glissante et moelleuse, hydratante, au fini lumineux sans lourdeur.",
       "howTo": "Après le toner, mets 2 à 3 pressions dans ta paume et tapote sur le visage jusqu’à absorption. Enchaîne avec une crème."
     },
     "beauty-of-joseon-glow-serum-propolis-niacinamide": {
@@ -134,14 +134,14 @@
     "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
       "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
       "tagline": "Sérum à l’acide azélaïque adouci d’ingrédients apaisants",
-      "why": "Un succès récent d’Anua sur Amazon US. Il associe acide azélaïque, niacinamide, panthénol et acide hyaluronique dans un sérum léger, pensé pour les peaux grasses qui veulent aussi une étape apaisante et hydratante.",
+      "why": "Un sérum de la gamme Redness Soothing d’Anua. Il associe acide azélaïque, niacinamide, panthénol et acide hyaluronique dans un sérum léger, pensé pour les peaux grasses qui veulent aussi une étape apaisante et hydratante.",
       "howTo": "Après le toner, applique une petite quantité sur le visage une fois par jour, d’abord le soir. Enchaîne avec une crème, et une protection solaire le jour.",
       "caution": "Contient de l’acide azélaïque et un BHA doux. De légers picotements sont courants au début ; fais un test cutané et évite de l’associer à d’autres acides forts."
     },
     "medicube-pdrn-pink-peptide-serum": {
       "name": "PDRN Pink Peptide Serum",
       "tagline": "Sérum rose au PDRN, aux peptides et à la niacinamide",
-      "why": "L’un des produits qui ont fait du PDRN (ADN issu du saumon, noté sodium DNA) un mot à la mode de la K-beauty, avec des milliers d’avis Amazon. Ce sérum rose et léger hydrate et laisse un fini brillant, effet bonne mine.",
+      "why": "Un sérum aux peptides construit autour du PDRN (ADN issu du saumon, noté sodium DNA). Ce sérum rose et léger hydrate et laisse un fini brillant, effet bonne mine.",
       "howTo": "Après le toner, applique 1 à 2 pressions et tapote sur le visage. Enchaîne avec une crème.",
       "caution": "Contient des ingrédients issus du poisson ; passe ton tour si tu les évites."
     },
@@ -155,7 +155,7 @@
     "manyo-bifida-biome-complex-ampoule": {
       "name": "Bifida Biome Complex Ampoule",
       "tagline": "Ampoule aux ferments, pour une peau rebondie et hydratée",
-      "why": "Un best-seller de longue date de ma:nyo, à base de lysat de ferment de bifida, avec d’autres ferments, de la niacinamide et du squalane. Ce sérum laiteux semble nourrissant sans lourdeur et convient aux peaux sèches et normales.",
+      "why": "Une ampoule de ma:nyo, à base de lysat de ferment de bifida, avec d’autres ferments, de la niacinamide et du squalane. Ce sérum laiteux semble nourrissant sans lourdeur et convient aux peaux sèches et normales.",
       "howTo": "Après le toner, applique 2 à 3 gouttes et tapote. Enchaîne avec une crème."
     },
     "cosrx-advanced-snail-92-all-in-one-cream": {
@@ -167,7 +167,7 @@
     "aestura-atobarrier365-cream": {
       "name": "ATOBARRIER365 Cream",
       "tagline": "Crème à capsules de céramides, peaux sèches et sensibles",
-      "why": "La crème de la marque dermo d’Amorepacific, distinguée dans la catégorie crèmes des Olive Young Awards. Capsules de céramides, cholestérol et squalane forment une couche riche mais non grasse pour les peaux sèches et vite irritées.",
+      "why": "La crème d’AESTURA, la marque dermo d’Amorepacific. Capsules de céramides, cholestérol et squalane forment une couche riche mais non grasse pour les peaux sèches et vite irritées.",
       "howTo": "En dernière étape, réchauffe l’équivalent d’un petit pois entre tes doigts et presse sur le visage. Réapplique sur les zones sèches si besoin."
     },
     "beauty-of-joseon-dynasty-cream": {
@@ -185,7 +185,7 @@
     "medicube-collagen-niacinamide-jelly-cream": {
       "name": "Collagen Niacinamide Jelly Cream",
       "tagline": "Crème gelée transparente au collagène, fini brillant",
-      "why": "Une crème gelée transparente qui cumule des milliers d’avis sur Amazon. Collagène hydrolysé et niacinamide dans une texture rebondie, légère comme l’eau, qui hydrate et laisse un fini brillant, effet bonne mine.",
+      "why": "Une crème gelée transparente signée medicube. Collagène hydrolysé et niacinamide dans une texture rebondie, légère comme l’eau, qui hydrate et laisse un fini brillant, effet bonne mine.",
       "howTo": "En dernière étape de soin, étale une quantité suffisante sur le visage et tapote jusqu’à absorption."
     },
     "illiyoon-ceramide-ato-concentrate-cream": {
@@ -236,7 +236,7 @@
     "biodance-bio-collagen-real-deep-mask": {
       "name": "Bio-Collagen Real Deep Mask",
       "tagline": "Masque hydrogel de nuit qui devient transparent",
-      "why": "Le masque hydrogel devenu viral dans le monde, en haut des classements beauté d’Amazon US. Il devient transparent à mesure que l’essence pénètre ; en Corée, il est enregistré comme cosmétique fonctionnel éclat et soin des rides.",
+      "why": "Le masque hydrogel de Biodance. Il devient transparent à mesure que l’essence pénètre ; en Corée, il est enregistré comme cosmétique fonctionnel éclat et soin des rides.",
       "howTo": "Après le toner ou le sérum, pose le masque 3 à 4 heures ou toute la nuit, jusqu’à ce qu’il devienne transparent. Retire-le et fais pénétrer le reste."
     },
     "laneige-water-sleeping-mask": {
@@ -267,13 +267,13 @@
     "romand-the-juicy-lasting-tint": {
       "name": "The Juicy Lasting Tint",
       "tagline": "Tint brillant et juteux à la couleur longue tenue",
-      "why": "Le tint phare de rom&nd et l’un des produits lèvres les plus achetés chez Olive Young. Un fini brillant et sirupeux qui laisse une teinte en s’estompant, en des dizaines de nuances, des tons fruités légers aux baies profondes.",
+      "why": "Le tint phare de rom&nd. Un fini brillant et sirupeux qui laisse une teinte en s’estompant, en des dizaines de nuances, des tons fruités légers aux baies profondes.",
       "howTo": "Applique au centre des lèvres et estompe pour un dégradé, ou couvre toute la lèvre pour une couleur intense. Superpose sur un baume pour plus de brillance."
     },
     "peripera-ink-the-velvet": {
       "name": "Ink the Velvet",
       "tagline": "Tint velours mat doux dans une très large gamme de teintes",
-      "why": "Le tint phare de peripera, épuisé quelques jours après son lancement et toujours populaire depuis. Sa texture fouettée et veloutée floute les ridules des lèvres et laisse une teinte mate et douce.",
+      "why": "Le tint phare de peripera. Sa texture fouettée et veloutée floute les ridules des lèvres et laisse une teinte mate et douce.",
       "howTo": "Presse le plat de l’applicateur au centre des lèvres et estompe vers l’extérieur pour un dégradé, ou applique partout pour une couleur intense."
     },
     "laneige-lip-glowy-balm": {
@@ -298,7 +298,7 @@
     "clio-kill-cover-founwear-cushion": {
       "name": "Kill Cover Founwear Cushion The Original",
       "tagline": "Cushion haute couvrance SPF50+ PA+++",
-      "why": "Le cushion Kill Cover de CLIO s’est vendu à des millions d’exemplaires depuis 2015. La version Founwear offre une couvrance élevée longue tenue, au fini naturel, et une protection UV SPF50+ PA+++, selon la fiche produit officielle coréenne.",
+      "why": "Un cushion de la gamme Kill Cover de CLIO. La version Founwear offre une couvrance élevée longue tenue, au fini naturel, et une protection UV SPF50+ PA+++, selon la fiche produit officielle coréenne.",
       "howTo": "Tapote légèrement la houppette dans le cushion et presse sur la peau du centre vers l’extérieur. Superpose de fines couches sur les imperfections au lieu d’appuyer plus fort."
     },
     "missha-m-perfect-cover-bb-cream": {

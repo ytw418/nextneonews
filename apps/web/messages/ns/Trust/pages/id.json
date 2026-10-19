@@ -105,14 +105,16 @@
     "hash": "Kami tidak menyimpan alamat IP. Saat kamu berkomentar, ikut polling, memberi reaksi, atau dukungan, alamat IP-mu diubah menjadi kode satu arah (hash HMAC dengan kunci rahasia) dan hanya kode itu yang disimpan. Kode ini membantu kami menghitung satu suara per perangkat dan mencegah spam, tetapi tidak bisa diubah kembali menjadi alamat IP-mu.",
     "hashItems": [
       "Komentar: isi komentar, nama yang ditampilkan, hash dari kunci edit yang tersimpan di perangkatmu (agar hanya kamu yang bisa mengubah atau menghapusnya), dan kode hash alamat IP.",
-      "Polling, reaksi, dan dukungan: pilihanmu, kode hash alamat IP dan browser, bahasa halaman, dan untuk polling serta dukungan, negara yang dideteksi oleh penyedia hosting kami (misalnya “JP”) — tidak pernah alamat IP itu sendiri."
+      "Polling, reaksi, dan dukungan: pilihanmu, kode hash alamat IP dan browser, bahasa halaman, dan untuk polling serta dukungan, negara yang dideteksi oleh penyedia hosting kami (misalnya “JP”) — tidak pernah alamat IP itu sendiri.",
+      "Penilaian produk, prosedur, dan drama: jawabanmu (untuk produk, juga jenis kulitmu jika kamu memilihnya; untuk prosedur, apakah kamu Penasaran, Pernah, atau Lewati), kode hash alamat IP dan browser, bahasa halaman, dan negara yang dideteksi penyedia hosting kami — tidak pernah alamat IP itu sendiri. Kami memakainya untuk menampilkan total, misalnya berapa pembaca yang menyukai suatu produk, menghitung satu penilaian per perangkat, dan mencegah spam.",
+      "Jawaban seperti “Pernah” di halaman prosedur bisa berkaitan dengan kesehatan. Kami hanya memakainya untuk menampilkan total anonim. Jawaban itu tidak pernah dikaitkan dengan nama, email, atau akun, hanya dengan kode hash di atas, jadi kami tidak bisa tahu siapa yang menjawab."
     ],
     "analyticsTitle": "Analitik",
     "analytics": "Kami memakai Google Analytics 4 untuk menghitung kunjungan dan melihat artikel mana yang dibaca. Di Kawasan Ekonomi Eropa (EEA), Inggris, dan Swiss, penyimpanan untuk analitik dan iklan dimatikan secara bawaan (Google Consent Mode v2), sehingga tidak ada cookie analitik yang dipasang di sana kecuali kamu menyetujuinya di pesan persetujuan Google. Google Analytics 4 tidak mencatat atau menyimpan alamat IP.",
-    "posthog": "Kami juga memakai PostHog (server di AS) untuk melihat halaman mana yang dibuka dan bagaimana tombol seperti polling, dukungan, dan bagikan dipakai. PostHog berjalan tanpa cookie dan tidak menyimpan apa pun di perangkatmu. Untuk membedakan kunjungan, server PostHog mengubah alamat IP dan info browsermu menjadi hash satu arah dengan kunci yang berganti setiap hari, lalu membuang alamat IP itu tanpa menyimpannya.",
+    "posthog": "Kami juga memakai PostHog (server di AS) untuk melihat halaman mana yang dibuka dan bagaimana tombol seperti polling, dukungan, bagikan, simpan dengan hati, dan penilaian dipakai (misalnya item mana yang disimpan atau dinilai dan jawaban yang dipilih). PostHog berjalan tanpa cookie dan tidak menyimpan apa pun di perangkatmu. Untuk membedakan kunjungan, server PostHog mengubah alamat IP dan info browsermu menjadi hash satu arah dengan kunci yang berganti setiap hari, lalu membuang alamat IP itu tanpa menyimpannya.",
     "adsTitle": "Iklan dan banner afiliasi",
     "ads": "Kami menampilkan iklan melalui Google AdSense. Vendor pihak ketiga, termasuk Google, memakai cookie untuk menayangkan iklan berdasarkan kunjunganmu sebelumnya ke situs ini atau situs lain. Cookie iklan Google memungkinkan Google dan mitranya menayangkan iklan kepadamu berdasarkan kunjunganmu ke situs ini dan/atau situs lain di internet. Di EEA, Inggris, dan Swiss, penyimpanan untuk iklan dimatikan secara bawaan, dan iklan yang dipersonalisasi hanya muncul jika kamu setuju di pesan persetujuan Google. Kamu bisa mematikan iklan yang dipersonalisasi di <google>Setelan Iklan Google</google>, atau menolak cookie vendor lain untuk iklan yang dipersonalisasi di <aboutads>www.aboutads.info</aboutads>.",
-    "affiliate": "Beberapa artikel untuk pembaca yang tinggal di Korea menampilkan banner Coupang Partners. Banner hanya muncul jika zona waktu perangkatmu diatur ke Korea; pengecekan ini dilakukan di browsermu dan tidak dikirim ke kami. Jika kamu berbelanja di Coupang setelah mengeklik banner, kami menerima komisi tanpa biaya tambahan untukmu. Coupang bisa memasang cookie sendiri saat banner dimuat atau diklik. Banner tidak memengaruhi apa yang kami tulis.",
+    "affiliate": "Beberapa artikel untuk pembaca yang tinggal di Korea menampilkan banner Coupang Partners. Banner hanya muncul jika zona waktu perangkatmu diatur ke Korea; pengecekan ini dilakukan di browsermu dan tidak dikirim ke kami. Jika kamu berbelanja di Coupang setelah mengeklik banner, kami menerima komisi tanpa biaya tambahan untukmu. Coupang bisa memasang cookie sendiri saat banner dimuat atau diklik. Banner tidak memengaruhi apa yang kami tulis. Tautan toko di panduan kami (seperti Olive Young, YesStyle, Amazon, dan Klook) bisa berupa tautan afiliasi. Jika kamu mengkliknya, toko itu bisa memasang cookie sendiri untuk mencatat bahwa kamu datang dari kami.",
     "storageTitle": "Yang kami simpan di perangkatmu",
     "storage": "Data berikut disimpan di penyimpanan browser (localStorage) dan tetap berada di perangkatmu:",
     "storageKeys": {
@@ -125,7 +127,7 @@
       "read": "Artikel yang baru kamu baca (maksimal 200), agar tidak kami sarankan lagi.",
       "install": "Kapan kamu menutup ajakan “Tambahkan ke Layar Utama”.",
       "localeSuggest": "Tanda bahwa kamu menutup saran bahasa.",
-      "saved": "Yang kamu simpan dengan tombol hati (maksimal 300). Tidak pernah keluar dari perangkat ini.",
+      "saved": "Yang kamu simpan dengan tombol hati (maksimal 300). Daftarnya disimpan di perangkat ini. Saat kamu membuka halaman Tersimpan, ID item dikirim ke server kami hanya untuk mengambil judul dan tautannya; kami tidak menyimpannya.",
       "visited": "Tempat yang kamu tandai “Sudah ke sini”.",
       "vote": "Penilaianmu untuk setiap produk, perawatan klinik, atau drama.",
       "skinType": "Hasil tes jenis kulitmu, agar penilaian produk bisa ditampilkan per jenis kulit."
@@ -141,6 +143,7 @@
     "retention": [
       "Komentar: sampai kamu menghapusnya (komentar terhapus dari database kami), atau sampai kami menghapus komentar atau artikelnya.",
       "Catatan polling, reaksi, dan dukungan: selama polling, artikel, atau peringkat terkait masih ada di situs.",
+      "Penilaian produk, prosedur, dan drama: selama item tersebut masih ada di situs.",
       "Google Analytics: data peristiwa disimpan selama 2 bulan, pengaturan terpendek di Google.",
       "PostHog: data peristiwa disimpan selama 1 tahun.",
       "Email yang kamu kirim: hanya selama diperlukan untuk menangani permintaanmu.",

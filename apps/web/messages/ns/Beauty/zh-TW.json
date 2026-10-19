@@ -2,12 +2,12 @@
   "title": "韓國美妝",
   "intro": "韓國保養和彩妝，連排名方式都公開。看看哪些適合你的膚質，還有去哪裡買。",
   "metaTitle": "韓國美妝推薦：依品項、依膚質挑選",
-  "metaDescription": "卸妝、化妝水、精華、防曬等人氣韓國美妝，依編輯評分和讀者的膚質投票排名，每一款都附上哪裡買。",
+  "metaDescription": "卸妝、化妝水、精華、防曬等人氣韓國美妝，依編輯評分加上讀者投票排名（未滿 30 票時是編輯精選），每一款都附上哪裡買。",
   "skinChip": "不知道自己的膚質？6題測一下",
   "skinChipMine": "{skin}的推薦",
   "categoriesLabel": "美妝品項",
   "crumbsLabel": "目前位置",
-  "winnersTitle": "各品項No.1",
+  "winnersTitle": "各品項首選",
   "priceLegend": "₩ 1萬韓元以下·₩₩ 1～3萬·₩₩₩ 3萬以上（韓國定價）",
   "priceTier": {
     "1": "價格：1萬韓元以下",
@@ -53,7 +53,7 @@
     "metaDescription": "{intro} 依編輯評分和讀者投票排名，附上適合膚質、價位和哪裡買。"
   },
   "product": {
-    "metaTitle": "{brand} {name}｜適合膚質、用法、哪裡買",
+    "metaTitle": "哪裡買？{brand} {name}",
     "metaDescription": "{tagline}。適合哪些膚質、怎麼用、讀者評價和哪裡買，一次整理（{category}）。",
     "share": "分享這款商品",
     "rankIn": "{category}·{kind} 第{rank}名",

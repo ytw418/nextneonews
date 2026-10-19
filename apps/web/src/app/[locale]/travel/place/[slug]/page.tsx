@@ -31,7 +31,8 @@ import { matchArticleEntities } from "@/lib/entities";
 import { breadcrumbLd, graph, placeLd } from "@/lib/jsonld-catalog";
 import { displayName } from "@/lib/rankings";
 import { areaGlyph, clip, keepAll, naverMapUrl, placePrepTargets } from "@/lib/travel";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -76,12 +77,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/travel/p
   const t = await getTranslations({ locale, namespace: "Travel" });
   const title = t("place.metaTitle", { place: place.text.name, area: areaName });
   const description = clip(place.text.summary);
-  const alternates = localeAlternates(locale, `/travel/place/${place.slug}`);
+  const path = `/travel/place/${place.slug}`;
+  const alternates = guideAlternates(locale, path);
   return {
     title,
     description,
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "website",

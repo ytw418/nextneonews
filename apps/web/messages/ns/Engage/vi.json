@@ -77,7 +77,6 @@
   "voteError": "Chưa gửi được đánh giá. Hãy thử lại.",
   "voteTooFast": "Bạn nhấn hơi nhiều rồi. Hãy thử lại sau ít phút.",
   "starLabel": "{count}\u00a0sao",
-  "starAverage": "{average}/5 · {count}\u00a0lượt đánh giá",
   "visited": "Đã đến",
   "markVisited": "Mình đã đến đây",
   "savedTabCount": "Đã lưu, {count}\u00a0mục",
@@ -99,8 +98,5 @@
     "combination": "Da hỗn hợp",
     "sensitive": "Da nhạy cảm",
     "normal": "Da thường"
-  },
-  "facetSummary": "{facet}: {percent}% chọn “{choice}”",
-  "starFew": "{count}\u00a0lượt đánh giá",
-  "starMine": "Bạn chấm: {count}\u00a0sao"
+  }
 }

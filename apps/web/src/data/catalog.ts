@@ -4,13 +4,18 @@ import type { Locale } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 import { getTranslations } from "next-intl/server";
 
+import { coverGlyph } from "@/components/guide/glyph";
 import { categoryTint } from "@/lib/cover";
 
 import { beautyFeatured, beautySummary, isBeautySlug } from "./beauty";
+import { BEAUTY_ITEMS } from "./beauty/items";
 import { clinicFeatured, clinicSummary, isClinicSlug } from "./clinic";
+import { CLINIC_ITEMS } from "./clinic/items";
 import { dramaFeatured, dramaSummary, isDramaSlug } from "./drama";
-import { ARTICLE_SLUG, CATALOG_SLUG, type CatalogKind, isSavedKind } from "./sections";
+import { DRAMA_ITEMS } from "./drama/items";
+import { type CatalogKind, isSavedId, isSavedKind } from "./sections";
 import { isTravelSlug, travelFeatured, travelSummary } from "./travel";
+import { TRAVEL_ITEMS } from "./travel/items";
 import type { CatalogSummary, SavedKind, Section } from "./types";
 
 // 섹션 카탈로그를 한데 묶는 곳: 저장함(/api/saved)·교차 레일·가이드 허브·평가 API(isKnownItem)가 쓴다
@@ -47,13 +52,12 @@ export function parseItemRef(value: string): ItemRef | null {
   if (at < 0) return null;
   const kind = value.slice(0, at);
   const id = value.slice(at + 1);
-  if (!isSavedKind(kind)) return null;
-  return (kind === "article" ? ARTICLE_SLUG : CATALOG_SLUG).test(id) ? { kind, id } : null;
+  return isSavedKind(kind) && isSavedId(kind, id) ? { kind, id } : null;
 }
 
 // 카탈로그에 있는 항목인가. 글은 DB 를 봐야 해서 여기서는 slug 모양만 본다 (평가 API 는 글을 받지 않는다)
 export function isKnownItem(kind: SavedKind, id: string): boolean {
-  if (kind === "article") return ARTICLE_SLUG.test(id);
+  if (kind === "article") return isSavedId(kind, id);
   return KNOWN[kind](id);
 }
 
@@ -82,13 +86,49 @@ async function articleSummaries(slugs: string[], locale: Locale): Promise<Map<st
   );
 }
 
-export async function summarize(kind: SavedKind, id: string, locale: Locale): Promise<CatalogSummary | null> {
-  if (kind === "article") return (await articleSummaries([id], locale)).get(id) ?? null;
-  return SUMMARY[kind](id, locale);
+// ───────── 커버 유령 글자 ─────────
+// 요약 한 줄에도 상세와 같은 글자(components/guide/glyph.ts coverGlyph)를 채운다. 저장함·가이드 허브·교차 레일은 이 값을 그대로 쓴다
+export type GlyphedSummary = CatalogSummary & { glyph?: string };
+
+const BEAUTY_BRAND = new Map(BEAUTY_ITEMS.map((i) => [i.slug, i.brand]));
+const PLACE_AREA = new Map(TRAVEL_ITEMS.map((i) => [i.slug, i.area]));
+const CLINIC_DOWNTIME = new Map(CLINIC_ITEMS.map((i) => [i.slug, i.downtimeDays]));
+const DRAMA_EPISODES = new Map(DRAMA_ITEMS.map((i) => [i.slug, i.episodes]));
+
+function glyphOf(summary: CatalogSummary, locale: Locale): string | undefined {
+  const { kind, id } = summary;
+  if (kind === "beauty") {
+    const brand = BEAUTY_BRAND.get(id);
+    return brand === undefined ? undefined : coverGlyph({ kind, brand });
+  }
+  if (kind === "place") {
+    const area = PLACE_AREA.get(id);
+    return area === undefined ? undefined : coverGlyph({ kind, area, areaName: summary.sub ?? "", locale });
+  }
+  if (kind === "clinic") {
+    const downtimeDays = CLINIC_DOWNTIME.get(id);
+    return downtimeDays === undefined ? undefined : coverGlyph({ kind, downtimeDays });
+  }
+  if (kind === "drama") {
+    const episodes = DRAMA_EPISODES.get(id);
+    return episodes === undefined ? undefined : coverGlyph({ kind, episodes });
+  }
+  return undefined; // 글: 사실 값이 없어 제목으로 어림한다 (coverGlyph)
+}
+
+function withGlyph(summary: CatalogSummary, locale: Locale): GlyphedSummary {
+  const glyph = glyphOf(summary, locale);
+  return glyph === undefined ? summary : { ...summary, glyph };
+}
+
+export async function summarize(kind: SavedKind, id: string, locale: Locale): Promise<GlyphedSummary | null> {
+  const summary =
+    kind === "article" ? ((await articleSummaries([id], locale)).get(id) ?? null) : await SUMMARY[kind](id, locale);
+  return summary && withGlyph(summary, locale);
 }
 
 // 여러 항목을 한 번에 (글은 쿼리 한 번). 받은 순서 그대로, 없어진 항목(카탈로그에서 빠졌거나 글이 내려감)은 뺀다
-export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<CatalogSummary[]> {
+export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<GlyphedSummary[]> {
   const articles = await articleSummaries(
     refs.filter((r) => r.kind === "article").map((r) => r.id),
     locale,
@@ -96,11 +136,12 @@ export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<Ca
   const summaries = await Promise.all(
     refs.map((r) => (r.kind === "article" ? (articles.get(r.id) ?? null) : SUMMARY[r.kind](r.id, locale))),
   );
-  return summaries.filter((s): s is CatalogSummary => s !== null);
+  return summaries.filter((s): s is CatalogSummary => s !== null).map((s) => withGlyph(s, locale));
 }
 
-export async function featured(section: Section, locale: Locale, n: number): Promise<CatalogSummary[]> {
-  return n > 0 ? FEATURED[section](locale, n) : [];
+export async function featured(section: Section, locale: Locale, n: number): Promise<GlyphedSummary[]> {
+  if (n <= 0) return [];
+  return (await FEATURED[section](locale, n)).map((s) => withGlyph(s, locale));
 }
 
 // 여러 섹션을 번갈아 섞는다 (섹션 순서대로 하나씩). 가이드 허브 '지금 인기'·교차 레일
@@ -109,10 +150,10 @@ export async function featuredMix(
   locale: Locale,
   n: number,
   exclude?: string,
-): Promise<CatalogSummary[]> {
+): Promise<GlyphedSummary[]> {
   const lists = await Promise.all(sections.map((s) => featured(s, locale, n + 1)));
   const pool = lists.map((list) => list.filter((item) => item.id !== exclude));
-  const out: CatalogSummary[] = [];
+  const out: GlyphedSummary[] = [];
   for (let round = 0; out.length < n && pool.some((list) => list.length > round); round += 1) {
     for (const list of pool) if (list[round] && out.length < n) out.push(list[round]);
   }

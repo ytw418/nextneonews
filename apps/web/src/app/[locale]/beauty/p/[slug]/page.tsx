@@ -6,12 +6,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdSlot } from "@/components/AdSlot";
 import { AffiliateBox } from "@/components/affiliate/AffiliateBox";
 import { AppHeader } from "@/components/AppHeader";
-import { BuyBoxView } from "@/components/beauty/BuyBoxView";
 import { BuyStrip } from "@/components/beauty/BuyStrip";
 import { Crumbs } from "@/components/beauty/Crumbs";
 import { Price } from "@/components/beauty/Price";
 import { ProductCard } from "@/components/beauty/ProductCard";
 import { ProductVote } from "@/components/beauty/ProductVote";
+import { ChevronDownIcon } from "@/components/icons";
 import { CrossRail } from "@/components/guide/CrossRail";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
@@ -50,19 +50,23 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/p
     loadBeauty(locale),
   ]);
   if (!entry) return {};
-  return beautyMetadata({
+  const title = t("product.metaTitle", { brand: entry.brand, name: entry.text.name });
+  const meta = beautyMetadata({
     locale,
     path: `/beauty/p/${slug}`,
-    title: t("product.metaTitle", { brand: entry.brand, name: entry.text.name }),
+    title,
     description: t("product.metaDescription", {
       tagline: entry.text.tagline,
       category: data.text.categories[entry.category].name,
     }),
   });
+  // 제품 상세는 사이트명 꼬리(' | Unnie Note')를 뺀다 — 긴 제품명에서 검색 결과 제목이 잘리지 않게 ('어디서 사나' 가 앞)
+  return { ...meta, title: { absolute: title } };
 }
 
-// 제품 상세: 커버 → 이름·브랜드·₩ → 구매 줄(PR·고지·버튼 1) → 한 줄 → 피부 타입·성분 → 써 봤어요? → 왜·쓰는 법·주의
-// → 어디서 사나 → 같은 분류 3 → 광고 → 다른 섹션. 광고는 구매 상자와 그리드 한 블록 이상 떨어진다
+// 제품 상세: 커버 → 이름·브랜드·₩(범례는 접힘) → 구매 줄(PR·고지·버튼 1) → 써 봤어요? → 한 줄 → 피부 타입·성분 → 왜·쓰는 법·주의
+// → 어디서 사나 → 같은 분류 3 → 광고 → 다른 섹션. 아이폰 15(390×844) 첫 화면에 구매 버튼과 투표 칩이 함께 들어오고 광고는 0.
+// 광고는 구매 상자와 그리드 한 블록 이상 떨어진다
 export default async function BeautyProductPage({ params }: PageProps<"/[locale]/beauty/p/[slug]">) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
@@ -148,21 +152,34 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
         <h1 className="text-t3 font-bold text-ink-900">
           <Words text={name} locale={locale} />
         </h1>
-        <p className="mt-1 flex flex-wrap items-baseline gap-x-2">
-          <span className="text-t6 font-semibold text-ink-600">{entry.brand}</span>
-          <span aria-hidden className="text-ink-400">
-            ·
-          </span>
-          <Price
-            tier={entry.priceTier}
-            label={t(`priceTier.${entry.priceTier}`)}
-            className="text-t5 font-semibold text-ink-900"
-          />
-        </p>
-        <p className="mt-0.5 text-st12 text-ink-600">{t("priceLegend")}</p>
+        {/* 가격 범례는 가격 옆 ▾ 로 접는다 (두 줄을 펼쳐 두면 투표 칩이 첫 화면 밖으로 밀린다). 자바스크립트 없이 열린다 */}
+        <details className="group mt-1">
+          <summary className="flex cursor-pointer list-none flex-wrap items-center gap-x-2 [&::-webkit-details-marker]:hidden">
+            <span className="text-t6 font-semibold text-ink-600">{entry.brand}</span>
+            <span aria-hidden className="text-ink-400">
+              ·
+            </span>
+            <Price
+              tier={entry.priceTier}
+              label={t(`priceTier.${entry.priceTier}`)}
+              className="text-t5 font-semibold text-ink-900"
+            />
+            <ChevronDownIcon className="size-4 text-ink-400 transition-transform duration-200 ease-expo group-open:rotate-180" />
+          </summary>
+          <p className="mt-0.5 text-st12 text-ink-600">{t("priceLegend")}</p>
+        </details>
       </div>
 
       {shops[0] && <BuyStrip locale={locale} target={shops[0]} itemId={slug} moreHref={`#${BUY_ANCHOR}`} />}
+
+      <div className="px-gutter pt-4">
+        <ProductVote itemId={slug} initial={totals} showPercent={totals.total >= PERCENT_MIN_VOTES} />
+        {rating && (
+          <p className="mt-1 px-1 text-t7 tabular-nums text-ink-600">
+            {t("product.rating", { value: rating.value, count: rating.count })}
+          </p>
+        )}
+      </div>
 
       <p className="px-gutter pt-5 text-t5 font-medium text-ink-900">
         <Words text={tagline} locale={locale} />
@@ -195,15 +212,6 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
           </ul>
         </dd>
       </dl>
-
-      <div className="px-gutter pt-6">
-        <ProductVote itemId={slug} initial={totals} showPercent={totals.total >= PERCENT_MIN_VOTES} />
-        {rating && (
-          <p className="mt-1 px-1 text-t7 tabular-nums text-ink-600">
-            {t("product.rating", { value: rating.value, count: rating.count })}
-          </p>
-        )}
-      </div>
 
       <section aria-labelledby="beauty-why" className="px-gutter pt-8">
         <h2 id="beauty-why" className="text-t4 font-bold text-ink-900">
@@ -239,19 +247,17 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
       </div>
 
       <div aria-hidden className="mt-8 h-4 bg-band" />
-      <BuyBoxView placement="beauty-detail" item={slug}>
-        <AffiliateBox
-          title={t("buy.title")}
-          locale={locale}
-          placement="beauty-detail"
-          items={shops.map((target) => ({
-            target,
-            label: PARTNER_NAME[target.partner],
-            sub: t(`ship.${target.partner}`),
-            itemId: slug,
-          }))}
-        />
-      </BuyBoxView>
+      <AffiliateBox
+        title={t("buy.title")}
+        locale={locale}
+        placement="beauty-detail"
+        items={shops.map((target) => ({
+          target,
+          label: PARTNER_NAME[target.partner],
+          sub: t(`ship.${target.partner}`),
+          itemId: slug,
+        }))}
+      />
 
       {related.length > 0 && (
         <section aria-labelledby="beauty-related">

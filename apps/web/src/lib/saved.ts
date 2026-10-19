@@ -1,13 +1,15 @@
 import { useSyncExternalStore } from "react";
 
+import { CATALOG_SLUG, isSavedId, isSavedKind } from "../data/sections";
+import type { SavedKind } from "../data/types";
 import { storageGet, storageSet } from "./storage";
+
+export type { SavedKind } from "../data/types";
 
 // 로그인 없는 저장(하트)·명소 '가 봤어요' 도장. 이 기기 localStorage 에만 두고 서버로 보내지 않는다.
 // 클라이언트 전용(훅이 있다): 서버 코드는 여기서 타입만 가져간다 (import type).
-// 저장소를 못 쓰는 브라우저(사파리 사생활 보호·일부 인앱)는 이번 방문 동안 메모리에 둔다
-
-export type SavedKind = "article" | "beauty" | "place" | "clinic" | "drama";
-export const SAVED_KINDS: readonly SavedKind[] = ["article", "beauty", "place", "clinic", "drama"];
+// 저장소를 못 쓰는 브라우저(사파리 사생활 보호·일부 인앱)는 이번 방문 동안 메모리에 둔다.
+// 종류·ID 규칙은 data/sections.ts 하나 (서버 /api/saved 와 같은 규칙으로 걸러야 한 항목 때문에 목록 전체가 깨지지 않는다)
 
 export interface SavedItem {
   kind: SavedKind;
@@ -24,19 +26,12 @@ export const VISITED_KEY = "hb:visited";
 const VISITED_CHANGED = "hb:visited-changed";
 const VISITED_MAX = 300;
 
-// 글 slug(단어 8개 + 6자리)와 카탈로그 slug 가 모두 들어가는 형식. 공유 링크로 들어온 값도 이걸로 거른다
-const ID = /^[a-z0-9][a-z0-9-]{0,119}$/;
-
-export function isSavedKind(value: unknown): value is SavedKind {
-  return typeof value === "string" && (SAVED_KINDS as readonly string[]).includes(value);
-}
-
 const keyOf = (item: Pick<SavedItem, "kind" | "id">) => `${item.kind}:${item.id}`;
 
 function isItem(value: unknown): value is SavedItem {
   if (!value || typeof value !== "object") return false;
   const v = value as Record<string, unknown>;
-  return isSavedKind(v.kind) && typeof v.id === "string" && ID.test(v.id) && typeof v.at === "number" && Number.isFinite(v.at);
+  return isSavedKind(v.kind) && isSavedId(v.kind, v.id) && typeof v.at === "number" && Number.isFinite(v.at);
 }
 
 // 최신순 정렬 + 같은 항목은 최신 하나만 + 상한
@@ -151,7 +146,7 @@ export function isSaved(kind: SavedKind, id: string): boolean {
 
 // 저장됐으면 true
 export function toggleSaved(kind: SavedKind, id: string): boolean {
-  if (!isSavedKind(kind) || !ID.test(id)) return false;
+  if (!isSavedKind(kind) || !isSavedId(kind, id)) return false;
   const next = withToggled(saved.read(), kind, id, Date.now());
   saved.write(next.list);
   return next.saved;
@@ -189,7 +184,7 @@ function parseVisited(raw: string | null): string[] {
   try {
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    const slugs = parsed.filter((s): s is string => typeof s === "string" && ID.test(s));
+    const slugs = parsed.filter((s): s is string => typeof s === "string" && CATALOG_SLUG.test(s));
     return [...new Set(slugs)].slice(0, VISITED_MAX);
   } catch {
     return [];
@@ -217,7 +212,7 @@ export function isVisited(slug: string): boolean {
 
 // 도장을 찍었으면 true
 export function toggleVisited(slug: string): boolean {
-  if (!ID.test(slug)) return false;
+  if (!CATALOG_SLUG.test(slug)) return false;
   const list = visited.read();
   const on = !list.includes(slug);
   visited.write(on ? [slug, ...list].slice(0, VISITED_MAX) : list.filter((s) => s !== slug));

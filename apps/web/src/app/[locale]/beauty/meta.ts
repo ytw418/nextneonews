@@ -1,10 +1,12 @@
 import { LOCALE_PATH_PREFIX, type Locale, SITE_NAME } from "@kmedia/core";
 import type { Metadata } from "next";
 
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import type { Crumb } from "@/lib/jsonld-catalog";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-// 뷰티 화면 공용 메타 (rankings/page.tsx 와 같은 모양): canonical·hreflang·og. ogImage=false 면 그 경로의 opengraph-image 파일이 쓰인다
+// 뷰티 화면 공용 메타 (rankings/page.tsx 와 같은 모양): canonical·hreflang·og. ogImage=false 면 그 경로의 opengraph-image 파일이 쓰인다.
+// hreflang·robots 는 가이드 색인 정책(lib/guide-seo.ts)을 따른다 — 색인 언어끼리만 잇고, 그 밖의 언어는 noindex, follow
 export function beautyMetadata(i: {
   locale: string;
   path: string; // 언어 접두사 뺀 경로 (/beauty/p/x)
@@ -12,12 +14,12 @@ export function beautyMetadata(i: {
   description: string;
   ogImage?: boolean;
 }): Metadata {
-  const alternates = localeAlternates(i.locale, i.path);
+  const alternates = guideAlternates(i.locale, i.path);
   return {
     title: i.title,
     description: i.description,
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(i.locale, i.path),
     openGraph: {
       ...ogBase(i.locale),
       type: "website",

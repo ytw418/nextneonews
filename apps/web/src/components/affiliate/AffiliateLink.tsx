@@ -50,7 +50,8 @@ export function AffiliateLink({
 }
 
 // 서버에서 그린 제휴 상자의 클릭·노출을 잰다. 눌린 <a> 의 주소로 어느 파트너인지 찾고,
-// 상자가 화면에 반 넘게 들어오면 buy_box_view 를 한 번 보낸다
+// 상자가 화면에 반 넘게 들어오면 buy_box_view 를 한 번 보낸다 (노출은 여기 한 곳에서만 센다 — 감싸는 쪽에서 또 보내지 않는다).
+// 줄이 모두 같은 항목(뷰티 제품 상세)이면 그 항목 id 를 item 으로 함께 싣는다
 export function AffiliateClicks({
   placement,
   links,
@@ -64,6 +65,8 @@ export function AffiliateClicks({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const count = links.length;
+  const first = links[0]?.item;
+  const item = first && links.every((l) => l.item === first) ? first : undefined;
 
   // 상자 하나에 한 번만 센다
   useEffect(() => {
@@ -72,14 +75,14 @@ export function AffiliateClicks({
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
-        track("buy_box_view", { placement, count });
+        track("buy_box_view", { placement, count, ...(item ? { item } : {}) });
         observer.disconnect();
       },
       { threshold: VIEW_RATIO },
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [placement, count]);
+  }, [placement, count, item]);
 
   return (
     <div

@@ -77,7 +77,6 @@
   "voteError": "Your vote didn’t go through. Try again.",
   "voteTooFast": "That’s a lot of taps. Try again in a bit.",
   "starLabel": "{count, plural, one {#\u00a0star} other {#\u00a0stars}}",
-  "starAverage": "{average} out of 5 · {count, plural, one {#\u00a0rating} other {#\u00a0ratings}}",
   "visited": "Been here",
   "markVisited": "I’ve been here",
   "savedTabCount": "Saved, {count, plural, one {#\u00a0item} other {#\u00a0items}}",
@@ -99,8 +98,5 @@
     "combination": "Combination skin",
     "sensitive": "Sensitive skin",
     "normal": "Normal skin"
-  },
-  "facetSummary": "{facet}: {percent}% chose “{choice}”",
-  "starFew": "{count, plural, one {#\u00a0rating} other {#\u00a0ratings}}",
-  "starMine": "Your rating: {count}"
+  }
 }

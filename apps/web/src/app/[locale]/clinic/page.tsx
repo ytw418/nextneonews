@@ -15,7 +15,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { clinicText, listClinic } from "@/data/clinic";
 import { CLINIC_FIELDS } from "@/data/clinic/types";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 
@@ -23,12 +24,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/clinic">
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "Clinic" });
-  const alternates = localeAlternates(locale, "/clinic");
+  const path = "/clinic";
+  const alternates = guideAlternates(locale, path);
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "website",

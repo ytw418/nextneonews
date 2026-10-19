@@ -77,7 +77,6 @@
   "voteError": "沒有送出成功，請再試一次。",
   "voteTooFast": "按太多次了，請稍後再試。",
   "starLabel": "{count} 顆星",
-  "starAverage": "{average} 分（滿分 5 分）·{count} 人評分",
   "visited": "已打卡",
   "markVisited": "我去過了！打卡",
   "savedTabCount": "收藏 {count} 項",
@@ -99,8 +98,5 @@
     "combination": "混合肌",
     "sensitive": "敏感肌",
     "normal": "中性肌"
-  },
-  "facetSummary": "{facet}有 {percent}% 選「{choice}」",
-  "starFew": "{count} 則評分",
-  "starMine": "你的評分：{count}"
+  }
 }

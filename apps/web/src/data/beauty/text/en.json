@@ -71,25 +71,25 @@
     "manyo-pure-soybean-cleansing-oil": {
       "name": "Pure Soybean Cleansing Oil",
       "tagline": "Plant-oil cleanser that turns milky as it rinses",
-      "why": "Formerly sold as Pure Cleansing Oil, this blend of soybean, argan, jojoba and other plant oils won a 2025 Allure Beauty Award for oil cleansers. It melts makeup and sebum, then turns into a light milk with water.",
+      "why": "Formerly sold as Pure Cleansing Oil, this blend of soybean, argan, jojoba and other plant oils melts makeup and sebum, then turns into a light milk with water.",
       "howTo": "Apply 2-3 pumps to a dry face with dry hands and massage. Add a splash of water to emulsify, rinse well, then follow with a foam or gel cleanser."
     },
     "round-lab-1025-dokdo-toner": {
       "name": "1025 Dokdo Toner",
-      "tagline": "Watery everyday toner, a regular in Olive Young awards",
-      "why": "One of the most-bought toners in Korea and a regular name in Olive Young's annual awards. The watery formula with Ulleungdo deep sea water, betaine and panthenol hydrates and leaves skin texture feeling smoother after cleansing.",
+      "tagline": "Watery everyday toner with Ulleungdo deep sea water",
+      "why": "Round Lab's everyday toner. Its watery formula with Ulleungdo deep sea water, betaine and panthenol hydrates and leaves skin texture feeling smoother after cleansing.",
       "howTo": "After cleansing, soak a cotton pad and sweep outward, or pat a few drops in with your palms. Follow with serum and moisturizer."
     },
     "anua-heartleaf-77-soothing-toner": {
       "name": "Heartleaf 77 Soothing Toner",
       "tagline": "Calming heartleaf toner with a light, watery feel",
-      "why": "A global K-beauty hit and a frequent Olive Young awards pick. Heartleaf (houttuynia) water makes up most of the formula, joined by panthenol and several types of hyaluronic acid for a soothing, hydrating layer.",
+      "why": "Anua's heartleaf toner. Heartleaf (houttuynia) water makes up most of the formula, joined by panthenol and several types of hyaluronic acid for a soothing, hydrating layer.",
       "howTo": "Pat into clean skin with your hands or a cotton pad. For a quick calming pack, soak cotton pads and leave on for 5-10 minutes."
     },
     "medicube-zero-pore-pad": {
       "name": "Zero Pore Pads",
       "tagline": "Two-sided toner pads with AHA and BHA for smoother skin",
-      "why": "Among the most-bought K-beauty items on Amazon US. Each pad has an embossed side for wiping and a smooth side for pressing; the toner combines lactic acid (AHA) and salicylic acid (BHA) to leave oily skin feeling smoother and less slick.",
+      "why": "A double-sided toner pad from medicube. Each pad has an embossed side for wiping and a smooth side for pressing; the toner combines lactic acid (AHA) and salicylic acid (BHA) to leave oily skin feeling smoother and less slick.",
       "howTo": "After cleansing, wipe the embossed side over the face, then press the smooth side on oilier areas. Start every other day, in the evening.",
       "caution": "Contains exfoliating acids and alcohol. Avoid broken skin, do not combine with other strong exfoliants, and wear sunscreen by day."
     },
@@ -109,7 +109,7 @@
     "cosrx-advanced-snail-96-mucin-power-essence": {
       "name": "Advanced Snail 96 Mucin Power Essence",
       "tagline": "The snail mucin essence behind the glass-skin trend",
-      "why": "Arguably the most famous K-beauty product abroad and a fixture of Amazon US beauty charts. 96% snail secretion filtrate gives a slippery, cushiony texture that hydrates and leaves a dewy finish without feeling heavy.",
+      "why": "COSRX's snail mucin essence. 96% snail secretion filtrate gives a slippery, cushiony texture that hydrates and leaves a dewy finish without feeling heavy.",
       "howTo": "After toner, pump 2-3 times onto your palm and pat onto the face until absorbed. Follow with moisturizer."
     },
     "beauty-of-joseon-glow-serum-propolis-niacinamide": {
@@ -134,14 +134,14 @@
     "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
       "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
       "tagline": "Azelaic acid serum balanced with soothing ingredients",
-      "why": "A recent Amazon US hit from Anua. It pairs azelaic acid with niacinamide, panthenol and hyaluronic acid in a light serum, aimed at oily skin that also wants a soothing, hydrating step.",
+      "why": "A serum from Anua's Redness Soothing line. It pairs azelaic acid with niacinamide, panthenol and hyaluronic acid in a light serum, aimed at oily skin that also wants a soothing, hydrating step.",
       "howTo": "After toner, apply a small amount to the face once a day, in the evening at first. Follow with moisturizer, and sunscreen by day.",
       "caution": "Contains azelaic acid and a mild BHA. A slight tingle is common at first; patch test and avoid using with other strong acids."
     },
     "medicube-pdrn-pink-peptide-serum": {
       "name": "PDRN Pink Peptide Serum",
       "tagline": "Pink PDRN serum with peptides and niacinamide",
-      "why": "One of the products that made PDRN (salmon-derived DNA, listed as sodium DNA) a K-beauty buzzword, with thousands of Amazon reviews. The pink, lightweight serum adds moisture and a glossy, healthy-looking finish.",
+      "why": "A peptide serum built around PDRN (salmon-derived DNA, listed as sodium DNA). The pink, lightweight serum adds moisture and a glossy, healthy-looking finish.",
       "howTo": "After toner, apply 1-2 pumps and pat over the face. Follow with moisturizer.",
       "caution": "Contains fish-derived ingredients; skip it if you avoid them."
     },
@@ -155,7 +155,7 @@
     "manyo-bifida-biome-complex-ampoule": {
       "name": "Bifida Biome Complex Ampoule",
       "tagline": "Ferment-based ampoule for a plump, moisturized feel",
-      "why": "A long-selling ma:nyo ampoule built on bifida ferment lysate with other ferments, niacinamide and squalane. The milky serum feels nourishing without heaviness, which suits dry and normal skin.",
+      "why": "A ma:nyo ampoule built on bifida ferment lysate with other ferments, niacinamide and squalane. The milky serum feels nourishing without heaviness, which suits dry and normal skin.",
       "howTo": "After toner, apply 2-3 drops and pat in. Follow with moisturizer."
     },
     "cosrx-advanced-snail-92-all-in-one-cream": {
@@ -167,7 +167,7 @@
     "aestura-atobarrier365-cream": {
       "name": "ATOBARRIER365 Cream",
       "tagline": "Ceramide capsule cream for dry, sensitive skin",
-      "why": "Amorepacific's derma brand cream, recognised in the cream category of the Olive Young Awards. Ceramide capsules, cholesterol and squalane give a rich but non-greasy moisture layer for dry, easily irritated skin.",
+      "why": "The barrier cream from AESTURA, Amorepacific's derma brand. Ceramide capsules, cholesterol and squalane give a rich but non-greasy moisture layer for dry, easily irritated skin.",
       "howTo": "As the last step of your routine, warm a pea-sized amount between fingertips and press over the face. Reapply on dry patches as needed."
     },
     "beauty-of-joseon-dynasty-cream": {
@@ -185,7 +185,7 @@
     "medicube-collagen-niacinamide-jelly-cream": {
       "name": "Collagen Niacinamide Jelly Cream",
       "tagline": "Clear jelly cream with collagen for a glossy finish",
-      "why": "A transparent jelly cream that has racked up thousands of Amazon reviews. Hydrolyzed collagen and niacinamide in a bouncy, water-light texture add moisture and a glossy, healthy-looking finish.",
+      "why": "A transparent jelly cream from medicube. Hydrolyzed collagen and niacinamide in a bouncy, water-light texture add moisture and a glossy, healthy-looking finish.",
       "howTo": "As the last skincare step, spread an appropriate amount over the face and pat until absorbed."
     },
     "illiyoon-ceramide-ato-concentrate-cream": {
@@ -236,7 +236,7 @@
     "biodance-bio-collagen-real-deep-mask": {
       "name": "Bio-Collagen Real Deep Mask",
       "tagline": "Overnight hydrogel mask that turns clear as it works",
-      "why": "The hydrogel mask that went viral worldwide and sits near the top of Amazon US beauty charts. It turns transparent as the essence absorbs, and in Korea it is registered as a functional cosmetic for brightening and wrinkle care.",
+      "why": "Biodance's hydrogel sheet mask. It turns transparent as the essence absorbs, and in Korea it is registered as a functional cosmetic for brightening and wrinkle care.",
       "howTo": "After toner or serum, apply the mask and leave on for 3-4 hours or overnight until it turns clear. Remove and pat in the rest."
     },
     "laneige-water-sleeping-mask": {
@@ -267,13 +267,13 @@
     "romand-the-juicy-lasting-tint": {
       "name": "The Juicy Lasting Tint",
       "tagline": "Glossy, juicy lip tint with long-lasting color",
-      "why": "rom&nd's signature tint and one of the most-bought lip products at Olive Young. A glossy, syrupy finish that leaves a stain as it wears, in dozens of shades from sheer fruit tones to deep berries.",
+      "why": "rom&nd's signature tint. A glossy, syrupy finish that leaves a stain as it wears, in dozens of shades from sheer fruit tones to deep berries.",
       "howTo": "Apply to the center of the lips and blot for a gradient, or cover the whole lip for full color. Layer over balm for extra shine."
     },
     "peripera-ink-the-velvet": {
       "name": "Ink the Velvet",
       "tagline": "Soft-matte velvet tint in a huge shade range",
-      "why": "peripera's flagship tint, which sold out within days of its launch and has stayed popular ever since. A whipped, velvety texture blurs lip lines and leaves a soft matte stain.",
+      "why": "peripera's flagship tint. A whipped, velvety texture blurs lip lines and leaves a soft matte stain.",
       "howTo": "Press onto the center of the lips with the flat side of the applicator and blend outward for a gradient, or apply all over for full color."
     },
     "laneige-lip-glowy-balm": {
@@ -298,7 +298,7 @@
     "clio-kill-cover-founwear-cushion": {
       "name": "Kill Cover Founwear Cushion The Original",
       "tagline": "High-coverage cushion with SPF50+ PA+++",
-      "why": "CLIO's Kill Cover cushion has sold millions of units since 2015. The Founwear version gives high, long-wearing coverage with a natural finish and SPF50+ PA+++ UV protection, as listed on the official Korean product notice.",
+      "why": "Part of CLIO's Kill Cover cushion line. The Founwear version gives high, long-wearing coverage with a natural finish and SPF50+ PA+++ UV protection, as listed on the official Korean product notice.",
       "howTo": "Tap the puff lightly into the cushion and press onto skin from the center outward. Layer thinly on blemishes rather than pressing harder."
     },
     "missha-m-perfect-cover-bb-cream": {

@@ -2,12 +2,12 @@
   "title": "韩国美妆",
   "intro": "韩国护肤和彩妆，连排名方法都公开。看看哪些适合你的肤质，以及在哪里买。",
   "metaTitle": "韩国美妆推荐：按品类、按肤质挑选",
-  "metaDescription": "卸妆、化妆水、精华、防晒等人气韩国美妆，按编辑评分和读者的肤质投票排名，每一款都附上购买渠道。",
+  "metaDescription": "卸妆、化妆水、精华、防晒等人气韩国美妆，按编辑评分加读者投票排名（不满 30 票时为编辑精选），每一款都附上购买渠道。",
   "skinChip": "不知道自己的肤质？6道题测一测",
   "skinChipMine": "{skin}的推荐",
   "categoriesLabel": "美妆品类",
   "crumbsLabel": "当前位置",
-  "winnersTitle": "各品类No.1",
+  "winnersTitle": "各品类首选",
   "priceLegend": "₩ 1万韩元以下·₩₩ 1～3万·₩₩₩ 3万以上（韩国定价）",
   "priceTier": {
     "1": "价格：1万韩元以下",
@@ -53,7 +53,7 @@
     "metaDescription": "{intro} 按编辑评分和读者投票排名，附适合肤质、价位和购买渠道。"
   },
   "product": {
-    "metaTitle": "{brand} {name}｜适合肤质、用法、在哪里买",
+    "metaTitle": "在哪里买？{brand} {name}",
     "metaDescription": "{tagline}。适合哪些肤质、怎么用、读者评价和购买渠道，一次看完（{category}）。",
     "share": "分享这款产品",
     "rankIn": "{category}·{kind} 第{rank}名",

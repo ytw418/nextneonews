@@ -3,11 +3,11 @@
   "title": "Cẩm nang",
   "intro": "Làm đẹp, du lịch, thẩm mỹ và phim Hàn, chọn lọc cho người yêu Hàn Quốc.",
   "metaTitle": "Cẩm nang làm đẹp, du lịch Hàn Quốc và phim Hàn",
-  "metaDescription": "Giải thưởng mỹ phẩm Hàn và gợi ý theo loại da, khu phố và phim trường ở Seoul, kiến thức về thủ thuật thẩm mỹ, và nơi xem phim Hàn.",
+  "metaDescription": "Mỹ phẩm Hàn nổi bật theo danh mục và gợi ý theo loại da, khu phố và phim trường ở Seoul, kiến thức về thủ thuật thẩm mỹ, và nơi xem phim Hàn.",
   "sections": {
     "beauty": {
       "title": "Làm đẹp Hàn",
-      "line": "Giải thưởng, chọn theo loại da, nơi mua",
+      "line": "Lựa chọn nổi bật, chọn theo loại da, nơi mua",
       "glyph": "Be",
       "count": "{count}\u00a0sản phẩm"
     },

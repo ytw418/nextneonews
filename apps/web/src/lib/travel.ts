@@ -1,26 +1,15 @@
 import type { AreaSlug, PlaceKind, PrepKey } from "@/data/travel/types";
 import type { AffiliatePartner, AffiliateTarget } from "@/data/types";
 
+// vitest 는 @/ 별칭을 모른다 — 값 import 는 상대 경로로
+import { coverGlyph } from "../components/guide/glyph";
+
 // 여행 화면(/travel·동네·명소) 계산과 상수. 서버·클라이언트 어디서나 쓴다 (카탈로그는 import 하지 않는다)
 
-// ───────── 타이포 커버 유령 글자 (docs/monetize/DESIGN.md §4-①) ─────────
-// 일본어·중국어·한국어는 동네 이름 첫 글자(聖·弘·성), 그 밖은 로마자 2자. 키릴·베트남어 이니셜은 쓰지 않는다
-const LATIN_GLYPH: Record<AreaSlug, string> = {
-  seongsu: "SS",
-  hongdae: "HD",
-  myeongdong: "MD",
-  "hannam-itaewon": "HN",
-  "apgujeong-cheongdam": "AP",
-  "bukchon-ikseon": "BC",
-  yeouido: "YD",
-  busan: "BS",
-  jeju: "JJ",
-};
-const ONE_CHAR_LOCALES = new Set(["ja", "zh-TW", "zh-CN", "ko"]);
-
+// ───────── 타이포 커버 유령 글자 ─────────
+// 규칙은 components/guide/glyph.ts coverGlyph 하나 (DESIGN.md §4-①). 여행 화면이 부르기 쉽게 동네 인자만 받는다
 export function areaGlyph(area: AreaSlug, name: string, locale: string): string {
-  const first = Array.from(name.trim())[0];
-  return ONE_CHAR_LOCALES.has(locale) && first ? first : LATIN_GLYPH[area];
+  return coverGlyph({ kind: "place", area, areaName: name, locale });
 }
 
 // ───────── '가 봤어요' 도장 진행 ─────────
@@ -90,8 +79,9 @@ export interface PrepRow {
   partner: AffiliatePartner;
 }
 
+// 여행 준비 링크 표는 여기 하나: 허브·동네·명소·생활 글 상자가 같은 파트너·주소를 쓴다 (공항 이동은 Klook — BM-VALIDATION §4).
 // 줄 순서 = 화면 순서. 첫 줄은 eSIM (Klook 수수료가 가장 확실하고, 도착 첫날 꼭 필요하다)
-export const PREP_ROWS: Record<"hub" | "area", PrepRow[]> = {
+export const PREP_ROWS: Record<"hub" | "area" | "article", PrepRow[]> = {
   hub: [
     { key: "esim", partner: "klook" },
     { key: "esim", partner: "airalo" },
@@ -102,6 +92,12 @@ export const PREP_ROWS: Record<"hub" | "area", PrepRow[]> = {
     { key: "tour", partner: "creatrip" },
   ],
   area: [
+    { key: "esim", partner: "klook" },
+    { key: "airport", partner: "klook" },
+    { key: "stay", partner: "trip" },
+  ],
+  // 생활 글 끝 상자 (lib/ads.ts articlePrepFor 가 분류·언어를 보고 고른다): eSIM → 공항 이동 → 숙소
+  article: [
     { key: "esim", partner: "klook" },
     { key: "airport", partner: "klook" },
     { key: "stay", partner: "trip" },
@@ -118,8 +114,13 @@ export function prepTarget(key: PrepKey, partner: AffiliatePartner, locale: stri
 export function placePrepTargets(locale: string): { esim: AffiliateTarget; airportTour: AffiliateTarget } {
   return {
     esim: prepTarget("esim", "klook", locale),
-    airportTour: { partner: "creatrip", url: creatrip(locale, "/spot/list") },
+    airportTour: prepTarget("tour", "creatrip", locale),
   };
+}
+
+// 줄 → { key, target } (문구는 부르는 쪽이 prep.items[key] 로 붙인다). 생활 글 상자가 쓴다
+export function prepTargets(rows: readonly PrepRow[], locale: string): { key: PrepKey; target: AffiliateTarget }[] {
+  return rows.map((row) => ({ key: row.key, target: prepTarget(row.key, row.partner, locale) }));
 }
 
 export interface PrepBoxItem {

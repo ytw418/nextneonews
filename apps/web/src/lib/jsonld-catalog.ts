@@ -1,4 +1,5 @@
 import { SITE_URL } from "./url";
+import { MIN_VOTES_FOR_SUMMARY } from "./vote-rules";
 
 // 가이드 섹션(뷰티·여행·클리닉·드라마) 구조화 데이터 빌더. 화면에 보이는 것만 넣는다 (보이지 않는 별점·후기 금지).
 // 조직·사이트는 레이아웃의 siteJsonLd 에 있어 @id 로만 가리킨다. 여러 노드는 graph() 로 한 스크립트에 묶는다
@@ -36,7 +37,7 @@ export function itemListLd(i: {
   };
 }
 
-// 제품. 별점(5점 만점으로 환산한 값)은 실제 표가 5개 이상일 때만 (그보다 적으면 넘기지 않는다 — 여기서도 한 번 더 막는다)
+// 제품. 별점(5점 만점으로 환산한 값)은 실제 표가 MIN_VOTES_FOR_SUMMARY 이상일 때만 (그보다 적으면 넘기지 않는다 — 여기서도 한 번 더 막는다)
 export function productLd(i: {
   url: string;
   name: string;
@@ -53,7 +54,7 @@ export function productLd(i: {
     brand: { "@type": "Brand", name: i.brand },
     description: i.description,
     ...(i.category ? { category: i.category } : {}),
-    ...(i.rating && i.rating.count >= 5
+    ...(i.rating && i.rating.count >= MIN_VOTES_FOR_SUMMARY
       ? {
           aggregateRating: {
             "@type": "AggregateRating",

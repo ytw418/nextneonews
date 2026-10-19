@@ -7,17 +7,9 @@ import { EmptyMemo } from "@/components/EmptyMemo";
 import { PlusSquareIcon, ShareIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { toast } from "@/components/ui/Toast";
-import { SECTION_TINT } from "@/data/sections";
-import {
-  addSavedMany,
-  readSaved,
-  removeSaved,
-  SAVED_KINDS,
-  SAVED_SHARE_MAX,
-  type SavedItem,
-  type SavedKind,
-  useSaved,
-} from "@/lib/saved";
+import { SAVED_KINDS, SECTION_TINT } from "@/data/sections";
+import type { SavedKind } from "@/data/types";
+import { addSavedMany, readSaved, removeSaved, SAVED_SHARE_MAX, type SavedItem, useSaved } from "@/lib/saved";
 import { track } from "@/lib/track";
 
 import { ImportBanner } from "./ImportBanner";

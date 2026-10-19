@@ -17,7 +17,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { listAreas, travelText } from "@/data/travel";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 import { areaGlyph, PREP_ROWS, prepBoxItems, spotlightPlaces } from "@/lib/travel";
-import { localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
+import { guideAlternates, guideRobots } from "@/lib/guide-seo";
+import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
 export const revalidate = 3600;
 
@@ -27,12 +28,13 @@ const SPOTLIGHT = 6;
 export async function generateMetadata({ params }: PageProps<"/[locale]/travel">): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Travel" });
-  const alternates = localeAlternates(locale, "/travel");
+  const path = "/travel";
+  const alternates = guideAlternates(locale, path);
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
     alternates,
-    robots: pageRobots(true),
+    robots: guideRobots(locale, path),
     openGraph: {
       ...ogBase(locale),
       type: "website",

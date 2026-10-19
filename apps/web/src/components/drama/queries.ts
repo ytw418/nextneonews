@@ -4,9 +4,10 @@ import type { Locale } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 import { cache } from "react";
 
+import { coverGlyph } from "@/components/guide/glyph";
 import type { DramaEntry } from "@/data/drama";
 import { namesOf } from "@/lib/entities";
-import { coverGlyph, mixTrending } from "@/lib/drama";
+import { mixTrending } from "@/lib/drama";
 import { displayName, getEntities, getLatestSnapshot } from "@/lib/rankings";
 
 // 드라마 화면이 DB 에서 읽는 것: K-드라마 랭킹 최신판(지금 화제)과 출연 인물(/idol 링크·현지 이름).
@@ -32,7 +33,7 @@ function catalogCard(entry: DramaEntry, rank?: number): TrendCard {
     key: entry.slug,
     href: `/drama/${entry.slug}`,
     title: entry.text.title,
-    glyph: String(entry.episodes),
+    glyph: coverGlyph({ kind: "drama", episodes: entry.episodes }),
     rank,
     year: entry.year,
     network: entry.network,
@@ -54,7 +55,7 @@ async function rankedCards(locale: Locale, catalog: DramaEntry[]): Promise<Trend
       const slug = entities.get(item.entityId)?.slug;
       if (!slug) return [];
       const title = displayName(item.names, locale, item.entityId);
-      return [{ key: `entity:${item.entityId}`, href: `/idol/${slug}`, title, glyph: coverGlyph(title, locale), rank: item.rank }];
+      return [{ key: `entity:${item.entityId}`, href: `/idol/${slug}`, title, glyph: coverGlyph({ kind: "name", name: title, locale }), rank: item.rank }];
     });
   } catch {
     return [];

@@ -2,12 +2,12 @@
   "title": "K-뷰티",
   "intro": "한국 스킨케어·메이크업을 고르는 방법까지 공개하고 순위를 매겼어요. 내 피부에 맞는 것과 살 곳을 한 번에 봐요.",
   "metaTitle": "K-뷰티 분류별·피부 타입별 추천",
-  "metaDescription": "클렌저, 토너, 세럼, 선크림 등 인기 K-뷰티 제품을 에디터 점수와 독자의 피부 타입별 평가로 순위를 매기고, 제품마다 살 곳을 정리했어요.",
+  "metaDescription": "클렌저, 토너, 세럼, 선크림 등 인기 K-뷰티 제품을 에디터 점수에 독자 평가를 더해 순위를 매기고(30표 전에는 에디터 픽), 제품마다 살 곳을 정리했어요.",
   "skinChip": "피부 타입 모르면? 6문항",
   "skinChipMine": "{skin} 추천 보기",
   "categoriesLabel": "뷰티 분류",
   "crumbsLabel": "현재 위치",
-  "winnersTitle": "분류별 1위",
+  "winnersTitle": "분류별 대표 제품",
   "priceLegend": "₩ 1만 원 미만 · ₩₩ 1~3만 원 · ₩₩₩ 3만 원 이상 (한국 정가)",
   "priceTier": {
     "1": "가격: 1만 원 미만",
@@ -53,7 +53,7 @@
     "metaDescription": "{intro} 에디터 점수와 독자 평가로 순위를 매기고, 맞는 피부 타입·가격대·살 곳을 함께 정리했어요."
   },
   "product": {
-    "metaTitle": "{brand} {name} | 맞는 피부 타입·사용법·어디서 사나",
+    "metaTitle": "어디서 살까? {brand} {name}",
     "metaDescription": "{tagline}. 맞는 피부 타입, 사용법, 독자 평가, 살 곳을 한 번에 정리했어요 ({category}).",
     "share": "이 제품 공유하기",
     "rankIn": "{category} · {kind} {rank}위",

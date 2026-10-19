@@ -3,8 +3,9 @@ import { type Locale, LOCALE_PATH_PREFIX, LOCALES } from "@kmedia/core";
 // 클리닉 시술 목록은 로더(server-only) 대신 사실 파일을 바로 읽는다: next.config.ts 가 이 파일을 불러 X-Robots-Tag 헤더를 만든다
 import { CLINIC_ITEMS } from "../data/clinic/items";
 import type { ClinicField } from "../data/clinic/types";
+import { localeAlternates, pageRobots } from "./url";
 
-// 가이드 섹션(뷰티·여행·클리닉·드라마)을 검색에 어디까지 내는가. next.config.ts(noindex 헤더)와 sitemap.ts 가 함께 읽는다.
+// 가이드 섹션(뷰티·여행·클리닉·드라마)을 검색에 어디까지 내는가. next.config.ts(noindex 헤더)·sitemap.ts·가이드 페이지 메타(robots·hreflang)가 모두 여기를 읽는다.
 // 도메인을 옮긴 직후 AI 보조로 만든 카탈로그 주소 1,500개를 한꺼번에 색인시키지 않으려고 좁게 시작한다 (docs/monetize/BM-VALIDATION.md §3)
 
 // 가이드 섹션 주소의 첫 마디 (/{locale}/beauty/...)
@@ -36,8 +37,29 @@ export function guideIndexable(locale: string, subpath: string): boolean {
   return !(clinic && CLINIC_NOINDEX_SLUGS.includes(clinic[1]!));
 }
 
+// 이 가이드 주소를 검색에 내는 언어 (sitemap.ts 와 HTML hreflang 이 같은 목록을 쓴다). 치과·성형 시술이면 빈 목록
+export function guideIndexLocales(subpath: string): Locale[] {
+  return GUIDE_INDEX_LOCALES.filter((l) => guideIndexable(l, subpath));
+}
+
+// 가이드 페이지 메타의 alternates: hreflang 을 사이트맵처럼 검색에 내는 언어끼리만 잇는다 (noindex 주소를 대체 페이지로 알리지 않는다).
+// canonical·RSS 는 noindex 언어에서도 자기 주소 그대로 둔다. x-default 는 영어판이 남을 때만
+export function guideAlternates(locale: string, subpath: string) {
+  const all = localeAlternates(locale, subpath);
+  const languages: Record<string, string> = Object.fromEntries(
+    guideIndexLocales(subpath).map((l) => [l, all.languages[l]!]),
+  );
+  if (languages.en) languages["x-default"] = languages.en;
+  return { ...all, languages };
+}
+
+// 가이드 페이지 메타의 robots: 응답 헤더(guideNoindexHeaders)와 같은 판정으로 noindex, follow 를 낸다
+export function guideRobots(locale: string, subpath: string) {
+  return pageRobots(guideIndexable(locale, subpath));
+}
+
 // next.config.ts headers(): 색인하지 않는 언어의 가이드 섹션 전부 + 모든 언어의 치과·성형 시술에 noindex.
-// 페이지 메타(robots)는 섹션 화면마다 따로 쓰므로, 한 곳에서 확실히 막으려고 응답 헤더로 단다 (검색엔진은 더 엄한 쪽을 따른다)
+// 페이지 메타(guideRobots)도 같은 판정을 쓰지만, 화면을 새로 붙일 때 빠뜨려도 막히도록 응답 헤더로 한 번 더 단다
 export function guideNoindexHeaders(): { source: string; headers: typeof NOINDEX }[] {
   const prefixes = LOCALES.filter((l) => !GUIDE_INDEX_LOCALES.includes(l)).map((l) => LOCALE_PATH_PREFIX[l].slice(1));
   const rules = [];

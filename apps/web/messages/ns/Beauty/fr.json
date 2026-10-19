@@ -2,12 +2,12 @@
   "title": "K-beauté",
   "intro": "Soins et maquillage coréens, classés à découvert, méthode comprise. Voyez ce qui convient à votre peau et où l’acheter.",
   "metaTitle": "K-beauté : sélection par catégorie et type de peau",
-  "metaDescription": "Nettoyants, toners, sérums, protections solaires coréens et plus, classés selon la note de la rédaction et les votes des lecteurs par type de peau, avec où les acheter.",
+  "metaDescription": "Nettoyants, toners, sérums, protections solaires coréens et plus, classés selon la note de la rédaction plus les votes des lecteurs (Choix de la rédaction avant 30 votes), avec où les acheter.",
   "skinChip": "Pas sûre de votre type de peau ? 6 questions",
   "skinChipMine": "Sélection pour : {skin}",
   "categoriesLabel": "Catégories beauté",
   "crumbsLabel": "Vous êtes ici",
-  "winnersTitle": "N° 1 de chaque catégorie",
+  "winnersTitle": "Premier choix de chaque catégorie",
   "priceLegend": "₩ moins de 10 000 ₩ · ₩₩ 10 000–30 000 ₩ · ₩₩₩ plus de 30 000 ₩ (prix public en Corée)",
   "priceTier": {
     "1": "Prix : moins de 10 000 ₩",
@@ -53,7 +53,7 @@
     "metaDescription": "{intro} Classement selon la note de la rédaction et les votes des lecteurs, avec types de peau, gamme de prix et où acheter."
   },
   "product": {
-    "metaTitle": "{brand} {name} : types de peau, utilisation, où l’acheter",
+    "metaTitle": "Où acheter {brand} {name}",
     "metaDescription": "{tagline}. Pour quels types de peau, comment l’utiliser, l’avis des lecteurs et où l’acheter ({category}).",
     "share": "Partager ce produit",
     "rankIn": "N° {rank} · {category} · {kind}",

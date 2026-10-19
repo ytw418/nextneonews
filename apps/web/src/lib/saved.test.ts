@@ -10,7 +10,8 @@ describe("저장 목록", () => {
     expect(code).toMatch(/^[A-Za-z0-9_-]+$/);
     expect(decodeSavedShare(code, 1000)).toEqual([item("beauty", "cosrx-snail-96", 1000), item("place", "seongsu-cafe", 999)]);
 
-    const forged = btoa("drama:ok-one,hack:x,beauty:<script>,clinic:,drama:ok-one").replace(/=+$/, "");
+    // beauty:a 는 서버(/api/saved) 규칙에 안 맞는 한 글자 id — 가져오기 전에 걸러야 목록 전체가 400 이 나지 않는다
+    const forged = btoa("drama:ok-one,hack:x,beauty:<script>,clinic:,beauty:a,drama:ok-one").replace(/=+$/, "");
     expect(decodeSavedShare(forged, 10)).toEqual([item("drama", "ok-one", 10)]);
     expect(decodeSavedShare("%%%")).toEqual([]);
   });

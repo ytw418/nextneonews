@@ -71,25 +71,25 @@
     "manyo-pure-soybean-cleansing-oil": {
       "name": "Pure Soybean Cleansing Oil",
       "tagline": "沖洗時化成乳液的植物油卸妝油",
-      "why": "舊名 Pure Cleansing Oil，以大豆油、摩洛哥堅果油、荷荷芭油等植物油調配，拿下 2025 年 Allure Beauty Awards 卸妝油獎項。能溶解彩妝和皮脂，遇水化成輕盈乳液。",
+      "why": "舊名 Pure Cleansing Oil，以大豆油、摩洛哥堅果油、荷荷芭油等植物油調配。能溶解彩妝和皮脂，遇水化成輕盈乳液。",
       "howTo": "乾手取 2～3 下塗在乾燥的臉上按摩。加點水乳化後徹底沖淨，再用泡沫或凝膠洗面乳洗一次。"
     },
     "round-lab-1025-dokdo-toner": {
       "name": "1025 Dokdo Toner",
-      "tagline": "Olive Young 大獎常客，水感日常化妝水",
-      "why": "在韓國銷量很高的化妝水，也是 Olive Young 年度大獎的常客。水狀質地含鬱陵島海洋深層水、甜菜鹼和泛醇，洗臉後幫肌膚補水，讓膚觸更細緻平滑。",
+      "tagline": "含鬱陵島海洋深層水的水感日常化妝水",
+      "why": "Round Lab 的日常化妝水。水狀質地含鬱陵島海洋深層水、甜菜鹼和泛醇，洗臉後幫肌膚補水，讓膚觸更細緻平滑。",
       "howTo": "洗臉後用化妝棉沾濕，由內往外輕拭，或倒幾滴在掌心輕拍。接著擦精華和乳霜。"
     },
     "anua-heartleaf-77-soothing-toner": {
       "name": "Heartleaf 77 Soothing Toner",
       "tagline": "水感輕盈的魚腥草舒緩化妝水",
-      "why": "紅遍全球的韓系人氣款，也常入選 Olive Young 大獎。配方大部分是魚腥草水，再加入泛醇和多種玻尿酸，帶來舒緩又保濕的一層。",
+      "why": "Anua 的魚腥草化妝水。配方大部分是魚腥草水，再加入泛醇和多種玻尿酸，帶來舒緩又保濕的一層。",
       "howTo": "用手或化妝棉拍在洗淨的臉上。想快速舒緩時，可把化妝棉浸濕後濕敷 5～10 分鐘。"
     },
     "medicube-zero-pore-pad": {
       "name": "Zero Pore Pads",
       "tagline": "含 AHA 和 BHA 的雙面棉片，讓膚觸更平滑",
-      "why": "美國 Amazon 上熱銷的韓系單品之一。每片一面有壓紋、用來擦拭，一面平滑、用來按壓；化妝水含乳酸（AHA）和水楊酸（BHA），讓油性肌摸起來更平滑、不那麼油亮。",
+      "why": "medicube 的雙面化妝水棉片。每片一面有壓紋、用來擦拭，一面平滑、用來按壓；化妝水含乳酸（AHA）和水楊酸（BHA），讓油性肌摸起來更平滑、不那麼油亮。",
       "howTo": "洗臉後先用壓紋面擦拭全臉，再用平滑面按壓較油的部位。一開始隔天晚上使用。",
       "caution": "含去角質酸類和酒精。避開破皮處，不要和其他強效去角質產品併用，白天請擦防曬。"
     },
@@ -109,7 +109,7 @@
     "cosrx-advanced-snail-96-mucin-power-essence": {
       "name": "Advanced Snail 96 Mucin Power Essence",
       "tagline": "帶動「玻璃肌」風潮的蝸牛精華",
-      "why": "海外知名度很高的韓系保養品，也是美國 Amazon 美妝榜的常客。96% 蝸牛分泌物過濾液帶來滑溜、有彈性的質地，保濕並帶出水光感，卻不厚重。",
+      "why": "COSRX 的蝸牛精華。96% 蝸牛分泌物過濾液帶來滑溜、有彈性的質地，保濕並帶出水光感，卻不厚重。",
       "howTo": "化妝水後取 2～3 下於掌心，輕拍全臉至吸收，再擦乳霜。"
     },
     "beauty-of-joseon-glow-serum-propolis-niacinamide": {
@@ -122,7 +122,7 @@
     "torriden-dive-in-serum": {
       "name": "DIVE IN Serum",
       "tagline": "水感玻尿酸精華，疊出一層保濕",
-      "why": "Torriden 的招牌精華，也是 Olive Young 的長銷款。5 種玻尿酸搭配泛醇和尿囊素，水感質地吸收快，疊在任何乳霜或底妝下都很服貼。",
+      "why": "Torriden 的招牌精華，在 Olive Young 也很常見。5 種玻尿酸搭配泛醇和尿囊素，水感質地吸收快，疊在任何乳霜或底妝下都很服貼。",
       "howTo": "化妝水後取一滴管的量於臉上，輕拍至吸收。非常乾的肌膚可再疊一次，最後用乳霜鎖住。"
     },
     "skin1004-madagascar-centella-ampoule": {
@@ -134,14 +134,14 @@
     "anua-azelaic-acid-10-hyaluron-redness-soothing-serum": {
       "name": "Azelaic Acid 10 Hyaluron Redness Soothing Serum",
       "tagline": "壬二酸搭配舒緩成分的精華",
-      "why": "Anua 近期在美國 Amazon 爆紅的精華。輕盈配方結合壬二酸、菸鹼醯胺、泛醇和玻尿酸，適合同時想要舒緩、保濕的油性肌。",
+      "why": "Anua Redness Soothing 系列的精華。輕盈配方結合壬二酸、菸鹼醯胺、泛醇和玻尿酸，適合同時想要舒緩、保濕的油性肌。",
       "howTo": "化妝水後取少量塗在臉上，每天一次，剛開始先在晚上用。之後擦乳霜，白天記得防曬。",
       "caution": "含壬二酸和溫和的 BHA。剛開始常有輕微刺刺感；請先做局部測試，避免和其他強酸類產品併用。"
     },
     "medicube-pdrn-pink-peptide-serum": {
       "name": "PDRN Pink Peptide Serum",
       "tagline": "含胜肽和菸鹼醯胺的粉紅 PDRN 精華",
-      "why": "讓 PDRN（鮭魚來源的 DNA，成分標示為 Sodium DNA）成為韓系保養熱門關鍵字的產品之一，Amazon 上累積數千則評論。粉紅色的輕盈精華，帶來保濕和健康的光澤感。",
+      "why": "以 PDRN（鮭魚來源的 DNA，成分標示為 Sodium DNA）為主角的胜肽精華。粉紅色的輕盈精華，帶來保濕和健康的光澤感。",
       "howTo": "化妝水後取 1～2 下輕拍全臉，再擦乳霜。",
       "caution": "含魚類來源成分；如果你會避開這類成分，請跳過這款。"
     },
@@ -155,7 +155,7 @@
     "manyo-bifida-biome-complex-ampoule": {
       "name": "Bifida Biome Complex Ampoule",
       "tagline": "以發酵成分為基底，膚觸飽滿水潤的安瓶",
-      "why": "ma:nyo 的長銷安瓶，以二裂酵母發酵產物溶胞物為主，搭配其他發酵成分、菸鹼醯胺和角鯊烷。乳狀精華滋潤卻不厚重，適合乾性肌和中性肌。",
+      "why": "ma:nyo 的安瓶，以二裂酵母發酵產物溶胞物為主，搭配其他發酵成分、菸鹼醯胺和角鯊烷。乳狀精華滋潤卻不厚重，適合乾性肌和中性肌。",
       "howTo": "化妝水後取 2～3 滴拍勻，再擦乳霜。"
     },
     "cosrx-advanced-snail-92-all-in-one-cream": {
@@ -167,7 +167,7 @@
     "aestura-atobarrier365-cream": {
       "name": "ATOBARRIER365 Cream",
       "tagline": "給乾性、敏感肌的神經醯胺膠囊乳霜",
-      "why": "愛茉莉太平洋旗下皮膚科學品牌的乳霜，曾入選 Olive Young Awards 乳霜類。神經醯胺膠囊、膽固醇和角鯊烷形成滋潤卻不油膩的保濕層，適合乾燥、容易受刺激的肌膚。",
+      "why": "愛茉莉太平洋旗下皮膚科學品牌 AESTURA 的乳霜。神經醯胺膠囊、膽固醇和角鯊烷形成滋潤卻不油膩的保濕層，適合乾燥、容易受刺激的肌膚。",
       "howTo": "保養的最後一步，取豌豆大小用指尖溫熱後按壓全臉。乾燥部位可視需要再補擦。"
     },
     "beauty-of-joseon-dynasty-cream": {
@@ -179,13 +179,13 @@
     "belif-the-true-cream-aqua-bomb": {
       "name": "The True Cream Aqua Bomb",
       "tagline": "一抹化水的清涼凝霜",
-      "why": "LG 生活健康旗下草本品牌在美國的長銷款。果凍般的乳霜一接觸肌膚就化成水，帶來清涼清爽的保濕層，油性肌和混合肌也能在上妝前使用。",
+      "why": "LG 生活健康旗下草本品牌的經典保濕霜。果凍般的乳霜一接觸肌膚就化成水，帶來清涼清爽的保濕層，油性肌和混合肌也能在上妝前使用。",
       "howTo": "精華後取約一元硬幣大小，早晚輕拍全臉。"
     },
     "medicube-collagen-niacinamide-jelly-cream": {
       "name": "Collagen Niacinamide Jelly Cream",
       "tagline": "含膠原蛋白、帶出水光感的透明果凍霜",
-      "why": "在 Amazon 累積數千則評論的透明果凍霜。水解膠原蛋白和菸鹼醯胺做成 Q 彈、像水一樣輕盈的質地，帶來保濕和健康的光澤感。",
+      "why": "medicube 的透明果凍霜。水解膠原蛋白和菸鹼醯胺做成 Q 彈、像水一樣輕盈的質地，帶來保濕和健康的光澤感。",
       "howTo": "保養最後一步，取適量塗開全臉，輕拍至吸收。"
     },
     "illiyoon-ceramide-ato-concentrate-cream": {
@@ -236,7 +236,7 @@
     "biodance-bio-collagen-real-deep-mask": {
       "name": "Bio-Collagen Real Deep Mask",
       "tagline": "隨著吸收漸漸變透明的過夜水凝膠面膜",
-      "why": "紅遍全球、在美國 Amazon 美妝榜名列前茅的水凝膠面膜。精華被吸收後面膜會變透明，在韓國登記為美白、改善皺紋的功能性化妝品。",
+      "why": "Biodance 的水凝膠面膜。精華被吸收後面膜會變透明，在韓國登記為美白、改善皺紋的功能性化妝品。",
       "howTo": "化妝水或精華後敷上面膜，放置 3～4 小時或一整晚，直到變透明。取下後把剩餘精華拍勻。"
     },
     "laneige-water-sleeping-mask": {
@@ -267,13 +267,13 @@
     "romand-the-juicy-lasting-tint": {
       "name": "The Juicy Lasting Tint",
       "tagline": "持色度好的水光果汁感唇釉",
-      "why": "rom&nd 的招牌唇釉，也是 Olive Young 熱銷的唇妝之一。糖漿般的水光質地，掉色後仍會留下唇色，色號多達數十種，從透明果色到深莓色都有。",
+      "why": "rom&nd 的招牌唇釉。糖漿般的水光質地，掉色後仍會留下唇色，色號多達數十種，從透明果色到深莓色都有。",
       "howTo": "塗在唇中央再抿開就是漸層唇；整唇塗滿則是飽和唇色。疊在護唇膏上更有光澤。"
     },
     "peripera-ink-the-velvet": {
       "name": "Ink the Velvet",
       "tagline": "色號超多的柔霧絲絨唇釉",
-      "why": "peripera 的代表唇釉，上市幾天就賣到斷貨，人氣至今不減。打發般的絲絨質地能柔焦唇紋，留下柔霧唇色。",
+      "why": "peripera 的代表唇釉。打發般的絲絨質地能柔焦唇紋，留下柔霧唇色。",
       "howTo": "用刷頭平面按壓在唇中央，往外暈開成漸層；或整唇塗滿呈現飽和色。"
     },
     "laneige-lip-glowy-balm": {
@@ -298,7 +298,7 @@
     "clio-kill-cover-founwear-cushion": {
       "name": "Kill Cover Founwear Cushion The Original",
       "tagline": "SPF50+ PA+++ 的高遮瑕氣墊",
-      "why": "CLIO 的 Kill Cover 氣墊自 2015 年上市以來已售出數百萬個。Founwear 版遮瑕力高、持久，妝感自然，依韓國官方商品資訊標示，具 SPF50+ PA+++ 防曬。",
+      "why": "CLIO Kill Cover 氣墊系列的一款。Founwear 版遮瑕力高、持久，妝感自然，依韓國官方商品資訊標示，具 SPF50+ PA+++ 防曬。",
       "howTo": "粉撲輕沾氣墊，從臉中央往外按壓。瑕疵處用薄擦疊加，不要用力壓。"
     },
     "missha-m-perfect-cover-bb-cream": {

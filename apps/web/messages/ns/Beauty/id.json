@@ -2,12 +2,12 @@
   "title": "K-Beauty",
   "intro": "Skincare dan makeup Korea, diurutkan secara terbuka termasuk cara hitungnya. Lihat yang cocok untuk kulitmu dan tempat belinya.",
   "metaTitle": "Pilihan K-Beauty per Kategori dan Jenis Kulit",
-  "metaDescription": "Pembersih, toner, serum, tabir surya Korea dan lainnya, diurutkan dari skor editor dan vote pembaca per jenis kulit, lengkap dengan tempat belinya.",
+  "metaDescription": "Pembersih, toner, serum, tabir surya Korea dan lainnya, diurutkan dari skor editor ditambah vote pembaca (Pilihan Editor sebelum 30 vote), lengkap dengan tempat belinya.",
   "skinChip": "Belum tahu jenis kulitmu? 6 pertanyaan",
   "skinChipMine": "Pilihan untuk {skin}",
   "categoriesLabel": "Kategori kecantikan",
   "crumbsLabel": "Kamu di sini",
-  "winnersTitle": "No.1 tiap kategori",
+  "winnersTitle": "Pilihan teratas tiap kategori",
   "priceLegend": "₩ di bawah ₩10.000 · ₩₩ ₩10.000–30.000 · ₩₩₩ di atas ₩30.000 (harga resmi di Korea)",
   "priceTier": {
     "1": "Harga: di bawah ₩10.000",
@@ -53,7 +53,7 @@
     "metaDescription": "{intro} Diurutkan dari skor editor dan vote pembaca, dengan jenis kulit yang cocok, kisaran harga, dan tempat beli."
   },
   "product": {
-    "metaTitle": "{brand} {name}: jenis kulit, cara pakai, tempat beli",
+    "metaTitle": "Tempat Beli {brand} {name}",
     "metaDescription": "{tagline}. Cocok untuk jenis kulit apa, cara pakai, penilaian pembaca, dan tempat belinya ({category}).",
     "share": "Bagikan produk ini",
     "rankIn": "No.{rank} di {category} · {kind}",

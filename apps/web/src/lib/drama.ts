@@ -4,6 +4,8 @@ import type { WatchPlatform } from "@/data/drama/types";
 import type { Region } from "@/data/types";
 import type { ItemTotals } from "@/lib/item-votes";
 
+import { MIN_VOTES_FOR_SUMMARY } from "./vote-rules";
+
 // 드라마 가이드(/drama) 화면의 계산: 시청 지역 판정, '지금 화제' 섞기, 별점 요약, 장르 칩 순서.
 // 데이터는 읽지 않는다 (카탈로그는 data/drama 로더, 집계는 lib/item-votes). 그래서 vitest 로 바로 돈다
 
@@ -75,7 +77,7 @@ export function mixTrending<T extends { key: string }>(ranked: readonly T[], cur
 }
 
 // 평균을 크게 보이는 최소 평가 수. 그보다 적으면 '평가 n개' 만 (한두 표의 5.0 이 과장돼 보여서. 구조화 데이터 별점 기준과 같다)
-export const MIN_RATINGS_FOR_AVERAGE = 5;
+export const MIN_RATINGS_FOR_AVERAGE = MIN_VOTES_FOR_SUMMARY;
 
 export interface StarSummary {
   average: number; // 1~5, 표가 없으면 0
@@ -98,17 +100,4 @@ export function genreOrder(dramas: readonly { genres: readonly string[] }[]): st
   const count = new Map<string, number>();
   for (const d of dramas) for (const g of d.genres) count.set(g, (count.get(g) ?? 0) + 1);
   return [...count.keys()].toSorted((a, b) => count.get(b)! - count.get(a)!);
-}
-
-// 사진 없는 커버의 유령 글자 (회차 정보가 없는 작품·명소): 일본어·중국어·한국어는 첫 글자, 그 밖은 라틴 이니셜 2자까지
-const CJK = new Set<string>(["ja", "zh-TW", "zh-CN", "ko"]);
-
-export function coverGlyph(name: string, locale: string): string {
-  const text = name.trim();
-  if (CJK.has(locale)) return Array.from(text)[0] ?? "";
-  const words = text.split(/[\s\-:]+/).filter((w) => /^[A-Za-z0-9]/.test(w));
-  return words
-    .slice(0, 2)
-    .map((w) => w[0]!.toUpperCase())
-    .join("");
 }

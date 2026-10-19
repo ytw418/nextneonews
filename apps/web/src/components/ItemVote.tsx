@@ -1,33 +1,27 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { type KeyboardEvent, useId, useRef, useState, useSyncExternalStore } from "react";
+import { useId, useState, useSyncExternalStore } from "react";
 
-import { StarFilledIcon, StarIcon } from "@/components/icons";
+import { saveSkinType, useSkinType } from "@/components/beauty/useSkinType";
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
+import { SKIN_TYPES, type SkinType } from "@/data/beauty/types";
 import type { ItemTotals, VoteKind } from "@/lib/item-votes";
 import { storageGet, storageSet } from "@/lib/storage";
 import { track } from "@/lib/track";
 
 export type { ItemTotals, VoteKind } from "@/lib/item-votes";
 
-// 로그인 없는 항목 평가 (뷰티 '써 봤어요?'·시술 관심 투표·드라마 별점). 서버(lib/item-votes.ts)가 한 기기 한 표를 지키고,
+// 로그인 없는 항목 평가 (뷰티 '써 봤어요?'·시술 관심 투표, 드라마 별점은 drama/DramaRating 이 useItemVote 로). 서버(lib/item-votes.ts)가 한 기기 한 표를 지키고,
 // 이 기기는 고른 답을 hb:vote:{kind}:{id} 에 기억한다. 표 수는 실제 집계만 보이고(0표는 0), 답은 언제든 바꿀 수 있다
 
-// 같은 항목의 다른 평가 UI(예: 상단 요약과 본문 칩)·피부 타입도 함께 바뀌게 알리는 이벤트
+// 같은 항목의 다른 평가 UI(예: 상단 요약과 본문 칩)도 함께 바뀌게 알리는 이벤트. 피부 타입은 lib/beauty 의 키·이벤트 하나로 (useSkinType)
 const CHANGED = "hb:vote-changed";
-const STARS = [1, 2, 3, 4, 5] as const;
-// 별점 평균은 표가 이만큼 모인 뒤에만 보인다 (1~2표 평균 5.0 은 과장이다). 그 전에는 '평가 n개'
-const STAR_AVERAGE_MIN = 5;
-// 내 피부 타입 집계 줄('건성 92%가 인생템')은 그 타입 표가 이만큼 모인 뒤에만
-const FACET_MIN = 5;
 
-// 피부 타입 테스트 결과와 같은 키 (뷰티 퀴즈가 쓴다). 값은 따옴표 없는 타입 이름: dry
-const SKIN_TYPE_KEY = "hb:skin-type";
-// 답을 나눠 볼 기준. lib/item-votes.ts 의 FACETS 와 같은 값 (그 파일은 서버 전용이라 값을 가져올 수 없다)
-const FACET_OPTIONS: Partial<Record<VoteKind, readonly string[]>> = {
-  beauty: ["dry", "oily", "combination", "sensitive", "normal"],
+// 답을 나눠 볼 기준. 뷰티는 피부 타입 (lib/item-votes.ts 의 FACETS 와 같은 목록 — 그 파일은 서버 전용이라 SKIN_TYPES 를 쓴다)
+const FACET_OPTIONS: Partial<Record<VoteKind, readonly SkinType[]>> = {
+  beauty: SKIN_TYPES,
 };
 
 // 피부 타입을 묻는 시트는 한 화면 방문에 한 번만 (건너뛰면 다시 묻지 않는다). 처음 부를 때만 true
@@ -55,13 +49,6 @@ function percent(n: number, total: number): number {
 
 function readTotals(data: Partial<ItemTotals> | null): ItemTotals {
   return { totals: data?.totals ?? {}, byFacet: data?.byFacet ?? {}, total: data?.total ?? 0 };
-}
-
-// 저장된 피부 타입 (JSON 문자열로 저장돼 있어도 읽는다). 모르는 값이면 null
-function readSkinType(options: readonly string[] | undefined): string | null {
-  if (!options) return null;
-  const raw = storageGet(SKIN_TYPE_KEY)?.replace(/^"|"$/g, "") ?? null;
-  return raw && options.includes(raw) ? raw : null;
 }
 
 export function useItemVote(kind: VoteKind, itemId: string, initial: ItemTotals) {
@@ -120,7 +107,7 @@ interface ChipsProps {
   facet?: string; // 뷰티: 피부 타입. 없으면 이 기기에 저장된 타입을 쓰고, 그것도 없으면 투표 직후 한 번 묻는다
   question: string;
   showPercent?: boolean; // 기본은 표 수. 표가 적을 때 100% 같은 숫자가 과장돼 보여서
-  note?: string; // 질문 아래 작은 한 줄 (예: 시술 '효과 평가가 아닌 관심 집계')
+  note?: string; // 질문 아래 작은 한 줄 (예: 시술 '효과 평가가 아닌 관심 집계', 뷰티 '건성 92%가 인생템' — 피부 타입 집계 줄은 부르는 쪽 한 곳에서만)
   className?: string;
 }
 
@@ -133,12 +120,8 @@ export function VoteChips({ kind, itemId, initial, choices, facet, question, sho
   const headingId = useId();
   const number = new Intl.NumberFormat(locale);
   const facetOptions = FACET_OPTIONS[kind];
-  const storedFacet = useSyncExternalStore(
-    subscribe,
-    () => readSkinType(facetOptions),
-    () => null,
-  );
-  const myFacet = facet ?? storedFacet ?? undefined;
+  const storedSkin = useSkinType();
+  const myFacet = facet ?? (facetOptions ? storedSkin : null) ?? undefined;
   const [asking, setAsking] = useState<string | null>(null); // 피부 타입을 묻는 중인 답
 
   const choose = async (choice: string) => {
@@ -146,29 +129,14 @@ export function VoteChips({ kind, itemId, initial, choices, facet, question, sho
     if (ok && facetOptions && !myFacet && claimFacetAsk()) setAsking(choice);
   };
 
-  const pickFacet = (value: string) => {
+  // 같은 답을 피부 타입과 함께 다시 낸 뒤(서버는 덮어쓴다) 타입을 저장·알린다 — 같은 화면의 '내 타입 집계'·테스트 링크가
+  // 바로 바뀌고, 집계를 다시 받는 쪽(ProductVote)이 새 표가 들어간 뒤에 받는다
+  const pickFacet = (value: SkinType) => {
     const choice = asking;
     setAsking(null);
-    storageSet(SKIN_TYPE_KEY, value);
-    window.dispatchEvent(new Event(CHANGED));
-    // 같은 답을 피부 타입과 함께 다시 낸다 (서버는 덮어쓴다)
-    if (choice) void vote(choice, value);
+    if (choice) void vote(choice, value).finally(() => saveSkinType(value));
+    else saveSkinType(value);
   };
-
-  // 내 피부 타입에서 가장 많이 고른 답 ('건성 92%가 인생템')
-  const facetTotals = myFacet ? totals.byFacet[myFacet] : undefined;
-  const facetCount = facetTotals ? Object.values(facetTotals).reduce((a, b) => a + b, 0) : 0;
-  const facetTop = facetTotals
-    ? [...choices].sort((a, b) => (facetTotals[b.key] ?? 0) - (facetTotals[a.key] ?? 0))[0]
-    : undefined;
-  const facetLine =
-    myFacet && facetTop && facetCount >= FACET_MIN
-      ? t("facetSummary", {
-          facet: t(`skinTypes.${myFacet}`),
-          percent: percent(facetTotals?.[facetTop.key] ?? 0, facetCount),
-          choice: facetTop.label,
-        })
-      : null;
 
   return (
     <section aria-labelledby={headingId} className={`rounded-card bg-card p-5 shadow-card ${className}`}>
@@ -227,7 +195,6 @@ export function VoteChips({ kind, itemId, initial, choices, facet, question, sho
           t("voteFirst")
         ) : (
           <>
-            {facetLine && `${facetLine} · `}
             {t("voteTotal", { count: totals.total })}
             {mine && !busy && !error ? ` · ${t("voteThanks")}` : null}
           </>
@@ -257,110 +224,6 @@ export function VoteChips({ kind, itemId, initial, choices, facet, question, sho
             </Button>
           </div>
         </BottomSheet>
-      )}
-    </section>
-  );
-}
-
-// 별 1~5 평균 (표가 없으면 0)
-function average({ totals, total }: ItemTotals): number {
-  if (total === 0) return 0;
-  return STARS.reduce((sum, star) => sum + star * (totals[String(star)] ?? 0), 0) / total;
-}
-
-// 드라마 별점 (DESIGN.md ⑥): 큰 평균(5표 이상일 때만, 그 전에는 '평가 n개') 아래 체리 별 5개(44px).
-// 별은 radiogroup — 화살표로 옮기고 Space·Enter·탭으로 고른다 (옮기기만으로는 표를 내지 않는다: 지나가는 별마다 표가 나가지 않게).
-// 고르면 그 점수로 내고(바꾸면 덮어쓴다) 아래에 '내 별점 n'
-export function StarVote({ kind, itemId, initial, label }: { kind: "drama"; itemId: string; initial: ItemTotals; label: string }) {
-  const t = useTranslations("Engage");
-  const locale = useLocale();
-  const { mine, totals, busy, error, vote } = useItemVote(kind, itemId, initial);
-  const headingId = useId();
-  const stars = useRef<(HTMLButtonElement | null)[]>([]);
-  const picked = Number(mine) || 0;
-  const avg = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(average(totals));
-  const count = new Intl.NumberFormat(locale).format(totals.total);
-  // 탭으로 들어오면 고른 별(없으면 첫 별)에 선다
-  const tabStop = picked || 1;
-
-  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const at = stars.current.findIndex((el) => el === document.activeElement);
-    if (at < 0) return;
-    const next =
-      event.key === "ArrowRight" || event.key === "ArrowUp"
-        ? Math.min(at + 1, STARS.length - 1)
-        : event.key === "ArrowLeft" || event.key === "ArrowDown"
-          ? Math.max(at - 1, 0)
-          : event.key === "Home"
-            ? 0
-            : event.key === "End"
-              ? STARS.length - 1
-              : null;
-    if (next === null) return;
-    event.preventDefault();
-    stars.current[next]?.focus();
-  };
-
-  return (
-    <section aria-labelledby={headingId} className="rounded-card bg-card p-5 shadow-card">
-      <h2 id={headingId} className="title text-t5 font-bold text-ink-900">
-        {label}
-      </h2>
-      {/* 큰 평균 줄 → 아래 별 줄. 나란히 두면 390px 카드에서 '4.4 (312)' 와 별 5개가 한 줄에 안 들어가 들쭉날쭉 접혔다 */}
-      <div className="mt-2 flex flex-col items-start gap-1">
-        <p aria-live="polite" className="flex min-h-11 items-end gap-1.5">
-          {totals.total >= STAR_AVERAGE_MIN ? (
-            <>
-              <span aria-hidden className="text-display font-bold tabular-nums text-ink-900">
-                {avg}
-              </span>
-              <span aria-hidden className="text-t7 tabular-nums text-ink-600">
-                ({count})
-              </span>
-              <span className="sr-only">{t("starAverage", { average: avg, count: totals.total })}</span>
-            </>
-          ) : (
-            <span className="text-t6 font-semibold text-ink-700">
-              {totals.total === 0 ? t("voteFirst") : t("starFew", { count: totals.total })}
-            </span>
-          )}
-        </p>
-        <div
-          role="radiogroup"
-          aria-labelledby={headingId}
-          aria-busy={busy || undefined}
-          onKeyDown={onKeyDown}
-          className="-ml-1.5 flex"
-        >
-          {STARS.map((star, i) => (
-            <button
-              key={star}
-              ref={(el) => {
-                stars.current[i] = el;
-              }}
-              type="button"
-              role="radio"
-              aria-checked={picked === star}
-              aria-label={t("starLabel", { count: star })}
-              tabIndex={star === tabStop ? 0 : -1}
-              onClick={() => void vote(String(star))}
-              className={`press grid size-11 place-items-center rounded-full ${star <= picked ? "text-brand" : "text-ink-400"}`}
-            >
-              {star <= picked ? <StarFilledIcon className="size-7" /> : <StarIcon className="size-7" />}
-            </button>
-          ))}
-        </div>
-      </div>
-      {picked > 0 && (
-        <p className="mt-2 text-t7 tabular-nums text-ink-600">
-          {t("starMine", { count: picked })}
-          {!busy && !error ? ` · ${t("voteThanks")}` : null}
-        </p>
-      )}
-      {error && (
-        <p role="alert" className="mt-2 text-t6 font-medium text-danger">
-          {error}
-        </p>
       )}
     </section>
   );

@@ -77,7 +77,6 @@
   "voteError": "Penilaianmu belum masuk. Coba lagi.",
   "voteTooFast": "Kamu terlalu sering mengetuk. Coba lagi sebentar lagi.",
   "starLabel": "{count}\u00a0bintang",
-  "starAverage": "{average} dari 5 · {count}\u00a0penilaian",
   "visited": "Sudah ke sini",
   "markVisited": "Aku sudah ke sini",
   "savedTabCount": "Tersimpan, {count}\u00a0item",
@@ -99,8 +98,5 @@
     "combination": "Kulit kombinasi",
     "sensitive": "Kulit sensitif",
     "normal": "Kulit normal"
-  },
-  "facetSummary": "{facet}: {percent}% memilih “{choice}”",
-  "starFew": "{count}\u00a0penilaian",
-  "starMine": "Nilaimu: {count}"
+  }
 }

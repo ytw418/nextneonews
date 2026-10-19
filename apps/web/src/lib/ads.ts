@@ -3,6 +3,8 @@ import { CATEGORY_GROUPS } from "@kmedia/core";
 import type { PrepKey } from "@/data/travel/types";
 import type { AffiliateTarget } from "@/data/types";
 
+import { PREP_ROWS, prepTargets } from "./travel"; // 여행 준비 줄(파트너·주소)은 허브·동네·명소·글이 같은 표를 쓴다
+
 // ───────── 구글 애드센스 ─────────
 
 const CLIENT_ID = /^ca-pub-\d+$/;
@@ -74,15 +76,9 @@ export function coupangBannerFor({
 // 한국에 오거나 사는 독자가 읽는 생활 글: 글 끝(교차 레일 앞)에 '여행 준비' 제휴 상자를 단다 (docs/monetize/BM-VALIDATION.md §6 P7-3)
 const PREP_CATEGORIES: readonly string[] = ["TRAVEL", "WORKING_HOLIDAY", "STUDY", "HOUSING"];
 
-// eSIM(Klook 수수료가 가장 확실하다) → 공항 이동 → 숙소. 주소는 파트너 사이트의 보통 주소, 추적 값은 lib/affiliate.ts 가 붙인다
-const ARTICLE_PREP: readonly { key: PrepKey; target: AffiliateTarget }[] = [
-  { key: "esim", target: { partner: "klook", url: "https://www.klook.com/esim/" } },
-  { key: "airport", target: { partner: "trip", url: "https://www.trip.com/airport-transfers/" } },
-  { key: "stay", target: { partner: "trip", url: "https://www.trip.com/hotels/seoul-hotels-list-274/" } },
-];
 
 // 이 분류·언어의 글에 붙일 여행 준비 줄 (없으면 빈 목록). 이름·설명은 여행 카탈로그 문구(prep.items)를 쓴다.
 // 한국어판 독자는 대부분 한국에 있어 eSIM·공항 이동이 쓸모없다 (한국어 글에는 쿠팡 배너가 대신 붙는다)
 export function articlePrepFor(category: string, locale: string): readonly { key: PrepKey; target: AffiliateTarget }[] {
-  return locale !== "ko" && PREP_CATEGORIES.includes(category) ? ARTICLE_PREP : [];
+  return locale !== "ko" && PREP_CATEGORIES.includes(category) ? prepTargets(PREP_ROWS.article, locale) : [];
 }

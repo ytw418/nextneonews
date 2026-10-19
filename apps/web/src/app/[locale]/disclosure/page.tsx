@@ -16,6 +16,10 @@ const UPDATED = "2026-10-19";
 
 export const revalidate = 3600;
 
+// Amazon Associates 운영 약관 5조 'Identifying Yourself as an Associate' 가 요구하는 문장. 언어와 상관없이 원문 그대로 둔다
+// (번역은 Disclosure/pages 의 amazonAssociate 로 아래에 덧붙인다). AFFILIATE_AMAZON 태그는 이 문장이 배포된 뒤에 넣는다
+const AMAZON_ASSOCIATE_STATEMENT = "As an Amazon Associate I earn from qualifying purchases.";
+
 // 긴 본문은 provider 밖 pages 파일에 둔다 (Trust/pages 와 같은 방식)
 async function disclosureMessages(locale: Locale): Promise<typeof pagesEn> {
   return (await import(`../../../../messages/ns/Disclosure/pages/${locale}.json`)).default;
@@ -29,7 +33,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/disclosu
 }
 
 // 제휴 고지(공정위 추천·보증 심사지침, 모든 제휴 상자 첫 줄의 '자세히' 링크가 여기로 온다):
-// 수수료 원리·가격 불변 → 파트너 목록(lib/affiliate.ts PARTNER_NAME + 쿠팡) → 표시 방법 → 편집 독립 → 의료 무제휴 → 카탈로그 작성 방식(AI 보조) → 문의.
+// 수수료 원리·가격 불변 → Amazon Associates 문장 + 파트너 목록(lib/affiliate.ts PARTNER_NAME + 쿠팡) → 표시 방법 → 편집 독립 → 의료 무제휴 → 카탈로그 작성 방식(AI 보조) → 문의.
 // 광고 칸 없음
 export default async function DisclosurePage({ params }: PageProps<"/[locale]/disclosure">) {
   const { locale } = await params;
@@ -77,6 +81,10 @@ export default async function DisclosurePage({ params }: PageProps<"/[locale]/di
 
       <InfoSection id="partners" title={t("partnersTitle")}>
         <p>{t("partnersLead")}</p>
+        <p className="font-semibold text-ink-900">
+          <span lang="en">{AMAZON_ASSOCIATE_STATEMENT}</span>
+          {locale !== "en" && <span className="mt-0.5 block font-normal text-t6 text-ink-600">{t("amazonAssociate")}</span>}
+        </p>
         <ul className="divide-y divide-line border-y border-line">
           {[
             ...partners.map((partner) => ({ key: partner, name: PARTNER_NAME[partner], use: uses[partner] })),
