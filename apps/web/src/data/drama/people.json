@@ -1,0 +1,702 @@
+{
+  "Q100877982": {
+    "slug": "q100877982",
+    "ko": "aespa",
+    "ja": "aespa",
+    "zhHant": "aespa"
+  },
+  "Q101541493": {
+    "slug": "stayc",
+    "en": "STAYC",
+    "ko": "스테이씨",
+    "ja": "STAYC",
+    "zhHant": "STAYC"
+  },
+  "Q105706592": {
+    "en": "Joo Jong-hyuk",
+    "ko": "주종혁",
+    "ja": "朱鐘赫",
+    "zhHant": "朱綜赫"
+  },
+  "Q106514783": {
+    "en": "Choi Woo-seong",
+    "ko": "최우성",
+    "ja": "チェ・ウソン",
+    "zhHant": "崔宇成"
+  },
+  "Q107109595": {
+    "en": "Lee Chae-min",
+    "ko": "이채민",
+    "ja": "イ・チェミン",
+    "zhHant": "李彩玟"
+  },
+  "Q107109848": {
+    "en": "Heo Nam-jun",
+    "ko": "허남준",
+    "ja": "ホ・ナムジュン",
+    "zhHant": "許楠儁"
+  },
+  "Q107395839": {
+    "en": "Shin Sia",
+    "ko": "신시아",
+    "ja": "シン・シア",
+    "zhHant": "申詩雅"
+  },
+  "Q10919869": {
+    "en": "Lee Gi-kwang",
+    "ko": "이기광",
+    "ja": "イ・ギグァン",
+    "zhHant": "李起光"
+  },
+  "Q109535522": {
+    "en": "Lee E-dam",
+    "ko": "이이담",
+    "ja": "イ・イダム",
+    "zhHant": "李伊潭"
+  },
+  "Q11073341": {
+    "slug": "lee-hye-ri",
+    "en": "Lee Hye-ri",
+    "ko": "혜리",
+    "ja": "ヘリ",
+    "zhHant": "惠利"
+  },
+  "Q111381707": {
+    "en": "Le Sserafim",
+    "ko": "르세라핌",
+    "ja": "LE SSERAFIM",
+    "zhHant": "LE SSERAFIM"
+  },
+  "Q11269962": {
+    "en": "Jung Dong-hwan",
+    "ko": "정동환",
+    "ja": "チョン・ドンファン",
+    "zhHant": "鄭東煥"
+  },
+  "Q115967938": {
+    "slug": "babymonster",
+    "en": "Babymonster",
+    "ko": "BabyMonster",
+    "ja": "BABYMONSTER",
+    "zhHant": "BabyMonster"
+  },
+  "Q121075203": {
+    "slug": "riize",
+    "en": "Riize",
+    "ko": "RIIZE",
+    "ja": "RIIZE",
+    "zhHant": "RIIZE"
+  },
+  "Q12584846": {
+    "en": "Kwak Dong-yeon",
+    "ko": "곽동연",
+    "ja": "クァク・トンニョン",
+    "zhHant": "郭東延"
+  },
+  "Q12586858": {
+    "en": "Kim Ga-eun",
+    "ko": "김가은",
+    "ja": "キム・ガウン",
+    "zhHant": "金佳恩"
+  },
+  "Q12587761": {
+    "en": "Kim Sung-cheol",
+    "ko": "김성철",
+    "ja": "キム・ソンチョル",
+    "zhHant": "金聖喆"
+  },
+  "Q12590448": {
+    "en": "Roh Jeong-eui",
+    "ko": "노정의",
+    "ja": "ノ・ジョンウィ",
+    "zhHant": "盧正義"
+  },
+  "Q12604561": {
+    "en": "Shin Jung-geun",
+    "ko": "신정근",
+    "ja": "シン・ジョングン",
+    "zhHant": "申正根"
+  },
+  "Q12611661": {
+    "en": "Lee Sang-yi",
+    "ko": "이상이",
+    "ja": "イ・サンイ",
+    "zhHant": "李相二"
+  },
+  "Q12612362": {
+    "en": "Lee Yi-kyung",
+    "ko": "이이경",
+    "ja": "イ・イギョン",
+    "zhHant": "李伊庚"
+  },
+  "Q12968338": {
+    "en": "Moon Ga-young",
+    "ko": "문가영",
+    "ja": "ムン・ガヨン",
+    "zhHant": "文佳煐"
+  },
+  "Q13580495": {
+    "slug": "bts",
+    "en": "BTS",
+    "ko": "방탄소년단",
+    "ja": "BTS",
+    "zhHant": "防彈少年團"
+  },
+  "Q14493927": {
+    "en": "Kwon Na-ra",
+    "ko": "권나라",
+    "ja": "クォン・ナラ",
+    "zhHant": "權娜拉"
+  },
+  "Q14524548": {
+    "slug": "seventeen",
+    "en": "Seventeen",
+    "ko": "세븐틴",
+    "ja": "SEVENTEEN",
+    "zhHant": "Seventeen"
+  },
+  "Q15140731": {
+    "en": "Go Won-hee",
+    "ko": "고원희",
+    "ja": "コ・ウォニ",
+    "zhHant": "高媛熙"
+  },
+  "Q15977222": {
+    "slug": "park-bo-gum",
+    "en": "Park Bo-gum",
+    "ko": "박보검",
+    "ja": "パク・ボゴム",
+    "zhHant": "朴寶劍"
+  },
+  "Q16080045": {
+    "en": "Kang Han-na",
+    "ko": "강한나",
+    "ja": "カン・ハンナ",
+    "zhHant": "姜漢娜"
+  },
+  "Q16090632": {
+    "en": "Yoon Park",
+    "ko": "윤박",
+    "ja": "ユン・バク",
+    "zhHant": "尹博"
+  },
+  "Q16171180": {
+    "en": "Yook Sung-jae",
+    "ko": "육성재",
+    "ja": "ソンジェ (BTOB)",
+    "zhHant": "陸星材"
+  },
+  "Q16177775": {
+    "en": "Kang Tae-oh",
+    "ko": "강태오",
+    "ja": "カン・テオ",
+    "zhHant": "姜泰伍"
+  },
+  "Q170001": {
+    "en": "Jung So-min",
+    "ko": "정소민",
+    "ja": "チョン・ソミン",
+    "zhHant": "庭沼珉"
+  },
+  "Q17346185": {
+    "en": "Ahn Se-ha",
+    "ko": "안세하",
+    "ja": "アン・セハ",
+    "zhHant": "安世河"
+  },
+  "Q17466114": {
+    "slug": "red-velvet",
+    "en": "Red Velvet",
+    "ko": "레드벨벳",
+    "ja": "Red Velvet",
+    "zhHant": "Red Velvet"
+  },
+  "Q17487457": {
+    "slug": "yoo-jae-myung",
+    "en": "Yoo Jae-myung",
+    "ko": "유재명",
+    "ja": "ユ・ジェミョン",
+    "zhHant": "劉宰明"
+  },
+  "Q17500112": {
+    "en": "Nam Joo-hyuk",
+    "ko": "남주혁",
+    "ja": "ナム・ジュヒョク",
+    "zhHant": "南柱赫"
+  },
+  "Q17504174": {
+    "slug": "jung-hae-in",
+    "en": "Jung Hae-in",
+    "ko": "정해인",
+    "ja": "チョン・ヘイン",
+    "zhHant": "丁海寅"
+  },
+  "Q18013648": {
+    "en": "Lee Dong-hwi",
+    "ko": "이동휘",
+    "ja": "イ・ドンフィ",
+    "zhHant": "李東輝"
+  },
+  "Q18230780": {
+    "en": "Lee Seung-hyub",
+    "ko": "이승협",
+    "ja": "イ・スンヒョプ",
+    "zhHant": "李承協"
+  },
+  "Q18381077": {
+    "en": "Park Hae-joon",
+    "ko": "박해준",
+    "ja": "パク・ヘジュン",
+    "zhHant": "朴海俊"
+  },
+  "Q18815764": {
+    "slug": "chae-soo-bin",
+    "en": "Chae Soo-bin",
+    "ko": "채수빈",
+    "ja": "チェ・スビン",
+    "zhHant": "蔡秀彬"
+  },
+  "Q18815772": {
+    "en": "Choi Gwi-hwa",
+    "ko": "최귀화",
+    "ja": "チェ・グィファ",
+    "zhHant": "崔貴華"
+  },
+  "Q19349195": {
+    "en": "Kang Ki-young",
+    "ko": "강기영",
+    "ja": "カン・ギヨン",
+    "zhHant": "姜其勇"
+  },
+  "Q20063575": {
+    "en": "Ryu Jun-yeol",
+    "ko": "류준열",
+    "ja": "リュ・ジュンヨル",
+    "zhHant": "柳俊烈"
+  },
+  "Q20145": {
+    "slug": "iu",
+    "en": "IU",
+    "ko": "아이유",
+    "ja": "IU",
+    "zhHant": "IU"
+  },
+  "Q20153": {
+    "slug": "girls-generation",
+    "en": "Girls' Generation",
+    "ko": "소녀시대",
+    "ja": "少女時代",
+    "zhHant": "少女时代"
+  },
+  "Q20947692": {
+    "en": "Bae Hae-sun",
+    "ko": "배해선",
+    "ja": "ペ・ヘソン",
+    "zhHant": "裴海善"
+  },
+  "Q21040300": {
+    "en": "Na In-woo",
+    "ko": "나인우",
+    "ja": "ナ・イヌ",
+    "zhHant": "羅鍾贊"
+  },
+  "Q21060390": {
+    "en": "Cha Eun-woo",
+    "ko": "차은우",
+    "ja": "チャウヌ",
+    "zhHant": "車銀優"
+  },
+  "Q21575818": {
+    "slug": "kim-tae-ri",
+    "en": "Kim Tae-ri",
+    "ko": "김태리",
+    "ja": "キム・テリ",
+    "zhHant": "金泰梨"
+  },
+  "Q22911780": {
+    "en": "Kim Se-jeong",
+    "ko": "김세정",
+    "ja": "キム・セジョン",
+    "zhHant": "金世正"
+  },
+  "Q22973125": {
+    "en": "Kim Min-kyu",
+    "ko": "김민규",
+    "ja": "キム・ミンギュ",
+    "zhHant": "金旻奎"
+  },
+  "Q22973857": {
+    "en": "Park Sung-hoon",
+    "ko": "박성훈",
+    "ja": "パク・ソンフン",
+    "zhHant": "朴成勳"
+  },
+  "Q22974399": {
+    "en": "Ahn Bo-hyun",
+    "ko": "안보현",
+    "ja": "アン・ボヒョン",
+    "zhHant": "安寶賢"
+  },
+  "Q23725822": {
+    "slug": "nct",
+    "en": "NCT",
+    "ko": "NCT",
+    "ja": "NCT",
+    "zhHant": "NCT"
+  },
+  "Q23996147": {
+    "en": "Kim Hye-in",
+    "ko": "김혜인",
+    "ja": "キム・ヘイン",
+    "zhHant": "金惠仁"
+  },
+  "Q24000262": {
+    "en": "Ahn Hyo-seop",
+    "ko": "안효섭",
+    "ja": "アン・ヒョソプ",
+    "zhHant": "安孝燮"
+  },
+  "Q242673": {
+    "en": "Park Min-young",
+    "ko": "박민영",
+    "ja": "パク・ミニョン",
+    "zhHant": "朴敏英"
+  },
+  "Q25056945": {
+    "slug": "blackpink",
+    "en": "Blackpink",
+    "ko": "블랙핑크",
+    "ja": "BLACKPINK",
+    "zhHant": "BLACKPINK"
+  },
+  "Q256932": {
+    "en": "Son Ye-jin",
+    "ko": "손예진",
+    "ja": "ソン・イェジン",
+    "zhHant": "孫藝真"
+  },
+  "Q2680695": {
+    "slug": "kim-ji-won",
+    "en": "Kim Ji-won",
+    "ko": "김지원",
+    "ja": "キム・ジウォン",
+    "zhHant": "金智媛"
+  },
+  "Q27952702": {
+    "en": "Kim Jung-hyun",
+    "ko": "김정현",
+    "ja": "キム・ジョンヒョン",
+    "zhHant": "金正賢"
+  },
+  "Q27952830": {
+    "en": "Ha Yoon-kyung",
+    "ko": "하윤경",
+    "ja": "ハ・ユンギョン",
+    "zhHant": "河允景"
+  },
+  "Q28700264": {
+    "en": "Yeom Hye-ran",
+    "ko": "염혜란",
+    "ja": "ヨム・ヘラン",
+    "zhHant": "廉惠蘭"
+  },
+  "Q28870936": {
+    "en": "Bona",
+    "ko": "보나",
+    "ja": "ボナ",
+    "zhHant": "苞娜"
+  },
+  "Q2908769": {
+    "slug": "ko-kyung-pyo",
+    "en": "Ko Kyung-pyo",
+    "ko": "고경표",
+    "ja": "コ・ギョンピョ",
+    "zhHant": "高庚杓"
+  },
+  "Q30138752": {
+    "slug": "seol-in-ah",
+    "en": "Seol In-ah",
+    "ko": "설인아",
+    "ja": "ソル・イナ",
+    "zhHant": "薛仁雅"
+  },
+  "Q31179298": {
+    "en": "Park Yoo-na",
+    "ko": "박유나",
+    "ja": "パク・ユナ",
+    "zhHant": "朴侑娜"
+  },
+  "Q37565564": {
+    "en": "Kim Seon-ho",
+    "ko": "김선호",
+    "ja": "キム・ソンホ",
+    "zhHant": "金宣虎"
+  },
+  "Q380118": {
+    "en": "Hyun Bin",
+    "ko": "현빈",
+    "ja": "ヒョンビン",
+    "zhHant": "玄彬"
+  },
+  "Q41777221": {
+    "slug": "song-kang",
+    "en": "Song Kang",
+    "ko": "송강",
+    "ja": "ソン・ガン",
+    "zhHant": "宋江"
+  },
+  "Q456182": {
+    "en": "Moon So-ri",
+    "ko": "문소리",
+    "ja": "ムン・ソリ",
+    "zhHant": "文素利"
+  },
+  "Q464645": {
+    "en": "Bae Suzy",
+    "ko": "수지",
+    "ja": "ペ・スジ",
+    "zhHant": "裴秀智"
+  },
+  "Q466975": {
+    "slug": "im-yoon-ah",
+    "en": "Im Yoon-ah",
+    "ko": "윤아",
+    "ja": "ユナ",
+    "zhHant": "潤娥"
+  },
+  "Q484471": {
+    "en": "Kim Hae-suk",
+    "ko": "김해숙",
+    "ja": "キム・ヘスク",
+    "zhHant": "金海淑"
+  },
+  "Q486320": {
+    "slug": "kim-you-jung",
+    "en": "Kim You-jung",
+    "ko": "김유정",
+    "ja": "キム・ユジョン",
+    "zhHant": "金有貞"
+  },
+  "Q486338": {
+    "en": "Yeo Jin-goo",
+    "ko": "여진구",
+    "ja": "ヨ・ジング",
+    "zhHant": "呂珍九"
+  },
+  "Q488423": {
+    "en": "Lee Jun-ho",
+    "ko": "이준호",
+    "ja": "ジュノ",
+    "zhHant": "李俊昊"
+  },
+  "Q490918": {
+    "en": "Park Bo-young",
+    "ko": "박보영",
+    "ja": "パク・ボヨン",
+    "zhHant": "朴寶英"
+  },
+  "Q491387": {
+    "en": "Park Eun-bin",
+    "ko": "박은빈",
+    "ja": "パク・ウンビン",
+    "zhHant": "朴恩斌"
+  },
+  "Q491413": {
+    "en": "Yoo In-na",
+    "ko": "유인나",
+    "ja": "ユ・インナ",
+    "zhHant": "劉仁娜"
+  },
+  "Q491625": {
+    "en": "Seo Ji-hye",
+    "ko": "서지혜",
+    "ja": "ソ・ジヘ",
+    "zhHant": "徐智慧"
+  },
+  "Q492313": {
+    "en": "Park Jin-young",
+    "ko": "박진영",
+    "ja": "ジニョン",
+    "zhHant": "朴珍榮"
+  },
+  "Q492701": {
+    "en": "Choi Woo-shik",
+    "ko": "최우식",
+    "ja": "チェ・ウシク",
+    "zhHant": "崔宇植"
+  },
+  "Q494714": {
+    "slug": "lee-dong-wook",
+    "en": "Lee Dong-wook",
+    "ko": "이동욱",
+    "ja": "イ・ドンウク",
+    "zhHant": "李棟旭"
+  },
+  "Q494717": {
+    "en": "EXO",
+    "ko": "EXO",
+    "ja": "EXO",
+    "zhHant": "EXO"
+  },
+  "Q496491": {
+    "slug": "kim-soo-hyun",
+    "en": "Kim Soo-hyun",
+    "ko": "김수현",
+    "ja": "キム・スヒョン",
+    "zhHant": "金秀賢"
+  },
+  "Q497785": {
+    "slug": "park-shin-hye",
+    "en": "Park Shin-hye",
+    "ko": "박신혜",
+    "ja": "パク・シネ",
+    "zhHant": "朴信惠"
+  },
+  "Q498061": {
+    "en": "Jang Young-nam",
+    "ko": "장영남",
+    "ja": "チャン・ヨンナム",
+    "zhHant": "張英南"
+  },
+  "Q5116234": {
+    "en": "Park Seo-joon",
+    "ko": "박서준",
+    "ja": "パク・ソジュン",
+    "zhHant": "朴敘俊"
+  },
+  "Q53334919": {
+    "en": "Jang Gyu-ri",
+    "ko": "장규리",
+    "ja": "チャン・ギュリ",
+    "zhHant": "張圭悧"
+  },
+  "Q55730330": {
+    "slug": "byeon-woo-seok",
+    "en": "Byeon Woo-seok",
+    "ko": "변우석",
+    "ja": "ピョン・ウソク",
+    "zhHant": "邊佑錫"
+  },
+  "Q55733858": {
+    "en": "Jang Hye-jin",
+    "ko": "장혜진",
+    "ja": "チャン・ヘジン",
+    "zhHant": "張慧珍"
+  },
+  "Q55736775": {
+    "en": "Kim Ji-eun",
+    "ko": "김지은",
+    "ja": "キム・ジウン",
+    "zhHant": "金智恩"
+  },
+  "Q56327848": {
+    "en": "Kim Da-mi",
+    "ko": "김다미",
+    "ja": "キム・ダミ",
+    "zhHant": "金多美"
+  },
+  "Q59381487": {
+    "en": "Yoon Ji-on",
+    "ko": "윤지온",
+    "ja": "ユン・ジオン",
+    "zhHant": "尹志溫"
+  },
+  "Q60059587": {
+    "en": "Jung Jun-won",
+    "ko": "정준원",
+    "ja": "チョン・ジュンウォン",
+    "zhHant": "鄭準元"
+  },
+  "Q60679665": {
+    "en": "Kim Hye-yoon",
+    "ko": "김혜윤",
+    "ja": "キム・ヘユン",
+    "zhHant": "金惠奫"
+  },
+  "Q61100494": {
+    "en": "Song Geon-hee",
+    "ko": "송건희",
+    "ja": "ソン・ゴニ",
+    "zhHant": "宋健僖"
+  },
+  "Q61955498": {
+    "en": "Lee Joo-bin",
+    "ko": "이주빈",
+    "ja": "イ・ジュビン",
+    "zhHant": "李主儐"
+  },
+  "Q61959900": {
+    "en": "Ryu Kyung-soo",
+    "ko": "류경수",
+    "ja": "リュ・ギョンス",
+    "zhHant": "柳京洙"
+  },
+  "Q623436": {
+    "slug": "gong-yoo",
+    "en": "Gong Yoo",
+    "ko": "공유",
+    "ja": "コン・ユ",
+    "zhHant": "孔劉"
+  },
+  "Q626531": {
+    "en": "Song Ha-yoon",
+    "ko": "송하윤",
+    "ja": "ソン・ハユン",
+    "zhHant": "宋昰昀"
+  },
+  "Q63252838": {
+    "en": "Yoon Seo-ah",
+    "ko": "윤서아",
+    "ja": "ユン・ソア",
+    "zhHant": "尹瑞雅"
+  },
+  "Q6408653": {
+    "slug": "kim-go-eun",
+    "en": "Kim Go-eun",
+    "ko": "김고은",
+    "ja": "キム・ゴウン",
+    "zhHant": "金高銀"
+  },
+  "Q6757073": {
+    "en": "Park Hyung-sik",
+    "ko": "박형식",
+    "ja": "パク・ヒョンシク",
+    "zhHant": "朴炯植"
+  },
+  "Q76823543": {
+    "en": "Hwang In-yeop",
+    "ko": "황인엽",
+    "ja": "ファン・インヨプ",
+    "zhHant": "黃寅燁"
+  },
+  "Q77621": {
+    "en": "Yoo Yeon-seok",
+    "ko": "유연석",
+    "ja": "ユ・ヨンソク",
+    "zhHant": "柳演錫"
+  },
+  "Q96625460": {
+    "en": "Choi Hyun-wook",
+    "ko": "최현욱",
+    "ja": "チェ・ヒョヌク",
+    "zhHant": "崔顯旭"
+  },
+  "Q97210760": {
+    "en": "Go Youn-jung",
+    "ko": "고윤정",
+    "ja": "コ・ユンジョン",
+    "zhHant": "高允貞"
+  },
+  "Q97224484": {
+    "en": "Lee Ju-myoung",
+    "ko": "이주명",
+    "ja": "イ・ジュミョン",
+    "zhHant": "李珠明"
+  },
+  "Q97657525": {
+    "en": "Kang You-seok",
+    "ko": "강유석",
+    "ja": "カン・ユソク",
+    "zhHant": "姜有皙"
+  }
+}

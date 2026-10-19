@@ -7,6 +7,7 @@ import { cache } from "react";
 import { AffiliateBox } from "@/components/affiliate/AffiliateBox";
 import { AppHeader } from "@/components/AppHeader";
 import { CrossRail } from "@/components/guide/CrossRail";
+import { guidePrerender } from "@/components/guide/prerender";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { ClapperIcon, ExternalIcon, MicIcon } from "@/components/icons";
@@ -23,22 +24,22 @@ import { ListRow } from "@/components/ui/ListRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { isKnownItem } from "@/data/catalog";
 import { dramaText } from "@/data/drama";
+import { catalogPerson } from "@/data/drama/people";
 import { isNew, SECTION_TINT } from "@/data/sections";
 import { getTravel, listTravel, travelSlugs, travelText } from "@/data/travel";
 import type { Place } from "@/data/travel/types";
 import { Link } from "@/i18n/navigation";
-import { matchArticleEntities } from "@/lib/entities";
 import { breadcrumbLd, graph, placeLd } from "@/lib/jsonld-catalog";
-import { displayName } from "@/lib/rankings";
 import { areaGlyph, clip, keepAll, naverMapUrl, placePrepTargets } from "@/lib/travel";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// DB 를 읽지 않는 정적 페이지: 색인 언어만 빌드 때 만들고 다른 언어는 처음 요청 때 만들어 배포까지 쓴다(components/guide/prerender).
+// 없는 명소는 사이트 화면 안의 404
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return travelSlugs().map((slug) => ({ slug }));
+  return guidePrerender("slug", travelSlugs());
 }
 
 // generateMetadata 와 본문이 같은 요청에서 한 번만 읽는다
@@ -55,17 +56,12 @@ async function relatedDramas(place: Place, locale: Locale) {
   return ids.flatMap((id) => (dramas[id] ? [{ id, title: dramas[id].title }] : []));
 }
 
-// 관련 인물: 인물 사전(Entity)에 있는 사람만 이름을 보이고, 인물 페이지 slug 가 있을 때만 링크.
-// DB 가 없거나 끊긴 환경(미리보기 빌드)에서는 칩 없이 페이지를 그린다
-async function relatedPeople(place: Place, locale: Locale) {
-  const ids = place.related?.entityIds ?? [];
-  if (ids.length === 0) return [];
-  try {
-    const found = await matchArticleEntities(ids.map((id) => ({ id })));
-    return found.flatMap((e) => (e ? [{ id: e.id, slug: e.slug, name: displayName(e.names, locale, e.id) }] : []));
-  } catch {
-    return [];
-  }
+// 관련 인물: 인물 사전 사본(data/drama/people)에 있는 사람만 이름을 보이고, 인물 페이지 slug 가 있을 때만 링크 (DB 를 읽지 않는다)
+function relatedPeople(place: Place, locale: Locale) {
+  return (place.related?.entityIds ?? []).flatMap((id) => {
+    const person = catalogPerson(id, locale);
+    return person ? [{ id, ...person }] : [];
+  });
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/travel/place/[slug]">): Promise<Metadata> {
@@ -107,7 +103,8 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
   const loaded = await loadPlace(slug, locale);
   if (!loaded) notFound();
   const { place, areaName, text } = loaded;
-  const [t, tGuide, tArticle, ko, all, dramas, people] = await Promise.all([
+  const people = relatedPeople(place, locale);
+  const [t, tGuide, tArticle, ko, all, dramas] = await Promise.all([
     getTranslations("Travel"),
     getTranslations("Guide"),
     getTranslations("Article"),
@@ -115,7 +112,6 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
     travelText("ko"),
     listTravel(locale),
     relatedDramas(place, locale),
-    relatedPeople(place, locale),
   ]);
 
   const name = place.text.name;

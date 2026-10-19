@@ -20,7 +20,8 @@ import { areaGlyph, PREP_ROWS, prepBoxItems, spotlightPlaces } from "@/lib/trave
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 카탈로그만 읽는 정적 페이지(DB 없음)라 다시 만들지 않는다. 바뀌면 배포가 새로 만든다
+export const revalidate = false;
 
 // 허브 아래 '촬영지·아이돌 성지' 줄 수 (여행 준비 상자와 광고 사이의 본문 한 덩어리)
 const SPOTLIGHT = 6;

@@ -10,9 +10,10 @@ import { CastList } from "@/components/drama/CastList";
 import { DramaCard } from "@/components/drama/DramaCard";
 import { DramaRating } from "@/components/drama/DramaRating";
 import { FilmingList } from "@/components/drama/FilmingList";
-import { castPeople } from "@/components/drama/queries";
 import { WatchList } from "@/components/drama/WatchList";
 import { CrossRail } from "@/components/guide/CrossRail";
+import { LiveTotals } from "@/components/guide/LiveTotals";
+import { guidePrerender } from "@/components/guide/prerender";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
@@ -22,19 +23,19 @@ import { Badge } from "@/components/ui/Badge";
 import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { type DramaEntry, dramaSlugs, dramaText, getDrama } from "@/data/drama";
+import { catalogPerson } from "@/data/drama/people";
 import { SECTION_TINT } from "@/data/sections";
 import { getTravel, isTravelSlug, travelText } from "@/data/travel";
-import { emptyTotals, getItemTotals } from "@/lib/item-votes";
 import { breadcrumbLd, graph, tvSeriesLd } from "@/lib/jsonld-catalog";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-// 카탈로그 24편만 빌드 때 만든다. 별점 집계가 바뀌므로 한 시간마다 다시 만든다
-export const revalidate = 3600;
-export const dynamicParams = false;
+// DB 를 읽지 않는 정적 페이지: 카탈로그 24편을 색인 언어로만 빌드 때 만들고, 다른 언어는 처음 요청 때 만들어 배포까지 쓴다.
+// 별점 집계는 브라우저가 받는다(DramaRating·CardRating). 없는 slug 는 사이트 화면 안의 404([locale]/not-found)
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return dramaSlugs().map((slug) => ({ slug }));
+  return guidePrerender("slug", dramaSlugs());
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/drama/[slug]">): Promise<Metadata> {
@@ -78,8 +79,7 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
   const drama = await getDrama(slug, locale);
   if (!drama) notFound();
 
-  const castIds = [...new Set(drama.cast.flatMap((c) => (c.entityId ? [c.entityId] : [])))].sort().join(",");
-  const [t, tHub, tGuide, tArticle, text, enText, koText, travel, totals, people, places, similar] = await Promise.all([
+  const [t, tHub, tGuide, tArticle, text, enText, koText, travel, places, similar] = await Promise.all([
     getTranslations("Drama.detail"),
     getTranslations("Drama.hub"),
     getTranslations("Guide"),
@@ -88,8 +88,6 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
     dramaText("en"),
     dramaText("ko"),
     travelText(locale),
-    getItemTotals("drama", [drama.slug, ...drama.similar]),
-    castPeople(castIds, locale),
     Promise.all(drama.filmingPlaces.filter(isTravelSlug).map((s) => getTravel(s, locale))).then((list) => list.filter(present)),
     Promise.all(drama.similar.map((s) => getDrama(s, locale))).then((list) => list.filter(present)),
   ]);
@@ -111,7 +109,7 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
       locale={locale}
       sub={`${d.year} · ${d.network}`}
       saveId={d.slug}
-      meta={<CardRating totals={totals.get(d.slug) ?? emptyTotals("drama")} locale={locale} />}
+      meta={<CardRating id={d.slug} />}
       className="w-36"
     />
   );
@@ -139,7 +137,7 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
             startDate: String(drama.year),
             numberOfEpisodes: drama.episodes,
             actors: drama.cast.map((c) => {
-              const person = c.entityId ? people.get(c.entityId) : undefined;
+              const person = c.entityId ? catalogPerson(c.entityId, locale) : null;
               return { name: person?.name ?? c.name, url: person?.slug ? `${home}/idol/${person.slug}` : undefined };
             }),
             sameAs: drama.wikidataId ? [`https://www.wikidata.org/wiki/${drama.wikidataId}`] : [],
@@ -178,7 +176,7 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
         </p>
       </div>
 
-      <DramaRating itemId={drama.slug} initial={totals.get(drama.slug) ?? emptyTotals("drama")} />
+      <DramaRating itemId={drama.slug} />
       <WatchList watch={drama.watch} locale={locale} />
 
       <div aria-hidden className="mt-6 h-4 bg-band" />
@@ -201,16 +199,18 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
       </section>
 
       <div aria-hidden className="mt-6 h-4 bg-band" />
-      <CastList cast={drama.cast} people={people} locale={locale} />
+      <CastList cast={drama.cast} locale={locale} />
       <FilmingList places={places} areaNames={areaNames} locale={locale} />
       {similar.length > 0 && (
         <section aria-labelledby="drama-similar">
           <SectionHeader id="drama-similar" title={t("similarTitle")} />
-          <ul className="rail rail-snap gap-3 px-gutter pb-1">
-            {similar.map((d) => (
-              <li key={d.slug}>{similarCard(d)}</li>
-            ))}
-          </ul>
+          <LiveTotals kind="drama" ids={similar.map((d) => d.slug)}>
+            <ul className="rail rail-snap gap-3 px-gutter pb-1">
+              {similar.map((d) => (
+                <li key={d.slug}>{similarCard(d)}</li>
+              ))}
+            </ul>
+          </LiveTotals>
         </section>
       )}
 

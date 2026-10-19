@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AffiliateBox } from "@/components/affiliate/AffiliateBox";
 import { AppHeader } from "@/components/AppHeader";
 import { CrossRail } from "@/components/guide/CrossRail";
+import { guidePrerender } from "@/components/guide/prerender";
 import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
 import { ShareButton } from "@/components/ShareButton";
@@ -21,11 +22,12 @@ import { areaGlyph, clip, keepAll, PREP_ROWS, prepBoxItems } from "@/lib/travel"
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// DB 를 읽지 않는 정적 페이지: 색인 언어만 빌드 때 만들고 다른 언어는 처음 요청 때 만들어 배포까지 쓴다(components/guide/prerender).
+// 없는 동네는 사이트 화면 안의 404
+export const revalidate = false;
 
 export function generateStaticParams() {
-  return areaSlugs().map((area) => ({ area }));
+  return guidePrerender("area", areaSlugs());
 }
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/travel/[area]">): Promise<Metadata> {

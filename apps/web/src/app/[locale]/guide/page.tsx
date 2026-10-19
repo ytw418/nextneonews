@@ -25,7 +25,8 @@ import { breadcrumbLd, collectionLd, graph } from "@/lib/jsonld-catalog";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
-export const revalidate = 3600;
+// 카탈로그만 읽는 정적 페이지(DB 없음)라 다시 만들지 않는다. 바뀌면 배포가 새로 만든다
+export const revalidate = false;
 
 // '지금 인기' 줄 수와 테스트 뒤 '더 둘러보기' 레일 카드 수 (섹션을 번갈아 섞은 목록을 앞뒤로 나눠 쓴다)
 const POPULAR = 6;
