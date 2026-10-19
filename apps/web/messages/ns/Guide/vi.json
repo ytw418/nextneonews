@@ -7,19 +7,27 @@
   "sections": {
     "beauty": {
       "title": "Làm đẹp Hàn",
-      "line": "Giải thưởng, chọn theo loại da, nơi mua"
+      "line": "Giải thưởng, chọn theo loại da, nơi mua",
+      "glyph": "Be",
+      "count": "{count}\u00a0sản phẩm"
     },
     "travel": {
       "title": "Du lịch Hàn",
-      "line": "Khu phố, phim trường, chuẩn bị chuyến đi"
+      "line": "Khu phố, phim trường, chuẩn bị chuyến đi",
+      "glyph": "Tr",
+      "count": "{count}\u00a0địa điểm"
     },
     "clinic": {
       "title": "Cẩm nang thẩm mỹ",
-      "line": "Hồi phục, rủi ro và câu hỏi nên hỏi"
+      "line": "Hồi phục, rủi ro và câu hỏi nên hỏi",
+      "glyph": "Cl",
+      "count": "{count}\u00a0liệu trình"
     },
     "drama": {
       "title": "Phim Hàn",
-      "line": "Xem gì và xem ở đâu"
+      "line": "Xem gì và xem ở đâu",
+      "glyph": "Dr",
+      "count": "{count}\u00a0phim"
     }
   },
   "railTitle": "Cẩm nang Hàn Quốc",
@@ -30,5 +38,6 @@
     "title": "Da bạn thuộc loại nào?",
     "body": "Trả lời 6 câu hỏi nhanh để xem sản phẩm hợp với bạn. Chỉ để giải trí, không phải chẩn đoán.",
     "button": "Làm bài test"
-  }
+  },
+  "moreCard": "Xem tất cả cẩm nang"
 }

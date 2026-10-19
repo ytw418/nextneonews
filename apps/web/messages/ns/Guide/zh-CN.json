@@ -7,19 +7,27 @@
   "sections": {
     "beauty": {
       "title": "韩国美妆",
-      "line": "年度大奖、按肤质挑选、哪里买"
+      "line": "年度大奖、按肤质挑选、哪里买",
+      "glyph": "美",
+      "count": "{count} 件好物"
     },
     "travel": {
       "title": "韩国旅游",
-      "line": "街区、取景地、行前准备"
+      "line": "街区、取景地、行前准备",
+      "glyph": "旅",
+      "count": "{count} 个景点"
     },
     "clinic": {
       "title": "疗程指南",
-      "line": "恢复期、风险、该问的问题"
+      "line": "恢复期、风险、该问的问题",
+      "glyph": "医",
+      "count": "{count} 种疗程"
     },
     "drama": {
       "title": "韩剧指南",
-      "line": "看什么、在哪里看"
+      "line": "看什么、在哪里看",
+      "glyph": "剧",
+      "count": "{count} 部韩剧"
     }
   },
   "railTitle": "韩国指南",
@@ -30,5 +38,6 @@
     "title": "你是哪种肤质？",
     "body": "回答 6 个问题，看看适合你的产品。仅供娱乐，不是医学诊断。",
     "button": "开始测试"
-  }
+  },
+  "moreCard": "查看全部指南"
 }

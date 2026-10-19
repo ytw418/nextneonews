@@ -7,19 +7,27 @@
   "sections": {
     "beauty": {
       "title": "韓國美妝",
-      "line": "年度大賞、依膚質挑選、哪裡買"
+      "line": "年度大賞、依膚質挑選、哪裡買",
+      "glyph": "美",
+      "count": "{count} 項好物"
     },
     "travel": {
       "title": "韓國旅遊",
-      "line": "街區、拍攝地、行前準備"
+      "line": "街區、拍攝地、行前準備",
+      "glyph": "旅",
+      "count": "{count} 個景點"
     },
     "clinic": {
       "title": "療程指南",
-      "line": "恢復期、風險、該問的問題"
+      "line": "恢復期、風險、該問的問題",
+      "glyph": "醫",
+      "count": "{count} 種療程"
     },
     "drama": {
       "title": "韓劇指南",
-      "line": "看什麼、在哪裡看"
+      "line": "看什麼、在哪裡看",
+      "glyph": "劇",
+      "count": "{count} 部韓劇"
     }
   },
   "railTitle": "韓國指南",
@@ -30,5 +38,6 @@
     "title": "你是哪種膚質？",
     "body": "回答 6 個問題，看看適合你的產品。僅供娛樂，不是醫學診斷。",
     "button": "開始測驗"
-  }
+  },
+  "moreCard": "看全部指南"
 }
