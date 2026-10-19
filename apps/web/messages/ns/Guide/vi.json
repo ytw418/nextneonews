@@ -1,0 +1,34 @@
+{
+  "tab": "Cẩm nang",
+  "title": "Cẩm nang",
+  "intro": "Làm đẹp, du lịch, thẩm mỹ và phim Hàn, chọn lọc cho người yêu Hàn Quốc.",
+  "metaTitle": "Cẩm nang làm đẹp, du lịch Hàn Quốc và phim Hàn",
+  "metaDescription": "Giải thưởng mỹ phẩm Hàn và gợi ý theo loại da, khu phố và phim trường ở Seoul, kiến thức về thủ thuật thẩm mỹ, và nơi xem phim Hàn.",
+  "sections": {
+    "beauty": {
+      "title": "Làm đẹp Hàn",
+      "line": "Giải thưởng, chọn theo loại da, nơi mua"
+    },
+    "travel": {
+      "title": "Du lịch Hàn",
+      "line": "Khu phố, phim trường, chuẩn bị chuyến đi"
+    },
+    "clinic": {
+      "title": "Cẩm nang thẩm mỹ",
+      "line": "Hồi phục, rủi ro và câu hỏi nên hỏi"
+    },
+    "drama": {
+      "title": "Phim Hàn",
+      "line": "Xem gì và xem ở đâu"
+    }
+  },
+  "railTitle": "Cẩm nang Hàn Quốc",
+  "popular": "Đang được quan tâm",
+  "crossTitle": "Khám phá thêm",
+  "newBadge": "Mới",
+  "skinCta": {
+    "title": "Da bạn thuộc loại nào?",
+    "body": "Trả lời 6 câu hỏi nhanh để xem sản phẩm hợp với bạn. Chỉ để giải trí, không phải chẩn đoán.",
+    "button": "Làm bài test"
+  }
+}

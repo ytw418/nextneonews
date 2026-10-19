@@ -1,0 +1,34 @@
+{
+  "tab": "Panduan",
+  "title": "Panduan",
+  "intro": "Kecantikan, wisata, klinik, dan drakor, dipilih untuk pencinta Korea.",
+  "metaTitle": "Panduan K-Beauty, Wisata Korea, dan Drakor",
+  "metaDescription": "Award K-beauty dan pilihan per jenis kulit, kawasan dan lokasi syuting di Seoul, dasar-dasar perawatan klinik, dan tempat nonton drakor.",
+  "sections": {
+    "beauty": {
+      "title": "K-Beauty",
+      "line": "Award, pilihan per jenis kulit, tempat beli"
+    },
+    "travel": {
+      "title": "Wisata Korea",
+      "line": "Kawasan, lokasi syuting, persiapan"
+    },
+    "clinic": {
+      "title": "Panduan Klinik",
+      "line": "Pemulihan, risiko, pertanyaan penting"
+    },
+    "drama": {
+      "title": "Panduan Drakor",
+      "line": "Nonton apa dan di mana"
+    }
+  },
+  "railTitle": "Panduan Korea",
+  "popular": "Lagi populer",
+  "crossTitle": "Jelajahi lagi",
+  "newBadge": "Baru",
+  "skinCta": {
+    "title": "Jenis kulitmu apa?",
+    "body": "Jawab 6 pertanyaan singkat dan lihat produk yang cocok untukmu. Cuma untuk seru-seruan, bukan diagnosis.",
+    "button": "Ikuti tes"
+  }
+}

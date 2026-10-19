@@ -41,6 +41,7 @@ type AsLink = Common & {
   // '/'로 시작하는 앱 주소는 언어가 붙는 Link, 그 밖(http·mailto·/api/…)은 그냥 <a>
   href: string;
   external?: boolean; // 새 탭으로
+  rel?: string; // 바깥 링크의 rel. 제휴 링크는 "sponsored nofollow noopener" (기본은 새 탭일 때 noopener noreferrer)
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   lang?: string;
   download?: boolean | string;
@@ -59,7 +60,7 @@ function isAppPath(href: string) {
 
 export function Button(props: ButtonProps) {
   if (props.href !== undefined) {
-    const { href, external, onClick, lang, download, locale, children } = props;
+    const { href, external, rel, onClick, lang, download, locale, children } = props;
     const className = classes(props);
     if (isAppPath(href) && !external && download === undefined) {
       return (
@@ -75,7 +76,7 @@ export function Button(props: ButtonProps) {
         lang={lang}
         download={download}
         target={external ? "_blank" : undefined}
-        rel={external ? "noopener noreferrer" : undefined}
+        rel={rel ?? (external ? "noopener noreferrer" : undefined)}
         className={className}
       >
         {children}

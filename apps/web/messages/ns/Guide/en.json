@@ -1,0 +1,34 @@
+{
+  "tab": "Guide",
+  "title": "Guide",
+  "intro": "Beauty, travel, clinics and dramas, picked for fans of Korea.",
+  "metaTitle": "K-Beauty, Korea Travel and K-Drama Guides",
+  "metaDescription": "K-beauty awards and picks by skin type, Seoul neighborhoods and filming spots, clinic treatments explained, and where to stream K-dramas.",
+  "sections": {
+    "beauty": {
+      "title": "K-Beauty",
+      "line": "Awards, skin type picks, where to buy"
+    },
+    "travel": {
+      "title": "Korea Travel",
+      "line": "Neighborhoods, filming spots, trip prep"
+    },
+    "clinic": {
+      "title": "Clinic Guide",
+      "line": "Recovery, risks and questions to ask"
+    },
+    "drama": {
+      "title": "K-Drama Guide",
+      "line": "What to watch and where to stream"
+    }
+  },
+  "railTitle": "Korea guides",
+  "popular": "Popular now",
+  "crossTitle": "More to explore",
+  "newBadge": "New",
+  "skinCta": {
+    "title": "What’s your skin type?",
+    "body": "Answer six quick questions and see products picked for you. Just for fun, not a diagnosis.",
+    "button": "Take the test"
+  }
+}
