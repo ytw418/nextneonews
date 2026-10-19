@@ -1,10 +1,16 @@
 import "server-only";
 
-import type { Locale } from "@kmedia/core";
+import { DEFAULT_LOCALE, type Locale } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
+import {
+  loadDefaultJapaneseParser,
+  loadDefaultSimplifiedChineseParser,
+  loadDefaultTraditionalChineseParser,
+} from "budoux";
 import { getTranslations } from "next-intl/server";
 
 import { coverGlyph } from "@/components/guide/glyph";
+import { type AffiliateHref, affiliateHref, PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
 import { categoryTint } from "@/lib/cover";
 
 import { beautyFeatured, beautySummary, isBeautySlug } from "./beauty";
@@ -61,29 +67,32 @@ export function isKnownItem(kind: SavedKind, id: string): boolean {
   return KNOWN[kind](id);
 }
 
-// 글: 번역은 영어 slug 를 그대로 써서 (locale, slug) 로 찾는다. 이 언어 번역이 없으면 빠진다
+// 글: 번역은 영어 slug 를 그대로 써서 (locale, slug) 로 찾는다. 이 언어 번역이 아직 없으면(vi·id·fr·ru 배치 번역 대기)
+// 영어 제목으로 채운다 — 언어를 바꿔도 저장한 글이 '불러오지 못함' 줄로 남지 않게. 링크는 그대로 두면 글 화면이 있는 언어로 보낸다
 async function articleSummaries(slugs: string[], locale: Locale): Promise<Map<string, CatalogSummary>> {
   if (slugs.length === 0) return new Map();
+  const locales = locale === DEFAULT_LOCALE ? [locale] : [locale, DEFAULT_LOCALE];
   const [rows, tCat] = await Promise.all([
     prisma.translation.findMany({
-      where: { locale, slug: { in: slugs }, article: { status: "PUBLISHED" } },
-      select: { slug: true, title: true, article: { select: { category: true } } },
+      where: { locale: { in: locales }, slug: { in: slugs }, article: { status: "PUBLISHED" } },
+      select: { slug: true, locale: true, title: true, article: { select: { category: true } } },
     }),
     getTranslations({ locale, namespace: "Category" }),
   ]);
-  return new Map(
-    rows.map((row) => [
-      row.slug,
-      {
-        kind: "article",
-        id: row.slug,
-        href: `/news/${row.slug}`,
-        title: row.title,
-        sub: tCat(row.article.category),
-        tint: categoryTint(row.article.category),
-      },
-    ]),
-  );
+  const out = new Map<string, CatalogSummary>();
+  for (const row of rows) {
+    if (row.locale !== locale && out.has(row.slug)) continue; // 이 언어 번역이 이미 있다
+    out.set(row.slug, {
+      kind: "article",
+      id: row.slug,
+      href: `/news/${row.slug}`,
+      title: row.title,
+      sub: tCat(row.article.category),
+      tint: categoryTint(row.article.category),
+      ...(row.locale === locale ? {} : { lang: row.locale }),
+    });
+  }
+  return out;
 }
 
 // ───────── 커버 유령 글자 ─────────
@@ -127,16 +136,71 @@ export async function summarize(kind: SavedKind, id: string, locale: Locale): Pr
   return summary && withGlyph(summary, locale);
 }
 
-// 여러 항목을 한 번에 (글은 쿼리 한 번). 받은 순서 그대로, 없어진 항목(카탈로그에서 빠졌거나 글이 내려감)은 뺀다
-export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<GlyphedSummary[]> {
-  const articles = await articleSummaries(
-    refs.filter((r) => r.kind === "article").map((r) => r.id),
-    locale,
-  );
+// ───────── 저장함 한 줄 (/api/saved) ─────────
+// 저장함은 클라이언트 화면이라 줄바꿈 사전(budoux, 전송 142KB)을 싣지 않는다: 일본어·중국어 제목은 여기서 구(句)로 나눠 보내고
+// 화면은 조각 사이에 <wbr> 만 넣는다. 뷰티 줄에는 이 언어 독자가 살 수 있는 1순위 파트너 구매 링크를 붙인다 (시술은 제휴 금지)
+export interface SavedSummary extends GlyphedSummary {
+  chunks?: string[]; // 제목을 구 단위로 나눈 조각 (ja·zh)
+  buy?: AffiliateHref & { name: string }; // name: 파트너 이름 (화면 읽기용)
+}
+
+type PhraseParser = ReturnType<typeof loadDefaultJapaneseParser>;
+const PHRASE_PARSERS: Partial<Record<Locale, () => PhraseParser>> = {
+  ja: loadDefaultJapaneseParser,
+  "zh-TW": loadDefaultTraditionalChineseParser,
+  "zh-CN": loadDefaultSimplifiedChineseParser,
+};
+const parsers = new Map<Locale, PhraseParser>();
+
+function titleChunks(title: string, locale: Locale): string[] | undefined {
+  const load = PHRASE_PARSERS[locale];
+  if (!load) return undefined;
+  let parser = parsers.get(locale);
+  if (!parser) {
+    parser = load();
+    parsers.set(locale, parser);
+  }
+  return parser.parse(title);
+}
+
+const BEAUTY_BUY = new Map(BEAUTY_ITEMS.map((i) => [i.slug, i.buy]));
+
+// 클라이언트 화면(저장함)에 넘기는 요약: 일본어·중국어 제목을 구 조각으로 나눠 둔다
+export function withTitleChunks(summary: GlyphedSummary, locale: Locale): SavedSummary {
+  const chunks = summary.lang ? undefined : titleChunks(summary.title, locale);
+  return chunks && chunks.length > 1 ? { ...summary, chunks } : summary;
+}
+
+function forSaved(summary: GlyphedSummary, locale: Locale): SavedSummary {
+  const target = summary.kind === "beauty" ? partnersForLocale(locale, BEAUTY_BUY.get(summary.id) ?? [])[0] : undefined;
+  const out = withTitleChunks(summary, locale);
+  return target ? { ...out, buy: { ...affiliateHref(target), name: PARTNER_NAME[target.partner] } } : out;
+}
+
+export interface SummaryBatch {
+  items: SavedSummary[];
+  partial: boolean; // 글 조회가 실패해 글 줄을 뺐다 (DB 장애). 부르는 쪽은 이 응답을 캐시하지 않는다
+}
+
+// 여러 항목을 한 번에 (글은 쿼리 한 번). 받은 순서 그대로, 없어진 항목(카탈로그에서 빠졌거나 글이 내려감)은 뺀다.
+// 글 조회(DB)가 실패해도 카탈로그 항목(DB 없음)은 그대로 돌려준다 — 저장함 한 줄 때문에 나머지까지 못 불러오지 않게
+export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<SummaryBatch> {
+  const slugs = refs.filter((r) => r.kind === "article").map((r) => r.id);
+  let articles = new Map<string, CatalogSummary>();
+  let partial = false;
+  try {
+    articles = await articleSummaries(slugs, locale);
+  } catch (err) {
+    console.error("[catalog] 저장한 글 요약을 불러오지 못함", err);
+    partial = true;
+  }
   const summaries = await Promise.all(
     refs.map((r) => (r.kind === "article" ? (articles.get(r.id) ?? null) : SUMMARY[r.kind](r.id, locale))),
   );
-  return summaries.filter((s): s is CatalogSummary => s !== null).map((s) => withGlyph(s, locale));
+  const items = summaries
+    .filter((s): s is CatalogSummary => s !== null)
+    .map((s) => forSaved(withGlyph(s, locale), locale));
+  return { items, partial };
 }
 
 export async function featured(section: Section, locale: Locale, n: number): Promise<GlyphedSummary[]> {

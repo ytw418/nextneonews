@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
 import { toast } from "@/components/ui/Toast";
 import { useRouter } from "@/i18n/navigation";
-import { readSaved, type SavedKind, toggleSaved, useIsSaved } from "@/lib/saved";
+import { readSaved, SAVED_MAX, type SavedKind, toggleSaved, useIsSaved } from "@/lib/saved";
 import { track } from "@/lib/track";
 
 // 토스트 한 줄에 들어가게 제목을 줄인다 (화면 읽기 이름에는 쓰지 않는다 — 잘린 '…'가 그대로 읽힌다)
@@ -34,7 +34,8 @@ interface Props {
 
 // 로그인 없는 저장(북마크 — 하트는 글 반응 전용이다). 이 기기에만 남고(lib/saved.ts) 저장함(/saved)에 모인다.
 // 서버 렌더·첫 하이드레이션에는 빈 북마크(저장 여부는 이 기기만 안다). 저장하면 아이콘이 한 번 튀고(heart-pop) 토스트가 뜬다:
-// 처음 저장(목록이 비어 있었음)이면 '이 브라우저에만 남아요 — 나에게 보내기', 그 뒤로는 '저장했어요 — 보기'. 해제는 토스트 없음
+// 처음 저장(목록이 비어 있었음)이면 '이 브라우저에만 남아요 — 나에게 보내기', 그 뒤로는 '저장했어요 — 보기'. 해제는 토스트 없음.
+// 목록이 꽉 찼으면(SAVED_MAX) 가장 오래된 저장이 빠졌다고 알린다. 토스트는 상단바 아래에 띄운다 — 하단의 구매·투표 줄을 덮지 않게
 export function SaveButton({ kind, id, title, variant = "icon", tone = "ink", className = "" }: Props) {
   const t = useTranslations("Engage");
   const locale = useLocale();
@@ -47,25 +48,24 @@ export function SaveButton({ kind, id, title, variant = "icon", tone = "ink", cl
     // 카드 링크 위에 얹혀도 카드가 열리지 않게
     event.preventDefault();
     event.stopPropagation();
-    const first = readSaved().length === 0;
+    const before = readSaved().length;
     const now = toggleSaved(kind, id);
     track(now ? "save" : "unsave", { kind, id });
     if (!now) return;
     setPops((n) => n + 1);
-    if (first) {
+    if (before === 0) {
       toast(t("savedFirstToast"), {
         // ja·zh-TW 는 'LINE で送る', 그 밖은 '링크 복사' (언어마다 보내는 방법이 정해져 있어 문구 하나로 둔다)
         actionLabel: t("sendToSelfAction"),
         onAction: () =>
           void sendSavedList({ locale, text: t("sendToSelfText"), copied: t("sendToSelfCopied"), from: "toast" }),
         duration: FIRST_TOAST_MS,
+        position: "top",
       });
       return;
     }
-    toast(t("savedToast", { title: short(title) }), {
-      actionLabel: t("savedOpen"),
-      onAction: () => router.push("/saved"),
-    });
+    const message = before >= SAVED_MAX ? t("savedCapToast", { count: SAVED_MAX }) : t("savedToast", { title: short(title) });
+    toast(message, { actionLabel: t("savedOpen"), onAction: () => router.push("/saved"), position: "top" });
   };
 
   const icon = saved ? (

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { decodeSavedShare, encodeSavedShare, SAVED_MAX, type SavedItem, withAdded, withToggled } from "./saved";
+import { decodePastedShare, decodeSavedShare, encodeSavedShare, SAVED_MAX, type SavedItem, withAdded, withToggled } from "./saved";
 
 const item = (kind: SavedItem["kind"], id: string, at: number): SavedItem => ({ kind, id, at });
 
@@ -14,6 +14,12 @@ describe("저장 목록", () => {
     const forged = btoa("drama:ok-one,hack:x,beauty:<script>,clinic:,beauty:a,drama:ok-one").replace(/=+$/, "");
     expect(decodeSavedShare(forged, 10)).toEqual([item("drama", "ok-one", 10)]);
     expect(decodeSavedShare("%%%")).toEqual([]);
+
+    // 홈 화면 앱 붙여넣기: 링크 전체든 코드만이든 같은 목록, 링크가 아닌 글은 빈 목록
+    expect(decodePastedShare(` https://unnienote.app/ja/saved?i=${code}&openExternalBrowser=1 `, 1000)).toHaveLength(2);
+    expect(decodePastedShare(code, 1000)).toHaveLength(2);
+    expect(decodePastedShare("hello")).toEqual([]);
+    expect(decodePastedShare("https://unnienote.app/en/saved")).toEqual([]);
   });
 
   it("하트를 누르면 맨 앞에 넣고 다시 누르면 빼며, 상한을 넘으면 가장 오래된 것부터 뺀다", () => {

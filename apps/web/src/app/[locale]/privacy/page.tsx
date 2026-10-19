@@ -15,7 +15,7 @@ import {
 } from "@/components/info/InfoPage";
 
 // 문구를 바꾸면 이 날짜도 올린다
-const UPDATED = "2026-10-19";
+const UPDATED = "2026-10-20";
 
 export const revalidate = 3600;
 

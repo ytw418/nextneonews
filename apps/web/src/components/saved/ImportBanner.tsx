@@ -13,10 +13,11 @@ const noSubscribe = () => () => {};
 // 공유 링크(?i=)의 값. useSearchParams 를 쓰면 정적 페이지가 Suspense 경계까지 클라이언트 렌더로 바뀌어서 주소를 직접 읽는다
 const shareCode = () => new URLSearchParams(window.location.search).get("i");
 
-// 주소에서 ?i= 를 지운다 (새로고침해도 배너가 다시 뜨지 않게)
+// 주소에서 ?i= 를 지운다 (새로고침해도 배너가 다시 뜨지 않게). LINE 으로 받은 링크의 외부 브라우저 표시도 함께
 function clearShareCode() {
   const url = new URL(window.location.href);
   url.searchParams.delete("i");
+  url.searchParams.delete("openExternalBrowser");
   window.history.replaceState(window.history.state, "", url);
 }
 

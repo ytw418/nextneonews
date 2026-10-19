@@ -106,7 +106,7 @@
     "hashItems": [
       "Komentar: isi komentar, nama yang ditampilkan, hash dari kunci edit yang tersimpan di perangkatmu (agar hanya kamu yang bisa mengubah atau menghapusnya), dan kode hash alamat IP.",
       "Polling, reaksi, dan dukungan: pilihanmu, kode hash alamat IP dan browser, bahasa halaman, dan untuk polling serta dukungan, negara yang dideteksi oleh penyedia hosting kami (misalnya “JP”) — tidak pernah alamat IP itu sendiri.",
-      "Penilaian produk, prosedur, dan drama: jawabanmu (untuk produk, juga jenis kulitmu jika kamu memilihnya; untuk prosedur, apakah kamu Penasaran, Pernah, atau Lewati), kode hash alamat IP dan browser, bahasa halaman, dan negara yang dideteksi penyedia hosting kami — tidak pernah alamat IP itu sendiri. Kami memakainya untuk menampilkan total, misalnya berapa pembaca yang menyukai suatu produk, menghitung satu penilaian per perangkat, dan mencegah spam.",
+      "Penilaian produk, prosedur, dan drama: jawabanmu (untuk produk, juga jenis kulitmu jika kamu memilihnya; untuk prosedur, apakah kamu Penasaran, Pernah, atau Lewati), kode hash alamat IP dan browser, bahasa halaman, dan negara yang dideteksi penyedia hosting kami — tidak pernah alamat IP itu sendiri. Kami memakainya untuk menampilkan total, misalnya berapa pembaca yang menyukai suatu produk, menghitung satu penilaian per perangkat (dan satu per item per hari dari koneksi internet yang sama), dan mencegah spam.",
       "Jawaban seperti “Pernah” di halaman prosedur bisa berkaitan dengan kesehatan. Kami hanya memakainya untuk menampilkan total anonim. Jawaban itu tidak pernah dikaitkan dengan nama, email, atau akun, hanya dengan kode hash di atas, jadi kami tidak bisa tahu siapa yang menjawab."
     ],
     "analyticsTitle": "Analitik",
@@ -152,6 +152,6 @@
     "servicesTitle": "Layanan yang kami pakai",
     "services": "Vercel (hosting), Neon (database), serta Google dan PostHog (analitik) memproses data untuk kami. Google AdSense dan Coupang Partners yang dijelaskan di atas mengumpulkan data lewat cookie mereka sendiri sesuai kebijakan privasi masing-masing. Kami sendiri tidak menjual data atau menyerahkannya kepada pengiklan. Namun, menurut hukum beberapa negara bagian AS, iklan Google yang dipersonalisasi bisa dianggap sebagai “berbagi”; kamu bisa mematikannya di Setelan Iklan Google yang disebut di atas.",
     "rightsTitle": "Pilihanmu",
-    "rights": "Kamu bisa menghapus komentarmu kapan saja dari perangkat yang sama. Kamu bisa menghapus semua yang kami simpan di browser dengan menghapus data situs ini di pengaturan browser. Untuk hal lain, <contact>hubungi kami</contact>."
+    "rights": "Kamu bisa menghapus komentarmu dari perangkat yang sama. Tapi Safari bisa menghapus data situs ini di perangkatmu kalau kamu tidak berkunjung lebih dari 7 hari, dan setelah itu kamu juga tidak bisa menghapus komentar dari perangkat itu. Kamu bisa menghapus semua yang kami simpan di browser dengan menghapus data situs ini di pengaturan browser. Kalau komentarmu tidak bisa dihapus lagi (sertakan tautan artikelnya) atau ada hal lain, <contact>hubungi kami</contact>."
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useSyncExternalStore } from "react";
 
 import { CompassFilledIcon, CompassIcon } from "@/components/guide/icons";
 import { BookmarkFilledIcon, BookmarkIcon, HomeFilledIcon, HomeIcon } from "@/components/icons";
@@ -22,6 +23,12 @@ const TABS = [
 const GUIDE_PATH = /^\/(guide|beauty|travel|clinic|drama)(\/|$)/;
 // 저장 수 배지는 두 자리까지 (그 위는 99+)
 const BADGE_MAX = 99;
+// 저장 탭은 미리 받지 않는다: 탭바는 거의 모든 화면에 있어서, 미리 받으면 저장함 전용 JS 를 모든 독자가 받았다
+// (저장함은 기기 목록을 읽어 클라이언트가 그리는 화면이라 미리 받아도 빨라지는 게 적다)
+const NO_PREFETCH = new Set(["/saved"]);
+// 데이터 절약(Save-Data)을 켠 기기는 어느 탭도 미리 받지 않는다 (누를 때 받는다)
+const noSubscribe = () => () => {};
+const saveData = () => (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
 
 // 떠 있는 캡슐 탭바 (4개 × 최소 68px, 양옆 8px — 360px 화면에서 가장 긴 fr 'Classements' 까지 캡슐이 320px 안에 든다).
 // 최소 폭은 rem 이 아니라 px: 루트 글자가 17px 인 기기에서 4.5rem(77px)이면 넷이 320px 을 넘었다.
@@ -37,6 +44,7 @@ export function TabBar() {
   };
   const pathname = usePathname();
   const savedCount = useSaved().length;
+  const lite = useSyncExternalStore(noSubscribe, saveData, () => false);
 
   // 일정 상세는 하단 고정 CTA 가, 글 화면은 글 액션 바(ArticleActionBar)가 이 자리를 쓴다
   if (/^\/schedule\/[^/]+/.test(pathname) || /^\/news\/[^/]+$/.test(pathname)) return null;
@@ -61,6 +69,7 @@ export function TabBar() {
           <Link
             key={href}
             href={href}
+            prefetch={lite || NO_PREFETCH.has(href) ? false : undefined}
             // 정확히 그 화면일 때만 (카테고리·글에서는 홈 탭이 선택돼 보여도 현재 페이지는 아니다)
             aria-current={pathname === href ? "page" : undefined}
             aria-label={badge > 0 ? t.Engage("savedTabCount", { count: badge }) : undefined}

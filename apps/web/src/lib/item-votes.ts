@@ -66,20 +66,21 @@ export function emptyTotals(kind: VoteKind): ItemTotals {
   return { totals: Object.fromEntries(CHOICES[kind].map((c) => [c, 0])), byFacet: {}, total: 0 };
 }
 
+// 집계 한 칸: 항목·답·피부 타입마다 센 표 수
 interface VoteGroup {
   itemId: string;
   choice: string;
   facet: string | null;
-  _count: { _all: number };
+  count: number;
 }
 
-// groupBy(itemId, choice, facet) 결과를 항목별 집계로. 요청한 항목은 표가 없어도 빈 집계로 들어간다
+// (itemId, choice, facet) 별 표 수를 항목별 집계로. 요청한 항목은 표가 없어도 빈 집계로 들어간다
 export function tallyVotes(kind: VoteKind, itemIds: readonly string[], groups: readonly VoteGroup[]): Map<string, ItemTotals> {
   const out = new Map(itemIds.map((id) => [id, emptyTotals(kind)]));
   for (const g of groups) {
     const t = out.get(g.itemId);
     if (!t) continue;
-    const n = g._count._all;
+    const n = g.count;
     t.totals[g.choice] = (t.totals[g.choice] ?? 0) + n;
     t.total += n;
     if (g.facet) {
@@ -90,41 +91,85 @@ export function tallyVotes(kind: VoteKind, itemIds: readonly string[], groups: r
   return out;
 }
 
-// 테이블 없음(P2021)·DB 에 닿지 않음. pg 어댑터는 연결 실패를 P1001 이 아니라 ECONNREFUSED 같은 소켓 코드로 넘긴다
-const DB_UNAVAILABLE = new Set(["P2021", "P1001", "P1017", "ECONNREFUSED", "ECONNRESET", "ENOTFOUND", "ETIMEDOUT"]);
+// 테이블 없음(P2021)·DB 에 닿지 않음·연결 끊김. pg 어댑터는 연결 실패를 P1001 이 아니라 ECONNREFUSED 같은 소켓 코드로 넘긴다
+const DB_UNAVAILABLE = new Set([
+  "P2021",
+  "P1000",
+  "P1001",
+  "P1002",
+  "P1008",
+  "P1017",
+  "P2037",
+  "ECONNREFUSED",
+  "ECONNRESET",
+  "ENOTFOUND",
+  "ETIMEDOUT",
+]);
+// Postgres 가 돌려준 오류(Prisma 는 P2039·P2010 에 실어 넘긴다) 가운데 DB 자체를 못 쓰는 SQLSTATE:
+// 53 자원 부족(Neon 사용량 한도 초과 53000), 57P 관리자 종료·시작 중, 08 연결 오류.
+// P2039 를 통째로 목록에 넣지 않는다 — 이름 없는 Postgres 오류를 모두 담는 코드라 진짜 쿼리 버그까지 0표로 숨는다
+const UNAVAILABLE_SQLSTATE = /^(53|57P|08)/;
 
-export function isDbUnavailable(err: unknown): boolean {
-  const code = err && typeof err === "object" ? (err as { code?: unknown }).code : undefined;
-  return typeof code === "string" && DB_UNAVAILABLE.has(code);
+function sqlState(err: object): string | undefined {
+  const meta = (err as { meta?: { driverAdapterError?: { cause?: { originalCode?: unknown } } } }).meta;
+  const code = meta?.driverAdapterError?.cause?.originalCode;
+  return typeof code === "string" ? code : undefined;
 }
 
+export function isDbUnavailable(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const code = (err as { code?: unknown }).code;
+  if (typeof code === "string" && DB_UNAVAILABLE.has(code)) return true;
+  return UNAVAILABLE_SQLSTATE.test(sqlState(err) ?? "");
+}
+
+// 표 행 → 집계. 같은 IP(ipHash)가 같은 항목에 낸 표는 하루(KST, 처음 낸 날)에 하나만 센다 — 그날 마지막으로 바꾼 표.
+// 행(한 기기 한 표 = voterHash IP+UA)은 그대로 두고 세는 것만 묶는다: UA 만 바꿔 새 표를 만들어도 하루 1표,
+// 같은 와이파이의 두 사람은 같은 날 내면 1표로, 다른 날 내면 따로 센다. 규칙을 바꾸면 행은 그대로라 되돌릴 수 있다.
+// 하루는 한국 날짜(KST = UTC+9, 서머타임 없음)로 자른다 — createdAt 은 UTC 로 저장된다. DISTINCT ON 과 ORDER BY 의 식이
+// 글자까지 같아야 해서 9시간은 매개변수가 아니라 SQL 안에 둔다
 async function queryTotals(kind: VoteKind, itemIds: readonly string[]): Promise<Map<string, ItemTotals>> {
   if (itemIds.length === 0) return new Map();
-  const groups = await prisma.itemVote.groupBy({
-    by: ["itemId", "choice", "facet"],
-    where: { kind, itemId: { in: [...itemIds] } },
-    _count: { _all: true },
-  });
-  return tallyVotes(kind, itemIds, groups);
+  const rows = await prisma.$queryRaw<{ itemId: string; choice: string; facet: string | null; count: number }[]>`
+    SELECT "itemId", "choice", "facet", COUNT(*)::int AS "count"
+    FROM (
+      SELECT DISTINCT ON ("itemId", "ipHash", ("createdAt" + interval '9 hours')::date) "itemId", "choice", "facet"
+      FROM "ItemVote"
+      WHERE "kind" = ${kind} AND "itemId" = ANY(${[...itemIds]})
+      ORDER BY "itemId", "ipHash", ("createdAt" + interval '9 hours')::date, "updatedAt" DESC
+    ) AS "counted"
+    GROUP BY "itemId", "choice", "facet"`;
+  return tallyVotes(kind, itemIds, rows);
+}
+
+export interface TotalsRead {
+  totals: Map<string, ItemTotals>;
+  live: boolean; // false = DB 를 못 써서 0 집계로 대신함 (API 는 이 응답을 캐시하지 않는다)
+}
+
+// 항목들의 지금 집계 (쿼리 1회). 테이블이 없거나 DB 가 멈췄으면 0 집계로 대신한다
+export async function readItemTotals(kind: VoteKind, itemIds: readonly string[]): Promise<TotalsRead> {
+  try {
+    return { totals: await queryTotals(kind, itemIds), live: true };
+  } catch (err) {
+    if (isDbUnavailable(err)) return { totals: tallyVotes(kind, itemIds, []), live: false };
+    throw err;
+  }
 }
 
 // 한 요청 안에서 같은 목록은 한 번만 조회한다 (cache 는 인자를 값이 아니라 참조로 비교해서 목록을 문자열 키로 바꾼다)
-const cachedTotals = cache(async (kind: VoteKind, key: string): Promise<Map<string, ItemTotals>> => {
-  const ids = key ? key.split(",") : [];
-  try {
-    return await queryTotals(kind, ids);
-  } catch (err) {
-    if (isDbUnavailable(err)) return tallyVotes(kind, ids, []);
-    throw err;
-  }
-});
+const cachedTotals = cache(async (kind: VoteKind, key: string) => (await readItemTotals(kind, key ? key.split(",") : [])).totals);
 
-// 항목들의 지금 집계 (groupBy 1회). 서버 렌더 숫자를 HTML 에 넣고(SEO) 화면은 투표 응답으로 덮어쓴다.
+// 서버 렌더용 집계. 화면 숫자는 클라이언트가 /api/items 로 받는다 (components/ItemVote.tsx) — 페이지를 다시 그리지 않아도 되게.
 // 돌려준 Map·객체는 같은 요청의 다른 호출과 공유되니 고치지 않는다
 export function getItemTotals(kind: VoteKind, itemIds: readonly string[]): Promise<Map<string, ItemTotals>> {
   const key = [...new Set(itemIds.filter(isItemId))].sort().join(",");
   return cachedTotals(kind, key);
 }
+
+// 집계 API(/api/items/…) 성공 응답의 캐시: 숫자는 5분 묵어도 된다 (투표한 사람은 투표 응답으로 바로 새 숫자를 받고,
+// 이 기기에 표가 있으면 화면이 주소에 시각을 붙여 캐시를 건너뛴다)
+export const TOTALS_CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=600";
 
 export type ItemVoteError = "invalid" | "bot" | "notFound" | "tooFast" | "unavailable";
 
