@@ -8,6 +8,7 @@
     "start": "dotenv run -q -f ../../.env -- next start",
     "lint": "eslint . && node scripts/lint-tokens.mjs --strict",
     "lint:tokens": "node scripts/lint-tokens.mjs --strict",
+    "check-catalog": "node scripts/check-catalog.mjs",
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
