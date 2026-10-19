@@ -26,7 +26,8 @@ import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-cata
 import { loadBeauty } from "./data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata } from "./meta";
 
-export const revalidate = 3600;
+// 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (./data.ts). 9개 언어 모두 빌드 때 만든다 (빌드는 DB 를 읽지 않는다)
+export const revalidate = false;
 
 // 허브 '어디서 사나': 제품이 아니라 가게 자체로 (검색·목록 주소). 순서는 언어별 partnersForLocale
 const HUB_SHOPS: AffiliateTarget[] = [
@@ -41,7 +42,8 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty">
   return beautyMetadata({ locale, path: "/beauty", title: t("metaTitle"), description: t("metaDescription") });
 }
 
-// 뷰티 허브: 머리(피부 타입 칩·분류 칩) → 분류별 1위 (가장 점수 높은 1위를 전폭, 나머지 2열 + 테스트 타일)
+// 뷰티 허브: 머리(피부 타입 칩·분류 칩) → 분류별 대표 (가장 점수 높은 것을 전폭, 나머지 2열 + 테스트 타일).
+// 순위 숫자는 쓰지 않는다 — 분류마다 하나씩이라 큰 '1' 이 전체 1위로 읽혔다. 카드마다 분류 이름이 먼저 온다
 // → 어디서 사나 → 산식 공개 → 다른 섹션 레일 → 광고(맨 아래, 구매 상자와 한 화면 이상 떨어뜨린다)
 export default async function BeautyHubPage({ params }: PageProps<"/[locale]/beauty">) {
   const { locale } = await params;
@@ -110,23 +112,27 @@ export default async function BeautyHubPage({ params }: PageProps<"/[locale]/bea
       {hero && (
         <section aria-labelledby="beauty-winners">
           <SectionHeader id="beauty-winners" title={t("winnersTitle")} />
-          <p className="-mt-1 px-gutter pb-3 text-st12 text-ink-600">{t("priceLegend")}</p>
           <ul className="grid grid-cols-2 gap-x-3 gap-y-5 px-gutter">
             <RankHero
               entry={hero.item}
               locale={locale}
               label={names[hero.category]}
-              basis={t("basis", { count: data.votes.get(hero.category) ?? 0, date: updatedDate(locale) })}
+              basis={
+                data.withVotes
+                  ? t("basis", { count: data.votes.get(hero.category) ?? 0, date: updatedDate(locale) })
+                  : t("basisEditorial", { date: updatedDate(locale) })
+              }
             />
             {others.map((w) => (
-              <ProductCard key={w.item.slug} entry={w.item} locale={locale} label={names[w.category]} />
+              <ProductCard key={w.item.slug} entry={w.item} locale={locale} lead={names[w.category]} />
             ))}
             <li>
               <Link href="/beauty/skin-type" className="press-soft block">
+                <span className="mb-1.5 block truncate pl-1 text-t5 font-bold text-ink-900">{t("tile.label")}</span>
                 <TypeCover
                   tint={SECTION_TINT.beauty}
                   glyph="6"
-                  label={t("tile.label")}
+                  variant="tile"
                   title={t("tile.title")}
                   sub={t("tile.sub")}
                   locale={locale}

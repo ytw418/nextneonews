@@ -18,17 +18,17 @@ import { BEAUTY_CATEGORIES, type BeautyCategory } from "@/data/beauty/types";
 import { isEditorsPick, updatedDate } from "@/lib/beauty";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 
-import { loadBeauty } from "../../data";
+import { loadBeauty, staticParamsFor } from "../../data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata } from "../../meta";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// 정적: 다시 그리기는 파이프라인의 하루 1번 무효화만 (../../data.ts). 색인 언어 밖은 첫 요청 때 만들고, 없는 분류는 notFound
+export const revalidate = false;
 
 // 비대칭 랭킹: 1위 전폭 · 2·3위 2열 · 4위부터 목록
 const GRID_UNTIL = 3;
 
-export function generateStaticParams() {
-  return BEAUTY_CATEGORIES.map((category) => ({ category }));
+export function generateStaticParams({ params }: { params: { locale: string } }) {
+  return staticParamsFor(params.locale, "category", BEAUTY_CATEGORIES);
 }
 
 function isCategory(value: string): value is BeautyCategory {
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/a
   });
 }
 
-// 분류 어워드: h1(분류 · 어워드|에디터 픽) → 산식 한 줄·₩ 범례 → 분류 칩 → 1위 카드 → 2·3위 → 4위~ 목록 → 산식 설명 → 광고 → 다른 섹션
+// 분류 어워드: h1(분류 · 어워드|에디터 픽) → 분류 소개 → 분류 칩 → 1위 카드 → 2·3위 → 4위~ 목록 → 산식 설명(한국 정가 포함) → 광고 → 다른 섹션
 export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/beauty/awards/[category]">) {
   const { locale, category } = await params;
   if (!isLocale(locale) || !isCategory(category)) notFound();
@@ -77,7 +77,9 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
     string
   >;
   const title = t("awards.title", { category: name, kind });
-  const basis = t("basis", { count: votes, date: updatedDate(locale) });
+  const basis = data.withVotes
+    ? t("basis", { count: votes, date: updatedDate(locale) })
+    : t("basisEditorial", { date: updatedDate(locale) });
   const pageUrl = absoluteUrl(locale, `/beauty/awards/${category}`);
   const [first, ...rest] = ranked;
   const grid = rest.slice(0, GRID_UNTIL - 1);
@@ -109,7 +111,6 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
         <p className="mt-1 text-t6 text-ink-600">
           <Words text={data.text.categories[category].intro} locale={locale} />
         </p>
-        <p className="mt-2 text-st12 text-ink-600">{t("priceLegend")}</p>
       </div>
       <div className="pt-3">
         <CategoryChips label={t("categoriesLabel")} names={names} active={category} />
@@ -117,7 +118,7 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
 
       <div className="pt-4">
         <ol className="grid grid-cols-2 gap-x-3 gap-y-5 px-gutter">
-          {first && <RankHero entry={first.item} locale={locale} basis={basis} />}
+          {first && <RankHero entry={first.item} locale={locale} rank={first.rank} basis={basis} />}
           {grid.map((r) => (
             <ProductCard key={r.item.slug} entry={r.item} locale={locale} rank={r.rank} />
           ))}

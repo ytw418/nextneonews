@@ -8,16 +8,17 @@
   "categoriesLabel": "뷰티 분류",
   "crumbsLabel": "현재 위치",
   "winnersTitle": "분류별 대표 제품",
-  "priceLegend": "₩ 1만 원 미만 · ₩₩ 1~3만 원 · ₩₩₩ 3만 원 이상 (한국 정가)",
+  "priceLegend": "가격대는 한국 정가 기준이에요. 해외 쇼핑몰 가격은 다를 수 있어요.",
   "priceTier": {
-    "1": "가격: 1만 원 미만",
-    "2": "가격: 1만~3만 원",
-    "3": "가격: 3만 원 이상"
+    "1": "{low, number, ::compact-short} 원 미만",
+    "2": "{low, number, ::compact-short}~{high, number, ::compact-short} 원",
+    "3": "{high, number, ::compact-short} 원 이상"
   },
   "newBadge": "NEW",
   "listSep": ", ",
   "rank": "{rank}위",
   "basis": "편집 점수 + 독자 평가 {count}표 · {date} 갱신",
+  "basisEditorial": "편집 점수 · {date} 갱신",
   "awardsName": "언니 어워드",
   "editorsPicks": "에디터 픽",
   "seeAll": "전체 보기",
@@ -114,8 +115,6 @@
     "shareText": "나는 {name}! 너는? 6문항 피부 타입 테스트",
     "retake": "다시 하기",
     "picks": "{name}에 맞는 추천",
-    "allTitle": "K-뷰티 전체 보기",
-    "allSub": "10개 분류 · {count}개 제품",
     "tips": "관리 팁",
     "others": "다른 피부 타입"
   }

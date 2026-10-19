@@ -8,16 +8,17 @@
   "categoriesLabel": "Danh mục làm đẹp",
   "crumbsLabel": "Bạn đang ở đây",
   "winnersTitle": "Lựa chọn hàng đầu mỗi danh mục",
-  "priceLegend": "₩ dưới 10.000 won · ₩₩ 10.000–30.000 won · ₩₩₩ trên 30.000 won (giá niêm yết tại Hàn)",
+  "priceLegend": "Khoảng giá theo giá niêm yết tại Hàn. Giá ở cửa hàng nước ngoài có thể khác.",
   "priceTier": {
-    "1": "Giá: dưới 10.000 won",
-    "2": "Giá: 10.000 đến 30.000 won",
-    "3": "Giá: trên 30.000 won"
+    "1": "Dưới {low, number} won",
+    "2": "{low, number}–{high, number} won",
+    "3": "Trên {high, number} won"
   },
   "newBadge": "NEW",
   "listSep": ", ",
   "rank": "Hạng {rank}",
   "basis": "Điểm biên tập + {count} lượt đánh giá của độc giả · cập nhật {date}",
+  "basisEditorial": "Điểm biên tập · cập nhật {date}",
   "awardsName": "Giải Unnie",
   "editorsPicks": "Biên tập viên chọn",
   "seeAll": "Xem tất cả",
@@ -103,7 +104,7 @@
   "quiz": {
     "metaTitle": "Da bạn thuộc loại nào? Trắc nghiệm 6 câu",
     "metaDescription": "Sáu câu hỏi nhanh về cảm giác da mỗi ngày. Biết loại da và những món mỹ phẩm Hàn hợp với bạn. Chỉ để vui, không phải chẩn đoán y khoa.",
-    "back": "Quay lại",
+    "back": "Câu trước",
     "progress": "Câu {current}/{total}"
   },
   "result": {
@@ -114,8 +115,6 @@
     "shareText": "Mình là {name}! Còn bạn? Làm trắc nghiệm 6 câu",
     "retake": "Làm lại",
     "picks": "Gợi ý cho {name}",
-    "allTitle": "Tất cả mỹ phẩm Hàn",
-    "allSub": "{count} sản phẩm trong 10 danh mục",
     "tips": "Mẹo chăm da",
     "others": "Loại da khác"
   }

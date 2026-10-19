@@ -1,5 +1,5 @@
 // 값 import 는 상대 경로로 (vitest 는 @ 별칭을 모른다)
-import { type PriceTier, SKIN_TYPES, type SkinType } from "../data/beauty/types";
+import { SKIN_TYPES, type SkinType } from "../data/beauty/types";
 import type { ItemTotals } from "./item-votes";
 import { coverGlyph } from "../components/guide/glyph";
 import { MIN_VOTES_FOR_SUMMARY } from "./vote-rules";
@@ -19,6 +19,9 @@ export function isSkinType(value: unknown): value is SkinType {
 
 // 결과 커버·공유 이미지에 찍는 운영 주소 (캡처해 올려도 어디서 했는지 보이게)
 export const SHARE_DOMAIN = "unnienote.app";
+
+// 제품 상세 '어디서 사나' 상자의 id (AffiliateBox 의 affiliate-{placement}). 첫 화면 구매 줄·테스트 결과의 '다른 곳 보기'가 여기로 온다
+export const BEAUTY_DETAIL_BUY_ANCHOR = "affiliate-beauty-detail";
 
 // 결과 커버의 유령 글자·공유 이미지 문구 (라틴 대문자 — 공유 이미지에 한중일 폰트를 싣지 않는다)
 export const SKIN_CODE: Record<SkinType, string> = {
@@ -158,9 +161,8 @@ export function scoreQuiz(questions: readonly QuizQuestion[], answers: Record<st
 }
 
 // ───────── 표시 ─────────
-export function priceSigns(tier: PriceTier): string {
-  return "₩".repeat(tier);
-}
+// 가격대 경계 (한국 정가, 원). 문구(Beauty.priceTier)가 이 값을 언어별 숫자 형식으로 찍는다 — ₩10,000–30,000 · 1万〜3万ウォン
+export const PRICE_TIER_KRW = { low: 10_000, high: 30_000 } as const;
 
 // 커버 유령 글자: 브랜드 라틴 이니셜 1~2자 (COSRX → C, Beauty of Joseon → BJ, Round Lab → RL)
 export function brandGlyph(brand: string): string {

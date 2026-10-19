@@ -8,16 +8,17 @@
   "categoriesLabel": "コスメのカテゴリー",
   "crumbsLabel": "現在地",
   "winnersTitle": "カテゴリー別いちおし",
-  "priceLegend": "₩ 1万ウォン未満・₩₩ 1〜3万ウォン・₩₩₩ 3万ウォン以上（韓国の定価）",
+  "priceLegend": "価格帯は韓国の定価です。海外のショップでは値段が変わることがあります。",
   "priceTier": {
-    "1": "価格：1万ウォン未満",
-    "2": "価格：1万〜3万ウォン",
-    "3": "価格：3万ウォン以上"
+    "1": "{low, number, ::compact-short}ウォン未満",
+    "2": "{low, number, ::compact-short}〜{high, number, ::compact-short}ウォン",
+    "3": "{high, number, ::compact-short}ウォン以上"
   },
   "newBadge": "NEW",
   "listSep": "・",
   "rank": "{rank}位",
   "basis": "編集部スコア＋読者の評価{count}票・{date}更新",
+  "basisEditorial": "編集部スコア・{date}更新",
   "awardsName": "Unnie Awards",
   "editorsPicks": "編集部ピック",
   "seeAll": "すべて見る",
@@ -103,7 +104,7 @@
   "quiz": {
     "metaTitle": "あなたの肌タイプは？6問の肌タイプチェック",
     "metaDescription": "毎日の肌の感じ方についての6つの質問で、肌タイプと合う韓国コスメがわかります。医学的な診断ではなく、お楽しみ用です。",
-    "back": "戻る",
+    "back": "前の質問",
     "progress": "{current}／{total}問"
   },
   "result": {
@@ -114,8 +115,6 @@
     "shareText": "わたしは{name}でした！あなたは？6問の肌タイプチェック",
     "retake": "もう一度",
     "picks": "{name}におすすめ",
-    "allTitle": "韓国コスメをすべて見る",
-    "allSub": "10カテゴリー・{count}アイテム",
     "tips": "ケアのコツ",
     "others": "ほかの肌タイプ"
   }

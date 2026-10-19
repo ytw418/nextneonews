@@ -8,16 +8,17 @@
   "categoriesLabel": "Kategori kecantikan",
   "crumbsLabel": "Kamu di sini",
   "winnersTitle": "Pilihan teratas tiap kategori",
-  "priceLegend": "₩ di bawah ₩10.000 · ₩₩ ₩10.000–30.000 · ₩₩₩ di atas ₩30.000 (harga resmi di Korea)",
+  "priceLegend": "Kisaran harga mengikuti harga resmi di Korea. Harga di toko luar negeri bisa berbeda.",
   "priceTier": {
-    "1": "Harga: di bawah ₩10.000",
-    "2": "Harga: ₩10.000 sampai ₩30.000",
-    "3": "Harga: di atas ₩30.000"
+    "1": "Di bawah ₩{low, number}",
+    "2": "₩{low, number}–{high, number}",
+    "3": "Di atas ₩{high, number}"
   },
   "newBadge": "NEW",
   "listSep": ", ",
   "rank": "No. {rank}",
   "basis": "Skor editor + {count} vote pembaca · diperbarui {date}",
+  "basisEditorial": "Skor editor · diperbarui {date}",
   "awardsName": "Unnie Awards",
   "editorsPicks": "Pilihan Editor",
   "seeAll": "Lihat semua",
@@ -103,7 +104,7 @@
   "quiz": {
     "metaTitle": "Apa Jenis Kulitmu? Tes K-Beauty 6 Pertanyaan",
     "metaDescription": "Enam pertanyaan singkat tentang kondisi kulitmu sehari-hari. Ketahui jenis kulit dan skincare Korea yang cocok. Hanya untuk seru-seruan, bukan diagnosis medis.",
-    "back": "Kembali",
+    "back": "Pertanyaan sebelumnya",
     "progress": "Pertanyaan {current} dari {total}"
   },
   "result": {
@@ -114,8 +115,6 @@
     "shareText": "Jenis kulitku {name}! Kamu apa? Coba tes 6 pertanyaan",
     "retake": "Ulangi tes",
     "picks": "Pilihan untuk {name}",
-    "allTitle": "Semua pilihan K‑beauty",
-    "allSub": "{count} produk di 10 kategori",
     "tips": "Tips perawatan",
     "others": "Jenis kulit lain"
   }

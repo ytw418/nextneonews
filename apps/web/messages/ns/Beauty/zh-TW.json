@@ -8,16 +8,17 @@
   "categoriesLabel": "美妝品項",
   "crumbsLabel": "目前位置",
   "winnersTitle": "各品項首選",
-  "priceLegend": "₩ 1萬韓元以下·₩₩ 1～3萬·₩₩₩ 3萬以上（韓國定價）",
+  "priceLegend": "價格區間以韓國定價為準，海外商店的售價可能不同。",
   "priceTier": {
-    "1": "價格：1萬韓元以下",
-    "2": "價格：1萬～3萬韓元",
-    "3": "價格：3萬韓元以上"
+    "1": "{low, number, ::compact-short}韓元以下",
+    "2": "{low, number, ::compact-short}～{high, number, ::compact-short}韓元",
+    "3": "{high, number, ::compact-short}韓元以上"
   },
   "newBadge": "NEW",
   "listSep": "、",
   "rank": "第{rank}名",
   "basis": "編輯評分＋讀者評價 {count} 票·{date} 更新",
+  "basisEditorial": "編輯評分·{date} 更新",
   "awardsName": "Unnie 大賞",
   "editorsPicks": "編輯精選",
   "seeAll": "看全部",
@@ -114,8 +115,6 @@
     "shareText": "我是{name}！你呢？6題測出你的膚質",
     "retake": "再測一次",
     "picks": "{name}推薦",
-    "allTitle": "看全部韓國美妝",
-    "allSub": "10個品項·{count}款",
     "tips": "保養小撇步",
     "others": "其他膚質"
   }
