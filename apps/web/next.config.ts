@@ -60,7 +60,11 @@ const nextConfig: NextConfig = {
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
   skipTrailingSlashRedirect: true,
   devIndicators: false,
-  turbopack: { root: repoRoot },
+  turbopack: {
+    root: repoRoot,
+    // 줄바꿈 사전(budoux, 원본 380KB)은 서버에서만 쓴다. 브라우저 번들에는 분석기 없는 빈 모듈을 넣는다 (components/Phrase.tsx)
+    resolveAlias: { budoux: { browser: "./src/lib/budoux-browser.ts" } },
+  },
   outputFileTracingRoot: repoRoot,
   // 위키미디어 사진은 표준 폭 썸네일로 받는다 (src/lib/image.ts). 폭 목록은 위키미디어 표준 폭 + 3배 화면을 2배 남짓으로
   // 받게 하는 후보(DPR_CAP_WIDTHS, 로더가 표준 폭으로 내린다)
