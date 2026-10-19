@@ -7,7 +7,7 @@ import { englishSubject, subjectIndex } from "./names";
 const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
 // 위키미디어 API 규칙: 연락 가능한 사이트 주소를 넣고, 요청 사이를 띄우고, 429 면 기다렸다 다시 한다
 // https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits
-const USER_AGENT = "HallyuBrief/0.1 (https://hallyu-brief.vercel.app; image credits bot)";
+const USER_AGENT = "UnnieNote/0.1 (https://hallyu-brief.vercel.app; image credits bot)";
 const GAP_MS = 1000;
 let lastCall = 0;
 

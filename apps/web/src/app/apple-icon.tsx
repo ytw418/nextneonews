@@ -20,7 +20,7 @@ export default function AppleIcon() {
           color: "#1b1520",
         }}
       >
-        H<span style={{ color: "#ff3d6e" }}>.</span>
+        U<span style={{ color: "#ff3d6e" }}>.</span>
       </div>
     ),
     size,

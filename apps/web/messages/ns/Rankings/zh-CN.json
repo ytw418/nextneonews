@@ -9,7 +9,7 @@
     "methodology": "排行榜怎么计算",
     "methodologySub": "指标、权重、来源与许可",
     "dataTitle": "免费数据",
-    "dataBody": "所有排行榜只要注明 Hallyu Brief，即可按 CC BY 4.0 许可转载。下载最近90天的 JSON 或 CSV："
+    "dataBody": "所有排行榜只要注明 Unnie Note，即可按 CC BY 4.0 许可转载。下载最近90天的 JSON 或 CSV："
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "本周粉丝票选",
       "short": "粉丝票选",
-      "description": "Hallyu Brief 每周的粉丝票选：9种语言的读者一起选出本周最强回归。无需登录，每台设备可以投一票。"
+      "description": "Unnie Note 每周的粉丝票选：9种语言的读者一起选出本周最强回归。无需登录，每台设备可以投一票。"
     }
   },
   "asOf": "截至<time>{date}</time>",
@@ -38,7 +38,7 @@
   "updatedDaily": "每天05:00（KST）更新",
   "weeklyArchive": "周榜・每周一定稿",
   "fanPickNote": "每周粉丝票选・周一00:00（KST）截止",
-  "fanPickSource": "Hallyu Brief 每周粉丝票选",
+  "fanPickSource": "Unnie Note 每周粉丝票选",
   "sources": "来源",
   "howCalculated": "计算方式",
   "answer": "{period, select, week {{date}当周} other {{date}}}的{chart}由{first}拿下第1名，其次是{second}和{third}。",
@@ -86,7 +86,7 @@
   "emptyCta": "看最新新闻",
   "method": {
     "title": "排行榜怎么计算",
-    "metaDescription": "Hallyu Brief 每日K-POP、演员、韩剧话题排行榜的计算方式：指标、权重、上榜条件、来源与许可。",
+    "metaDescription": "Unnie Note 每日K-POP、演员、韩剧话题排行榜的计算方式：指标、权重、上榜条件、来源与许可。",
     "intro": "所有排行榜都由程序根据公开数据计算，不由编辑或AI决定。相同的数据，永远得到相同的名次。",
     "axesTitle": "分数的两个部分",
     "kr": "韩国话题（KR）汇总最近7天 theqoo 热门版的浏览数与评论数、Google 趋势韩国的搜索量，以及韩联社新闻的提及次数。",

@@ -9,7 +9,7 @@
     "methodology": "차트 계산 방법",
     "methodologySub": "지표·가중치·출처·라이선스",
     "dataTitle": "무료 데이터",
-    "dataBody": "모든 차트는 Hallyu Brief 출처를 밝히면 CC BY 4.0으로 다시 쓸 수 있어요. 최근 90일치 JSON·CSV:"
+    "dataBody": "모든 차트는 Unnie Note 출처를 밝히면 CC BY 4.0으로 다시 쓸 수 있어요. 최근 90일치 JSON·CSV:"
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "이번 주 팬 투표",
       "short": "팬 투표",
-      "description": "Hallyu Brief 주간 팬 투표예요. 9개 언어 독자가 이번 주 최고의 컴백을 골라요. 로그인 없이 기기마다 한 표예요."
+      "description": "Unnie Note 주간 팬 투표예요. 9개 언어 독자가 이번 주 최고의 컴백을 골라요. 로그인 없이 기기마다 한 표예요."
     }
   },
   "asOf": "<time>{date}</time> 기준",
@@ -38,7 +38,7 @@
   "updatedDaily": "매일 05:00(KST) 갱신",
   "weeklyArchive": "주간판 · 매주 월요일 확정",
   "fanPickNote": "주간 팬 투표 · 월요일 00:00(KST) 마감",
-  "fanPickSource": "Hallyu Brief 주간 팬 투표",
+  "fanPickSource": "Unnie Note 주간 팬 투표",
   "sources": "출처",
   "howCalculated": "계산 방법",
   "answer": "{period, select, week {{date} 주간} other {{date}}} {chart} 1위는 {first}. 이어서 {second}, {third} 순이에요.",
@@ -86,7 +86,7 @@
   "emptyCta": "최신 소식 보기",
   "method": {
     "title": "랭킹 계산 방법",
-    "metaDescription": "Hallyu Brief의 K팝·배우·드라마 화제성 차트를 계산하는 방법: 지표, 가중치, 진입 조건, 출처와 라이선스.",
+    "metaDescription": "Unnie Note의 K팝·배우·드라마 화제성 차트를 계산하는 방법: 지표, 가중치, 진입 조건, 출처와 라이선스.",
     "intro": "모든 차트는 편집자나 AI가 아니라 공개된 데이터로 코드가 계산해요. 같은 데이터면 언제나 같은 순위가 나와요.",
     "axesTitle": "점수를 이루는 두 축",
     "kr": "국내 화제성(KR)은 최근 7일 더쿠 핫게시판 조회수·댓글 수, 구글 트렌드 한국 검색량, 연합뉴스 언급 수를 더해요.",

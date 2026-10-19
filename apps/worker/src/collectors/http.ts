@@ -9,7 +9,7 @@ import { assertRobotsAllowed } from "./robots";
 const BOT_SITE = process.env.SITE_URL?.startsWith("https://")
   ? process.env.SITE_URL.replace(/\/$/, "")
   : "https://hallyu-brief.vercel.app";
-export const USER_AGENT = `HallyuBriefBot/1.0 (+${BOT_SITE}/en/about#bot)`;
+export const USER_AGENT = `UnnieNoteBot/1.0 (+${BOT_SITE}/en/about#bot)`;
 
 // 막혔다는 뜻의 응답. 20초 뒤 한 번 더 보내고, 그래도 막히면 서울 릴레이로 간다
 const BLOCKED_STATUSES = new Set([403, 429, 503]);

@@ -9,7 +9,7 @@
     "methodology": "ランキングの計算方法",
     "methodologySub": "指標・重み・出典・ライセンス",
     "dataTitle": "無料データ",
-    "dataBody": "すべてのランキングは、Hallyu Briefのクレジットを入れればCC BY 4.0で再利用できます。直近90日分をJSONまたはCSVで："
+    "dataBody": "すべてのランキングは、Unnie Noteのクレジットを入れればCC BY 4.0で再利用できます。直近90日分をJSONまたはCSVで："
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "今週のファン投票",
       "short": "ファン投票",
-      "description": "Hallyu Briefの毎週のファン投票です。9言語の読者が今週いちばん良かったカムバックを選びます。ログイン不要、1台につき1票です。"
+      "description": "Unnie Noteの毎週のファン投票です。9言語の読者が今週いちばん良かったカムバックを選びます。ログイン不要、1台につき1票です。"
     }
   },
   "asOf": "<time>{date}</time>時点",
@@ -38,7 +38,7 @@
   "updatedDaily": "毎日05:00（KST）更新",
   "weeklyArchive": "週間版・毎週月曜に確定",
   "fanPickNote": "毎週のファン投票・月曜00:00（KST）締め切り",
-  "fanPickSource": "Hallyu Brief 週間ファン投票",
+  "fanPickSource": "Unnie Note 週間ファン投票",
   "sources": "出典",
   "howCalculated": "計算方法",
   "answer": "{period, select, week {{date}の週} other {{date}}}の{chart}は{first}が1位、続いて{second}、{third}です。",
@@ -86,7 +86,7 @@
   "emptyCta": "最新ニュースを読む",
   "method": {
     "title": "ランキングの計算方法",
-    "metaDescription": "Hallyu BriefのK-POP・俳優・韓国ドラマ話題ランキングの計算方法。指標、重み、ランクイン条件、出典とライセンス。",
+    "metaDescription": "Unnie NoteのK-POP・俳優・韓国ドラマ話題ランキングの計算方法。指標、重み、ランクイン条件、出典とライセンス。",
     "intro": "すべてのランキングは、編集者やAIではなく、公開データからプログラムで計算しています。同じデータなら、いつも同じ順位になります。",
     "axesTitle": "スコアを作る2つの軸",
     "kr": "韓国での話題（KR）は、直近7日間のtheqoo人気掲示板の閲覧数とコメント数、Google トレンド韓国の検索量、聯合ニュースでの言及数を合わせたものです。",

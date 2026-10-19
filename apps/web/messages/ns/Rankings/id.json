@@ -9,7 +9,7 @@
     "methodology": "Cara tangga ini dihitung",
     "methodologySub": "Sinyal, bobot, sumber, dan lisensi",
     "dataTitle": "Data gratis",
-    "dataBody": "Semua tangga bisa dipakai ulang dengan CC BY 4.0 asal mencantumkan Hallyu Brief. Unduh 90 hari terakhir dalam JSON atau CSV:"
+    "dataBody": "Semua tangga bisa dipakai ulang dengan CC BY 4.0 asal mencantumkan Unnie Note. Unduh 90 hari terakhir dalam JSON atau CSV:"
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "Pilihan Fans Minggu Ini",
       "short": "Pilihan Fans",
-      "description": "Voting fans mingguan Hallyu Brief: pembaca dalam 9 bahasa memilih comeback terbaik minggu ini. Tanpa login, satu suara per perangkat."
+      "description": "Voting fans mingguan Unnie Note: pembaca dalam 9 bahasa memilih comeback terbaik minggu ini. Tanpa login, satu suara per perangkat."
     }
   },
   "asOf": "Per <time>{date}</time>",
@@ -38,7 +38,7 @@
   "updatedDaily": "Diperbarui setiap hari pukul 05.00 KST",
   "weeklyArchive": "Edisi mingguan, dikunci setiap Senin",
   "fanPickNote": "Voting fans mingguan, ditutup Senin pukul 00.00 KST",
-  "fanPickSource": "Voting fans mingguan Hallyu Brief",
+  "fanPickSource": "Voting fans mingguan Unnie Note",
   "sources": "Sumber",
   "howCalculated": "Cara menghitungnya",
   "answer": "{first} memuncaki {chart} {period, select, week {pada minggu {date}} other {pada {date}}}, disusul {second} dan {third}.",
@@ -86,7 +86,7 @@
   "emptyCta": "Baca berita terbaru",
   "method": {
     "title": "Cara peringkat dihitung",
-    "metaDescription": "Cara Hallyu Brief menghitung tangga buzz harian K-pop, aktor, dan drama Korea: sinyal, bobot, syarat masuk, sumber, dan lisensi.",
+    "metaDescription": "Cara Unnie Note menghitung tangga buzz harian K-pop, aktor, dan drama Korea: sinyal, bobot, syarat masuk, sumber, dan lisensi.",
     "intro": "Setiap tangga dihitung oleh kode dari data publik, bukan oleh editor atau AI. Data yang sama selalu menghasilkan peringkat yang sama.",
     "axesTitle": "Dua bagian skor",
     "kr": "Buzz Korea (KR) menjumlahkan tayangan dan komentar papan hot theqoo, pencarian Google Trends KR, dan jumlah sebutan di berita Yonhap selama 7 hari terakhir.",

@@ -194,7 +194,7 @@ async function closeWeeklyPoll(poll: { id: string; key: string; optionIds: strin
         scope,
         period,
         items: items as unknown as Prisma.InputJsonValue,
-        sources: [{ name: "Hallyu Brief weekly fan vote", url: `${site}/en/rankings/fan-pick`, count: total }],
+        sources: [{ name: "Unnie Note weekly fan vote", url: `${site}/en/rankings/fan-pick`, count: total }],
         method: FAN_PICK_METHOD,
       },
       update: {},

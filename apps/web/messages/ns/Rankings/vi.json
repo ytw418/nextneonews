@@ -9,7 +9,7 @@
     "methodology": "Cách tính bảng xếp hạng",
     "methodologySub": "Chỉ số, trọng số, nguồn và giấy phép",
     "dataTitle": "Dữ liệu miễn phí",
-    "dataBody": "Mọi bảng xếp hạng đều dùng lại được theo CC BY 4.0, chỉ cần ghi nguồn Hallyu Brief. Tải 90 ngày gần nhất dạng JSON hoặc CSV:"
+    "dataBody": "Mọi bảng xếp hạng đều dùng lại được theo CC BY 4.0, chỉ cần ghi nguồn Unnie Note. Tải 90 ngày gần nhất dạng JSON hoặc CSV:"
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "Fan bình chọn tuần này",
       "short": "Fan bình chọn",
-      "description": "Bình chọn hằng tuần của Hallyu Brief: độc giả ở 9 ngôn ngữ chọn màn comeback hay nhất tuần. Không cần đăng nhập, mỗi thiết bị một phiếu."
+      "description": "Bình chọn hằng tuần của Unnie Note: độc giả ở 9 ngôn ngữ chọn màn comeback hay nhất tuần. Không cần đăng nhập, mỗi thiết bị một phiếu."
     }
   },
   "asOf": "Tính đến <time>{date}</time>",
@@ -38,7 +38,7 @@
   "updatedDaily": "Cập nhật lúc 05:00 KST mỗi ngày",
   "weeklyArchive": "Bản tuần, chốt mỗi thứ Hai",
   "fanPickNote": "Bình chọn hằng tuần, đóng lúc 00:00 KST thứ Hai",
-  "fanPickSource": "Bình chọn hằng tuần của Hallyu Brief",
+  "fanPickSource": "Bình chọn hằng tuần của Unnie Note",
   "sources": "Nguồn",
   "howCalculated": "Cách tính",
   "answer": "{first} dẫn đầu {chart} {period, select, week {tuần {date}} other {ngày {date}}}, tiếp theo là {second} và {third}.",
@@ -86,7 +86,7 @@
   "emptyCta": "Đọc tin mới nhất",
   "method": {
     "title": "Cách tính bảng xếp hạng",
-    "metaDescription": "Cách Hallyu Brief tính bảng xếp hạng độ hot K-pop, diễn viên và phim Hàn mỗi ngày: chỉ số, trọng số, điều kiện vào bảng, nguồn và giấy phép.",
+    "metaDescription": "Cách Unnie Note tính bảng xếp hạng độ hot K-pop, diễn viên và phim Hàn mỗi ngày: chỉ số, trọng số, điều kiện vào bảng, nguồn và giấy phép.",
     "intro": "Mọi bảng xếp hạng đều do mã tính từ dữ liệu công khai, không phải do biên tập viên hay AI. Cùng dữ liệu thì luôn ra cùng thứ hạng.",
     "axesTitle": "Hai nửa của điểm số",
     "kr": "Độ hot tại Hàn (KR) cộng lượt xem và bình luận trên bảng hot của theqoo, lượt tìm trên Google Trends KR và số lần được Yonhap nhắc đến trong 7 ngày qua.",

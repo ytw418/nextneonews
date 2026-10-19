@@ -21,7 +21,7 @@ import { SITE_URL } from "@/lib/url";
 const UPDATED = "2026-10-16";
 
 // 수집기(apps/worker/src/collectors/http.ts)의 USER_AGENT 와 같은 문자열. #bot 이 UA 안의 주소다
-const BOT_UA = `HallyuBriefBot/1.0 (+${SITE_URL}/en/about#bot)`;
+const BOT_UA = `UnnieNoteBot/1.0 (+${SITE_URL}/en/about#bot)`;
 
 export const revalidate = 3600;
 
@@ -94,7 +94,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         <CodeBlock>{BOT_UA}</CodeBlock>
         <InfoList items={t.raw("botRules") as string[]} />
         <p>{t("botBlock")}</p>
-        <CodeBlock>{"User-agent: HallyuBriefBot\nDisallow: /"}</CodeBlock>
+        <CodeBlock>{"User-agent: UnnieNoteBot\nDisallow: /"}</CodeBlock>
         <p>{t.rich("botContact", { contact: inlineLink("/contact") })}</p>
         {email && (
           <p>

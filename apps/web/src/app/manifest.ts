@@ -6,7 +6,7 @@ import { SITE_NAME } from "@kmedia/core";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE_NAME,
-    short_name: "Hallyu",
+    short_name: "Unnie Note",
     description: "What foreigners want to know about Korea, every day",
     start_url: "/",
     scope: "/",

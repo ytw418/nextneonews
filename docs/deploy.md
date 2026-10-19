@@ -9,7 +9,7 @@
 | 파이프라인 (수집·작성) | **GitHub Actions** `.github/workflows/pipeline.yml`, 매시 17분, 1회 최대 3편 | 공개 레포라 무료 |
 | 서울 수집 릴레이 | **Vercel** 프로젝트 `hallyu-collector` (같은 레포, `infra/collector-relay`, 리전 `icn1`). 더쿠가 해외 IP 를 403 으로 막을 때만 쓴다 | Hobby 무료 |
 | AI | Anthropic Haiku 5.5, 1편 약 4원 | 최대 하루 72편 기준 월 약 8,600원. 누적 10만 원에서 자동 중단 |
-| 도메인 | 지금은 `hallyu-brief.vercel.app`. `hallyubrief.com` 구매 예정 | 연 $11.25 |
+| 도메인 | 지금은 `hallyu-brief.vercel.app`. `unnienote.com` 구매 예정 | 연 $11.25 |
 | 이미지 | 위키미디어 공용 직접 참조 | 0원 |
 
 ## 설정값
@@ -53,7 +53,7 @@
 
 ## 남은 일
 
-1. **도메인**: Vercel 에서 `hallyubrief.com` 구매 → 프로젝트에 연결 → Vercel 환경변수·GitHub Secret 의 `SITE_URL` 을 바꾼다.
+1. **도메인**: Vercel 에서 `unnienote.com` 구매 → 프로젝트에 연결 → Vercel 환경변수·GitHub Secret 의 `SITE_URL` 을 바꾼다.
 2. **검색엔진 등록** (`docs/geo.md` 2장): Search Console(사이트맵 제출), Bing Webmaster Tools.
 3. **애드센스**: 가이드형 글 30편 이상 쌓인 뒤 신청. 이때 Vercel Pro 필요.
 4. **서울 수집 릴레이**: 위 '만들기' 절차로 `hallyu-collector` 를 만들고 GitHub Secrets 두 개를 넣는다. 첫 배포 뒤 '확인' 명령으로 `icn1` 에서 더쿠가 200 인지 본다 (icn1 이 열린다는 것은 아직 시험하지 않은 가설이다).

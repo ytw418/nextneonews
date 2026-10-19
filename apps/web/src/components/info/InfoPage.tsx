@@ -76,7 +76,7 @@ export function infoMetadata(
 ): Metadata {
   const alternates = localeAlternates(locale, pathOf(page));
   return {
-    // 'About Hallyu Brief | Hallyu Brief' 처럼 사이트 이름이 두 번 붙지 않게
+    // 'About Unnie Note | Unnie Note' 처럼 사이트 이름이 두 번 붙지 않게
     title: title.includes(SITE_NAME) ? { absolute: title } : title,
     description,
     alternates,

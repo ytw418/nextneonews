@@ -9,7 +9,7 @@
     "methodology": "Comment les classements sont calculés",
     "methodologySub": "Signaux, pondérations, sources et licences",
     "dataTitle": "Données libres",
-    "dataBody": "Tous les classements sont réutilisables sous CC BY 4.0, en citant Hallyu Brief. Les 90 derniers jours en JSON ou CSV :"
+    "dataBody": "Tous les classements sont réutilisables sous CC BY 4.0, en citant Unnie Note. Les 90 derniers jours en JSON ou CSV :"
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "Le choix des fans de la semaine",
       "short": "Choix des fans",
-      "description": "Le vote hebdomadaire des fans sur Hallyu Brief : des lecteurs dans 9 langues élisent le meilleur comeback de la semaine. Sans compte, un vote par appareil."
+      "description": "Le vote hebdomadaire des fans sur Unnie Note : des lecteurs dans 9 langues élisent le meilleur comeback de la semaine. Sans compte, un vote par appareil."
     }
   },
   "asOf": "Au <time>{date}</time>",
@@ -38,7 +38,7 @@
   "updatedDaily": "Mis à jour chaque jour à 05:00 KST",
   "weeklyArchive": "Édition hebdomadaire, figée chaque lundi",
   "fanPickNote": "Vote hebdomadaire des fans, clôture le lundi à 00:00 KST",
-  "fanPickSource": "Vote hebdomadaire des fans de Hallyu Brief",
+  "fanPickSource": "Vote hebdomadaire des fans de Unnie Note",
   "sources": "Sources",
   "howCalculated": "Méthode de calcul",
   "answer": "{chart}, {period, select, week {semaine du {date}} other {{date}}} : {first} en tête, devant {second} et {third}.",
@@ -86,7 +86,7 @@
   "emptyCta": "Lire les dernières actus",
   "method": {
     "title": "Comment les classements sont calculés",
-    "metaDescription": "Comment Hallyu Brief calcule ses classements buzz quotidiens K-pop, acteurs et K-dramas : signaux, pondérations, conditions d’entrée, sources et licences.",
+    "metaDescription": "Comment Unnie Note calcule ses classements buzz quotidiens K-pop, acteurs et K-dramas : signaux, pondérations, conditions d’entrée, sources et licences.",
     "intro": "Chaque classement est calculé par du code à partir de données publiques, pas par une rédaction ni par une IA. Les mêmes données donnent toujours le même classement.",
     "axesTitle": "Les deux moitiés du score",
     "kr": "Le buzz en Corée (KR) additionne, sur 7 jours, les vues et commentaires du forum hot de theqoo, les recherches Google Trends KR et les mentions dans les dépêches de Yonhap.",

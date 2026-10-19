@@ -8,7 +8,7 @@ const SITE_URL = process.env.SITE_URL?.startsWith("https://")
   ? process.env.SITE_URL.replace(/\/$/, "")
   : "https://hallyu-brief.vercel.app";
 // 워커와 같은 정직한 봇 UA
-const USER_AGENT = `HallyuBriefBot/1.0 (+${SITE_URL}/en/about#bot)`;
+const USER_AGENT = `UnnieNoteBot/1.0 (+${SITE_URL}/en/about#bot)`;
 
 const BOARD_LIST = /^https:\/\/theqoo\.net\/(hot|square|dyb|yn)(\?page=\d{1,3})?$/;
 const COMMENT_ENDPOINT = "https://theqoo.net/index.php";

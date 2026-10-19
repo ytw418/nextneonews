@@ -1,4 +1,4 @@
-# Hallyu Brief (가칭)
+# Unnie Note (가칭)
 
 다국어 K-컬처 이슈 미디어.
 - 기획: [`docs/PRD.md`](docs/PRD.md) (v0.3) · 조사: [`docs/research/`](docs/research)

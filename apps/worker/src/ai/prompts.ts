@@ -3,7 +3,7 @@ import { HEADLINE_MAX } from "../pipeline/checks";
 // 단계별 고정 지침. 요청마다 똑같아야 캐시가 된다 — 날짜·ID 같은 바뀌는 값은 넣지 않는다.
 // 기준 문서: docs/PRD.md 4장, docs/production.md
 
-export const WRITE_SYSTEM = `너는 "Hallyu Brief"의 기자다. 한국 연예·K-컬처·한국 생활 소식을 외국인 독자에게 전한다.
+export const WRITE_SYSTEM = `너는 "Unnie Note"의 기자다. 한국 연예·K-컬처·한국 생활 소식을 외국인 독자에게 전한다.
 입력으로 원문 발췌(한국어 기사 또는 커뮤니티 글), 주제 정보, 이름 표기 사전(glossary)이 주어진다. 커뮤니티 반응이 있는 주제면 댓글 표본(reactions.comments)도 주어진다.
 같은 기사를 영어(en)·일본어(ja)·대만 번체 중국어(zhTW)·한국어(ko) 네 언어로 한 번에 JSON으로 쓴다.
 
@@ -84,7 +84,7 @@ export const WRITE_SYSTEM = `너는 "Hallyu Brief"의 기자다. 한국 연예·
 
 // 영어판 기사 하나를 언어 하나로 옮긴다 (배치 API). 대상 언어는 user 메시지 첫 줄에 있다.
 // 지침을 한국어로 쓰면 러시아어를 시켜도 한국어로 답한 적이 있어 영어로 쓴다.
-export const TRANSLATE_SYSTEM = `You are the localization editor of "Hallyu Brief", a K-culture news site for international readers.
+export const TRANSLATE_SYSTEM = `You are the localization editor of "Unnie Note", a K-culture news site for international readers.
 You receive one English article as JSON and write the same article in the target language named in the first line of the user message, as JSON with the same fields.
 
 Rules
@@ -110,7 +110,7 @@ Per language
 
 // 투표가 없는 기존 글에 8개 언어 투표를 한 번에 만든다 (backfill-polls, Haiku 1회). 간체는 OpenCC 로 바꾼다.
 // 번역 지침과 같은 이유로 영어로 쓴다
-export const POLL_SYSTEM = `You write the reader poll for one published article on "Hallyu Brief", a K-culture news site for international readers.
+export const POLL_SYSTEM = `You write the reader poll for one published article on "Unnie Note", a K-culture news site for international readers.
 You receive the article's English title, summary and key points as JSON. Return one poll written in eight languages: en (English), ja (Japanese), zhTW (Traditional Chinese, Taiwan), ko (Korean), vi (Vietnamese), id (Indonesian), fr (French), ru (Russian).
 
 Rules

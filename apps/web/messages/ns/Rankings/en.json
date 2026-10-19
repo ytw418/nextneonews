@@ -9,7 +9,7 @@
     "methodology": "How the charts are calculated",
     "methodologySub": "Signals, weights, sources and licenses",
     "dataTitle": "Free data",
-    "dataBody": "Reuse any chart under CC BY 4.0 with credit to Hallyu Brief. The last 90 days as JSON or CSV:"
+    "dataBody": "Reuse any chart under CC BY 4.0 with credit to Unnie Note. The last 90 days as JSON or CSV:"
   },
   "chart": {
     "kpop": {
@@ -30,7 +30,7 @@
     "fanPick": {
       "title": "Fan Pick of the Week",
       "short": "Fan Pick",
-      "description": "Weekly fan vote on Hallyu Brief: readers in 9 languages pick the best comeback of the week. No login, one vote per device."
+      "description": "Weekly fan vote on Unnie Note: readers in 9 languages pick the best comeback of the week. No login, one vote per device."
     }
   },
   "asOf": "As of <time>{date}</time>",
@@ -38,7 +38,7 @@
   "updatedDaily": "Updated daily at 05:00 KST",
   "weeklyArchive": "Weekly edition, frozen every Monday",
   "fanPickNote": "Weekly fan vote, closes Mondays 00:00 KST",
-  "fanPickSource": "Hallyu Brief weekly fan vote",
+  "fanPickSource": "Unnie Note weekly fan vote",
   "sources": "Sources",
   "howCalculated": "How it’s calculated",
   "answer": "{first} tops the {chart} {period, select, week {for the week of {date}} other {on {date}}}, followed by {second} and {third}.",
@@ -86,7 +86,7 @@
   "emptyCta": "Read the latest news",
   "method": {
     "title": "How the rankings work",
-    "metaDescription": "How Hallyu Brief calculates its daily K-pop, actor and K-drama buzz charts: signals, weights, entry rules, sources and licenses.",
+    "metaDescription": "How Unnie Note calculates its daily K-pop, actor and K-drama buzz charts: signals, weights, entry rules, sources and licenses.",
     "intro": "Every chart is calculated by code from public data, not by editors or AI. The same data always gives the same ranking.",
     "axesTitle": "Two halves of the score",
     "kr": "Korea buzz (KR) adds up 7 days of theqoo hot-board views and comments, Google Trends KR searches and Yonhap news mentions.",
