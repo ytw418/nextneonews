@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "韩剧指南",
+    "lead": "下一部看什么、去哪看、在韩国哪里拍，一次整理好。",
+    "stats": "{count} 部 · {date} 更新",
+    "metaTitle": "韩剧指南：{count} 部必看韩剧与观看平台",
+    "metaDescription": "《泪之女王》《爱的迫降》《请回答1988》等韩剧的观看平台、演员、韩国拍摄地与读者评分，一次看懂。",
+    "trendTitle": "现在热门",
+    "trendChart": "韩剧排行榜",
+    "trendRank": "今日韩剧排行榜第 {rank} 名",
+    "trendPick": "编辑精选",
+    "songsTitle": "韩国现在都在听",
+    "songsSource": "来源：Apple Music 韩国 热门歌曲 · {date}",
+    "listTitle": "全部作品",
+    "genreFilter": "按类型筛选",
+    "allGenres": "全部",
+    "shown": "共 {count} 部"
+  },
+  "detail": {
+    "metaTitle": "{title}（{year}）：在哪看、演员与拍摄地",
+    "metaDescription": "{tagline}。整理观看平台、演员与韩国拍摄地。",
+    "episodes": "全 {count} 集",
+    "watchTitle": "在哪看",
+    "watchConfirmed": "已确认{regions}可看",
+    "watchEverywhere": "全球都能看",
+    "watchUnconfirmed": "各地上架不同 · 尚未确认",
+    "watchNote": "这些是普通链接，不是广告。各地片单会变动，开看前请先在 App 里确认。",
+    "storyTitle": "剧情",
+    "whyTitle": "为什么值得看",
+    "castTitle": "演员",
+    "castRole": "饰演 {role}",
+    "filmingTitle": "拍摄地",
+    "similarTitle": "喜欢这部也会喜欢",
+    "share": "分享这部剧"
+  },
+  "rating": {
+    "title": "给它评分",
+    "count": "{count, plural, =0 {还没有评分} other {# 条评分}}",
+    "first": "还没有人评分，来当第一个吧",
+    "average": "平均 {average} 分（满分 5 分）",
+    "outOf": "/ 5",
+    "mine": "你的评分：{count}"
+  },
+  "newTab": "（在新标签页打开）"
+}

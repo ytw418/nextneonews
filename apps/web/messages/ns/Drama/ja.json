@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "韓国ドラマガイド",
+    "lead": "次に観る一本と配信先、韓国のロケ地までまとめて。",
+    "stats": "{count}作品 · {date}更新",
+    "metaTitle": "韓国ドラマガイド：おすすめ{count}作品と配信先",
+    "metaDescription": "『涙の女王』『愛の不時着』『恋のスケッチ〜応答せよ1988〜』など、韓国ドラマの配信先・キャスト・韓国のロケ地と読者の評価をまとめました。",
+    "trendTitle": "いま話題",
+    "trendChart": "Kドラマランキング",
+    "trendRank": "今日のKドラマランキング{rank}位",
+    "trendPick": "編集部ピック",
+    "songsTitle": "韓国でいま聴かれている曲",
+    "songsSource": "出典：Apple Music 韓国 再生回数ランキング · {date}",
+    "listTitle": "作品ガイド",
+    "genreFilter": "ジャンルで絞り込む",
+    "allGenres": "すべて",
+    "shown": "{count}作品を表示中"
+  },
+  "detail": {
+    "metaTitle": "{title}（{year}）配信先・キャスト・ロケ地",
+    "metaDescription": "{tagline}。配信先、キャスト、韓国のロケ地をまとめました。",
+    "episodes": "全{count}話",
+    "watchTitle": "配信先",
+    "watchConfirmed": "{regions}で配信を確認",
+    "watchEverywhere": "世界中で配信",
+    "watchUnconfirmed": "日本での配信は未確認",
+    "watchNote": "広告ではない通常のリンクです。配信作品は国や時期で変わるので、観る前にアプリで確かめてください。",
+    "storyTitle": "あらすじ",
+    "whyTitle": "ここが見どころ",
+    "castTitle": "キャスト",
+    "castRole": "{role}役",
+    "filmingTitle": "ロケ地",
+    "similarTitle": "こちらもおすすめ",
+    "share": "この作品をシェア"
+  },
+  "rating": {
+    "title": "評価する",
+    "count": "{count, plural, =0 {まだ評価なし} other {#件の評価}}",
+    "first": "まだ評価がありません。最初のひとりになりませんか",
+    "average": "平均{average}（5点満点）",
+    "outOf": "/ 5",
+    "mine": "あなたの評価：{count}"
+  },
+  "newTab": "（新しいタブで開きます）"
+}

@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "Panduan Drakor",
+    "lead": "Mau nonton apa, nonton di mana, dan lokasi syutingnya di Korea.",
+    "stats": "{count} drama · diperbarui {date}",
+    "metaTitle": "Panduan Drakor: {count} Drama dan Tempat Nontonnya",
+    "metaDescription": "Queen of Tears, Crash Landing on You, Reply 1988 dan lainnya: tempat nonton tiap drakor, para pemain, lokasi syuting di Korea, dan nilai dari pembaca.",
+    "trendTitle": "Lagi ramai",
+    "trendChart": "Chart drakor",
+    "trendRank": "Peringkat {rank} chart drakor hari ini",
+    "trendPick": "Pilihan editor",
+    "songsTitle": "Lagu yang lagi diputar di Korea",
+    "songsSource": "Sumber: Apple Music Korea, paling banyak diputar · {date}",
+    "listTitle": "Semua drama",
+    "genreFilter": "Saring menurut genre",
+    "allGenres": "Semua",
+    "shown": "Menampilkan {count} drama"
+  },
+  "detail": {
+    "metaTitle": "{title} ({year}): Nonton di Mana, Pemain, Lokasi Syuting",
+    "metaDescription": "{tagline}. Tempat nonton, para pemain, dan lokasi syuting di Korea.",
+    "episodes": "{count} episode",
+    "watchTitle": "Nonton di mana",
+    "watchConfirmed": "Tersedia di {regions}",
+    "watchEverywhere": "Tersedia di seluruh dunia",
+    "watchUnconfirmed": "Beda tiap negara · belum dicek",
+    "watchNote": "Ini tautan biasa, bukan iklan. Katalog berbeda di tiap negara, jadi cek dulu di aplikasinya sebelum mulai nonton.",
+    "storyTitle": "Sinopsis",
+    "whyTitle": "Kenapa wajib nonton",
+    "castTitle": "Pemain",
+    "castRole": "sebagai {role}",
+    "filmingTitle": "Lokasi syuting",
+    "similarTitle": "Drama serupa",
+    "share": "Bagikan drama ini"
+  },
+  "rating": {
+    "title": "Beri nilai",
+    "count": "{count, plural, =0 {Belum ada nilai} other {# penilaian}}",
+    "first": "Belum ada nilai. Jadi yang pertama, yuk.",
+    "average": "Rata-rata {average} dari 5",
+    "outOf": "/ 5",
+    "mine": "Nilaimu: {count}"
+  },
+  "newTab": "(buka di tab baru)"
+}

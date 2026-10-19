@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "韓劇指南",
+    "lead": "下一部看什麼、去哪看、在韓國哪裡拍，一次整理好。",
+    "stats": "{count} 部 · {date} 更新",
+    "metaTitle": "韓劇指南：{count} 部必看韓劇與觀看平台",
+    "metaDescription": "《淚之女王》《愛的迫降》《請回答1988》等韓劇的觀看平台、演員、韓國拍攝地與讀者評分，一次看懂。",
+    "trendTitle": "現在熱門",
+    "trendChart": "韓劇排行榜",
+    "trendRank": "今日韓劇排行榜第 {rank} 名",
+    "trendPick": "編輯精選",
+    "songsTitle": "韓國現在都在聽",
+    "songsSource": "來源：Apple Music 韓國 熱門歌曲 · {date}",
+    "listTitle": "全部作品",
+    "genreFilter": "依類型篩選",
+    "allGenres": "全部",
+    "shown": "共 {count} 部"
+  },
+  "detail": {
+    "metaTitle": "{title}（{year}）：在哪看、演員與拍攝地",
+    "metaDescription": "{tagline}。整理觀看平台、演員與韓國拍攝地。",
+    "episodes": "全 {count} 集",
+    "watchTitle": "在哪看",
+    "watchConfirmed": "已確認{regions}可看",
+    "watchEverywhere": "全球都能看",
+    "watchUnconfirmed": "台灣上架平台確認中",
+    "watchNote": "這些是一般連結，不是廣告。各地片單會變動，開看前請先在 App 裡確認。",
+    "storyTitle": "劇情",
+    "whyTitle": "為什麼值得看",
+    "castTitle": "演員",
+    "castRole": "飾演 {role}",
+    "filmingTitle": "拍攝地",
+    "similarTitle": "喜歡這部也會喜歡",
+    "share": "分享這部劇"
+  },
+  "rating": {
+    "title": "幫它評分",
+    "count": "{count, plural, =0 {還沒有評分} other {# 則評分}}",
+    "first": "還沒有人評分，來當第一個吧",
+    "average": "平均 {average} 分（滿分 5 分）",
+    "outOf": "/ 5",
+    "mine": "你的評分：{count}"
+  },
+  "newTab": "（在新分頁開啟）"
+}

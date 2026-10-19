@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "K-드라마 가이드",
+    "lead": "다음에 볼 작품, 볼 수 있는 곳, 촬영지까지 한 번에.",
+    "stats": "{count}편 · {date} 갱신",
+    "metaTitle": "K-드라마 가이드: 볼 만한 {count}편과 볼 수 있는 곳",
+    "metaDescription": "눈물의 여왕, 사랑의 불시착, 응답하라 1988 등 K-드라마를 어디서 볼 수 있는지, 출연진과 촬영지, 독자 별점까지 정리했어요.",
+    "trendTitle": "지금 화제",
+    "trendChart": "K-드라마 랭킹",
+    "trendRank": "오늘 K-드라마 랭킹 {rank}위",
+    "trendPick": "에디터 픽",
+    "songsTitle": "한국에서 지금 듣는 노래",
+    "songsSource": "출처: Apple Music 한국 인기곡 · {date}",
+    "listTitle": "작품 가이드",
+    "genreFilter": "장르로 고르기",
+    "allGenres": "전체",
+    "shown": "{count}편 보는 중"
+  },
+  "detail": {
+    "metaTitle": "{title}({year}) 볼 수 있는 곳·출연·촬영지",
+    "metaDescription": "{tagline}. 볼 수 있는 곳, 출연진, 한국 촬영지를 정리했어요.",
+    "episodes": "{count}부작",
+    "watchTitle": "어디서 보나",
+    "watchConfirmed": "{regions}에서 볼 수 있어요",
+    "watchEverywhere": "전 세계에서 볼 수 있어요",
+    "watchUnconfirmed": "나라마다 다름 · 확인 전",
+    "watchNote": "광고가 아닌 일반 링크예요. 나라·시기마다 작품 목록이 바뀌니 보기 전에 앱에서 확인해 주세요.",
+    "storyTitle": "줄거리",
+    "whyTitle": "이래서 봐요",
+    "castTitle": "출연",
+    "castRole": "{role} 역",
+    "filmingTitle": "촬영지",
+    "similarTitle": "비슷한 작품",
+    "share": "이 작품 공유하기"
+  },
+  "rating": {
+    "title": "별점 주기",
+    "count": "{count, plural, =0 {아직 별점 없음} other {별점 #개}}",
+    "first": "아직 별점이 없어요. 첫 별점을 남겨 주세요",
+    "average": "평균 {average}점(5점 만점)",
+    "outOf": "/ 5",
+    "mine": "내 별점 {count}"
+  },
+  "newTab": "(새 탭에서 열림)"
+}

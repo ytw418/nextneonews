@@ -1,1 +1,45 @@
-{}
+{
+  "hub": {
+    "title": "K-Drama Guide",
+    "lead": "What to watch next, where to stream it and where it was filmed in Korea.",
+    "stats": "{count, plural, one {# drama} other {# dramas}} · updated {date}",
+    "metaTitle": "K-Drama Guide: {count} Dramas and Where to Stream Them",
+    "metaDescription": "Queen of Tears, Crash Landing on You, Reply 1988 and more: where to stream each K-drama, the cast, filming spots in Korea and reader ratings.",
+    "trendTitle": "Trending now",
+    "trendChart": "K-drama chart",
+    "trendRank": "No. {rank} on today’s K-drama chart",
+    "trendPick": "Editors’ pick",
+    "songsTitle": "What Korea is listening to",
+    "songsSource": "Source: Apple Music Korea, most played · {date}",
+    "listTitle": "All drama guides",
+    "genreFilter": "Filter by genre",
+    "allGenres": "All",
+    "shown": "{count, plural, one {Showing # drama} other {Showing # dramas}}"
+  },
+  "detail": {
+    "metaTitle": "{title} ({year}): Where to Watch, Cast and Filming Spots",
+    "metaDescription": "{tagline}. Where to stream it, who’s in it and where it was filmed in Korea.",
+    "episodes": "{count, plural, one {# episode} other {# episodes}}",
+    "watchTitle": "Where to watch",
+    "watchConfirmed": "Available in {regions}",
+    "watchEverywhere": "Available worldwide",
+    "watchUnconfirmed": "Varies by country · not checked yet",
+    "watchNote": "Regular links, not ads. Catalogs change by country, so check the app before you start.",
+    "storyTitle": "The story",
+    "whyTitle": "Why watch it",
+    "castTitle": "Cast",
+    "castRole": "as {role}",
+    "filmingTitle": "Filming spots",
+    "similarTitle": "If you liked this",
+    "share": "Share this drama"
+  },
+  "rating": {
+    "title": "Rate it",
+    "count": "{count, plural, =0 {No ratings yet} one {# rating} other {# ratings}}",
+    "first": "No ratings yet. Be the first.",
+    "average": "Average {average} out of 5",
+    "outOf": "/ 5",
+    "mine": "Your rating: {count}"
+  },
+  "newTab": "(opens in a new tab)"
+}
