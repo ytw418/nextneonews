@@ -29,7 +29,8 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/beauty/s
   });
 }
 
-// 피부 타입 테스트: 제목·소개·'재미용' 고지 → 문항 6개를 한 화면에서 차례로 (광고 없음).
+// 피부 타입 테스트: 제목·소개 → 문항 6개를 한 화면에서 차례로 → '재미용' 고지 → 빵부스러기 (광고 없음).
+// 고지·빵부스러기는 문항 아래에 둔다 — 위에 두면 아이폰 사파리 첫 화면(390×659)에서 마지막 보기가 탭바 밑으로 밀렸다.
 // 문항 문구는 서버에서 줄바꿈 처리까지 해서 넘기고, 채점·저장·이동은 클라이언트 섬(SkinQuiz)이 한다
 export default async function SkinTypeQuizPage({ params }: PageProps<"/[locale]/beauty/skin-type">) {
   const { locale } = await params;
@@ -65,18 +66,21 @@ export default async function SkinTypeQuizPage({ params }: PageProps<"/[locale]/
         )}
       />
 
-      <Crumbs label={t("crumbsLabel")} items={[{ name: t("title"), href: "/beauty" }, { name: quiz.title }]} />
-      <div className="px-gutter pt-2">
+      <div className="px-gutter pt-4">
         <h1 className="text-st2 font-bold text-ink-900">
           <Words text={quiz.title} locale={locale} />
         </h1>
         <p className="mt-1 text-t6 text-ink-600">
           <Words text={quiz.intro} locale={locale} />
         </p>
-        <p className="mt-2 text-st12 text-ink-600">{quiz.disclaimer}</p>
       </div>
 
-      <SkinQuiz questions={questions} />
+      <SkinQuiz questions={questions} note={quiz.disclaimer} />
+
+      {/* 빵부스러기는 테스트 아래에 (상단바 뒤로가 이미 /beauty 로 간다 — 위에 두면 첫 화면 마지막 보기가 탭바에 닿았다) */}
+      <div className="pt-4">
+        <Crumbs label={t("crumbsLabel")} items={[{ name: t("title"), href: "/beauty" }, { name: quiz.title }]} />
+      </div>
     </>
   );
 }

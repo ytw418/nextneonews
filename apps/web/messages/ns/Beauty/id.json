@@ -104,7 +104,7 @@
   "quiz": {
     "metaTitle": "Apa Jenis Kulitmu? Tes K-Beauty 6 Pertanyaan",
     "metaDescription": "Enam pertanyaan singkat tentang kondisi kulitmu sehari-hari. Ketahui jenis kulit dan skincare Korea yang cocok. Hanya untuk seru-seruan, bukan diagnosis medis.",
-    "back": "Kembali",
+    "back": "Pertanyaan sebelumnya",
     "progress": "Pertanyaan {current} dari {total}"
   },
   "result": {

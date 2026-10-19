@@ -104,7 +104,7 @@
   "quiz": {
     "metaTitle": "Da bạn thuộc loại nào? Trắc nghiệm 6 câu",
     "metaDescription": "Sáu câu hỏi nhanh về cảm giác da mỗi ngày. Biết loại da và những món mỹ phẩm Hàn hợp với bạn. Chỉ để vui, không phải chẩn đoán y khoa.",
-    "back": "Quay lại",
+    "back": "Câu trước",
     "progress": "Câu {current}/{total}"
   },
   "result": {

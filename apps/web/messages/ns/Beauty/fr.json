@@ -104,7 +104,7 @@
   "quiz": {
     "metaTitle": "Quel est votre type de peau ? Le test K-beauté en 6 questions",
     "metaDescription": "Six questions rapides sur les sensations de votre peau au quotidien. Découvrez votre type de peau et les soins coréens qui lui conviennent. Pour le plaisir, pas un diagnostic médical.",
-    "back": "Retour",
+    "back": "Question précédente",
     "progress": "Question {current} sur {total}"
   },
   "result": {

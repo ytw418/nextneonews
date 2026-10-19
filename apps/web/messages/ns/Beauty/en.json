@@ -104,7 +104,7 @@
   "quiz": {
     "metaTitle": "What’s Your Skin Type? 6-Question K-Beauty Test",
     "metaDescription": "Six quick questions about how your skin feels day to day. Get your skin type and Korean skincare picks that suit it. Just for fun, not a diagnosis.",
-    "back": "Back",
+    "back": "Previous question",
     "progress": "Question {current} of {total}"
   },
   "result": {
