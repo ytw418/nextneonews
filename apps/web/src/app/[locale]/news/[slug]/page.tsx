@@ -205,8 +205,8 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
   const coupang = coupangBannerFor({ locale, category: article.category, format: article.format });
   const coupangKo =
     coupang && locale !== "ko" ? (await getTranslations({ locale: "ko", namespace: "Article" }))("coupang") : undefined;
-  // 생활 글(여행·워홀·유학·집)은 글 끝에 여행 준비 제휴 상자 (eSIM·공항 이동·숙소). 이름은 여행 카탈로그 문구를 쓴다
-  const prepRows = articlePrepFor(article.category);
+  // 생활 글(여행·워홀·유학·집)은 글 끝에 여행 준비 제휴 상자 (eSIM·공항 이동·숙소, 한국어판 제외). 이름은 여행 카탈로그 문구를 쓴다
+  const prepRows = articlePrepFor(article.category, locale);
   const prep = prepRows.length > 0 ? (await travelText(locale)).prep : null;
 
   return (

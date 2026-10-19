@@ -41,8 +41,9 @@ describe("coupangBannerFor", () => {
 });
 
 describe("articlePrepFor", () => {
-  it("생활 글에만 여행 준비 줄을 eSIM 먼저 붙인다", () => {
-    expect(articlePrepFor("WORKING_HOLIDAY").map((row) => row.key)).toEqual(["esim", "airport", "stay"]);
-    expect(articlePrepFor("KPOP")).toEqual([]);
+  it("생활 글에만 여행 준비 줄을 eSIM 먼저 붙이고, 한국어판에는 붙이지 않는다", () => {
+    expect(articlePrepFor("WORKING_HOLIDAY", "ja").map((row) => row.key)).toEqual(["esim", "airport", "stay"]);
+    expect(articlePrepFor("KPOP", "en")).toEqual([]);
+    expect(articlePrepFor("TRAVEL", "ko")).toEqual([]);
   });
 });

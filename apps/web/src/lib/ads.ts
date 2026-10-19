@@ -81,7 +81,8 @@ const ARTICLE_PREP: readonly { key: PrepKey; target: AffiliateTarget }[] = [
   { key: "stay", target: { partner: "trip", url: "https://www.trip.com/hotels/seoul-hotels-list-274/" } },
 ];
 
-// 이 분류의 글에 붙일 여행 준비 줄 (없으면 빈 목록). 이름·설명은 여행 카탈로그 문구(prep.items)를 쓴다
-export function articlePrepFor(category: string): readonly { key: PrepKey; target: AffiliateTarget }[] {
-  return PREP_CATEGORIES.includes(category) ? ARTICLE_PREP : [];
+// 이 분류·언어의 글에 붙일 여행 준비 줄 (없으면 빈 목록). 이름·설명은 여행 카탈로그 문구(prep.items)를 쓴다.
+// 한국어판 독자는 대부분 한국에 있어 eSIM·공항 이동이 쓸모없다 (한국어 글에는 쿠팡 배너가 대신 붙는다)
+export function articlePrepFor(category: string, locale: string): readonly { key: PrepKey; target: AffiliateTarget }[] {
+  return locale !== "ko" && PREP_CATEGORIES.includes(category) ? ARTICLE_PREP : [];
 }
