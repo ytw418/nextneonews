@@ -27,4 +27,5 @@ export interface CatalogSummary {
   sub?: string;
   tint: string; // "var(--tint-kbeauty)" 처럼 CSS 변수
   badge?: "new"; // addedAt 14일 이내
+  lang?: string; // 제목이 화면 언어와 다를 때 그 언어 (이 언어 번역이 아직 없는 글 → 영어 제목)
 }

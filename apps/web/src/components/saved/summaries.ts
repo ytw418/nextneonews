@@ -23,6 +23,7 @@ function isSummary(value: unknown): value is CatalogSummary {
     typeof v.title === "string" &&
     typeof v.tint === "string" &&
     (v.glyph === undefined || typeof v.glyph === "string") &&
+    (v.lang === undefined || typeof v.lang === "string") &&
     // 앱 안 경로만 (언어가 붙는 Link 로 연다)
     typeof v.href === "string" &&
     v.href.startsWith("/") &&
