@@ -261,11 +261,13 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
         {hero ? (
           // 공식 이미지가 있으면 화면을 꽉 채우는 매거진 커버. 제목 블록이 흐름 안에 있어 긴 제목이면 커버가 늘어난다
           <figure className="relative flex min-h-[min(125vw,800px,78svh)] w-full flex-col justify-end overflow-hidden">
+            {/* LCP 사진: 다른 요청보다 먼저 받는다 (홈 맨 위 카드와 같은 방식. Next 16 의 priority 는 지원 중단) */}
             <Image
               src={imgSrc(hero.url, hero.width)}
               alt=""
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(max-width: 640px) 100vw, 640px"
               // 인물 사진은 얼굴이 위쪽에 있다. 제목 블록 위로 얼굴이 남게 위쪽을 기준으로 자른다
               className="object-cover object-[50%_20%]"
