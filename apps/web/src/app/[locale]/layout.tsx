@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 
 import { SITE_NAME } from "@kmedia/core";
 
@@ -14,6 +14,7 @@ import { LocaleSuggest } from "@/components/LocaleSuggest";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TabBar } from "@/components/TabBar";
 import { Toaster } from "@/components/ui/Toast";
+import { pickClientMessages } from "@/i18n/client-messages";
 import { routing } from "@/i18n/routing";
 import { adsenseClient } from "@/lib/ads";
 import { INSTALL_CAPTURE_SCRIPT } from "@/lib/install";
@@ -79,6 +80,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
     notFound();
   }
   setRequestLocale(locale);
+  // 클라이언트 컴포넌트가 쓰는 문구만 HTML·RSC 에 싣는다 (전체 22개 네임스페이스 → 필요한 것만, i18n/client-messages.ts)
+  const messages = pickClientMessages(await getMessages());
 
   return (
     <html lang={locale} className={instrument.variable}>
@@ -88,7 +91,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body className="min-h-svh antialiased">
         <script dangerouslySetInnerHTML={{ __html: INSTALL_CAPTURE_SCRIPT }} />
         <JsonLd data={siteJsonLd(locale)} />
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
           {/* 하단 탭바·고정 CTA(--bottom-ui)에 마지막 줄이 가리지 않게 아래 여백을 둔다 */}
           <main id="main" className="mx-auto max-w-[640px] pb-[calc(var(--bottom-ui)+24px)]">
             {children}
