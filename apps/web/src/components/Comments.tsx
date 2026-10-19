@@ -13,11 +13,15 @@ import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { toast } from "@/components/ui/Toast";
 import type { PublicComment } from "@/lib/comments";
-import { storageGet, storageSet } from "@/lib/storage";
+import { sessionGet, sessionSet, storageGet, storageSet } from "@/lib/storage";
 import { timeAgo } from "@/lib/time";
 import { track } from "@/lib/track";
 
 const BODY_MAX = 1000; // lib/comments.ts 와 같게 (서버 모듈이라 값은 불러오지 않는다)
+// 댓글 목록은 CDN 에 1분 묵는다 (lib/comments.ts COMMENTS_CACHE_SECONDS 와 같게). 이 안에 이 글에 쓰거나 고치거나 지웠으면
+// 다시 열 때 주소에 시각을 붙여 캐시를 건너뛴다 — 방금 쓴 댓글이 새로고침하자 사라져 보이지 않게
+const COMMENTS_CACHE_MS = 60_000;
+const WROTE_STORE = "hb:comment-wrote"; // "글 id:시각" (sessionStorage — 이 탭에서만)
 // 이보다 많으면 처음에는 3개만 보이고 '모두 보기'로 편다 (나머지도 DOM 에 두고 CSS 로만 숨긴다)
 const COLLAPSED = 3;
 // 하단 바(ArticleActionBar)가 댓글 수를 지금 수로 맞추도록 알린다 (서버 HTML 의 수는 몇 분 묵었을 수 있다)
@@ -74,6 +78,15 @@ function loadName(locale: Locale): string {
   const name = randomFriendlyName(locale);
   storageSet(NAME_STORE, name);
   return name;
+}
+
+function markWrote(articleId: string) {
+  sessionSet(WROTE_STORE, `${articleId}:${Date.now()}`);
+}
+
+function wroteRecently(articleId: string): boolean {
+  const [id, at] = (sessionGet(WROTE_STORE) ?? "").split(":");
+  return id === articleId && Date.now() - Number(at) < COMMENTS_CACHE_MS;
 }
 
 // field-sizing 을 모르는 브라우저는 글 높이에 맞춰 직접 늘린다 (최대 높이는 클래스가 막는다)
@@ -318,7 +331,8 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
 
   useEffect(() => {
     let alive = true;
-    fetch(`/api/comments?articleId=${encodeURIComponent(articleId)}`)
+    const fresh = wroteRecently(articleId) ? `&t=${Date.now()}` : "";
+    fetch(`/api/comments?articleId=${encodeURIComponent(articleId)}${fresh}`)
       .then((res) => (res.ok ? res.json() : { comments: [], total: 0 }))
       .then((data: { comments: PublicComment[]; total: number }) => {
         if (!alive) return;
@@ -394,6 +408,7 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
       setBody("");
       if (fieldRef.current) fieldRef.current.style.height = "";
       writeMine([...readMine(), comment.id]);
+      markWrote(articleId);
       setHighlight(comment.id);
       toast(t("postedToast"));
       track("comment_submit");
@@ -472,6 +487,7 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
       }
       const updated = data.comment as PublicComment;
       setComments((list) => list?.map((c) => (c.id === id ? updated : c)) ?? list);
+      markWrote(articleId);
       setEditing(null);
     } catch {
       setEditError(t("failed"));
@@ -500,6 +516,7 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
       setComments((list) => list?.filter((c) => c.id !== id) ?? list);
       setTotal((n) => Math.max(0, n - 1));
       writeMine(readMine().filter((mine) => mine !== id));
+      markWrote(articleId);
       setDeleting(null);
     } catch {
       setDeleteError(t("failed"));

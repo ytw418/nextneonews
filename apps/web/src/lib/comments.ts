@@ -7,12 +7,16 @@ import { isLocale, LINK, type Locale } from "@kmedia/core";
 import { anonymousId, displayNickname } from "@kmedia/core/nickname";
 import { type Comment, prisma } from "@kmedia/db";
 
+import { isRecordId } from "./api-guard";
+
 // 로그인 없는 익명 댓글 (docs/PRD.md): 비밀번호로 수정·삭제 (화면은 기기마다 만든 키를 비밀번호로 보낸다).
 // IP 는 저장하지 않고, 글마다 다른 IP 해시 4자리로 아바타 색을 고른다.
 
 const scryptAsync = promisify(scrypt) as (password: string, salt: Buffer, keylen: number) => Promise<Buffer>;
 
 export const BODY_MAX = 1000;
+// 댓글 목록(GET /api/comments)을 CDN 에 두는 시간. 화면(Comments.tsx)은 이 안에 쓴 사람만 캐시를 건너뛴다
+export const COMMENTS_CACHE_SECONDS = 60;
 // fr·ru·vi 의 귀여운 이름("Hérisson tranquille")이 들어가는 길이
 const NICKNAME_MAX = 20;
 // 같은 사람(IP 해시)이 10분에 5개까지
@@ -57,17 +61,20 @@ async function verifyPassword(password: string, stored: string): Promise<boolean
   return timingSafeEqual(actual, expected);
 }
 
+// Postgres text 칸은 널 문자(0x00)를 받지 않는다 (그대로 넣으면 500) — 입력 검사에서 400 으로 돌려보낸다
+const noNul = (value: string) => !value.includes("\u0000");
+
 export const CreateInput = z.object({
-  articleId: z.string().min(1).max(40),
+  articleId: z.string().refine(isRecordId),
   locale: z.string().refine(isLocale),
-  nickname: z.string().trim().max(NICKNAME_MAX).optional(),
+  nickname: z.string().trim().max(NICKNAME_MAX).refine(noNul).optional(),
   password: z.string().min(4).max(64),
-  body: z.string().trim().min(1).max(BODY_MAX),
+  body: z.string().trim().min(1).max(BODY_MAX).refine(noNul),
   website: z.string().optional(), // 사람에게는 안 보이는 칸. 채워져 있으면 봇이다
 });
 
 export const PasswordInput = z.object({ password: z.string().min(1).max(64) });
-export const EditInput = PasswordInput.extend({ body: z.string().trim().min(1).max(BODY_MAX) });
+export const EditInput = PasswordInput.extend({ body: z.string().trim().min(1).max(BODY_MAX).refine(noNul) });
 
 export type CommentError = "invalid" | "links" | "tooFast" | "notFound" | "wrongPassword" | "locked";
 

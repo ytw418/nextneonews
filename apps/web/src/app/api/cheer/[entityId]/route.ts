@@ -2,6 +2,7 @@ import { isLocale, kstDay } from "@kmedia/core";
 import { prisma } from "@kmedia/db";
 import { NextResponse } from "next/server";
 
+import { isRecordId, rejectWrite } from "@/lib/api-guard";
 import { clientIp, ipHash } from "@/lib/comments";
 import { cheerStanding } from "@/lib/rankings";
 import { country, isBot, rateLimited, voterHash } from "@/lib/voter";
@@ -14,9 +15,12 @@ const RATE_WINDOW_MS = 60 * 60_000;
 // 로그인 없는 응원. 하루(KST)에 같은 기기가 같은 인물을 두 번 응원하면 409.
 // 응원 수는 랭킹 점수에 섞지 않는다 — 화면에 '오늘 팬 응원'으로 따로 보인다
 export async function POST(request: Request, { params }: RouteContext<"/api/cheer/[entityId]">) {
+  const blocked = rejectWrite(request, { json: true });
+  if (blocked) return blocked;
   const { entityId } = await params;
   const ua = request.headers.get("user-agent");
   if (isBot(ua)) return NextResponse.json({ error: "forbidden" }, { status: 403, headers: NO_STORE });
+  if (!isRecordId(entityId)) return NextResponse.json({ error: "notFound" }, { status: 404, headers: NO_STORE });
 
   const entity = await prisma.entity.findUnique({ where: { id: entityId }, select: { id: true } });
   if (!entity) return NextResponse.json({ error: "notFound" }, { status: 404, headers: NO_STORE });
