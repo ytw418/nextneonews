@@ -19,6 +19,7 @@ const NAMESPACES = [
   "Travel",
   "Clinic",
   "Drama",
+  "ErrorPage",
 ] as const;
 
 export default getRequestConfig(async ({ requestLocale }) => {

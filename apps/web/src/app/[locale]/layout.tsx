@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -21,16 +20,9 @@ import { INSTALL_CAPTURE_SCRIPT } from "@/lib/install";
 import { siteJsonLd } from "@/lib/jsonld";
 import { feedAlternate, GOOGLEBOT_PREVIEW, pageRobots, SITE_URL } from "@/lib/url";
 
-import "../globals.css";
+import { instrument } from "../fonts";
 
-// 웹폰트는 로고(.wordmark) 하나뿐. next/font 가 빌드 때 받아 우리 도메인에서 제공한다 (중국에서도 막히지 않음)
-const instrument = Instrument_Serif({
-  weight: "400",
-  style: ["italic"],
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  display: "swap",
-});
+import "../globals.css";
 
 export const viewport: Viewport = {
   width: "device-width",

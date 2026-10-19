@@ -1,0 +1,9 @@
+{
+  "notFoundTitle": "Halaman ini tidak ditemukan",
+  "notFoundBody": "Mungkin tautannya salah ketik, atau halamannya sudah diturunkan. Mulai lagi dari berita terbaru atau panduan.",
+  "errorTitle": "Halaman ini gagal dimuat",
+  "errorBody": "Ada masalah di pihak kami. Coba lagi sebentar lagi, atau lanjut baca dari Beranda.",
+  "retry": "Coba lagi",
+  "home": "Ke Beranda",
+  "guide": "Lihat panduan"
+}

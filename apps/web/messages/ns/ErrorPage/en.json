@@ -1,0 +1,9 @@
+{
+  "notFoundTitle": "We couldn't find this page",
+  "notFoundBody": "The link may have a typo, or the page was taken down. Start again from the latest stories or the guides.",
+  "errorTitle": "This page didn't load",
+  "errorBody": "Something went wrong on our side. Try again in a moment, or keep reading from Home.",
+  "retry": "Try again",
+  "home": "Go to Home",
+  "guide": "Browse guides"
+}

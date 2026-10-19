@@ -1,0 +1,9 @@
+{
+  "notFoundTitle": "Không tìm thấy trang này",
+  "notFoundBody": "Có thể đường dẫn bị gõ sai hoặc trang đã bị gỡ. Hãy bắt đầu lại từ tin mới nhất hoặc cẩm nang nhé.",
+  "errorTitle": "Không tải được trang này",
+  "errorBody": "Phía chúng mình đang gặp sự cố. Hãy thử lại sau ít phút, hoặc đọc tiếp từ Trang chủ.",
+  "retry": "Thử lại",
+  "home": "Về Trang chủ",
+  "guide": "Xem cẩm nang"
+}

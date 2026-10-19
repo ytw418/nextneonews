@@ -1,0 +1,9 @@
+{
+  "notFoundTitle": "Impossible de trouver cette page",
+  "notFoundBody": "Le lien contient peut-être une faute, ou la page a été retirée. Repartez des dernières actus ou des guides.",
+  "errorTitle": "Cette page ne s’est pas chargée",
+  "errorBody": "Un problème est survenu de notre côté. Réessayez dans un instant, ou continuez depuis l’accueil.",
+  "retry": "Réessayer",
+  "home": "Aller à l’accueil",
+  "guide": "Voir les guides"
+}
