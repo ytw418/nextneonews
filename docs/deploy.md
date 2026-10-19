@@ -9,7 +9,7 @@
 | 파이프라인 (수집·작성) | **GitHub Actions** `.github/workflows/pipeline.yml`, 매시 17분, 1회 최대 3편 | 공개 레포라 무료 |
 | 서울 수집 릴레이 | **Vercel** 프로젝트 `hallyu-collector` (같은 레포, `infra/collector-relay`, 리전 `icn1`). 더쿠가 해외 IP 를 403 으로 막을 때만 쓴다 | Hobby 무료 |
 | AI | Anthropic Haiku 5.5, 1편 약 4원 | 최대 하루 72편 기준 월 약 8,600원. 누적 10만 원에서 자동 중단 |
-| 도메인 | 지금은 `hallyu-brief.vercel.app`. `unnienote.com` 구매 예정 | 연 $11.25 |
+| 도메인 | `unnienote.app` (Vercel 구매·DNS, 2026-10-19). `www`·옛 `hallyu-brief.vercel.app` 은 `next.config.ts` redirects 로 308 이동 | 연 약 $15 |
 | 이미지 | 위키미디어 공용 직접 참조 | 0원 |
 
 ## 설정값
@@ -35,7 +35,7 @@
   1. Vercel → Add New → Project → 같은 GitHub 레포를 고른다. 이름 `hallyu-collector`
   2. Root Directory: `infra/collector-relay`, Framework Preset: Other. Build·Install Command 는 비워 둔다 (package.json 이 없어 설치·빌드가 없다)
   3. 리전은 `vercel.json` 의 `icn1` 이 정한다. Hobby 는 프로젝트당 리전 하나라 본 프로젝트(`sin1`, Neon 옆)와 나눴다
-  4. 환경변수: `COLLECTOR_TOKEN` (긴 임의 값, 예: `openssl rand -hex 32`), `SITE_URL` (선택. 봇 UA 의 연락 주소, 비우면 `https://hallyu-brief.vercel.app`)
+  4. 환경변수: `COLLECTOR_TOKEN` (긴 임의 값, 예: `openssl rand -hex 32`), `SITE_URL` (선택. 봇 UA 의 연락 주소, 비우면 `https://unnienote.app`)
   5. 배포 보호는 Preview 에만 건다 (Production 주소를 Actions 가 부른다)
   6. (권장) Settings → Git → Ignored Build Step 에 `git diff --quiet HEAD^ HEAD -- .` 를 넣어 릴레이 폴더가 바뀔 때만 다시 배포한다
   7. GitHub Secrets: `COLLECTOR_RELAY_URL` = 배포 주소 (예: `https://hallyu-collector.vercel.app`, `/api/fetch` 는 붙이지 않는다), `COLLECTOR_TOKEN` = 4번과 같은 값
@@ -53,7 +53,6 @@
 
 ## 남은 일
 
-1. **도메인**: Vercel 에서 `unnienote.com` 구매 → 프로젝트에 연결 → Vercel 환경변수·GitHub Secret 의 `SITE_URL` 을 바꾼다.
 2. **검색엔진 등록** (`docs/geo.md` 2장): Search Console(사이트맵 제출), Bing Webmaster Tools.
 3. **애드센스**: 가이드형 글 30편 이상 쌓인 뒤 신청. 이때 Vercel Pro 필요.
 4. **서울 수집 릴레이**: 위 '만들기' 절차로 `hallyu-collector` 를 만들고 GitHub Secrets 두 개를 넣는다. 첫 배포 뒤 '확인' 명령으로 `icn1` 에서 더쿠가 200 인지 본다 (icn1 이 열린다는 것은 아직 시험하지 않은 가설이다).

@@ -8,7 +8,7 @@ import { assertRobotsAllowed } from "./robots";
 // 수집 정책·차단 요청 연락처는 /en/about#bot. 로컬(SITE_URL=localhost)에서 돌려도 공개 주소를 알린다
 const BOT_SITE = process.env.SITE_URL?.startsWith("https://")
   ? process.env.SITE_URL.replace(/\/$/, "")
-  : "https://hallyu-brief.vercel.app";
+  : "https://unnienote.app";
 export const USER_AGENT = `UnnieNoteBot/1.0 (+${BOT_SITE}/en/about#bot)`;
 
 // 막혔다는 뜻의 응답. 20초 뒤 한 번 더 보내고, 그래도 막히면 서울 릴레이로 간다

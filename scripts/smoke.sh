@@ -1,6 +1,6 @@
 #!/bin/sh
 # 배포 뒤 주요 주소가 살아 있는지 확인한다. 사용: sh scripts/smoke.sh [기준 URL]
-BASE="${1:-https://hallyu-brief.vercel.app}"
+BASE="${1:-https://unnienote.app}"
 fail=0
 for p in / /en /ja /zh-tw /zh-cn /ko /vi /id /fr /ru /en/c/kpop /sitemap.xml /robots.txt /llms.txt /manifest.webmanifest /sw.js "/api/pwa-icon?size=192"; do
   code=$(curl -s -o /dev/null -w '%{http_code}' "$BASE$p")

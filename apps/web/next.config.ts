@@ -23,6 +23,16 @@ const nextConfig: NextConfig = {
       { source: `${POSTHOG_RELAY}/:path*`, destination: "https://us.i.posthog.com/:path*" },
     ];
   },
+  // 옛 주소(vercel.app)·www 로 오면 같은 경로의 unnienote.app 으로 영구 이동 (검색엔진이 색인·순위를 새 도메인으로 옮긴다).
+  // proxy.ts 는 sitemap.xml·robots.txt 같은 파일을 matcher 에서 빼서, 모든 경로에 걸리는 여기서 한다
+  async redirects() {
+    return ["hallyu-brief.vercel.app", "www.unnienote.app"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://unnienote.app/:path*",
+      permanent: true,
+    }));
+  },
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
   skipTrailingSlashRedirect: true,
   devIndicators: false,

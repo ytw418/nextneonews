@@ -185,7 +185,7 @@ async function closeWeeklyPoll(poll: { id: string; key: string; optionIds: strin
       select: { items: true },
     });
     const items = withPrevRank(ranked, prev ? (prev.items as unknown as RankingItem[]) : null);
-    const site = process.env.SITE_URL || "https://hallyu-brief.vercel.app";
+    const site = process.env.SITE_URL || "https://unnienote.app";
     // 발행한 결과는 고치지 않는다 (이미 있으면 그대로 둔다)
     await prisma.rankingSnapshot.upsert({
       where: { chart_scope_period: { chart: "fan-pick", scope, period } },

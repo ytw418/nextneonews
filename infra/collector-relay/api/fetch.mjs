@@ -6,7 +6,7 @@ import { timingSafeEqual } from "node:crypto";
 
 const SITE_URL = process.env.SITE_URL?.startsWith("https://")
   ? process.env.SITE_URL.replace(/\/$/, "")
-  : "https://hallyu-brief.vercel.app";
+  : "https://unnienote.app";
 // 워커와 같은 정직한 봇 UA
 const USER_AGENT = `UnnieNoteBot/1.0 (+${SITE_URL}/en/about#bot)`;
 
