@@ -124,7 +124,11 @@
       "cheer": "Người bạn đã cổ vũ hôm nay.",
       "read": "Các bài bạn đọc gần đây (tối đa 200), để không gợi ý lại.",
       "install": "Thời điểm bạn đóng gợi ý “Thêm vào Màn hình chính”.",
-      "localeSuggest": "Bạn đã đóng gợi ý ngôn ngữ."
+      "localeSuggest": "Bạn đã đóng gợi ý ngôn ngữ.",
+      "saved": "Những mục bạn lưu bằng nút tim (tối đa 300). Chúng không rời khỏi thiết bị này.",
+      "visited": "Các địa điểm bạn đã đánh dấu “Đã đến”.",
+      "vote": "Đánh giá của bạn cho từng sản phẩm, liệu trình thẩm mỹ hoặc bộ phim.",
+      "skinType": "Kết quả bài kiểm tra loại da, để hiển thị đánh giá sản phẩm theo loại da."
     },
     "session": "Các mục sau biến mất khi bạn đóng tab (sessionStorage):",
     "sessionKeys": {

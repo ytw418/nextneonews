@@ -15,12 +15,12 @@ import {
 } from "@/components/info/InfoPage";
 
 // 문구를 바꾸면 이 날짜도 올린다
-const UPDATED = "2026-10-18";
+const UPDATED = "2026-10-19";
 
 export const revalidate = 3600;
 
 // 기기에 남기는 값. 새 키를 쓰면 여기와 messages/ns/Trust/pages 의 storageKeys·sessionKeys 에도 넣는다
-// (Comments·InstallPrompt·LocaleSuggest·CelebrateOnce, 투표·반응·응원·다음 글)
+// (Comments·InstallPrompt·LocaleSuggest·CelebrateOnce, 투표·반응·응원·다음 글, 저장·도장·항목 평가·피부 타입 테스트)
 const STORAGE_KEYS = [
   ["hb:comment-key", "commentKey"],
   ["hb:comment-name", "commentName"],
@@ -31,6 +31,10 @@ const STORAGE_KEYS = [
   ["hb:read", "read"],
   ["hb:install-dismissed-at", "install"],
   ["hb:locale-suggest-dismissed", "localeSuggest"],
+  ["hb:saved", "saved"],
+  ["hb:visited", "visited"],
+  ["hb:vote:{kind}:{id}", "vote"],
+  ["hb:skin-type", "skinType"],
 ] as const;
 
 const SESSION_KEYS = [

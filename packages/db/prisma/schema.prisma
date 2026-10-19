@@ -414,6 +414,25 @@ model CheerVote {
   @@index([ipHash, createdAt])
 }
 
+// 로그인 없는 항목 평가·관심 투표·별점 (뷰티 제품·시술·드라마 공용). 한 기기(voterHash)가 항목마다 한 번, 바꾸면 덮어쓴다.
+// itemId 는 정적 카탈로그 slug 라 외래 키가 없다. IP 는 저장하지 않는다
+model ItemVote {
+  kind      String // "beauty" | "clinic" | "drama"
+  itemId    String // 카탈로그 slug
+  choice    String // beauty: love|ok|meh · clinic: curious|done|pass · drama: 1|2|3|4|5
+  facet     String? // beauty 만: 피부 타입 dry|oily|combination|sensitive|normal
+  voterHash String
+  ipHash    String
+  locale    String
+  country   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([kind, itemId, voterHash])
+  @@index([kind, itemId, choice])
+  @@index([ipHash, createdAt])
+}
+
 // 랭킹 재료: 인물별 하루 숫자. 같은 날 다시 계산하면 덮어쓴다 (entityId 는 CheerVote 와 같은 이유로 외래 키 없음)
 model EntityMetric {
   entityId String
