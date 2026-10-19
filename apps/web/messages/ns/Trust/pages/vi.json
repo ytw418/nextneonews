@@ -106,7 +106,7 @@
     "hashItems": [
       "Bình luận: nội dung, biệt danh hiển thị, mã băm của khóa chỉnh sửa lưu trên thiết bị của bạn (để chỉ bạn sửa hoặc xóa được) và các mã băm địa chỉ IP.",
       "Bình chọn, phản ứng và cổ vũ: lựa chọn của bạn, mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang, và với bình chọn và cổ vũ là quốc gia do nhà cung cấp hosting nhận diện (ví dụ “JP”) — không bao giờ là địa chỉ IP.",
-      "Đánh giá sản phẩm, thủ thuật và phim: câu trả lời của bạn (với sản phẩm, kèm loại da nếu bạn đã chọn; với thủ thuật, là “Tò mò”, “Đã làm” hoặc “Bỏ qua”), mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang và quốc gia do nhà cung cấp hosting nhận diện — không bao giờ là địa chỉ IP. Chúng tôi dùng để hiển thị số liệu tổng, ví dụ bao nhiêu độc giả thích một sản phẩm, để mỗi thiết bị chỉ được tính một lần và để chặn spam.",
+      "Đánh giá sản phẩm, thủ thuật và phim: câu trả lời của bạn (với sản phẩm, kèm loại da nếu bạn đã chọn; với thủ thuật, là “Tò mò”, “Đã làm” hoặc “Bỏ qua”), mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang và quốc gia do nhà cung cấp hosting nhận diện — không bao giờ là địa chỉ IP. Chúng tôi dùng để hiển thị số liệu tổng, ví dụ bao nhiêu độc giả thích một sản phẩm, để mỗi thiết bị chỉ được tính một lần (cùng một kết nối internet chỉ được tính một lần mỗi ngày cho mỗi mục) và để chặn spam.",
       "Câu trả lời như “Đã làm” ở trang thủ thuật có thể là thông tin liên quan đến sức khỏe. Chúng tôi chỉ dùng chúng để hiển thị số liệu tổng ẩn danh. Chúng không gắn với tên, email hay tài khoản nào, chỉ với mã băm ở trên, nên chúng tôi không thể biết ai đã trả lời."
     ],
     "analyticsTitle": "Phân tích truy cập",
@@ -152,6 +152,6 @@
     "servicesTitle": "Dịch vụ chúng tôi dùng",
     "services": "Vercel (hosting), Neon (cơ sở dữ liệu), cùng Google và PostHog (phân tích) xử lý dữ liệu thay chúng tôi. Google AdSense và Coupang Partners nói ở trên thu thập dữ liệu bằng cookie riêng theo chính sách quyền riêng tư của họ. Chúng tôi không tự bán dữ liệu hay trao dữ liệu cho nhà quảng cáo. Tuy vậy, theo luật của một số bang ở Mỹ, quảng cáo cá nhân hóa của Google có thể được xem là “chia sẻ”; bạn có thể tắt chúng trong Cài đặt quảng cáo của Google nói ở trên.",
     "rightsTitle": "Bạn có thể làm gì",
-    "rights": "Bạn có thể xóa bình luận của mình bất cứ lúc nào trên cùng thiết bị. Bạn có thể xóa mọi thứ chúng tôi lưu trong trình duyệt bằng cách xóa dữ liệu của trang này trong cài đặt trình duyệt. Với các yêu cầu khác, hãy <contact>liên hệ với chúng tôi</contact>."
+    "rights": "Bạn có thể xóa bình luận của mình trên cùng thiết bị. Tuy nhiên, Safari có thể xóa dữ liệu trang này lưu trên thiết bị nếu bạn không truy cập quá 7 ngày, và sau đó bạn cũng không thể xóa bình luận từ thiết bị đó. Bạn có thể xóa mọi thứ chúng tôi lưu trong trình duyệt bằng cách xóa dữ liệu của trang này trong cài đặt trình duyệt. Nếu không còn xóa được bình luận (hãy gửi kèm link bài viết) hoặc có yêu cầu khác, hãy <contact>liên hệ với chúng tôi</contact>."
   }
 }

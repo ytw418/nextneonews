@@ -106,7 +106,7 @@
     "hashItems": [
       "Comments: the text, the nickname shown, a hash of the edit key saved on your device (so only you can edit or delete it) and hashed codes of your IP address.",
       "Votes, reactions and cheers: your choice, hashed codes of your IP address and browser, the page language and, for polls and cheers, the country our host detects (such as “JP”) — never the IP address itself.",
-      "Product, procedure and drama ratings: your answer (for products, also your skin type if you picked one; for procedures, whether you're curious, have had it or would pass), hashed codes of your IP address and browser, the page language and the country our host detects — never the IP address itself. We use them to show totals, such as how many readers liked a product, to count one rating per device and to stop spam.",
+      "Product, procedure and drama ratings: your answer (for products, also your skin type if you picked one; for procedures, whether you're curious, have had it or would pass), hashed codes of your IP address and browser, the page language and the country our host detects — never the IP address itself. We use them to show totals, such as how many readers liked a product, to count one rating per device (and one per item per day from the same internet connection) and to stop spam.",
       "Answers such as “I’ve had it” on procedure pages can be health-related. We use them only to show anonymous totals. They're never linked to a name, email address or account, only to the hashed codes above, so we can't tell who answered."
     ],
     "analyticsTitle": "Analytics",
@@ -152,6 +152,6 @@
     "servicesTitle": "Services we use",
     "services": "Vercel (hosting), Neon (database), and Google and PostHog (analytics) process data for us. Google AdSense and Coupang Partners, described above, collect data with their own cookies under their own privacy policies. We don't sell your data or hand it to advertisers ourselves. Under some US state laws, Google's personalised ads may count as “sharing”; you can turn them off in Google Ads Settings (see above).",
     "rightsTitle": "Your choices",
-    "rights": "You can delete your own comments at any time from the same device. You can clear everything we saved in your browser by deleting this site's data in your browser settings. For anything else, <contact>contact us</contact>."
+    "rights": "You can delete your own comments from the same device. Safari may clear what this site stored on your device if you don't visit for more than 7 days, and after that you can't delete them from that device either. You can clear everything we saved in your browser by deleting this site's data in your browser settings. If you can no longer delete a comment (include the article link) or need anything else, <contact>contact us</contact>."
   }
 }
