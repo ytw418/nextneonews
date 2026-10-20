@@ -114,3 +114,22 @@ curl -s "https://commons.wikimedia.org/w/api.php?action=query&titles=File:Park_K
 ```
 
 참고: 위키미디어는 썸네일 주소 끝에 `.webp`를 붙이면 WebP를 준다. 실험해 보니 500px PNG 402KB가 236KB로, 960px는 1,389KB가 842KB로 줄었다. 공식 문서는 확인하지 못했다. #1을 고친 뒤 추가로 검토할 선택지로만 적어 둔다.
+
+## 8. 후속 — 2026-10-20 운영 홈 PageSpeed 76점(LCP 4.9초)
+
+사용자 PageSpeed(모바일) 결과: 성능 76, FCP 1.5초, LCP 4.9초, TBT 270ms. LCP 요소는 피드 맨 위 사진(`Song_Il-gon.jpg` 960px, 244KB).
+LCP 사진 자체는 이미 `<head>` preload(fetchPriority high)로 받고 있어서, 늦는 이유는 같이 받는 바이트(대역 경쟁)였다.
+
+| 한 일 | 결과 |
+|---|---|
+| 3D 아이콘 PNG → WebP (`apps/web/scripts/icons3d-webp.mjs`, q80, 원본 PNG 는 그대로 둠) | 16개 328KB → 41KB. 홈 첫 화면 15개 287KB → 42KB |
+| 64px 원형 인물 사진(K-pop 화제성)에 폭 후보를 줌 (`EntityAvatar.tsx`) | 1.75배 화면·PC 는 250px → 120px(지수 PNG 93 → 32KB). 아이폰 3배는 그대로 250px |
+| 로컬 Lighthouse 13.5 모바일 4회 중앙값(`/en`) | 점수 70 → 76, 전송 1,883 → 1,538KB(−345KB). 로컬은 망 편차가 커서 LCP 절대값(8~9초)은 PSI 와 다르다 |
+
+하지 않은 것과 이유
+
+- **애드센스 지연 로드**: 남은 가장 큰 몫이다(첫 화면 전 253KB + 메인 스레드 약 350ms). 승인 심사 중에는 하지 않는다 — 심사 크롤러가 JS 를 실행하는지 공식 근거가 없어 `<head>` 의 정적 `<script async>` 를 그대로 둔다. **승인 뒤** 적용: 공식 코드와 같은 `<script async crossorigin>` 을 `load` 뒤 `requestIdleCallback`(사파리는 `setTimeout` 폴백)으로 넣고, `AdsenseUnit` 의 차단 감지(지금은 `load` 3초 뒤)를 스크립트 `onload`/`onerror` 기준으로 바꾼다. 첫 상호작용에만 넣는 방식은 쓰지 않는다(앵커 광고·리뷰어가 못 봄)
+- **위키미디어 `.webp` 썸네일**: 주소 끝에 `.webp` 를 붙이면 되지만 문서화된 계약이 아니고, JPEG 는 10~20%·PNG 는 24~45%만 줄며 첫 요청은 변환 때문에 1~2.7초 늦다. LCP 사진(JPEG)에는 오히려 손해라 쓰지 않는다
+- **LCP 사진 `preload` prop**: React 가 `loading="eager"`+`fetchPriority="high"` 인 `<img>` 로 이미 같은 preload 링크를 낸다(운영 HTML 확인). 더 붙여도 같은 링크로 합쳐진다
+- **GA4 와 PostHog 중복**(4절 #8): 둘 다 `load` 뒤에 받아 LCP 에는 거의 영향이 없다. 하나만 남길지는 그대로 사용자 결정
+- 레거시 JS 경고(22KB)는 Next 내장 폴리필(`Array.prototype.at` 등)과 posthog-js 라서 손대지 않는다. 위키미디어 캐시 TTL 경고도 우리가 바꿀 수 없다
