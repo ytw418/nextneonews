@@ -5,7 +5,7 @@
 | 부분 | 어디 | 비용 |
 |---|---|---|
 | 웹 (Next.js 16) | **Vercel** 프로젝트 `hallyu-brief` (팀 `holicreacts-projects`), `main` 푸시 시 자동 배포 | Hobby 는 광고 사이트 불가 → 애드센스 붙일 때 **Pro $20/월** (팀이 이미 Pro 면 추가 0원) |
-| DB (Postgres 17) | **Neon** `neon-violet-book` (Vercel Marketplace 연동, `DATABASE_URL`·`DATABASE_URL_UNPOOLED` 자동 주입) | 무료 구간 |
+| DB (Postgres 17) | **Supabase** `unnienote-db` (ref `zkczyacjdxkrlsdzchrr`, 싱가포르, 버셀 팀 Storage 의 Supabase 연동 — 로그인은 버셀 계정 holicreact@plingcast.com, 무료). 2026-10-20 Neon 에서 이전(`docs/predeploy/SUPABASE-MIGRATION.md`). 웹은 트랜잭션 풀러 6543, Actions 는 세션 풀러 5432. 브리디 DB(서울 `pqvayhabtayjfpklhxxj`)와 별개 — 절대 건드리지 않는다 | 무료(저장 500 MB·전송 5 GB/월, 컴퓨트 시간 한도 없음) |
 | 파이프라인 (수집·작성) | **GitHub Actions** `.github/workflows/pipeline.yml`, 매시 17분, 1회 최대 3편 | 공개 레포라 무료 |
 | 서울 수집 릴레이 | **Vercel** 프로젝트 `hallyu-collector` (같은 레포, `infra/collector-relay`, 리전 `icn1`). 더쿠가 해외 IP 를 403 으로 막을 때만 쓴다 | Hobby 무료 |
 | AI | Anthropic Haiku 5.5, 1편 약 4원 | 최대 하루 72편 기준 월 약 8,600원. 누적 10만 원에서 자동 중단 |
@@ -18,9 +18,9 @@
   - Root Directory: `apps/web`, Node 24.x, 함수 리전 `sin1` (Neon 과 같은 싱가포르. 일본·대만에도 가깝다)
   - Build Command: `cd ../.. && touch .env && npm run db:generate && npm run build -w @kmedia/web` (웹 스크립트가 루트 `.env` 를 읽으므로 빈 파일을 만든다. 값은 Vercel 환경변수에서 온다)
   - Install Command: `cd ../.. && npm ci`
-  - 환경변수: `DATABASE_URL`(Neon 풀러, 자동), `SITE_URL`, `INDEXNOW_KEY`, `COMMENT_HASH_SECRET`
+  - 환경변수: `DATABASE_URL`(Supabase 트랜잭션 풀러 6543, 직접 등록 — 연동 자동 주입 아님), `SITE_URL`, `INDEXNOW_KEY`, `COMMENT_HASH_SECRET`
   - 배포 보호(Vercel 로그인)는 Preview 에만 건다. Production 은 공개.
-- **GitHub Secrets**: `DATABASE_URL`(Neon **unpooled** — 마이그레이션용), `ANTHROPIC_API_KEY`, `SITE_URL`, `INDEXNOW_KEY`
+- **GitHub Secrets**: `DATABASE_URL`(Supabase **세션 풀러 5432** — 마이그레이션·파이프라인용), `ANTHROPIC_API_KEY`, `SITE_URL`, `INDEXNOW_KEY`
   - 선택 (비어 있어도 돈다): `COLLECTOR_RELAY_URL`·`COLLECTOR_TOKEN` (아래 서울 수집 릴레이)
 
 ## 서울 수집 릴레이 (`hallyu-collector`)

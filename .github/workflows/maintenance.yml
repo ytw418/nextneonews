@@ -1,0 +1,43 @@
+# 사람이 눌러서 한 번 돌리는 운영 정리 작업 (정해 둔 명령만 고를 수 있다).
+# 운영 비밀값(SITE_URL·REVALIDATE_SECRET·INDEXNOW_KEY)이 Actions 에만 있어서, 화면 캐시 비우기까지 해야 하는 일은 여기서 돌린다.
+# 실행: gh workflow run maintenance -f command="unpublish --off-topic --dry"
+name: maintenance
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "worker 명령"
+        type: choice
+        default: "unpublish --off-topic --dry"
+        options:
+          - "unpublish --off-topic --dry"
+          - "unpublish --off-topic"
+          - "cost"
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # 파이프라인과 같은 DB 를 쓰므로 겹치지 않게 같은 묶음으로 차례를 기다린다
+    concurrency:
+      group: pipeline
+      cancel-in-progress: false
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+      INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+      REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+      LLM_BUDGET_KRW: "100000"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run db:generate
+      - run: npm run worker -- ${{ inputs.command }}

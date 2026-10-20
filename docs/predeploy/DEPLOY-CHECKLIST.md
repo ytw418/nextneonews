@@ -2,9 +2,9 @@
 
 순서대로 한다. 막히면 그 단계에서 멈춘다.
 
-## 0. 먼저 — 운영 DB 살리기 (사장님, 결제)
+## 0. 먼저 — 운영 DB 살리기 → 10-20 Supabase 무료로 이전 완료(`SUPABASE-MIGRATION.md`)
 
-- [ ] Vercel → Storage → `neon-violet-book` → Settings → Change Configuration → **Launch**(월 최소 요금 없음, $0.106/CU-시간)
+- [x] Vercel → Storage → `neon-violet-book` → Settings → Change Configuration → **Launch**(월 최소 요금 없음, $0.106/CU-시간)
 - [ ] Neon 콘솔 → Branch `main` → Compute → Edit → 최대 **0.5 CU**(자동 일시정지는 켠 채로)
 - [ ] 확인: `gh run list -R ytw418/nextneonews --limit 1` 다음 실행이 성공, `curl -I https://unnienote.app/ko/idol/apink` 가 200
 
@@ -17,9 +17,9 @@ DB 가 살아 있지 않으면 빌드가 프리렌더 DB 조회에서 실패한�
 
 ## 2. 배포 (에이전트)
 
-- [ ] dev → main 병합·push → Vercel 운영 빌드 성공 확인(`list_deployments`)
-- [ ] GitHub Actions `pipeline` 을 workflow_dispatch 로 한 번 → `ItemVote` 마이그레이션 적용, 새 글·재생성
-- [ ] 무관 기사 내리기: `npm run worker -- unpublish --off-topic --dry` 로 목록 확인 → `--dry` 빼고 실행(운영 DB 연결 필요, 대상: 해외 축구·코인·해외 처형 기사)
+- [x] dev → main 병합·push → Vercel 운영 빌드 성공 확인(`list_deployments`)
+- [x] GitHub Actions `pipeline` 을 workflow_dispatch 로 한 번 → `ItemVote` 마이그레이션 적용, 새 글·재생성
+- [ ] 무관 기사 내리기: `gh workflow run maintenance -f command="unpublish --off-topic"`(목록 확인은 `--dry`, 10-20 15건)
 
 ## 3. 배포 뒤 확인
 

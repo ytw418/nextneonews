@@ -1,4 +1,6 @@
-# 운영 DB 를 Supabase(무료)로 옮기기 (2026-10-20)
+# 운영 DB 를 Supabase(무료)로 옮기기 (2026-10-20) — 완료
+
+> **완료 기록 (10-20 09:19)**: Neon 을 잠깐 Launch 로 바꿔 덤프 → 버셀 Storage 의 Supabase 연동으로 만든 `unnienote-db`(ref `zkczyacjdxkrlsdzchrr`, 싱가포르, 무료)에 복원(표 23개 행 수 일치) → GitHub `DATABASE_URL`=세션 풀러, 버셀 운영 `DATABASE_URL`=트랜잭션 풀러(Neon 프로젝트 연결 해제 뒤 직접 등록) → 재배포 성공, 파이프라인 성공 → Neon 다시 Free. Supabase 는 자체 인증기관 인증서를 써서 `packages/db/src/tls.ts` 가 그 루트 인증서로 TLS 를 검증한다. 처음 계획(supabase.com 별도 가입)은 가입 보안문자 때문에 쓰지 않았다. 옛 Neon(`neon-violet-book`) 데이터는 되돌리기용으로 남아 있다(무료, 연결 해제됨).
 
 ## 왜
 
