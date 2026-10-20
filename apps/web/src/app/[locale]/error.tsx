@@ -2,12 +2,15 @@
 
 import { type Locale, LOCALE_PATH_PREFIX } from "@kmedia/core";
 import { useLocale, useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 import { ErrorScreen } from "@/app/_error/ErrorScreen";
+import { captureBoundaryError } from "@/lib/posthog";
 
 // 화면을 그리다 실패했을 때(DB 조회 실패 등). 레이아웃 안이라 탭바가 함께 보이고, 캐시된 홈·가이드로 갈 수 있다.
 // 레이아웃 자체가 실패하면(푸터의 카테고리 조회 등) app/global-error.tsx 가 대신 그린다
-export default function LocaleError({ retry }: { error: Error & { digest?: string }; retry: () => void }) {
+export default function LocaleError({ error, retry }: { error: Error & { digest?: string }; retry: () => void }) {
+  useEffect(() => captureBoundaryError(error), [error]);
   const t = useTranslations("ErrorPage");
   const home = LOCALE_PATH_PREFIX[useLocale() as Locale] ?? LOCALE_PATH_PREFIX.en;
 

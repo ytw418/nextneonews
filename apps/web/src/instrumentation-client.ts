@@ -1,4 +1,4 @@
-import { loadPosthog } from "@/lib/posthog";
+import { captureErrorPosthog, loadPosthog } from "@/lib/posthog";
 
 // PostHog. 토큰은 운영 배포 빌드에만 들어간다(next.config.ts). 없으면 아무것도 하지 않는다
 const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
@@ -28,7 +28,18 @@ if (key) {
       // 쿠키·로컬 저장소를 쓰지 않는다. 방문자 구분은 PostHog 서버가 IP·브라우저를 날마다 바뀌는 키로 해시해서 한다
       // (프로젝트 설정 'Cookieless server hash mode' 를 켜 둠. 꺼지면 이벤트가 버려진다)
       cookieless_mode: "always",
+      // 에러는 아래 리스너가 lib/posthog.ts 로 보낸다(받기 전 에러도 모아 둔다). 켜 두면 프로젝트 설정에 따라 같은 에러가 두 번 간다
+      capture_exceptions: false,
     },
     whenIdleAfterLoad,
   );
+
+  // 잡히지 않은 에러 → PostHog 에러 추적. React 가 복구한 에러(하이드레이션 불일치 등)도 Next 가 여기로 올린다.
+  // CORS 없이 불러온 다른 출처 스크립트(GA 등)의 에러는 브라우저가 내용을 가려 error 가 비어 온다("Script error."). 고칠 수 없어 보내지 않는다
+  window.addEventListener("error", (event) => {
+    if (event.error) captureErrorPosthog(event.error);
+  });
+  window.addEventListener("unhandledrejection", (event) => {
+    if (event.reason !== undefined && event.reason !== null) captureErrorPosthog(event.reason);
+  });
 }

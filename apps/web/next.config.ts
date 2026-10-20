@@ -59,6 +59,9 @@ const nextConfig: NextConfig = {
   },
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
   skipTrailingSlashRedirect: true,
+  // 브라우저 소스맵을 공개로 낸다: PostHog 에러 추적이 이것을 받아 압축된 스택을 원래 파일·줄로 바꾼다(업로드 키 불필요).
+  // 레포가 공개라 새로 드러나는 코드는 없고, 브라우저는 개발자 도구를 열 때만 받는다
+  productionBrowserSourceMaps: true,
   devIndicators: false,
   turbopack: {
     root: repoRoot,

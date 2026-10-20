@@ -14,11 +14,13 @@
   "dependencies": {
     "@kmedia/core": "*",
     "@kmedia/db": "*",
+    "@vercel/functions": "^3.10.1",
     "budoux": "^0.9.3",
     "micromark": "^4.0.3",
     "next": "16.4.1",
     "next-intl": "^4.14.9",
     "posthog-js": "^1.438.12",
+    "posthog-node": "^5.56.2",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-markdown": "^10.1.0",

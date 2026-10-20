@@ -3,8 +3,9 @@
 import "./globals.css";
 
 import { type Locale, LOCALE_PATH_PREFIX, LOCALES, SITE_NAME } from "@kmedia/core";
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
+import { captureBoundaryError } from "@/lib/posthog";
 import { localeFromPrefix } from "@/lib/url";
 
 import en from "../../messages/ns/ErrorPage/en.json";
@@ -38,7 +39,8 @@ const MESSAGES: Record<Locale, typeof en> = {
 const noSubscribe = () => () => {};
 const localeOfPage = (): Locale => localeFromPrefix(window.location.pathname.split("/")[1] ?? "") ?? "en";
 
-export default function GlobalError({ retry }: { error: Error & { digest?: string }; retry: () => void }) {
+export default function GlobalError({ error, retry }: { error: Error & { digest?: string }; retry: () => void }) {
+  useEffect(() => captureBoundaryError(error), [error]);
   // 서버 HTML 은 언어를 몰라 9벌을 그리고 <head> 스크립트가 한 벌만 보이게 한다. 하이드레이션 뒤에는 그 한 벌만 남긴다
   const locale = useSyncExternalStore(noSubscribe, localeOfPage, () => null);
   const shown = locale ? [locale] : LOCALES;
