@@ -57,7 +57,7 @@
       "official": "Site officiel"
     },
     "tba": "Pas encore annoncé",
-    "yourTime": "Ton heure : {time}",
+    "yourTime": "Votre heure : {time}",
     "venueTime": "{city} : {time}",
     "watchTickets": "Regarder & billets",
     "mode": {
@@ -120,7 +120,7 @@
   },
   "Comments": {
     "title": "Commentaires",
-    "placeholder": "Partage ton avis",
+    "placeholder": "Partagez votre avis",
     "policy": "Nous supprimons les insultes et les infos personnelles.",
     "changeName": "Changer de nom",
     "submit": "Publier",
@@ -132,18 +132,18 @@
     "save": "Enregistrer",
     "report": "Signaler",
     "reportedToast": "Signalé. Merci de nous avoir prévenus",
-    "postedToast": "Ton commentaire est en ligne",
+    "postedToast": "Votre commentaire est en ligne",
     "showMore": "Afficher la suite",
     "showMoreComments": "Afficher plus de commentaires",
     "edited": "modifié",
-    "empty": "Donne ton avis en premier.",
+    "empty": "Donnez votre avis en premier.",
     "retry": "Réessayer",
-    "error": "Ton commentaire n’a pas été publié. Vérifie ta connexion et réessaie.",
-    "failed": "Ça n’a pas marché. Vérifie ta connexion et réessaie.",
-    "tooFast": "Tu pourras commenter à nouveau dans quelques minutes.",
-    "noLinks": "Retire le lien et tu pourras publier.",
-    "locked": "Tu pourras réessayer dans 15 minutes.",
-    "wrongPassword": "Tu peux modifier seulement les commentaires publiés depuis cet appareil."
+    "error": "Votre commentaire n’a pas été publié. Vérifiez votre connexion et réessayez.",
+    "failed": "Ça n’a pas marché. Vérifiez votre connexion et réessayez.",
+    "tooFast": "Vous pourrez commenter à nouveau dans quelques minutes.",
+    "noLinks": "Retirez le lien pour pouvoir publier.",
+    "locked": "Vous pourrez réessayer dans 15 minutes.",
+    "wrongPassword": "Vous ne pouvez modifier que les commentaires publiés depuis cet appareil."
   },
   "CategoryGroup": {
     "ENTERTAINMENT": "Divertissement",
@@ -152,7 +152,7 @@
     "OTHER": "Autres sujets"
   },
   "Install": {
-    "title": "Ajoute {name} à ton écran d’accueil",
+    "title": "Ajoutez {name} à votre écran d’accueil",
     "body": "Ouvre-le en un geste, comme une appli.",
     "install": "Installer",
     "iosSteps": "Dans Safari, touche Partager, puis Sur l’écran d’accueil.",

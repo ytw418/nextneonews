@@ -66,7 +66,10 @@ export const WRITE_SYSTEM = `너는 "Unnie Note"의 기자다. 한국 연예·K-
 - ja: 日本のK-POPメディアの文体。です・ます調。ファン用語は自然に(カムバ、推し、ペン、ソウルコン、ファンミ)。
 - zhTW: 台灣繁體中文、台灣韓娛媒體的語氣(回歸、粉絲見面會、追星、應援棒)。不要用簡體字或中國大陸用語。
 - ko: 정보형 기사 문체(합니다체). 원문 기사 문장을 그대로 옮기지 않는다.
-- en·ja·zhTW 에는 한글을 쓰지 않는다.
+- en·ja·zhTW 에는 한글을 쓰지 않는다. en·zhTW·ko 에는 히라가나·가타카나를 절대 쓰지 않는다 (ja 를 쓰다가 "イム・シワン" 같은 표기를 zhTW 로 옮겨 오지 않는다. zhTW 는 glossary 의 zhHant, 없으면 대만 매체의 한자·영문 표기).
+- 각 언어는 그 언어 낱말만 쓴다. ja 에 중국어 낱말(網民 → ネットユーザー)을, zhTW 에 일본어 낱말을 섞지 않는다.
+- 한국 음식·물건은 현지에 같은 것이 있으면 현지 이름을 쓴다 (붕어빵 → ja たい焼き · zhTW 鯛魚燒 · en "bungeoppang (fish-shaped pastry)"). 없으면 음역 + 짧은 설명.
+- 한국 방송·프로그램 이름은 한글로 두지 말고 그 언어 매체의 표기(공식 영문명·번역명)를 쓴다.
 - 금액은 원화 그대로 두고 환율을 지어내지 않는다.
 
 [독자 투표 poll — 언어마다 같은 투표 하나]
@@ -94,6 +97,8 @@ Rules
 - Keep the markdown structure of body (## headings, lists, tables). Turn headings into questions readers in that language would search for.
 - Keep group, brand and broadcaster names in Latin letters (BTS, IVE, tvN, Netflix).
 - Keep amounts in Korean won; do not invent exchange rates.
+- Use only the target language's script and words. Never copy Japanese kana or Korean hangul into the output.
+- Korean foods and objects: use the local name when the target culture has the same thing; otherwise transliterate and explain briefly (bungeoppang = fish-shaped pastry with red-bean filling, not "red cake").
 - title: state the fact first (who + what). No surprise or shock teasers ("Reveals Surprise…", "Looks Years Younger…") and no question headlines. Stay within the title limit given in the first line of the user message. When a faithful translation would run over it, write a shorter fact-first title instead of a literal translation (French and Russian run 20 to 30% longer than English).
 - seoTitle: at most 60 characters, lead with the key person's name.
 - summary: no lead-in such as "In this article". Keep it as short as the English version (one sentence).
@@ -105,7 +110,7 @@ Rules
 Per language
 - vi: Văn phong báo giải trí Việt Nam (trung tính, không giật tít). Tên người Hàn giữ dạng Latin mà fan Việt dùng (ví dụ: Lee Min Ho, IU).
 - id: Gaya media K-pop Indonesia yang santai tapi rapi. Nama orang Korea tetap ditulis dalam huruf Latin seperti di versi bahasa Inggris.
-- fr: Style des médias K-culture francophones, neutre et journalistique. Les noms coréens restent en alphabet latin comme dans la version anglaise. Working holiday = « PVT ».
+- fr: Style des médias K-culture francophones, neutre et journalistique. Vouvoie toujours le lecteur (« vous », jamais « tu »), comme le reste du site. Les noms coréens restent en alphabet latin comme dans la version anglaise. Working holiday = « PVT ».
 - ru: Пиши по-русски, кириллицей, в стиле русскоязычных медиа о K-pop и дорамах, без кликбейта. Названия групп оставь латиницей (BTS, IVE). Имена людей пиши кириллицей так, как их обычно пишут русскоязычные фанаты (например: Ли Мин Хо, Пак Бо Ён); если устоявшегося написания нет, используй систему Концевича.`;
 
 // 투표가 없는 기존 글에 8개 언어 투표를 한 번에 만든다 (backfill-polls, Haiku 1회). 간체는 OpenCC 로 바꾼다.

@@ -5,7 +5,7 @@
   },
   "Nav": {
     "home": "首頁",
-    "schedule": "行程",
+    "schedule": "活動日曆",
     "language": "語言",
     "changeLanguage": "切換語言（目前：{name}）",
     "menu": "選單",

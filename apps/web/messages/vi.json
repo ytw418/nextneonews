@@ -5,7 +5,7 @@
   },
   "Nav": {
     "home": "Trang chủ",
-    "schedule": "Lịch trình",
+    "schedule": "Sự kiện",
     "language": "Ngôn ngữ",
     "changeLanguage": "Đổi ngôn ngữ (hiện tại: {name})",
     "menu": "Menu",

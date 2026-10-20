@@ -39,7 +39,7 @@ export async function BuzzTop5Rail({ locale }: { locale: string }) {
                   </span>
                 </span>
                 <span className="line-clamp-2 text-t6 leading-row font-semibold text-ink-900">{name}</span>
-                <RankChange rank={item.rank} prevRank={item.prevRank} className="mt-auto" />
+                <RankChange rank={item.rank} prevRank={item.prevRank} className="mt-auto" quiet />
               </Link>
             </li>
           );

@@ -44,6 +44,10 @@ export function stripHangulParens(text: string): string {
 }
 
 const HANGUL = /[가-힣]/;
+// 히라가나·가타카나 글자. 일본어판이 아닌 글에 남으면 모델이 ja 표기를 옮겨 온 것이다 (zh-TW 의 "イム・シワン").
+// 가운뎃점(・)·장음(ー)만 있는 것은 대만·중국 글에서도 이름 구분에 쓰여 걸지 않는다. 덩어리에는 붙여서 함께 바꾼다
+const KANA = /[\u3041-\u3096\u30a1-\u30fa]/;
+const KANA_RUN = /[\u30fb\u30fc]*[\u3041-\u3096\u30a1-\u30fa][\u3041-\u3096\u30a1-\u30fc]*/g;
 const VI_TONES = /[ăâđêôơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]/i;
 const STOPWORDS: Record<string, string[]> = {
   fr: ["le", "la", "les", "des", "est", "et", "une", "pour", "du", "dans"],
@@ -57,6 +61,7 @@ export function looksLikeLocale(locale: string, text: string): boolean {
   if (letters.length === 0) return false;
   // 고유명사 한두 개(예: "Seoul (서울)")는 봐준다. 한글이 2%를 넘으면 한국어로 답한 것이다
   if (locale !== "ko" && letters.filter((c) => HANGUL.test(c)).length / letters.length > 0.02) return false;
+  if (locale !== "ja" && KANA.test(text)) return false;
   switch (locale) {
     case "ru":
       return letters.filter((c) => /[Ѐ-ӿ]/.test(c)).length / letters.length > 0.5;
@@ -70,6 +75,42 @@ export function looksLikeLocale(locale: string, text: string): boolean {
     default:
       return true;
   }
+}
+
+// 가나 표기("イム・シワン")를 사전의 그 언어 표기로 바꾼다. 키는 일본어 표기에서 ・ 와 공백을 뺀 것.
+// 글의 모든 문자열 칸(제목·요약·본문·FAQ·투표·반응)에 적용하고, 바꾸지 못하고 남은 가나 덩어리를 돌려준다 (AI 없이)
+export function replaceKana<T>(value: T, names: ReadonlyMap<string, string>): { value: T; left: string[] } {
+  const left = new Set<string>();
+  const key = (run: string) => run.replace(/[・\s]/g, "");
+  const fix = (text: string) =>
+    text.replace(KANA_RUN, (run) => {
+      const name = names.get(key(run));
+      if (name) return name;
+      left.add(run);
+      return run;
+    });
+  const walk = (v: unknown): unknown => {
+    if (typeof v === "string") return KANA.test(v) ? fix(v) : v;
+    if (Array.isArray(v)) return v.map(walk);
+    if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x)]));
+    return v;
+  };
+  return { value: walk(value) as T, left: [...left] };
+}
+
+// 사전(일본어 표기 → 이 언어 표기) 만들기. 번체 표기가 "率悲 SolBi" 처럼 둘이면 앞의 것
+export function kanaNames(
+  entities: readonly { ja: string | null; ko: string | null; en: string | null; zhHant: string | null }[],
+  locale: string,
+): Map<string, string> {
+  const names = new Map<string, string>();
+  for (const e of entities) {
+    if (!e.ja) continue;
+    const zh = e.zhHant?.split(/\s+/)[0];
+    const target = locale === "ko" ? (e.ko ?? e.en) : locale.startsWith("zh") ? (zh ?? e.en) : (e.en ?? e.ko);
+    if (target) names.set(e.ja.replace(/[・\s]/g, ""), target);
+  }
+  return names;
 }
 
 // 한국어판이 원문 문장을 얼마나 그대로 가져왔는지 (AI 없이). 공백·문장부호를 빼고 8글자 조각으로 비교한다.

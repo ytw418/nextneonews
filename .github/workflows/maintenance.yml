@@ -14,6 +14,12 @@ on:
           - "unpublish --off-topic --dry"
           - "unpublish --off-topic"
           - "cost"
+          - "fix-script --dry"
+          - "fix-script"
+      names:
+        description: "fix-script 에 줄 이름 짝 (공백으로 구분, 예: イム・シワン=任時完)"
+        type: string
+        default: ""
 
 permissions:
   contents: read
@@ -32,6 +38,8 @@ jobs:
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
       REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
       LLM_BUDGET_KRW: "100000"
+      # 셸에 바로 끼우지 않고 환경변수로 넘긴다 (입력이 명령으로 해석되지 않게)
+      FIX_SCRIPT_NAMES: ${{ inputs.names }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

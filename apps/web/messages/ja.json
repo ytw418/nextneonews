@@ -5,7 +5,7 @@
   },
   "Nav": {
     "home": "ホーム",
-    "schedule": "予定",
+    "schedule": "カレンダー",
     "language": "言語",
     "changeLanguage": "言語を変更（いま：{name}）",
     "menu": "メニュー",

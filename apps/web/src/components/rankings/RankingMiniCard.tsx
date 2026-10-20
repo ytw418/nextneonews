@@ -33,7 +33,7 @@ export function RankingMiniCard({ chart, title, snapshot, entities, locale, as: 
               <span className="w-5 shrink-0 text-center text-t5 font-bold tabular-nums text-ink-900">{item.rank}</span>
               <EntityAvatar name={name} src={entities.get(item.entityId)?.photo?.avatar} tint={CHART_TINT[chart]} size={40} />
               <span className="min-w-0 flex-1 truncate text-t6 font-semibold text-ink-900">{name}</span>
-              {chart !== "fan-pick" && <RankChange rank={item.rank} prevRank={item.prevRank} />}
+              {chart !== "fan-pick" && <RankChange rank={item.rank} prevRank={item.prevRank} quiet />}
             </li>
           );
         })}

@@ -5,7 +5,7 @@ import { prisma } from "@kmedia/db";
 import { log } from "../log";
 
 // 번체(대만) → 간체(본토). 글자뿐 아니라 대만식 단어도 본토식으로 바꾼다 (軟體→软件, 網路→网络). AI 호출 없음
-const toCN = OpenCC.Converter({ from: "twp", to: "cn" });
+export const toCN = OpenCC.Converter({ from: "twp", to: "cn" });
 
 export interface LocalizedText {
   title: string;

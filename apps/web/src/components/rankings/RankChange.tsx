@@ -5,7 +5,18 @@ const RISING = 5;
 
 // 순위 변동: ▲3(brand-ink) / ▼1(ink-600) / – / NEW 칩. 색만으로 알리지 않게 화살표와 숫자에 읽을 문구를 함께 둔다.
 // 서버·클라이언트(RankRow) 양쪽에서 쓰므로 훅(useTranslations)만 쓴다
-export function RankChange({ rank, prevRank, className = "" }: { rank: number; prevRank: number | null; className?: string }) {
+// quiet: 변동 없음(–)을 그리지 않는다. 홈 카드처럼 변동 말고 다른 숫자가 없는 자리에서는 '–' 가 점수가 빈 것처럼 읽혔다
+export function RankChange({
+  rank,
+  prevRank,
+  className = "",
+  quiet = false,
+}: {
+  rank: number;
+  prevRank: number | null;
+  className?: string;
+  quiet?: boolean;
+}) {
   const t = useTranslations("Rankings");
   // relative: 가로 레일 안에서 sr-only 글자(absolute)가 레일 밖 문서 폭을 늘리지 않게 여기에 묶는다
   const base = `relative inline-flex items-center whitespace-nowrap text-t7 tabular-nums ${className}`;
@@ -20,6 +31,7 @@ export function RankChange({ rank, prevRank, className = "" }: { rank: number; p
   }
   const diff = prevRank - rank;
   if (diff === 0) {
+    if (quiet) return null;
     return (
       <span className={`${base} font-semibold text-ink-600`}>
         <span aria-hidden>–</span>

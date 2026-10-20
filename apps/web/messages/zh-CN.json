@@ -5,7 +5,7 @@
   },
   "Nav": {
     "home": "首页",
-    "schedule": "行程",
+    "schedule": "活动日历",
     "language": "语言",
     "changeLanguage": "切换语言（当前：{name}）",
     "menu": "菜单",

@@ -13,7 +13,7 @@ import { attachImage } from "../entities/images";
 import { findEntities } from "../entities/match";
 import { log } from "../log";
 import { type AnnouncedPage, announce } from "./announce";
-import { headlineTooLong, overlapRatio, unsupportedNumbers } from "./checks";
+import { headlineTooLong, kanaNames, overlapRatio, replaceKana, unsupportedNumbers } from "./checks";
 import { pickSentences } from "./extract";
 import { buildFactPack, MIN_FACT_CHARS } from "./factpack";
 import { isIndexable } from "./indexable";
@@ -134,19 +134,26 @@ function pollOptionIds(riskTier: Topic["riskTier"], drafts: Localized[]): string
 
 // 검사(숫자·원문 겹침) 뒤 기사와 5개 언어판을 저장한다. 경고가 있으면 사람 확인(REVIEW)으로 둔다
 async function saveArticle({ topic, draft, sources, sourceText, entities, reaction }: SaveInput): Promise<Saved> {
-  const en = clean(draft.en);
   const [year, month, day] = kstToday().split("-").map((part) => String(Number(part)));
-  const warnings = unsupportedNumbers({ facts: draft.facts, ...en }, [year!, month!, day!]).map(
+  const warnings = unsupportedNumbers({ facts: draft.facts, ...clean(draft.en) }, [year!, month!, day!]).map(
     (n) => `number-not-in-facts:${n}`,
   );
   const overlap = overlapRatio(sourceText, draft.ko.body);
   if (overlap > MAX_OVERLAP) warnings.push(`source-overlap:${overlap.toFixed(2)}`);
-  const publish = autoPublish && !warnings.some((w) => w.startsWith("source-overlap"));
 
   const slug = slugify(draft.slug);
   const ja = clean(draft.ja);
-  const zhTW = clean(draft.zhTW);
-  const ko = shape(draft.ko);
+  // 한 번에 네 언어를 쓰다 보니 일본어판 표기(가나)가 다른 언어로 새어 들어온다 ("イム・シワン").
+  // 사전 표기로 바꾸고, 그래도 남으면 사람이 볼 때까지 발행하지 않는다
+  const unkana = <T>(locale: Locale, t: T): T => {
+    const { value, left } = replaceKana(t, kanaNames(entities, locale));
+    if (left.length > 0) warnings.push(`foreign-script:${locale}:${left.slice(0, 3).join("/")}`);
+    return value;
+  };
+  const en = unkana("en", clean(draft.en));
+  const zhTW = unkana("zh-TW", clean(draft.zhTW));
+  const ko = unkana("ko", shape(draft.ko));
+  const publish = autoPublish && !warnings.some((w) => w.startsWith("source-overlap") || w.startsWith("foreign-script"));
   const locales: [Locale, Localized][] = [
     ["en", en],
     ["ja", ja],

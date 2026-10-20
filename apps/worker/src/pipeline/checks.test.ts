@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 
-import { headlineTooLong, looksLikeLocale, overlapRatio, stripHangulParens, unsupportedNumbers } from "./checks";
+import {
+  headlineTooLong,
+  kanaNames,
+  looksLikeLocale,
+  overlapRatio,
+  replaceKana,
+  stripHangulParens,
+  unsupportedNumbers,
+} from "./checks";
 
 describe("unsupportedNumbers", () => {
   it("facts 에 없는 두 자리 이상 숫자만 잡고, 천 단위 콤마 차이는 무시한다", () => {
@@ -42,6 +50,23 @@ describe("looksLikeLocale", () => {
     expect(looksLikeLocale("fr", "Lee Young-ae attended the ceremony with her husband.")).toBe(false);
     expect(looksLikeLocale("fr", "L'actrice a assisté à la cérémonie avec son mari et les invités.")).toBe(true);
     expect(looksLikeLocale("id", "Aktris ini hadir bersama suaminya di upacara yang meriah.")).toBe(true);
+  });
+});
+
+describe("replaceKana", () => {
+  it("일본어판이 아닌 글에 남은 가나 이름을 사전 표기로 바꾸고, 사전에 없는 가나는 남은 것으로 알린다", () => {
+    const names = kanaNames([{ ja: "イム・シワン", ko: "임시완", en: "Yim Si-wan", zhHant: "任時完" }], "zh-TW");
+    const { value, left } = replaceKana(
+      { title: "《我的有罪之人》イム・シワン 與薛仁雅攜手", faq: [{ q: "イムシワン是誰？", a: "演員。" }] },
+      names,
+    );
+    expect(value).toEqual({ title: "《我的有罪之人》任時完 與薛仁雅攜手", faq: [{ q: "任時完是誰？", a: "演員。" }] });
+    expect(left).toEqual([]);
+    expect(replaceKana("ソル・イナ與任時完", names).left).toEqual(["ソル・イナ"]);
+    expect(looksLikeLocale("zh-TW", "《我的有罪之人》イム・シワン 與薛仁雅攜手")).toBe(false);
+    // 이름 사이 가운뎃점만 있는 대만 글은 정상
+    expect(looksLikeLocale("zh-TW", "崔正勳・韓志旼分手傳聞")).toBe(true);
+    expect(replaceKana("崔正勳・韓志旼", names).left).toEqual([]);
   });
 });
 
