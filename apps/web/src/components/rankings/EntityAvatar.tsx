@@ -33,13 +33,17 @@ export function EntityAvatar({
   size?: keyof typeof SIZE;
 }) {
   if (src) {
+    // 64px 원은 250px 썸네일(photo.card)을 받는다 — 아이폰 3배 화면은 192px 가 필요하다. 배율이 낮은 화면(안드로이드 1.75배·PC)은
+    // 120px 로 충분해서 폭 후보(srcset)를 주고 로더(lib/image.ts)가 폭에 맞는 썸네일을 고르게 한다 (250px PNG 93KB → 120px).
+    // 더 작은 원은 이미 작은 썸네일(60·120)을 그대로 쓴다. 원본이 250px 이하라 썸네일이 없으면(원본 주소) 그대로 쓴다
+    const responsive = size === 64 && src.includes("/thumb/");
     return (
       <Image
         src={src}
         alt=""
         width={size}
         height={size}
-        unoptimized
+        {...(responsive ? { sizes: `${size}px` } : { unoptimized: true })}
         // 작은 원은 1위 히어로 사진(LCP)과 대역폭을 다투지 않게 뒤로 미룬다
         fetchPriority="low"
         className={`${SIZE[size]} shrink-0 rounded-full bg-fill-weak object-cover object-[50%_20%]`}

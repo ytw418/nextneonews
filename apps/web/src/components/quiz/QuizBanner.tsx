@@ -12,7 +12,7 @@ export async function QuizBanner({ locale }: { locale: string }) {
       href="/beauty/skin-type"
       className="press-soft my-3 flex items-center gap-3.5 rounded-card bg-band py-4 pr-4 pl-3.5"
     >
-      <Image src="/icons3d/kbeauty.png" unoptimized alt="" width={56} height={56} className="size-14 shrink-0" />
+      <Image src="/icons3d/kbeauty.webp" unoptimized alt="" width={56} height={56} className="size-14 shrink-0" />
       <span className="min-w-0 grow">
         <span className="block text-t5 font-bold text-ink-900">{t("quizBanner.title")}</span>
         <span className="block text-st12 font-medium text-ink-600">{t("quizBanner.sub")}</span>
