@@ -4,6 +4,8 @@ import type Anthropic from "@anthropic-ai/sdk";
 export const MODELS = {
   // 1편을 4개 언어로 한 번에 쓴다. 비용 우선 Haiku (1편 약 3원). 품질을 올리려면 "claude-sonnet-5-5"
   write: "claude-haiku-5-5",
+  // 작성 직전 관련성·분류 판정 (제목 + 원문 앞부분, 1건 1원 미만)
+  gate: "claude-haiku-5-5",
   // 영어판을 vi·id·fr·ru 로 옮기는 배치 번역 (배치 50% 할인, 1편 4개 언어 약 4원)
   translate: "claude-haiku-5-5",
   // GEO 측정용 웹 검색 답변 (web_search_20260209 는 Sonnet 4.6 이상 필요)

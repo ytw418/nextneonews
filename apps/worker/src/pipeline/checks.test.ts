@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 
 import {
   headlineTooLong,
-  kanaNames,
+  foreignNames,
   looksLikeLocale,
   overlapRatio,
-  replaceKana,
+  replaceForeign,
   stripHangulParens,
   unsupportedNumbers,
 } from "./checks";
@@ -53,20 +53,30 @@ describe("looksLikeLocale", () => {
   });
 });
 
-describe("replaceKana", () => {
-  it("일본어판이 아닌 글에 남은 가나 이름을 사전 표기로 바꾸고, 사전에 없는 가나는 남은 것으로 알린다", () => {
-    const names = kanaNames([{ ja: "イム・シワン", ko: "임시완", en: "Yim Si-wan", zhHant: "任時完" }], "zh-TW");
-    const { value, left } = replaceKana(
+describe("replaceForeign", () => {
+  it("다른 언어 글자(가나·한글)를 사전 표기로 바꾸고, 사전에 없는 것은 남은 것으로 알린다", () => {
+    const entities = [
+      { ja: "イム・シワン", ko: "임시완", en: "Yim Si-wan", zhHant: "任時完" },
+      { ja: "チェリョン", ko: "채령", en: "Chaeryeong", zhHant: null },
+    ];
+    const zh = replaceForeign(
       { title: "《我的有罪之人》イム・シワン 與薛仁雅攜手", faq: [{ q: "イムシワン是誰？", a: "演員。" }] },
-      names,
+      "zh-TW",
+      foreignNames(entities, "zh-TW"),
     );
-    expect(value).toEqual({ title: "《我的有罪之人》任時完 與薛仁雅攜手", faq: [{ q: "任時完是誰？", a: "演員。" }] });
-    expect(left).toEqual([]);
-    expect(replaceKana("ソル・イナ與任時完", names).left).toEqual(["ソル・イナ"]);
+    expect(zh).toEqual({ value: { title: "《我的有罪之人》任時完 與薛仁雅攜手", faq: [{ q: "任時完是誰？", a: "演員。" }] }, left: [] });
+    expect(replaceForeign("ITZY채령、ソロデビュー", "ja", foreignNames(entities, "ja"))).toEqual({
+      value: "ITZYチェリョン、ソロデビュー",
+      left: [],
+    });
+    expect(replaceForeign("ソル・イナ與『두시탈출 컬투쇼』", "zh-TW", foreignNames(entities, "zh-TW")).left).toEqual([
+      "ソル・イナ",
+      "두시탈출",
+      "컬투쇼",
+    ]);
     expect(looksLikeLocale("zh-TW", "《我的有罪之人》イム・シワン 與薛仁雅攜手")).toBe(false);
     // 이름 사이 가운뎃점만 있는 대만 글은 정상
     expect(looksLikeLocale("zh-TW", "崔正勳・韓志旼分手傳聞")).toBe(true);
-    expect(replaceKana("崔正勳・韓志旼", names).left).toEqual([]);
   });
 });
 

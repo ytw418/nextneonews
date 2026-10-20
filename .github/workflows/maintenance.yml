@@ -16,6 +16,8 @@ on:
           - "cost"
           - "fix-script --dry"
           - "fix-script"
+          - "regate --dry"
+          - "regate"
       names:
         description: "fix-script 에 줄 이름 짝 (공백으로 구분, 예: イム・シワン=任時完)"
         type: string
@@ -37,6 +39,8 @@ jobs:
       SITE_URL: ${{ secrets.SITE_URL }}
       INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
       REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+      # regate 의 관련성 판정(AI). 누적 예산 상한은 위 LLM_BUDGET_KRW 가 지킨다
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       LLM_BUDGET_KRW: "100000"
       # 셸에 바로 끼우지 않고 환경변수로 넘긴다 (입력이 명령으로 해석되지 않게)
       FIX_SCRIPT_NAMES: ${{ inputs.names }}

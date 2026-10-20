@@ -77,20 +77,34 @@ export function looksLikeLocale(locale: string, text: string): boolean {
   }
 }
 
-// 가나 표기("イム・シワン")를 사전의 그 언어 표기로 바꾼다. 키는 일본어 표기에서 ・ 와 공백을 뺀 것.
-// 글의 모든 문자열 칸(제목·요약·본문·FAQ·투표·반응)에 적용하고, 바꾸지 못하고 남은 가나 덩어리를 돌려준다 (AI 없이)
-export function replaceKana<T>(value: T, names: ReadonlyMap<string, string>): { value: T; left: string[] } {
+const HANGUL_RUN = /[가-힣]+/g;
+
+// 다른 언어 글자 덩어리를 사전의 그 언어 표기로 바꾼다: 일본어판이 아닌 글의 가나("イム・シワン"),
+// 한국어판이 아닌 글의 한글("ITZY채령"). 사전 키는 일본어 표기(・·공백 뺌)와 한국어 표기.
+// 글의 모든 문자열 칸(제목·요약·본문·FAQ·투표·반응)에 적용하고, 바꾸지 못하고 남은 덩어리를 돌려준다 (AI 없이)
+export interface ForeignNames {
+  kana: ReadonlyMap<string, string>;
+  hangul: ReadonlyMap<string, string>;
+}
+
+export function replaceForeign<T>(value: T, locale: string, names: ForeignNames): { value: T; left: string[] } {
   const left = new Set<string>();
-  const key = (run: string) => run.replace(/[・\s]/g, "");
-  const fix = (text: string) =>
-    text.replace(KANA_RUN, (run) => {
-      const name = names.get(key(run));
+  const kanaKey = (run: string) => run.replace(/[・\s]/g, "");
+  const swap = (text: string, re: RegExp, map: ReadonlyMap<string, string>, key: (run: string) => string) =>
+    text.replace(re, (run) => {
+      const name = map.get(key(run));
       if (name) return name;
       left.add(run);
       return run;
     });
+  const fix = (text: string) => {
+    let out = text;
+    if (locale !== "ja" && KANA.test(out)) out = swap(out, KANA_RUN, names.kana, kanaKey);
+    if (locale !== "ko" && HANGUL.test(out)) out = swap(out, HANGUL_RUN, names.hangul, (run) => run);
+    return out;
+  };
   const walk = (v: unknown): unknown => {
-    if (typeof v === "string") return KANA.test(v) ? fix(v) : v;
+    if (typeof v === "string") return fix(v);
     if (Array.isArray(v)) return v.map(walk);
     if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x)]));
     return v;
@@ -98,19 +112,22 @@ export function replaceKana<T>(value: T, names: ReadonlyMap<string, string>): { 
   return { value: walk(value) as T, left: [...left] };
 }
 
-// 사전(일본어 표기 → 이 언어 표기) 만들기. 번체 표기가 "率悲 SolBi" 처럼 둘이면 앞의 것
-export function kanaNames(
+// 사전(일본어·한국어 표기 → 이 언어 표기). 번체 표기가 "率悲 SolBi" 처럼 둘이면 앞의 것
+export function foreignNames(
   entities: readonly { ja: string | null; ko: string | null; en: string | null; zhHant: string | null }[],
   locale: string,
-): Map<string, string> {
-  const names = new Map<string, string>();
+): ForeignNames {
+  const kana = new Map<string, string>();
+  const hangul = new Map<string, string>();
   for (const e of entities) {
-    if (!e.ja) continue;
     const zh = e.zhHant?.split(/\s+/)[0];
-    const target = locale === "ko" ? (e.ko ?? e.en) : locale.startsWith("zh") ? (zh ?? e.en) : (e.en ?? e.ko);
-    if (target) names.set(e.ja.replace(/[・\s]/g, ""), target);
+    const target =
+      locale === "ko" ? (e.ko ?? e.en) : locale === "ja" ? (e.ja ?? e.en) : locale.startsWith("zh") ? (zh ?? e.en) : (e.en ?? e.ko);
+    if (!target) continue;
+    if (e.ja) kana.set(e.ja.replace(/[・\s]/g, ""), target);
+    if (e.ko) hangul.set(e.ko, target);
   }
-  return names;
+  return { kana, hangul };
 }
 
 // 한국어판이 원문 문장을 얼마나 그대로 가져왔는지 (AI 없이). 공백·문장부호를 빼고 8글자 조각으로 비교한다.

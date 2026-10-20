@@ -13,7 +13,8 @@ import { attachImage } from "../entities/images";
 import { findEntities } from "../entities/match";
 import { log } from "../log";
 import { type AnnouncedPage, announce } from "./announce";
-import { headlineTooLong, kanaNames, overlapRatio, replaceKana, unsupportedNumbers } from "./checks";
+import { foreignNames, headlineTooLong, overlapRatio, replaceForeign, unsupportedNumbers } from "./checks";
+import { gateTopic, OffTopicError } from "./gate";
 import { pickSentences } from "./extract";
 import { buildFactPack, MIN_FACT_CHARS } from "./factpack";
 import { isIndexable } from "./indexable";
@@ -142,18 +143,21 @@ async function saveArticle({ topic, draft, sources, sourceText, entities, reacti
   if (overlap > MAX_OVERLAP) warnings.push(`source-overlap:${overlap.toFixed(2)}`);
 
   const slug = slugify(draft.slug);
-  const ja = clean(draft.ja);
-  // 한 번에 네 언어를 쓰다 보니 일본어판 표기(가나)가 다른 언어로 새어 들어온다 ("イム・シワン").
-  // 사전 표기로 바꾸고, 그래도 남으면 사람이 볼 때까지 발행하지 않는다
-  const unkana = <T>(locale: Locale, t: T): T => {
-    const { value, left } = replaceKana(t, kanaNames(entities, locale));
-    if (left.length > 0) warnings.push(`foreign-script:${locale}:${left.slice(0, 3).join("/")}`);
+  // 한 번에 네 언어를 쓰다 보니 다른 언어판 표기가 새어 들어온다 (zh-TW 의 "イム・シワン", ja 의 "ITZY채령").
+  // 사전 표기로 바꾸고, 제목·요약에 그래도 남으면 사람이 볼 때까지 발행하지 않는다. 본문에만 남은 것(방송명 인용 등)은 경고만
+  const fixScript = <T extends Localized>(locale: Locale, t: T): T => {
+    const names = foreignNames(entities, locale);
+    const { value, left } = replaceForeign(t, locale, names);
+    const head = replaceForeign([value.title, value.seoTitle, value.summary, ...value.keyPoints], locale, names).left;
+    if (head.length > 0) warnings.push(`foreign-script:${locale}:${head.slice(0, 3).join("/")}`);
+    else if (left.length > 0) warnings.push(`foreign-script-body:${locale}:${left.slice(0, 3).join("/")}`);
     return value;
   };
-  const en = unkana("en", clean(draft.en));
-  const zhTW = unkana("zh-TW", clean(draft.zhTW));
-  const ko = unkana("ko", shape(draft.ko));
-  const publish = autoPublish && !warnings.some((w) => w.startsWith("source-overlap") || w.startsWith("foreign-script"));
+  const en = fixScript("en", clean(draft.en));
+  const ja = fixScript("ja", clean(draft.ja));
+  const zhTW = fixScript("zh-TW", clean(draft.zhTW));
+  const ko = fixScript("ko", shape(draft.ko));
+  const publish = autoPublish && !warnings.some((w) => w.startsWith("source-overlap") || w.startsWith("foreign-script:"));
   const locales: [Locale, Localized][] = [
     ["en", en],
     ["ja", ja],
@@ -247,13 +251,20 @@ async function readReaction(signals: Signal[]): Promise<Reaction | null> {
 }
 
 // 뉴스·화제 주제: 원문 한 편에서 사실을 뽑아 쓴다
-async function writeNews(topic: SaveInput["topic"]): Promise<Saved> {
+async function writeNews(input: SaveInput["topic"]): Promise<Saved> {
+  let topic = input;
   // 같은 주제에 신호가 여럿이면 사실을 확인할 수 있는 뉴스를 먼저 쓴다 (커뮤니티 글은 화제 신호일 뿐이다)
   const signals = await prisma.signal.findMany({ where: { topicId: topic.id }, orderBy: { lastSeenAt: "desc" } });
   const signal = signals.find((s) => NEWS_SOURCES.has(s.source)) ?? signals[0];
   if (!signal) throw new Error(`topic ${topic.id} has no signal`);
 
   const source = await fetchSourceMaterial(signal);
+  // 한류·한국 생활과 무관하면 여기서 멈춘다 (OffTopicError → SKIPPED). 관련 있으면 분류를 AI 판정으로 바꾼다
+  const category = await gateTopic(signal.title, source.text);
+  if (category !== topic.category) {
+    await prisma.topic.update({ where: { id: topic.id }, data: { category } });
+    topic = { ...topic, category };
+  }
   const reaction = await readReaction(signals);
   const entities = await findEntities(`${signal.title} ${source.text.slice(0, 600)}`);
   const draft = await generate(writeRequest(topic, signal.title, source, entities, reaction));
@@ -332,7 +343,8 @@ export async function writeArticles(limit = 3): Promise<{ written: string[]; ski
       }
       skipped += 1;
       // 거절·원문 없음은 다시 시도해도 같으니 건너뛴다. 그 밖의 오류는 큐로 되돌린다.
-      const permanent = error instanceof RefusalError || error instanceof SourceUnavailableError;
+      const permanent =
+        error instanceof RefusalError || error instanceof SourceUnavailableError || error instanceof OffTopicError;
       await prisma.topic.update({ where: { id: topic.id }, data: { status: permanent ? "SKIPPED" : "QUEUED" } });
       log.error("write: failed", { topic: topic.keyword, error: String(error), permanent });
     }

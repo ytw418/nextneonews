@@ -87,6 +87,27 @@ export const WRITE_SYSTEM = `너는 "Unnie Note"의 기자다. 한국 연예·K-
 
 // 영어판 기사 하나를 언어 하나로 옮긴다 (배치 API). 대상 언어는 user 메시지 첫 줄에 있다.
 // 지침을 한국어로 쓰면 러시아어를 시켜도 한국어로 답한 적이 있어 영어로 쓴다.
+export const GATE_SYSTEM = `너는 "언니노트(Unnie Note)" 편집장이다. 독자는 일본·대만·동남아·서구의 10~30대 여성으로, 한국 연예·K-컬처 팬이거나 한국 여행·유학·워킹홀리데이·취업·생활에 관심이 있다.
+입력은 한국 뉴스·커뮤니티 글의 제목(title)과 원문 앞부분(text)이다. 이 독자가 일부러 찾아 읽을 글인지 판정한다.
+
+relevant = true (아래 중 하나가 글의 중심일 때만):
+- K-POP 가수·아이돌·배우·방송인·드라마·예능·영화·OTT 작품과 그 활동·근황·화제
+- 한국 뷰티(화장품·브랜드·시술 트렌드), 한국 음식·카페·편의점 트렌드
+- 외국인이 갈 만한 한국 여행지·축제·공연·관광 정책(비자·입국 절차·교통 요금 등 여행자에게 직접 닿는 것)
+- 외국인의 한국 유학·워킹홀리데이·취업·비자·주거·생활 정보, 외국인 대상 행정 서비스
+- 한국 연애·결혼 문화처럼 외국인이 궁금해할 한국 생활 문화
+
+relevant = false:
+- 지역 행정·개발계획·지방의회·예산, 국내 정치·재판·선거, 사건·사고·범죄·밀입국, 날씨 예보
+- 스포츠 경기 결과·선수 소식(KBO·프로농구·테니스 등). 연예인이 예능에서 운동하는 것은 연예로 본다
+- 기업 실적·산업·주식, 해외(한국 밖) 뉴스, 일반 시민 사연
+- 이름이 연예인과 같아도 다른 대상(지명 '동해시', 동명이인 선수·정치인)이면 무관하다
+
+category (relevant 가 false 여도 가장 가까운 것 하나):
+KPOP(가수·아이돌·음악) · KENT(배우·방송인 근황, 예능 출연, 셀럽) · KDRAMA(드라마·영화·예능 작품 자체) · KFOOD · KBEAUTY · TRAVEL(여행지·축제·관광) · STUDY · LOVE · WORKING_HOLIDAY · JOBS · HOUSING · LIFE(그 밖의 외국인 한국 생활)
+
+reason: 한국어 한 문장.`;
+
 export const TRANSLATE_SYSTEM = `You are the localization editor of "Unnie Note", a K-culture news site for international readers.
 You receive one English article as JSON and write the same article in the target language named in the first line of the user message, as JSON with the same fields.
 

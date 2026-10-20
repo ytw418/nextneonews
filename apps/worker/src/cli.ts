@@ -19,6 +19,7 @@ import { recheckSources } from "./pipeline/recheck";
 import { isRefreshSet, REFRESH_SETS, refreshSite } from "./pipeline/refresh";
 import { collectProducts } from "./products";
 import { ensureWeeklyPoll, runRankings, syncEntityMeta, syncWiki } from "./rankings";
+import { regate } from "./pipeline/regate";
 import { fixScript } from "./pipeline/fixScript";
 import { backfillSimplified } from "./pipeline/simplified";
 import { scoreSignals } from "./pipeline/score";
@@ -96,7 +97,8 @@ const USAGE = `usage: cli.ts <command>
   entities                 위키데이터에서 인물·그룹·드라마 사전 갱신 (무료, 주 1회)
   images [credits|recheck] 대표 사진 붙이기 / credits: 라이선스·원본 링크 채우기 / recheck: 주인공이 아닌 사진 떼기 (무료)
   zh-cn                    간체 번역 없는 글에 번체→간체 변환으로 채우기 (무료)
-  fix-script [--dry]       일본어판이 아닌 글에 남은 가나("イム・シワン")를 사전 표기로 바꾸기 (무료)
+  regate [--dry]           발행한 뉴스 글을 관련성 판정(AI, 1편 1원 미만)으로 다시 보고 무관하면 내리기·분류 고치기
+  fix-script [--dry]       다른 언어판에 남은 가나·한글("イム・シワン", "ITZY채령")을 사전 표기로 바꾸기 (무료)
   translate [limit]        끝난 번역 배치 거두기 + vi·id·fr·ru 가 빠진 글을 배치로 보내기 (50% 할인, 0 이면 거두기만)
   recategorize             분류 규칙을 바꾼 뒤 기존 글 카테고리 다시 매기기
   comments [restore id…]   신고로 숨겨진 댓글 보기 / 되살리기
@@ -191,6 +193,9 @@ try {
       log.info("translate: done", { saved, submitted });
       break;
     }
+    case "regate":
+      await regate(args);
+      break;
     case "fix-script":
       await fixScript(args);
       break;
