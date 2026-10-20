@@ -53,7 +53,13 @@ export async function fixScript(args: string[]): Promise<void> {
       poll: t.poll,
       netizen: t.netizen,
     };
-    const { value, left } = replaceForeign(fields, t.locale, { kana, hangul });
+    // 한글은 제목·요약 칸에서만 바꾼다. 본문의 한글은 대개 방송·노래 제목 인용이라, 흔한 낱말이 인물 이름 사전과
+    // 겹치면 엉뚱한 이름으로 바뀔 수 있다. 가나는 어디서든 바꾼다
+    const { title, seoTitle, summary, keyPoints, ...rest } = fields;
+    const head = replaceForeign({ title, seoTitle, summary, keyPoints }, t.locale, { kana, hangul });
+    const tail = replaceForeign(rest, t.locale, { kana, hangul: new Map() });
+    const value = { ...head.value, ...tail.value };
+    const left = head.left;
     const changed = JSON.stringify(value) !== JSON.stringify(fields);
     log.info(`fix-script: ${t.locale} ${t.slug}`, { changed, left, title: value.title });
     if (!changed || dry) continue;
