@@ -1,6 +1,7 @@
 import path from "node:path";
 
 import type { NextConfig } from "next";
+import { withPostHogConfig } from "@posthog/nextjs-config";
 import createNextIntlPlugin from "next-intl/plugin";
 
 import { guideNoindexHeaders } from "./src/lib/guide-seo";
@@ -59,9 +60,6 @@ const nextConfig: NextConfig = {
   },
   // PostHog API 주소는 끝이 / 로 끝난다(/e/ 등). 끝 / 를 떼는 이동을 하면 요청마다 한 번 더 오간다
   skipTrailingSlashRedirect: true,
-  // 브라우저 소스맵을 공개로 낸다: PostHog 에러 추적이 이것을 받아 압축된 스택을 원래 파일·줄로 바꾼다(업로드 키 불필요).
-  // 레포가 공개라 새로 드러나는 코드는 없고, 브라우저는 개발자 도구를 열 때만 받는다
-  productionBrowserSourceMaps: true,
   devIndicators: false,
   turbopack: {
     root: repoRoot,
@@ -81,4 +79,18 @@ const nextConfig: NextConfig = {
   // /en 도 자기 자신으로 계속 보내는 무한 이동이 생겼다 (2026-10-16 운영 장애)
 };
 
-export default createNextIntlPlugin()(nextConfig);
+const withIntl = createNextIntlPlugin()(nextConfig);
+
+// 운영 빌드에서 브라우저 소스맵을 만들어 PostHog 에러 추적에 올리고 지운다 → 압축된 스택이 원래 파일·줄로 보인다.
+// 공개로 두는 방식은 Vercel 이 .map 을 403 으로 막아 쓸 수 없다(docs/predeploy/verify-error-tracking.md).
+// 키(POSTHOG_API_KEY, 개인 키: error tracking 쓰기·organization 읽기)는 Vercel 운영 환경변수에만 있다. 없으면 건너뛴다
+const uploadSourceMaps = process.env.VERCEL_ENV === "production" && !!process.env.POSTHOG_API_KEY;
+
+export default uploadSourceMaps
+  ? withPostHogConfig(withIntl, {
+      personalApiKey: process.env.POSTHOG_API_KEY ?? "",
+      projectId: process.env.POSTHOG_PROJECT_ID,
+      host: "https://us.posthog.com",
+      sourcemaps: { releaseName: "unnienote", releaseVersion: process.env.VERCEL_GIT_COMMIT_SHA, deleteAfterUpload: true },
+    })
+  : withIntl;
