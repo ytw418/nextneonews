@@ -2,63 +2,64 @@
 @plugin "@tailwindcss/typography";
 
 /*
-  디자인 방향 (.local/research/design.json finalSpec): 홈은 소셜 피드, 기사는 팬덤 매거진, 사진 없는 카드는 파스텔 메모.
-  구조는 중성 잉크가, 선택·축하는 브랜드 한 색(체리)이 맡는다. 색 묶음마다 뜻은 하나:
-  카테고리 틴트 = 카테고리, 이벤트 틴트 = 일정 종류, 아바타 틴트 = 사람, 노트 면 = 핵심 요약.
+  디자인 방향 (2026-10-20, 강남언니·여신티켓 문법): 면은 흰색·회색 둘뿐, 색은 3D 아이콘(public/icons3d)과 사진이 낸다.
+  구조는 중성 잉크가, 선택·행동·임박은 브랜드 핫핑크 한 색이 맡는다. 파스텔 틴트는 쓰지 않는다
+  (틴트 토큰 이름은 '카테고리·섹션·일정 종류의 면' 자리로 남기고 값은 모두 회색 띠 --band 를 가리킨다).
+  아바타 틴트 = 사람, 노트 면 = 핵심 요약.
   글자 크기는 아이폰 '텍스트 크기' 설정을 따른다 (아래 html 블록).
 */
 
 /* ───────── 색: :root 는 라이트, 다크는 아래 미디어 쿼리 ───────── */
 :root {
   /* 면 */
-  --bg: #fbf7f2;
+  --bg: #ffffff; /* 흰 바탕 (강남언니·여신티켓 문법). 크림은 화면을 누렇고 낡아 보이게 했다 */
   --card: #ffffff;
   --floating: #ffffff; /* 시트·다이얼로그·탭바 캡슐 */
-  --band: #f2ece5; /* 큰 모듈 사이 16px 크림 띠 */
-  --bar: rgba(251, 247, 242, 0.985); /* 상단바. .94 도 굵은 큰 제목은 블러를 뚫고 비쳐 보였다 */
+  --band: #f4f4f6; /* 큰 모듈 사이 띠·아이콘 동그라미 */
+  --bar: rgba(255, 255, 255, 0.985); /* 상단바. .94 도 굵은 큰 제목은 블러를 뚫고 비쳐 보였다 */
   --dim: rgba(20, 14, 24, 0.45); /* 시트 뒤. 옅은 회색은 크림 바탕을 탁하게 하고 시트 가장자리가 묻혔다 */
-  --line: #ece4da;
-  --line-strong: #ddd3c8; /* 시트 손잡이, 입력칸 테두리 */
+  --line: #eeeef0;
+  --line-strong: #dcdce0; /* 시트 손잡이, 입력칸 테두리 */
 
   /* 글자 잉크 4단계. 투명도로 흐리게 만들지 않는다 */
-  --ink-900: #1b1520; /* 제목·주요 UI */
-  --ink-700: #4a4150; /* 본문·값 */
-  --ink-600: #6e6473; /* 메타·부제 (bg 위 5.27:1) */
-  --ink-400: #948a99; /* 아이콘·꺾쇠·비활성 (3.1:1 이라 본문 글자에는 쓰지 않는다) */
+  --ink-900: #121214; /* 제목·주요 UI */
+  --ink-700: #3f3f46; /* 본문·값 */
+  --ink-600: #6b6b74; /* 메타·부제 (흰 바탕 5.3:1) */
+  --ink-400: #a1a1aa; /* 아이콘·꺾쇠·비활성 (3.1:1 이라 본문 글자에는 쓰지 않는다) */
   --fill-weak: color-mix(in srgb, var(--ink-900) 6%, transparent);
 
   /* 브랜드 */
-  --cherry: #ff3d6e; /* 글자 아닌 포인트만: 로고 점, 오늘 점, D-0 폭죽 */
-  --brand: #d61b50; /* 선택 칩·주 버튼·채운 배지 (흰 글자 5.08:1) */
-  --brand-ink: #c0174a; /* 링크·선택 체크·급한 D-n 숫자 */
-  --brand-weak: rgba(214, 27, 80, 0.1);
+  --cherry: #ff2488; /* 글자 아닌 포인트만: 로고 점, 오늘 점, D-0 폭죽. 여신티켓 계열 핫핑크 */
+  --brand: #e0137a; /* 선택 칩·주 버튼·채운 배지 (흰 글자 4.6:1). 탁한 라즈베리(#d61b50)에서 맑은 핫핑크로 */
+  --brand-ink: #d1106e; /* 링크·선택 체크·급한 D-n 숫자 */
+  --brand-weak: rgba(255, 36, 136, 0.1);
 
   /* 위험: 분홍 브랜드와 헷갈리지 않게 주황빛 빨강 */
   --danger: #c2410c;
   --on-danger: #ffffff;
 
-  /* 카테고리 틴트 (메모 커버): 같은 OKLCH 밝기, 노랑만 따로 */
-  --tint-kpop: oklch(0.93 0.045 355);
-  --tint-kent: oklch(0.93 0.045 192); /* 연예(셀럽)는 생활과 같은 색을 쓰고 있었다. 비어 있던 청록 자리 */
-  --tint-kdrama: oklch(0.93 0.045 295);
-  --tint-kfood: oklch(0.95 0.085 95);
-  --tint-travel: oklch(0.93 0.045 165);
-  --tint-wh: oklch(0.93 0.045 245);
-  --tint-jobs: oklch(0.93 0.045 65);
-  --tint-housing: oklch(0.93 0.045 120);
-  --tint-life: oklch(0.93 0.045 35);
-  --tint-kbeauty: oklch(0.93 0.045 335);
-  --tint-study: oklch(0.93 0.045 220);
-  --tint-love: oklch(0.93 0.045 10);
-  --tint-clinic: oklch(0.93 0.045 230); /* 가이드 '클리닉' 섹션 (카테고리 아님). 뷰티 분홍·여행 초록·드라마 보라 옆에서 갈리는 맑은 하늘색 */
+  /* 카테고리·가이드 섹션 면 (사진 없는 커버·썸네일): 회색 띠와 같다 */
+  --tint-kpop: var(--band);
+  --tint-kent: var(--band);
+  --tint-kdrama: var(--band);
+  --tint-kfood: var(--band);
+  --tint-travel: var(--band);
+  --tint-wh: var(--band);
+  --tint-jobs: var(--band);
+  --tint-housing: var(--band);
+  --tint-life: var(--band);
+  --tint-kbeauty: var(--band);
+  --tint-study: var(--band);
+  --tint-love: var(--band);
+  --tint-clinic: var(--band);
 
-  /* 이벤트 틴트 (티켓 스텁): 메모보다 진해서 티켓이 메모처럼 보이지 않는다 */
-  --tint-event-comeback: oklch(0.9 0.07 0);
-  --tint-event-awards: oklch(0.92 0.09 85);
-  --tint-event-concert: oklch(0.9 0.07 300);
-  --tint-event-festival: oklch(0.9 0.07 150);
-  --tint-event-fanmeeting: oklch(0.9 0.07 30);
-  --tint-event-drama: oklch(0.9 0.07 255);
+  /* 일정 종류 면 (티켓 스텁·일정 히어로). 임박한 일정은 컴포넌트가 브랜드로 칠한다 */
+  --tint-event-comeback: var(--band);
+  --tint-event-awards: var(--band);
+  --tint-event-concert: var(--band);
+  --tint-event-festival: var(--band);
+  --tint-event-fanmeeting: var(--band);
+  --tint-event-drama: var(--band);
 
   /* 아바타 틴트 (댓글 아바타만) */
   --avatar-1: oklch(0.88 0.05 20);
@@ -72,67 +73,45 @@
   --surface-note: oklch(0.97 0.03 90);
 
   /* 틴트 위 글자. 틴트 위에는 ink-600 을 쓰지 않는다 (4.4:1 로 미달) */
-  --on-tint: #1b1520;
-  --on-tint-sub: rgba(27, 21, 32, 0.72);
-  --on-tint-ghost: rgba(27, 21, 32, 0.16); /* 사진 없는 커버(TypeCover)의 잘린 큰 글자. 장식이라 대비 기준 밖. 0.1 은 아이폰에서 면이 비어 보였다 */
-  --tape: rgba(255, 255, 255, 0.55);
+  --on-tint: #121214;
+  --on-tint-sub: #6b6b74;
+  --on-tint-ghost: rgba(18, 18, 20, 0.08); /* 사진 없는 커버(TypeCover)의 잘린 큰 글자. 장식이라 대비 기준 밖. 0.1 은 아이폰에서 면이 비어 보였다 */
+  --tape: #ffffff;
   --rule: rgba(27, 21, 32, 0.08); /* 메모 제목 밑줄 (노트 줄) */
 
   /* 그림자 (다크 모드는 머리카락 선으로 바꾼다) */
-  --elev-card: 0 1px 0 var(--line), 0 6px 18px -12px rgba(27, 21, 32, 0.25);
+  --elev-card: 0 0 0 1px var(--line), 0 6px 16px -10px rgba(18, 18, 20, 0.14);
   --elev-float: 0 6px 20px -6px rgba(27, 21, 32, 0.22);
   --elev-sheet: 0 8px 40px rgba(0, 0, 0, 0.18);
 
   /* 하단 크롬: 떠 있는 탭바와 그 위 여백. 하단 고정 CTA 가 있으면 그 높이로 바뀐다 */
   --tabbar-bottom: max(12px, calc(env(safe-area-inset-bottom) - 6px));
-  --bottom-ui: calc(var(--tabbar-bottom) + 56px);
+  --bottom-ui: calc(env(safe-area-inset-bottom) + 56px); /* 풀폭 탭바 높이. 글 화면은 ArticleActionBar 가 잰 값으로 바꾼다 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141016;
-    --card: #1e1922;
-    --floating: #28222d;
-    --band: #0d0a0f;
-    --bar: rgba(20, 16, 22, 0.985);
+    --bg: #111113;
+    --card: #1c1c1f;
+    --floating: #2a2a2e;
+    --band: #1c1c1f;
+    --bar: rgba(17, 17, 19, 0.985);
     --dim: rgba(0, 0, 0, 0.56);
-    --line: #2b2430;
-    --line-strong: #3c3442;
+    --line: #2c2c31;
+    --line-strong: #3d3d43;
 
-    --ink-900: #f6eff3;
-    --ink-700: #d9d0dc;
-    --ink-600: #a99fae;
-    --ink-400: #6f6675;
+    --ink-900: #f4f4f5;
+    --ink-700: #d4d4d8;
+    --ink-600: #a1a1aa;
+    --ink-400: #71717a;
 
-    --cherry: #ff5a85;
-    --brand: #d61b50;
-    --brand-ink: #ff7d9f;
-    --brand-weak: rgba(255, 90, 133, 0.16);
+    --cherry: #ff4d9e;
+    --brand: #e0137a;
+    --brand-ink: #ff6fb1;
+    --brand-weak: rgba(255, 77, 158, 0.16);
 
     --danger: #ff8a65;
     --on-danger: #1b1520;
-
-    /* 다크 틴트는 채도를 올려 진흙색이 아니라 색으로 읽히게 */
-    --tint-kpop: oklch(0.34 0.07 355);
-    --tint-kent: oklch(0.34 0.05 192); /* 초록·청록은 같은 채도에서 더 무거워 보여 낮춘다 */
-    --tint-kdrama: oklch(0.34 0.07 295);
-    --tint-kfood: oklch(0.37 0.06 95);
-    --tint-travel: oklch(0.34 0.05 165);
-    --tint-wh: oklch(0.34 0.07 245);
-    --tint-jobs: oklch(0.34 0.07 65);
-    --tint-housing: oklch(0.34 0.07 120);
-    --tint-life: oklch(0.34 0.07 35);
-    --tint-kbeauty: oklch(0.34 0.07 335);
-    --tint-study: oklch(0.34 0.07 220);
-    --tint-love: oklch(0.34 0.07 10);
-    --tint-clinic: oklch(0.34 0.07 230);
-
-    --tint-event-comeback: oklch(0.38 0.08 0);
-    --tint-event-awards: oklch(0.38 0.07 75); /* 다른 이벤트 틴트와 같은 밝기. 더 밝고 진하면 진흙 갈색으로 보였다 */
-    --tint-event-concert: oklch(0.38 0.08 300);
-    --tint-event-festival: oklch(0.38 0.06 150);
-    --tint-event-fanmeeting: oklch(0.38 0.08 30);
-    --tint-event-drama: oklch(0.38 0.08 255);
 
     --avatar-1: oklch(0.42 0.06 20);
     --avatar-2: oklch(0.42 0.06 80);
@@ -143,10 +122,10 @@
 
     --surface-note: oklch(0.27 0.02 90);
 
-    --on-tint: #f6eff3;
-    --on-tint-sub: rgba(246, 239, 243, 0.76);
-    --on-tint-ghost: rgba(246, 239, 243, 0.14);
-    --tape: rgba(255, 255, 255, 0.12);
+    --on-tint: #f4f4f5;
+    --on-tint-sub: #a1a1aa;
+    --on-tint-ghost: rgba(244, 244, 245, 0.08);
+    --tape: #2a2a2e;
     --rule: rgba(255, 255, 255, 0.08);
 
     --elev-card: 0 0 0 1px var(--line);
@@ -413,26 +392,9 @@ html:not([data-coupang]) .coupang-slot {
 
 /* ───────── 모티프 ───────── */
 /* 마스킹테이프 (사진 없는 메모 커버) */
-.tape::before {
-  content: "";
-  position: absolute;
-  top: -9px;
-  left: 50%;
-  width: 64px;
-  height: 20px;
-  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
-  background: var(--tape);
-  backdrop-filter: blur(2px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-  border-left: 2px dotted rgba(0, 0, 0, 0.06);
-  border-right: 2px dotted rgba(0, 0, 0, 0.06);
-}
 
 /* 메모 제목 노트 줄: 제목 요소에만, 줄 높이(1lh)마다 한 줄씩. 고정 24px 간격은 제목 줄 높이와 어긋나 글자 한가운데를 그었다.
    lh 라 글자 크기가 바뀌어도 줄마다 밑에 선이 온다 */
-.memo-rules {
-  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(1lh - 1px), var(--rule) calc(1lh - 1px) 1lh);
-}
 
 /* 티켓 절취선: 스텁 아래 점선 위에 양쪽 홈. 글자가 커져도 홈이 선 위에 그대로 있다 */
 .ticket-stub {

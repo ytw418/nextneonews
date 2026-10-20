@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 import { Badge } from "@/components/ui/Badge";
@@ -14,6 +15,7 @@ interface Props {
   style: CoverStyle;
   size?: Size;
   as?: "p" | "h1";
+  icon?: string; // 카테고리 3D 아이콘 (오른쪽 위)
   className?: string; // 모서리·그림자 (테이프가 잘리지 않게 바깥 카드 대신 메모에 둥근 모서리를 줄 때)
 }
 
@@ -41,7 +43,7 @@ const FOOT: Record<Size, string> = {
 };
 
 // 사진 없는 기사의 커버: 카테고리 파스텔 메모지 + 마스킹테이프 + 도장 + 카테고리 배지.
-// 메모지가 곧 제목이다. 노트 줄은 제목에만 긋고(memo-rules), 도장·배지 줄은 줄 없는 종이 위에 둔다.
+// 회색 면이 곧 제목이다. 오른쪽 위 카테고리 3D 아이콘, 아래 도장(시각)·배지 줄.
 // 내용이 넘치면(큰 글자) 비율보다 길어진다 (overflow-visible)
 export function MemoCover({
   title,
@@ -50,15 +52,19 @@ export function MemoCover({
   style,
   size = "card",
   as: Title = "p",
+  icon,
   className = "",
 }: Props) {
   return (
     <div
-      className={`tape relative flex flex-col overflow-visible text-on-tint ${BOX[size] || style.ratio} ${className}`}
-      style={{ backgroundColor: style.tint, ["--tape-tilt" as string]: `${style.tapeTilt}deg` }}
+      className={`relative flex flex-col overflow-visible text-on-tint ${BOX[size] || style.ratio} ${className}`}
+      style={{ backgroundColor: style.tint }}
     >
       <div className={`flex flex-1 flex-col ${PAD[size]}`}>
-        <Title className={`title memo-rules font-bold ${TITLE[size]}`}>{title}</Title>
+        {icon && size !== "hero" && (
+          <Image src={icon} unoptimized alt="" width={40} height={40} className="mb-2 size-10 self-end" />
+        )}
+        <Title className={`title font-bold ${TITLE[size]}`}>{title}</Title>
       </div>
       {/* 도장이 길어도(큰 글자·긴 언어) 배지와 겹치지 않게 흐름 안에서 줄을 바꾼다 */}
       <div className={`flex flex-wrap items-center justify-between gap-x-2 gap-y-1 ${FOOT[size]}`}>

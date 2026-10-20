@@ -18,6 +18,7 @@ export const CLIENT_MESSAGES: Record<string, true | readonly string[]> = {
   Affiliate: true, // 저장함 구매 칩의 PR 배지·고지
   Rankings: ["tab", "rankLabel", "score", "newEntry", "same", "up", "down", "cheer", "cheered", "cheersToday", "cheerFailed", "cheerTooMany"],
   Feed: ["comments", "reactions", "more", "prev", "next", "pagination"],
+  Home: ["continue"], // 홈 이어 읽기 레일 (ContinueRail)
   Beauty: ["skinChip", "skinChipMine", "skin", "vote", "quiz"],
   Travel: ["tileStamps", "place", "area"],
   Drama: ["hub", "rating"],

@@ -12,7 +12,7 @@ const TINT = "#f6dcef";
 const INK = "#1b1520";
 const INK_SUB = "rgba(27, 21, 32, 0.72)";
 const GHOST = "rgba(27, 21, 32, 0.1)";
-const CHERRY = "#ff3d6e";
+const CHERRY = "#ff2488";
 
 export default async function SkinTypeOgImage({ params }: { params: Promise<{ locale: string; type: string }> }) {
   const { type } = await params;

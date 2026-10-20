@@ -28,6 +28,7 @@ async function messagesFor(locale: Locale): Promise<{ text: ErrorScreenText; tab
     tabs: {
       nav: root.default.Nav.main,
       home: root.default.Nav.home,
+      schedule: root.default.Nav.schedule,
       rankings: rankings.default.tab,
       guide: guide.default.tab,
       saved: engage.default.savedTab,

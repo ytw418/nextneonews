@@ -6,8 +6,8 @@ export function EmptyMemo({ text, tint, children }: { text: string; tint: string
   return (
     <div className="px-gutter pt-6">
       <div
-        className="tape relative rounded-card px-5 pt-8 pb-5 text-on-tint shadow-card"
-        style={{ backgroundColor: tint, ["--tape-tilt" as string]: "-2deg" }}
+        className="relative rounded-card px-5 pt-8 pb-5 text-on-tint shadow-card"
+        style={{ backgroundColor: tint }}
       >
         <p className="text-t5 font-semibold">{text}</p>
         {children && <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1">{children}</div>}

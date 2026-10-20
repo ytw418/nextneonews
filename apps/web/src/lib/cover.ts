@@ -43,7 +43,6 @@ export interface CoverStyle {
   tint: string;
   ratio: Ratio;
   aspect: number; // 높이/폭
-  tapeTilt: number;
 }
 
 export function coverStyle(seed: string, category: string): CoverStyle {
@@ -53,6 +52,5 @@ export function coverStyle(seed: string, category: string): CoverStyle {
     tint: categoryTint(category),
     ratio,
     aspect: ASPECT[ratio],
-    tapeTilt: ((h >> 10) % 7) - 3,
   };
 }

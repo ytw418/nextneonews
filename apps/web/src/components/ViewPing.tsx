@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 
+import { type RecentItem, rememberRecent } from "@/lib/recent";
 import { storageGet, storageSet } from "@/lib/storage";
 
 const READ_STORE = "hb:read";
@@ -40,10 +41,20 @@ export function pingView(articleId: string, slug?: string) {
   }
 }
 
-// 기사를 열면 조회 수를 한 번 올리고 읽은 글로 적는다
-export function ViewPing({ articleId, slug }: { articleId: string; slug?: string }) {
+// 기사를 열면 조회 수를 한 번 올리고 읽은 글로 적는다. recent 가 있으면 홈 '続きから' 목록에도 넣는다
+export function ViewPing({
+  articleId,
+  slug,
+  recent,
+}: {
+  articleId: string;
+  slug?: string;
+  recent?: Omit<RecentItem, "at">;
+}) {
+  const recentKey = recent && JSON.stringify(recent);
   useEffect(() => {
     pingView(articleId, slug);
-  }, [articleId, slug]);
+    if (recentKey) rememberRecent(JSON.parse(recentKey) as Omit<RecentItem, "at">);
+  }, [articleId, slug, recentKey]);
   return null;
 }

@@ -55,8 +55,8 @@ export function ErrorScreen({ code, text, homeHref, guideHref, retry }: Props) {
       <ErrorHeader homeHref={homeHref} />
       <section className="px-gutter pt-8 pb-6">
         <div
-          className="tape relative rounded-card px-5 pt-8 pb-5 text-on-tint shadow-card"
-          style={{ backgroundColor: TINT[code], ["--tape-tilt" as string]: "-2deg" }}
+          className="relative rounded-card px-5 pt-8 pb-5 text-on-tint shadow-card"
+          style={{ backgroundColor: TINT[code] }}
         >
           <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-card">
             <span className="absolute -right-3 -bottom-6 select-none text-poster font-bold tracking-tighter tabular-nums text-on-tint-ghost">

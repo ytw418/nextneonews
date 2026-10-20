@@ -6,9 +6,9 @@ import { CelebrateOnce } from "@/components/schedule/CelebrateOnce";
 import { keepDots, Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Link } from "@/i18n/navigation";
-import { ddayLabel, eventAriaLabel, KIND_TINT } from "@/lib/schedule";
+import { ddayLabel, eventAriaLabel } from "@/lib/schedule";
 
-// 콘서트 티켓 모양의 일정 레일 (다가오는 5개). 스텁 색은 일정 종류(이벤트 틴트), 티켓을 누르면 일정 상세로.
+// 콘서트 티켓 모양의 일정 레일 (다가오는 5개). 스텁은 임박(7일 안·오늘·진행 중)이면 브랜드 핑크, 아니면 회색. 티켓을 누르면 일정 상세로.
 // 가로 스크롤 상자는 세로도 잘라서, 카드 그림자가 잘리지 않게 아래 여백을 12px 둔다.
 // 꺾쇠는 모든 카드에서 같은 자리(오른쪽 아래 구석)에: 메타 줄 끝에 붙이면 카드마다 높이가 달랐다
 export async function UpcomingRail({ locale }: { locale: string }) {
@@ -28,6 +28,8 @@ export async function UpcomingRail({ locale }: { locale: string }) {
         {events.map((e) => {
           const { state, days } = e.view;
           const urgent = state === "upcoming" && days <= 7;
+          // 오늘·진행 중·7일 안: 스텁을 브랜드 핑크로 채운다 (홈에서 색 블록은 '임박'에만). 나머지는 회색
+          const hot = urgent || state !== "upcoming";
           const city = e.city?.[locale];
           const meta = [
             t(`kind.${e.kind}`),
@@ -36,7 +38,7 @@ export async function UpcomingRail({ locale }: { locale: string }) {
           ];
           const word = (
             <>
-              <span className="mr-1.5 inline-block size-2 rounded-full bg-cherry align-middle" />
+              <span className="mr-1.5 inline-block size-2 rounded-full bg-white align-middle" />
               {ddayLabel(e.view, t)}
             </>
           );
@@ -52,24 +54,23 @@ export async function UpcomingRail({ locale }: { locale: string }) {
               >
                 <div
                   aria-hidden
-                  className="ticket-stub flex flex-col px-4 pt-4 pb-3"
-                  style={{ backgroundColor: KIND_TINT[e.kind] }}
+                  className={`ticket-stub flex flex-col px-4 pt-4 pb-3 ${hot ? "bg-brand text-white" : "bg-band text-on-tint"}`}
                 >
                   {state === "upcoming" ? (
                     <p
-                      className={`whitespace-nowrap text-t3 font-bold tabular-nums ${urgent ? "text-brand-ink" : "text-on-tint"}`}
+                      className="whitespace-nowrap text-t3 font-bold tabular-nums"
                     >
                       {ddayLabel(e.view, t)}
                     </p>
                   ) : (
                     // '오늘'·'진행 중'은 t5 로 (줄이 바뀌어도 잘리지 않게). 바깥 p 가 t3 줄 높이를 지켜 스텁 높이가 맞는다
-                    <p className="text-t3 font-bold text-on-tint">
+                    <p className="text-t3 font-bold">
                       <span className="text-t5">
                         {state === "today" ? <CelebrateOnce id={e.id}>{word}</CelebrateOnce> : word}
                       </span>
                     </p>
                   )}
-                  <p className="text-t6 font-semibold tabular-nums text-on-tint-sub">
+                  <p className={`text-t6 font-semibold tabular-nums ${hot ? "text-white/85" : "text-on-tint-sub"}`}>
                     {formatRange(locale, e.start, e.end, "short")}
                   </p>
                 </div>

@@ -31,6 +31,7 @@ export type TrackEvent =
   | "quiz_complete"
   | "quiz_share"
   | "guide_tile_open"
+  | "guide_teaser_click"
   | "cross_rail_click"
   | "visited_stamp"
   | "buy_box_view";

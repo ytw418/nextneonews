@@ -4,6 +4,7 @@ import { type CSSProperties, Fragment, type ReactNode } from "react";
 
 import { TimeAgo } from "@/components/article/TimeAgo";
 import { HeartIcon } from "@/components/icons";
+import { CATEGORY_ICON3D } from "@/data/icons3d";
 import { MemoCover } from "@/components/MemoCover";
 import { type CreditMedia, PhotoCredit } from "@/components/PhotoCredit";
 import { Badge } from "@/components/ui/Badge";
@@ -137,7 +138,8 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
           stamp={itemTime(item)}
           style={cover}
           size={lead ? "lead" : "card"}
-          className="rounded-card shadow-card"
+          icon={CATEGORY_ICON3D[item.category as keyof typeof CATEGORY_ICON3D]}
+          className="rounded-card"
         />
         {counts.length > 0 && (
           <p className={`pt-1.5 text-t7 text-ink-600 ${lead ? "px-4" : "px-3"}`}>

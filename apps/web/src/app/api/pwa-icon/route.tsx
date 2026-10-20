@@ -20,13 +20,13 @@ export function GET(request: Request) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#fbf7f2",
+          background: "#ffffff",
           fontSize: font,
           fontStyle: "italic",
           color: "#1b1520",
         }}
       >
-        U<span style={{ color: "#ff3d6e" }}>.</span>
+        U<span style={{ color: "#ff2488" }}>.</span>
       </div>
     ),
     { width: size, height: size, headers: { "cache-control": "public, max-age=604800, immutable" } },

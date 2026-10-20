@@ -453,7 +453,7 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
             items={prepRows.map(({ key, target }) => ({ target, label: prep.items[key].label, sub: prep.items[key].sub }))}
           />
         )}
-        <CrossRail from="article" locale={locale} />
+        <CrossRail from="article" locale={locale} category={article.category} />
 
         <AdSlot label={t("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE} />
         {coupang && <CoupangBanner id={coupang} label={t("ad")} disclosure={t("coupang")} disclosureKo={coupangKo} />}
@@ -463,7 +463,17 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
 
       <div aria-hidden className="mt-10 h-4 bg-band" />
       <Comments articleId={article.id} initialCount={comments} />
-      <ViewPing articleId={article.id} slug={slug} />
+      <ViewPing
+        articleId={article.id}
+        slug={slug}
+        recent={{
+          slug,
+          locale,
+          title: translation.title,
+          category: article.category,
+          imageUrl: article.media[0] && imgSrc(article.media[0].url, article.media[0].width),
+        }}
+      />
 
       {/* 글 끝: 함께 읽기(같은 인물·카테고리) → 이번 주 인기 글. 섹션 제목은 같은 모양 하나 */}
       {(related.length > 0 || popular.length > 0) && (

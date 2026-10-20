@@ -3,14 +3,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
 import { CategoryRail } from "@/components/CategoryRail";
 import { EmptyMemo } from "@/components/EmptyMemo";
 import { Feed } from "@/components/Feed";
+import { GuideTeaser } from "@/components/home/GuideTeaser";
 import { JsonLd } from "@/components/JsonLd";
 import { Button } from "@/components/ui/Button";
 import { countByCategory, listByCategory, toFeedItems } from "@/lib/articles";
 import { categoryTint } from "@/lib/cover";
+import { categorySection } from "@/data/sections";
 import { FIRST_PAGE_SIZE, pageCount } from "@/lib/feed";
 import { articlePath, localeAlternates, localeHomePath, ogBase, pageRobots, SITE_URL } from "@/lib/url";
 
@@ -59,10 +62,11 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/c/[c
     notFound();
   }
 
-  const [t, tHome, tCat, rows, total] = await Promise.all([
+  const [t, tHome, tCat, tArticle, rows, total] = await Promise.all([
     getTranslations("Feed"),
     getTranslations("Home"),
     getTranslations("Category"),
+    getTranslations("Article"),
     listByCategory(locale, key, FIRST_PAGE_SIZE),
     countByCategory(locale, key),
   ]);
@@ -111,6 +115,13 @@ export default async function CategoryPage({ params }: PageProps<"/[locale]/c/[c
         <Feed
           items={items}
           showCategory={false}
+          // 4장 뒤 이 카테고리에 맞는 가이드 소개, 8장 뒤 광고 (첫 화면 밖, 3장 이상 간격)
+          slots={{
+            4: <GuideTeaser section={categorySection(key)} locale={locale} />,
+            8: (
+              <AdSlot label={tArticle("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_CATEGORY} className="my-3" />
+            ),
+          }}
           paging={{ locale, category: slug, page: 1, lastPage: pageCount(total) }}
           empty={
             <EmptyMemo text={tHome("empty")} tint={categoryTint(key)}>

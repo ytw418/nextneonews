@@ -20,7 +20,7 @@ export function SectionTile({
   className?: string; // 비율 (허브는 낮게)
 }) {
   return (
-    <Link href={href} className="press-soft tape relative block rounded-card shadow-card">
+    <Link href={href} className="press-soft relative block rounded-card shadow-card">
       <TypeCover
         variant="tile"
         tint="var(--card)"

@@ -1,3 +1,5 @@
+import type { CategoryKey } from "@kmedia/core";
+
 import type { SavedKind, Section } from "./types";
 
 // 가이드 섹션의 순서·주소·틴트. 서버·클라이언트 어디서나 쓴다 (카탈로그 데이터는 없다)
@@ -17,6 +19,13 @@ export const SECTION_TINT: Record<Section, string> = {
   clinic: "var(--tint-clinic)",
   drama: "var(--tint-kdrama)",
 };
+
+// 뉴스 카테고리 → 이어서 볼 가이드 섹션 (카테고리 피드의 가이드 소개·글 끝 교차 레일). 의료(클리닉)로는 보내지 않는다
+export function categorySection(category: CategoryKey | string): Section {
+  if (category === "KDRAMA" || category === "KENT" || category === "KPOP") return "drama";
+  if (category === "TRAVEL" || category === "KFOOD" || category === "WORKING_HOLIDAY") return "travel";
+  return "beauty";
+}
 
 export type CatalogKind = Exclude<SavedKind, "article">;
 

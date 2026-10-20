@@ -117,5 +117,10 @@
     "picks": "Picks for {name}",
     "tips": "Care tips",
     "others": "Other skin types"
+  },
+  "quizBanner": {
+    "title": "What's your skin type?",
+    "sub": "6 questions · 1 minute",
+    "cta": "Take the quiz"
   }
 }

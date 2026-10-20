@@ -12,7 +12,7 @@ export function TrackClicks({
   className,
   children,
 }: {
-  event: "guide_tile_open" | "cross_rail_click";
+  event: "guide_tile_open" | "cross_rail_click" | "guide_teaser_click";
   from: string;
   className?: string;
   children: ReactNode;

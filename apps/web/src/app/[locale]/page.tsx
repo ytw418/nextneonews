@@ -4,14 +4,18 @@ import type { ReactNode } from "react";
 
 import { SITE_NAME } from "@kmedia/core";
 
+import { AdSlot } from "@/components/AdSlot";
 import { PollCard } from "@/components/article/PollCard";
 import { AppHeader } from "@/components/AppHeader";
-import { CategoryRail } from "@/components/CategoryRail";
 import { EmptyMemo } from "@/components/EmptyMemo";
 import { Feed } from "@/components/Feed";
-import { GuideRail } from "@/components/guide/GuideRail";
+import { CategoryIcons } from "@/components/home/CategoryIcons";
+import { ContinueRail } from "@/components/home/ContinueRail";
+import { GuideHero } from "@/components/home/GuideHero";
+import { GuideTeaser } from "@/components/home/GuideTeaser";
 import { PopularChips } from "@/components/home/PopularChips";
 import { ChevronRightIcon } from "@/components/icons";
+import { QuizBanner } from "@/components/quiz/QuizBanner";
 import { BuzzTop5Rail } from "@/components/rankings/BuzzTop5Rail";
 import { RankingMiniCard } from "@/components/rankings/RankingMiniCard";
 import { TrendingNow } from "@/components/TrendingNow";
@@ -59,11 +63,12 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [t, tSite, tNav, tRank, rows, total, weeklyPoll, miniChart] = await Promise.all([
+  const [t, tSite, tNav, tRank, tArticle, rows, total, weeklyPoll, miniChart] = await Promise.all([
     getTranslations("Home"),
     getTranslations("Site"),
     getTranslations("Nav"),
     getTranslations("Rankings"),
+    getTranslations("Article"),
     listLatest(locale, FIRST_PAGE_SIZE),
     countLatest(locale),
     weeklyPollView(locale),
@@ -71,10 +76,12 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   ]);
   const items = await toFeedItems(rows, locale);
 
-  // 끼워 넣는 모듈: 일정 아래 K-pop 화제성 Top5 레일, 피드 6번째 뒤 이번 주 팬 투표, 12번째 뒤 배우·드라마 차트 카드.
+  // 끼워 넣는 모듈 (3장 간격): 3 가이드 소개(뷰티) → 6 이번 주 팬 투표 → 9 광고(승인 전엔 피부 진단 배너) →
+  // 12 배우·드라마 차트 → 15 가이드 소개(여행) → 18 광고. 광고는 첫 화면에 두지 않고, 버튼 있는 모듈(투표) 바로 옆에 두지 않는다.
   // 내용이 없으면(투표가 닫혔거나 차트가 아직 없으면) 그 자리는 건너뛴다
   const rankingsRail: ReactNode = <BuzzTop5Rail locale={locale} />;
   const slots: Record<number, ReactNode> = {
+    3: <GuideTeaser section="beauty" locale={locale} />,
     6: weeklyPoll && (
       <PollCard
         poll={weeklyPoll}
@@ -98,6 +105,16 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         locale={locale}
       />
     ),
+    9: (
+      <AdSlot
+        label={tArticle("ad")}
+        slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_1}
+        fallback={<QuizBanner locale={locale} />}
+        className="my-3"
+      />
+    ),
+    15: <GuideTeaser section="travel" locale={locale} />,
+    18: <AdSlot label={tArticle("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_2} className="my-3" />,
   };
 
   // 아직 글이 없는 언어(새로 연 언어): '최신' 제목 없이 메모 한 장 — 영어로 읽기와 일정으로 보낸다
@@ -118,7 +135,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     </EmptyMemo>
   );
 
-  // 홈 = 오늘의 소식. 칩 → 많이 읽는 번호 알약 → 일정 티켓 5개 → 가이드 4칸 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
+  // 홈 = 오늘의 소식. 3D 아이콘 카테고리 → 가이드 큰 카드 → (다시 온 독자) 이어 읽기 → 많이 읽는 번호 알약 → 일정 티켓 5개 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
   // 섹션 제목은 모두 위 24·아래 12
   return (
     <>
@@ -126,10 +143,11 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <h1 className="sr-only">
         {SITE_NAME} — {tSite("tagline")}
       </h1>
-      <CategoryRail />
+      <CategoryIcons locale={locale} />
+      <GuideHero locale={locale} />
+      <ContinueRail />
       <PopularChips locale={locale} />
       <UpcomingRail locale={locale} />
-      <GuideRail locale={locale} />
       {rankingsRail}
       <TrendingNow locale={locale} />
       {items.length > 0 && <SectionHeader title={t("latest")} />}

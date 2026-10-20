@@ -117,5 +117,10 @@
     "picks": "La sélection pour : {name}",
     "tips": "Conseils de soin",
     "others": "Autres types de peau"
+  },
+  "quizBanner": {
+    "title": "Quel est ton type de peau ?",
+    "sub": "6 questions · 1 minute",
+    "cta": "Faire le test"
   }
 }

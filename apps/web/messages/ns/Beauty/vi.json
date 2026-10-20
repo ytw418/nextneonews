@@ -117,5 +117,10 @@
     "picks": "Gợi ý cho {name}",
     "tips": "Mẹo chăm da",
     "others": "Loại da khác"
+  },
+  "quizBanner": {
+    "title": "Da bạn thuộc loại nào?",
+    "sub": "6 câu · 1 phút",
+    "cta": "Làm bài test"
   }
 }

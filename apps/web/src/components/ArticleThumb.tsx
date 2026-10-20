@@ -1,19 +1,7 @@
 import Image from "next/image";
 
 import type { FeedItem } from "@/components/FeedCard";
-import {
-  BookIcon,
-  BowlIcon,
-  BriefcaseIcon,
-  ClapperIcon,
-  HeartIcon,
-  HomeIcon,
-  MicIcon,
-  PlaneIcon,
-  SparkleIcon,
-  StarIcon,
-  SunIcon,
-} from "@/components/icons";
+import { CATEGORY_ICON3D } from "@/data/icons3d";
 import { coverStyle } from "@/lib/cover";
 
 const SIZE = {
@@ -22,23 +10,8 @@ const SIZE = {
   64: "size-16",
 } as const;
 
-// 사진 없는 썸네일 가운데 카테고리 글리프 (빈 네모는 사진이 안 뜬 것처럼 보였다)
-const GLYPH: Record<string, typeof MicIcon> = {
-  KPOP: MicIcon,
-  KENT: StarIcon,
-  KDRAMA: ClapperIcon,
-  KFOOD: BowlIcon,
-  KBEAUTY: SparkleIcon,
-  TRAVEL: PlaneIcon,
-  WORKING_HOLIDAY: PlaneIcon,
-  STUDY: BookIcon,
-  LOVE: HeartIcon,
-  JOBS: BriefcaseIcon,
-  HOUSING: HomeIcon,
-  LIFE: SunIcon,
-};
 
-// 목록 줄 왼쪽의 작은 정사각 썸네일. 사진이 없으면 메모 커버처럼 카테고리 틴트 + 작은 마스킹테이프 + 카테고리 글리프.
+// 목록 줄 왼쪽의 작은 정사각 썸네일. 사진이 없으면 카테고리 틴트 + 카테고리 3D 아이콘 (빈 네모는 사진이 안 뜬 것처럼 보였다).
 // 제목이 바로 옆에 있어 그림은 읽지 않는다 (alt="", aria-hidden)
 export function ArticleThumb({
   item,
@@ -60,15 +33,14 @@ export function ArticleThumb({
       />
     );
   }
-  const Glyph = GLYPH[item.category] ?? SparkleIcon;
+  const icon = CATEGORY_ICON3D[item.category as keyof typeof CATEGORY_ICON3D] ?? CATEGORY_ICON3D.LIFE;
   return (
     <span
       aria-hidden
       className={`relative grid place-items-center ${SIZE[size]} rounded-btn`}
       style={{ backgroundColor: coverStyle(item.slug, item.category).tint }}
     >
-      <span className="absolute -top-1 left-1/2 h-2.5 w-6 -translate-x-1/2 -rotate-6 bg-(--tape) shadow-[0_1px_0_rgb(0_0_0/.04)]" />
-      <Glyph className="size-6 text-on-tint-sub" />
+      <Image src={icon} unoptimized alt="" width={size * 0.6} height={size * 0.6} className="size-3/5" />
     </span>
   );
 }

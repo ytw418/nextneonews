@@ -56,10 +56,10 @@ export function AppendedArticle({ data, locale }: { data: AppendedArticleData; l
         // 사진이 없으면 카테고리 틴트 메모지 위에 제목
         <div className="px-gutter pt-2">
           <div
-            className="tape relative rounded-card px-6 pt-12 pb-8 text-on-tint shadow-card"
+            className="relative rounded-card px-6 pt-12 pb-8 text-on-tint shadow-card"
             style={{ backgroundColor: categoryTint(data.category) }}
           >
-            <h2 id={titleId} data-article-title className={`title memo-rules font-bold ${longTitle ? "text-t3" : "text-st2"}`}>
+            <h2 id={titleId} data-article-title className={`title font-bold ${longTitle ? "text-t3" : "text-st2"}`}>
               {data.title}
             </h2>
             <Badge tone="paper" className="mt-4">

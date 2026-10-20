@@ -117,5 +117,10 @@
     "picks": "Pilihan untuk {name}",
     "tips": "Tips perawatan",
     "others": "Jenis kulit lain"
+  },
+  "quizBanner": {
+    "title": "Apa tipe kulitmu?",
+    "sub": "6 pertanyaan · 1 menit",
+    "cta": "Mulai tes"
   }
 }

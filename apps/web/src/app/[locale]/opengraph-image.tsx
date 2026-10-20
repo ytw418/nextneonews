@@ -9,9 +9,9 @@ export default function OgImage() {
   const tints = ["#ffd9e5", "#d6eaff", "#fff0b3", "#cdf1e1", "#e5e0ff"];
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "#fbf7f2", padding: 72 }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "#ffffff", padding: 72 }}>
         <div style={{ display: "flex", alignItems: "baseline", fontSize: 120, fontStyle: "italic", color: "#1b1520" }}>
-          Unnie<span style={{ color: "#ff3d6e" }}>.</span>
+          Unnie<span style={{ color: "#ff2488" }}>.</span>
           <span style={{ marginLeft: 24, fontSize: 40, fontStyle: "normal", letterSpacing: 10, color: "#7d7382" }}>NOTE</span>
         </div>
         <div style={{ marginTop: 24, fontSize: 40, color: "#1b1520" }}>K-POP · K-DRAMA · K-FOOD · LIFE IN KOREA</div>

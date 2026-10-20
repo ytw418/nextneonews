@@ -1,5 +1,5 @@
 import { CompassIcon } from "@/components/guide/icons";
-import { BookmarkIcon, HomeIcon } from "@/components/icons";
+import { BookmarkIcon, HomeIcon, TicketIcon } from "@/components/icons";
 import { TrophyIcon } from "@/components/rankings/icons";
 
 export interface TabLabels {
@@ -7,6 +7,7 @@ export interface TabLabels {
   home: string;
   rankings: string;
   guide: string;
+  schedule: string;
   saved: string;
 }
 
@@ -17,23 +18,26 @@ export function StaticTabBar({ prefix, labels }: { prefix: string; labels: TabLa
     { href: prefix, label: labels.home, Icon: HomeIcon },
     { href: `${prefix}/rankings`, label: labels.rankings, Icon: TrophyIcon },
     { href: `${prefix}/guide`, label: labels.guide, Icon: CompassIcon },
+    { href: `${prefix}/schedule`, label: labels.schedule, Icon: TicketIcon },
     { href: `${prefix}/saved`, label: labels.saved, Icon: BookmarkIcon },
   ];
   return (
     <nav
       aria-label={labels.nav}
-      className="fixed bottom-[var(--tabbar-bottom)] left-1/2 z-40 flex min-h-14 -translate-x-1/2 items-center gap-1 rounded-full bg-floating/97 p-1 shadow-float ring-1 ring-line backdrop-blur-xl backdrop-saturate-150"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bar pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
     >
+      <div className="mx-auto flex max-w-[640px]">
       {tabs.map(({ href, label, Icon }) => (
         <a
           key={href}
           href={href}
-          className="press flex min-h-12 min-w-17 flex-col items-center justify-center gap-0.5 rounded-full px-2 font-semibold text-ink-600"
+          className="press flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 font-semibold text-ink-400"
         >
           <Icon />
-          <span className="whitespace-nowrap text-chrome-tab">{label}</span>
+          <span className="max-w-full truncate text-chrome-tab">{label}</span>
         </a>
       ))}
+      </div>
     </nav>
   );
 }
