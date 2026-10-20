@@ -1,6 +1,7 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 
 import { PrismaClient } from "./generated/prisma/client";
+import { pgConnectionConfig } from "./tls";
 
 export * from "./generated/prisma/client";
 
@@ -16,7 +17,7 @@ function createClient(): PrismaClient {
     throw new Error("DATABASE_URL is not set (see .env.example)");
   }
   const max = process.env.NEXT_PHASE === "phase-production-build" ? BUILD_POOL_MAX : undefined;
-  return new PrismaClient({ adapter: new PrismaPg({ connectionString, max }) });
+  return new PrismaClient({ adapter: new PrismaPg({ ...pgConnectionConfig(connectionString), max }) });
 }
 
 // Next.js 개발 서버의 HMR 때 커넥션이 쌓이지 않도록 전역에 하나만 둔다.
