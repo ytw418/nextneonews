@@ -1,5 +1,3 @@
-import type { Procedure } from "@/data/clinic/types";
-import { coverGlyph as sharedCoverGlyph } from "../components/guide/glyph"; // 값 import 는 상대 경로 (vitest 는 @ 별칭을 모른다)
 
 // 클리닉 시술 사전의 판단 규칙 (화면은 components/clinic/*). 카탈로그는 import 하지 않아 클라이언트에서도 쓸 수 있다
 
@@ -52,10 +50,5 @@ export function koreanLines(local: readonly string[], ko: readonly string[] | un
   if (!ko || ko.length !== local.length) return null;
   if (ko.every((line, i) => line === en[i])) return null;
   return [...ko];
-}
-
-// 사진 없는 커버의 유령 글자: 회복 일수 ("14d"). 숫자가 사실 표를 예고한다 (DESIGN §4-①)
-export function coverGlyph(procedure: Pick<Procedure, "downtimeDays">): string {
-  return sharedCoverGlyph({ kind: "clinic", downtimeDays: procedure.downtimeDays }); // 규칙은 components/guide/glyph.ts 한 곳
 }
 

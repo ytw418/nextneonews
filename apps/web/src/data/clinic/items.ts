@@ -22,6 +22,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "Often around 10 sessions, about 1 week apart",
     painLevel: 1,
     surgical: false,
+    icon: "g-clinic",
     addedAt: ADDED,
     sources: [
       "https://pubmed.ncbi.nlm.nih.gov/35888655/",
@@ -35,6 +36,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     downtimeDays: [0, 5],
     painLevel: 2,
     surgical: false,
+    icon: "voltage",
     addedAt: ADDED,
     sources: [
       "https://pubmed.ncbi.nlm.nih.gov/32282094/",
@@ -49,6 +51,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "3–4 sessions, 3–4 weeks apart",
     painLevel: 2,
     surgical: false,
+    icon: "dna",
     addedAt: ADDED,
     sources: [SKIN_BOOSTER_REVIEW, "https://pubmed.ncbi.nlm.nih.gov/39645667/"],
   },
@@ -59,6 +62,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "Up to 3 sessions, then maintenance every 4–6 months",
     painLevel: 2,
     surgical: false,
+    icon: "droplet",
     addedAt: ADDED,
     sources: [SKIN_BOOSTER_REVIEW, "https://pubmed.ncbi.nlm.nih.gov/29320592/", FDA_FILLERS],
   },
@@ -68,6 +72,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     downtimeDays: [1, 7],
     painLevel: 2,
     surgical: false,
+    icon: "syringe",
     addedAt: ADDED,
     sources: [
       "https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication",
@@ -84,6 +89,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 2,
     durationMin: [30, 90],
     surgical: false,
+    icon: "massage",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/cosmetic-plastic-surgery/procedures/ultherapy",
@@ -98,6 +104,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "Usually 1 session; often repeated after about a year",
     painLevel: 2,
     surgical: false,
+    icon: "fire",
     addedAt: ADDED,
     sources: [
       "https://pubmed.ncbi.nlm.nih.gov/35877937/",
@@ -114,6 +121,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "1 session; repeated about every 3–4 months to maintain",
     painLevel: 1,
     surgical: false,
+    icon: "syringe",
     addedAt: ADDED,
     sources: [
       "https://www.plasticsurgery.org/cosmetic-procedures/botulinum-toxin/safety",
@@ -128,6 +136,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "1 session; repeated as the filler is absorbed",
     painLevel: 2,
     surgical: false,
+    icon: "syringe",
     addedAt: ADDED,
     sources: [
       FDA_FILLERS,
@@ -144,6 +153,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 1,
     durationMin: [30, 30],
     surgical: false,
+    icon: "bubbles",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/treatments/23915-dermalinfusion",
@@ -160,6 +170,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 1,
     durationMin: [30, 60],
     surgical: false,
+    icon: "toothbrush",
     addedAt: ADDED,
     sources: [
       "https://www.nhis.or.kr/nhis/policy/wbhada13500m01.do",
@@ -175,6 +186,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 1,
     durationMin: [30, 120],
     surgical: false,
+    icon: "tooth",
     addedAt: ADDED,
     sources: [
       "https://www.nhs.uk/tests-and-treatments/teeth-whitening/",
@@ -188,6 +200,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "Usually 1 visit per tooth",
     painLevel: 1,
     surgical: false,
+    icon: "tooth",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/treatments/17002-dental-fillings",
@@ -202,6 +215,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "Porcelain: 2 or more visits; composite: fewer visits",
     painLevel: 1,
     surgical: false,
+    icon: "gem",
     addedAt: ADDED,
     sources: [
       "https://www.mouthhealthy.org/all-topics-a-z/veneers",
@@ -218,6 +232,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "Several visits over about 3–9 months",
     painLevel: 2,
     surgical: true,
+    icon: "bolt",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/treatments/10903-dental-implants",
@@ -233,6 +248,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "New trays about every 2 weeks; mild cases up to about 9 months",
     painLevel: 1,
     surgical: false,
+    icon: "tooth",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/treatments/clear-aligners",
@@ -251,6 +267,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 2,
     durationMin: [30, 120],
     surgical: true,
+    icon: "eyes",
     addedAt: ADDED,
     sources: [
       "https://www.nhs.uk/tests-and-treatments/cosmetic-procedures/cosmetic-surgery/eyelid-surgery/",
@@ -268,6 +285,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 3,
     durationMin: [90, 180],
     surgical: true,
+    icon: "nose",
     addedAt: ADDED,
     sources: [
       "https://www.nhs.uk/tests-and-treatments/cosmetic-procedures/cosmetic-surgery/nose-reshaping-rhinoplasty/",
@@ -285,6 +303,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 2,
     durationMin: [60, 60],
     surgical: false,
+    icon: "thread",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/treatments/24581-thread-lift",
@@ -299,6 +318,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 3,
     durationMin: [120, 120],
     surgical: true,
+    icon: "syringe",
     addedAt: ADDED,
     sources: [
       "https://www.nhs.uk/tests-and-treatments/cosmetic-procedures/cosmetic-surgery/surgical-fat-transfer/",
@@ -315,6 +335,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     painLevel: 2,
     durationMin: [30, 180],
     surgical: true,
+    icon: "eyes",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/treatments/24828-canthoplasty",
@@ -329,6 +350,7 @@ export const CLINIC_ITEMS: Procedure[] = [
     sessions: "1 surgery; adjustment sometimes needed",
     painLevel: 2,
     surgical: true,
+    icon: "eyes",
     addedAt: ADDED,
     sources: [
       "https://my.clevelandclinic.org/health/diseases/14418-ptosis-droopy-eyelid",

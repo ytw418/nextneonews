@@ -17,6 +17,7 @@ import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { BEAUTY_CATEGORIES } from "@/data/beauty/types";
+import { iconCover } from "@/data/cover";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { type AffiliateTarget, PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
@@ -131,7 +132,7 @@ export default async function BeautyHubPage({ params }: PageProps<"/[locale]/bea
                 <span className="mb-1.5 block truncate pl-1 text-t5 font-bold text-ink-900">{t("tile.label")}</span>
                 <TypeCover
                   tint={SECTION_TINT.beauty}
-                  glyph="6"
+                  cover={iconCover("magnifier")}
                   variant="tile"
                   title={t("tile.title")}
                   sub={t("tile.sub")}

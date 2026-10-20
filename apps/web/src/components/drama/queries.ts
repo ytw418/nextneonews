@@ -2,8 +2,9 @@ import "server-only";
 
 import type { Locale, RankingItem } from "@kmedia/core";
 
-import { coverGlyph } from "@/components/guide/glyph";
+import { dramaCover, sectionCover } from "@/data/cover";
 import type { DramaEntry } from "@/data/drama";
+import type { CoverSpec } from "@/data/types";
 import { mixTrending } from "@/lib/drama";
 import { displayName, getEntities, getLatestSnapshot } from "@/lib/rankings";
 
@@ -19,7 +20,7 @@ export interface TrendCard {
   key: string; // 카탈로그 slug, 카탈로그 밖이면 'entity:Q-id' (섞을 때 같은 작품을 한 번만)
   href: string;
   title: string;
-  glyph: string;
+  cover: CoverSpec;
   rank?: number; // 랭킹에서 왔으면 오늘 순위
   year?: number;
   network?: string;
@@ -31,7 +32,7 @@ function catalogCard(entry: DramaEntry, rank?: number): TrendCard {
     key: entry.slug,
     href: `/drama/${entry.slug}`,
     title: entry.text.title,
-    glyph: coverGlyph({ kind: "drama", episodes: entry.episodes }),
+    cover: dramaCover(entry),
     rank,
     year: entry.year,
     network: entry.network,
@@ -79,7 +80,7 @@ async function rankedCards(locale: Locale, catalog: DramaEntry[]): Promise<Trend
     const slug = slugs.get(item.entityId);
     if (!slug) return [];
     const title = displayName(item.names, locale, item.entityId);
-    return [{ key: `entity:${item.entityId}`, href: `/idol/${slug}`, title, glyph: coverGlyph({ kind: "name", name: title, locale }), rank: item.rank }];
+    return [{ key: `entity:${item.entityId}`, href: `/idol/${slug}`, title, cover: sectionCover("drama"), rank: item.rank }];
   });
 }
 

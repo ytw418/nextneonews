@@ -19,10 +19,11 @@ import { SaveButton } from "@/components/SaveButton";
 import { ShareButton } from "@/components/ShareButton";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { beautySlugs, beautyText, getBeauty, isBeautySlug } from "@/data/beauty";
+import { BEAUTY_CATEGORY_ICON, beautyCover, iconCover } from "@/data/cover";
 import { isNew, SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
-import { BEAUTY_DETAIL_BUY_ANCHOR, brandGlyph, isEditorsPick, readerRating } from "@/lib/beauty";
+import { BEAUTY_DETAIL_BUY_ANCHOR, isEditorsPick, readerRating } from "@/lib/beauty";
 import { emptyTotals } from "@/lib/item-votes";
 import { breadcrumbLd, graph, productLd } from "@/lib/jsonld-catalog";
 
@@ -129,7 +130,7 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
 
       <TypeCover
         tint={SECTION_TINT.beauty}
-        glyph={brandGlyph(entry.brand)}
+        cover={beautyCover(entry)}
         variant="hero"
         label={category}
         isNew={isNew(entry.addedAt)}
@@ -137,7 +138,7 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
         locale={locale}
         className={HERO_SIZE}
       >
-        {/* 사진 대신 커버의 주인공은 순위 숫자 (어워드 안 순위) */}
+        {/* 어워드 안 순위: 왼쪽 아래 (대표 성분 아이콘은 오른쪽) */}
         {rank && (
           <p className="absolute bottom-4 left-5 flex items-baseline gap-2 text-on-tint">
             <span aria-hidden className="numeral text-display">
@@ -271,7 +272,7 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
               <Link href={awardsHref} className="press-soft block">
                 <TypeCover
                   tint={SECTION_TINT.beauty}
-                  glyph={String(ranked.length)}
+                  cover={iconCover(BEAUTY_CATEGORY_ICON[entry.category])}
                   label={kind}
                   title={t("product.relatedAll", { category })}
                   sub={t("product.relatedCount", { count: ranked.length })}

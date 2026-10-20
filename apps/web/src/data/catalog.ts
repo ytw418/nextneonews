@@ -9,19 +9,17 @@ import {
 } from "budoux";
 import { getTranslations } from "next-intl/server";
 
-import { coverGlyph } from "@/components/guide/glyph";
 import { type AffiliateHref, affiliateHref, PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
 import { categoryTint } from "@/lib/cover";
 
 import { beautyFeatured, beautySummary, isBeautySlug } from "./beauty";
 import { BEAUTY_ITEMS } from "./beauty/items";
 import { clinicFeatured, clinicSummary, isClinicSlug } from "./clinic";
-import { CLINIC_ITEMS } from "./clinic/items";
+import { iconCover } from "./cover";
 import { dramaFeatured, dramaSummary, isDramaSlug } from "./drama";
-import { DRAMA_ITEMS } from "./drama/items";
+import { CATEGORY_ICON } from "./icons3d";
 import { type CatalogKind, isSavedId, isSavedKind } from "./sections";
 import { isTravelSlug, travelFeatured, travelSummary } from "./travel";
-import { TRAVEL_ITEMS } from "./travel/items";
 import type { CatalogSummary, SavedKind, Section } from "./types";
 
 // 섹션 카탈로그를 한데 묶는 곳: 저장함(/api/saved)·교차 레일·가이드 허브·평가 API(isKnownItem)가 쓴다
@@ -89,57 +87,22 @@ async function articleSummaries(slugs: string[], locale: Locale): Promise<Map<st
       title: row.title,
       sub: tCat(row.article.category),
       tint: categoryTint(row.article.category),
+      // 저장한 글 줄: 홈 카테고리 메뉴와 같은 3D 아이콘 (분류를 모르면 생활)
+      cover: iconCover(CATEGORY_ICON[row.article.category as keyof typeof CATEGORY_ICON] ?? CATEGORY_ICON.LIFE),
       ...(row.locale === locale ? {} : { lang: row.locale }),
     });
   }
   return out;
 }
 
-// ───────── 커버 유령 글자 ─────────
-// 요약 한 줄에도 상세와 같은 글자(components/guide/glyph.ts coverGlyph)를 채운다. 저장함·가이드 허브·교차 레일은 이 값을 그대로 쓴다
-export type GlyphedSummary = CatalogSummary & { glyph?: string };
-
-const BEAUTY_BRAND = new Map(BEAUTY_ITEMS.map((i) => [i.slug, i.brand]));
-const PLACE_AREA = new Map(TRAVEL_ITEMS.map((i) => [i.slug, i.area]));
-const CLINIC_DOWNTIME = new Map(CLINIC_ITEMS.map((i) => [i.slug, i.downtimeDays]));
-const DRAMA_EPISODES = new Map(DRAMA_ITEMS.map((i) => [i.slug, i.episodes]));
-
-function glyphOf(summary: CatalogSummary, locale: Locale): string | undefined {
-  const { kind, id } = summary;
-  if (kind === "beauty") {
-    const brand = BEAUTY_BRAND.get(id);
-    return brand === undefined ? undefined : coverGlyph({ kind, brand });
-  }
-  if (kind === "place") {
-    const area = PLACE_AREA.get(id);
-    return area === undefined ? undefined : coverGlyph({ kind, area, areaName: summary.sub ?? "", locale });
-  }
-  if (kind === "clinic") {
-    const downtimeDays = CLINIC_DOWNTIME.get(id);
-    return downtimeDays === undefined ? undefined : coverGlyph({ kind, downtimeDays });
-  }
-  if (kind === "drama") {
-    const episodes = DRAMA_EPISODES.get(id);
-    return episodes === undefined ? undefined : coverGlyph({ kind, episodes });
-  }
-  return undefined; // 글: 사실 값이 없어 제목으로 어림한다 (coverGlyph)
-}
-
-function withGlyph(summary: CatalogSummary, locale: Locale): GlyphedSummary {
-  const glyph = glyphOf(summary, locale);
-  return glyph === undefined ? summary : { ...summary, glyph };
-}
-
-export async function summarize(kind: SavedKind, id: string, locale: Locale): Promise<GlyphedSummary | null> {
-  const summary =
-    kind === "article" ? ((await articleSummaries([id], locale)).get(id) ?? null) : await SUMMARY[kind](id, locale);
-  return summary && withGlyph(summary, locale);
+export async function summarize(kind: SavedKind, id: string, locale: Locale): Promise<CatalogSummary | null> {
+  return kind === "article" ? ((await articleSummaries([id], locale)).get(id) ?? null) : SUMMARY[kind](id, locale);
 }
 
 // ───────── 저장함 한 줄 (/api/saved) ─────────
 // 저장함은 클라이언트 화면이라 줄바꿈 사전(budoux, 전송 142KB)을 싣지 않는다: 일본어·중국어 제목은 여기서 구(句)로 나눠 보내고
 // 화면은 조각 사이에 <wbr> 만 넣는다. 뷰티 줄에는 이 언어 독자가 살 수 있는 1순위 파트너 구매 링크를 붙인다 (시술은 제휴 금지)
-export interface SavedSummary extends GlyphedSummary {
+export interface SavedSummary extends CatalogSummary {
   chunks?: string[]; // 제목을 구 단위로 나눈 조각 (ja·zh)
   buy?: AffiliateHref & { name: string }; // name: 파트너 이름 (화면 읽기용)
 }
@@ -166,12 +129,12 @@ function titleChunks(title: string, locale: Locale): string[] | undefined {
 const BEAUTY_BUY = new Map(BEAUTY_ITEMS.map((i) => [i.slug, i.buy]));
 
 // 클라이언트 화면(저장함)에 넘기는 요약: 일본어·중국어 제목을 구 조각으로 나눠 둔다
-export function withTitleChunks(summary: GlyphedSummary, locale: Locale): SavedSummary {
+export function withTitleChunks(summary: CatalogSummary, locale: Locale): SavedSummary {
   const chunks = summary.lang ? undefined : titleChunks(summary.title, locale);
   return chunks && chunks.length > 1 ? { ...summary, chunks } : summary;
 }
 
-function forSaved(summary: GlyphedSummary, locale: Locale): SavedSummary {
+function forSaved(summary: CatalogSummary, locale: Locale): SavedSummary {
   const target = summary.kind === "beauty" ? partnersForLocale(locale, BEAUTY_BUY.get(summary.id) ?? [])[0] : undefined;
   const out = withTitleChunks(summary, locale);
   return target ? { ...out, buy: { ...affiliateHref(target), name: PARTNER_NAME[target.partner] } } : out;
@@ -199,13 +162,13 @@ export async function summarizeMany(refs: ItemRef[], locale: Locale): Promise<Su
   );
   const items = summaries
     .filter((s): s is CatalogSummary => s !== null)
-    .map((s) => forSaved(withGlyph(s, locale), locale));
+    .map((s) => forSaved(s, locale));
   return { items, partial };
 }
 
-export async function featured(section: Section, locale: Locale, n: number): Promise<GlyphedSummary[]> {
+export async function featured(section: Section, locale: Locale, n: number): Promise<CatalogSummary[]> {
   if (n <= 0) return [];
-  return (await FEATURED[section](locale, n)).map((s) => withGlyph(s, locale));
+  return FEATURED[section](locale, n);
 }
 
 // 여러 섹션을 번갈아 섞는다 (섹션 순서대로 하나씩). 가이드 허브 '지금 인기'·교차 레일
@@ -214,10 +177,10 @@ export async function featuredMix(
   locale: Locale,
   n: number,
   exclude?: string,
-): Promise<GlyphedSummary[]> {
+): Promise<CatalogSummary[]> {
   const lists = await Promise.all(sections.map((s) => featured(s, locale, n + 1)));
   const pool = lists.map((list) => list.filter((item) => item.id !== exclude));
-  const out: GlyphedSummary[] = [];
+  const out: CatalogSummary[] = [];
   for (let round = 0; out.length < n && pool.some((list) => list.length > round); round += 1) {
     for (const list of pool) if (list[round] && out.length < n) out.push(list[round]);
   }

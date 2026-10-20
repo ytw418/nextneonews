@@ -5,9 +5,9 @@ import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { SaveButton } from "@/components/SaveButton";
 import type { BeautyEntry } from "@/data/beauty";
+import { beautyCover } from "@/data/cover";
 import { isNew, SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
-import { brandGlyph } from "@/lib/beauty";
 
 import { Price } from "./Price";
 
@@ -28,7 +28,7 @@ export async function RankHero({ entry, locale, rank, label, basis, action }: Pr
       <Link href={`/beauty/p/${entry.slug}`} className="press-soft flex gap-4 p-4">
         <TypeCover
           tint={SECTION_TINT.beauty}
-          glyph={brandGlyph(entry.brand)}
+          cover={beautyCover(entry)}
           isNew={isNew(entry.addedAt)}
           newLabel={t("newBadge")}
           locale={locale}

@@ -1,3 +1,4 @@
+import type { Icon3d } from "../icons3d";
 import type { Region } from "../types";
 
 export type WatchPlatform = "netflix" | "viki" | "disney" | "prime" | "viu" | "iqiyi" | "wavve" | "tving";
@@ -14,6 +15,7 @@ export interface Drama {
   filmingPlaces: string[]; // place slug
   similar: string[]; // drama slug
   editorialScore: number;
+  icon: Icon3d; // 작품 상징 3D 아이콘 (포스터는 저작물이라 쓰지 않는다)
   addedAt: string;
   sources: string[];
 }

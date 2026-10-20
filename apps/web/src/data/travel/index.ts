@@ -2,6 +2,7 @@ import "server-only";
 
 import type { Locale } from "@kmedia/core";
 
+import { placeCover } from "../cover";
 import { isNew, SECTION_TINT } from "../sections";
 import { textLoader } from "../text";
 import type { CatalogSummary } from "../types";
@@ -56,6 +57,7 @@ function summary(entry: TravelEntry, areas: TravelText["areas"]): CatalogSummary
     title: entry.text.name,
     sub: areas[entry.area]?.name,
     tint: SECTION_TINT.travel,
+    cover: placeCover(entry),
     ...(isNew(entry.addedAt) ? { badge: "new" as const } : {}),
   };
 }

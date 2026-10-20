@@ -7,6 +7,7 @@
 //  4. 클리닉에는 구매·제휴가 없다: 시술 항목에 buy·제휴 주소 없음, 클리닉 화면 코드에 제휴 상자·쿠팡 없음
 //  5. 교차 참조가 끊기지 않았다: 명소 → 드라마, 드라마 → 촬영지 명소·비슷한 작품
 //  6. 뷰티 구매처 1~4개·파트너당 1개, 기능성 표기 없는 제품에 미백·주름 표현 없음, 중국어 파일에 가나 없음
+//  7. 커버: 3D 아이콘 키마다 WebP·PNG 파일, 명소·동네 사진은 공용 원본 주소·허용 라이선스·저작자·설명 페이지
 // 의존성 없음. 카탈로그 사실 파일(items.ts)은 Node 의 타입 지우기로 바로 읽는다 (Node 22.18+)
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -214,6 +215,30 @@ for (const section of SECTIONS) {
       else if (value.includes("・")) notes.push(`${section}/${locale} ${path}: 일본어 가운뎃점 ・ → · 권장`);
     }
   }
+}
+
+// ── 7. 커버 (3D 아이콘·CC 사진, src/data/cover.ts) ──
+// 모든 아이콘 키에 WebP(화면)와 PNG(원본·공유 이미지)가 있다 (항목·기본값이 표에 있는 키만 쓰는지는 타입 검사가 본다).
+// 명소·동네 사진은 위키미디어 공용 원본 주소 + 허용 라이선스 + 저작자(BY 계열은 필수) + 설명 페이지
+const { ICON3D } = await import(pathToFileURL(join(data, "icons3d.ts")).href);
+const icons3d = join(root, "public", "icons3d");
+for (const key of Object.keys(ICON3D)) {
+  for (const ext of ["webp", "png"]) {
+    if (!existsSync(join(icons3d, `${key}.${ext}`))) fail("커버", `public/icons3d/${key}.${ext} 없음 (node scripts/icons3d-fetch.mjs)`);
+  }
+}
+const PHOTO_LICENSE = /^(CC0|Public domain|CC BY(-SA)? \d\.\d)$/i;
+const AREA_PHOTOS = await items("travel", "AREA_PHOTOS");
+const photos = [
+  ...TRAVEL.flatMap((p) => (p.photo ? [[`travel/${p.slug}`, p.photo]] : [])),
+  ...Object.entries(AREA_PHOTOS).map(([area, photo]) => [`travel 동네 ${area}`, photo]),
+];
+for (const [where, photo] of photos) {
+  if (!/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/[0-9a-f]\/[0-9a-f]{2}\/[^?#]+$/.test(photo.url)) fail("커버", `${where}: 공용 원본 주소가 아님 ${photo.url}`);
+  if (!(photo.width > 0 && photo.height > 0)) fail("커버", `${where}: 원본 크기 없음`);
+  if (!PHOTO_LICENSE.test(photo.licenseName)) fail("커버", `${where}: 허용하지 않는 라이선스 ${photo.licenseName}`);
+  if (/BY/i.test(photo.licenseName) && !photo.author) fail("커버", `${where}: 저작자 없음 (${photo.licenseName})`);
+  if (!photo.sourceUrl?.startsWith("https://commons.wikimedia.org/wiki/File:")) fail("커버", `${where}: 설명 페이지 주소가 아님`);
 }
 
 // ── 결과 ──

@@ -24,6 +24,7 @@ import { Meta } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { type DramaEntry, dramaSlugs, dramaText, getDrama } from "@/data/drama";
 import { catalogPerson } from "@/data/drama/people";
+import { dramaCover } from "@/data/cover";
 import { SECTION_TINT } from "@/data/sections";
 import { getTravel, isTravelSlug, travelText } from "@/data/travel";
 import { breadcrumbLd, graph, tvSeriesLd } from "@/lib/jsonld-catalog";
@@ -105,7 +106,7 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
     <DramaCard
       href={`/drama/${d.slug}`}
       title={d.text.title}
-      glyph={String(d.episodes)}
+      cover={dramaCover(d)}
       locale={locale}
       sub={`${d.year} · ${d.network}`}
       saveId={d.slug}
@@ -151,9 +152,9 @@ export default async function DramaPage({ params }: PageProps<"/[locale]/drama/[
         )}
       />
 
-      {/* 포스터처럼: 틴트 면에 제목·연도·회차·방송사, 오른쪽 아래로 잘린 회차 숫자. 높이를 묶어 별점이 첫 화면에 들어온다 */}
-      <TypeCover tint={SECTION_TINT.drama} glyph={String(drama.episodes)} variant="hero" className="max-h-48 w-full">
-        <div className="absolute inset-x-0 bottom-0 px-gutter pb-5">
+      {/* 포스터 대신: 회색 면에 작품 상징 3D 아이콘(오른쪽)과 제목·연도·회차·방송사(왼쪽). 높이를 묶어 별점이 첫 화면에 들어온다 */}
+      <TypeCover tint={SECTION_TINT.drama} cover={dramaCover(drama)} variant="hero" className="max-h-48 w-full">
+        <div className="absolute inset-x-0 bottom-0 pr-32 pb-5 pl-gutter">
           <h1 className="title text-t3 font-bold">
             <Words text={title} locale={locale} />
           </h1>

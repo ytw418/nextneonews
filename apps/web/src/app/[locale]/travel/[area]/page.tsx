@@ -16,9 +16,11 @@ import { AreaTile } from "@/components/travel/AreaTile";
 import { Crumbs } from "@/components/travel/Crumbs";
 import { PlaceRow } from "@/components/travel/PlaceRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { areaCover, placeCover } from "@/data/cover";
 import { areaSlugs, getArea, listAreas, travelText } from "@/data/travel";
+import { AREA_PHOTOS } from "@/data/travel/items";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
-import { areaGlyph, clip, keepAll, PREP_ROWS, prepBoxItems } from "@/lib/travel";
+import { clip, keepAll, PREP_ROWS, prepBoxItems } from "@/lib/travel";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
@@ -74,7 +76,6 @@ export default async function TravelAreaPage({ params }: PageProps<"/[locale]/tr
     listAreas(locale),
   ]);
   const name = area.text.name;
-  const glyph = areaGlyph(area.slug, name, locale);
   const placeSlugs = area.places.map((p) => p.slug);
   const others = areas.filter((a) => a.slug !== area.slug);
   const home = `${SITE_URL}${LOCALE_PATH_PREFIX[locale]}`;
@@ -140,7 +141,7 @@ export default async function TravelAreaPage({ params }: PageProps<"/[locale]/tr
               ]
                 .filter(Boolean)
                 .join(" · ")}
-              glyph={glyph}
+              cover={placeCover(place)}
               number={i + 1}
               locale={locale}
             />
@@ -172,7 +173,7 @@ export default async function TravelAreaPage({ params }: PageProps<"/[locale]/tr
                   slug={other.slug}
                   name={other.text.name}
                   count={t("spotCount", { count: other.places.length })}
-                  glyph={areaGlyph(other.slug, other.text.name, locale)}
+                  cover={areaCover(other.slug, AREA_PHOTOS[other.slug])}
                   placeSlugs={other.places.map((p) => p.slug)}
                   locale={locale}
                 />

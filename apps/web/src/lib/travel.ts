@@ -1,16 +1,7 @@
-import type { AreaSlug, PlaceKind, PrepKey } from "@/data/travel/types";
+import type { PlaceKind, PrepKey } from "@/data/travel/types";
 import type { AffiliatePartner, AffiliateTarget } from "@/data/types";
 
-// vitest 는 @/ 별칭을 모른다 — 값 import 는 상대 경로로
-import { coverGlyph } from "../components/guide/glyph";
-
 // 여행 화면(/travel·동네·명소) 계산과 상수. 서버·클라이언트 어디서나 쓴다 (카탈로그는 import 하지 않는다)
-
-// ───────── 타이포 커버 유령 글자 ─────────
-// 규칙은 components/guide/glyph.ts coverGlyph 하나 (DESIGN.md §4-①). 여행 화면이 부르기 쉽게 동네 인자만 받는다
-export function areaGlyph(area: AreaSlug, name: string, locale: string): string {
-  return coverGlyph({ kind: "place", area, areaName: name, locale });
-}
 
 // ───────── '가 봤어요' 도장 진행 ─────────
 export interface StampProgress {

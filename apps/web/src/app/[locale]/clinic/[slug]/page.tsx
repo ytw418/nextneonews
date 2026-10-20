@@ -26,9 +26,10 @@ import { Badge } from "@/components/ui/Badge";
 import { keepDots } from "@/components/ui/Meta";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { clinicSlugs, clinicText, getClinic, listClinic } from "@/data/clinic";
+import { clinicCover } from "@/data/cover";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
-import { coverGlyph, koreanLines } from "@/lib/clinic";
+import { koreanLines } from "@/lib/clinic";
 import { breadcrumbLd, faqLd, graph } from "@/lib/jsonld-catalog";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
@@ -140,7 +141,7 @@ export default async function ClinicProcedurePage({ params }: PageProps<"/[local
       <header className="flex items-start gap-4 px-gutter pt-5">
         <TypeCover
           tint={SECTION_TINT.clinic}
-          glyph={coverGlyph(entry)}
+          cover={clinicCover(entry)}
           variant="square"
           className="size-16 shrink-0"
         />

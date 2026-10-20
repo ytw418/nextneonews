@@ -15,9 +15,11 @@ import { Crumbs } from "@/components/travel/Crumbs";
 import { KindFilter } from "@/components/travel/KindFilter";
 import { PlaceRow } from "@/components/travel/PlaceRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { areaCover, placeCover } from "@/data/cover";
 import { listAreas, travelText } from "@/data/travel";
+import { AREA_PHOTOS } from "@/data/travel/items";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
-import { areaGlyph, placeKinds, PREP_ROWS, prepBoxItems, spotlightPlaces } from "@/lib/travel";
+import { placeKinds, PREP_ROWS, prepBoxItems, spotlightPlaces } from "@/lib/travel";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
@@ -126,7 +128,7 @@ export default async function TravelHubPage({ params }: PageProps<"/[locale]/tra
                 slug={place.slug}
                 name={place.text.name}
                 sub={areaName.get(place.area) ?? ""}
-                glyph={areaGlyph(place.area, areaName.get(place.area) ?? "", locale)}
+                cover={placeCover(place)}
                 locale={locale}
               />
             ),
@@ -140,7 +142,7 @@ export default async function TravelHubPage({ params }: PageProps<"/[locale]/tra
                     slug={area.slug}
                     name={area.text.name}
                     count={t("spotCount", { count: area.places.length })}
-                    glyph={areaGlyph(area.slug, area.text.name, locale)}
+                    cover={areaCover(area.slug, AREA_PHOTOS[area.slug])}
                     placeSlugs={area.places.map((p) => p.slug)}
                     tagline={area.text.tagline}
                     wide={i === 0}
@@ -171,7 +173,7 @@ export default async function TravelHubPage({ params }: PageProps<"/[locale]/tra
                 slug={place.slug}
                 name={place.text.name}
                 sub={`${t(`kinds.${place.kind}`)} · ${areaName.get(place.area) ?? ""}`}
-                glyph={areaGlyph(place.area, areaName.get(place.area) ?? "", locale)}
+                cover={placeCover(place)}
                 locale={locale}
               />
             ))}

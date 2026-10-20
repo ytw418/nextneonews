@@ -1,3 +1,5 @@
+import type { Icon3d } from "../icons3d";
+
 export type ClinicField = "derma" | "dental" | "plastic";
 
 export const CLINIC_FIELDS: readonly ClinicField[] = ["derma", "dental", "plastic"];
@@ -18,6 +20,7 @@ export interface Procedure {
   painLevel: 1 | 2 | 3;
   durationMin?: [number, number];
   surgical: boolean;
+  icon: Icon3d; // 커버 아이콘 (시술 사진은 쓰지 않는다)
   addedAt: string;
   sources: string[]; // 학회·식약처·공공기관·논문 1개 이상
 }

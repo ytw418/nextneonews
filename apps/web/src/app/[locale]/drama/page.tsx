@@ -16,6 +16,7 @@ import { LiveTotals } from "@/components/guide/LiveTotals";
 import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { dramaCover } from "@/data/cover";
 import { dramaSlugs, dramaText, listDrama } from "@/data/drama";
 import { genreOrder } from "@/lib/drama";
 import { breadcrumbLd, collectionLd, graph, itemListLd } from "@/lib/jsonld-catalog";
@@ -129,7 +130,7 @@ export default async function DramaHubPage({ params }: PageProps<"/[locale]/dram
                 <DramaCard
                   href={`/drama/${d.slug}`}
                   title={d.text.title}
-                  glyph={String(d.episodes)}
+                  cover={dramaCover(d)}
                   locale={locale}
                   sub={`${d.year} · ${d.network}`}
                   saveId={d.slug}

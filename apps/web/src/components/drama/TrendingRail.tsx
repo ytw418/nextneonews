@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { DramaCard } from "./DramaCard";
 import type { TrendCard } from "./queries";
 
-// '지금 화제' 가로 레일 (3:4 카드 2.5장이 첫 화면에 보인다). 랭킹에서 온 작품은 오늘 순위를 큰 숫자로,
+// '지금 화제' 가로 레일 (3:4 카드 2.5장이 첫 화면에 보인다). 랭킹에서 온 작품은 오늘 순위를 배지로,
 // 편집 추천은 커버 아래 '에디터 픽'. 카탈로그 작품만 하트가 있다
 export async function TrendingRail({ cards, locale }: { cards: TrendCard[]; locale: string }) {
   if (cards.length === 0) return null;
@@ -19,7 +19,7 @@ export async function TrendingRail({ cards, locale }: { cards: TrendCard[]; loca
             <DramaCard
               href={card.href}
               title={card.title}
-              glyph={card.glyph}
+              cover={card.cover}
               locale={locale}
               sub={card.year ? `${card.year} · ${card.network}` : undefined}
               rank={card.rank}

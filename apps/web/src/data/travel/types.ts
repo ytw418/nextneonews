@@ -1,3 +1,6 @@
+import type { Icon3d } from "../icons3d";
+import type { CoverPhoto } from "../types";
+
 export type AreaSlug =
   | "seongsu"
   | "hongdae"
@@ -33,6 +36,8 @@ export interface Place {
   station?: { name: string; line: string; walkMin: number }; // name 은 영문 역명
   related?: { dramas?: string[]; entityIds?: string[] }; // 드라마 slug · 위키데이터 Q-id
   hours?: string;
+  photo?: CoverPhoto; // 위키미디어 공용 CC 사진. 없으면 icon → 종류 아이콘 (data/cover.ts)
+  icon?: Icon3d;
   addedAt: string;
   sources: string[];
 }

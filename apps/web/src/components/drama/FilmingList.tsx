@@ -1,11 +1,11 @@
 import type { Locale } from "@kmedia/core";
 import { getTranslations } from "next-intl/server";
 
-import { coverGlyph } from "@/components/guide/glyph";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { ListRow } from "@/components/ui/ListRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { placeCover } from "@/data/cover";
 import type { TravelEntry } from "@/data/travel";
 import { SECTION_TINT } from "@/data/sections";
 
@@ -30,7 +30,7 @@ export async function FilmingList({
             key={place.slug}
             href={`/travel/place/${place.slug}`}
             arrow
-            left={<TypeCover tint={SECTION_TINT.travel} glyph={coverGlyph({ kind: "place", area: place.area, areaName: areaNames[place.area] ?? "", locale })} variant="square" className="size-14" />}
+            left={<TypeCover tint={SECTION_TINT.travel} cover={placeCover(place)} variant="square" className="size-14" />}
             title={<Words text={place.text.name} locale={locale} />}
             sub={areaNames[place.area]}
           />

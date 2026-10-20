@@ -6,7 +6,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdSlot } from "@/components/AdSlot";
 import { AppHeader } from "@/components/AppHeader";
 import { newBadgeShows } from "@/components/guide/badges";
-import { coverGlyph } from "@/components/guide/glyph";
 import { GuideCard } from "@/components/guide/GuideCard";
 import { ItemRow } from "@/components/guide/ItemRow";
 import { sectionCount } from "@/components/guide/sectionCount";
@@ -108,7 +107,7 @@ export default async function GuideHubPage({ params }: PageProps<"/[locale]/guid
         </p>
       </div>
 
-      {/* 섹션 타일 2×2: 메모지(이름 · 항목 수). 낮은 2:1 이라 첫 화면(아이폰 664)에 에디터 픽 첫 줄과 하트까지 들어온다 */}
+      {/* 섹션 타일 2×2: 3D 아이콘 · 이름 · 항목 수. 낮은 2:1 이라 첫 화면(아이폰 664)에 에디터 픽 첫 줄과 하트까지 들어온다 */}
       <TrackClicks event="guide_tile_open" from="guide">
         <ul className="grid grid-cols-2 gap-3 px-gutter pt-5">
           {sections.map(({ section, count }) => (
@@ -117,7 +116,7 @@ export default async function GuideHubPage({ params }: PageProps<"/[locale]/guid
                 href={SECTION_PATH[section]}
                 title={t(`sections.${section}.title`)}
                 sub={t(`sections.${section}.count`, { count })}
-                count={count}
+                section={section}
                 locale={locale}
                 className="aspect-[2/1]!"
               />
@@ -138,7 +137,7 @@ export default async function GuideHubPage({ params }: PageProps<"/[locale]/guid
                   <ItemRow
                     key={`${item.kind}:${item.id}`}
                     href={item.href}
-                    cover={<TypeCover variant="square" tint={item.tint} glyph={coverGlyph(item)} className="size-14" />}
+                    cover={<TypeCover variant="square" tint={item.tint} cover={item.cover} className="size-14" />}
                     title={<Words text={item.title} locale={locale} />}
                     sub={
                       <>

@@ -2,6 +2,7 @@ import "server-only";
 
 import type { Locale } from "@kmedia/core";
 
+import { clinicCover } from "../cover";
 import { isNew, SECTION_TINT } from "../sections";
 import { textLoader } from "../text";
 import type { CatalogSummary } from "../types";
@@ -49,6 +50,7 @@ function summary(entry: ClinicEntry, fields: ClinicText["fields"]): CatalogSumma
     title: entry.text.name,
     sub: fields[entry.field]?.name,
     tint: SECTION_TINT.clinic,
+    cover: clinicCover(entry),
     ...(isNew(entry.addedAt) ? { badge: "new" as const } : {}),
   };
 }

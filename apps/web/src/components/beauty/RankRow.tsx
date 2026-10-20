@@ -4,9 +4,9 @@ import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { SaveButton } from "@/components/SaveButton";
 import type { BeautyEntry } from "@/data/beauty";
+import { beautyCover } from "@/data/cover";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
-import { brandGlyph } from "@/lib/beauty";
 
 import { Price } from "./Price";
 
@@ -21,7 +21,7 @@ export async function RankRow({ entry, locale, rank }: { entry: BeautyEntry; loc
         <span aria-hidden className="w-7 shrink-0 text-center text-t4 font-bold tabular-nums text-ink-600">
           {rank}
         </span>
-        <TypeCover tint={SECTION_TINT.beauty} glyph={brandGlyph(entry.brand)} variant="square" className="size-14 shrink-0" />
+        <TypeCover tint={SECTION_TINT.beauty} cover={beautyCover(entry)} variant="square" className="size-14 shrink-0" />
         <span className="min-w-0 flex-1">
           <span className="sr-only">{t("rank", { rank })} </span>
           <span className="line-clamp-2 text-t5 leading-row font-bold text-ink-900">

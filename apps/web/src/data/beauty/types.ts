@@ -1,3 +1,4 @@
+import type { Icon3d } from "../icons3d";
 import type { AffiliateTarget } from "../types";
 
 // ₩ · ₩₩ · ₩₩₩ (₩=1만 원 미만, ₩₩=1~3만, ₩₩₩=3만 이상, 한국 정가 기준)
@@ -38,6 +39,7 @@ export interface BeautyProduct {
   keyIngredients: string[]; // INCI 영문, 최대 4
   functional?: ("whitening" | "wrinkle" | "sun")[]; // 식약처 기능성 보고 제품만. 없으면 효능 표현 금지
   editorialScore: number; // 0~100
+  icon?: Icon3d; // 대표 성분 아이콘 (달팽이·쌀·프로폴리스…). 없으면 분류 아이콘 (data/cover.ts)
   buy: AffiliateTarget[]; // 최소 1, 최대 4. 파트너별 1개
   addedAt: string; // YYYY-MM-DD
   sources: string[]; // 공식 브랜드 제품 페이지 1개 이상

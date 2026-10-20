@@ -2,6 +2,7 @@ import "server-only";
 
 import type { Locale } from "@kmedia/core";
 
+import { dramaCover } from "../cover";
 import { isNew, SECTION_TINT } from "../sections";
 import { textLoader } from "../text";
 import type { CatalogSummary } from "../types";
@@ -49,6 +50,7 @@ function summary(entry: DramaEntry): CatalogSummary {
     title: entry.text.title,
     sub: `${entry.year} · ${entry.network}`,
     tint: SECTION_TINT.drama,
+    cover: dramaCover(entry),
     ...(isNew(entry.addedAt) ? { badge: "new" as const } : {}),
   };
 }

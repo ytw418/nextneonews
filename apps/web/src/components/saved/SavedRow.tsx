@@ -5,7 +5,6 @@ import { Fragment } from "react";
 
 import { AffiliateLink } from "@/components/affiliate/AffiliateLink";
 import { CoverArt } from "@/components/guide/CoverArt";
-import { coverGlyph } from "@/components/guide/glyph";
 import { ItemRow } from "@/components/guide/ItemRow";
 import { CloseIcon, ExternalIcon } from "@/components/icons";
 import { IconButton } from "@/components/ui/IconButton";
@@ -59,12 +58,12 @@ export function SavedRow({
       href={summary?.href}
       busy={summary === undefined}
       cover={
-        <CoverArt
-          variant="square"
-          tint={summary?.tint ?? "var(--fill-weak)"}
-          glyph={summary ? coverGlyph(summary) : ""}
-          className="size-14"
-        />
+        summary ? (
+          <CoverArt variant="square" tint={summary.tint} cover={summary.cover} className="size-14" />
+        ) : (
+          // 불러오는 중·불러오지 못함: 빈 회색 칸
+          <span aria-hidden className="block size-14 rounded-btn-m bg-fill-weak" />
+        )
       }
       title={
         summary ? (

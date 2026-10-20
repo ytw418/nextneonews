@@ -18,10 +18,11 @@ import { ShareButton } from "@/components/ShareButton";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SKIN_TYPES, type SkinType } from "@/data/beauty/types";
+import { iconCover, SKIN_ICON } from "@/data/cover";
 import { SECTION_TINT } from "@/data/sections";
 import { Link } from "@/i18n/navigation";
 import { partnersForLocale } from "@/lib/affiliate";
-import { BEAUTY_DETAIL_BUY_ANCHOR, isSkinType, picksForSkin, rankAwards, SHARE_DOMAIN, SKIN_CODE } from "@/lib/beauty";
+import { BEAUTY_DETAIL_BUY_ANCHOR, isSkinType, picksForSkin, rankAwards, SHARE_DOMAIN } from "@/lib/beauty";
 import { breadcrumbLd, graph, itemListLd } from "@/lib/jsonld-catalog";
 
 import { loadBeauty, staticParamsFor } from "../../data";
@@ -108,10 +109,10 @@ export default async function SkinTypeResultPage({ params }: PageProps<"/[locale
         )}
       />
 
-      {/* 유령 글자는 타입 코드 첫 글자 (SENSITIVE 처럼 긴 코드는 이름 뒤를 가로질러 읽기 어렵다 — 공유 이미지와 같은 규칙) */}
-      <TypeCover tint={SECTION_TINT.beauty} glyph={SKIN_CODE[skin].slice(0, 1)} variant="hero" label={t("result.label")}>
+      {/* 결과마다 3D 아이콘 (건성 선인장·지성 땀방울…). 이름은 아이콘을 비켜 왼쪽에 */}
+      <TypeCover tint={SECTION_TINT.beauty} cover={iconCover(SKIN_ICON[skin])} variant="hero" label={t("result.label")}>
         {/* 결과 화면을 캡처해 올려도 무슨 결과인지·어디서 했는지 커버 한 장에 보이게 */}
-        <div className="absolute inset-x-5 bottom-4">
+        <div className="absolute right-32 bottom-4 left-5">
           <h1 className="text-display font-bold text-on-tint [overflow-wrap:anywhere] hyphens-auto">{name}</h1>
           <p className="mt-2 text-st12 font-semibold text-on-tint-sub">{SHARE_DOMAIN}</p>
         </div>

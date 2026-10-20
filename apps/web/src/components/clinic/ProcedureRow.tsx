@@ -1,12 +1,12 @@
 import type { Locale } from "@kmedia/core";
 import { getTranslations } from "next-intl/server";
 
-import { coverGlyph } from "@/components/guide/glyph";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { ListRow } from "@/components/ui/ListRow";
 import { Meta } from "@/components/ui/Meta";
 import type { ClinicEntry } from "@/data/clinic";
+import { clinicCover } from "@/data/cover";
 import { SECTION_TINT } from "@/data/sections";
 
 import { painPhrase, recoveryPhrase } from "./format";
@@ -17,7 +17,7 @@ export async function ProcedureRow({ entry, locale }: { entry: ClinicEntry; loca
   return (
     <ListRow
       href={`/clinic/${entry.slug}`}
-      left={<TypeCover tint={SECTION_TINT.clinic} glyph={coverGlyph({ kind: "clinic", downtimeDays: entry.downtimeDays })} variant="square" className="size-14" />}
+      left={<TypeCover tint={SECTION_TINT.clinic} cover={clinicCover(entry)} variant="square" className="size-14" />}
       title={<Words text={entry.text.name} locale={locale} />}
       sub={
         <Meta

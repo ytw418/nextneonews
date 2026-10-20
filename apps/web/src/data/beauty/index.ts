@@ -2,6 +2,7 @@ import "server-only";
 
 import type { Locale } from "@kmedia/core";
 
+import { beautyCover } from "../cover";
 import { isNew, SECTION_TINT } from "../sections";
 import { textLoader } from "../text";
 import type { CatalogSummary } from "../types";
@@ -49,6 +50,7 @@ function summary(entry: BeautyEntry): CatalogSummary {
     title: entry.text.name,
     sub: entry.brand,
     tint: SECTION_TINT.beauty,
+    cover: beautyCover(entry),
     ...(isNew(entry.addedAt) ? { badge: "new" as const } : {}),
   };
 }

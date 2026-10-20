@@ -5,7 +5,6 @@ import { type ReactNode, useEffect, useState, useSyncExternalStore } from "react
 
 import { EmptyMemo } from "@/components/EmptyMemo";
 import { CoverArt } from "@/components/guide/CoverArt";
-import { coverGlyph } from "@/components/guide/glyph";
 import { ItemRow } from "@/components/guide/ItemRow";
 import { PlusSquareIcon, ShareIcon } from "@/components/icons";
 import { SaveButton } from "@/components/SaveButton";
@@ -174,7 +173,7 @@ export function SavedView({ picks }: { picks: CatalogSummary[] }) {
                   <ItemRow
                     key={savedKey(pick)}
                     href={pick.href}
-                    cover={<CoverArt variant="square" tint={pick.tint} glyph={coverGlyph(pick)} className="size-14" />}
+                    cover={<CoverArt variant="square" tint={pick.tint} cover={pick.cover} className="size-14" />}
                     title={<SavedTitle summary={pick} locale={locale} />}
                     sub={pick.sub ? `${t(`savedTabs.${pick.kind}`)} · ${pick.sub}` : t(`savedTabs.${pick.kind}`)}
                     action={<SaveButton kind={pick.kind} id={pick.id} title={pick.title} />}

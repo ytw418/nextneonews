@@ -28,6 +28,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // the-hyundai-seoul: VS SOUL SPOT(2024-09) / 여행 목록 밖: 우리옛돌박물관(VS SOUL SPOT), 청계광장·광통교(VS go!Seoul 2024.07), 그랜드 워커힐 애스턴하우스(VK 'Hocance')
     filmingPlaces: ["the-hyundai-seoul"],
     similar: ["crash-landing-on-you", "king-the-land", "business-proposal"],
+    icon: "crown",
     editorialScore: 93, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81707950",
@@ -50,6 +51,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // bukchon-hanok-village(복정우물)·choong-ang-high-school: MH 2024-06-14 '선업튀·눈물의여왕 서울 속 촬영지' / 여행 목록 밖: 성수낙낙(VS go!Seoul 2025.08), 수원 화홍문·행리단길(VK)
     filmingPlaces: ["bukchon-hanok-village", "choong-ang-high-school"],
     similar: ["twenty-five-twenty-one", "true-beauty", "our-beloved-summer"],
+    icon: "umbrella",
     editorialScore: 94, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81914565",
@@ -74,6 +76,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // seongsan-ilchulbong(2화): VJ 'Netflix's latest sensation, When Life Gives You Tangerines'(2025-04-15) / 여행 목록 밖(같은 출처): 1·3화 김녕, 8화 제주목 관아, 12화 생이기정, 14화 한림항
     filmingPlaces: ["seongsan-ilchulbong"],
     similar: ["reply-1988", "our-unwritten-seoul", "twenty-five-twenty-one"],
+    icon: "tangerine",
     editorialScore: 95, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81681535",
@@ -97,6 +100,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 파르나스 호텔 제주 로비(VK 'Hocance to K-Drama Filming Locations')
     filmingPlaces: [],
     similar: ["business-proposal", "queen-of-tears", "love-next-door"],
+    icon: "hotel",
     editorialScore: 82, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81671440",
@@ -118,6 +122,7 @@ export const DRAMA_ITEMS: Drama[] = [
     ],
     filmingPlaces: [], // 공식 관광 자료로 확인한 촬영지 없음
     similar: ["goblin", "hotel-del-luna", "bon-appetit-your-majesty"],
+    icon: "devil",
     editorialScore: 80, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81716080",
@@ -144,6 +149,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 청계광장·광통교(VS go!Seoul 2024.07), 노들섬(VS SOUL SPOT 2024-09)
     filmingPlaces: [],
     similar: ["queen-of-tears", "lovely-runner", "when-the-phone-rings"],
+    icon: "ring",
     editorialScore: 86, addedAt: "2026-10-19",
     sources: [
       "https://www.primevideo.com/detail/0U9LVA2T8NCPW1W1B51AGU7KCR",
@@ -166,6 +172,7 @@ export const DRAMA_ITEMS: Drama[] = [
     ],
     filmingPlaces: [], // 위키백과의 촬영지 문단은 각주가 없어 쓰지 않았다
     similar: ["love-next-door", "resident-playbook", "our-beloved-summer"],
+    icon: "stethoscope",
     editorialScore: 78, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81697985",
@@ -189,6 +196,7 @@ export const DRAMA_ITEMS: Drama[] = [
     ],
     filmingPlaces: [], // 공식 관광 자료로 확인한 촬영지 없음
     similar: ["our-beloved-summer", "doctor-slump", "reply-1988"],
+    icon: "housing",
     editorialScore: 83, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81739044",
@@ -210,6 +218,7 @@ export const DRAMA_ITEMS: Drama[] = [
     ],
     filmingPlaces: [], // 공식 관광 자료로 확인한 촬영지 없음
     similar: ["marry-my-husband", "my-demon", "crash-landing-on-you"],
+    icon: "telephone",
     editorialScore: 85, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81912961",
@@ -232,6 +241,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 쁘띠프랑스 '마리의 집'(가평, VK), 벽초지수목원(파주, VK 'Paju Drama Road')
     filmingPlaces: [],
     similar: ["hotel-del-luna", "lovely-runner", "my-demon"],
+    icon: "cooking",
     editorialScore: 88, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/82024852",
@@ -254,6 +264,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // ikseon-dong-hanok-street(첫 데이트): VS go!Seoul 2025.08 / 여행 목록 밖: 성수낙낙(동창 모임, 같은 출처)
     filmingPlaces: ["ikseon-dong-hanok-street"],
     similar: ["when-life-gives-you-tangerines", "love-next-door", "twenty-five-twenty-one"],
+    icon: "mirror",
     editorialScore: 87, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/82024804",
@@ -279,6 +290,7 @@ export const DRAMA_ITEMS: Drama[] = [
     ],
     filmingPlaces: [], // 공식 관광 자료로 확인한 촬영지 없음
     similar: ["extraordinary-attorney-woo", "doctor-slump", "start-up"],
+    icon: "hospital",
     editorialScore: 80, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81739042",
@@ -301,6 +313,7 @@ export const DRAMA_ITEMS: Drama[] = [
     ],
     filmingPlaces: [], // 한국·일본·캐나다·이탈리아 촬영(위키백과). 국내 장소는 공식 자료로 확인 못 함
     similar: ["business-proposal", "king-the-land", "start-up"],
+    icon: "speech",
     editorialScore: 84, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81697769",
@@ -324,6 +337,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 아라동 역사문화탐방로(제주)·중앙탑공원(충주)(VK 'It's Okay to Crash Land on Itaewon in Beloved Summer'), 비내섬(충주, KN)
     filmingPlaces: [],
     similar: ["queen-of-tears", "goblin", "king-the-land"],
+    icon: "parachute",
     editorialScore: 94, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81159258",
@@ -347,6 +361,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // ikseon-dong-hanok-street: VS go!Seoul 2025.08 / 여행 목록 밖: 운현궁 양관(현재 닫힘)·일감호(VS 'Fantastical Scenes from Goblin'), 감고당길(VS go!Seoul 2024.07), 주문진 영진해변(KN)
     filmingPlaces: ["ikseon-dong-hanok-street"],
     similar: ["hotel-del-luna", "my-demon", "crash-landing-on-you"],
+    icon: "candle",
     editorialScore: 92, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81012510",
@@ -371,6 +386,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // noksapyeong-overpass(6화): VK '"Itaewon Class" Filming Locations'(2023-10-13) / 여행 목록 밖(같은 출처): 단밤(SEOUL BAM), 이태원 어린이공원, 남산 백범광장
     filmingPlaces: ["noksapyeong-overpass"],
     similar: ["start-up", "our-beloved-summer", "extraordinary-attorney-woo"],
+    icon: "beer",
     editorialScore: 85, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81193309",
@@ -394,6 +410,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // ikseon-dong-hanok-street: VS go!Seoul 2024.07 — 새서울(옛 호텔 세느, 돈화문로11길 28-5, 익선동) / 여행 목록 밖: 혜민당(중구, 같은 출처), 가림성(부여, KN)
     filmingPlaces: ["ikseon-dong-hanok-street"],
     similar: ["goblin", "my-demon", "bon-appetit-your-majesty"],
+    icon: "moon",
     editorialScore: 89, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81205849",
@@ -417,6 +434,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // ikseon-dong-hanok-street: VS go!Seoul 2024.07 — 새서울 아케이드(익선동) / 여행 목록 밖: 함덕해수욕장·관음사(13·14화 '황지사')·새연교(VK 'Extraordinary Jeju Filming Spots')
     filmingPlaces: ["ikseon-dong-hanok-street"],
     similar: ["resident-playbook", "start-up", "itaewon-class"],
+    icon: "whale",
     editorialScore: 90, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81518991",
@@ -440,6 +458,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 서울공예박물관 앞(노란 우산 장면)·연남장(VS 'the drama that stimulates your love cells'), 스카이베이 호텔 경포(강릉, VK 'Hocance')
     filmingPlaces: [],
     similar: ["king-the-land", "true-beauty", "can-this-love-be-translated"],
+    icon: "jobs",
     editorialScore: 88, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81509440",
@@ -463,6 +482,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 수원 화성 남포루(VK 'Today, I'm the Heroine of a K-drama')
     filmingPlaces: [],
     similar: ["lovely-runner", "reply-1988", "our-beloved-summer"],
+    icon: "fencing",
     editorialScore: 90, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81517168",
@@ -488,6 +508,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 감고당길(VS go!Seoul 2024.07)
     filmingPlaces: [],
     similar: ["business-proposal", "lovely-runner", "twenty-five-twenty-one"],
+    icon: "kbeauty",
     editorialScore: 84, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81410834",
@@ -510,6 +531,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 감고당길(VS go!Seoul 2024.07), 수원 행궁동·화성 궁평항(VK 'It's Okay to Crash Land on Itaewon in Beloved Summer')
     filmingPlaces: [],
     similar: ["twenty-five-twenty-one", "love-next-door", "itaewon-class"],
+    icon: "movie-camera",
     editorialScore: 86, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81486372",
@@ -533,6 +555,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 태극당(15화 데이트, 중구)·브라운핸즈 도곡점(정봉·미옥 첫 키스, 강남)(VS 'Finding the Traces of Reply 1988')
     filmingPlaces: [],
     similar: ["twenty-five-twenty-one", "when-life-gives-you-tangerines", "love-next-door"],
+    icon: "videocassette",
     editorialScore: 91, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/80188351",
@@ -555,6 +578,7 @@ export const DRAMA_ITEMS: Drama[] = [
     // 여행 목록 밖: 문화비축기지(샌드박스 건물, 상암)·합정돈(합정)·노들섬(VS 'Seoul as Seen in the Romantic TV Series Start-Up!')
     filmingPlaces: [],
     similar: ["itaewon-class", "twenty-five-twenty-one", "can-this-love-be-translated"],
+    icon: "laptop",
     editorialScore: 81, addedAt: "2026-10-19",
     sources: [
       "https://www.netflix.com/title/81290293",

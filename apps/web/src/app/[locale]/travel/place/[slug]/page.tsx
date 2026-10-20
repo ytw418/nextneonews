@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/Button";
 import { ListRow } from "@/components/ui/ListRow";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { isKnownItem } from "@/data/catalog";
+import { placeCover } from "@/data/cover";
 import { dramaText } from "@/data/drama";
 import { catalogPerson } from "@/data/drama/people";
 import { isNew, SECTION_TINT } from "@/data/sections";
@@ -30,7 +31,7 @@ import { getTravel, listTravel, travelSlugs, travelText } from "@/data/travel";
 import type { Place } from "@/data/travel/types";
 import { Link } from "@/i18n/navigation";
 import { breadcrumbLd, graph, placeLd } from "@/lib/jsonld-catalog";
-import { areaGlyph, clip, keepAll, naverMapUrl, placePrepTargets } from "@/lib/travel";
+import { clip, keepAll, naverMapUrl, placePrepTargets } from "@/lib/travel";
 import { guideAlternates, guideRobots } from "@/lib/guide-seo";
 import { localeHomePath, ogBase, SITE_URL } from "@/lib/url";
 
@@ -117,7 +118,6 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
   const name = place.text.name;
   const koName = ko.places[place.slug]?.name ?? name;
   const koAddress = ko.places[place.slug]?.address ?? place.text.address;
-  const glyph = areaGlyph(place.area, areaName, locale);
   const areaPlaces = all.filter((p) => p.area === place.area);
   const others = areaPlaces.filter((p) => p.slug !== place.slug);
   const prep = placePrepTargets(locale);
@@ -159,10 +159,13 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
         )}
       />
 
-      {/* 사진이 없는 커버라 낮은 히어로(5:2) — 지도 버튼·도장이 첫 화면(아이폰 15)에 들어오게 */}
+      {/* 낮은 히어로(5:2) — 지도 버튼·도장이 첫 화면(아이폰 15)에 들어오게. CC 사진이면 저작자 표기를 얹는다 */}
       <TypeCover
         tint={SECTION_TINT.travel}
-        glyph={glyph}
+        cover={placeCover(place)}
+        alt={name}
+        credit
+        priority
         variant="hero"
         label={t(`kinds.${place.kind}`)}
         isNew={isNew(place.addedAt)}
@@ -314,7 +317,7 @@ export default async function TravelPlacePage({ params }: PageProps<"/[locale]/t
                 slug={other.slug}
                 name={other.text.name}
                 sub={t(`kinds.${other.kind}`)}
-                glyph={glyph}
+                cover={placeCover(other)}
                 number={areaPlaces.indexOf(other) + 1}
                 locale={locale}
               />
