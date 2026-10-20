@@ -13,7 +13,6 @@ import { CategoryIcons } from "@/components/home/CategoryIcons";
 import { ContinueRail } from "@/components/home/ContinueRail";
 import { GuideHero } from "@/components/home/GuideHero";
 import { GuideTeaser } from "@/components/home/GuideTeaser";
-import { TopStories, topStorySlugs } from "@/components/home/TopStories";
 import { ChevronRightIcon } from "@/components/icons";
 import { QuizBanner } from "@/components/quiz/QuizBanner";
 import { BuzzTop5Rail } from "@/components/rankings/BuzzTop5Rail";
@@ -63,7 +62,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [t, tSite, tNav, tRank, tArticle, rows, total, weeklyPoll, miniChart, topSlugs] = await Promise.all([
+  const [t, tSite, tNav, tRank, tArticle, rows, total, weeklyPoll, miniChart] = await Promise.all([
     getTranslations("Home"),
     getTranslations("Site"),
     getTranslations("Nav"),
@@ -73,17 +72,19 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     countLatest(locale),
     weeklyPollView(locale),
     homeMiniChart(),
-    topStorySlugs(locale),
   ]);
   const items = await toFeedItems(rows, locale);
 
-  // 끼워 넣는 모듈 (3장 간격): 3 가이드 소개(뷰티) → 6 이번 주 팬 투표 → 9 광고(승인 전엔 피부 진단 배너) →
-  // 12 배우·드라마 차트 → 15 가이드 소개(여행) → 18 광고. 광고는 첫 화면에 두지 않고, 버튼 있는 모듈(투표) 바로 옆에 두지 않는다.
-  // 내용이 없으면(투표가 닫혔거나 차트가 아직 없으면) 그 자리는 건너뛴다
-  const rankingsRail: ReactNode = <BuzzTop5Rail locale={locale} />;
+  // 최신 피드 사이에 끼워 넣는 모듈 (3장 간격). 첫 화면은 가이드 → 최신 글이고, 일정·랭킹·투표는 내려 보는 길에 하나씩 만난다.
+  // 2 일정 → 5 K-pop 화제성 → 8 가이드 소개(뷰티) → 11 광고(승인 전엔 피부 진단) → 14 팬 투표 → 17 이번 주 인기 →
+  // 20 배우·드라마 차트 → 23 가이드 소개(여행) → 26 광고. 광고는 첫 화면·버튼 있는 모듈(투표) 바로 옆에 두지 않는다.
+  // 가로 레일·순위표는 자기 여백(gutter)이 있어 슬롯 여백을 되돌린다(-mx-gutter). 내용이 없는 모듈은 그 자리를 건너뛴다
+  const bleed = (node: ReactNode) => <div className="-mx-gutter">{node}</div>;
   const slots: Record<number, ReactNode> = {
-    3: <GuideTeaser section="beauty" locale={locale} />,
-    6: weeklyPoll && (
+    2: bleed(<UpcomingRail locale={locale} />),
+    5: bleed(<BuzzTop5Rail locale={locale} />),
+    8: <GuideTeaser section="beauty" locale={locale} />,
+    14: weeklyPoll && (
       <PollCard
         poll={weeklyPoll}
         locale={locale}
@@ -97,7 +98,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         }
       />
     ),
-    12: miniChart && (
+    17: bleed(<TrendingNow locale={locale} />),
+    20: miniChart && (
       <RankingMiniCard
         chart={miniChart.chart}
         title={tRank(`chart.${CHART_KEY[miniChart.chart]}.title`)}
@@ -106,7 +108,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         locale={locale}
       />
     ),
-    9: (
+    11: (
       <AdSlot
         label={tArticle("ad")}
         slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_1}
@@ -114,8 +116,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         className="my-3"
       />
     ),
-    15: <GuideTeaser section="travel" locale={locale} />,
-    18: <AdSlot label={tArticle("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_2} className="my-3" />,
+    23: <GuideTeaser section="travel" locale={locale} />,
+    26: <AdSlot label={tArticle("ad")} slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_2} className="my-3" />,
   };
 
   // 아직 글이 없는 언어(새로 연 언어): '최신' 제목 없이 메모 한 장 — 영어로 읽기와 일정으로 보낸다
@@ -136,7 +138,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     </EmptyMemo>
   );
 
-  // 홈 = 오늘의 소식. 3D 아이콘 카테고리 → 가이드 2×2 → 지금 많이 읽는 글(사진 카드 + 3줄) → (다시 온 독자) 이어 읽기 → 일정 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
+  // 홈 = 3D 아이콘 카테고리 → 가이드 2×2(제휴) → (다시 온 독자) 이어 읽기 → 최신 피드(모듈·광고를 사이에) → 더 보기.
   // 섹션 제목은 모두 위 24·아래 12
   return (
     <>
@@ -146,11 +148,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       </h1>
       <CategoryIcons locale={locale} />
       <GuideHero locale={locale} />
-      <TopStories locale={locale} />
       <ContinueRail />
-      <UpcomingRail locale={locale} />
-      {rankingsRail}
-      <TrendingNow locale={locale} exclude={topSlugs} />
       {items.length > 0 && <SectionHeader title={t("latest")} />}
       <Feed
         items={items}
