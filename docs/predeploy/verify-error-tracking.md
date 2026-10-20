@@ -41,3 +41,4 @@ Sentry 대신 이미 쓰는 PostHog(프로젝트 670566)의 에러 추적을 붙
 - Vercel 방화벽에 `/_next/static/*.js|map` Bypass 규칙은 넣어 뒀다(JS 는 200 이 됨. 업로드 방식에서는 없어도 된다).
 - 개인 키는 자동화 크롬(9222)의 PostHog 세션으로 만들었고 Vercel env 는 Vercel CLI 토큰으로 넣었다.
 - 로컬 확인: 업로드 빌드 → `761 chunk(s) uploaded`, 업로드 뒤 `.map` 삭제.
+- 운영 확인(e0e539f, 08:40 KST): 운영 React #418 이벤트의 프레임이 `resolved=1`, `react-dom-client.production.js`·`scheduler.production.js` 로 풀렸다. 확인용 이슈는 해결 처리.
