@@ -100,7 +100,7 @@
     "description": "Unnie Note không có tài khoản. Những gì chúng tôi lưu cho bình luận, bình chọn và cổ vũ (mã băm, không bao giờ là địa chỉ IP), phân tích truy cập (Google Analytics và PostHog), dữ liệu lưu trên thiết bị của bạn và thời gian lưu.",
     "lead": "Unnie Note không có tài khoản và không cần đăng ký. Chúng tôi thu thập ít nhất có thể, và trang này liệt kê tất cả.",
     "noAccountTitle": "Không có tài khoản",
-    "noAccount": "Bạn có thể đọc, bình luận, bình chọn và cổ vũ mà không cần đăng ký. Chúng tôi không bao giờ hỏi tên, email hay số điện thoại của bạn.",
+    "noAccount": "Bạn có thể đọc, bình luận, bình chọn và cổ vũ mà không cần đăng ký. Chúng tôi không hỏi tên hay số điện thoại của bạn, và chỉ nhận địa chỉ email khi bạn tự nhập để nhận tin (xem “Nhận tin qua email” bên dưới).",
     "hashTitle": "Bình luận, bình chọn và cổ vũ",
     "hash": "Chúng tôi không lưu địa chỉ IP. Khi bạn bình luận, bình chọn, bày tỏ cảm xúc hay cổ vũ, địa chỉ IP được chuyển thành một mã một chiều (mã băm HMAC dùng khóa bí mật) và chúng tôi chỉ giữ mã đó. Mã này giúp tính mỗi thiết bị một phiếu và chặn spam, nhưng không thể chuyển ngược lại thành địa chỉ IP của bạn.",
     "hashItems": [
@@ -108,6 +108,13 @@
       "Bình chọn, phản ứng và cổ vũ: lựa chọn của bạn, mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang, và với bình chọn và cổ vũ là quốc gia do nhà cung cấp hosting nhận diện (ví dụ “JP”) — không bao giờ là địa chỉ IP.",
       "Đánh giá sản phẩm, thủ thuật và phim: câu trả lời của bạn (với sản phẩm, kèm loại da nếu bạn đã chọn; với thủ thuật, là “Tò mò”, “Đã làm” hoặc “Bỏ qua”), mã băm địa chỉ IP và trình duyệt, ngôn ngữ của trang và quốc gia do nhà cung cấp hosting nhận diện — không bao giờ là địa chỉ IP. Chúng tôi dùng để hiển thị số liệu tổng, ví dụ bao nhiêu độc giả thích một sản phẩm, để mỗi thiết bị chỉ được tính một lần (cùng một kết nối internet chỉ được tính một lần mỗi ngày cho mỗi mục) và để chặn spam.",
       "Câu trả lời như “Đã làm” ở trang thủ thuật có thể là thông tin liên quan đến sức khỏe. Chúng tôi chỉ dùng chúng để hiển thị số liệu tổng ẩn danh. Chúng không gắn với tên, email hay tài khoản nào, chỉ với mã băm ở trên, nên chúng tôi không thể biết ai đã trả lời."
+    ],
+    "emailTitle": "Nhận tin qua email",
+    "email": "Ở danh sách đã lưu và trang kết quả loại da có một ô để lại email. Chúng tôi chỉ lưu khi bạn gửi, và chỉ dùng để báo cho bạn khi ứng dụng Unnie Note ra mắt và, nếu bạn đánh dấu, gửi tin chọn lọc hằng tuần. Hiện chúng tôi chưa gửi email nào. Khi bắt đầu, chúng tôi sẽ nhờ bạn xác nhận địa chỉ trước và mọi email đều có liên kết hủy đăng ký.",
+    "emailItems": [
+      "Những gì chúng tôi lưu: địa chỉ email, những gì bạn chọn (thông báo ra mắt ứng dụng, tin hằng tuần), ngôn ngữ trang, nơi bạn đăng ký (danh sách đã lưu hoặc kết quả loại da), loại thiết bị (iPhone, Android hoặc khác) và bạn có đăng ký từ ứng dụng ở Màn hình chính hay không, quốc gia do nhà cung cấp hosting cho biết, thời điểm bạn đồng ý và phiên bản chính sách bạn đã xem, cùng mã băm của địa chỉ IP (để chống spam).",
+      "Chúng tôi không liên kết email của bạn với kết quả loại da, danh sách đã lưu, đánh giá hay bình luận.",
+      "Chúng tôi cũng đếm số lượt đăng ký (ví dụ bao nhiêu lượt từ iPhone) để quyết định có làm ứng dụng hay không."
     ],
     "analyticsTitle": "Phân tích truy cập",
     "analytics": "Chúng tôi dùng Google Analytics 4 để đếm lượt truy cập và biết bài nào được đọc. Ở Khu vực Kinh tế châu Âu (EEA), Anh và Thụy Sĩ, lưu trữ cho phân tích và quảng cáo mặc định bị tắt (Google Consent Mode v2), nên không có cookie phân tích nào được đặt trừ khi bạn đồng ý trong thông báo xin đồng ý của Google. Google Analytics 4 không ghi lại hay lưu địa chỉ IP.",
@@ -146,12 +153,13 @@
       "Đánh giá sản phẩm, thủ thuật và phim: trong thời gian mục đó còn trên trang.",
       "Google Analytics: dữ liệu sự kiện được giữ 2 tháng, mức ngắn nhất trong cài đặt của Google.",
       "PostHog: dữ liệu sự kiện được giữ 1 năm.",
+      "Địa chỉ email: cho đến khi bạn hủy đăng ký hoặc yêu cầu xóa.",
       "Email bạn gửi: chỉ trong thời gian cần để xử lý yêu cầu của bạn.",
       "Nhà cung cấp hosting giữ nhật ký kỹ thuật ngắn hạn, có thể chứa địa chỉ IP, vì lý do bảo mật."
     ],
     "servicesTitle": "Dịch vụ chúng tôi dùng",
-    "services": "Vercel (hosting), Neon (cơ sở dữ liệu), cùng Google và PostHog (phân tích) xử lý dữ liệu thay chúng tôi. Google AdSense và Coupang Partners nói ở trên thu thập dữ liệu bằng cookie riêng theo chính sách quyền riêng tư của họ. Chúng tôi không tự bán dữ liệu hay trao dữ liệu cho nhà quảng cáo. Tuy vậy, theo luật của một số bang ở Mỹ, quảng cáo cá nhân hóa của Google có thể được xem là “chia sẻ”; bạn có thể tắt chúng trong Cài đặt quảng cáo của Google nói ở trên.",
+    "services": "Vercel (hosting), Supabase (cơ sở dữ liệu, máy chủ ở Singapore — địa chỉ email cũng được lưu ở đây), cùng Google và PostHog (phân tích) xử lý dữ liệu thay chúng tôi. Google AdSense và Coupang Partners nói ở trên thu thập dữ liệu bằng cookie riêng theo chính sách quyền riêng tư của họ. Chúng tôi không tự bán dữ liệu hay trao dữ liệu cho nhà quảng cáo. Tuy vậy, theo luật của một số bang ở Mỹ, quảng cáo cá nhân hóa của Google có thể được xem là “chia sẻ”; bạn có thể tắt chúng trong Cài đặt quảng cáo của Google nói ở trên.",
     "rightsTitle": "Bạn có thể làm gì",
-    "rights": "Bạn có thể xóa bình luận của mình trên cùng thiết bị. Tuy nhiên, Safari có thể xóa dữ liệu trang này lưu trên thiết bị nếu bạn không truy cập quá 7 ngày, và sau đó bạn cũng không thể xóa bình luận từ thiết bị đó. Bạn có thể xóa mọi thứ chúng tôi lưu trong trình duyệt bằng cách xóa dữ liệu của trang này trong cài đặt trình duyệt. Nếu không còn xóa được bình luận (hãy gửi kèm link bài viết) hoặc có yêu cầu khác, hãy <contact>liên hệ với chúng tôi</contact>."
+    "rights": "Bạn có thể xóa bình luận của mình trên cùng thiết bị. Tuy nhiên, Safari có thể xóa dữ liệu trang này lưu trên thiết bị nếu bạn không truy cập quá 7 ngày, và sau đó bạn cũng không thể xóa bình luận từ thiết bị đó. Bạn có thể xóa mọi thứ chúng tôi lưu trong trình duyệt bằng cách xóa dữ liệu của trang này trong cài đặt trình duyệt. Nếu không còn xóa được bình luận (hãy gửi kèm link bài viết) hoặc có yêu cầu khác, hãy <contact>liên hệ với chúng tôi</contact>. Nếu muốn ngừng nhận email hoặc xóa địa chỉ email, bạn cũng có thể <contact>liên hệ với chúng tôi</contact>. Người chịu trách nhiệm về dữ liệu cá nhân là người vận hành trang. Bạn có thể yêu cầu xem, sửa, xóa hoặc ngừng sử dụng dữ liệu của mình qua <contact>Liên hệ</contact>."
   }
 }

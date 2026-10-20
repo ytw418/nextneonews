@@ -50,7 +50,7 @@ export function PasteLink() {
           }}
           aria-invalid={invalid || undefined}
           aria-describedby={invalid ? `${id}-error` : undefined}
-          className="min-h-12 min-w-0 flex-1 rounded-btn bg-card px-4 text-t5 text-ink-900 ring-1 ring-line-strong placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-brand"
+          className="min-h-12 min-w-0 flex-1 rounded-btn bg-card px-4 text-t5 text-ink-900 ring-1 ring-line-control placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-brand"
         />
         <Button type="submit" size="l" variant="neutral" disabled={!value.trim()}>
           {t("savedPasteAction")}

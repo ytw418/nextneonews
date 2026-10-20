@@ -107,5 +107,16 @@
     "combination": "混合肌",
     "sensitive": "敏感肌",
     "normal": "普通肌"
-  }
+  },
+  "subscribeTitle": "アプリが出たら、いちばんにお知らせ",
+  "subscribeBody": "メールアドレスを残すと、Unnie Noteのアプリが出たときにメールでお知らせします。",
+  "subscribeEmail": "メールアドレス",
+  "subscribeSubmit": "通知を受け取る",
+  "subscribeNews": "週に一度、韓国のおすすめ情報も受け取る",
+  "subscribeConsent": "送信すると、15歳以上であること、選んだお知らせを送るためだけにこのアドレスを使うことに同意したことになります。配信停止か削除のご依頼まで保管します。<privacy>プライバシーポリシー</privacy>",
+  "subscribeDone": "登録しました。アプリが出たらメールでお知らせします。",
+  "subscribeDoneNews": "登録しました。アプリが出たらお知らせし、毎週のおすすめもお送りします。",
+  "subscribeInvalid": "メールアドレスをもう一度確認してください。",
+  "subscribeTooMany": "この接続からの登録が多すぎます。明日もう一度お試しください。",
+  "subscribeFailed": "保存できませんでした。少し待ってからもう一度お試しください。"
 }

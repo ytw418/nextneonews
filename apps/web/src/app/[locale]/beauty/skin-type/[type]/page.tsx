@@ -15,6 +15,7 @@ import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
 import { QuizShare, TrackQuizShare } from "@/components/quiz/QuizShare";
 import { ShareButton } from "@/components/ShareButton";
+import { SubscribeBox } from "@/components/SubscribeBox";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SKIN_TYPES, type SkinType } from "@/data/beauty/types";
@@ -204,6 +205,9 @@ export default async function SkinTypeResultPage({ params }: PageProps<"/[locale
           ))}
         </ul>
       </nav>
+
+      {/* 결과를 본 사람에게 연락 길 하나 (피부 타입과는 묶지 않는다 — 서버는 source 만 안다) */}
+      <SubscribeBox source="quiz" className="mt-8" />
 
       <AdSlot
         label={tArticle("ad")}

@@ -154,6 +154,7 @@
   "Install": {
     "title": "把 {name} 加到主畫面",
     "body": "像 App 一樣，一點就開。",
+    "why": "主畫面 App 的收藏會留比較久，現在的清單可用「用 LINE 傳給自己」搬過去。",
     "install": "安裝",
     "iosSteps": "在 Safari 點「分享」，再選「加入主畫面」。",
     "iosShare": "分享",

@@ -107,5 +107,16 @@
     "combination": "Kulit kombinasi",
     "sensitive": "Kulit sensitif",
     "normal": "Kulit normal"
-  }
+  },
+  "subscribeTitle": "Jadi yang pertama tahu saat aplikasinya rilis",
+  "subscribeBody": "Tinggalkan email, nanti kami kabari waktu aplikasi Unnie Note rilis.",
+  "subscribeEmail": "Email",
+  "subscribeSubmit": "Kabari saya",
+  "subscribeNews": "Kirimi juga rangkuman Korea seminggu sekali",
+  "subscribeConsent": "Dengan mengirim, kamu menyatakan sudah 15 tahun ke atas dan setuju email ini cuma dipakai buat kirim yang kamu pilih. Kami simpan sampai kamu berhenti berlangganan atau minta dihapus. <privacy>Kebijakan privasi</privacy>",
+  "subscribeDone": "Sudah terdaftar! Nanti kami kabari lewat email waktu aplikasinya rilis.",
+  "subscribeDoneNews": "Sudah terdaftar! Nanti kami kabari waktu aplikasinya rilis, plus rangkuman mingguan.",
+  "subscribeInvalid": "Cek lagi alamat email-nya, ya.",
+  "subscribeTooMany": "Kebanyakan percobaan dari koneksi ini. Coba lagi besok, ya.",
+  "subscribeFailed": "Gagal menyimpan. Coba lagi sebentar lagi, ya."
 }

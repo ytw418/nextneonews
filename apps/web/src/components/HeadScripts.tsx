@@ -1,5 +1,6 @@
 import { analyticsId } from "@/components/Analytics";
 import { adsenseClient, coupangGateScript } from "@/lib/ads";
+import { appModeScript } from "@/lib/app-mode";
 
 // 동의 배너 없이도 법을 지키도록 EEA·영국·스위스는 기본 거부로 시작한다 (Consent Mode v2).
 // 동의 창은 애드센스 '개인 정보 보호 및 메시지'의 유럽 규정 메시지(구글 CMP)가 띄우고, 고르면 값을 바꾼다
@@ -22,7 +23,8 @@ const CONSENT_DEFAULT = [
   `gtag('consent', 'default', ${JSON.stringify(consent("granted"))});`,
 ].join("\n");
 
-// <head> 인라인 스크립트: 동의 기본값(광고나 분석이 켜졌을 때), 쿠팡 배너 표시 여부. 운영 배포에서만.
+// <head> 인라인 스크립트: 동의 기본값(광고나 분석이 켜졌을 때), 쿠팡 배너 표시 여부(운영 배포에서만),
+// 앱 모드(UnnieNoteApp UA 일 때만 무언가 한다 — 쿠팡 게이트 뒤에 둬야 그 표시를 끈다. 로컬 검증 때문에 늘 넣는다).
 // 서버 HTML 에 그대로 넣어 그리기 전에 돈다 (next/script 는 클라이언트에서 끼워 넣는다)
 export function HeadScripts() {
   const consentDefault = adsenseClient() || analyticsId() ? CONSENT_DEFAULT : null;
@@ -31,6 +33,7 @@ export function HeadScripts() {
     <>
       {consentDefault && <script dangerouslySetInnerHTML={{ __html: consentDefault }} />}
       {coupangGate && <script dangerouslySetInnerHTML={{ __html: coupangGate }} />}
+      <script dangerouslySetInnerHTML={{ __html: appModeScript(analyticsId()) }} />
     </>
   );
 }

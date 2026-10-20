@@ -14,8 +14,8 @@ import {
   trustMessages,
 } from "@/components/info/InfoPage";
 
-// 문구를 바꾸면 이 날짜도 올린다
-const UPDATED = "2026-10-20";
+// 문구를 바꾸면 이 날짜도 올린다. 이메일 항목을 바꾸면 lib/subscribe-rules.ts 의 CONSENT_VERSION 도 같이
+const UPDATED = "2026-10-21";
 
 export const revalidate = 3600;
 
@@ -63,7 +63,7 @@ function KeyList({ items }: { items: { key: string; text: string }[] }) {
   );
 }
 
-// 개인정보: 회원가입 없음, IP 는 HMAC 해시로만(댓글·투표·항목 평가, 시술 경험 답은 익명 집계용), GA4·EEA 동의 모드, PostHog(쿠키 없음, 저장·평가 이벤트 포함),
+// 개인정보: 회원가입 없음, IP 는 HMAC 해시로만(댓글·투표·항목 평가, 시술 경험 답은 익명 집계용), 이메일 소식(SubscribeBox, lib/subscribe.ts), GA4·EEA 동의 모드, PostHog(쿠키 없음, 저장·평가 이벤트 포함),
 // 광고(애드센스)·제휴 배너(쿠팡)·쇼핑 링크 쿠키, 기기 저장 키 목록(저장 목록은 /api/saved 로 제목만 조회), 보관 기간.
 // 실제 전송·저장(components/saved/summaries.ts, SaveButton·ItemVote 의 track, lib/item-votes.ts)을 바꾸면 Trust/pages 문구도 같이 고친다
 export default async function PrivacyPage({ params }: PageProps<"/[locale]/privacy">) {
@@ -92,6 +92,11 @@ export default async function PrivacyPage({ params }: PageProps<"/[locale]/priva
       <InfoSection id="hash" title={t("hashTitle")}>
         <p>{t("hash")}</p>
         <InfoList items={t.raw("hashItems") as string[]} />
+      </InfoSection>
+
+      <InfoSection id="email" title={t("emailTitle")}>
+        <p>{t("email")}</p>
+        <InfoList items={t.raw("emailItems") as string[]} />
       </InfoSection>
 
       <InfoSection id="analytics" title={t("analyticsTitle")}>

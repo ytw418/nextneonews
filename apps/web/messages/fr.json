@@ -153,9 +153,10 @@
   },
   "Install": {
     "title": "Ajoutez {name} à votre écran d’accueil",
-    "body": "Ouvre-le en un geste, comme une appli.",
+    "body": "Ouvrez-le en un geste, comme une appli.",
+    "why": "Dans l’app, vos favoris restent plus longtemps. Transférez cette liste avec «\u00a0M’envoyer la liste\u00a0».",
     "install": "Installer",
-    "iosSteps": "Dans Safari, touche Partager, puis Sur l’écran d’accueil.",
+    "iosSteps": "Dans Safari, touchez Partager, puis Sur l’écran d’accueil.",
     "iosShare": "Partager",
     "iosAdd": "Sur l’écran d’accueil"
   }

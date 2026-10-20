@@ -34,7 +34,7 @@ const OLD_NAME_STORE = "hb:comment-nickname";
 
 // 17px(t5) 이상이라 아이폰이 입력칸에 초점이 갈 때 화면을 확대하지 않는다. 수정 칸도 같은 모양
 const COMPOSER_FIELD =
-  "block w-full min-h-12 max-h-[7.5em] resize-none field-sizing-content rounded-btn bg-card px-4 py-3 text-t5 text-ink-900 ring-1 ring-line-strong placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-brand";
+  "block w-full min-h-12 max-h-[7.5em] resize-none field-sizing-content rounded-btn bg-card px-4 py-3 text-t5 text-ink-900 ring-1 ring-line-control placeholder:text-ink-600 focus:outline-hidden! focus:ring-2 focus:ring-brand";
 const SHEET_ROW = "press-row flex min-h-14 w-full items-center px-6 text-t5 font-medium";
 
 type Message = { text: string; retryable: boolean } | null;

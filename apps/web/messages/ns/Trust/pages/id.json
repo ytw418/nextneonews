@@ -100,7 +100,7 @@
     "description": "Unnie Note tidak memakai akun. Apa yang kami simpan untuk komentar, polling, dan dukungan (berupa hash, bukan alamat IP), analitik (Google Analytics dan PostHog), data di perangkatmu, dan berapa lama disimpan.",
     "lead": "Unnie Note tidak punya akun dan tidak perlu mendaftar. Kami mengumpulkan sesedikit mungkin, dan semuanya tercantum di halaman ini.",
     "noAccountTitle": "Tanpa akun",
-    "noAccount": "Kamu bisa membaca, berkomentar, ikut polling, dan memberi dukungan tanpa mendaftar. Kami tidak pernah meminta nama, alamat email, atau nomor telepon.",
+    "noAccount": "Kamu bisa membaca, berkomentar, memberi suara, dan mendukung tanpa daftar. Kami tidak menanyakan nama atau nomor telepon, dan hanya menerima alamat email kalau kamu sendiri mengetiknya untuk dapat kabar (lihat “Kabar lewat email” di bawah).",
     "hashTitle": "Komentar, polling, dan dukungan",
     "hash": "Kami tidak menyimpan alamat IP. Saat kamu berkomentar, ikut polling, memberi reaksi, atau dukungan, alamat IP-mu diubah menjadi kode satu arah (hash HMAC dengan kunci rahasia) dan hanya kode itu yang disimpan. Kode ini membantu kami menghitung satu suara per perangkat dan mencegah spam, tetapi tidak bisa diubah kembali menjadi alamat IP-mu.",
     "hashItems": [
@@ -108,6 +108,13 @@
       "Polling, reaksi, dan dukungan: pilihanmu, kode hash alamat IP dan browser, bahasa halaman, dan untuk polling serta dukungan, negara yang dideteksi oleh penyedia hosting kami (misalnya “JP”) — tidak pernah alamat IP itu sendiri.",
       "Penilaian produk, prosedur, dan drama: jawabanmu (untuk produk, juga jenis kulitmu jika kamu memilihnya; untuk prosedur, apakah kamu Penasaran, Pernah, atau Lewati), kode hash alamat IP dan browser, bahasa halaman, dan negara yang dideteksi penyedia hosting kami — tidak pernah alamat IP itu sendiri. Kami memakainya untuk menampilkan total, misalnya berapa pembaca yang menyukai suatu produk, menghitung satu penilaian per perangkat (dan satu per item per hari dari koneksi internet yang sama), dan mencegah spam.",
       "Jawaban seperti “Pernah” di halaman prosedur bisa berkaitan dengan kesehatan. Kami hanya memakainya untuk menampilkan total anonim. Jawaban itu tidak pernah dikaitkan dengan nama, email, atau akun, hanya dengan kode hash di atas, jadi kami tidak bisa tahu siapa yang menjawab."
+    ],
+    "emailTitle": "Kabar lewat email",
+    "email": "Di daftar simpanan dan halaman hasil tipe kulit ada kolom untuk meninggalkan email. Kami hanya menyimpannya kalau kamu mengirimnya, dan hanya memakainya untuk mengabari saat aplikasi Unnie Note rilis serta, kalau kamu centang, mengirim rangkuman mingguan. Saat ini kami belum mengirim email apa pun. Saat mulai, kami akan minta kamu mengonfirmasi alamat dulu, dan setiap email punya tautan berhenti berlangganan.",
+    "emailItems": [
+      "Yang kami simpan: alamat email, pilihanmu (kabar rilis aplikasi, rangkuman mingguan), bahasa halaman, tempat kamu mendaftar (daftar simpanan atau hasil tipe kulit), jenis perangkat (iPhone, Android, atau lainnya) dan apakah dari aplikasi Layar Utama, negara yang dilaporkan penyedia hosting, waktu kamu setuju dan versi kebijakan ini yang kamu lihat, serta kode hash alamat IP (untuk mencegah spam).",
+      "Kami tidak menghubungkan emailmu dengan hasil tipe kulit, daftar simpanan, penilaian, atau komentar.",
+      "Kami juga menghitung jumlah pendaftar (misalnya berapa dari iPhone) untuk memutuskan apakah akan membuat aplikasi."
     ],
     "analyticsTitle": "Analitik",
     "analytics": "Kami memakai Google Analytics 4 untuk menghitung kunjungan dan melihat artikel mana yang dibaca. Di Kawasan Ekonomi Eropa (EEA), Inggris, dan Swiss, penyimpanan untuk analitik dan iklan dimatikan secara bawaan (Google Consent Mode v2), sehingga tidak ada cookie analitik yang dipasang di sana kecuali kamu menyetujuinya di pesan persetujuan Google. Google Analytics 4 tidak mencatat atau menyimpan alamat IP.",
@@ -146,12 +153,13 @@
       "Penilaian produk, prosedur, dan drama: selama item tersebut masih ada di situs.",
       "Google Analytics: data peristiwa disimpan selama 2 bulan, pengaturan terpendek di Google.",
       "PostHog: data peristiwa disimpan selama 1 tahun.",
+      "Alamat email: sampai kamu berhenti berlangganan atau minta dihapus.",
       "Email yang kamu kirim: hanya selama diperlukan untuk menangani permintaanmu.",
       "Penyedia hosting kami menyimpan log teknis jangka pendek, yang bisa berisi alamat IP, untuk keamanan."
     ],
     "servicesTitle": "Layanan yang kami pakai",
-    "services": "Vercel (hosting), Neon (database), serta Google dan PostHog (analitik) memproses data untuk kami. Google AdSense dan Coupang Partners yang dijelaskan di atas mengumpulkan data lewat cookie mereka sendiri sesuai kebijakan privasi masing-masing. Kami sendiri tidak menjual data atau menyerahkannya kepada pengiklan. Namun, menurut hukum beberapa negara bagian AS, iklan Google yang dipersonalisasi bisa dianggap sebagai “berbagi”; kamu bisa mematikannya di Setelan Iklan Google yang disebut di atas.",
+    "services": "Vercel (hosting), Supabase (database, server di Singapura — alamat email juga disimpan di sini), serta Google dan PostHog (analitik) memproses data untuk kami. Google AdSense dan Coupang Partners yang dijelaskan di atas mengumpulkan data lewat cookie mereka sendiri sesuai kebijakan privasi masing-masing. Kami sendiri tidak menjual data atau menyerahkannya kepada pengiklan. Namun, menurut hukum beberapa negara bagian AS, iklan Google yang dipersonalisasi bisa dianggap sebagai “berbagi”; kamu bisa mematikannya di Setelan Iklan Google yang disebut di atas.",
     "rightsTitle": "Pilihanmu",
-    "rights": "Kamu bisa menghapus komentarmu dari perangkat yang sama. Tapi Safari bisa menghapus data situs ini di perangkatmu kalau kamu tidak berkunjung lebih dari 7 hari, dan setelah itu kamu juga tidak bisa menghapus komentar dari perangkat itu. Kamu bisa menghapus semua yang kami simpan di browser dengan menghapus data situs ini di pengaturan browser. Kalau komentarmu tidak bisa dihapus lagi (sertakan tautan artikelnya) atau ada hal lain, <contact>hubungi kami</contact>."
+    "rights": "Kamu bisa menghapus komentarmu dari perangkat yang sama. Tapi Safari bisa menghapus data situs ini di perangkatmu kalau kamu tidak berkunjung lebih dari 7 hari, dan setelah itu kamu juga tidak bisa menghapus komentar dari perangkat itu. Kamu bisa menghapus semua yang kami simpan di browser dengan menghapus data situs ini di pengaturan browser. Kalau komentarmu tidak bisa dihapus lagi (sertakan tautan artikelnya) atau ada hal lain, <contact>hubungi kami</contact>. Kalau mau berhenti menerima email atau menghapus alamat email, <contact>hubungi kami</contact> juga. Penanggung jawab data pribadi adalah pengelola situs. Kamu bisa minta melihat, memperbaiki, menghapus, atau menghentikan penggunaan datamu lewat <contact>Kontak</contact>."
   }
 }

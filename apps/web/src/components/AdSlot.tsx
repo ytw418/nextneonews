@@ -26,7 +26,7 @@ export function AdSlot({
   if (!unit && fallback) return <>{fallback}</>;
   if (!unit && process.env.NODE_ENV === "production") return null;
   return (
-    <div className={`${className} [&:has([data-ad-blocked])]:hidden [&:has([data-ad-status=unfilled])]:hidden`}>
+    <div className={`app-hide ${className} [&:has([data-ad-blocked])]:hidden [&:has([data-ad-status=unfilled])]:hidden`}>
       <p className="mb-1 text-st12 text-ink-600">{label}</p>
       <div className="min-h-[280px]">
         {unit ?? <div className="h-[280px] rounded-card border border-dashed border-line" />}

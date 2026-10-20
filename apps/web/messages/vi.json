@@ -154,6 +154,7 @@
   "Install": {
     "title": "Thêm {name} vào màn hình chính",
     "body": "Mở chỉ với một chạm, như một ứng dụng.",
+    "why": "Mục lưu trong ứng dụng giữ được lâu hơn. Chuyển danh sách này bằng “Gửi cho chính mình”.",
     "install": "Cài đặt",
     "iosSteps": "Trong Safari, chạm Chia sẻ rồi chọn Thêm vào MH chính.",
     "iosShare": "Chia sẻ",

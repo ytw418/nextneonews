@@ -191,7 +191,7 @@ export function ArticleActionBar({ locale, article: initial, upNextHref }: Props
           shown ? "" : "pointer-events-none translate-y-4 opacity-0"
         }`}
       >
-        <button type="button" onClick={openComments} aria-label={t("barComments", { count: article.commentCount })} className={`${ITEM} text-ink-700`}>
+        <button type="button" onClick={openComments} aria-label={t("barComments", { count: article.commentCount })} className={`app-hide ${ITEM} text-ink-700`}>
           <CommentIcon className="size-5" />
           {article.commentCount > 0 && <span className="tabular-nums">{article.commentCount}</span>}
         </button>

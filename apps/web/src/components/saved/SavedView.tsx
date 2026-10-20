@@ -8,13 +8,15 @@ import { CoverArt } from "@/components/guide/CoverArt";
 import { ItemRow } from "@/components/guide/ItemRow";
 import { PlusSquareIcon, ShareIcon } from "@/components/icons";
 import { SaveButton } from "@/components/SaveButton";
+import { SubscribeBox } from "@/components/SubscribeBox";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { toast } from "@/components/ui/Toast";
 import { SAVED_KINDS, SECTION_TINT } from "@/data/sections";
 import type { SavedKind } from "@/data/types";
 import { Link } from "@/i18n/navigation";
-import { isInAppBrowser } from "@/lib/install";
+import { useAppMode } from "@/lib/use-app-mode";
+import { isInAppBrowser, isStandalone } from "@/lib/install";
 import { addSavedMany, readSaved, removeSaved, SAVED_SHARE_MAX, type SavedItem, useSaved } from "@/lib/saved";
 import { track } from "@/lib/track";
 
@@ -33,11 +35,6 @@ const monthOf = (ms: number) => {
   return `${d.getFullYear()}-${d.getMonth()}`;
 };
 const thisMonth = () => monthOf(Date.now());
-
-// 홈 화면 앱으로 열었는지 (그때는 설치 안내 대신 복원 링크 붙여넣기 칸을 둔다)
-const standalone = () =>
-  window.matchMedia("(display-mode: standalone)").matches ||
-  (navigator as Navigator & { standalone?: boolean }).standalone === true;
 
 const inAppBrowser = () => isInAppBrowser(navigator.userAgent);
 
@@ -65,7 +62,9 @@ export function SavedView({ picks }: { picks: CatalogSummary[] }) {
     () => false,
   );
   const month = useSyncExternalStore(noSubscribe, thisMonth, () => "");
-  const installed = useSyncExternalStore(noSubscribe, standalone, () => true);
+  // 홈 화면 앱으로 열었는지 (그때는 설치 안내 대신 복원 링크 붙여넣기 칸을 둔다)
+  const installed = useSyncExternalStore(noSubscribe, isStandalone, () => true);
+  const app = useAppMode(); // 언니노트 앱: 설치 안내 대신 붙여넣기 칸 (앱 저장으로 옮겨진다)
   const inApp = useSyncExternalStore(noSubscribe, inAppBrowser, () => false);
   const summaries = useSummaries(items, locale);
   const [filter, setFilter] = useState<Filter>("all");
@@ -223,13 +222,15 @@ export function SavedView({ picks }: { picks: CatalogSummary[] }) {
         </>
       )}
 
-      {hydrated && !installed && (
+      {hydrated && !installed && !app && (
         <p className="mx-gutter mt-6 flex items-start gap-2 text-t7 text-ink-600">
           <PlusSquareIcon className="size-5 shrink-0" />
           {t("savedInstall")}
         </p>
       )}
-      {hydrated && installed && <PasteLink />}
+      {hydrated && (installed || app) && <PasteLink />}
+      {/* 기기 밖에 남는 유일한 연락 길 (저장 목록과는 묶지 않는다). 앱이 나오면 알림 + 주간 소식 */}
+      {hydrated && <SubscribeBox source="saved" className="mt-8" />}
     </div>
   );
 }

@@ -154,6 +154,7 @@
   "Install": {
     "title": "Tambahkan {name} ke layar utama",
     "body": "Buka dengan sekali ketuk, seperti aplikasi.",
+    "why": "Simpanan di aplikasi bertahan lebih lama. Pindahkan daftar ini lewat “Kirim ke diri sendiri”.",
     "install": "Pasang",
     "iosSteps": "Di Safari, ketuk Bagikan, lalu pilih Tambah ke Layar Utama.",
     "iosShare": "Bagikan",

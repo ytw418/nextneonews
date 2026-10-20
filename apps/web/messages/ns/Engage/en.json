@@ -107,5 +107,16 @@
     "combination": "Combination skin",
     "sensitive": "Sensitive skin",
     "normal": "Normal skin"
-  }
+  },
+  "subscribeTitle": "Be first to get the app",
+  "subscribeBody": "Leave your email and we’ll let you know when the Unnie Note app is out.",
+  "subscribeEmail": "Email",
+  "subscribeSubmit": "Notify me",
+  "subscribeNews": "Also send me the weekly Korea picks (once a week)",
+  "subscribeConsent": "By submitting, you confirm you’re 15 or older and agree we use this email only to send what you chose. We keep it until you unsubscribe or ask us to delete it. <privacy>Privacy policy</privacy>",
+  "subscribeDone": "You’re on the list. We’ll email you when the app is out.",
+  "subscribeDoneNews": "You’re on the list. We’ll email you when the app is out, plus the weekly picks.",
+  "subscribeInvalid": "Please check the email address.",
+  "subscribeTooMany": "Too many tries from this connection. Please try again tomorrow.",
+  "subscribeFailed": "Couldn’t save it. Please try again in a moment."
 }

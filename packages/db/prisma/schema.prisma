@@ -460,3 +460,27 @@ model RankingSnapshot {
   @@unique([chart, scope, period])
   @@index([chart, scope, publishedAt])
 }
+
+// 이메일 한 칸 '앱이 나오면 알림 + 주간 소식' (/saved·피부 타입 결과, docs/decisions/app-2026-10-21.md). 로그인이 아니다.
+// 지금은 받아 두기만 하고 보내지 않는다(확인 메일·발송은 Resend 설정 뒤). 앱을 만들지 정하는 숫자(iOS 대기 명단)도 여기서 센다.
+// 피부 타입·저장 목록·평가와 묶지 않는다(시술 원칙, docs/predeploy/login.md). IP 는 해시만. 마이그레이션이 RLS 를 켠다(Supabase Data API 로 안 보이게)
+model Subscriber {
+  id             String    @id @default(cuid())
+  email          String    @unique // 소문자로 맞춘 주소
+  locale         String
+  source         String // "saved" | "quiz" — 어느 칸에서 냈나
+  wantsApp       Boolean   @default(true) // 앱이 나오면 알림 (칸을 낸 것 자체가 이 신청)
+  wantsNews      Boolean   @default(false) // 주간 소식 (따로 체크한 사람만)
+  platform       String // "web" | "pwa" | "app" — 브라우저·홈 화면 앱·언니노트 앱 중 어디서 냈나
+  os             String // "ios" | "android" | "other" (UA)
+  country        String?
+  consentAt      DateTime // 처음 동의한 때 (다시 내도 바꾸지 않는다)
+  consentVersion String // 동의할 때 본 처리방침 판 (날짜)
+  ipHash         String // 도배 제한용 — 구독 전용 키·KST 날짜를 섞은 해시라 다른 표의 ipHash 와 이어지지 않는다 (lib/subscribe.ts)
+  verifiedAt     DateTime? // 확인 메일 링크를 누른 때 (발송을 붙인 뒤)
+  unsubAt        DateTime? // 수신 거부한 때 (되돌리기는 확인 메일 링크로만 — 다시 내도 행은 그대로)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([ipHash, updatedAt])
+}

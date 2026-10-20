@@ -100,7 +100,7 @@
     "description": "Unnie Note has no accounts. What we store for comments, votes and cheers (hashed, never IP addresses), analytics (Google Analytics and PostHog), what we save on your device and for how long.",
     "lead": "Unnie Note has no accounts and no sign-up. We collect as little as we can, and this page lists all of it.",
     "noAccountTitle": "No accounts",
-    "noAccount": "You can read, comment, vote and cheer without signing up. We never ask for your name, email address or phone number.",
+    "noAccount": "You can read, comment, vote and cheer without signing up. We never ask for your name or phone number, and we only get your email address if you type it in yourself to get updates (see “Email updates” below).",
     "hashTitle": "Comments, votes and cheers",
     "hash": "We don't store IP addresses. When you comment, vote, react or cheer, your IP address is turned into a one-way code (an HMAC hash with a secret key) and only that code is kept. It lets us count one vote per device and stop spam, but it can't be turned back into your IP address.",
     "hashItems": [
@@ -108,6 +108,13 @@
       "Votes, reactions and cheers: your choice, hashed codes of your IP address and browser, the page language and, for polls and cheers, the country our host detects (such as “JP”) — never the IP address itself.",
       "Product, procedure and drama ratings: your answer (for products, also your skin type if you picked one; for procedures, whether you're curious, have had it or would pass), hashed codes of your IP address and browser, the page language and the country our host detects — never the IP address itself. We use them to show totals, such as how many readers liked a product, to count one rating per device (and one per item per day from the same internet connection) and to stop spam.",
       "Answers such as “I’ve had it” on procedure pages can be health-related. We use them only to show anonymous totals. They're never linked to a name, email address or account, only to the hashed codes above, so we can't tell who answered."
+    ],
+    "emailTitle": "Email updates",
+    "email": "The saved list and the skin-type results have a box where you can leave your email. We keep it only if you send it, and use it only to email you when the Unnie Note app comes out and, if you ticked the box, to send the weekly picks. We don’t send any emails yet. When we start, we’ll first ask you to confirm your address, and every email will have an unsubscribe link.",
+    "emailItems": [
+      "What we keep: your email address, what you chose (app launch, weekly picks), the page language, where you signed up (saved list or skin-type results), your device type (iPhone, Android or other) and whether you used the Home Screen app, the country our hosting provider reports, when you agreed and which version of this policy you saw, and a hashed code of your IP address (to stop spam).",
+      "We don’t link your email to your skin-type result, saved list, ratings or comments.",
+      "We also count sign-ups (for example, how many came from iPhones) to decide whether to build an app."
     ],
     "analyticsTitle": "Analytics",
     "analytics": "We use Google Analytics 4 to count visits and see which articles are read. In the European Economic Area, the UK and Switzerland, analytics and ad storage are off by default (Google Consent Mode v2), so no analytics cookies are set there unless you agree in Google's consent message. Google Analytics 4 doesn't log or store IP addresses.",
@@ -146,12 +153,13 @@
       "Product, procedure and drama ratings: for as long as the item stays on the site.",
       "Google Analytics: event data is kept for 2 months, Google's shortest setting.",
       "PostHog: event data is kept for 1 year.",
+      "Email address: until you unsubscribe or ask us to delete it.",
       "Emails you send us: only as long as we need to handle your request.",
       "Our hosting provider keeps short-lived technical logs, which can include IP addresses, for security."
     ],
     "servicesTitle": "Services we use",
-    "services": "Vercel (hosting), Neon (database), and Google and PostHog (analytics) process data for us. Google AdSense and Coupang Partners, described above, collect data with their own cookies under their own privacy policies. We don't sell your data or hand it to advertisers ourselves. Under some US state laws, Google's personalised ads may count as “sharing”; you can turn them off in Google Ads Settings (see above).",
+    "services": "Vercel (hosting), Supabase (database, servers in Singapore — your email address is stored there), and Google and PostHog (analytics) process data for us. Google AdSense and Coupang Partners, described above, collect data with their own cookies under their own privacy policies. We don't sell your data or hand it to advertisers ourselves. Under some US state laws, Google's personalised ads may count as “sharing”; you can turn them off in Google Ads Settings (see above).",
     "rightsTitle": "Your choices",
-    "rights": "You can delete your own comments from the same device. Safari may clear what this site stored on your device if you don't visit for more than 7 days, and after that you can't delete them from that device either. You can clear everything we saved in your browser by deleting this site's data in your browser settings. If you can no longer delete a comment (include the article link) or need anything else, <contact>contact us</contact>."
+    "rights": "You can delete your own comments from the same device. Safari may clear what this site stored on your device if you don't visit for more than 7 days, and after that you can't delete them from that device either. You can clear everything we saved in your browser by deleting this site's data in your browser settings. If you can no longer delete a comment (include the article link) or need anything else, <contact>contact us</contact>. To stop email updates or delete your email address, <contact>contact us</contact> too. The person responsible for personal data is the site operator; you can ask to see, correct, delete or stop the use of your data through <contact>Contact</contact>."
   }
 }

@@ -107,5 +107,16 @@
     "combination": "Peau mixte",
     "sensitive": "Peau sensible",
     "normal": "Peau normale"
-  }
+  },
+  "subscribeTitle": "Soyez au courant dès la sortie de l’app",
+  "subscribeBody": "Laissez votre e-mail\u00a0: nous vous écrirons quand l’app Unnie Note sera disponible.",
+  "subscribeEmail": "E-mail",
+  "subscribeSubmit": "Me prévenir",
+  "subscribeNews": "Recevoir aussi la sélection Corée chaque semaine",
+  "subscribeConsent": "En envoyant ce formulaire, vous confirmez avoir 15 ans ou plus et acceptez que cette adresse serve uniquement à envoyer ce que vous avez choisi. Nous la gardons jusqu’à votre désinscription ou votre demande de suppression. <privacy>Politique de confidentialité</privacy>",
+  "subscribeDone": "C’est noté\u00a0! Nous vous écrirons à la sortie de l’app.",
+  "subscribeDoneNews": "C’est noté\u00a0! Nous vous écrirons à la sortie de l’app et vous enverrons la sélection de la semaine.",
+  "subscribeInvalid": "Vérifiez l’adresse e-mail.",
+  "subscribeTooMany": "Trop d’essais depuis cette connexion. Réessayez demain.",
+  "subscribeFailed": "Impossible d’enregistrer. Réessayez dans un instant."
 }

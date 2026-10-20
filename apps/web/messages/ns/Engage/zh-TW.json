@@ -107,5 +107,16 @@
     "combination": "混合肌",
     "sensitive": "敏感肌",
     "normal": "中性肌"
-  }
+  },
+  "subscribeTitle": "App 上線時第一個通知你",
+  "subscribeBody": "留下 Email，Unnie Note App 上線時寄信通知你",
+  "subscribeEmail": "Email",
+  "subscribeSubmit": "通知我",
+  "subscribeNews": "也要每週收一次韓國精選",
+  "subscribeConsent": "送出即表示我已滿 15 歲，並同意這個信箱只用來寄我選的內容，保存到我取消訂閱或要求刪除為止。<privacy>隱私權政策</privacy>",
+  "subscribeDone": "登記好了！App 上線時會寄信通知你",
+  "subscribeDoneNews": "登記好了！App 上線時會通知你，每週也會寄精選給你",
+  "subscribeInvalid": "再確認一下 Email 地址吧",
+  "subscribeTooMany": "這個網路登記太多次了，明天再試試吧",
+  "subscribeFailed": "沒能儲存，等一下再試一次吧"
 }

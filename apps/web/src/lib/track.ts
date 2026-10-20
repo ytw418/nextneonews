@@ -1,7 +1,9 @@
+import { appPlatform } from "@/lib/install";
 import { capturePosthog } from "@/lib/posthog";
 
 // 분석 이벤트. GA4(gtag 는 운영에서 GA ID 가 있을 때만, components/Analytics.tsx)와
-// PostHog(운영에서만 init, instrumentation-client.ts)에 같은 이름으로 보낸다. 둘 다 없으면 아무것도 하지 않는다
+// PostHog(운영에서만 init, instrumentation-client.ts)에 같은 이름으로 보낸다. 둘 다 없으면 아무것도 하지 않는다.
+// 이벤트마다 platform(pwa·web)을 붙인다 — PostHog 는 쿠키 없는 모드라 한 번 정한 속성(super property)이 남지 않는다
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -34,10 +36,19 @@ export type TrackEvent =
   | "guide_teaser_click"
   | "cross_rail_click"
   | "visited_stamp"
-  | "buy_box_view";
+  | "buy_box_view"
+  // ── 앱 수요 재기 (docs/decisions/app-2026-10-21.md). mode(android·ios)·trigger(scroll·save)·outcome(accepted·dismissed)·source(saved·quiz)
+  | "install_prompt_view"
+  | "install_click"
+  | "install_dismiss"
+  | "app_installed"
+  | "pwa_open"
+  | "subscribe_view"
+  | "subscribe_submit";
 
 export function track(name: TrackEvent, params?: Record<string, string | number | boolean>): void {
   if (typeof window === "undefined") return;
-  window.gtag?.("event", name, params ?? {});
-  capturePosthog(name, params); // posthog-js 는 첫 화면 뒤에 따로 불러온다 (lib/posthog.ts)
+  const props = { ...params, platform: appPlatform() };
+  window.gtag?.("event", name, props);
+  capturePosthog(name, props); // posthog-js 는 첫 화면 뒤에 따로 불러온다 (lib/posthog.ts)
 }

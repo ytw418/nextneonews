@@ -87,7 +87,7 @@ export function QuestionChecklist({
                 <input type="checkbox" checked={on} onChange={() => toggle(i)} className="peer sr-only" />
                 <span
                   aria-hidden
-                  className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-line-strong text-white peer-checked:border-brand peer-checked:bg-brand peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand"
+                  className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border-2 border-line-control text-white peer-checked:border-brand peer-checked:bg-brand peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand"
                 >
                   {on && <CheckIcon className="size-4" />}
                 </span>

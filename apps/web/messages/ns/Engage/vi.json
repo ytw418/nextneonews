@@ -107,5 +107,16 @@
     "combination": "Da hỗn hợp",
     "sensitive": "Da nhạy cảm",
     "normal": "Da thường"
-  }
+  },
+  "subscribeTitle": "Biết tin đầu tiên khi có ứng dụng",
+  "subscribeBody": "Để lại email, chúng tôi sẽ báo cho bạn khi ứng dụng Unnie Note ra mắt.",
+  "subscribeEmail": "Email",
+  "subscribeSubmit": "Báo cho tôi",
+  "subscribeNews": "Nhận thêm tin Hàn Quốc chọn lọc mỗi tuần một lần",
+  "subscribeConsent": "Khi gửi, bạn xác nhận đã đủ 15 tuổi và đồng ý để email này chỉ được dùng cho những gì bạn đã chọn. Chúng tôi lưu email cho đến khi bạn hủy đăng ký hoặc yêu cầu xóa. <privacy>Chính sách quyền riêng tư</privacy>",
+  "subscribeDone": "Đã đăng ký! Chúng tôi sẽ email cho bạn khi ứng dụng ra mắt.",
+  "subscribeDoneNews": "Đã đăng ký! Chúng tôi sẽ báo khi ứng dụng ra mắt và gửi tin chọn lọc hằng tuần.",
+  "subscribeInvalid": "Hãy kiểm tra lại địa chỉ email.",
+  "subscribeTooMany": "Kết nối này đã đăng ký quá nhiều lần. Hãy thử lại vào ngày mai.",
+  "subscribeFailed": "Chưa lưu được. Hãy thử lại sau ít phút."
 }

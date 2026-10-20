@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { toast } from "@/components/ui/Toast";
 import { usePathname } from "@/i18n/navigation";
 import { sessionGet, sessionSet, storageGet, storageSet } from "@/lib/storage";
+import { isApp } from "@/lib/app-mode";
 
 // 그 언어 사용자에게 그 언어로 보여 준다 (지금 페이지 언어가 아니라)
 const READ_IN: Record<Locale, string> = {
@@ -49,6 +50,7 @@ export function LocaleSuggest() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (isApp()) return; // 언니노트 앱은 앱이 고른 언어로 연다
     // 페이지를 옮기면 대체 링크도 바뀌므로 경로마다 다시 찾는다 (head 가 바뀐 뒤에 읽게 한 프레임 미룬다)
     const id = requestAnimationFrame(() => {
       if (sessionGet(SEEN)) return;

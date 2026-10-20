@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+import { isApp } from "@/lib/app-mode";
 import { saveDataOn } from "@/lib/save-data";
 
 declare global {
@@ -19,7 +20,8 @@ export function AdsenseUnit({ client, slot }: { client: string; slot: string }) 
     const ins = ref.current;
     if (!ins || ins.dataset.adsbygoogleStatus) return;
     // 데이터 절약 모드면 광고를 요청하지 않고 자리째 숨긴다 (AdSlot). 광고를 내지 않는 것은 정책 위반이 아니다
-    if (saveDataOn()) {
+    // 언니노트 앱도 같다: iOS 1판은 광고 없음, Android 는 웹뷰 광고 등록(WebView API for Ads)을 붙인 뒤 (lib/app-mode.ts)
+    if (saveDataOn() || isApp()) {
       ins.dataset.adBlocked = "";
       return;
     }

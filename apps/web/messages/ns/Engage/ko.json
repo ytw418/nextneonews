@@ -107,5 +107,16 @@
     "combination": "복합성",
     "sensitive": "민감성",
     "normal": "중성"
-  }
+  },
+  "subscribeTitle": "앱이 나오면 먼저 알려 드릴게요",
+  "subscribeBody": "이메일을 남기면 Unnie Note 앱이 나올 때 메일로 알려 드려요",
+  "subscribeEmail": "이메일",
+  "subscribeSubmit": "알림 받기",
+  "subscribeNews": "매주 한 번 한국 소식도 받을게요(광고성 정보 포함)",
+  "subscribeConsent": "만 15세 이상이며, 고른 소식을 보내는 데만 이 주소를 쓰는 데 동의해요. 그만 받거나 지워 달라고 할 때까지 보관해요. <privacy>개인정보처리방침</privacy>",
+  "subscribeDone": "신청했어요. 앱이 나오면 메일로 알려 드릴게요",
+  "subscribeDoneNews": "신청했어요. 앱이 나오면 알려 드리고, 매주 소식도 보내 드릴게요",
+  "subscribeInvalid": "이메일 주소를 다시 확인해 주세요",
+  "subscribeTooMany": "이 인터넷 연결에서 너무 많이 신청했어요. 내일 다시 해 주세요",
+  "subscribeFailed": "저장하지 못했어요. 잠시 뒤 다시 해 주세요"
 }

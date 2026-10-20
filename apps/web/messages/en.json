@@ -154,6 +154,7 @@
   "Install": {
     "title": "Add {name} to your Home Screen",
     "body": "Open it in one tap, just like an app.",
+    "why": "Saves last longer in the app. Move this list with “Send to myself”.",
     "install": "Install",
     "iosSteps": "In Safari, tap Share, then Add to Home Screen.",
     "iosShare": "Share",

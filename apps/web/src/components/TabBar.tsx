@@ -15,6 +15,7 @@ import {
 import { TrophyFilledIcon, TrophyIcon } from "@/components/rankings/icons";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useSaved } from "@/lib/saved";
+import { useAppMode } from "@/lib/use-app-mode";
 
 // 실제 목적지만 탭이 된다: 홈·랭킹·가이드(가운데)·일정·저장. 언어·설정·더보기는 탭에 두지 않는다.
 // 일정(D-day 티켓)은 이 서비스의 차별점이라 메뉴 안에 두지 않고 탭으로 꺼냈다.
@@ -53,7 +54,10 @@ export function TabBar() {
   const pathname = usePathname();
   const savedCount = useSaved().length;
   const lite = useSyncExternalStore(noSubscribe, saveData, () => false);
+  const app = useAppMode();
 
+  // 언니노트 앱에서는 네이티브 탭바가 이 자리를 쓴다 (하이드레이션 전에는 .app-hide 가 가린다)
+  if (app) return null;
   // 일정 상세는 하단 고정 CTA 가, 글 화면은 글 액션 바(ArticleActionBar)가 이 자리를 쓴다
   if (/^\/schedule\/[^/]+/.test(pathname) || /^\/news\/[^/]+$/.test(pathname)) return null;
   // 인물 페이지는 랭킹에서 들어가는 화면이라 랭킹 탭에 불을 켠다
@@ -70,7 +74,7 @@ export function TabBar() {
   return (
     <nav
       aria-label={t.Nav("main")}
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bar pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
+      className="app-hide fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bar pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-[640px]">
       {TABS.map(({ href, ns, key, Icon, IconOn }) => {

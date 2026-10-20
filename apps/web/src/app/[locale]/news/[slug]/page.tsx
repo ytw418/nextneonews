@@ -461,8 +461,11 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/news/
 
       {upNext && <UpNextCard item={upNext} title={tEngage("upNext")} />}
 
-      <div aria-hidden className="mt-10 h-4 bg-band" />
-      <Comments articleId={article.id} initialCount={comments} />
+      {/* 언니노트 앱 1판은 댓글을 숨긴다 (Apple 심사 1.2 — 사용자 차단 기능이 아직 없다) */}
+      <div className="app-hide">
+        <div aria-hidden className="mt-10 h-4 bg-band" />
+        <Comments articleId={article.id} initialCount={comments} />
+      </div>
       <ViewPing
         articleId={article.id}
         slug={slug}

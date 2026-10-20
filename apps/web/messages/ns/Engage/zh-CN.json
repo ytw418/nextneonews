@@ -107,5 +107,16 @@
     "combination": "混合皮",
     "sensitive": "敏感肌",
     "normal": "中性皮"
-  }
+  },
+  "subscribeTitle": "App 上线时第一时间通知你",
+  "subscribeBody": "留下邮箱，Unnie Note App 上线时发邮件通知你",
+  "subscribeEmail": "邮箱",
+  "subscribeSubmit": "通知我",
+  "subscribeNews": "也要每周收一次韩国精选",
+  "subscribeConsent": "提交即表示我已满 15 岁，并同意这个邮箱只用来发送我选的内容，保存到我退订或要求删除为止。<privacy>隐私政策</privacy>",
+  "subscribeDone": "登记好了！App 上线时会发邮件通知你",
+  "subscribeDoneNews": "登记好了！App 上线时会通知你，每周也会发精选给你",
+  "subscribeInvalid": "再检查一下邮箱地址吧",
+  "subscribeTooMany": "这个网络登记次数太多了，明天再试试吧",
+  "subscribeFailed": "没能保存，等一下再试一次吧"
 }

@@ -19,7 +19,8 @@
   --bar: rgba(255, 255, 255, 0.985); /* 상단바. .94 도 굵은 큰 제목은 블러를 뚫고 비쳐 보였다 */
   --dim: rgba(20, 14, 24, 0.45); /* 시트 뒤. 옅은 회색은 크림 바탕을 탁하게 하고 시트 가장자리가 묻혔다 */
   --line: #eeeef0;
-  --line-strong: #dcdce0; /* 시트 손잡이, 입력칸 테두리 */
+  --line-strong: #dcdce0; /* 시트 손잡이 */
+  --line-control: #8e8e97; /* 입력칸·체크 원 테두리 — 흰 바탕 3.25:1 (WCAG 1.4.11 조작 요소 3:1) */
 
   /* 글자 잉크 4단계. 투명도로 흐리게 만들지 않는다 */
   --ink-900: #121214; /* 제목·주요 UI */
@@ -89,6 +90,15 @@
   --bottom-ui: calc(env(safe-area-inset-bottom) + 56px); /* 풀폭 탭바 높이. 글 화면은 ArticleActionBar 가 잰 값으로 바꾼다 */
 }
 
+/* 언니노트 앱(UnnieNoteApp UA, lib/app-mode.ts)에서는 웹 탭바 대신 네이티브 탭바가 있다.
+   웹뷰의 safe-area 가 네이티브 탭바를 포함하지 않으면 앱이 --app-bottom 을 심는다 */
+html[data-app] {
+  --bottom-ui: var(--app-bottom, calc(env(safe-area-inset-bottom) + 8px));
+}
+html[data-app] .app-hide {
+  display: none !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #111113;
@@ -99,6 +109,7 @@
     --dim: rgba(0, 0, 0, 0.56);
     --line: #2c2c31;
     --line-strong: #3d3d43;
+    --line-control: #7a7a83; /* 카드 #1c1c1f 위 4.0:1 */
 
     --ink-900: #f4f4f5;
     --ink-700: #d4d4d8;
@@ -214,6 +225,7 @@
   --color-dim: var(--dim);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
+  --color-line-control: var(--line-control);
   --color-ink-900: var(--ink-900);
   --color-ink-700: var(--ink-700);
   --color-ink-600: var(--ink-600);

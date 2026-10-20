@@ -89,7 +89,8 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
                 {t("rankings")}
               </Link>
             </li>
-            <li>
+            {/* RSS 는 앱 웹뷰에서 열 데가 없다 */}
+            <li className="app-hide">
               {/* 점 붙은 주소라 언어 미들웨어를 거치지 않는다: 접두사를 직접 붙인다 */}
               <a href={feedPath(locale)} type="application/rss+xml" className={ROW}>
                 {t("rss")}

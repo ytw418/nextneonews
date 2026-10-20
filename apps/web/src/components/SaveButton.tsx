@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { IconButton } from "@/components/ui/IconButton";
 import { toast } from "@/components/ui/Toast";
 import { useRouter } from "@/i18n/navigation";
+import { isApp, postToApp } from "@/lib/app-mode";
 import { readSaved, SAVED_MAX, type SavedKind, toggleSaved, useIsSaved } from "@/lib/saved";
 import { track } from "@/lib/track";
 
@@ -53,7 +54,8 @@ export function SaveButton({ kind, id, title, variant = "icon", tone = "ink", cl
     track(now ? "save" : "unsave", { kind, id });
     if (!now) return;
     setPops((n) => n + 1);
-    if (before === 0) {
+    // 앱에서는 저장이 앱에 남으니 '이 브라우저에만' 안내를 건너뛴다
+    if (before === 0 && !isApp()) {
       toast(t("savedFirstToast"), {
         // ja·zh-TW 는 'LINE で送る', 그 밖은 '링크 복사' (언어마다 보내는 방법이 정해져 있어 문구 하나로 둔다)
         actionLabel: t("sendToSelfAction"),
@@ -65,7 +67,9 @@ export function SaveButton({ kind, id, title, variant = "icon", tone = "ink", cl
       return;
     }
     const message = before >= SAVED_MAX ? t("savedCapToast", { count: SAVED_MAX }) : t("savedToast", { title: short(title) });
-    toast(message, { actionLabel: t("savedOpen"), onAction: () => router.push("/saved"), position: "top" });
+    // 앱에서는 저장함이 네이티브 탭이다 (router.push 는 앱이 가로챌 수 없어 메시지로 보낸다)
+    const openSaved = () => (isApp() ? postToApp({ type: "tab", tab: "saved" }) : router.push("/saved"));
+    toast(message, { actionLabel: t("savedOpen"), onAction: openSaved, position: "top" });
   };
 
   const icon = saved ? (
