@@ -136,7 +136,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     </EmptyMemo>
   );
 
-  // 홈 = 오늘의 소식. 3D 아이콘 카테고리 → 지금 많이 읽는 글(사진 카드 + 3줄) → 일정 → 가이드 2×2 → (다시 온 독자) 이어 읽기 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
+  // 홈 = 오늘의 소식. 3D 아이콘 카테고리 → 가이드 2×2 → 지금 많이 읽는 글(사진 카드 + 3줄) → (다시 온 독자) 이어 읽기 → 일정 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
   // 섹션 제목은 모두 위 24·아래 12
   return (
     <>
@@ -145,10 +145,10 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         {SITE_NAME} — {tSite("tagline")}
       </h1>
       <CategoryIcons locale={locale} />
-      <TopStories locale={locale} />
-      <UpcomingRail locale={locale} />
       <GuideHero locale={locale} />
+      <TopStories locale={locale} />
       <ContinueRail />
+      <UpcomingRail locale={locale} />
       {rankingsRail}
       <TrendingNow locale={locale} exclude={topSlugs} />
       {items.length > 0 && <SectionHeader title={t("latest")} />}
