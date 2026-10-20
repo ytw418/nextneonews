@@ -6,7 +6,7 @@
 
 - Neon 무료는 컴퓨트 시간(월 100 CU-시간)을 다 쓰면 다음 달까지 **DB 전체가 멈춘다**(10-19 실제로 멈춤).
 - Supabase 무료는 컴퓨트 시간 한도가 없다(항상 켜진 작은 DB). 한도는 저장 500 MB·전송 5 GB/월·7일 동안 쓰지 않으면 일시정지(파이프라인이 2시간마다 쓰므로 해당 없음). 지금 DB 는 수십 MB.
-- 계정은 브리디와 별개: `ytw418+unnienote@gmail.com`(비밀번호는 맥 키체인 `unnienote-supabase`).
+- 계정: 별도 supabase.com 가입 없이 버셀 팀 Storage 의 Supabase 연동(로그인 = 버셀 계정 holicreact@plingcast.com). 브리디 Supabase(서울 `pqvayhabtayjfpklhxxj`)와 별개.
 
 ## 막힌 점
 
