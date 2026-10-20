@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { ArticleThumb } from "@/components/ArticleThumb";
 import { type FeedItem, itemTime } from "@/components/FeedCard";
 import { Phrase } from "@/components/Phrase";
@@ -18,16 +20,19 @@ interface Props {
   items: FeedItem[];
   locale: string;
   inset?: "gutter" | "read"; // 홈은 gutter, 글 끝은 읽기 열(read)
+  lead?: ReactNode; // 1위를 큰 카드로 따로 그릴 때 (홈 첫 화면). 그러면 목록은 2위부터
 }
 
 // 인기 글 순위표. 음원 차트처럼 순위 숫자 + 작은 썸네일 + 제목 두 줄로 짧게.
 // 홈 '지금 인기'와 글 끝 '이번 주 인기 글'이 같은 모양을 쓴다
-export function RankedArticles({ id, title, items, locale, inset = "gutter" }: Props) {
-  if (items.length < RANKED_MIN) return null;
+export function RankedArticles({ id, title, items, locale, inset = "gutter", lead }: Props) {
+  if (items.length + (lead ? 1 : 0) < RANKED_MIN) return null;
+  const start = lead ? 2 : 1;
   return (
     <section aria-labelledby={id} className="@container">
       <SectionHeader id={id} title={title} inset={inset} />
-      <ol>
+      {lead && <div className="px-gutter pb-1">{lead}</div>}
+      <ol start={start}>
         {items.map((item, i) => (
           <ListRow
             key={item.slug}
@@ -38,9 +43,9 @@ export function RankedArticles({ id, title, items, locale, inset = "gutter" }: P
               <span className="flex items-center gap-3">
                 {/* 1~3위는 진하게. 20px 굵은 숫자라 ink-400 도 3:1 을 넘는다 */}
                 <span
-                  className={`min-w-6 text-center text-t4 font-bold tabular-nums ${i < 3 ? "text-ink-900" : "text-ink-400"}`}
+                  className={`min-w-6 text-center text-t4 font-bold tabular-nums ${i + start <= 3 ? "text-ink-900" : "text-ink-400"}`}
                 >
-                  {i + 1}
+                  {i + start}
                 </span>
                 <span className={THUMB_LARGE_TEXT}>
                   <ArticleThumb item={item} size={48} />

@@ -13,7 +13,7 @@ import { CategoryIcons } from "@/components/home/CategoryIcons";
 import { ContinueRail } from "@/components/home/ContinueRail";
 import { GuideHero } from "@/components/home/GuideHero";
 import { GuideTeaser } from "@/components/home/GuideTeaser";
-import { PopularChips } from "@/components/home/PopularChips";
+import { TopStories, topStorySlugs } from "@/components/home/TopStories";
 import { ChevronRightIcon } from "@/components/icons";
 import { QuizBanner } from "@/components/quiz/QuizBanner";
 import { BuzzTop5Rail } from "@/components/rankings/BuzzTop5Rail";
@@ -63,7 +63,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [t, tSite, tNav, tRank, tArticle, rows, total, weeklyPoll, miniChart] = await Promise.all([
+  const [t, tSite, tNav, tRank, tArticle, rows, total, weeklyPoll, miniChart, topSlugs] = await Promise.all([
     getTranslations("Home"),
     getTranslations("Site"),
     getTranslations("Nav"),
@@ -73,6 +73,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     countLatest(locale),
     weeklyPollView(locale),
     homeMiniChart(),
+    topStorySlugs(locale),
   ]);
   const items = await toFeedItems(rows, locale);
 
@@ -135,7 +136,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     </EmptyMemo>
   );
 
-  // 홈 = 오늘의 소식. 3D 아이콘 카테고리 → 가이드 큰 카드 → (다시 온 독자) 이어 읽기 → 많이 읽는 번호 알약 → 일정 티켓 5개 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
+  // 홈 = 오늘의 소식. 3D 아이콘 카테고리 → 지금 많이 읽는 글(사진 카드 + 3줄) → 일정 → 가이드 2×2 → (다시 온 독자) 이어 읽기 → (랭킹) → 이번 주 인기 5개 → 최신 피드 → 더 보기.
   // 섹션 제목은 모두 위 24·아래 12
   return (
     <>
@@ -144,12 +145,12 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
         {SITE_NAME} — {tSite("tagline")}
       </h1>
       <CategoryIcons locale={locale} />
+      <TopStories locale={locale} />
+      <UpcomingRail locale={locale} />
       <GuideHero locale={locale} />
       <ContinueRail />
-      <PopularChips locale={locale} />
-      <UpcomingRail locale={locale} />
       {rankingsRail}
-      <TrendingNow locale={locale} />
+      <TrendingNow locale={locale} exclude={topSlugs} />
       {items.length > 0 && <SectionHeader title={t("latest")} />}
       <Feed
         items={items}
