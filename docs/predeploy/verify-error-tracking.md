@@ -26,3 +26,11 @@ Sentry 대신 이미 쓰는 PostHog(프로젝트 670566)의 에러 추적을 붙
   - Next 가 한 요청의 에러를 `…/[slug]` 와 `…/[slug]/page` 로 두 번 넘겨서, 중복 기준에서 `/page` 를 뗐다.
 - 브라우저: 아이폰 에뮬레이션에서 하이드레이션 전에 제목 글자를 바꿔 React #418 → PostHog 에 `Minified React error #418`(`web`).
 - 빌드 22초, `static/chunks/*.map` 41개, `posthog-node` 는 서버 번들에만 있다.
+
+## 운영 확인 (e638159 배포 뒤, 08:23 KST)
+
+- 운영 `unnienote.app/en` 에서 같은 방법으로 React #418 → PostHog 에 도착(`/relay/e/` 200). 확인용 이슈는 모두 해결(resolved) 처리했다.
+- **남은 일: 브라우저 스택이 아직 원래 파일로 안 풀린다.** 이벤트 프레임의 `resolve_failure` 가 `HTTP error 403 while fetching` — Vercel 이 PostHog 의 JS·소스맵 요청에 시스템 챌린지(`x-vercel-mitigated: challenge`)를 건다. 서버 스택은 풀린다(posthog-node 가 함수 안 파일을 읽는다).
+  - 고치는 법: Vercel → hallyu-brief → Firewall → 사용자 규칙 추가. 조건 `Request Path` starts with `/_next/static/` **그리고** `Request Path` matches regex `\.(js|map)$`, 동작 **Bypass** + 'system mitigations 도 건너뛰기'. 정적 파일이라 함수 비용은 없다. 다시 배포하지 않아도 다음 에러부터 풀린다.
+  - Vercel MCP 는 이 프로젝트 방화벽 API 가 404(`Seawall Config not found`)라 못 넣었다. 사용자 크롬 vercel.com 세션으로 `PUT /api/v1/security/firewall/config?projectId=prj_PYTYRb8LwzL5JhGypO1mGh99BSyo&teamId=team_BzeZkq3AK4xznSh7vxovu57y` 를 보내면 된다(화면이 잠겨 있어 이번엔 못 함).
+  - 대안: `@posthog/nextjs-config` 로 빌드 때 업로드(PostHog 개인 API 키 `error tracking write`·`organization read` 필요).
