@@ -83,7 +83,8 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
   }
 
   const community = source === "theqoo";
-  let answerable = community ? 2 : 4;
+  // 커뮤니티·케이아지트 제목은 사실 출처가 아니라 낮게 (같은 인물의 매체 기사가 붙어야 글이 된다)
+  let answerable = community || source === "kagit" ? 2 : 4;
   if (has(title, OFFICIAL_WORDS)) answerable = 5;
 
   const evergreen = has(title, EVERGREEN_WORDS) ? 4 : 1;
