@@ -24,6 +24,7 @@ export interface HeuristicResult {
   keyword: string;
   reason: string;
   relevant: boolean;
+  star: number; // 아이돌·배우·드라마 우대 (타깃이 10~30대 여성 팬)
 }
 
 // 해외 팬·외국인이 관심 가질 단어
@@ -131,12 +132,13 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
     format,
     keyword,
     reason: reasons.join(", ") || "사전에 없는 인물",
+    star: !top ? -2 : top.type === "group" || top.type === "singer" ? 3 : 2,
   };
 }
 
-// docs/production.md ①: 해외관심×2 + 답변가능×2 + max(시의성, 에버그린) + 반응 보정
-export function totalScore(r: HeuristicResult, metrics: SignalMetrics): number {
+// docs/production.md ①: 해외관심×2 + 답변가능×2 + max(시의성, 에버그린) + 반응 보정 + 아이돌·배우 우대
+export function totalScore(r: Pick<HeuristicResult, "foreignInterest" | "answerable" | "timeliness" | "evergreen"> & { star?: number }, metrics: SignalMetrics): number {
   const rank = metrics.rank ?? Infinity;
   const bonus = rank <= 5 ? 2 : rank <= 15 ? 1 : 0;
-  return r.foreignInterest * 2 + r.answerable * 2 + Math.max(r.timeliness, r.evergreen) + bonus;
+  return r.foreignInterest * 2 + r.answerable * 2 + Math.max(r.timeliness, r.evergreen) + bonus + (r.star ?? 0);
 }
