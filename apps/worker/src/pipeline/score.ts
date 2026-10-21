@@ -78,7 +78,9 @@ export async function scoreSignals(limit = 200): Promise<{ checked: number; queu
       where: { id: signal.id },
       data: { qualityScore: score, qualityNote: `${result.risk} ${result.reason}`, checkedAt: now },
     });
-    if (result.relevant && score >= TOPIC_THRESHOLD && result.answerable >= MIN_ANSWERABLE) {
+    // 사람이 seed-topic 으로 넣은 주제는 점수와 상관없이 쓴다 (사전에 없는 신인 그룹 등)
+    const seeded = signal.source.startsWith("manual-");
+    if (seeded || (result.relevant && score >= TOPIC_THRESHOLD && result.answerable >= MIN_ANSWERABLE)) {
       if (await queueTopic(signal.id, result, score)) merged += 1;
       else queued += 1;
     }
