@@ -8,7 +8,7 @@ import { ruleFilter } from "./ruleFilter";
 
 const LOOKBACK_HOURS = 48;
 // 이 점수 이상이고 answerable 2 이상이면 Topic 큐에 올린다 (최대 27점). 케이아지트 수준으로 너그럽게
-const TOPIC_THRESHOLD = 16;
+const TOPIC_THRESHOLD = 14; // 2026-10-21 글 수를 늘리려고 16→14
 const MIN_ANSWERABLE = 2;
 
 const OPEN_STATUSES = ["NEW", "QUEUED"] as const;
@@ -81,7 +81,7 @@ export async function scoreSignals(limit = 200): Promise<{ checked: number; queu
     // 사람이 seed-topic 으로 넣은 주제는 점수와 상관없이 쓴다 (사전에 없는 신인 그룹 등)
     const seeded = signal.source.startsWith("manual-");
     if (seeded || (result.relevant && score >= TOPIC_THRESHOLD && result.answerable >= MIN_ANSWERABLE)) {
-      if (await queueTopic(signal.id, result, score)) merged += 1;
+      if (await queueTopic(signal.id, result, seeded ? 99 : score)) merged += 1;
       else queued += 1;
     }
   }
