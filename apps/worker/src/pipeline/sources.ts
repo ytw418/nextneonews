@@ -38,6 +38,7 @@ const BODY_SELECTORS = [
   ".story-news", // 연합뉴스
   '[itemprop="articleBody"]',
   "#articleBody",
+  ".news_contents", // 엑스포츠뉴스
   "#article-view-content-div",
   "#article_body",
   ".article_body",
@@ -126,9 +127,12 @@ async function readFact(signal: SignalRef): Promise<SourceMaterial> {
     case "yonhap":
       return newsArticle(signal.url, "Yonhap News");
     case "google-trends":
+    case "osen":
+    case "xportsnews":
     case "manual-manual": // 사람이 seed-topic --source manual --url 로 넣은 기사
       return newsArticle(signal.url, new URL(signal.url).hostname);
     case "theqoo":
+    case "kagit": // 다른 매체의 글이라 사실 출처로 쓰지 않는다 (화제 신호만)
       // 커뮤니티 글은 사실 출처가 아니다. 더쿠 '기사/뉴스' 글도 본문은 대개 네이버 링크뿐이다
       throw new SourceUnavailableError(`community-only: ${signal.url}`);
     default:
