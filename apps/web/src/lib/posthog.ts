@@ -19,6 +19,22 @@ let client: PostHog | null = null;
 let pending: Send[] | null = null;
 const sentErrors = new Set<string>();
 
+// 운영자 기기 표시. 주소 끝에 ?internal=1 을 붙여 한 번 열면 그 브라우저는 분석을 보내지 않고, ?internal=0 이면 다시 보낸다.
+// 쿠키 없는 모드라 PostHog 쪽에서는 내부 접속을 가를 수 없어서(Direct 1인당 쪽수가 부풀었다, 브리핑 10/21) 받기 전에 끊는다
+const INTERNAL_KEY = "un_internal";
+
+export function isInternalVisit(search: string, storage: Pick<Storage, "getItem" | "setItem" | "removeItem">): boolean {
+  const flag = new URLSearchParams(search).get("internal");
+  if (flag === "1") storage.setItem(INTERNAL_KEY, "1");
+  else if (flag === "0") storage.removeItem(INTERNAL_KEY);
+  return storage.getItem(INTERNAL_KEY) === "1";
+}
+
+// 없는 옛 청크(/_next/…)를 요청한 봇·오래된 탭에 404 화면이 뜨면 그 주소로 페이지뷰가 잡힌다. 사람 방문이 아니라 버린다
+export function isAssetPath(pathname: string): boolean {
+  return pathname.startsWith("/_next/");
+}
+
 // init 전이면 모아 두고, init 뒤면 바로 보낸다
 export function capturePosthog(name: string, params?: Params): void {
   if (client) client.capture(name, params);

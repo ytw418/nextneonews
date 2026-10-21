@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { captureErrorPosthog, capturePosthog, loadPosthog } from "./posthog";
+import { captureErrorPosthog, capturePosthog, isInternalVisit, loadPosthog } from "./posthog";
 import { shouldSend } from "./posthog-server";
 
 const { init, capture, captureException } = vi.hoisted(() => ({
@@ -42,5 +42,24 @@ describe("PostHog 지연 로드", () => {
     expect(shouldSend("/[locale]/news/[slug] Error: db down", 60_000)).toBe(false);
     expect(shouldSend("/[locale]/idol/[slug] Error: db down", 60_000)).toBe(true);
     expect(shouldSend("/[locale]/news/[slug] Error: db down", 10 * 60_000)).toBe(true);
+  });
+});
+
+function memory() {
+  const map = new Map<string, string>();
+  return {
+    getItem: (k: string) => map.get(k) ?? null,
+    setItem: (k: string, v: string) => void map.set(k, v),
+    removeItem: (k: string) => void map.delete(k),
+  };
+}
+
+describe("isInternalVisit", () => {
+  it("?internal=1 로 한 번 표시하면 다음 방문도 내부, ?internal=0 이면 풀린다", () => {
+    const storage = memory();
+    expect(isInternalVisit("", storage)).toBe(false);
+    expect(isInternalVisit("?internal=1", storage)).toBe(true);
+    expect(isInternalVisit("?a=b", storage)).toBe(true);
+    expect(isInternalVisit("?internal=0", storage)).toBe(false);
   });
 });

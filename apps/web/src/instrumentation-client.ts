@@ -1,4 +1,4 @@
-import { captureErrorPosthog, loadPosthog } from "@/lib/posthog";
+import { captureErrorPosthog, isAssetPath, isInternalVisit, loadPosthog } from "@/lib/posthog";
 
 // PostHog. 토큰은 운영 배포 빌드에만 들어간다(next.config.ts). 없으면 아무것도 하지 않는다
 const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
@@ -18,7 +18,16 @@ function whenIdleAfterLoad(load: () => void): void {
   else window.addEventListener("load", idle, { once: true });
 }
 
-if (key) {
+function internal(): boolean {
+  try {
+    return isInternalVisit(window.location.search, window.localStorage);
+  } catch {
+    // 사파리 개인 정보 보호 모드 등 저장소를 못 쓰면 표시도 없다
+    return false;
+  }
+}
+
+if (key && !internal()) {
   loadPosthog(
     key,
     {
@@ -30,6 +39,7 @@ if (key) {
       cookieless_mode: "always",
       // 에러는 아래 리스너가 lib/posthog.ts 로 보낸다(받기 전 에러도 모아 둔다). 켜 두면 프로젝트 설정에 따라 같은 에러가 두 번 간다
       capture_exceptions: false,
+      before_send: (event) => (event && isAssetPath(window.location.pathname) ? null : event),
     },
     whenIdleAfterLoad,
   );
