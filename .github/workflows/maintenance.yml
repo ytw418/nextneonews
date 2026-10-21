@@ -18,8 +18,17 @@ on:
           - "fix-script"
           - "regate --dry"
           - "regate"
+          - "seed-topic"
       names:
         description: "fix-script 에 줄 이름 짝 (공백으로 구분, 예: イム・シワン=任時完)"
+        type: string
+        default: ""
+      title:
+        description: "seed-topic 제목 (예: 이수만 걸그룹 A2O LITE 'NEON' 멜론 1위)"
+        type: string
+        default: ""
+      url:
+        description: "seed-topic 원문 기사 주소"
         type: string
         default: ""
 
@@ -44,6 +53,8 @@ jobs:
       LLM_BUDGET_KRW: "100000"
       # 셸에 바로 끼우지 않고 환경변수로 넘긴다 (입력이 명령으로 해석되지 않게)
       FIX_SCRIPT_NAMES: ${{ inputs.names }}
+      SEED_TITLE: ${{ inputs.title }}
+      SEED_URL: ${{ inputs.url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -52,4 +63,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run db:generate
-      - run: npm run worker -- ${{ inputs.command }}
+      - if: inputs.command != 'seed-topic'
+        run: npm run worker -- ${{ inputs.command }}
+      - if: inputs.command == 'seed-topic'
+        run: npm run worker -- seed-topic "$SEED_TITLE" --source manual --url "$SEED_URL"
