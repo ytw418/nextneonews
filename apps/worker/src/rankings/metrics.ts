@@ -115,8 +115,10 @@ export function chunk<T>(items: T[], size: number): T[][] {
 // 종류로 거르므로 배우·예능인이 K-pop 차트에 들어가지 않는다
 export async function chartCandidates(chart: ChartKey, day: string): Promise<Entity[]> {
   const types = [...CHARTS[chart].types];
+  const def = CHARTS[chart] as { gender?: string };
+  const gender = def.gender ? { gender: def.gender } : {};
   const top = await prisma.entity.findMany({
-    where: { type: { in: types }, id: { notIn: [...NOT_ARTISTS] } },
+    where: { type: { in: types }, id: { notIn: [...NOT_ARTISTS] }, ...gender },
     orderBy: [{ sitelinks: "desc" }, { id: "asc" }],
     take: SITELINK_CANDIDATES,
   });
@@ -127,7 +129,7 @@ export async function chartCandidates(chart: ChartKey, day: string): Promise<Ent
   });
   const known = new Set([...top.map((e) => e.id), ...NOT_ARTISTS]);
   const extra = await prisma.entity.findMany({
-    where: { id: { in: recent.map((r) => r.entityId).filter((id) => !known.has(id)) }, type: { in: types } },
+    where: { id: { in: recent.map((r) => r.entityId).filter((id) => !known.has(id)) }, type: { in: types }, ...gender },
     orderBy: { id: "asc" },
   });
   return [...top, ...extra];

@@ -17,6 +17,16 @@
       "short": "Buzz K-pop",
       "description": "Classement quotidien des groupes et chanteurs de K-pop selon le buzz en Corée (theqoo, Google Trends KR, Yonhap) et l’intérêt sur Wikipédia dans 8 langues."
     },
+    "boys": {
+      "title": "Classement idols masculins",
+      "short": "Idols masculins",
+      "description": "Classement quotidien des boys bands et chanteurs K-pop, selon le buzz en Corée et les vues Wikipédia en 8 langues."
+    },
+    "girls": {
+      "title": "Classement idols féminines",
+      "short": "Idols féminines",
+      "description": "Classement quotidien des girls bands et chanteuses K-pop, selon le buzz en Corée et les vues Wikipédia en 8 langues."
+    },
     "actors": {
       "title": "Classement buzz des acteurs coréens",
       "short": "Buzz acteurs",

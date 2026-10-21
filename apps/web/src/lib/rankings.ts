@@ -20,18 +20,20 @@ import { type EntityPhoto, entityPhoto } from "./entity-image";
 // 랭킹 화면(app/[locale]/rankings)·홈 레일·글 칩이 함께 쓰는 조회와 표시 도우미.
 // 점수 계산은 worker(rankings) 가 하고, 여기서는 RankingSnapshot 을 읽기만 한다
 
-export const CHART_IDS = ["kpop", "actors", "kdrama", "fan-pick"] as const satisfies readonly ChartId[];
+export const CHART_IDS = ["kpop", "boys", "girls", "actors", "kdrama", "fan-pick"] as const satisfies readonly ChartId[];
 
 export function isChartId(value: string): value is ChartId {
   return (CHART_IDS as readonly string[]).includes(value);
 }
 
 // 문구 키 (메시지 키에는 '-' 를 쓰지 않는다)
-export const CHART_KEY = { kpop: "kpop", actors: "actors", kdrama: "kdrama", "fan-pick": "fanPick" } as const;
+export const CHART_KEY = { kpop: "kpop", boys: "boys", girls: "girls", actors: "actors", kdrama: "kdrama", "fan-pick": "fanPick" } as const;
 
 // 이니셜 칸의 파스텔: 차트 = 카테고리라 카테고리 틴트를 쓴다 (배우는 셀럽 틴트)
 export const CHART_TINT: Record<ChartId, string> = {
   kpop: "var(--tint-kpop)",
+  boys: "var(--tint-kdrama)",
+  girls: "var(--tint-kbeauty)",
   actors: "var(--tint-kent)",
   kdrama: "var(--tint-kdrama)",
   "fan-pick": "var(--tint-kbeauty)",

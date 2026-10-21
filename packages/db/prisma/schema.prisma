@@ -309,6 +309,7 @@ model Entity {
   ja         String?
   zhHant     String?
   aliases    String[] @default([]) // 한국어 별칭 (예: "제니 김" 의 "제니"). 기사 속 이름 찾기에 쓴다
+  gender     String? // "M" | "F" (위키데이터 성별 P21, 그룹은 보이그룹·걸그룹 분류). 혼성·모름은 null → 남녀 차트
   sitelinks  Int // 이 항목이 있는 위키백과 언어 수 = 해외 인지도 지표
   image      String? // 위키미디어 공용 파일 이름 (P18)
   slug       String?  @unique // 인물 페이지 주소 /idol/{slug} (영문 이름 kebab, 없으면 q{id})

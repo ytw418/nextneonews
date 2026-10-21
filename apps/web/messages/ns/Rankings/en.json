@@ -17,6 +17,16 @@
       "short": "K-pop Buzz",
       "description": "Daily ranking of K-pop groups and singers by Korean community buzz (theqoo, Google Trends KR, Yonhap) and global Wikipedia interest in 8 languages."
     },
+    "boys": {
+      "title": "Boy Idol Chart",
+      "short": "Boy idols",
+      "description": "Daily buzz ranking of K-pop boy groups and male soloists, from Korean buzz and Wikipedia views in 8 languages."
+    },
+    "girls": {
+      "title": "Girl Idol Chart",
+      "short": "Girl idols",
+      "description": "Daily buzz ranking of K-pop girl groups and female soloists, from Korean buzz and Wikipedia views in 8 languages."
+    },
     "actors": {
       "title": "Korean Actors Buzz Chart",
       "short": "Actors Buzz",

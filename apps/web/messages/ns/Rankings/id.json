@@ -17,6 +17,16 @@
       "short": "Buzz K-pop",
       "description": "Peringkat harian grup dan penyanyi K-pop berdasarkan buzz komunitas Korea (theqoo, Google Trends KR, Yonhap) dan minat Wikipedia global dalam 8 bahasa."
     },
+    "boys": {
+      "title": "Chart Idol Pria",
+      "short": "Idol pria",
+      "description": "Peringkat buzz harian boy group dan solois pria K-pop, dari buzz di Korea dan tayangan Wikipedia 8 bahasa."
+    },
+    "girls": {
+      "title": "Chart Idol Wanita",
+      "short": "Idol wanita",
+      "description": "Peringkat buzz harian girl group dan solois wanita K-pop, dari buzz di Korea dan tayangan Wikipedia 8 bahasa."
+    },
     "actors": {
       "title": "Tangga Buzz Aktor Korea",
       "short": "Buzz Aktor",

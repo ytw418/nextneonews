@@ -17,6 +17,16 @@
       "short": "Độ hot K-pop",
       "description": "Bảng xếp hạng hằng ngày các nhóm nhạc và ca sĩ K-pop theo độ bàn tán tại Hàn Quốc (theqoo, Google Trends KR, Yonhap) và lượt xem Wikipedia ở 8 ngôn ngữ."
     },
+    "boys": {
+      "title": "BXH idol nam",
+      "short": "Idol nam",
+      "description": "Bảng xếp hạng độ hot hằng ngày của nhóm nhạc nam và nam ca sĩ K-pop, dựa trên độ hot tại Hàn và lượt xem Wikipedia 8 ngôn ngữ."
+    },
+    "girls": {
+      "title": "BXH idol nữ",
+      "short": "Idol nữ",
+      "description": "Bảng xếp hạng độ hot hằng ngày của nhóm nhạc nữ và nữ ca sĩ K-pop, dựa trên độ hot tại Hàn và lượt xem Wikipedia 8 ngôn ngữ."
+    },
     "actors": {
       "title": "BXH độ hot diễn viên Hàn",
       "short": "Độ hot diễn viên",

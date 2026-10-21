@@ -5,9 +5,12 @@ import { kstToday } from "./upcoming";
 // 차트마다 Entity.type 으로 후보를 거른다 — 배우·예능인이 K-pop 차트에 섞이지 않게
 export const CHARTS = {
   kpop: { types: ["group", "singer"] },
+  // 남녀 아이돌 차트 = K팝 후보를 Entity.gender 로 나눈 것 (혼성 그룹·성별 모름은 kpop 에만)
+  boys: { types: ["group", "singer"], gender: "M" },
+  girls: { types: ["group", "singer"], gender: "F" },
   actors: { types: ["actor"] },
   kdrama: { types: ["series"] },
-} as const satisfies Record<string, { types: readonly string[] }>;
+} as const satisfies Record<string, { types: readonly string[]; gender?: "M" | "F" }>;
 
 // 위키데이터 직업에 '가수'가 있어도 지금은 기획사 경영인이라 차트·투표에서 뺀다 (이수만·방시혁·양현석)
 export const NOT_ARTISTS: readonly string[] = ["Q484165", "Q16082706", "Q490938"];

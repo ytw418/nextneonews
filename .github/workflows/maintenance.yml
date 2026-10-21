@@ -19,6 +19,9 @@ on:
           - "regate --dry"
           - "regate"
           - "seed-topic"
+          - "entities"
+          - "rankings"
+          - "refresh day"
       names:
         description: "fix-script 에 줄 이름 짝 (공백으로 구분, 예: イム・シワン=任時完)"
         type: string
