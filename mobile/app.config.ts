@@ -31,6 +31,12 @@ const config: ExpoConfig = {
       monochromeImage: "./assets/android-icon-monochrome.png",
     },
     predictiveBackGestureEnabled: false,
+    // 쓰지 않는 기본 권한은 뺀다 (다른 앱 위에 그리기·외부 저장소 — Play 심사에서 쓰임새를 묻는다)
+    blockedPermissions: [
+      "android.permission.SYSTEM_ALERT_WINDOW",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+    ],
   },
   plugins: [
     "expo-router",
