@@ -2,12 +2,13 @@
 
 import { isLocale, LOCALE_NAME } from "@kmedia/core";
 import { useTranslations } from "next-intl";
-import { type ReactNode, useOptimistic, useState, useSyncExternalStore, useTransition } from "react";
+import { type ReactNode, useEffect, useOptimistic, useRef, useState, useSyncExternalStore, useTransition } from "react";
 
 import { ShareIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { toast } from "@/components/ui/Toast";
 import type { PollByLocale, PollOption, PollView } from "@/lib/engagement";
+import { pollShareImage } from "@/lib/poll-share-image";
 import { storageGet, storageSet } from "@/lib/storage";
 import { track } from "@/lib/track";
 
@@ -130,10 +131,60 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
     });
   };
 
+  // 9개 언어 합산이 우리 차별점: 내 언어 독자 1위와 전체 1위를 나란히
+  const mineTop = top(poll.options, view.byLocale?.[locale]);
+  const allTop = top(poll.options, view.totals);
+  const topPick =
+    mineTop && allTop && isLocale(locale)
+      ? t("pollTopPick", { language: LOCALE_NAME[locale], mine: mineTop.label, all: allTop.label })
+      : undefined;
+
+  // 결과 카드 이미지는 결과가 확정되면 미리 그려 둔다. 사파리는 탭한 순간에만 공유 시트를 열어 줘서
+  // 누른 뒤에 그리면(비동기) 공유가 막힌다
+  const cardFile = useRef<File | null>(null);
+  const settled = base.choice ? base : null;
+  const cardKey = settled ? `${settled.choice}:${settled.total}:${topPick ?? ""}` : "";
+  useEffect(() => {
+    if (!settled || typeof navigator.canShare !== "function") return;
+    let live = true;
+    void pollShareImage({
+      question: poll.question,
+      options: poll.options.map((o) => ({
+        label: o.label,
+        percent: percent(settled.totals[o.id] ?? 0, settled.total),
+        mine: o.id === settled.choice,
+      })),
+      mineLabel: t("pollMine"),
+      topPick,
+      total: t("pollTotal", { count: settled.total }),
+      cta: t("pollCardCta"),
+      domain: "unnienote.app",
+    }).then((blob) => {
+      if (!live || !blob) return;
+      const file = new File([blob], `unnienote-poll-${poll.id}.png`, { type: "image/png" });
+      cardFile.current = navigator.canShare({ files: [file] }) ? file : null;
+    });
+    return () => {
+      live = false;
+    };
+    // 결과(선택·표 수·1위 문구)가 바뀔 때만 다시 그린다
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cardKey]);
+
   const share = async () => {
     const url = new URL(shareUrl ?? window.location.pathname, window.location.origin);
     url.hash = anchorId ?? "";
-    track("share", { from: "poll" });
+    const file = cardFile.current;
+    track("share", { from: file ? "poll_card" : "poll" });
+    // 결과 카드가 있으면 사진으로 (인스타 스토리·카톡에 그대로 올라간다). 주소는 글자에 붙인다
+    if (file) {
+      try {
+        await navigator.share({ files: [file], text: `${poll.question} ${url.href}` });
+      } catch {
+        // 공유 시트를 닫은 경우
+      }
+      return;
+    }
     if (navigator.share) {
       try {
         await navigator.share({ title: poll.question, url: url.href });
@@ -150,10 +201,6 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
     }
   };
 
-  // 9개 언어 합산이 우리 차별점: 내 언어 독자 1위와 전체 1위를 나란히
-  const mineTop = top(poll.options, view.byLocale?.[locale]);
-  const allTop = top(poll.options, view.totals);
-
   return (
     <section
       id={anchorId}
@@ -168,10 +215,8 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
 
       {view.choice ? (
         <div className="mt-4" aria-live="polite">
-          {mineTop && allTop && isLocale(locale) && (
-            <p className="mb-3 rounded-btn-m bg-brand-weak px-3 py-2 text-t7 font-semibold text-brand-ink">
-              {t("pollTopPick", { language: LOCALE_NAME[locale], mine: mineTop.label, all: allTop.label })}
-            </p>
+          {topPick && (
+            <p className="mb-3 rounded-btn-m bg-brand-weak px-3 py-2 text-t7 font-semibold text-brand-ink">{topPick}</p>
           )}
           <Results
             options={poll.options}
