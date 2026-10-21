@@ -163,6 +163,7 @@ model Article {
   socialPosts      SocialPost[]
   poll             Poll?
   reactionVotes    ReactionVote[]
+  viewHours        ArticleViewHour[]
 
   @@index([status, publishedAt])
   @@index([status, views])
@@ -212,6 +213,17 @@ model Media {
   sourceUrl   String? // 위키미디어 공용 파일 페이지
   width       Int? // 원본 크기 (CLS 없이 자리를 잡고, 구조화 데이터 image 에 넣는다)
   height      Int?
+}
+
+// 시간(정시)별 조회 수: '실시간 인기'(최근 24시간)용. 8일 지난 칸은 조회 기록 때 가끔 지운다 (api/views)
+model ArticleViewHour {
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  hour      DateTime // 정시로 자른 시각 (UTC)
+  count     Int      @default(0)
+
+  @@id([articleId, hour])
+  @@index([hour])
 }
 
 model Comment {

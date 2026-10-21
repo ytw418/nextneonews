@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "Dernières actus",
-    "trending": "Tendances",
+    "trending": "Tendances du moment",
+    "recentComments": "Derniers commentaires",
     "empty": "Pas encore d’article ici.",
     "emptyCta": "Voir toutes les actus",
     "comingSoon": "Les articles en français arrivent bientôt.",

@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "Mới nhất",
-    "trending": "Đang thịnh hành",
+    "trending": "Đang hot",
+    "recentComments": "Bình luận mới nhất",
     "empty": "Chưa có bài viết nào ở đây.",
     "emptyCta": "Xem tất cả tin tức",
     "comingSoon": "Bài viết tiếng Việt sắp ra mắt.",

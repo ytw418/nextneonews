@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "新着",
-    "trending": "いま話題",
+    "trending": "リアルタイム人気",
+    "recentComments": "新着コメント",
     "empty": "まだ記事がありません。",
     "emptyCta": "すべてのニュースを見る",
     "comingSoon": "日本語の記事はもうすぐ届きます。",

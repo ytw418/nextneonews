@@ -217,3 +217,32 @@ export async function reportComment(id: string, ip: string): Promise<boolean> {
   });
   return true;
 }
+
+// 홈 '방금 달린 댓글': 이 언어로 쓴 최근 댓글과 그 글(이 언어 제목). 글 하나에 몰리지 않게 글마다 하나만
+export async function listRecentComments(locale: string, take = 5) {
+  const rows = await prisma.comment.findMany({
+    where: { locale, status: "VISIBLE", article: { status: "PUBLISHED", translations: { some: { locale } } } },
+    orderBy: { createdAt: "desc" },
+    take: take * 4,
+    select: {
+      id: true,
+      nickname: true,
+      body: true,
+      createdAt: true,
+      articleId: true,
+      article: { select: { translations: { where: { locale }, select: { slug: true, title: true }, take: 1 } } },
+    },
+  });
+  const seen = new Set<string>();
+  return rows
+    .filter((row) => !seen.has(row.articleId) && seen.add(row.articleId))
+    .slice(0, take)
+    .map(({ id, nickname, body, createdAt, article }) => ({
+      id,
+      nickname,
+      body,
+      createdAt: createdAt.toISOString(),
+      slug: article.translations[0].slug,
+      title: article.translations[0].title,
+    }));
+}

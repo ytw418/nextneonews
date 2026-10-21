@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "최신",
-    "trending": "지금 인기 글",
+    "trending": "실시간 인기",
+    "recentComments": "방금 달린 댓글",
     "empty": "아직 글이 없어요.",
     "emptyCta": "전체 소식 보기",
     "comingSoon": "한국어 글이 곧 올라와요.",

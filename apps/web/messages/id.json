@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "Terbaru",
-    "trending": "Sedang tren",
+    "trending": "Lagi ramai",
+    "recentComments": "Komentar terbaru",
     "empty": "Belum ada artikel di sini.",
     "emptyCta": "Lihat semua berita",
     "comingSoon": "Artikel berbahasa Indonesia segera hadir.",

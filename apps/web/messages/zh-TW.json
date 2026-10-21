@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "最新",
-    "trending": "現正熱門",
+    "trending": "即時熱門",
+    "recentComments": "最新留言",
     "empty": "這裡還沒有文章。",
     "emptyCta": "看全部新聞",
     "comingSoon": "繁體中文文章即將上線。",

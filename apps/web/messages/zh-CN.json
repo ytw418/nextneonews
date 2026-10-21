@@ -18,7 +18,8 @@
   },
   "Home": {
     "latest": "最新",
-    "trending": "当下热门",
+    "trending": "实时热门",
+    "recentComments": "最新评论",
     "empty": "这里还没有文章。",
     "emptyCta": "看全部新闻",
     "comingSoon": "简体中文文章即将上线。",
