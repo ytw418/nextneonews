@@ -1,5 +1,7 @@
-// 투표 결과 공유 카드 (인스타 스토리 9:16). 서버(next/og)는 한중일 글꼴을 싣지 않아서
-// 브라우저 캔버스로 그린다 — 질문·보기가 어느 언어든 기기 글꼴로 나온다. 색은 공유 이미지(opengraph-image)와 같은 팔레트
+import { useEffect, useRef } from "react";
+
+// 결과 공유 카드 (인스타 스토리 9:16): 투표 결과·테스트 결과. 서버(next/og)는 한중일 글꼴을 싣지 않아서
+// 브라우저 캔버스로 그린다 — 어느 언어든 기기 글꼴로 나온다. 색은 공유 이미지(opengraph-image)와 같은 팔레트
 
 const W = 1080;
 const H = 1920;
@@ -54,7 +56,10 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
   ctx.fill();
 }
 
-export async function pollShareImage(card: PollShareCard): Promise<Blob | null> {
+type Font = (weight: number, px: number) => string;
+
+// 배경·머리(Unnie. NOTE)까지 그린 캔버스와, 바닥(참여 유도 + 주소)을 그리고 PNG 로 굽는 함수
+async function startCard(): Promise<{ canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; font: Font } | null> {
   await document.fonts?.ready;
   const canvas = document.createElement("canvas");
   canvas.width = W;
@@ -62,9 +67,7 @@ export async function pollShareImage(card: PollShareCard): Promise<Blob | null> 
   const ctx = canvas.getContext("2d");
   if (!ctx) return null;
   const family = getComputedStyle(document.body).fontFamily || "sans-serif";
-  const font = (weight: number, px: number) => `${weight} ${px}px ${family}`;
-  const inner = W - PAD * 2;
-
+  const font: Font = (weight, px) => `${weight} ${px}px ${family}`;
   ctx.fillStyle = TINT;
   ctx.fillRect(0, 0, W, H);
   ctx.textBaseline = "top";
@@ -81,6 +84,29 @@ export async function pollShareImage(card: PollShareCard): Promise<Blob | null> 
   ctx.letterSpacing = "8px";
   ctx.fillText("NOTE", PAD + unnie + 40, 154);
   ctx.letterSpacing = "0px";
+  return { canvas, ctx, font };
+}
+
+function finishCard(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, font: Font, cta: string, domain: string) {
+  ctx.fillStyle = INK;
+  ctx.font = font(700, 48);
+  const ctaLines = wrap(ctx, cta, W - PAD * 2, 2);
+  let y = H - 200 - ctaLines.length * 64;
+  for (const l of ctaLines) {
+    ctx.fillText(l, PAD, y);
+    y += 64;
+  }
+  ctx.fillStyle = CHERRY;
+  ctx.font = font(700, 40);
+  ctx.fillText(domain, PAD, H - 170);
+  return new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
+}
+
+export async function pollShareImage(card: PollShareCard): Promise<Blob | null> {
+  const start = await startCard();
+  if (!start) return null;
+  const { canvas, ctx, font } = start;
+  const inner = W - PAD * 2;
 
   // 질문
   let y = 300;
@@ -132,19 +158,75 @@ export async function pollShareImage(card: PollShareCard): Promise<Blob | null> 
   }
   ctx.font = font(500, 36);
   ctx.fillText(card.total, PAD, y + 8);
+  return finishCard(canvas, ctx, font, card.cta, card.domain);
+}
 
-  // 바닥: 참여 유도 + 주소
+export interface QuizShareCard {
+  label: string; // '피부 타입 테스트'
+  name: string; // 결과 이름 '건성 피부'
+  oneLiner: string;
+  icon?: string; // 결과 3D 아이콘 PNG 경로 (/icons3d/cactus.png)
+  cta: string; // '나는 건성 피부! 너는? 6문항 피부 타입 테스트'
+  domain: string;
+}
+
+function loadImage(src: string): Promise<HTMLImageElement | null> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+export async function quizShareImage(card: QuizShareCard): Promise<Blob | null> {
+  const start = await startCard();
+  if (!start) return null;
+  const { canvas, ctx, font } = start;
+  const inner = W - PAD * 2;
+
+  const icon = card.icon ? await loadImage(card.icon) : null;
+  if (icon) ctx.drawImage(icon, (W - 560) / 2, 300, 560, 560);
+
+  let y = 940;
+  ctx.fillStyle = INK_SUB;
+  ctx.font = font(600, 44);
+  ctx.fillText(card.label, PAD, y);
+  y += 76;
   ctx.fillStyle = INK;
-  ctx.font = font(700, 48);
-  const ctaLines = wrap(ctx, card.cta, inner, 2);
-  let by = H - 200 - ctaLines.length * 64;
-  for (const l of ctaLines) {
-    ctx.fillText(l, PAD, by);
-    by += 64;
+  ctx.font = font(800, 116);
+  for (const l of wrap(ctx, card.name, inner, 2)) {
+    ctx.fillText(l, PAD, y);
+    y += 136;
   }
-  ctx.fillStyle = CHERRY;
-  ctx.font = font(700, 40);
-  ctx.fillText(card.domain, PAD, H - 170);
+  y += 24;
+  ctx.fillStyle = INK_SUB;
+  ctx.font = font(500, 44);
+  for (const l of wrap(ctx, card.oneLiner, inner, 4)) {
+    ctx.fillText(l, PAD, y);
+    y += 62;
+  }
+  return finishCard(canvas, ctx, font, card.cta, card.domain);
+}
 
-  return new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+// 결과 카드를 미리 그려 PNG 파일로 들고 있는다. 사파리는 탭한 순간에만 공유 시트를 열어 줘서
+// 누른 뒤에 그리면(비동기) 공유가 막힌다. 사진 공유를 못 하는 브라우저면 null 로 남는다 (링크 공유로)
+export function useShareImage(key: string, name: string, draw: (() => Promise<Blob | null>) | null | undefined) {
+  const file = useRef<File | null>(null);
+  useEffect(() => {
+    file.current = null;
+    if (!draw || typeof navigator.canShare !== "function") return;
+    let live = true;
+    void draw().then((blob) => {
+      if (!live || !blob) return;
+      const f = new File([blob], name, { type: "image/png" });
+      file.current = navigator.canShare({ files: [f] }) ? f : null;
+    });
+    return () => {
+      live = false;
+    };
+    // key 가 바뀔 때만 다시 그린다 (draw 는 렌더마다 새 함수)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  return file;
 }

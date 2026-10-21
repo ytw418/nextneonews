@@ -2,13 +2,13 @@
 
 import { isLocale, LOCALE_NAME } from "@kmedia/core";
 import { useTranslations } from "next-intl";
-import { type ReactNode, useEffect, useOptimistic, useRef, useState, useSyncExternalStore, useTransition } from "react";
+import { type ReactNode, useOptimistic, useState, useSyncExternalStore, useTransition } from "react";
 
 import { ShareIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { toast } from "@/components/ui/Toast";
 import type { PollByLocale, PollOption, PollView } from "@/lib/engagement";
-import { pollShareImage } from "@/lib/poll-share-image";
+import { pollShareImage, useShareImage } from "@/lib/share-image";
 import { storageGet, storageSet } from "@/lib/storage";
 import { track } from "@/lib/track";
 
@@ -139,37 +139,27 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
       ? t("pollTopPick", { language: LOCALE_NAME[locale], mine: mineTop.label, all: allTop.label })
       : undefined;
 
-  // 결과 카드 이미지는 결과가 확정되면 미리 그려 둔다. 사파리는 탭한 순간에만 공유 시트를 열어 줘서
-  // 누른 뒤에 그리면(비동기) 공유가 막힌다
-  const cardFile = useRef<File | null>(null);
+  // 결과가 정해지면 공유 카드를 미리 그려 둔다 (사파리 탭 제약 — useShareImage)
   const settled = base.choice ? base : null;
-  const cardKey = settled ? `${settled.choice}:${settled.total}:${topPick ?? ""}` : "";
-  useEffect(() => {
-    if (!settled || typeof navigator.canShare !== "function") return;
-    let live = true;
-    void pollShareImage({
-      question: poll.question,
-      options: poll.options.map((o) => ({
-        label: o.label,
-        percent: percent(settled.totals[o.id] ?? 0, settled.total),
-        mine: o.id === settled.choice,
-      })),
-      mineLabel: t("pollMine"),
-      topPick,
-      total: t("pollTotal", { count: settled.total }),
-      cta: t("pollCardCta"),
-      domain: "unnienote.app",
-    }).then((blob) => {
-      if (!live || !blob) return;
-      const file = new File([blob], `unnienote-poll-${poll.id}.png`, { type: "image/png" });
-      cardFile.current = navigator.canShare({ files: [file] }) ? file : null;
-    });
-    return () => {
-      live = false;
-    };
-    // 결과(선택·표 수·1위 문구)가 바뀔 때만 다시 그린다
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cardKey]);
+  const cardFile = useShareImage(
+    settled ? `${settled.choice}:${settled.total}:${topPick ?? ""}` : "",
+    `unnienote-poll-${poll.id}.png`,
+    settled &&
+      (() =>
+        pollShareImage({
+          question: poll.question,
+          options: poll.options.map((o) => ({
+            label: o.label,
+            percent: percent(settled.totals[o.id] ?? 0, settled.total),
+            mine: o.id === settled.choice,
+          })),
+          mineLabel: t("pollMine"),
+          topPick,
+          total: t("pollTotal", { count: settled.total }),
+          cta: t("pollCardCta"),
+          domain: "unnienote.app",
+        })),
+  );
 
   const share = async () => {
     const url = new URL(shareUrl ?? window.location.pathname, window.location.origin);
