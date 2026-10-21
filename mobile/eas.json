@@ -1,14 +1,41 @@
 {
-  "cli": { "version": ">= 16.0.0", "appVersionSource": "remote" },
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "env": { "EXPO_PUBLIC_APP_ENV": "development" }
+      "env": {
+        "EXPO_PUBLIC_APP_ENV": "development"
+      }
     },
-    "development-simulator": { "extends": "development", "ios": { "simulator": true } },
-    "preview": { "distribution": "internal", "env": { "EXPO_PUBLIC_SITE_URL": "https://unnienote.app" } },
-    "production": { "autoIncrement": true, "env": { "EXPO_PUBLIC_SITE_URL": "https://unnienote.app" } }
+    "development-simulator": {
+      "extends": "development",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_SITE_URL": "https://unnienote.app"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_SITE_URL": "https://unnienote.app"
+      }
+    }
   },
-  "submit": { "production": {} }
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6825244571",
+        "appleTeamId": "J5F7Z4S89D"
+      }
+    }
+  }
 }

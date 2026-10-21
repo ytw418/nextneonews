@@ -2,7 +2,8 @@
 
 ## 상태
 - Play: 앱 생성(4972286698390191448, bredy_dev 개인 계정 콘솔 u/3), 등록정보·선언 전부 완료, AAB versionCode 6 비공개 테스트(alpha)·내부 테스트 초안 → **검토 중**. 프로덕션은 테스터 12명×14일 뒤 신청.
-- iOS: 번들 ID 등록, EAS 빌드 완료(빌드 f9684a26…, buildNumber 2 추정). **App Store Connect 로그인(사용자 2단계 인증) 대기** — 앱 레코드는 웹에서만 생성 가능.
+- iOS(10-21 갱신): 앱 6825244571 생성, 빌드 3 업로드, 메타·스크린샷(9개 언어)·등급·가격(175곳, 중국 제외)·App Privacy·DSA 거래자 입력 → **심사 제출 완료**. 콘텐츠 권리는 USES_THIRD_PARTY_CONTENT.
+- (이전) iOS: 번들 ID 등록, EAS 빌드 완료(빌드 f9684a26…, buildNumber 2 추정). **App Store Connect 로그인(사용자 2단계 인증) 대기** — 앱 레코드는 웹에서만 생성 가능.
 
 ## 로그인 뒤 할 일 (iOS)
 1. ASC 웹에서 새 앱: 이름 Unnie Note, 기본 언어 영어(미국), 번들 app.unnienote.mobile, SKU unnienote-ios.

@@ -12,7 +12,7 @@ const DRY = process.argv.includes("--dry-run");
 if (!APP) throw new Error("--app <APP_ID>");
 const meta = JSON.parse(readFileSync("/tmp/unnie-store/metadata.json", "utf8"));
 const LOCALES = Object.keys(meta.appStore); // en-US ja zh-Hant zh-Hans ko vi id fr-FR ru
-const ok = (label, r) => { console.log(label, r.status, r.status >= 300 ? r.text.slice(0, 500) : ""); return r; };
+const ok = (label, r) => { console.log(label, r.status, r.status >= 300 ? r.text.slice(0, 6000) : ""); return r; };
 const call = async (m, p, b) => (DRY && m !== "GET" ? (console.log("DRY", m, p), { status: 0, json: {} }) : asc(m, p, b));
 
 async function version() {
@@ -65,8 +65,8 @@ if (step === "rating") {
   console.log("current", JSON.stringify(d.attributes));
   const attrs = {};
   for (const [k, v] of Object.entries(d.attributes)) {
-    if (["kidsAgeBand", "ageRatingOverride", "koreaAgeRatingOverride", "ageRatingOverrideV2"].includes(k)) continue;
-    if (typeof v === "boolean" || ["gambling", "unrestrictedWebAccess", "lootBox", "advertising", "ageAssurance", "healthOrWellnessTopics", "messagingAndChat", "parentalControls", "userGeneratedContent"].includes(k)) attrs[k] = false;
+    if (["kidsAgeBand", "gracRatingClassificationNumber", "developerAgeRatingInfoUrl", "socialMediaAgeRestricted", "ageRatingOverride", "koreaAgeRatingOverride", "ageRatingOverrideV2"].includes(k)) continue;
+    if (typeof v === "boolean" || ["gambling", "unrestrictedWebAccess", "lootBox", "advertising", "ageAssurance", "healthOrWellnessTopics", "messagingAndChat", "parentalControls", "userGeneratedContent", "socialMedia"].includes(k)) attrs[k] = false;
     else attrs[k] = "NONE";
   }
   attrs.alcoholTobaccoOrDrugUseOrReferences = "INFREQUENT_OR_MILD";
@@ -82,10 +82,10 @@ if (step === "price") {
     included: [{ type: "appPrices", id: "${free}", attributes: { startDate: null }, relationships: { appPricePoint: { data: { type: "appPricePoints", id: free.id } } } }],
   }));
   // 판매 국가: 모든 나라(EU 포함, 사용자 결정 10-21). 중국 본토는 ICP 备案 이 필요해 뺀다
-  const terr = (await asc("GET", "/v1/territories?limit=200")).json.data.map((t) => t.id).filter((id) => id !== "CHN");
+  const terr = (await asc("GET", "/v1/territories?limit=200")).json.data.map((t) => t.id);
   ok(`availability (${terr.length})`, await call("POST", "/v2/appAvailabilities", {
     data: { type: "appAvailabilities", attributes: { availableInNewTerritories: true }, relationships: { app: { data: { type: "apps", id: APP } }, territoryAvailabilities: { data: terr.map((id) => ({ type: "territoryAvailabilities", id: `\${${id}}` })) } } },
-    included: terr.map((id) => ({ type: "territoryAvailabilities", id: `\${${id}}`, attributes: { available: true }, relationships: { territory: { data: { type: "territories", id } } } })),
+    included: terr.map((id) => ({ type: "territoryAvailabilities", id: `\${${id}}`, attributes: { available: id !== "CHN" }, relationships: { territory: { data: { type: "territories", id } } } })),
   }));
 }
 
@@ -104,7 +104,7 @@ if (step === "review") {
 if (step === "shots") {
   const DISPLAY = "APP_IPHONE_67"; // 6.9" 1320x2868 도 이 세트로 받는다 (브리디와 같음)
   const ORDER = ["01-home", "02-feed", "03-rankings", "07-beauty", "04-schedule", "06-saved"];
-  const PREFIX = { "en-US": "en", ja: "ja", ko: "ko", "zh-Hant": "zh-Hant" };
+  const PREFIX = process.env.ONLY ? Object.fromEntries(process.env.ONLY.split(",").map((p) => p.split(":"))) : { "en-US": "en", ja: "ja", ko: "ko", "zh-Hant": "zh-Hant" };
   const v = await version();
   const verLocs = (await asc("GET", `/v1/appStoreVersions/${v.id}/appStoreVersionLocalizations?limit=50`)).json.data;
   for (const [locale, prefix] of Object.entries(PREFIX)) {
