@@ -128,6 +128,7 @@
       "commentKey": "Kunci acak agar kamu bisa mengubah atau menghapus komentarmu. Kami hanya menyimpan hash-nya.",
       "commentName": "Nama yang tampil di komentarmu.",
       "myComments": "Komentar yang kamu tulis di perangkat ini (maksimal 200).",
+      "commentLikes": "Komentar yang kamu sukai di perangkat ini (maks. 500), agar suka hanya dihitung sekali.",
       "poll": "Jawabanmu di setiap polling.",
       "react": "Reaksi yang kamu ketuk di setiap artikel.",
       "cheer": "Siapa yang kamu dukung hari ini.",

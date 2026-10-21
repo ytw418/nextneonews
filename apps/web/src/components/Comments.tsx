@@ -4,7 +4,7 @@ import { LINK, type Locale, randomFriendlyName } from "@kmedia/core";
 import { useLocale, useTranslations } from "next-intl";
 import { type FormEvent, type RefObject, useEffect, useRef, useState } from "react";
 
-import { MoreIcon, ShuffleIcon } from "@/components/icons";
+import { HeartFilledIcon, HeartIcon, MoreIcon, ShuffleIcon } from "@/components/icons";
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
@@ -31,6 +31,30 @@ const MINE_STORE = "hb:my-comments";
 const MINE_MAX = 200;
 const NAME_STORE = "hb:comment-name";
 const OLD_NAME_STORE = "hb:comment-nickname";
+const LIKED_STORE = "hb:comment-likes"; // 공감한 댓글 id (최근 LIKED_MAX 개)
+const LIKED_MAX = 500;
+// 공감이 이만큼 모인 댓글 중 많은 순 BEST_MAX 개를 '베스트'로 맨 위에 붙인다
+const BEST_MIN = 3;
+const BEST_MAX = 2;
+
+function readLiked(): Set<string> {
+  try {
+    const list = JSON.parse(storageGet(LIKED_STORE) ?? "[]");
+    return new Set(Array.isArray(list) ? list.filter((v): v is string => typeof v === "string") : []);
+  } catch {
+    return new Set();
+  }
+}
+
+// 베스트(공감 많은 순)를 위에, 나머지는 원래 순서(최신 순) 그대로
+function withBest(list: PublicComment[]): { list: PublicComment[]; best: Set<string> } {
+  const top = list
+    .filter((c) => c.likes >= BEST_MIN)
+    .sort((a, b) => b.likes - a.likes)
+    .slice(0, BEST_MAX);
+  const best = new Set(top.map((c) => c.id));
+  return { list: [...top, ...list.filter((c) => !best.has(c.id))], best };
+}
 
 // 17px(t5) 이상이라 아이폰이 입력칸에 초점이 갈 때 화면을 확대하지 않는다. 수정 칸도 같은 모양
 const COMPOSER_FIELD =
@@ -193,6 +217,9 @@ interface RowProps {
   onEditClose: () => void;
   onEditSave: () => void;
   onMenu: (comment: PublicComment) => void;
+  best: boolean;
+  liked: boolean;
+  onLike: (comment: PublicComment) => void;
 }
 
 function CommentRow({
@@ -208,6 +235,9 @@ function CommentRow({
   onEditClose,
   onEditSave,
   onMenu,
+  best,
+  liked,
+  onLike,
 }: RowProps) {
   const t = useTranslations("Comments");
   const tNav = useTranslations("Nav");
@@ -225,6 +255,11 @@ function CommentRow({
       <div className={`min-w-0 ${editing ? "col-span-2" : ""}`}>
         {/* 이름·본문은 쓴 사람의 언어로 (한중일 글자 모양이 맞게) */}
         <p lang={c.locale} className="break-words text-t6 font-semibold text-ink-900">
+          {best && (
+            <span className="mr-1.5 inline-block rounded-full bg-brand px-1.5 align-[1px] text-st12 font-bold text-white">
+              {t("best")}
+            </span>
+          )}
           {c.nickname}
         </p>
         <p className="text-t7 text-ink-600">
@@ -273,7 +308,21 @@ function CommentRow({
             </div>
           </form>
         ) : (
-          <CommentBody text={c.body} lang={c.locale} moreLabel={t("showMore")} />
+          <>
+            <CommentBody text={c.body} lang={c.locale} moreLabel={t("showMore")} />
+            <button
+              type="button"
+              aria-pressed={liked}
+              aria-label={t("like", { count: c.likes })}
+              onClick={() => onLike(c)}
+              className={`press -ml-2 mt-1 inline-flex min-h-11 items-center gap-1 rounded-btn-m px-2 text-t7 font-semibold tabular-nums ${
+                liked ? "text-brand-ink" : "text-ink-600"
+              }`}
+            >
+              {liked ? <HeartFilledIcon className="size-4" /> : <HeartIcon className="size-4" />}
+              {c.likes > 0 ? c.likes : t("likeShort")}
+            </button>
+          </>
         )}
       </div>
       {!editing && (
@@ -304,6 +353,27 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
   const [composerOpen, setComposerOpen] = useState(initialCount !== 0);
   const [focusComposer, setFocusComposer] = useState(false);
   const [highlight, setHighlight] = useState<string | null>(null);
+  // 줄은 목록을 불러온 뒤(브라우저)에만 그려서 서버 HTML 과 어긋나지 않는다
+  const [liked, setLiked] = useState<Set<string>>(() => (typeof window === "undefined" ? new Set() : readLiked()));
+
+  // 공감: 바로 +1 해 보이고 서버 수로 맞춘다. 실패해도 되돌리지 않는다 (다시 누르면 서버가 한 번만 센다)
+  const like = async (c: PublicComment) => {
+    if (liked.has(c.id)) return;
+    const next = new Set(liked).add(c.id);
+    setLiked(next);
+    storageSet(LIKED_STORE, JSON.stringify([...next].slice(-LIKED_MAX)));
+    setComments((list) => list?.map((x) => (x.id === c.id ? { ...x, likes: x.likes + 1 } : x)) ?? list);
+    track("comment_like", { article: articleId });
+    try {
+      const res = await fetch(`/api/comments/${c.id}/like`, { method: "POST" });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && typeof data.likes === "number") {
+        setComments((list) => list?.map((x) => (x.id === c.id ? { ...x, likes: data.likes } : x)) ?? list);
+      }
+    } catch {
+      // 네트워크 오류: 화면의 +1 은 둔다
+    }
+  };
 
   // 입력창
   const formRef = useRef<HTMLFormElement>(null);
@@ -534,6 +604,7 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
   // 그사이 다른 사람이 댓글을 남겼으면(서버 수 0 → 불러온 목록 1개 이상) 입력창을 그대로 보인다
   const showComposer = composerOpen || (comments?.length ?? 0) > 0;
   const collapsed = !showAll && (comments?.length ?? 0) > COLLAPSED;
+  const ordered = comments && withBest(comments);
 
   return (
     <section id="comments" aria-labelledby="comments-title" className="scroll-mt-20">
@@ -646,7 +717,7 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
                 <SkeletonRow />
               </>
             ) : (
-              comments.map((c, i) => (
+              ordered!.list.map((c, i) => (
                 <CommentRow
                   key={c.id}
                   hidden={collapsed && i >= COLLAPSED}
@@ -661,6 +732,9 @@ export function Comments({ articleId, initialCount }: { articleId: string; initi
                   onEditClose={() => setEditing(null)}
                   onEditSave={() => void save()}
                   onMenu={openMenu}
+                  best={ordered!.best.has(c.id)}
+                  liked={liked.has(c.id)}
+                  onLike={(x) => void like(x)}
                 />
               ))
             )}

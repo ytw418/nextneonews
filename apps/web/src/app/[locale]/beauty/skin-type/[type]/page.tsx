@@ -138,6 +138,14 @@ export default async function SkinTypeResultPage({ params }: PageProps<"/[locale
             text={t("result.shareText", { name })}
             label={t("result.share")}
             copiedLabel={t("copied")}
+            card={{
+              label: t("result.label"),
+              name,
+              oneLiner: result.oneLiner,
+              icon: `/icons3d/${SKIN_ICON[skin]}.png`,
+              cta: t("result.shareText", { name }),
+              domain: SHARE_DOMAIN,
+            }}
           />
           <Button size="l" variant="neutral" href="/beauty/skin-type">
             {t("result.retake")}

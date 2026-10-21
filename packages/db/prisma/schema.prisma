@@ -163,6 +163,7 @@ model Article {
   socialPosts      SocialPost[]
   poll             Poll?
   reactionVotes    ReactionVote[]
+  viewHours        ArticleViewHour[]
 
   @@index([status, publishedAt])
   @@index([status, views])
@@ -214,6 +215,17 @@ model Media {
   height      Int?
 }
 
+// 시간(정시)별 조회 수: '실시간 인기'(최근 24시간)용. 8일 지난 칸은 조회 기록 때 가끔 지운다 (api/views)
+model ArticleViewHour {
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  hour      DateTime // 정시로 자른 시각 (UTC)
+  count     Int      @default(0)
+
+  @@id([articleId, hour])
+  @@index([hour])
+}
+
 model Comment {
   id             String          @id @default(cuid())
   articleId      String
@@ -227,12 +239,26 @@ model Comment {
   reports        CommentReport[]
   status         CommentStatus   @default(VISIBLE)
   reportCount    Int             @default(0) // 서로 다른 신고자 수 (CommentReport)
+  likeCount      Int             @default(0) // 공감 수 (CommentLike 합). 많은 댓글이 '베스트'로 위에 붙는다
+  likes          CommentLike[]
   failedAttempts Int             @default(0) // 비밀번호 연속 실패. 5번이면 잠근다
   lockedUntil    DateTime?
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 
   @@index([articleId, createdAt])
+  @@index([ipHash, createdAt])
+}
+
+// 댓글 공감: 한 기기가 댓글마다 한 번 (voterHash = 댓글 id·IP·UA)
+model CommentLike {
+  commentId String
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  voterHash String
+  ipHash    String
+  createdAt DateTime @default(now())
+
+  @@id([commentId, voterHash])
   @@index([ipHash, createdAt])
 }
 

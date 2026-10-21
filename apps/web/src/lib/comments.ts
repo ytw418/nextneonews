@@ -8,6 +8,7 @@ import { anonymousId, displayNickname } from "@kmedia/core/nickname";
 import { type Comment, prisma } from "@kmedia/db";
 
 import { isRecordId } from "./api-guard";
+import { isBot, rateLimited, voterHash } from "./voter";
 
 // 로그인 없는 익명 댓글 (docs/PRD.md): 비밀번호로 수정·삭제 (화면은 기기마다 만든 키를 비밀번호로 보낸다).
 // IP 는 저장하지 않고, 글마다 다른 IP 해시 4자리로 아바타 색을 고른다.
@@ -95,6 +96,7 @@ export interface PublicComment {
   body: string;
   createdAt: string;
   edited: boolean;
+  likes: number;
 }
 
 function toPublic(c: Comment): PublicComment {
@@ -106,6 +108,7 @@ function toPublic(c: Comment): PublicComment {
     body: c.body,
     createdAt: c.createdAt.toISOString(),
     edited: c.updatedAt.getTime() - c.createdAt.getTime() > 1000,
+    likes: c.likeCount,
   };
 }
 
@@ -216,4 +219,58 @@ export async function reportComment(id: string, ip: string): Promise<boolean> {
     data: { reportCount: reporters, ...(reporters >= HIDE_AFTER_REPORTS ? { status: "HIDDEN" as const } : {}) },
   });
   return true;
+}
+
+// 홈 '방금 달린 댓글': 이 언어로 쓴 최근 댓글과 그 글(이 언어 제목). 글 하나에 몰리지 않게 글마다 하나만
+export async function listRecentComments(locale: string, take = 5) {
+  const rows = await prisma.comment.findMany({
+    where: { locale, status: "VISIBLE", article: { status: "PUBLISHED", translations: { some: { locale } } } },
+    orderBy: { createdAt: "desc" },
+    take: take * 4,
+    select: {
+      id: true,
+      nickname: true,
+      body: true,
+      createdAt: true,
+      articleId: true,
+      article: { select: { translations: { where: { locale }, select: { slug: true, title: true }, take: 1 } } },
+    },
+  });
+  const seen = new Set<string>();
+  return rows
+    .filter((row) => !seen.has(row.articleId) && seen.add(row.articleId))
+    .slice(0, take)
+    .map(({ id, nickname, body, createdAt, article }) => ({
+      id,
+      nickname,
+      body,
+      createdAt: createdAt.toISOString(),
+      slug: article.translations[0].slug,
+      title: article.translations[0].title,
+    }));
+}
+
+// 공감: 한 기기가 댓글마다 한 번. 한 사람은 한 시간에 60번까지. 자기 댓글에도 누를 수 있다 (막을 이유가 없다)
+const LIKE_RATE_MAX = 60;
+const HOUR_MS = 3_600_000;
+
+export async function likeComment(id: string, headers: Headers): Promise<{ status: 200 | 403 | 404 | 429; likes?: number }> {
+  const ua = headers.get("user-agent") ?? "";
+  if (isBot(ua)) return { status: 403 };
+  const comment = await prisma.comment.findUnique({ where: { id }, select: { status: true } });
+  if (!comment || comment.status !== "VISIBLE") return { status: 404 };
+  const ip = clientIp(headers);
+  const hash = ipHash(ip);
+  if (await rateLimited("commentLike", hash, LIKE_RATE_MAX, HOUR_MS)) return { status: 429 };
+  const voter = voterHash(`like:${id}`, ip, ua);
+  // Prisma update 는 updatedAt 을 바꿔 '수정됨'이 붙으므로 SQL 로 likeCount 만 올린다
+  await prisma.$transaction(async (tx) => {
+    const { count } = await tx.commentLike.createMany({
+      data: [{ commentId: id, voterHash: voter, ipHash: hash }],
+      skipDuplicates: true,
+    });
+    if (count === 1) await tx.$executeRaw`UPDATE "Comment" SET "likeCount" = "likeCount" + 1 WHERE "id" = ${id}`;
+  });
+  const row = await prisma.comment.findUnique({ where: { id }, select: { likeCount: true } });
+  return { status: 200, likes: row?.likeCount ?? 0 };
 }

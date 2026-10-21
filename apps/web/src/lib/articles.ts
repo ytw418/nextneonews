@@ -84,6 +84,7 @@ export function entityNames(entities: unknown): string[] {
 }
 
 const DAY_MS = 86_400_000;
+const HOUR_MS = 3_600_000;
 
 // 관련 글: 같은 인물·그룹·작품이 나오는 글을 가장 높게, 그다음 같은 카테고리. 최근 글과 많이 본 글에 조금 더 준다
 export async function listRelated(
@@ -134,6 +135,30 @@ export async function listPopular(locale: string, take = 8, days = 7) {
     take,
     select: feedSelect,
   });
+}
+
+// '실시간 인기': 최근 hours 시간 조회 수(ArticleViewHour) 순. 이 언어 번역이 있는 글만 남기고,
+// 조회가 모자라 min 편이 안 되면 주간 누적(listPopular)으로 돌아간다 (새 언어·새벽 시간대)
+export async function listTrending(locale: string, take = 5, hours = 24, min = 3) {
+  const since = new Date(Date.now() - hours * HOUR_MS);
+  // 표가 아직 없을 때(배포 직후 마이그레이션 전)는 주간 순위로 그린다
+  const top = await prisma.articleViewHour
+    .groupBy({
+      by: ["articleId"],
+      where: { hour: { gte: since } },
+      _sum: { count: true },
+      orderBy: { _sum: { count: "desc" } },
+      take: take * 4,
+    })
+    .catch(() => null);
+  if (!top) return listPopular(locale, take);
+  const rows = await prisma.translation.findMany({
+    where: { locale, articleId: { in: top.map((t) => t.articleId) }, article: { status: "PUBLISHED" } },
+    select: { ...feedSelect, articleId: true },
+  });
+  const byId = new Map(rows.map((row) => [row.articleId, row]));
+  const ranked = top.flatMap((t) => byId.get(t.articleId) ?? []).slice(0, take);
+  return ranked.length >= min ? ranked : listPopular(locale, take);
 }
 
 // 일정 상세의 관련 뉴스: 시작 120일 전부터 나온 글 중 제목·인물 이름에 일정 키워드가 있는 것.

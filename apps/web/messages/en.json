@@ -19,6 +19,7 @@
   "Home": {
     "latest": "Latest",
     "trending": "Trending now",
+    "recentComments": "Latest comments",
     "empty": "No stories here yet.",
     "emptyCta": "See all news",
     "comingSoon": "New stories in English are on the way.",
@@ -136,6 +137,9 @@
     "showMore": "Show more",
     "showMoreComments": "Show more comments",
     "edited": "edited",
+    "best": "BEST",
+    "likeShort": "Like",
+    "like": "{count} likes",
     "empty": "Be the first to share your thoughts.",
     "retry": "Try again",
     "error": "Your comment didn't post. Check your connection and try again.",

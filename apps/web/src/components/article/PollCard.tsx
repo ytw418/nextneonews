@@ -8,6 +8,7 @@ import { ShareIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { toast } from "@/components/ui/Toast";
 import type { PollByLocale, PollOption, PollView } from "@/lib/engagement";
+import { pollShareImage, useShareImage } from "@/lib/share-image";
 import { storageGet, storageSet } from "@/lib/storage";
 import { track } from "@/lib/track";
 
@@ -130,10 +131,50 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
     });
   };
 
+  // 9개 언어 합산이 우리 차별점: 내 언어 독자 1위와 전체 1위를 나란히
+  const mineTop = top(poll.options, view.byLocale?.[locale]);
+  const allTop = top(poll.options, view.totals);
+  const topPick =
+    mineTop && allTop && isLocale(locale)
+      ? t("pollTopPick", { language: LOCALE_NAME[locale], mine: mineTop.label, all: allTop.label })
+      : undefined;
+
+  // 결과가 정해지면 공유 카드를 미리 그려 둔다 (사파리 탭 제약 — useShareImage)
+  const settled = base.choice ? base : null;
+  const cardFile = useShareImage(
+    settled ? `${settled.choice}:${settled.total}:${topPick ?? ""}` : "",
+    `unnienote-poll-${poll.id}.png`,
+    settled &&
+      (() =>
+        pollShareImage({
+          question: poll.question,
+          options: poll.options.map((o) => ({
+            label: o.label,
+            percent: percent(settled.totals[o.id] ?? 0, settled.total),
+            mine: o.id === settled.choice,
+          })),
+          mineLabel: t("pollMine"),
+          topPick,
+          total: t("pollTotal", { count: settled.total }),
+          cta: t("pollCardCta"),
+          domain: "unnienote.app",
+        })),
+  );
+
   const share = async () => {
     const url = new URL(shareUrl ?? window.location.pathname, window.location.origin);
     url.hash = anchorId ?? "";
-    track("share", { from: "poll" });
+    const file = cardFile.current;
+    track("share", { from: file ? "poll_card" : "poll" });
+    // 결과 카드가 있으면 사진으로 (인스타 스토리·카톡에 그대로 올라간다). 주소는 글자에 붙인다
+    if (file) {
+      try {
+        await navigator.share({ files: [file], text: `${poll.question} ${url.href}` });
+      } catch {
+        // 공유 시트를 닫은 경우
+      }
+      return;
+    }
     if (navigator.share) {
       try {
         await navigator.share({ title: poll.question, url: url.href });
@@ -150,10 +191,6 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
     }
   };
 
-  // 9개 언어 합산이 우리 차별점: 내 언어 독자 1위와 전체 1위를 나란히
-  const mineTop = top(poll.options, view.byLocale?.[locale]);
-  const allTop = top(poll.options, view.totals);
-
   return (
     <section
       id={anchorId}
@@ -168,10 +205,8 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
 
       {view.choice ? (
         <div className="mt-4" aria-live="polite">
-          {mineTop && allTop && isLocale(locale) && (
-            <p className="mb-3 rounded-btn-m bg-brand-weak px-3 py-2 text-t7 font-semibold text-brand-ink">
-              {t("pollTopPick", { language: LOCALE_NAME[locale], mine: mineTop.label, all: allTop.label })}
-            </p>
+          {topPick && (
+            <p className="mb-3 rounded-btn-m bg-brand-weak px-3 py-2 text-t7 font-semibold text-brand-ink">{topPick}</p>
           )}
           <Results
             options={poll.options}

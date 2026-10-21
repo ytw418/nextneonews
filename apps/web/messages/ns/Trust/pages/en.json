@@ -128,6 +128,7 @@
       "commentKey": "A random key that lets you edit or delete your comments. We keep only a hash of it.",
       "commentName": "The nickname shown on your comments.",
       "myComments": "Which comments you wrote on this device (up to 200).",
+      "commentLikes": "Which comments you liked on this device (up to 500), so a like counts once.",
       "poll": "Your answer in each poll.",
       "react": "The reactions you tapped on each article.",
       "cheer": "Who you cheered for today.",
