@@ -23,8 +23,9 @@ export function adsenseClient(): string | null {
 // ───────── 쿠팡 파트너스 ─────────
 
 // 파트너스에 등록한 미디어 주소. 여기 없는 주소(미리보기·배포마다 생기는 *.vercel.app·로컬)에는 배너를 내지 않는다.
-// 도메인을 바꾸면 파트너스 '미디어 관리'에 먼저 등록하고 여기에 더한다 (unnienote.app 은 2026-10-19 도메인 이전, 옛 주소는 301 로 넘어온다)
-const COUPANG_MEDIA_HOSTS: readonly string[] = ["unnienote.app", "hallyu-brief.vercel.app"];
+// 도메인을 바꾸면 파트너스 '미디어 관리'에 먼저 등록하고 여기에 더한다. 등록하지 않은 미디어에 광고를 내면 약관 8조②9호 위반이다.
+// unnienote.app(2026-10-19 도메인 이전, 옛 주소는 308 로 넘어온다)은 등록을 확인한 뒤에 더한다 — 그 전까지 배너는 나가지 않는다
+const COUPANG_MEDIA_HOSTS: readonly string[] = ["hallyu-brief.vercel.app"];
 
 // 쿠팡은 한국 안에서만 팔고 배송해서, 기기 시간대가 한국(Asia/Seoul)인 방문자에게만 배너를 보인다.
 // 유럽 등 해외 방문자에게는 동의 없이 쿠팡 쿠키가 생기지 않는다. 시간대는 브라우저 안에서만 보고 서버로 보내지 않는다.

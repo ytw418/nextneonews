@@ -32,11 +32,13 @@ describe("coupangBannerFor", () => {
     expect(coupangBannerFor({ locale: "en", category: "HOUSING", format: "REACTION" })).toBeNull();
   });
 
-  it("배너는 등록한 미디어 주소(unnienote.app)에서 한국 시간대일 때만 켠다", () => {
+  it("배너는 파트너스에 등록한 미디어 주소에서 한국 시간대일 때만 켠다", () => {
     vi.stubEnv("VERCEL_ENV", "production");
-    expect(gateOpens("unnienote.app", "Asia/Seoul")).toBe(true);
-    expect(gateOpens("unnienote.app", "Asia/Taipei")).toBe(false);
+    expect(gateOpens("hallyu-brief.vercel.app", "Asia/Seoul")).toBe(true);
+    expect(gateOpens("hallyu-brief.vercel.app", "Asia/Taipei")).toBe(false);
     expect(gateOpens("kmedia-git-dev.vercel.app", "Asia/Seoul")).toBe(false);
+    // 미디어 관리 등록 확인 전 (등록하면 COUPANG_MEDIA_HOSTS 와 이 줄을 함께 바꾼다)
+    expect(gateOpens("unnienote.app", "Asia/Seoul")).toBe(false);
   });
 });
 
