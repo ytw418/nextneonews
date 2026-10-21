@@ -7,7 +7,8 @@
 //  4. 클리닉에는 구매·제휴가 없다: 시술 항목에 buy·제휴 주소 없음, 클리닉 화면 코드에 제휴 상자·쿠팡 없음
 //  5. 교차 참조가 끊기지 않았다: 명소 → 드라마, 드라마 → 촬영지 명소·비슷한 작품
 //  6. 뷰티 구매처 1~4개·파트너당 1개, 기능성 표기 없는 제품에 미백·주름 표현 없음, 중국어 파일에 가나 없음
-//  7. 커버: 3D 아이콘 키마다 WebP·PNG 파일, 명소·동네 사진은 공용 원본 주소·허용 라이선스·저작자·설명 페이지
+//  7. 커버: 3D 아이콘 키마다 WebP·PNG 파일, 명소·동네 사진은 공용 원본 주소·허용 라이선스·저작자·설명 페이지,
+//     제품 사진은 /products/ 파일·OBF 제품 페이지·CC BY-SA·저작자
 // 의존성 없음. 카탈로그 사실 파일(items.ts)은 Node 의 타입 지우기로 바로 읽는다 (Node 22.18+)
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -239,6 +240,25 @@ for (const [where, photo] of photos) {
   if (!PHOTO_LICENSE.test(photo.licenseName)) fail("커버", `${where}: 허용하지 않는 라이선스 ${photo.licenseName}`);
   if (/BY/i.test(photo.licenseName) && !photo.author) fail("커버", `${where}: 저작자 없음 (${photo.licenseName})`);
   if (!photo.sourceUrl?.startsWith("https://commons.wikimedia.org/wiki/File:")) fail("커버", `${where}: 설명 페이지 주소가 아님`);
+}
+
+// 제품 사진(뷰티): 우리 /products/ 파일이 있고, OBF 사진이면 제품 페이지 + CC BY-SA·저작자 (직접 찍은 사진은 출처 없음).
+// 쇼핑몰·제휴 이미지 주소는 받지 않는다
+const { BEAUTY_PHOTOS } = await import(pathToFileURL(join(data, "beauty", "photos.ts")).href);
+const BEAUTY_SLUGS = new Set(BEAUTY.map((p) => p.slug));
+for (const [slug, photo] of Object.entries(BEAUTY_PHOTOS)) {
+  const where = `beauty/${slug} 제품 사진`;
+  if (!BEAUTY_SLUGS.has(slug)) fail("커버", `${where}: 카탈로그에 없는 제품`);
+  if (photo.src !== `/products/${slug}.webp`)
+    fail("커버", `${where}: 주소가 /products/${slug}.webp 가 아님 (${photo.src})`);
+  else if (!existsSync(join(root, "public", photo.src)))
+    fail("커버", `${where}: public${photo.src} 없음 (node scripts/product-photo.mjs ${slug})`);
+  if (!(photo.width > 0 && photo.height > 0)) fail("커버", `${where}: 크기 없음`);
+  if (photo.sourceUrl === null) continue; // 운영자가 직접 찍은 사진 (표기 없음)
+  if (!PHOTO_LICENSE.test(photo.licenseName ?? "") || !photo.author)
+    fail("커버", `${where}: 라이선스·저작자 (${photo.licenseName}, ${photo.author})`);
+  if (!/^https:\/\/world\.openbeautyfacts\.org\/product\/\d+$/.test(photo.sourceUrl))
+    fail("커버", `${where}: OBF 제품 페이지가 아님 ${photo.sourceUrl}`);
 }
 
 // ── 결과 ──

@@ -5,8 +5,10 @@ import { type Icon3d, SECTION_ICON } from "./icons3d";
 import type { AreaSlug, Place, PlaceKind } from "./travel/types";
 import type { CoverPhoto, CoverSpec, Section } from "./types";
 
-// 가이드 커버 규칙은 여기 하나: 제품 사진·드라마 포스터·병원 사진은 저작물이라 쓰지 않고, 3D 아이콘(data/icons3d.ts)이나
-// 위키미디어 공용 CC 사진(여행 명소·동네)을 그린다. 상세·목록·저장함·가이드 허브가 모두 이것을 쓴다.
+// 가이드 커버 규칙은 여기 하나: 브랜드·쇼핑몰 제품 사진·드라마 포스터·병원 사진은 저작물이라 쓰지 않고, 3D 아이콘(data/icons3d.ts),
+// 위키미디어 공용 CC 사진(여행 명소·동네), 올린이가 직접 찍은 제품 CC 사진을 오려 낸 것(뷰티, data/beauty/photos.ts)을 그린다.
+// 쿠팡·올리브영·네이버가 주는 상품 이미지는 우리 커버로 쓸 권리가 없다 (docs/research/product-images-2026-10-21.md).
+// 상세·목록·저장함·가이드 허브가 모두 이것을 쓴다.
 // 서버·클라이언트(저장함) 모두에서 import 한다 — 카탈로그 데이터나 서버 전용 모듈을 들이지 않는다
 
 // 대표 성분 아이콘(items.ts 의 icon)이 없는 제품은 분류 아이콘
@@ -60,8 +62,9 @@ export const iconCover = (icon: Icon3d): CoverSpec => ({ kind: "icon", icon });
 
 export const sectionCover = (section: Section): CoverSpec => iconCover(SECTION_ICON[section]);
 
-export const beautyCover = (p: Pick<BeautyProduct, "category" | "icon">): CoverSpec =>
-  iconCover(p.icon ?? BEAUTY_CATEGORY_ICON[p.category]);
+// 제품 사진 → 대표 성분 아이콘 → 분류 아이콘
+export const beautyCover = (p: Pick<BeautyProduct, "category" | "icon" | "photo">): CoverSpec =>
+  p.photo ? { kind: "product", photo: p.photo } : iconCover(p.icon ?? BEAUTY_CATEGORY_ICON[p.category]);
 
 // 사진 → 명소 아이콘 → 종류 아이콘
 export const placeCover = (p: Pick<Place, "kind" | "icon" | "photo">): CoverSpec =>

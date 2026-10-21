@@ -10,7 +10,7 @@ import { imgSrc } from "@/lib/image";
 export type TypeCoverVariant = "grid" | "square" | "hero" | "tile";
 
 export interface CoverArtProps {
-  cover: CoverSpec; // 3D 아이콘 또는 CC 사진 (data/cover.ts)
+  cover: CoverSpec; // 3D 아이콘, CC 사진, 오려 낸 제품 CC 사진 (data/cover.ts)
   tint?: string; // 아이콘 커버의 면. 기본 회색 (--band)
   variant?: TypeCoverVariant;
   label?: string; // 왼쪽 위 작은 배지 (분류)
@@ -19,9 +19,10 @@ export interface CoverArtProps {
   isNew?: boolean;
   newLabel?: string;
   rank?: number; // 왼쪽 위 순위 배지 (어워드·오늘 화제). label 과 같은 자리라 둘 중 하나만
-  alt?: string; // 사진의 대체 글. 커버 안에 제목이 있으면 비운다 (기본)
+  alt?: string; // 사진·제품 사진의 대체 글. 커버 안에 제목이 있으면 비운다 (기본)
   textClassName?: string; // 제목 칸 좌우 자리. 낮은 타일(2:1)은 오른쪽 아이콘을 비켜 준다
-  credit?: boolean; // 사진 저작자 표기. 사진을 크게 보이는 상세 히어로만 (카드는 표기가 있는 상세로 가는 링크다)
+  credit?: boolean; // 사진 저작자 표기. 사진을 크게 보이는 상세 히어로만 (카드는 표기가 있는 상세로 가는 링크다).
+  // 제품 사진은 커버 안에 자리가 없어(왼쪽 아래 순위·오른쪽 제품) 상세가 커버 바로 아래에 둔다
   priority?: boolean; // 상세 히어로 사진(LCP)
   className?: string;
   children?: ReactNode; // 히어로 제목·하트 받침처럼 커버 위에 올리는 것
@@ -29,6 +30,7 @@ export interface CoverArtProps {
 
 // 사진을 쓸 수 없는 가이드 항목(제품·시술·드라마)과 매장의 커버. 면은 회색, 색은 3D 아이콘이 낸다 (홈 GuideHero 와 같은 문법:
 // 아이콘은 오른쪽 위, 글은 왼쪽 아래). CC 사진이 있는 명소·동네는 사진을 깔고 글 밑에 그늘을 둔다.
+// 오려 낸 제품 사진은 아이콘과 같은 회색 면 위에 크게 세운다 (잘라 채우지 않고 통째로 보인다).
 // 서버 화면은 TypeCover(제목 줄바꿈)를 쓰고, 클라이언트 화면(저장함)은 이걸 바로 쓴다 — Phrase(budoux 사전)를 브라우저 번들에 싣지 않으려고.
 // 상세 히어로는 5:2(아이폰 15에서 156px): 4:3 은 첫 화면 44%가 커버라 제목·첫 행동이 탭바 밑으로 밀렸다
 const RATIO: Record<TypeCoverVariant, string> = {
@@ -45,6 +47,16 @@ const ICON: Record<TypeCoverVariant, { box: string; px: number }> = {
   hero: { box: "top-1/2 right-6 size-24 -translate-y-1/2", px: 96 },
   square: { box: "inset-[18%]", px: 40 },
 };
+
+// 오려 낸 제품 사진 자리. grid 는 위 줄(라벨·NEW·순위) 아래부터 제목 위까지, 제목이 없으면(RankHero 왼쪽 커버) 거의 꽉.
+// tile 은 아이콘 자리를 키운 오른쪽 위, 히어로는 오른쪽 세로 꽉 (왼쪽 아래 순위·제목과 겹치지 않게)
+const PRODUCT_BOX: Record<TypeCoverVariant, string> = {
+  grid: "top-10 right-4 bottom-[36%] left-4",
+  tile: "top-2 right-2.5 h-[54%] w-[44%]",
+  hero: "top-3 right-5 bottom-3 w-[36%]",
+  square: "inset-[6%]",
+};
+const PRODUCT_BOX_BARE = "top-9 right-3 bottom-3 left-3";
 
 // 사진 폭 후보 (커스텀 로더가 위키미디어 표준 폭으로 고른다)
 const SIZES: Record<TypeCoverVariant, string> = {
@@ -89,6 +101,20 @@ export function CoverArt({
           {...(priority ? { loading: "eager" as const, fetchPriority: "high" as const } : {})}
           className="object-cover"
         />
+      ) : cover.kind === "product" ? (
+        // 투명 WebP 한 장(긴 변 640px)이라 로더·srcset 없이 그대로 받는다
+        <div
+          className={`pointer-events-none absolute ${variant === "grid" && !showText ? PRODUCT_BOX_BARE : PRODUCT_BOX[variant]}`}
+        >
+          <Image
+            src={cover.photo.src}
+            unoptimized
+            alt={alt}
+            fill
+            {...(priority ? { loading: "eager" as const, fetchPriority: "high" as const } : {})}
+            className="object-contain drop-shadow-lg select-none"
+          />
+        </div>
       ) : (
         <Image
           src={icon3dSrc(cover.icon)}

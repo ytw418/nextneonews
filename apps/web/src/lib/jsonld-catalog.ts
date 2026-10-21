@@ -44,6 +44,7 @@ export function productLd(i: {
   brand: string;
   description: string;
   category?: string;
+  image?: string; // 오려 낸 제품 CC 사진 (절대 주소). 없으면 뺀다 — 아이콘은 제품 사진이 아니다
   rating?: { value: number; count: number } | null;
 }): object {
   return {
@@ -54,6 +55,7 @@ export function productLd(i: {
     brand: { "@type": "Brand", name: i.brand },
     description: i.description,
     ...(i.category ? { category: i.category } : {}),
+    ...(i.image ? { image: i.image } : {}),
     ...(i.rating && i.rating.count >= MIN_VOTES_FOR_SUMMARY
       ? {
           aggregateRating: {

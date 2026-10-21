@@ -32,8 +32,23 @@ export interface CoverPhoto {
   sourceUrl: string; // 공용 파일 설명 페이지
 }
 
-// 사진이 없는 자리에 그리는 것: 3D 아이콘 또는 CC 사진 (규칙은 data/cover.ts 한 곳)
-export type CoverSpec = { kind: "icon"; icon: Icon3d } | { kind: "photo"; photo: CoverPhoto };
+// 제품 사진 (뷰티). 제품만 오려 낸 투명 WebP 를 public/products/ 에 둔다 — 브랜드·쇼핑몰 상품 사진은 저작물이라 쓰지 않는다.
+// 출처는 둘: Open Beauty Facts 에 올린이가 직접 찍은 사진(CC BY-SA, 표기 필요) 또는 운영자가 직접 찍은 사진(표기 없음).
+// 파일과 메타는 scripts/product-photo.mjs 가 만든다
+export interface ProductPhoto {
+  src: string; // /products/<slug>.webp
+  width: number; // 오려 낸 파일 크기
+  height: number;
+  author: string | null; // 올린 사람 (OBF 사용자 이름). 직접 찍은 사진은 null
+  licenseName: string | null; // CC BY-SA 3.0. 직접 찍은 사진은 null
+  licenseUrl: string | null;
+  sourceUrl: string | null; // OBF 제품 페이지. 직접 찍은 사진은 null — 저작자 표기를 하지 않는다
+  sourceName: string | null; // Open Beauty Facts
+}
+
+// 사진이 없는 자리에 그리는 것: 3D 아이콘, CC 사진(명소·동네), 오려 낸 제품 CC 사진 (규칙은 data/cover.ts 한 곳)
+export type CoverSpec =
+  { kind: "icon"; icon: Icon3d } | { kind: "photo"; photo: CoverPhoto } | { kind: "product"; photo: ProductPhoto };
 
 // 저장함·교차 레일·가이드 허브가 쓰는 항목 한 줄 요약
 export interface CatalogSummary {

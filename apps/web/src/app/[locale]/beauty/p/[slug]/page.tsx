@@ -15,6 +15,7 @@ import { CrossRail } from "@/components/guide/CrossRail";
 import { TypeCover } from "@/components/guide/TypeCover";
 import { Words } from "@/components/guide/Words";
 import { JsonLd } from "@/components/JsonLd";
+import { PhotoCredit } from "@/components/PhotoCredit";
 import { SaveButton } from "@/components/SaveButton";
 import { ShareButton } from "@/components/ShareButton";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -26,6 +27,7 @@ import { PARTNER_NAME, partnersForLocale } from "@/lib/affiliate";
 import { BEAUTY_DETAIL_BUY_ANCHOR, isEditorsPick, readerRating } from "@/lib/beauty";
 import { emptyTotals } from "@/lib/item-votes";
 import { breadcrumbLd, graph, productLd } from "@/lib/jsonld-catalog";
+import { SITE_URL } from "@/lib/url";
 
 import { loadBeauty, staticParamsFor } from "../../data";
 import { absoluteUrl, beautyCrumbs, beautyMetadata } from "../../meta";
@@ -117,6 +119,7 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
             brand: entry.brand,
             description: tagline,
             category,
+            ...(entry.photo ? { image: `${SITE_URL}${entry.photo.src}` } : {}),
             rating,
           }),
           breadcrumbLd(
@@ -128,29 +131,47 @@ export default async function BeautyProductPage({ params }: PageProps<"/[locale]
         )}
       />
 
-      <TypeCover
-        tint={SECTION_TINT.beauty}
-        cover={beautyCover(entry)}
-        variant="hero"
-        label={category}
-        isNew={isNew(entry.addedAt)}
-        newLabel={t("newBadge")}
-        locale={locale}
-        className={HERO_SIZE}
-      >
-        {/* 어워드 안 순위: 왼쪽 아래 (대표 성분 아이콘은 오른쪽) */}
-        {rank && (
-          <p className="absolute bottom-4 left-5 flex items-baseline gap-2 text-on-tint">
-            <span aria-hidden className="numeral text-display">
-              {rank}
-            </span>
-            <span aria-hidden className="text-t7 font-semibold text-on-tint-sub">
-              {kind}
-            </span>
-            <span className="sr-only">{t("product.rankIn", { rank, category, kind })}</span>
-          </p>
+      <figure>
+        <TypeCover
+          tint={SECTION_TINT.beauty}
+          cover={beautyCover(entry)}
+          variant="hero"
+          label={category}
+          isNew={isNew(entry.addedAt)}
+          newLabel={t("newBadge")}
+          alt={entry.photo ? `${entry.brand} ${name}` : ""}
+          priority={!!entry.photo}
+          locale={locale}
+          className={HERO_SIZE}
+        >
+          {/* 어워드 안 순위: 왼쪽 아래 (대표 성분 아이콘은 오른쪽) */}
+          {rank && (
+            <p className="absolute bottom-4 left-5 flex items-baseline gap-2 text-on-tint">
+              <span aria-hidden className="numeral text-display">
+                {rank}
+              </span>
+              <span aria-hidden className="text-t7 font-semibold text-on-tint-sub">
+                {kind}
+              </span>
+              <span className="sr-only">{t("product.rankIn", { rank, category, kind })}</span>
+            </p>
+          )}
+        </TypeCover>
+        {/* 제품 사진의 CC BY-SA 표기: 커버 안에는 순위·제품 사이 자리가 없어 바로 아래 한 줄 (직접 찍은 사진은 표기 없음) */}
+        {entry.photo?.sourceUrl && (
+          <PhotoCredit
+            media={{
+              credit: null,
+              ...entry.photo,
+              sourceName: entry.photo.sourceName ?? undefined,
+              change: "background removed",
+            }}
+            tone="plain"
+            // 자르지 않는다: 저작자·라이선스·출처 링크가 다 보여야 표기다 (긴 저작자 이름은 두 줄)
+            className="px-gutter pt-1.5"
+          />
         )}
-      </TypeCover>
+      </figure>
 
       <div className="px-gutter pt-4">
         <h1 className="text-t3 font-bold text-ink-900">

@@ -14,11 +14,16 @@ function isBuy(value: unknown): boolean {
   return typeof v.href === "string" && v.href.startsWith("https://") && typeof v.partner === "string" && typeof v.name === "string";
 }
 
-// 커버: 아이콘 키(파일 이름)는 글자·숫자·하이픈만, 사진은 위키미디어 공용 원본 주소만 (이미지 로더가 썸네일로 바꾼다)
+// 커버: 아이콘 키(파일 이름)는 글자·숫자·하이픈만, 사진은 위키미디어 공용 원본 주소만 (이미지 로더가 썸네일로 바꾼다),
+// 제품 사진은 우리 /products/ 파일만
 function isCover(value: unknown): boolean {
   if (!value || typeof value !== "object") return false;
   const v = value as Record<string, unknown>;
   if (v.kind === "icon") return typeof v.icon === "string" && /^[a-z0-9-]+$/.test(v.icon);
+  if (v.kind === "product") {
+    const p = v.photo as Record<string, unknown> | null;
+    return !!p && typeof p.src === "string" && /^\/products\/[a-z0-9-]+\.webp$/.test(p.src);
+  }
   if (v.kind !== "photo" || !v.photo || typeof v.photo !== "object") return false;
   const p = v.photo as Record<string, unknown>;
   return (
