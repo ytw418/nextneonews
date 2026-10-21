@@ -21,7 +21,7 @@ if (!res.ok) throw new Error(`글꼴을 받지 못했다: ${res.status}`);
 const font = await res.arrayBuffer();
 
 // ratio: 글자 크기 / 그림 한 변. 아이폰 아이콘은 꽉 차게, 스플래시·안드로이드 전경은 잘리지 않게 작게
-async function draw(file, size, ratio, background) {
+async function draw(file, size, ratio, background, color = INK, dot = DOT) {
   const image = new ImageResponse(
     h(
       "div",
@@ -36,14 +36,14 @@ async function draw(file, size, ratio, background) {
           fontFamily: "Instrument Serif",
           fontStyle: "italic",
           fontSize: Math.round(size * ratio),
-          color: INK,
+          color,
           // 이탤릭 'U' 의 시각 중심이 오른쪽으로 쏠려 보여 살짝 왼쪽·아래로 (글자 상자 기준 중앙은 위로 떠 보인다)
           paddingRight: Math.round(size * 0.02),
           paddingTop: Math.round(size * 0.06),
         },
       },
       "U",
-      h("span", { style: { color: DOT } }, "."),
+      h("span", { style: { color: dot } }, "."),
     ),
     { width: size, height: size, fonts: [{ name: "Instrument Serif", data: font, style: "italic", weight: 400 }] },
   );
@@ -56,3 +56,6 @@ await draw("icon.png", 1024, 0.78, "#ffffff");
 await draw("splash-icon.png", 512, 0.62, "transparent");
 await draw("android-icon-foreground.png", 1024, 0.5, "transparent");
 await draw("favicon.png", 48, 0.78, "#ffffff");
+// 안드로이드 적응형 아이콘: 배경은 흰색 한 장, 흑백(테마 아이콘)은 투명 바탕에 한 색 — 시스템이 색을 입힌다
+await draw("android-icon-background.png", 1024, 0, "#ffffff", "#ffffff", "#ffffff");
+await draw("android-icon-monochrome.png", 1024, 0.5, "transparent", "#000000", "#000000");

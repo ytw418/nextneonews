@@ -48,6 +48,9 @@ const config: ExpoConfig = {
     ["expo-splash-screen", { backgroundColor: "#ffffff", image: "./assets/splash-icon.png", imageWidth: 160, dark: { backgroundColor: "#111113" } }],
   ],
   experiments: { typedRoutes: true },
+  owner: "ytw418",
+  // EAS 프로젝트 @ytw418/unnienote (빌드·제출)
+  extra: { eas: { projectId: "c00b0ccf-71f7-4bb2-b986-f6b28dcbe5cd" } },
 };
 
 export default config;
