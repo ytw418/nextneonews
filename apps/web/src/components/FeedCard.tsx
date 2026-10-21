@@ -8,7 +8,7 @@ import { CATEGORY_ICON3D } from "@/data/icons3d";
 import { MemoCover } from "@/components/MemoCover";
 import { type CreditMedia, PhotoCredit } from "@/components/PhotoCredit";
 import { Badge } from "@/components/ui/Badge";
-import { Meta } from "@/components/ui/Meta";
+import { AppHiddenPart, Meta } from "@/components/ui/Meta";
 import { Link } from "@/i18n/navigation";
 import { coverStyle } from "@/lib/cover";
 
@@ -86,19 +86,21 @@ function Count({ icon, n, label }: { icon: ReactNode; n: number; label: string }
   );
 }
 
-function useCounts(item: FeedItem): ReactNode[] {
+// 댓글 수는 앱에서 숨긴다 (앱 1판은 댓글이 없다 — Apple 심사 1.2)
+function useCounts(item: FeedItem): (ReactNode | AppHiddenPart)[] {
   const t = useTranslations("Feed");
   const comments = item.commentCount ?? 0;
   const reactions = item.reactionTotal ?? 0;
   return [
-    comments > 0 && (
-      <Count
-        key="c"
-        icon={<CommentIcon className="size-[1.15em]" />}
-        n={comments}
-        label={t("comments", { count: comments })}
-      />
-    ),
+    comments > 0 &&
+      new AppHiddenPart(
+        <Count
+          key="c"
+          icon={<CommentIcon className="size-[1.15em]" />}
+          n={comments}
+          label={t("comments", { count: comments })}
+        />,
+      ),
     reactions > 0 && (
       <Count
         key="r"
@@ -142,7 +144,10 @@ export function FeedCard({ item, variant = "column", showCategory = true, priori
           className="rounded-card"
         />
         {counts.length > 0 && (
-          <p className={`pt-1.5 text-t7 text-ink-600 ${lead ? "px-4" : "px-3"}`}>
+          // 댓글 수만 있으면 앱에서는 줄째 숨긴다 (빈 여백이 남지 않게)
+          <p
+            className={`pt-1.5 text-t7 text-ink-600 ${lead ? "px-4" : "px-3"} ${counts.every((c) => c instanceof AppHiddenPart) ? "app-hide" : ""}`}
+          >
             <Meta parts={counts} />
           </p>
         )}

@@ -64,7 +64,7 @@ export function SavedView({ picks }: { picks: CatalogSummary[] }) {
   const month = useSyncExternalStore(noSubscribe, thisMonth, () => "");
   // 홈 화면 앱으로 열었는지 (그때는 설치 안내 대신 복원 링크 붙여넣기 칸을 둔다)
   const installed = useSyncExternalStore(noSubscribe, isStandalone, () => true);
-  const app = useAppMode(); // 언니노트 앱: 설치 안내 대신 붙여넣기 칸 (앱 저장으로 옮겨진다)
+  const app = useAppMode(); // 언니노트 앱에서는 설치 안내를 뺀다 (앱은 이 화면 대신 네이티브 저장함을 연다)
   const inApp = useSyncExternalStore(noSubscribe, inAppBrowser, () => false);
   const summaries = useSummaries(items, locale);
   const [filter, setFilter] = useState<Filter>("all");
@@ -228,7 +228,7 @@ export function SavedView({ picks }: { picks: CatalogSummary[] }) {
           {t("savedInstall")}
         </p>
       )}
-      {hydrated && (installed || app) && <PasteLink />}
+      {hydrated && installed && <PasteLink />}
       {/* 기기 밖에 남는 유일한 연락 길 (저장 목록과는 묶지 않는다). 앱이 나오면 알림 + 주간 소식 */}
       {hydrated && <SubscribeBox source="saved" className="mt-8" />}
     </div>

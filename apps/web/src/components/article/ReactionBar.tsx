@@ -117,7 +117,8 @@ export function ReactionBar({ articleId, reactions, anchorId, commentHref }: Pro
       {pressed.size > 0 && (
         <a
           href={commentHref}
-          className="mt-3 inline-flex min-h-11 items-center gap-0.5 text-t6 font-semibold text-brand-ink"
+          // 앱 1판은 댓글이 없어 숨긴다 (댓글 진입점: FeedCard 댓글 수·ArticleActionBar 댓글 버튼·이 링크·글 아래 Comments)
+          className="app-hide mt-3 inline-flex min-h-11 items-center gap-0.5 text-t6 font-semibold text-brand-ink"
         >
           {t("leaveComment")}
           <ChevronRightIcon className="size-4" />

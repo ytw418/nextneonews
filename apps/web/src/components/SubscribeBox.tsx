@@ -6,6 +6,7 @@ import { type FormEvent, type ReactNode, useEffect, useId, useRef, useState } fr
 import { CheckIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/i18n/navigation";
+import { isApp } from "@/lib/app-mode";
 import { useAppMode } from "@/lib/use-app-mode";
 import { appPlatform } from "@/lib/install";
 import { normalizeEmail, type SubscribeSource } from "@/lib/subscribe-rules";
@@ -32,7 +33,7 @@ export function SubscribeBox({ source, className = "" }: { source: SubscribeSour
   // 반쯤 보이면 한 번 센다 (노출 대비 제출률)
   useEffect(() => {
     const el = box.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (!el || typeof IntersectionObserver === "undefined" || isApp()) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return;
@@ -88,7 +89,7 @@ export function SubscribeBox({ source, className = "" }: { source: SubscribeSour
       ref={box}
       data-install-avoid
       aria-labelledby={`${id}-title`}
-      className={`mx-gutter rounded-card bg-card px-4 py-5 shadow-card ${locale === "ko" ? "[word-break:keep-all]" : ""} ${className}`}
+      className={`app-hide mx-gutter rounded-card bg-card px-4 py-5 shadow-card ${locale === "ko" ? "[word-break:keep-all]" : ""} ${className}`}
     >
       <h2 id={`${id}-title`} className="text-t5 font-bold text-ink-900">
         {t("subscribeTitle")}

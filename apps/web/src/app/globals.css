@@ -98,6 +98,12 @@ html[data-app] {
 html[data-app] .app-hide {
   display: none !important;
 }
+/* 앱 1판은 시술 가이드를 빼고 낸다 (Apple 심사 1.4.1). 진입점이 섹션 목록에서 여러 곳(가이드 허브·홈·푸터·교차 레일)에 생겨
+   링크와 그 링크만 담은 칸을 한 규칙으로 숨긴다. 문장 속 링크(p a)는 문장이 깨지니 둔다. 앱은 /clinic 주소를 사파리 창으로 연다 */
+html[data-app] a[href*="/clinic"]:not(p a),
+html[data-app] li:has(> a[href*="/clinic"]) {
+  display: none !important;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {

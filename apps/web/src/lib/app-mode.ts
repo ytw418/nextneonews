@@ -16,7 +16,13 @@ export function isApp(): boolean {
 export type AppTab = "home" | "rankings" | "guide" | "schedule" | "saved";
 
 // 웹이 앱에 보내는 메시지. 저장 목록 동기화는 앱이 주입한 스크립트가 따로 보낸다 (mobile/src/lib/bridge.ts)
-export type AppMessage = { type: "tab"; tab: AppTab };
+// back: 앱이 쌓아 연 화면(저장함에서 연 항목)의 첫 페이지에서 '뒤로' — 앱 화면을 닫는다
+export type AppMessage = { type: "tab"; tab: AppTab } | { type: "back" };
+
+// 앱이 탭이 아니라 쌓아서 연 웹뷰인지 (앱이 페이지마다 심는 window.__hbAppPushed)
+export function isAppPushed(): boolean {
+  return (window as Window & { __hbAppPushed?: boolean }).__hbAppPushed === true;
+}
 
 export function postToApp(message: AppMessage): boolean {
   const bridge = (window as Window & { ReactNativeWebView?: { postMessage(data: string): void } }).ReactNativeWebView;
