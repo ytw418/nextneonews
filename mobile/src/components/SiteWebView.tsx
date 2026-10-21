@@ -149,7 +149,8 @@ export function SiteWebView({ ref: handle, id, ownTab, uri, rootUrl, onTab, onLo
         allowsBackForwardNavigationGestures
         pullToRefreshEnabled
         allowsInlineMediaPlayback
-        dataDetectorTypes="none"
+        // 배열로 넘긴다: 안드로이드 네이티브는 이 값을 배열로 읽어 문자열이면 앱이 꺼진다 (iOS 는 안에서 배열로 바꿔 준다)
+        dataDetectorTypes={NO_DATA_DETECTORS}
         setSupportMultipleWindows
         webviewDebuggingEnabled={__DEV__}
       />
@@ -170,6 +171,7 @@ export function SiteWebView({ ref: handle, id, ownTab, uri, rootUrl, onTab, onLo
 }
 
 const ALL_ORIGINS = ["*"];
+const NO_DATA_DETECTORS: ["none"] = ["none"];
 const MESSAGE_MAX = 100_000;
 
 const styles = StyleSheet.create({ fill: { flex: 1 } });
