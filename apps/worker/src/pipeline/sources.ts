@@ -126,6 +126,7 @@ async function readFact(signal: SignalRef): Promise<SourceMaterial> {
     case "yonhap":
       return newsArticle(signal.url, "Yonhap News");
     case "google-trends":
+    case "manual-manual": // 사람이 seed-topic --source manual --url 로 넣은 기사
       return newsArticle(signal.url, new URL(signal.url).hostname);
     case "theqoo":
       // 커뮤니티 글은 사실 출처가 아니다. 더쿠 '기사/뉴스' 글도 본문은 대개 네이버 링크뿐이다
