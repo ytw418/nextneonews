@@ -16,6 +16,7 @@ export type TrackEvent =
   | "reaction"
   | "share"
   | "comment_submit"
+  | "comment_like"
   | "scroll_75"
   | "cheer"
   | "rank_row_open"

@@ -128,6 +128,7 @@
       "commentKey": "Khóa ngẫu nhiên để bạn sửa hoặc xóa bình luận của mình. Chúng tôi chỉ giữ mã băm của khóa này.",
       "commentName": "Biệt danh hiển thị trên bình luận của bạn.",
       "myComments": "Các bình luận bạn đã viết trên thiết bị này (tối đa 200).",
+      "commentLikes": "Các bình luận bạn đã thích trên thiết bị này (tối đa 500), để mỗi lượt thích chỉ tính một lần.",
       "poll": "Câu trả lời của bạn trong mỗi cuộc bình chọn.",
       "react": "Các phản ứng bạn đã nhấn ở mỗi bài.",
       "cheer": "Người bạn đã cổ vũ hôm nay.",

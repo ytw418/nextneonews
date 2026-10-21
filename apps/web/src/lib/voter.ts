@@ -24,7 +24,7 @@ export function isBot(ua: string | null | undefined): boolean {
   return !ua || BOT_UA.test(ua);
 }
 
-export type VoteTable = "poll" | "reaction" | "cheer" | "item";
+export type VoteTable = "poll" | "reaction" | "cheer" | "item" | "commentLike";
 
 // 같은 사람(IP 해시)이 windowMs 안에 max 번 넘게 눌렀는지
 export async function rateLimited(table: VoteTable, ipHash: string, max: number, windowMs: number): Promise<boolean> {
@@ -37,6 +37,8 @@ export async function rateLimited(table: VoteTable, ipHash: string, max: number,
         ? await prisma.reactionVote.count({ where })
         : table === "cheer"
           ? await prisma.cheerVote.count({ where })
+          : table === "commentLike"
+            ? await prisma.commentLike.count({ where })
           : // 항목 평가는 바꾸면 행을 덮어써서(createdAt 그대로) 새로 낸 표와 바꾼 표를 함께 updatedAt 으로 센다
             await prisma.itemVote.count({ where: { ipHash, updatedAt: { gte: since } } });
   return count >= max;

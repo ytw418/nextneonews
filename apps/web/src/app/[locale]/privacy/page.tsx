@@ -25,6 +25,7 @@ const STORAGE_KEYS = [
   ["hb:comment-key", "commentKey"],
   ["hb:comment-name", "commentName"],
   ["hb:my-comments", "myComments"],
+  ["hb:comment-likes", "commentLikes"],
   ["hb:poll:{id}", "poll"],
   ["hb:react:{id}", "react"],
   ["hb:cheer:{id}:{day}", "cheer"],

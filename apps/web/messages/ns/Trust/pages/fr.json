@@ -128,6 +128,7 @@
       "commentKey": "Une clé aléatoire qui vous permet de modifier ou supprimer vos commentaires. Nous n’en gardons qu’une empreinte.",
       "commentName": "Le pseudo affiché sur vos commentaires.",
       "myComments": "Les commentaires écrits depuis cet appareil (200 au maximum).",
+      "commentLikes": "Les commentaires que vous avez aimés sur cet appareil (500 max.), pour ne compter un j’aime qu’une fois.",
       "poll": "Votre réponse à chaque sondage.",
       "react": "Les réactions que vous avez choisies sur chaque article.",
       "cheer": "Qui vous avez encouragé aujourd’hui.",
