@@ -141,13 +141,17 @@ export async function listPopular(locale: string, take = 8, days = 7) {
 // 조회가 모자라 min 편이 안 되면 주간 누적(listPopular)으로 돌아간다 (새 언어·새벽 시간대)
 export async function listTrending(locale: string, take = 5, hours = 24, min = 3) {
   const since = new Date(Date.now() - hours * HOUR_MS);
-  const top = await prisma.articleViewHour.groupBy({
-    by: ["articleId"],
-    where: { hour: { gte: since } },
-    _sum: { count: true },
-    orderBy: { _sum: { count: "desc" } },
-    take: take * 4,
-  });
+  // 표가 아직 없을 때(배포 직후 마이그레이션 전)는 주간 순위로 그린다
+  const top = await prisma.articleViewHour
+    .groupBy({
+      by: ["articleId"],
+      where: { hour: { gte: since } },
+      _sum: { count: true },
+      orderBy: { _sum: { count: "desc" } },
+      take: take * 4,
+    })
+    .catch(() => null);
+  if (!top) return listPopular(locale, take);
   const rows = await prisma.translation.findMany({
     where: { locale, articleId: { in: top.map((t) => t.articleId) }, article: { status: "PUBLISHED" } },
     select: { ...feedSelect, articleId: true },

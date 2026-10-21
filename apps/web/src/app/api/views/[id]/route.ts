@@ -41,13 +41,14 @@ export async function POST(request: Request, { params }: RouteContext<"/api/view
   if (overLimit(ipHash(clientIp(request.headers)), Date.now())) return done;
   try {
     const updated = await prisma.$executeRaw`UPDATE "Article" SET "views" = "views" + 1 WHERE "id" = ${id} AND "status" = 'PUBLISHED'`;
+    // 시간 칸은 덤이라 실패해도(마이그레이션 전 등) 누적 조회는 그대로 둔다
     if (updated > 0) {
       await prisma.$executeRaw`
         INSERT INTO "ArticleViewHour" ("articleId", "hour", "count") VALUES (${id}, date_trunc('hour', now() AT TIME ZONE 'UTC'), 1)
-        ON CONFLICT ("articleId", "hour") DO UPDATE SET "count" = "ArticleViewHour"."count" + 1`;
+        ON CONFLICT ("articleId", "hour") DO UPDATE SET "count" = "ArticleViewHour"."count" + 1`.catch(() => 0);
     }
     if (Math.random() < PRUNE_RATE) {
-      await prisma.$executeRaw`DELETE FROM "ArticleViewHour" WHERE "hour" < now() AT TIME ZONE 'UTC' - make_interval(days => ${HOUR_KEEP_DAYS})`;
+      await prisma.$executeRaw`DELETE FROM "ArticleViewHour" WHERE "hour" < now() AT TIME ZONE 'UTC' - make_interval(days => ${HOUR_KEEP_DAYS})`.catch(() => 0);
     }
   } catch (err) {
     // DB 가 멈춘 동안의 조회는 버린다 (조회 수 한 칸 때문에 오류 로그가 쌓이지 않게)
