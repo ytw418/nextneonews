@@ -1,0 +1,15 @@
+{
+  "newToday": "今日の新着 {count}本",
+  "top": "今日のトップ記事",
+  "pollToday": "今日の投票",
+  "pollFromStory": "今日の記事から",
+  "picks": {
+    "title": "推しを選ぶ",
+    "mine": "私の推し",
+    "pitch": "推しのニュースとD-dayを先に表示。{max}人まで・登録不要",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "noNews": "新着記事はまだありません · プロフィールへ"
+  }
+}

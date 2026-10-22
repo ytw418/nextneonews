@@ -14,6 +14,8 @@ import { track } from "@/lib/track";
 
 // 이보다 적으면 결과를 펼쳐 두지 않는다 (몇 표로 1위를 말하지 않게)
 const RESULTS_MIN = 10;
+// 언어별 1위를 보일 최소 표 수 (한두 표로 '일본은 A' 라고 말하지 않게)
+const LANGUAGE_MIN = 3;
 // 409(이 기기는 이미 투표함)인데 무엇을 골랐는지 모를 때
 const UNKNOWN = "?";
 
@@ -37,6 +39,36 @@ function top(options: PollOption[], counts: Record<string, number> | undefined):
     if ((counts?.[o.id] ?? 0) > (best ? (counts?.[best.id] ?? 0) : 0)) best = o;
   }
   return best;
+}
+
+// 투표한 뒤 '언어별 1위': 우리 독자는 9개 언어라 '일본어 독자는 A, 베트남어 독자는 B' 가 이 투표만의 재미다.
+// 표가 LANGUAGE_MIN 이상인 언어만, 두 언어 이상일 때만 보인다 (표가 많은 언어부터)
+function ByLanguage({ options, byLocale, title }: { options: PollOption[]; byLocale: PollByLocale | null; title: string }) {
+  const rows = Object.entries(byLocale ?? {})
+    .flatMap(([lang, counts]) => {
+      const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
+      const best = top(options, counts);
+      return isLocale(lang) && best && total >= LANGUAGE_MIN
+        ? [{ lang, total, best, pct: percent(counts[best.id] ?? 0, total) }]
+        : [];
+    })
+    .sort((a, b) => b.total - a.total);
+  if (rows.length < 2) return null;
+  return (
+    <div className="mt-4">
+      <p className="text-t7 font-semibold text-ink-700">{title}</p>
+      <ul className="mt-1.5 divide-y divide-line">
+        {rows.map((r) => (
+          <li key={r.lang} className="flex items-baseline justify-between gap-3 py-1.5 text-t7">
+            <span className="shrink-0 font-semibold text-ink-900">{LOCALE_NAME[r.lang]}</span>
+            <span className="min-w-0 truncate text-right text-ink-700">
+              {r.best.label} <span className="font-bold tabular-nums text-ink-900">{r.pct}%</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 function Results({ options, totals, total, choice, mineLabel }: {
@@ -215,8 +247,13 @@ export function PollCard({ poll, locale, anchorId, articleId, shareUrl, classNam
             choice={view.choice}
             mineLabel={t("pollMine")}
           />
+          <ByLanguage options={poll.options} byLocale={view.byLocale} title={t("pollByLanguage")} />
           <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
-            <p className="text-t7 tabular-nums text-ink-600">{t("pollTotal", { count: view.total })}</p>
+            <p className="text-t7 tabular-nums text-ink-600">
+              {view.total < RESULTS_MIN && view.choice !== UNKNOWN
+                ? t("pollEarly", { count: view.total })
+                : t("pollTotal", { count: view.total })}
+            </p>
             <Button size="m" variant="neutral" onClick={() => void share()}>
               <ShareIcon className="size-4" />
               {t("pollShare")}

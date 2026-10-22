@@ -119,5 +119,7 @@
   "subscribeDoneNews": "登録しました。アプリが出たらお知らせし、毎週のおすすめもお送りします。",
   "subscribeInvalid": "メールアドレスをもう一度確認してください。",
   "subscribeTooMany": "この接続からの登録が多すぎます。明日もう一度お試しください。",
-  "subscribeFailed": "保存できませんでした。少し待ってからもう一度お試しください。"
+  "subscribeFailed": "保存できませんでした。少し待ってからもう一度お試しください。",
+  "pollByLanguage": "言語別の1位",
+  "pollEarly": "あなたは{count}番目の投票者です"
 }

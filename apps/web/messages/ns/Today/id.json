@@ -1,0 +1,15 @@
+{
+  "newToday": "{count}\u00a0berita baru hari ini",
+  "top": "Berita utama hari ini",
+  "pollToday": "Polling hari ini",
+  "pollFromStory": "Dari berita hari ini",
+  "picks": {
+    "title": "Pilih bias kamu",
+    "mine": "Bias aku",
+    "pitch": "Lihat berita dan D-day mereka lebih dulu. Maks. {max}, tanpa daftar.",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "edit": "Ubah",
+    "noNews": "Belum ada berita baru · lihat profil"
+  }
+}

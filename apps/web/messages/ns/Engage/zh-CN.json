@@ -119,5 +119,7 @@
   "subscribeDoneNews": "登记好了！App 上线时会通知你，每周也会发精选给你",
   "subscribeInvalid": "再检查一下邮箱地址吧",
   "subscribeTooMany": "这个网络登记次数太多了，明天再试试吧",
-  "subscribeFailed": "没能保存，等一下再试一次吧"
+  "subscribeFailed": "没能保存，等一下再试一次吧",
+  "pollByLanguage": "各语言第一名",
+  "pollEarly": "你是第 {count} 位投票者"
 }

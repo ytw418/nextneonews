@@ -119,5 +119,7 @@
   "subscribeDoneNews": "Sudah terdaftar! Nanti kami kabari waktu aplikasinya rilis, plus rangkuman mingguan.",
   "subscribeInvalid": "Cek lagi alamat email-nya, ya.",
   "subscribeTooMany": "Kebanyakan percobaan dari koneksi ini. Coba lagi besok, ya.",
-  "subscribeFailed": "Gagal menyimpan. Coba lagi sebentar lagi, ya."
+  "subscribeFailed": "Gagal menyimpan. Coba lagi sebentar lagi, ya.",
+  "pollByLanguage": "Pilihan teratas per bahasa",
+  "pollEarly": "Kamu pemilih ke-{count}"
 }

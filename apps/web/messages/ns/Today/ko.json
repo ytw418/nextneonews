@@ -1,0 +1,15 @@
+{
+  "newToday": "오늘 새 글 {count}편",
+  "top": "오늘의 탑 기사",
+  "pollToday": "오늘의 한 표",
+  "pollFromStory": "오늘 기사에서",
+  "picks": {
+    "title": "최애 고르기",
+    "mine": "내 최애",
+    "pitch": "최애 소식과 D-day 를 먼저 보여 드려요. {max}명까지, 가입 없이",
+    "save": "저장",
+    "cancel": "취소",
+    "edit": "편집",
+    "noNews": "아직 새 글이 없어요 · 프로필 보기"
+  }
+}

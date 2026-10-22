@@ -21,6 +21,7 @@ export type TrackEvent =
   | "cheer"
   | "rank_row_open"
   | "feed_page"
+  | "pick_save" // 홈 내 최애 저장. count(고른 수)·from(home·edit)
   // ── 가이드·저장 (docs/monetize/PLAN.md §8). params 는 평면으로:
   // kind·id(저장·평가 항목), partner·placement·item·tagged(제휴), choice·facet(평가), quiz·result(테스트), from·to(레일 이동), count(개수)
   | "save"
