@@ -36,13 +36,13 @@ describe("affiliateHref", () => {
 });
 
 describe("partnersForLocale", () => {
-  it("ja 에서는 미국 전용 amazon 이 빠지고, en 은 yesstyle → amazon → oliveyoung 순이다", () => {
+  it("ja 에서는 미국 전용 amazon 이 빠지고 YesStyle 이 먼저, en 은 yesstyle → amazon → oliveyoung 순이다", () => {
     const targets = [
       { partner: "oliveyoung", url: "https://global.oliveyoung.com/p" },
       { partner: "amazon", url: "https://www.amazon.com/dp/B0ABC" },
       { partner: "yesstyle", url: "https://www.yesstyle.com/p" },
     ] as const;
-    expect(partnersForLocale("ja", [...targets]).map((t) => t.partner)).toEqual(["oliveyoung", "yesstyle"]);
+    expect(partnersForLocale("ja", [...targets]).map((t) => t.partner)).toEqual(["yesstyle", "oliveyoung"]);
     expect(partnersForLocale("en", [...targets]).map((t) => t.partner)).toEqual(["yesstyle", "amazon", "oliveyoung"]);
   });
 });

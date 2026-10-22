@@ -85,13 +85,15 @@ const PARTNER_REGIONS: Partial<Record<AffiliatePartner, Region[]>> = {
 };
 
 // 언어별 파트너 순서: 그 언어 독자가 실제로 쓰는 곳이 먼저 (수수료 순이 아니다).
-// en 은 미국 배송이 되는 YesStyle → Amazon(미국만) → 올리브영 글로벌(미국 배송 안 됨) 순
+// en 은 미국 배송이 되는 YesStyle → Amazon(미국만) → 올리브영 글로벌(미국 배송 안 됨) 순.
+// 올리브영 글로벌 제휴는 한국 거주자가 가입할 수 없어(해외 183일 거주·해외 PayPal 조건, 2026-10-22 확인)
+// 추적 링크를 못 단다 → 어느 언어든 YesStyle(Awin)을 먼저 둔다. 일본 독자가 1순위 시장이다
 const LOCALE_ORDER: Record<string, AffiliatePartner[]> = {
   en: ["yesstyle", "amazon", "oliveyoung", "klook", "airalo", "trip", "creatrip"],
-  ja: ["oliveyoung", "yesstyle", "amazon", "klook", "creatrip", "trip", "airalo"],
-  "zh-TW": ["oliveyoung", "yesstyle", "amazon", "klook", "creatrip", "trip", "airalo"],
-  "zh-CN": ["oliveyoung", "yesstyle", "amazon", "trip", "klook", "creatrip", "airalo"],
-  ko: ["oliveyoung", "yesstyle", "amazon", "klook", "creatrip", "trip", "airalo"],
+  ja: ["yesstyle", "oliveyoung", "amazon", "klook", "creatrip", "trip", "airalo"],
+  "zh-TW": ["yesstyle", "oliveyoung", "amazon", "klook", "creatrip", "trip", "airalo"],
+  "zh-CN": ["yesstyle", "oliveyoung", "amazon", "trip", "klook", "creatrip", "airalo"],
+  ko: ["yesstyle", "oliveyoung", "amazon", "klook", "creatrip", "trip", "airalo"],
   vi: ["yesstyle", "oliveyoung", "amazon", "klook", "trip", "airalo", "creatrip"],
   id: ["yesstyle", "oliveyoung", "amazon", "klook", "trip", "airalo", "creatrip"],
   fr: ["yesstyle", "oliveyoung", "amazon", "klook", "airalo", "trip", "creatrip"],
