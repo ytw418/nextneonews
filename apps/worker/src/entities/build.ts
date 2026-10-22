@@ -8,6 +8,7 @@ const USER_AGENT = "kmedia-entity-builder/0.1 (personal project; contact via sit
 
 const LABELS = `
   OPTIONAL { ?item wdt:P21 ?sex }
+  OPTIONAL { ?item wdt:P569 ?born }
   OPTIONAL { ?item wdt:P31 ?gcls FILTER(?gcls IN (wd:Q641066, wd:Q216337)) }
   OPTIONAL { ?item rdfs:label ?ko FILTER(LANG(?ko) = "ko") }
   OPTIONAL { ?item rdfs:label ?en FILTER(LANG(?en) = "en") }
@@ -17,7 +18,7 @@ const LABELS = `
   OPTIONAL { ?item rdfs:label ?zh FILTER(LANG(?zh) = "zh") }
   OPTIONAL { ?item wdt:P18 ?img }`;
 
-const SELECT = "SELECT ?item ?sl ?ko ?en ?ja ?zhtw ?zhhant ?zh ?img ?human ?sex ?gcls WHERE {";
+const SELECT = "SELECT ?item ?sl ?ko ?en ?ja ?zhtw ?zhhant ?zh ?img ?human ?sex ?gcls ?born WHERE {";
 
 // 앞 쿼리의 종류가 이긴다: 그룹 → K-pop 가수 → 배우 → 일반 가수 → 드라마
 // (가수 경력이 있는 배우가 "가수" 로 잡혀 K-POP 으로 분류되지 않게 배우를 일반 가수보다 앞에 둔다)
@@ -72,7 +73,7 @@ const QUERIES: { name: string; type: (row: Row) => string; sparql: string }[] = 
 interface Binding {
   value: string;
 }
-type Row = Partial<Record<"item" | "sl" | "ko" | "en" | "ja" | "zhtw" | "zhhant" | "zh" | "img" | "human" | "sex" | "gcls", Binding>>;
+type Row = Partial<Record<"item" | "sl" | "ko" | "en" | "ja" | "zhtw" | "zhhant" | "zh" | "img" | "human" | "sex" | "gcls" | "born", Binding>>;
 
 async function runQuery(sparql: string): Promise<Row[]> {
   const res = await fetch(`${ENDPOINT}?query=${encodeURIComponent(sparql)}`, {
@@ -119,6 +120,7 @@ export async function buildEntities(): Promise<void> {
         sitelinks: Number(row.sl?.value ?? 0),
         image: fileName(row.img?.value),
         gender: genderOf(row),
+        birthYear: row.born ? Number(row.born.value.slice(0, 4)) || null : null,
         aliases: [],
       });
     }
@@ -135,14 +137,14 @@ export async function buildEntities(): Promise<void> {
       .slice(i, i + 500)
       .map(
         (e) =>
-          Prisma.sql`(${e.id}, ${e.type}, ${e.ko}, ${e.en}, ${e.ja}, ${e.zhHant}, ${e.aliases}::text[], ${e.sitelinks}, ${e.image}, ${e.gender}, now())`,
+          Prisma.sql`(${e.id}, ${e.type}, ${e.ko}, ${e.en}, ${e.ja}, ${e.zhHant}, ${e.aliases}::text[], ${e.sitelinks}, ${e.image}, ${e.gender}, ${e.birthYear}, now())`,
       );
     await prisma.$executeRaw`
-      INSERT INTO "Entity" (id, type, ko, en, ja, "zhHant", aliases, sitelinks, image, gender, "updatedAt")
+      INSERT INTO "Entity" (id, type, ko, en, ja, "zhHant", aliases, sitelinks, image, gender, "birthYear", "updatedAt")
       VALUES ${Prisma.join(rows)}
       ON CONFLICT (id) DO UPDATE SET type = EXCLUDED.type, ko = EXCLUDED.ko, en = EXCLUDED.en, ja = EXCLUDED.ja,
         "zhHant" = EXCLUDED."zhHant", aliases = EXCLUDED.aliases, sitelinks = EXCLUDED.sitelinks,
-        image = EXCLUDED.image, gender = EXCLUDED.gender, "updatedAt" = now()`;
+        image = EXCLUDED.image, gender = EXCLUDED.gender, "birthYear" = EXCLUDED."birthYear", "updatedAt" = now()`;
   }
   const { count: removed } = await prisma.entity.deleteMany({ where: { id: { notIn: data.map((e) => e.id) } } });
   log.info("entities: done", { total: data.length, withAliases: aliases.size, removed });
@@ -158,6 +160,7 @@ function genderOf(row: Row): string | null {
 
 interface EntityRow {
   gender: string | null;
+  birthYear: number | null;
   id: string;
   type: string;
   ko: string | null;

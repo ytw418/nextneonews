@@ -5,6 +5,13 @@ import { evaluate, totalScore } from "./heuristics";
 const IU = { type: "singer", ko: "아이유", en: "IU", sitelinks: 69 };
 
 describe("evaluate", () => {
+  it("중년 남자 배우·가수와 무거운 주제는 뺀다 (그룹·젊은 배우는 남긴다)", () => {
+    const old = { type: "actor", ko: "김아재", en: "Kim", sitelinks: 30, gender: "M", birthYear: 1970 };
+    expect(evaluate({ title: "김아재, 새 드라마 주연", source: "yonhap" }, [old]).relevant).toBe(false);
+    expect(evaluate({ title: "김아재, 새 드라마 주연", source: "yonhap" }, [{ ...old, birthYear: 1995 }]).relevant).toBe(true);
+    expect(evaluate({ title: "아이유, 대통령 표창 받아", source: "yonhap" }, [IU]).relevant).toBe(false);
+  });
+
   it("해외에 유명한 인물의 공식 소식은 통과 점수, 일반인 판 사연은 낮은 점수", () => {
     const star = evaluate({ title: "[공식] 아이유, 12월 도쿄 팬미팅 확정", source: "yonhap" }, [IU]);
     expect(star).toMatchObject({ foreignInterest: 5, answerable: 5, category: "KPOP", format: "ISSUE", risk: "GREEN", keyword: "아이유" });

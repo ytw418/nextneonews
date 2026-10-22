@@ -11,7 +11,16 @@ export interface EntityHit {
   ko: string | null;
   en: string | null;
   sitelinks: number;
+  gender?: string | null;
+  birthYear?: number | null;
 }
+
+// 2026-10-22 사용자 결정: 독자가 관심 없는 중년 남자 배우·가수 (그룹은 빼지 않는다)
+const OLD_MAN_BEFORE = 1981;
+const isOldMan = (e: EntityHit) =>
+  e.type !== "group" && e.gender === "M" && e.birthYear != null && e.birthYear < OLD_MAN_BEFORE;
+// 생활 카테고리 중 독자가 좋아하는 것 (화장품·맛집)
+const LIKED_LIFE = new Set<HeuristicResult["category"]>(["KBEAUTY", "KFOOD"]);
 
 export interface HeuristicResult {
   foreignInterest: number;
@@ -103,7 +112,8 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
   // 해외 축구·코인·해외 처형처럼 무관 주제 단어가 있으면 사전에 걸린 이름이 있어도 뺀다 (collectors/policy.ts OFF_TOPIC_TERMS)
   const offTopic = offTopicTerm(title);
   if (offTopic) reasons.push(`무관:${offTopic}`);
-  const relevant = !offTopic && (Boolean(top) || Boolean(lifeCategory) || has(title, FOREIGNER_WORDS));
+  if (top && isOldMan(top)) reasons.push("중년 남자");
+  const relevant = !offTopic && !(top && isOldMan(top)) && (Boolean(top) || Boolean(lifeCategory) || has(title, FOREIGNER_WORDS));
 
   const format: HeuristicResult["format"] = community
     ? "REACTION"
@@ -133,7 +143,13 @@ export function evaluate(input: { title: string; source: string }, entities: Ent
     format,
     keyword,
     reason: reasons.join(", ") || "사전에 없는 인물",
-    star: !top ? -2 : top.type === "group" || top.type === "singer" ? 3 : 2,
+    star: !top
+      ? LIKED_LIFE.has(category)
+        ? 2
+        : -2
+      : top.type === "group" || top.type === "singer"
+        ? 3
+        : 2,
   };
 }
 
