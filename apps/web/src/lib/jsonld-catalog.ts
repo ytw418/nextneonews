@@ -38,6 +38,7 @@ export function itemListLd(i: {
 }
 
 // 제품. 별점(5점 만점으로 환산한 값)은 실제 표가 MIN_VOTES_FOR_SUMMARY 이상일 때만 (그보다 적으면 넘기지 않는다 — 여기서도 한 번 더 막는다)
+// 구글은 Product 에 offers·review·aggregateRating 중 하나를 요구한다 (없으면 '제품 스니펫' 오류). 별점이 없으면 Thing 으로 낸다
 export function productLd(i: {
   url: string;
   name: string;
@@ -47,16 +48,17 @@ export function productLd(i: {
   image?: string; // 오려 낸 제품 CC 사진 (절대 주소). 없으면 뺀다 — 아이콘은 제품 사진이 아니다
   rating?: { value: number; count: number } | null;
 }): object {
+  const rated = !!i.rating && i.rating.count >= MIN_VOTES_FOR_SUMMARY;
   return {
-    "@type": "Product",
+    "@type": rated ? "Product" : "Thing",
     "@id": `${i.url}#product`,
     url: i.url,
     name: i.name,
-    brand: { "@type": "Brand", name: i.brand },
+    ...(rated ? { brand: { "@type": "Brand", name: i.brand } } : {}),
     description: i.description,
-    ...(i.category ? { category: i.category } : {}),
+    ...(rated && i.category ? { category: i.category } : {}),
     ...(i.image ? { image: i.image } : {}),
-    ...(i.rating && i.rating.count >= MIN_VOTES_FOR_SUMMARY
+    ...(rated && i.rating
       ? {
           aggregateRating: {
             "@type": "AggregateRating",

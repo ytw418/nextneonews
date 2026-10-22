@@ -96,7 +96,6 @@ export default async function BeautyAwardsPage({ params }: PageProps<"/[locale]/
             items: ranked.map((r) => ({
               name: `${r.item.brand} ${r.item.text.name}`,
               url: absoluteUrl(locale, `/beauty/p/${r.item.slug}`),
-              type: "Product",
             })),
           }),
           breadcrumbLd(beautyCrumbs(locale, tGuide("title"), t("title"), [{ name: title, url: pageUrl }])),

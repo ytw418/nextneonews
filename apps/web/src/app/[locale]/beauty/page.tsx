@@ -92,7 +92,6 @@ export default async function BeautyHubPage({ params }: PageProps<"/[locale]/bea
             items: winners.map((w) => ({
               name: `${w.item.brand} ${w.item.text.name}`,
               url: absoluteUrl(locale, `/beauty/p/${w.item.slug}`),
-              type: "Product",
             })),
           }),
           breadcrumbLd(beautyCrumbs(locale, tGuide("title"), t("title"))),
