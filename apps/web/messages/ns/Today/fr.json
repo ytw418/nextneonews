@@ -1,0 +1,15 @@
+{
+  "newToday": "{count, plural, one {#\u00a0nouvel article aujourd’hui} other {#\u00a0nouveaux articles aujourd’hui}}",
+  "top": "À la une aujourd’hui",
+  "pollToday": "Le sondage du jour",
+  "pollFromStory": "Tiré de l’article du jour",
+  "picks": {
+    "title": "Choisissez votre bias",
+    "mine": "Mes bias",
+    "pitch": "Leurs actus et D-day en premier. Jusqu’à {max}, sans inscription.",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "noNews": "Pas encore de nouvel article · voir le profil"
+  }
+}

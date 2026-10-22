@@ -1,0 +1,15 @@
+{
+  "newToday": "{count, plural, one {#\u00a0new story today} other {#\u00a0new stories today}}",
+  "top": "Today’s top stories",
+  "pollToday": "Today’s poll",
+  "pollFromStory": "From today’s story",
+  "picks": {
+    "title": "Pick your bias",
+    "mine": "My bias",
+    "pitch": "See their news and D-days first. Up to {max}, no sign-up.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "noNews": "No new story yet · see profile"
+  }
+}

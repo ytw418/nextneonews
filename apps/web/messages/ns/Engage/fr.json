@@ -119,5 +119,7 @@
   "subscribeDoneNews": "C’est noté\u00a0! Nous vous écrirons à la sortie de l’app et vous enverrons la sélection de la semaine.",
   "subscribeInvalid": "Vérifiez l’adresse e-mail.",
   "subscribeTooMany": "Trop d’essais depuis cette connexion. Réessayez demain.",
-  "subscribeFailed": "Impossible d’enregistrer. Réessayez dans un instant."
+  "subscribeFailed": "Impossible d’enregistrer. Réessayez dans un instant.",
+  "pollByLanguage": "Premier choix par langue",
+  "pollEarly": "Vous êtes le {count}ᵉ votant"
 }

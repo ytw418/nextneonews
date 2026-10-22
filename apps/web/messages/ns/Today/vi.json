@@ -1,0 +1,15 @@
+{
+  "newToday": "{count}\u00a0bài mới hôm nay",
+  "top": "Tin nổi bật hôm nay",
+  "pollToday": "Bình chọn hôm nay",
+  "pollFromStory": "Từ bài viết hôm nay",
+  "picks": {
+    "title": "Chọn bias của bạn",
+    "mine": "Bias của tôi",
+    "pitch": "Xem tin và D-day của họ trước tiên. Tối đa {max}, không cần đăng ký.",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "edit": "Sửa",
+    "noNews": "Chưa có bài mới · xem hồ sơ"
+  }
+}

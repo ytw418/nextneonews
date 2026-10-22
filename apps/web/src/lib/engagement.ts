@@ -95,6 +95,28 @@ export async function weeklyPollView(locale: string): Promise<PollView | null> {
   return pollView(poll, labels?.[locale]);
 }
 
+// 홈 첫 화면 '오늘의 한 표': 이번 주 팬 투표, 없으면(월요일 전·이 언어 문구 없음) 최근 7일 글 투표 중 가장 새것.
+// 글 투표면 그 글 주소를 같이 돌려줘 질문 위에 '이 글 보기' 를 단다
+export async function homePollView(locale: string): Promise<{ poll: PollView; slug: string | null } | null> {
+  const weekly = await weeklyPollView(locale);
+  if (weekly) return { poll: weekly, slug: null };
+  const since = new Date(Date.now() - 7 * 86_400_000);
+  const rows = await prisma.translation.findMany({
+    where: {
+      locale,
+      article: { status: "PUBLISHED", publishedAt: { gte: since }, poll: { is: { status: "open" } } },
+    },
+    orderBy: { article: { publishedAt: "desc" } },
+    take: 5,
+    select: { slug: true, poll: true, article: { select: { poll: true } } },
+  });
+  for (const row of rows) {
+    const poll = pollView(row.article.poll, row.poll);
+    if (poll) return { poll, slug: row.slug };
+  }
+  return null;
+}
+
 export async function pollResults(pollId: string): Promise<PollResults> {
   const [poll, groups] = await Promise.all([
     prisma.poll.findUnique({ where: { id: pollId }, select: { totals: true, total: true } }),

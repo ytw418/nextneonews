@@ -1,0 +1,15 @@
+{
+  "newToday": "今日新文章 {count} 篇",
+  "top": "今日焦点新闻",
+  "pollToday": "今日投票",
+  "pollFromStory": "来自今日文章",
+  "picks": {
+    "title": "选择你的本命",
+    "mine": "我的本命",
+    "pitch": "优先显示本命的新闻和 D-day。最多 {max} 位，无需注册",
+    "save": "保存",
+    "cancel": "取消",
+    "edit": "编辑",
+    "noNews": "还没有新文章 · 看个人页"
+  }
+}

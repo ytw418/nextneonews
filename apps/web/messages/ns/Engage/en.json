@@ -119,5 +119,7 @@
   "subscribeDoneNews": "You’re on the list. We’ll email you when the app is out, plus the weekly picks.",
   "subscribeInvalid": "Please check the email address.",
   "subscribeTooMany": "Too many tries from this connection. Please try again tomorrow.",
-  "subscribeFailed": "Couldn’t save it. Please try again in a moment."
+  "subscribeFailed": "Couldn’t save it. Please try again in a moment.",
+  "pollByLanguage": "Top pick by language",
+  "pollEarly": "You’re voter No.\u00a0{count}"
 }

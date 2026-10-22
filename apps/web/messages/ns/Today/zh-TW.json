@@ -1,0 +1,15 @@
+{
+  "newToday": "今日新文章 {count} 篇",
+  "top": "今日焦點新聞",
+  "pollToday": "今日投票",
+  "pollFromStory": "來自今日文章",
+  "picks": {
+    "title": "選擇你的本命",
+    "mine": "我的本命",
+    "pitch": "優先顯示本命的新聞和 D-day。最多 {max} 位，免註冊",
+    "save": "儲存",
+    "cancel": "取消",
+    "edit": "編輯",
+    "noNews": "還沒有新文章 · 看個人頁"
+  }
+}

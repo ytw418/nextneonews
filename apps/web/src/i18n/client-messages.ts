@@ -19,6 +19,7 @@ export const CLIENT_MESSAGES: Record<string, true | readonly string[]> = {
   Rankings: ["tab", "rankLabel", "score", "newEntry", "same", "up", "down", "cheer", "cheered", "cheersToday", "cheerFailed", "cheerTooMany"],
   Feed: ["comments", "reactions", "more", "prev", "next", "pagination"],
   Home: ["continue"], // 홈 이어 읽기 레일 (ContinueRail)
+  Today: ["picks"], // 홈 내 최애 (MyPicks)
   Beauty: ["skinChip", "skinChipMine", "skin", "vote", "quiz"],
   Travel: ["tileStamps", "place", "area"],
   Drama: ["hub", "rating"],

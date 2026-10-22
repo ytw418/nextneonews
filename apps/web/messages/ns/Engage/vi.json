@@ -119,5 +119,7 @@
   "subscribeDoneNews": "Đã đăng ký! Chúng tôi sẽ báo khi ứng dụng ra mắt và gửi tin chọn lọc hằng tuần.",
   "subscribeInvalid": "Hãy kiểm tra lại địa chỉ email.",
   "subscribeTooMany": "Kết nối này đã đăng ký quá nhiều lần. Hãy thử lại vào ngày mai.",
-  "subscribeFailed": "Chưa lưu được. Hãy thử lại sau ít phút."
+  "subscribeFailed": "Chưa lưu được. Hãy thử lại sau ít phút.",
+  "pollByLanguage": "Lựa chọn số 1 theo ngôn ngữ",
+  "pollEarly": "Bạn là người bình chọn thứ {count}"
 }
