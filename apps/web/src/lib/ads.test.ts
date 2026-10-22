@@ -37,8 +37,7 @@ describe("coupangBannerFor", () => {
     expect(gateOpens("hallyu-brief.vercel.app", "Asia/Seoul")).toBe(true);
     expect(gateOpens("hallyu-brief.vercel.app", "Asia/Taipei")).toBe(false);
     expect(gateOpens("kmedia-git-dev.vercel.app", "Asia/Seoul")).toBe(false);
-    // 미디어 관리 등록 확인 전 (등록하면 COUPANG_MEDIA_HOSTS 와 이 줄을 함께 바꾼다)
-    expect(gateOpens("unnienote.app", "Asia/Seoul")).toBe(false);
+    expect(gateOpens("unnienote.app", "Asia/Seoul")).toBe(true);
   });
 });
 
