@@ -98,7 +98,6 @@ export default async function SkinTypeResultPage({ params }: PageProps<"/[locale
             items: picks.map((p) => ({
               name: `${p.brand} ${p.text.name}`,
               url: absoluteUrl(locale, `/beauty/p/${p.slug}`),
-              type: "Product",
             })),
           }),
           breadcrumbLd(
