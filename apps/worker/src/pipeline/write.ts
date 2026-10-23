@@ -36,7 +36,8 @@ const Draft = z.object({
 
 const autoPublish = process.env.AUTO_PUBLISH !== "false";
 
-const NEWS_SOURCES = new Set(["yonhap", "google-trends"]);
+// 사실 출처로 읽을 수 있는 소스 (sources.ts readFact). 커뮤니티·케이아지트·아이돌차트 신호만 있는 주제는 이 중 하나가 같이 묶여야 글이 된다
+const NEWS_SOURCES = new Set(["yonhap", "google-trends", "osen", "xportsnews", "dispatch", "tenasia", "sportsseoul", "manual-manual"]);
 
 function kstToday(): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul" }).format(new Date());
