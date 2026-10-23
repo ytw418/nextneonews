@@ -6,6 +6,8 @@ import type { CollectedSignal, Collector } from "./types";
 // 케이아지트(kagit.kr) 첫 화면의 화제 글 제목 (robots.txt 허용, 2026-10-22 확인).
 // 무엇이 화제인지 보는 신호로만 쓴다: 본문은 읽지도 옮기지도 않고, 글은 같은 인물의 매체 기사로 쓴다 (sources.ts)
 const HOME = "https://kagit.kr/ko";
+// K팝 글 목록: 첫 화면보다 아이돌 글이 많다
+const PAGES = [HOME, `${HOME}/k-pop`];
 
 export function parseKagit(html: string): CollectedSignal[] {
   const $ = cheerio.load(html);
@@ -31,6 +33,8 @@ export function parseKagit(html: string): CollectedSignal[] {
 export const kagitCollector: Collector = {
   name: "kagit",
   async collect() {
-    return parseKagit(await fetchHtml(HOME));
+    const seen = new Map<string, CollectedSignal>();
+    for (const page of PAGES) for (const s of parseKagit(await fetchHtml(page))) if (!seen.has(s.externalId)) seen.set(s.externalId, s);
+    return [...seen.values()];
   },
 };

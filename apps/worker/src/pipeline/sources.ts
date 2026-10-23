@@ -129,6 +129,9 @@ async function readFact(signal: SignalRef): Promise<SourceMaterial> {
     case "google-trends":
     case "osen":
     case "xportsnews":
+    case "dispatch":
+    case "tenasia":
+    case "sportsseoul":
     case "manual-manual": // 사람이 seed-topic --source manual --url 로 넣은 기사
       return newsArticle(signal.url, new URL(signal.url).hostname);
     case "theqoo":
