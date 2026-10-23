@@ -1,4 +1,5 @@
 import { googleTrendsCollector } from "./googleTrends";
+import { idolChartCollector } from "./idolchart";
 import { kagitCollector } from "./kagit";
 import { mediaCollector } from "./media";
 import { theqooCollector } from "./theqoo";
@@ -11,6 +12,7 @@ export const collectors: Record<string, Collector> = {
   // 연예 매체를 앞에: 아이돌·배우 기사가 연합뉴스보다 많다
   [mediaCollector.name]: mediaCollector,
   [kagitCollector.name]: kagitCollector,
+  [idolChartCollector.name]: idolChartCollector,
   [googleTrendsCollector.name]: googleTrendsCollector,
   [yonhapCollector.name]: yonhapCollector,
   [theqooCollector.name]: theqooCollector,
